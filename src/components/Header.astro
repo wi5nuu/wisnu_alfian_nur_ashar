@@ -1,19 +1,13 @@
 ---
+// Bagian Import tetap sama...
 import { User, Briefcase, FolderKanban, Mail, Sparkles } from "lucide-astro";
-// Import file ChatBot dari lokasi yang sama
 import AIChatBot from "./AIChatBot.astro";
-
-// Menu disesuaikan dengan file di folder sections Anda:
-// About.astro -> About
-// Experience.astro -> Experience
-// Projects.astro -> Projects
-// Home (Logo) -> Menuju halaman utama
 
 const navLinks = [
   { name: "About", href: "/about", icon: User },
   { name: "Exp.", href: "/experience", icon: Briefcase },
   { name: "Home", href: "/", isLogo: true },
-  { name: "AI", href: "#", icon: Sparkles, isAI: true }, // Menu Mobile AI
+  { name: "AI", href: "#", icon: Sparkles, isAI: true },
   { name: "Projects", href: "/projects", icon: FolderKanban },
 ];
 
@@ -24,12 +18,11 @@ const pathname = new URL(Astro.request.url).pathname;
   <div class="container-custom flex items-center justify-between h-20">
     <a href="/" class="flex items-center gap-2">
       <img src="/logo.png" alt="Logo" class="w-8 h-8 object-contain" />
-      <span class="text-xl font-bold text-slate-900 tracking-tight">Wisnu Alfian Nur Ashar<span class="text-slate-400">
+      <span class="text-xl font-bold text-slate-900 tracking-tight">Wisnu Alfian Nur Ashar<span class="text-slate-400">.</span></span>
     </a>
 
     <nav class="flex items-center gap-8">
       {navLinks.map((link) => 
-        // Filter: Logo dan AI tidak ditampilkan sebagai link teks biasa di desktop
         !link.isLogo && !link.isAI && (
         <a href={link.href} class={`text-sm font-medium transition-all ${pathname === link.href ? "text-slate-900 font-bold" : "text-slate-400 hover:text-slate-900"}`}>
           {link.name}
@@ -43,9 +36,12 @@ const pathname = new URL(Astro.request.url).pathname;
 </header>
 
 <div class="md:hidden fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md px-6 py-4 flex justify-between items-center border-b border-slate-50">
-    <span class="text-lg font-bold text-slate-900 tracking-tight">Wisnu<span class="text-slate-400">.</span>dev</span>
-    <a href="/contact" class="text-slate-900 p-2 active:scale-95 transition-transform">
-        <Mail size={20} />
+    <a href="/" class="flex items-center gap-2">
+        <img src="/logo.png" alt="Logo" class="w-7 h-7 object-contain" />
+        <span class="text-lg font-bold text-slate-900 tracking-tight">Wisnu<span class="text-slate-400">.</span>dev</span>
+    </a>
+    <a href="/contact" class="text-slate-900 p-2 active:scale-95 transition-transform bg-slate-50 rounded-full">
+        <Mail size={18} />
     </a>
 </div>
 
@@ -56,7 +52,6 @@ const pathname = new URL(Astro.request.url).pathname;
         const isActive = link.href === pathname;
         const LinkIcon = link.icon;
         
-        // 1. LOGO TENGAH (Home)
         if (link.isLogo) {
           return (
             <a href="/" class="relative -translate-y-8 transition-transform active:scale-95">
@@ -67,7 +62,6 @@ const pathname = new URL(Astro.request.url).pathname;
           );
         }
 
-        // 2. TOMBOL AI (Trigger Chatbot)
         if (link.isAI) {
             return (
                 <button id="mobile-ai-trigger" class="flex flex-col items-center py-2 min-w-[50px] transition-transform active:scale-95 cursor-pointer">
@@ -81,7 +75,6 @@ const pathname = new URL(Astro.request.url).pathname;
             )
         }
 
-        // 3. MENU NAVIGASI LAINNYA
         return (
           <a href={link.href} class="flex flex-col items-center py-2 min-w-[50px] transition-transform active:scale-95">
             <div class={`transition-colors duration-300 ${isActive ? "text-slate-900" : "text-slate-300"}`}>
@@ -100,11 +93,10 @@ const pathname = new URL(Astro.request.url).pathname;
 <AIChatBot />
 
 <style>
-  /* Padding tambahan agar konten tidak tertutup navbar bawah */
   @media (max-width: 768px) {
     body {
       padding-bottom: 120px;
-      padding-top: 80px;
+      padding-top: 72px; /* Disesuaikan agar konten tidak tertutup header baru */
     }
   }
   a, button {
