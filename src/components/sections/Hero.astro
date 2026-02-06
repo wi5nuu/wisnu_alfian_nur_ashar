@@ -129,36 +129,39 @@ const slides = [
 </style>
 
 <script>
-  // Slider Logic
+  // --- SLIDER LOGIC ---
   const images = document.querySelectorAll(".slider-image");
   let currentIndex = 0;
   const totalSlides = images.length;
 
   function nextSlide() {
     if (images.length === 0) return;
-
-    // Current slide fades out
-    images[currentIndex].classList.remove("opacity-40");
-    images[currentIndex].classList.add("opacity-0");
-
-    // Calculate next index
+    
+    if (images[currentIndex]) {
+      images[currentIndex].classList.remove("opacity-100");
+      images[currentIndex].classList.add("opacity-0");
+    }
+    
     currentIndex = (currentIndex + 1) % totalSlides;
-
-    // Next slide fades in
-    images[currentIndex].classList.remove("opacity-0");
-    images[currentIndex].classList.add("opacity-40");
+    
+    if (images[currentIndex]) {
+      images[currentIndex].classList.remove("opacity-0");
+      images[currentIndex].classList.add("opacity-100");
+    }
   }
 
   if (totalSlides > 1) {
-    setInterval(nextSlide, 5000);
+    setInterval(nextSlide, 6000);
   }
 
-  // Typewriter Logic
+  // --- TYPEWRITER LOGIC ---
   const text = "Wisnu Alfian Nur Ashar";
   const typeDelay = 100;
   const eraseDelay = 50;
-  const newTextDelay = 2000; // Delay before erasing
+  const newTextDelay = 2000;
+  
   const textElement = document.getElementById("typewriter-text");
+  const glowElement = document.getElementById("typewriter-text-glow");
 
   let charIndex = 0;
   let isDeleting = false;
@@ -166,32 +169,42 @@ const slides = [
   function type() {
     if (!textElement) return;
 
+    // --- LOGIKA UTAMA (Tanpa Fungsi Pembantu yang bikin error) ---
+
     if (!isDeleting && charIndex < text.length) {
-      // Typing
-      textElement.textContent += text.charAt(charIndex);
+      // 1. SEDANG MENGETIK
+      const currentText = text.substring(0, charIndex + 1);
+      
+      // Update Text Langsung di sini
+      textElement.textContent = currentText;
+      if (glowElement) glowElement.textContent = currentText;
+
       charIndex++;
       setTimeout(type, typeDelay);
+
     } else if (isDeleting && charIndex > 0) {
-      // Erasing
-      textElement.textContent = text.substring(0, charIndex - 1);
+      // 2. SEDANG MENGHAPUS
+      const currentText = text.substring(0, charIndex - 1);
+      
+      // Update Text Langsung di sini
+      textElement.textContent = currentText;
+      if (glowElement) glowElement.textContent = currentText;
+
       charIndex--;
       setTimeout(type, eraseDelay);
+
     } else {
-      // Switch modes
+      // 3. GANTI MODE (Ngetik <-> Hapus)
       isDeleting = !isDeleting;
       if (!isDeleting) {
-        // Just finished erasing, start typing right away
         setTimeout(type, 500);
       } else {
-        // Just finished typing, wait before erasing
         setTimeout(type, newTextDelay);
       }
     }
   }
 
-  // Start the typing animation
   document.addEventListener("DOMContentLoaded", () => {
-    // Small delay to start ensuring layout is ready
     setTimeout(type, 500);
   });
 </script>
