@@ -1,33 +1,143 @@
 ---
 import "../styles/global.css";
-
 import AIChatBot from "../components/AIChatBot.astro";
+import { profile } from "../data/profile";
 
 interface Props {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
+  url?: string;
 }
 
-const { title, description = "Astro Portfolio" } = Astro.props;
+const {
+  title,
+  description = profile.personalInfo.summary,
+  url = "https://www.wisnualfiannurashar.my.id/"
+} = Astro.props;
+
+const siteName = "Wisnu Alfian Nur Ashar – Portfolio";
+const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<div
-			id="app"
-			class="min-h-screen flex flex-col bg-white transition-colors duration-300"
-		>
-			<slot />
-		</div>
-		<AIChatBot />
-	</body>
+<head>
+  <!-- ================= BASIC ================= -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content={profile.personalInfo.name} />
+  <meta name="robots" content="index, follow" />
+
+  <!-- ================= LANGUAGE / GEO ================= -->
+  <meta name="geo.position" content="-6.2409;107.0108" />
+  <meta name="geo.region" content="ID-JB" />
+  <meta name="geo.placename" content="Kota Bekasi, Jawa Barat" />
+
+  <!-- ================= CANONICAL ================= -->
+  <link rel="canonical" href={url} />
+
+  <!-- ================= GOOGLE VERIFICATION ================= -->
+  <meta
+    name="google-site-verification"
+    content="EJ_C4tjJumyHkl6RwAdqafUs-zgyK2KjvQ6zTy1_LDQ"
+  />
+
+  <!-- ================= THEME ================= -->
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- ================= OPEN GRAPH ================= -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={image} />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="400" />
+
+  <!-- ================= TWITTER ================= -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+
+  <!-- ================= FAVICON & PWA ================= -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- ================= SECURITY (CSP) ================= -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: https:;
+    connect-src 'self';
+    font-src 'self';
+  " />
+
+  <!-- ================= SCHEMA PERSON ================= -->
+  <script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.personalInfo.name,
+    url,
+    image,
+    jobTitle: profile.personalInfo.role,
+    description: profile.personalInfo.summary,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kota Bekasi",
+      addressRegion: "Jawa Barat",
+      addressCountry: "ID"
+    },
+    affiliation: {
+      "@type": "CollegeOrUniversity",
+      name: profile.education.institution
+    },
+    knowsAbout: [
+      ...profile.skills.technical.map(s => s.name),
+      ...profile.skills.soft.map(s => s.name)
+    ],
+    sameAs: [
+      profile.personalInfo.linkedin,
+      profile.personalInfo.github,
+      profile.personalInfo.instagram,
+      profile.personalInfo.facebook
+    ].filter(Boolean)
+  })}
+  </script>
+
+  <!-- ================= SCHEMA WEBSITE ================= -->
+  <script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteName,
+    url,
+    publisher: {
+      "@type": "Person",
+      name: profile.personalInfo.name
+    }
+  })}
+  </script>
+
+  <meta name="generator" content={Astro.generator} />
+</head>
+
+<body class="bg-white text-slate-900 antialiased">
+  <div
+    id="app"
+    class="min-h-screen flex flex-col transition-colors duration-300"
+  >
+    <slot />
+  </div>
+
+  <!-- ================= AI CHATBOT ================= -->
+  <AIChatBot />
+</body>
 </html>

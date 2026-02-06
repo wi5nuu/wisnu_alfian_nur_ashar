@@ -4,29 +4,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-sage-50: #f0f4f0;
-  --color-sage-100: #dde7dd;
-  --color-sage-200: #c0d2c0;
-  --color-sage-300: #9db89d;
-  --color-sage-400: #7a9f7a;
-  --color-sage-500: #5d8a5d;
-  --color-sage-600: #4a6f4a;
-  --color-sage-700: #3d5a3d;
-  --color-sage-800: #334833;
-  --color-sage-900: #2a3b2a;
+  /* --- PALET BARU: Steel Blue / Muted Teal --- */
+  
+  /* Sage sekarang menjadi nuansa Biru Keabuan */
+  --color-sage-50: #f0f5f6;
+  --color-sage-100: #e0ecee;
+  --color-sage-200: #c0dce1;
+  --color-sage-300: #9dbfc8;
+  --color-sage-400: #7a9fac;
+  --color-sage-500: #5d8a95; /* Primary Color Baru */
+  --color-sage-600: #4a6f78;
+  --color-sage-700: #3d5a61;
+  --color-sage-800: #33484d;
+  --color-sage-900: #2a3b3e; /* Dark Background Baru */
 
+  /* White disesuaikan ke Cool White (sedikit kebiruan sangat tipis) */
   --color-white-50: #ffffff;
-  --color-white-100: #fffffb;
-  --color-white-200: #fcfcf9;
-  --color-white-300: #f9f9f4;
-  --color-white: #fffffb;
+  --color-white-100: #f8fafc;
+  --color-white-200: #f1f5f9;
+  --color-white-300: #e2e8f0;
+  --color-white: #f8fafc;
 
-  --color-cream-100: #f6f8f6;
-  --color-cream-200: #e8ede8;
-  --color-cream-300: #d4dfd4;
-  --color-cream: #f6f8f6;
+  /* Cream diganti menjadi Cool Grey agar serasi dengan Biru */
+  --color-cream-100: #f6f7f8;
+  --color-cream-200: #eaeff2; /* Warna border yang lebih bersih */
+  --color-cream-300: #dce5e8;
+  --color-cream: #f6f7f8;
 
-  --color-charcoal: #2d3330;
+  /* Charcoal dengan sedikit tint biru gelap */
+  --color-charcoal: #2d3336;
 
   --font-sans: "Outfit", sans-serif;
   --font-serif: "Cormorant Garamond", serif;
@@ -35,6 +41,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Menggunakan background white yang baru (lebih sejuk) */
     @apply bg-white text-charcoal font-sans antialiased;
   }
 
@@ -66,6 +73,7 @@
   }
 
   .btn-primary {
+    /* Hover effect tetap sama, tapi warnanya otomatis mengikuti palet baru */
     @apply bg-sage-500 text-white hover:bg-sage-600 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
   }
 
@@ -74,6 +82,7 @@
   }
 
   .card {
+    /* Border cream-200 sekarang lebih ke abu-abu muda, cocok untuk tema biru */
     @apply bg-white rounded-xl shadow-sm border border-cream-200 p-6 hover:shadow-md transition-shadow duration-300;
   }
 }

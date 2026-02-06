@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
+    "@astrojs/sitemap": "^3.7.0",
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@fontsource/outfit": "^5.2.8",
     "@tailwindcss/vite": "^4.1.18",

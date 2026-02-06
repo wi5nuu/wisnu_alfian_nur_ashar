@@ -1,88 +1,78 @@
 ---
-import { MessageSquare, X, Send, Sparkles } from "lucide-astro";
+import { X, Send } from "lucide-astro";
 ---
 
-<div id="ai-chat-widget" class="fixed bottom-6 right-6 z-50 font-sans">
-    <!-- Toggle Button -->
+<div id="ai-chat-widget" class="z-[110] font-sans">
     <button
-        id="chat-toggle"
-        class="relative group bg-sage-900 hover:bg-sage-800 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95"
+        id="chat-toggle-desktop"
+        class="hidden md:flex fixed bottom-6 right-6 group bg-slate-900 hover:bg-slate-800 text-white p-2 pr-4 pl-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 z-50 items-center gap-3 border border-slate-700/50"
         aria-label="Toggle AI Assistant"
     >
-        <div
-            class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse border-2 border-white"
-        >
+        <div class="relative">
+            <img 
+                src="/logo.png" 
+                alt="AI" 
+                class="w-10 h-10 rounded-full object-cover border-2 border-white/20"
+            />
+            <div class="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full animate-pulse border-2 border-slate-900"></div>
         </div>
-        <Sparkles class="w-6 h-6 animate-pulse-slow" />
+        
+        <div class="flex flex-col items-start">
+            <span class="text-sm font-bold text-white leading-tight">Wisnu's AI</span>
+            <span class="text-[10px] text-slate-400 font-medium">Chat with me</span>
+        </div>
     </button>
 
-    <!-- Chat Window -->
     <div
         id="chat-window"
-        class="absolute bottom-20 right-0 w-[350px] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-cream-200 transform scale-90 opacity-0 pointer-events-none transition-all duration-300 origin-bottom-right overflow-hidden flex flex-col max-h-[500px]"
+        class="fixed bottom-28 md:bottom-24 right-4 left-4 md:left-auto md:right-6 w-auto md:w-[380px] bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 transform scale-95 opacity-0 pointer-events-none transition-all duration-300 origin-bottom overflow-hidden flex flex-col max-h-[60vh] md:max-h-[500px] z-[120]"
     >
-        <!-- Header -->
-        <div
-            class="bg-sage-900 p-4 flex items-center justify-between text-white shrink-0"
-        >
-            <div class="flex items-center gap-3">
-                <div class="p-2 bg-white/10 rounded-lg">
-                    <Sparkles class="w-5 h-5 text-yellow-300" />
+        <div class="bg-slate-900 p-4 flex items-center justify-between text-white shrink-0 relative overflow-hidden">
+             <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+
+            <div class="flex items-center gap-3 relative z-10">
+                <div class="relative">
+                    <img 
+                        src="/logo.png" 
+                        alt="AI Avatar" 
+                        class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm"
+                    />
+                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900"></div>
                 </div>
                 <div>
-                    <h3 class="font-bold text-sm">Wisnu's AI Assistant</h3>
-                    <p class="text-xs text-sage-200">
-                        Ask me anything about Wisnu!
+                    <h3 class="font-bold text-sm text-white">Wisnu's AI</h3>
+                    <p class="text-[10px] text-blue-200 uppercase tracking-wider font-medium">
+                        Online & Ready
                     </p>
                 </div>
             </div>
-            <button
-                id="chat-close"
-                class="p-1 hover:bg-white/10 rounded-full transition-colors"
-            >
+            <button id="chat-close" class="p-2 hover:bg-white/10 rounded-full transition-colors relative z-10 text-white/80 hover:text-white">
                 <X class="w-5 h-5" />
             </button>
         </div>
 
-        <!-- Messages Area -->
-        <div
-            id="chat-messages"
-            class="flex-1 p-4 overflow-y-auto space-y-4 bg-cream-50/50 h-[350px]"
-        >
-            <!-- Welcome Message -->
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50 h-[350px]">
             <div class="flex gap-3">
-                <div
-                    class="w-8 h-8 rounded-full bg-sage-100 flex items-center justify-center shrink-0"
-                >
-                    <Sparkles class="w-4 h-4 text-sage-600" />
-                </div>
-                <div
-                    class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-cream-200 text-sm text-charcoal/80"
-                >
-                    Hi! I'm Wisnu's virtual assistant. Ask me about his <strong
-                        >skills</strong
-                    >, <strong>projects</strong>, or <strong>experience</strong
-                    >!
+                <img 
+                    src="/logo.png" 
+                    alt="AI" 
+                    class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm"
+                />
+                <div class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-slate-100 text-sm text-slate-600">
+                    Hi! I'm Wisnu's virtual assistant. Ask me about his <strong>skills</strong>, <strong>projects</strong>, or <strong>experience</strong>!
                 </div>
             </div>
         </div>
 
-        <!-- Input Area -->
-        <form
-            id="chat-form"
-            class="p-3 border-t border-cream-200 bg-white flex gap-2 shrink-0"
-        >
+        <form id="chat-form" class="p-3 border-t border-slate-100 bg-white flex gap-2 shrink-0">
             <input
                 type="text"
                 id="chat-input"
                 placeholder="Type your question..."
-                class="flex-1 bg-cream-50 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-sage-500/20 focus:outline-none placeholder:text-gray-400"
+                class="flex-1 bg-slate-50 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-slate-900/10 focus:outline-none placeholder:text-slate-400"
                 autocomplete="off"
             />
-            <button
-                type="submit"
-                class="p-2 bg-sage-900 text-white rounded-xl hover:bg-sage-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+            <button type="submit" class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 active:scale-95 shadow-md">
                 <Send class="w-4 h-4" />
             </button>
         </form>
@@ -92,8 +82,7 @@ import { MessageSquare, X, Send, Sparkles } from "lucide-astro";
 <script>
     import { LocalAI } from "../utils/LocalAI";
 
-    const widget = document.getElementById("ai-chat-widget");
-    const toggleBtn = document.getElementById("chat-toggle");
+    const desktopToggle = document.getElementById("chat-toggle-desktop");
     const closeBtn = document.getElementById("chat-close");
     const windowEl = document.getElementById("chat-window");
     const form = document.getElementById("chat-form") as HTMLFormElement;
@@ -102,53 +91,39 @@ import { MessageSquare, X, Send, Sparkles } from "lucide-astro";
 
     let isOpen = false;
 
-    // Toggle Chat
     function toggleChat() {
         isOpen = !isOpen;
         if (isOpen) {
-            windowEl?.classList.remove(
-                "scale-90",
-                "opacity-0",
-                "pointer-events-none",
-            );
-            windowEl?.classList.add(
-                "scale-100",
-                "opacity-100",
-                "pointer-events-auto",
-            );
+            windowEl?.classList.remove("scale-95", "opacity-0", "pointer-events-none");
+            windowEl?.classList.add("scale-100", "opacity-100", "pointer-events-auto");
             setTimeout(() => input?.focus(), 300);
         } else {
-            windowEl?.classList.add(
-                "scale-90",
-                "opacity-0",
-                "pointer-events-none",
-            );
-            windowEl?.classList.remove(
-                "scale-100",
-                "opacity-100",
-                "pointer-events-auto",
-            );
+            windowEl?.classList.add("scale-95", "opacity-0", "pointer-events-none");
+            windowEl?.classList.remove("scale-100", "opacity-100", "pointer-events-auto");
         }
     }
 
-    toggleBtn?.addEventListener("click", toggleChat);
+    desktopToggle?.addEventListener("click", toggleChat);
+    
+    // Event Delegation untuk Mobile Trigger
+    document.body.addEventListener('click', function(e) {
+        if ((e.target as Element).closest('#mobile-ai-trigger')) {
+            e.preventDefault();
+            toggleChat();
+        }
+    });
+
     closeBtn?.addEventListener("click", toggleChat);
 
-    // Send Message
     form?.addEventListener("submit", async (e) => {
         e.preventDefault();
         const query = input.value.trim();
         if (!query) return;
 
-        // Add User Message
         addMessage(query, "user");
         input.value = "";
-
-        // Simulate "Typing..."
         const typingId = showTypingIndicator();
 
-        // Process AI
-        // Simulate network delay for realism
         setTimeout(() => {
             const response = LocalAI.process(query);
             if (typingId) removeTypingIndicator(typingId);
@@ -158,34 +133,27 @@ import { MessageSquare, X, Send, Sparkles } from "lucide-astro";
 
     function addMessage(text: string, sender: "user" | "ai") {
         if (!messagesContainer) return;
-
         const div = document.createElement("div");
         const isAi = sender === "ai";
-
         div.className = `flex gap-3 ${isAi ? "" : "flex-row-reverse"}`;
 
+        // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
         const iconHtml = isAi
-            ? `<div class="w-8 h-8 rounded-full bg-sage-100 flex items-center justify-center shrink-0"><svg class="w-4 h-4 text-sage-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>`
-            : `<div class="w-8 h-8 rounded-full bg-sage-900 flex items-center justify-center shrink-0 text-white text-xs font-bold">You</div>`;
+            ? `<img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />`
+            : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">You</div>`;
 
         const bubbleClass = isAi
-            ? "bg-white border border-cream-200 text-charcoal/80 rounded-tl-sm"
-            : "bg-sage-900 text-white rounded-tr-sm";
-
-        // Parse simple markdown (bold only for safety/speed)
-        const formattedText = text
-            .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-            .replace(/\n/g, "<br>");
+            ? "bg-white border border-slate-100 text-slate-600 rounded-tl-sm"
+            : "bg-slate-900 text-white rounded-tr-sm";
 
         div.innerHTML = `
-      ${iconHtml}
-      <div class="p-3 rounded-2xl shadow-sm max-w-[80%] text-sm leading-relaxed ${bubbleClass}">
-        ${formattedText}
-      </div>
-    `;
-
+             ${iconHtml}
+             <div class="p-3 rounded-2xl shadow-sm max-w-[80%] text-sm leading-relaxed ${bubbleClass}">
+               ${text.replace(/\n/g, "<br>")}
+             </div>
+           `;
         messagesContainer.appendChild(div);
-        scrollToBottom();
+        if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     function showTypingIndicator() {
@@ -194,29 +162,17 @@ import { MessageSquare, X, Send, Sparkles } from "lucide-astro";
         const div = document.createElement("div");
         div.id = id;
         div.className = "flex gap-3";
+        // Menggunakan IMG tag untuk indikator typing juga
         div.innerHTML = `
-      <div class="w-8 h-8 rounded-full bg-sage-100 flex items-center justify-center shrink-0">
-         <svg class="w-4 h-4 text-sage-600 animate-pulse" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-      </div>
-      <div class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-cream-200 text-sm text-charcoal/50 flex gap-1 items-center h-10">
-        <span class="w-1.5 h-1.5 bg-sage-300 rounded-full animate-bounce"></span>
-        <span class="w-1.5 h-1.5 bg-sage-300 rounded-full animate-bounce delay-75"></span>
-        <span class="w-1.5 h-1.5 bg-sage-300 rounded-full animate-bounce delay-150"></span>
-      </div>
-    `;
+             <img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />
+             <div class="bg-white p-3 rounded-2xl flex gap-1 items-center h-10 border border-slate-100 shadow-sm">
+               <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+               <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-75"></span>
+               <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-150"></span>
+             </div>`;
         messagesContainer.appendChild(div);
-        scrollToBottom();
+        if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
         return id;
     }
-
-    function removeTypingIndicator(id: string) {
-        const el = document.getElementById(id);
-        el?.remove();
-    }
-
-    function scrollToBottom() {
-        if (messagesContainer) {
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-    }
+    function removeTypingIndicator(id: string) { document.getElementById(id)?.remove(); }
 </script>

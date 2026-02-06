@@ -7,33 +7,37 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				// Kita ubah "sage" menjadi nuansa "Steel Blue / Muted Teal"
 				sage: {
-					50: '#f0f4f0',
-					100: '#dde7dd',
-					200: '#c0d2c0',
-					300: '#9db89d',
-					400: '#7a9f7a',
-					500: '#5d8a5d', // Primary
-					600: '#4a6f4a', // Secondary dark
-					700: '#3d5a3d',
-					800: '#334833',
-					900: '#2a3b2a',
+					50: '#f0f5f6',  // Cool white tint
+					100: '#e0ecee', // Very light blue-grey
+					200: '#c0dce1',
+					300: '#9dbfc8',
+					400: '#7a9fac',
+					500: '#5d8a95', // Primary: Digeser dari Hijau (#5d8a5d) ke Biru-Teal
+					600: '#4a6f78', // Secondary dark
+					700: '#3d5a61',
+					800: '#33484d',
+					900: '#2a3b3e', // Dark background: Deep Teal/Slate
 				},
+				// White disesuaikan agar lebih "dingin" (cool tone)
 				white: {
-					DEFAULT: '#fffffb', // Off-white
+					DEFAULT: '#f8fafc', 
 					50: '#ffffff',
-					100: '#fffffb',
-					200: '#fcfcf9',
-					300: '#f9f9f4',
+					100: '#f8fafc',
+					200: '#f1f5f9',
+					300: '#e2e8f0',
 				},
+				// Cream disesuaikan jadi lebih ke "Cool Grey" agar masuk dengan birunya
 				cream: {
-					DEFAULT: '#f6f8f6',
-					100: '#f6f8f6',
-					200: '#e8ede8',
-					300: '#d4dfd4',
+					DEFAULT: '#f6f7f8',
+					100: '#f6f7f8',
+					200: '#eaeff2',
+					300: '#dce5e8',
 				},
+				// Charcoal diberi sedikit nuansa biru tua
 				charcoal: {
-					DEFAULT: '#2d3330',
+					DEFAULT: '#2d3336',
 				}
 			},
 			fontFamily: {
