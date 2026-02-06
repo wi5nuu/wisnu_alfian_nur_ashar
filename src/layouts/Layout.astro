@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+
+import AIChatBot from "../components/AIChatBot.astro";
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Astro Portfolio" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div
+			id="app"
+			class="min-h-screen flex flex-col bg-white transition-colors duration-300"
+		>
+			<slot />
+		</div>
+		<AIChatBot />
+	</body>
+</html>

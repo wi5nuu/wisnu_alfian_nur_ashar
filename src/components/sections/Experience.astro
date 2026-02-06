@@ -1,0 +1,68 @@
+---
+import { profile } from '../../data/profile';
+import { Calendar } from 'lucide-astro';
+---
+
+<section id="experience" class="section bg-cream-50">
+  <div class="container-custom">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif font-bold text-sage-900 mb-4 inline-block relative">
+        Work Experience
+        <span class="absolute -bottom-2 left-0 w-full h-1 bg-sage-300/50 rounded-full"></span>
+      </h2>
+      <p class="text-charcoal/70 max-w-2xl mx-auto mt-4">
+        My professional journey from student organizations to productions-grade full-stack development.
+      </p>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto">
+      <!-- Vertical Line -->
+      <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-0.5 bg-sage-200"></div>
+
+      <div class="space-y-12">
+        {profile.experience.map((exp, index) => (
+          <div class={`relative flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center w-full`}>
+            
+            <!-- Timeline Dot -->
+            <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-sage-500 border-4 border-white z-10"></div>
+
+            <!-- Content -->
+            <div class="w-full md:w-1/2 pl-8 md:pl-0 md:pr-12 group">
+              <div class={`bg-white p-6 rounded-xl shadow-sm border border-cream-200 hover:shadow-md transition-shadow duration-300 relative ${index % 2 === 0 ? 'md:ml-12' : 'md:mr-12 text-right'}`}>
+                 <!-- Connection Line for Desktop -->
+                 <div class={`hidden md:block absolute top-6 h-0.5 w-12 bg-sage-200 ${index % 2 === 0 ? '-left-12' : '-right-12'}`}></div>
+
+                 <div class={`flex flex-col ${index % 2 === 0 ? 'items-start' : 'md:items-end'} mb-2`}>
+                   <h3 class="text-xl font-bold text-sage-800">{exp.role}</h3>
+                   <span class="text-lg text-sage-600 font-medium">{exp.company}</span>
+                 </div>
+
+                 <div class={`flex items-center text-sm text-charcoal/60 mb-4 gap-4 ${index % 2 === 0 ? 'justify-start' : 'md:justify-end'}`}>
+                    <span class="flex items-center gap-1">
+                      <Calendar class="w-4 h-4" />
+                      {exp.duration}
+                    </span>
+                    <span class="px-2 py-0.5 bg-sage-50 text-sage-600 rounded-full text-xs border border-sage-100">
+                      {exp.type}
+                    </span>
+                 </div>
+
+                 <p class="text-charcoal/80 mb-4 leading-relaxed">
+                   {exp.description}
+                 </p>
+
+                 <div class={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'justify-start' : 'md:justify-end'}`}>
+                   {exp.skills.map(skill => (
+                     <span class="px-3 py-1 bg-cream-100 text-sage-700 text-xs font-medium rounded-full">
+                       {skill}
+                     </span>
+                   ))}
+                 </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

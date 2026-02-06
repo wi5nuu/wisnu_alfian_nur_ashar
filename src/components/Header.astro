@@ -1,0 +1,112 @@
+---
+import { profile } from "../data/profile";
+import { Menu, X } from "lucide-astro";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Experience", href: "/experience" },
+  { name: "Projects", href: "/projects" },
+  { name: "Skills", href: "/skills" },
+  { name: "Contact", href: "/contact" },
+];
+
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<header
+  class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm border-b border-cream-200 transition-all duration-300"
+  id="header"
+>
+  <div class="container-custom flex items-center justify-between h-16 md:h-20">
+    <!-- Logo -->
+    <a
+      href="/"
+      class="text-xl md:text-2xl font-serif font-bold text-sage-900 tracking-tight"
+    >
+      Wisnu<span class="text-sage-500">.</span>dev
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center space-x-8">
+      {
+        navLinks.map((link) => {
+          const isActive =
+            link.href === pathname ||
+            (link.href !== "/" && pathname.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class={`text-sm font-medium transition-colors duration-200 ${isActive ? "text-sage-600 font-bold" : "text-charcoal/80 hover:text-sage-600"}`}
+            >
+              {link.name}
+            </a>
+          );
+        })
+      }
+      <a
+        href={profile.personalInfo.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary text-sm px-4 py-2 rounded-full"
+      >
+        Let's Talk
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden text-charcoal hover:text-sage-600 focus:outline-none"
+      aria-label="Toggle menu"
+    >
+      <Menu class="w-6 h-6 block" id="menu-icon" />
+      <X class="w-6 h-6 hidden" id="close-icon" />
+    </button>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-white border-t border-cream-200 absolute w-full left-0 shadow-lg h-screen"
+  >
+    <nav class="flex flex-col py-4 px-4 space-y-4">
+      {
+        navLinks.map((link) => {
+          const isActive =
+            link.href === pathname ||
+            (link.href !== "/" && pathname.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class={`text-base font-medium transition-colors duration-200 block py-2 ${isActive ? "text-sage-600 font-bold" : "text-charcoal/80 hover:text-sage-600"}`}
+            >
+              {link.name}
+            </a>
+          );
+        })
+      }
+      <a
+        href={profile.personalInfo.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary text-sm w-full text-center mt-4"
+      >
+        Let's Talk
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  menuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+    menuIcon?.classList.toggle("hidden");
+    closeIcon?.classList.toggle("hidden");
+  });
+</script>

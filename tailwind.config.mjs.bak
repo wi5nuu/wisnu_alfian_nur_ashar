@@ -1,0 +1,46 @@
+/** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
+
+export default {
+	darkMode: "class", 
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	theme: {
+		extend: {
+			colors: {
+				sage: {
+					50: '#f0f4f0',
+					100: '#dde7dd',
+					200: '#c0d2c0',
+					300: '#9db89d',
+					400: '#7a9f7a',
+					500: '#5d8a5d', // Primary
+					600: '#4a6f4a', // Secondary dark
+					700: '#3d5a3d',
+					800: '#334833',
+					900: '#2a3b2a',
+				},
+				white: {
+					DEFAULT: '#fffffb', // Off-white
+					50: '#ffffff',
+					100: '#fffffb',
+					200: '#fcfcf9',
+					300: '#f9f9f4',
+				},
+				cream: {
+					DEFAULT: '#f6f8f6',
+					100: '#f6f8f6',
+					200: '#e8ede8',
+					300: '#d4dfd4',
+				},
+				charcoal: {
+					DEFAULT: '#2d3330',
+				}
+			},
+			fontFamily: {
+				sans: ['Outfit', ...defaultTheme.fontFamily.sans],
+				serif: ['Cormorant Garamond', ...defaultTheme.fontFamily.serif],
+			},
+		},
+	},
+	plugins: [],
+}

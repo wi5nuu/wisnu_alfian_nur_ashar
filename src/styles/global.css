@@ -1,0 +1,79 @@
+@import "@fontsource/outfit";
+@import "@fontsource/cormorant-garamond";
+
+@import "tailwindcss";
+
+@theme {
+  --color-sage-50: #f0f4f0;
+  --color-sage-100: #dde7dd;
+  --color-sage-200: #c0d2c0;
+  --color-sage-300: #9db89d;
+  --color-sage-400: #7a9f7a;
+  --color-sage-500: #5d8a5d;
+  --color-sage-600: #4a6f4a;
+  --color-sage-700: #3d5a3d;
+  --color-sage-800: #334833;
+  --color-sage-900: #2a3b2a;
+
+  --color-white-50: #ffffff;
+  --color-white-100: #fffffb;
+  --color-white-200: #fcfcf9;
+  --color-white-300: #f9f9f4;
+  --color-white: #fffffb;
+
+  --color-cream-100: #f6f8f6;
+  --color-cream-200: #e8ede8;
+  --color-cream-300: #d4dfd4;
+  --color-cream: #f6f8f6;
+
+  --color-charcoal: #2d3330;
+
+  --font-sans: "Outfit", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply bg-white text-charcoal font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif font-bold text-sage-900;
+  }
+
+  p {
+    @apply leading-relaxed text-charcoal/80;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sage-500;
+  }
+
+  .btn-primary {
+    @apply bg-sage-500 text-white hover:bg-sage-600 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply border-sage-500 text-sage-600 hover:bg-sage-50 hover:text-sage-700;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-cream-200 p-6 hover:shadow-md transition-shadow duration-300;
+  }
+}

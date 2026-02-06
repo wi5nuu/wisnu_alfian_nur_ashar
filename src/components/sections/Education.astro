@@ -1,0 +1,54 @@
+---
+import { profile } from "../../data/profile";
+import { GraduationCap } from "lucide-astro";
+---
+
+<section id="education" class="section bg-white">
+  <div class="container-custom">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2
+          class="text-3xl md:text-4xl font-serif font-bold text-sage-900 mb-4 inline-block relative"
+        >
+          Education
+          <span
+            class="absolute -bottom-2 left-0 w-full h-1 bg-sage-200 rounded-full"
+          ></span>
+        </h2>
+      </div>
+
+      <div
+        class="bg-gradient-to-br from-sage-50 to-white p-8 rounded-2xl border border-sage-100 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left"
+      >
+        <div
+          class="shrink-0 w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-sm border border-cream-200 overflow-hidden p-1"
+        >
+          <img
+            src="/president_university.jpeg"
+            alt="President University"
+            class="w-full h-full object-cover rounded-xl"
+          />
+        </div>
+
+        <div class="flex-1 space-y-2">
+          <h3 class="text-2xl font-bold text-sage-800">
+            {profile.education.institution}
+          </h3>
+          <div class="text-xl text-sage-600 font-serif font-medium">
+            {profile.education.degree}
+          </div>
+          <div class="text-charcoal/60 text-sm">
+            {profile.education.duration} • {profile.education.location}
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-sage-100">
+            <p class="text-charcoal/80 leading-relaxed">
+              <span class="font-bold text-sage-700">Focus:</span>
+              {profile.education.focus}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

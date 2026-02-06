@@ -1,0 +1,100 @@
+---
+import { profile } from "../data/profile";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Instagram,
+  Facebook,
+  Globe,
+  MessageCircle,
+} from "lucide-astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-sage-900 text-white py-12 border-t border-sage-800">
+  <div class="container-custom">
+    <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+      <div class="mb-6 md:mb-0 text-center md:text-left">
+        <h2 class="text-2xl font-serif font-bold mb-2">
+          Wisnu Alfian Nur Ashar
+        </h2>
+        <p class="text-sage-200 max-w-md text-sm">
+          {profile.personalInfo.tagline}
+        </p>
+      </div>
+
+      <div class="flex space-x-6">
+        <a
+          href={profile.personalInfo.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sage-200 hover:text-white transition-colors"
+          aria-label="GitHub"
+        >
+          <Github class="w-6 h-6" />
+        </a>
+        <a
+          href={profile.personalInfo.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sage-200 hover:text-white transition-colors"
+          aria-label="LinkedIn"
+        >
+          <Linkedin class="w-6 h-6" />
+        </a>
+        <a
+          href={profile.personalInfo.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sage-200 hover:text-white transition-colors"
+          aria-label="Instagram"
+        >
+          <Instagram class="w-6 h-6" />
+        </a>
+        <a
+          href={profile.personalInfo.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sage-200 hover:text-white transition-colors"
+          aria-label="Facebook"
+        >
+          <Facebook class="w-6 h-6" />
+        </a>
+        <a
+          href={profile.personalInfo.line}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sage-200 hover:text-white transition-colors"
+          aria-label="Line"
+        >
+          <MessageCircle class="w-6 h-6" />
+        </a>
+        <a
+          href={profile.personalInfo.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sage-200 hover:text-white transition-colors"
+          aria-label="Website"
+        >
+          <Globe class="w-6 h-6" />
+        </a>
+        <a
+          href={`mailto:${profile.personalInfo.email}`}
+          class="text-sage-200 hover:text-white transition-colors"
+          aria-label="Email"
+        >
+          <Mail class="w-6 h-6" />
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="border-t border-sage-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-sage-300"
+    >
+      <p>&copy; {currentYear} Wisnu Alfian Nur Ashar. All rights reserved.</p>
+      <p class="mt-2 md:mt-0">Built with Astro & Tailwind CSS</p>
+    </div>
+  </div>
+</footer>

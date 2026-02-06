@@ -1,0 +1,197 @@
+---
+import { profile } from "../../data/profile";
+import { ChevronDown, ArrowRight } from "lucide-astro";
+
+// Placeholder images - high quality unsplash images matching the vibe
+const slides = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop",
+    alt: "Minimalist workspace",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop",
+    alt: "Coding environment",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop",
+    alt: "Modern design aesthetic",
+  },
+];
+---
+
+<section
+  id="hero"
+  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-sage-900"
+>
+  <!-- Background Slider -->
+  <div class="absolute inset-0 z-0">
+    {
+      slides.map((slide, index) => (
+        <div
+          class={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out slider-image ${index === 0 ? "opacity-40" : "opacity-0"}`}
+          style={`background-image: url('${slide.image}')`}
+          data-index={index}
+        />
+      ))
+    }
+    <!-- Overlay Gradient to ensure text readability -->
+    <div class="absolute inset-0 bg-sage-900/70"></div>
+  </div>
+
+  <div
+    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-16"
+  >
+    <div
+      class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
+    >
+      Hello, I'm
+    </div>
+
+    <h1
+      class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
+    >
+      <span id="typewriter-text"></span><span class="animate-blink">|</span>
+    </h1>
+
+    <p
+      class="text-xl md:text-2xl text-sage-100 max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 drop-shadow-md font-light"
+    >
+      {profile.personalInfo.tagline}
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-5 animate-fade-in-up delay-300">
+      <a
+        href="/projects"
+        class="btn bg-white text-sage-900 hover:bg-sage-50 shadow-lg hover:shadow-white/20 transform hover:-translate-y-1 transition-all duration-300 border-none group"
+      >
+        View My Work
+        <ArrowRight
+          class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
+        />
+      </a>
+      <a
+        href="/contact"
+        class="btn border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+      >
+        Contact Me
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Scroll Indicator -->
+  <div
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce"
+  >
+    <ChevronDown class="w-8 h-8" />
+  </div>
+</section>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .delay-100 {
+    animation-delay: 0.2s;
+  }
+  .delay-200 {
+    animation-delay: 0.4s;
+  }
+  .delay-300 {
+    animation-delay: 0.6s;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  // Slider Logic
+  const images = document.querySelectorAll(".slider-image");
+  let currentIndex = 0;
+  const totalSlides = images.length;
+
+  function nextSlide() {
+    if (images.length === 0) return;
+
+    // Current slide fades out
+    images[currentIndex].classList.remove("opacity-40");
+    images[currentIndex].classList.add("opacity-0");
+
+    // Calculate next index
+    currentIndex = (currentIndex + 1) % totalSlides;
+
+    // Next slide fades in
+    images[currentIndex].classList.remove("opacity-0");
+    images[currentIndex].classList.add("opacity-40");
+  }
+
+  if (totalSlides > 1) {
+    setInterval(nextSlide, 5000);
+  }
+
+  // Typewriter Logic
+  const text = "Wisnu Alfian Nur Ashar";
+  const typeDelay = 100;
+  const eraseDelay = 50;
+  const newTextDelay = 2000; // Delay before erasing
+  const textElement = document.getElementById("typewriter-text");
+
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    if (!textElement) return;
+
+    if (!isDeleting && charIndex < text.length) {
+      // Typing
+      textElement.textContent += text.charAt(charIndex);
+      charIndex++;
+      setTimeout(type, typeDelay);
+    } else if (isDeleting && charIndex > 0) {
+      // Erasing
+      textElement.textContent = text.substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(type, eraseDelay);
+    } else {
+      // Switch modes
+      isDeleting = !isDeleting;
+      if (!isDeleting) {
+        // Just finished erasing, start typing right away
+        setTimeout(type, 500);
+      } else {
+        // Just finished typing, wait before erasing
+        setTimeout(type, newTextDelay);
+      }
+    }
+  }
+
+  // Start the typing animation
+  document.addEventListener("DOMContentLoaded", () => {
+    // Small delay to start ensuring layout is ready
+    setTimeout(type, 500);
+  });
+</script>

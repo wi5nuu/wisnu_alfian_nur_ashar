@@ -1,0 +1,54 @@
+---
+import { profile } from "../../data/profile";
+import { Award, CheckCircle } from "lucide-astro";
+---
+
+<section id="certifications" class="section bg-cream-50">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <h2
+        class="text-3xl md:text-4xl font-serif font-bold text-sage-900 mb-4 inline-block relative"
+      >
+        Certifications
+        <span
+          class="absolute -bottom-2 left-0 w-full h-1 bg-sage-300/50 rounded-full"
+        ></span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      {
+        profile.certifications.map((cert) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-cream-200 flex items-start gap-4 hover:border-sage-300 transition-colors">
+            <div class="mt-1 shrink-0">
+              {cert.image ? (
+                <div class="w-16 h-16 bg-white rounded-lg border border-cream-200 p-1 overflow-hidden">
+                  <img
+                    src={cert.image}
+                    alt={cert.name}
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+              ) : (
+                <div class="text-sage-500">
+                  <Award class="w-6 h-6" />
+                </div>
+              )}
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-sage-800">{cert.name}</h3>
+              <p class="text-sage-600 text-sm font-medium">{cert.issuer}</p>
+              <p class="text-charcoal/50 text-xs mt-1">
+                Issued: {cert.date} • Expires: {cert.expiry}
+              </p>
+              <div class="mt-3 flex items-center gap-1.5 text-xs text-sage-600 bg-sage-50 inline-flex px-2 py-1 rounded">
+                <CheckCircle class="w-3 h-3" />
+                <span>Credential ID: {cert.id}</span>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AboutSection from "../components/sections/About.astro";
+import Education from "../components/sections/Education.astro";
+import Certifications from "../components/sections/Certifications.astro";
+
+const title = "About Me | Wisnu Alfian Nur Ashar";
+const description =
+    "Learn more about my background, education, and professional journey.";
+---
+
+<Layout title={title} description={description}>
+    <Header />
+    <main class="pt-20">
+        <!-- Padding for fixed header -->
+        <AboutSection />
+        <div
+            class="grid md:grid-cols-2 bg-white container-custom py-12 gap-8 items-start"
+        >
+            <Education />
+            <Certifications />
+        </div>
+    </main>
+    <Footer />
+</Layout>

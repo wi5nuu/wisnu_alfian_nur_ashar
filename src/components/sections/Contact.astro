@@ -1,0 +1,188 @@
+---
+import { profile } from "../../data/profile";
+import {
+  Mail,
+  Linkedin,
+  MapPin,
+  Send,
+  Instagram,
+  Facebook,
+  Globe,
+  MessageCircle,
+  Phone,
+} from "lucide-astro";
+---
+
+<section id="contact" class="section bg-white">
+  <div class="container-custom">
+    <div
+      class="max-w-4xl mx-auto bg-sage-900 rounded-3xl overflow-hidden shadow-xl flex flex-col md:flex-row"
+    >
+      <!-- Contact Info -->
+      <div
+        class="p-10 md:p-12 md:w-5/12 text-white flex flex-col justify-between"
+      >
+        <div>
+          <h2 class="text-3xl font-serif font-bold mb-6">Let's Connect</h2>
+          <p class="text-sage-200 mb-8 leading-relaxed">
+            I'm currently open to internship and entry-level opportunities.
+            Whether you have a question or just want to say hi, I'll try my best
+            to get back to you!
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <Mail class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">Email</h3>
+                <a
+                  href={`mailto:${profile.personalInfo.email}`}
+                  class="text-sage-300 hover:text-white transition-colors break-all"
+                >
+                  {profile.personalInfo.email}
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <Phone class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">Phone</h3>
+                <p class="text-sage-300 hover:text-white transition-colors">
+                  {profile.personalInfo.phone}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <Linkedin class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">LinkedIn</h3>
+                <a
+                  href={profile.personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sage-300 hover:text-white transition-colors"
+                >
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <Facebook class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">Facebook</h3>
+                <a
+                  href={profile.personalInfo.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sage-300 hover:text-white transition-colors"
+                >
+                  Connect on Facebook
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <Instagram class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">Instagram</h3>
+                <a
+                  href={profile.personalInfo.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sage-300 hover:text-white transition-colors"
+                >
+                  Follow on Instagram
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <MessageCircle class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">Line</h3>
+                <a
+                  href={profile.personalInfo.line}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sage-300 hover:text-white transition-colors"
+                >
+                  Chat on Line
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <Globe class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">Website</h3>
+                <a
+                  href={profile.personalInfo.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sage-300 hover:text-white transition-colors"
+                >
+                  Visit Website
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="mt-1 p-2 bg-sage-800 rounded-lg text-sage-300">
+                <MapPin class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-medium text-sage-100">Location</h3>
+                <p class="text-sage-300">{profile.personalInfo.location}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 md:mt-0 pt-8 border-t border-sage-800">
+          <div class="flex items-center gap-2 text-sage-400 text-sm">
+            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            Available for opportunities
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Area -->
+      <div
+        class="p-10 md:p-12 md:w-7/12 bg-white flex flex-col justify-center items-center text-center"
+      >
+        <div
+          class="mb-6 mx-auto w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center text-sage-600"
+        >
+          <Send class="w-8 h-8 ml-1" />
+        </div>
+        <h3 class="text-2xl font-bold text-sage-900 mb-3">Send me a message</h3>
+        <p class="text-charcoal/70 mb-8 max-w-sm">
+          Ready to collaborate on your next project? Get in touch via email.
+        </p>
+        <a
+          href={`mailto:${profile.personalInfo.email}`}
+          class="btn btn-primary w-full sm:w-auto px-8 py-4 text-lg shadow-lg hover:shadow-xl"
+        >
+          Say Hello
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
