@@ -57,27 +57,27 @@ interface Profile {
 }
 
 export const profile: Profile = {
-    personalInfo: {
+personalInfo: {
         name: "Wisnu Alfian Nur Ashar",
         pronouns: "He/Him",
         role: "Information Technology Student | Full-Stack Developer",
-        location: "Jakarta Area, Indonesia",
+        location: "Bekasi Timur, Kota Bekasi, Jawa Barat",
         tagline: "Web Development & Cyber Security | Certified in IT & Web Technologies",
         summary: "I am an Information Technology student at President University with a strong interest in web development and cyber security. I have hands-on experience building and deploying real-world web applications, with attention to performance, security awareness, and practical usability.",
-        email: "contact@example.com",
-        phone: "+1 (123) 456-7890",
-        linkedin: "https://linkedin.com/in/yourprofile",
-        github: "https://github.com/yourusername",
-        instagram: "https://instagram.com/yourusername",
-        facebook: "https://facebook.com/yourprofile",
-        line: "https://line.me/ti/p/yourid",
-        website: "https://yourwebsite.com",
+        email: "wisnualfian117@gmail.com",
+        phone: "+62 813-9488-2490",
+        linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310",
+        github: "https://github.com/wi5nuu", // Pastikan username github Anda sudah benar
+        instagram: "https://www.instagram.com/wshnn_",
+        facebook: "https://www.facebook.com/profile.php?id=100083734252734",
+        line: "https://line.me/ti/p/PlhxJgbURY",
+        website: "https://wisnualfiannurashar.my.id",
     },
     skills: {
         technical: [
             { name: "Web Development" },
             { name: "Cloud Security" },
-            { name: "Google Analytics", image: "/Google_Analytics.png" },
+            { name: "Google Analytics"},
             { name: "PostgreSQL" },
             { name: "Full-Stack Development" },
             { name: "Cybersecurity" },
@@ -85,6 +85,8 @@ export const profile: Profile = {
             { name: "Next.js" },
             { name: "Tailwind CSS" },
             { name: "Supabase" },
+            { name: "SEO" },
+            { name: "Node.js" },
         ],
         soft: [
             { name: "Communication" },
@@ -92,6 +94,8 @@ export const profile: Profile = {
             { name: "Teamwork" },
             { name: "Leadership" },
             { name: "Creativity" },
+            { name: "Problem-Solving" }
+            
         ]
     },
     experience: [
