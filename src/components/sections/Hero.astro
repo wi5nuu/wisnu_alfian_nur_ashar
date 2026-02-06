@@ -24,9 +24,8 @@ const slides = [
 
 <section
   id="hero"
-  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-sage-900"
+  class="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden bg-sage-900"
 >
-  <!-- Background Slider -->
   <div class="absolute inset-0 z-0">
     {
       slides.map((slide, index) => (
@@ -37,12 +36,11 @@ const slides = [
         />
       ))
     }
-    <!-- Overlay Gradient to ensure text readability -->
     <div class="absolute inset-0 bg-sage-900/70"></div>
   </div>
 
   <div
-    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-16"
+    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-32 md:pt-16"
   >
     <div
       class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
@@ -51,39 +49,38 @@ const slides = [
     </div>
 
     <h1
-      class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
+      class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
     >
       <span id="typewriter-text"></span><span class="animate-blink">|</span>
     </h1>
 
     <p
-      class="text-xl md:text-2xl text-sage-100 max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 drop-shadow-md font-light"
+      class="text-lg md:text-2xl text-sage-100 max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 drop-shadow-md font-light"
     >
       {profile.personalInfo.tagline}
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-5 animate-fade-in-up delay-300">
+    <div class="flex flex-col sm:flex-row gap-4 md:gap-5 animate-fade-in-up delay-300">
       <a
         href="/projects"
-        class="btn bg-white text-sage-900 hover:bg-sage-50 shadow-lg hover:shadow-white/20 transform hover:-translate-y-1 transition-all duration-300 border-none group"
+        class="btn bg-white text-sage-900 hover:bg-sage-50 shadow-lg px-8 py-3 rounded-full font-medium transition-all duration-300 group"
       >
         View My Work
         <ArrowRight
-          class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
+          class="inline-block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
         />
       </a>
       <a
         href="/contact"
-        class="btn border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+        class="btn border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-3 rounded-full font-medium transition-all duration-300"
       >
         Contact Me
       </a>
     </div>
   </div>
 
-  <!-- Scroll Scroll Indicator -->
   <div
-    class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce"
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce hidden md:block"
   >
     <ChevronDown class="w-8 h-8" />
   </div>
