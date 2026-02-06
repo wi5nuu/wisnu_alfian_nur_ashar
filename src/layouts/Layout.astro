@@ -31,9 +31,7 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
   <meta name="robots" content="index, follow" />
 
   <!-- ================= LANGUAGE / GEO ================= -->
-  <meta name="geo.position" content="-6.2409;107.0108" />
-  <meta name="geo.region" content="ID-JB" />
-  <meta name="geo.placename" content="Kota Bekasi, Jawa Barat" />
+  <!-- Geo information removed for privacy -->
 
   <!-- ================= CANONICAL ================= -->
   <link rel="canonical" href={url} />
@@ -70,14 +68,14 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- ================= SECURITY (CSP) ================= -->
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data: https:;
-    connect-src 'self';
-    font-src 'self';
-  " />
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline'; 
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' data: https:;
+  connect-src 'self';
+  font-src 'self';
+" />
 
   <!-- ================= SCHEMA PERSON ================= -->
   <script type="application/ld+json">
@@ -104,10 +102,7 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
       ...profile.skills.soft.map(s => s.name)
     ],
     sameAs: [
-      profile.personalInfo.linkedin,
-      profile.personalInfo.github,
-      profile.personalInfo.instagram,
-      profile.personalInfo.facebook
+      // Social links removed for privacy
     ].filter(Boolean)
   })}
   </script>
