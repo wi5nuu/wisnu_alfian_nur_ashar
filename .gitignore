@@ -26,3 +26,5 @@ build.log
 # backup & temp files
 *.bak
 *.tmp
+# .gitignore
+.env

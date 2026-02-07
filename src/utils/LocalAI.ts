@@ -12,7 +12,7 @@ import { profile } from "../data/profile";
  */
 
 export class LocalAI {
-    static process(query: string): string {
+    static process(query: string): string | null {
         const q = query.toLowerCase();
 
         // Enhanced Language Detection
@@ -1638,14 +1638,34 @@ export class LocalAI {
         So feel free to explore the entire website without worrying about costs! 😊`;
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
         // ============================================
-        // ENHANCED FALLBACK
+        // NO MATCH FOUND - RETURN NULL TO USE API
         // ============================================
 
-        if (isIndo) {
-            return `Hmm, saya kurang yakin memahami pertanyaan Anda. 🤔\n\nBiar saya bantu! Saya bisa memberikan informasi lengkap tentang:\n\n📋 Profil & Background:\n• Siapa Wisnu & latar belakangnya\n• Pendidikan di President University\n• Motivasi & nilai-nilai pribadi\n• Apa yang membedakan dari kandidat lain\n\n💻 Skills & Teknologi:\n• Technical skills (React, Next.js, TypeScript)\n• Keahlian Frontend & Backend\n• Database & deployment knowledge\n\n📁 Portfolio & Proyek:\n• Ashar Grosir Parfum (E-Commerce B2B)\n• LexCorpus CMS\n• FKMA Website\n• Dampak dari setiap project\n\n🎯 Karir & Goals:\n• Visi karir jangka panjang\n• Ideal work environment\n• Availability & lokasi\n\n🤝 Experience:\n• Organisasi (FKMA, PUFA, PUMA)\n• Teamwork & communication\n• Time management\n\n📧 Kontak & Hiring:\n• Informasi kontak\n• Kenapa hire Wisnu?\n• Cocok untuk internship/junior?\n• Availability untuk opportunities\n\nCoba tanya seperti:\n• "Apa skill utama Wisnu?"\n• "Ceritakan tentang project Ashar Grosir"\n• "Apakah cocok untuk posisi junior?"\n• "Bagaimana cara menghubungi Wisnu?"\n• "Apa visi karir 5 tahun ke depan?"\n\nSilakan ajukan pertanyaan Anda! 😊`;
-        }
-        return `Hmm, I'm not quite sure I understand your question. 🤔\n\nLet me help! I can provide complete information about:\n\n📋 Profile & Background:\n• Who Wisnu is & his background\n• Education at President University\n• Motivation & personal values\n• What differentiates him\n\n💻 Skills & Technology:\n• Technical skills (React, Next.js, TypeScript)\n• Frontend & Backend expertise\n• Database & deployment knowledge\n\n📁 Portfolio & Projects:\n• Ashar Grosir Parfum (B2B E-Commerce)\n• LexCorpus CMS\n• FKMA Website\n• Impact from each project\n\n🎯 Career & Goals:\n• Long-term career vision\n• Ideal work environment\n• Availability & location\n\n🤝 Experience:\n• Organizations (FKMA, PUFA, PUMA)\n• Teamwork & communication\n• Time management\n\n📧 Contact & Hiring:\n• Contact information\n• Why hire Wisnu?\n• Suitable for internship/junior?\n• Availability for opportunities\n\nTry asking like:\n• "What are Wisnu's main skills?"\n• "Tell me about Ashar Grosir project"\n• "Is he suitable for junior position?"\n• "How to contact Wisnu?"\n• "What's the 5-year career vision?"\n\nPlease ask your question! 😊`;
+        return null;
     }
     
 }

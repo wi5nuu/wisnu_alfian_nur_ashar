@@ -80,7 +80,7 @@ import { X, Send } from "lucide-astro";
 </div>
 
 <script>
-    import { LocalAI } from "../utils/LocalAI";
+    import { AIService } from "../utils/AIService";
 
     const desktopToggle = document.getElementById("chat-toggle-desktop");
     const closeBtn = document.getElementById("chat-close");
@@ -104,7 +104,7 @@ import { X, Send } from "lucide-astro";
     }
 
     desktopToggle?.addEventListener("click", toggleChat);
-    
+
     // Event Delegation untuk Mobile Trigger
     document.body.addEventListener('click', function(e) {
         if ((e.target as Element).closest('#mobile-ai-trigger')) {
@@ -124,11 +124,15 @@ import { X, Send } from "lucide-astro";
         input.value = "";
         const typingId = showTypingIndicator();
 
-        setTimeout(() => {
-            const response = LocalAI.process(query);
+        try {
+            const response = await AIService.getResponse(query);
             if (typingId) removeTypingIndicator(typingId);
             addMessage(response, "ai");
-        }, 600);
+        } catch (error) {
+            console.error("AI Error:", error);
+            if (typingId) removeTypingIndicator(typingId);
+            addMessage("Maaf, terjadi kesalahan. Coba lagi nanti.", "ai");
+        }
     });
 
     function addMessage(text: string, sender: "user" | "ai") {
