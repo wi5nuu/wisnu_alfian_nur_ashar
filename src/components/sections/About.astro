@@ -1,117 +1,233 @@
 ---
+
 import { profile } from "../../data/profile";
+
 ---
 
+
+
 <section id="about" class="section bg-white relative overflow-hidden py-20">
+
   <div class="container-custom">
+
     <div class="max-w-4xl mx-auto">
+
       <div class="text-center mb-16 reveal">
+
         <h2 class="text-3xl md:text-4xl font-serif font-bold text-sage-900 mb-4 inline-block relative">
+
           About Me
+
           <span class="absolute -bottom-2 left-0 w-full h-1 bg-sage-200 rounded-full"></span>
+
         </h2>
+
       </div>
+
+
 
       <div class="grid md:grid-cols-12 gap-12 items-center">
+
         <div class="md:col-span-5 relative reveal-left">
+
           <div class="aspect-[4/5] bg-sage-100 rounded-2xl overflow-hidden relative shadow-xl group">
+
             <img
+
               src="/wisnu_alfian_nur_ashar.jpeg"
+
               alt={profile.personalInfo.name}
+
               class="w-full h-full object-cover rounded-2xl group-hover:scale-110 transition-transform duration-700 ease-out"
+
             />
+
           </div>
+
           <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-sage-100/50 rounded-lg -z-10 animate-pulse"></div>
+
           <div class="absolute -top-6 -left-6 w-32 h-32 border-2 border-sage-100 rounded-lg -z-10"></div>
+
         </div>
+
+
 
         <div class="md:col-span-7 space-y-6 overflow-hidden">
+
           <h3 class="text-2xl font-bold text-sage-800 reveal-left">
+
             {profile.personalInfo.role}
+
           </h3>
 
+
+
           <div class="space-y-4 text-charcoal/90 text-lg leading-relaxed">
+
             <p class="reveal-right">
+
               {profile.personalInfo.summary}
+
             </p>
-            
+
+           
+
             <p class="reveal-bottom">
+
               Beyond academics, I have worked on several real-world projects,
+
               including business websites, CMS-based platforms, and e-commerce
-              applications used by real users. 
+
+              applications used by real users.
+
             </p>
-            
+
+           
+
             <p class="reveal-top text-sage-600 font-medium">
+
               I am particularly interested in web development, secure
+
               application design, and modern development workflows.
+
             </p>
+
           </div>
+
+
 
           <div class="pt-6 grid grid-cols-2 gap-4 reveal-bottom">
+
             <div class="bg-sage-50 p-6 rounded-2xl border border-sage-100 hover:shadow-md transition-shadow">
+
               <span class="block text-3xl font-serif font-bold text-sage-600 mb-1">2</span>
+
               <span class="text-sm text-charcoal/70 uppercase tracking-wider font-semibold">Years Experience</span>
+
             </div>
+
             <div class="bg-sage-50 p-6 rounded-2xl border border-sage-100 hover:shadow-md transition-shadow">
+
               <span class="block text-3xl font-serif font-bold text-sage-600 mb-1">7+</span>
+
               <span class="text-sm text-charcoal/70 uppercase tracking-wider font-semibold">Live Projects</span>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <style>
+
   /* Keadaan Awal (Hidden) */
+
   .reveal, .reveal-left, .reveal-right, .reveal-bottom, .reveal-top {
+
     opacity: 0;
+
     transition: all 1s cubic-bezier(0.17, 0.55, 0.55, 1);
+
     will-change: transform, opacity;
+
   }
+
+
 
   .reveal-left { transform: translateX(-50px); }
+
   .reveal-right { transform: translateX(50px); }
+
   .reveal-bottom { transform: translateY(50px); }
+
   .reveal-top { transform: translateY(-50px); }
 
+
+
   /* Keadaan Setelah Aktif (Muncul) */
+
   .active {
+
     opacity: 1 !important;
+
     transform: translate(0, 0) !important;
+
   }
+
 </style>
 
+
+
 <script>
+
   const revealElements = () => {
+
     const observerOptions = {
+
       threshold: 0.15 // Animasi jalan jika 15% elemen terlihat
+
     };
 
+
+
     const observer = new IntersectionObserver((entries) => {
+
       entries.forEach((entry) => {
+
         if (entry.isIntersecting) {
+
           entry.target.classList.add('active');
+
           // Opsional: stop observe setelah animasi jalan sekali
+
           // observer.unobserve(entry.target);
+
         }
+
       });
+
     }, observerOptions);
 
+
+
     const elements = document.querySelectorAll(
+
       '.reveal, .reveal-left, .reveal-right, .reveal-bottom, .reveal-top'
+
     );
-    
+
+   
+
     elements.forEach((el, index) => {
+
       // Menambahkan delay otomatis agar muncul bergantian (staggered)
+
       (el as HTMLElement).style.transitionDelay = `${index * 0.1}s`;
+
       observer.observe(el);
+
     });
+
   };
 
+
+
   // Jalankan saat pertama load
+
   document.addEventListener('DOMContentLoaded', revealElements);
+
   // Jalankan saat Astro page swap (jika pakai View Transitions)
+
   document.addEventListener('astro:after-swap', revealElements);
+
 </script>

@@ -1,6 +1,6 @@
 import { profile } from "../data/profile";
 
-/**
+/*
  * Enhanced LocalAI - Complete AI Assistant for Portfolio
  * Version 2.0 - Comprehensive Coverage with Professional & Polite Language
  * 
@@ -23,22 +23,383 @@ export class LocalAI {
             q.includes("bagaimana") || q.includes("kapan") || q.includes("berapa") ||
             q.includes("tolong") || q.includes("mohon") || q.includes("ingin");
 
+
+        // ============================================
+        // SECTION 0.01: PERSONAL & CHARACTER (FUN, DEEP & FACTUAL)
+        // ============================================
+
+// ============================================
+        // SECTION 0.01: PERSONAL & CHARACTER (THE "HUMAN" SIDE)
+        // ============================================
+        // Mencakup: Fisik, Sifat, Cinta, Masa Lalu, Hobi, & Filosofi Hidup
+
+        // 1. Ketampanan & Visual (Ganteng)
+        if (q.includes("ganteng") || q.includes("tampan") || q.includes("cakep") || q.includes("looks") || q.includes("wajah") || q.includes("muka")) {
+            return isIndo 
+                ? `Sebagai AI, saya melihat Wisnu melalui barisan kode yang rapi. Dan seperti kodenya, Wisnu memiliki 'estetika' yang sangat diperhatikan. Singkatnya: visualnya selaras dengan kualitas kerjanya. 😎`
+                : `As an AI, I see Wisnu through clean and organized lines of code. And just like his code, Wisnu has a well-maintained 'aesthetic'. In short: his visuals match the quality of his work. 😎`;
+        }
+
+        // 2. Kepintaran & Intelegensi
+        if (q.includes("pintar") || q.includes("smart") || q.includes("cerdas") || q.includes("genius") || q.includes("bodoh") || q.includes("iq")) {
+            return isIndo
+                ? `Wisnu lebih suka menyebut dirinya 'gigih' daripada 'pintar'. Ia adalah tipe yang diam dan terus belajar sampai sebuah masalah teknis menyerah di tangannya. Kepintaran baginya adalah hasil dari fokus satu arah tanpa distraksi.`
+                : `Wisnu prefers to call himself 'persistent' rather than 'smart'. He is the type who stays quiet and keeps learning until a technical problem surrenders. To him, intelligence is the result of one-track focus without distraction.`;
+        }
+
+        // 3. Mager (Malas Gerak) vs Rajin
+        if (q.includes("mager") || q.includes("malas") || q.includes("lazy") || q.includes("rebahan")) {
+            return isIndo
+                ? `Wisnu tidak 'mager', dia hanya sedang 'mode hemat daya' (power-saving) untuk fokus pada hal-hal yang benar-benar penting. Jika itu tentang koding, ibadah, atau masa depan, dia adalah orang pertama yang bergerak. Selebihnya? Efisiensi adalah kunci. 😉`
+                : `Wisnu isn't 'lazy', he's just in 'power-saving mode' to focus on things that truly matter. If it's about coding, worship, or the future, he's the first to move. The rest? Efficiency is key. 😉`;
+        }
+
+        // 4. Red Flag / Green Flag
+        if (q.includes("red flag") || q.includes("green flag") || q.includes("bendera")) {
+            return isIndo
+                ? `Wisnu adalah definisi 'Green Flag' dengan sedikit nuansa 'Mysterious Grey'. Ia dingin dan cuek di luar (tidak tebar pesona), tapi sangat peduli (penuh cinta) pada detail dan orang-orang di lingkarannya. Setia, religius, dan berorientasi masa depan.`
+                : `Wisnu is a 'Green Flag' with a hint of 'Mysterious Grey'. He's cool and indifferent on the outside, but deeply cares (full of love) about details and the people in his circle. Loyal, religious, and future-oriented.`;
+        }
+
+        // 5. Perasaan & Empati (Punya Hati?)
+        if (q.includes("perasaan") || q.includes("feeling") || q.includes("hati") || q.includes("baper") || q.includes("galau")) {
+            return isIndo
+                ? `Di balik sifatnya yang pendiam dan fokus, Wisnu memiliki perasaan yang dalam. Ia menunjukkan 'cinta' bukan lewat kata-kata manis yang berlebihan, tapi lewat tindakan nyata, solusi yang tulus, dan kesetiaan pada janji.`
+                : `Behind his quiet and focused nature, Wisnu has deep feelings. He shows 'love' not through excessive sweet words, but through concrete actions, sincere solutions, and loyalty to his promises.`;
+        }
+
+        // 6. Hubungan Asmara (Pacar & Status)
+        if (q.includes("pacar") || q.includes("relationship") || q.includes("pasangan") || q.includes("dating") || q.includes("pacaran") || q.includes("single") || q.includes("jomblo") || q.includes("menikah")) {
+            return isIndo
+                ? `Wisnu adalah orang yang sangat menjaga privasi (Private Person). Saat ini, fokus utamanya adalah membangun karir dan membahagiakan orang tua. Urusan asmara? Itu adalah bagian dari kodenya yang terenkripsi rapat. Tapi satu bocoran: dia tipe yang sangat setia. 🔒`
+                : `Wisnu is a very private person. Currently, his main focus is building his career and making his parents happy. Love life? That's a part of his code that is strictly encrypted. But one hint: he is the strictly loyal type. 🔒`;
+        }
+
+        // 7. Cemburuan & Kepercayaan
+        if (q.includes("cemburu") || q.includes("jealous") || q.includes("posesif")) {
+            return isIndo
+                ? `Wisnu terlalu fokus pada tujuannya untuk merasa cemburu tanpa alasan. Ia memegang teguh kepercayaan dan integritas. Namun, ia memiliki prinsip yang tegas: Sekali kepercayaan itu dirusak, tidak ada tombol 'undo'.`
+                : `Wisnu is too focused on his goals to feel jealous without reason. He upholds trust and integrity. However, he has a strict principle: Once trust is broken, there is no 'undo' button.`;
+        }
+
+        // 8. Merantau (Bone -> Bekasi)
+        if (q.includes("merantau") || q.includes("bone") || q.includes("pindah") || q.includes("bekasi") || q.includes("asal") || q.includes("kampung")) {
+            return isIndo
+                ? `Wisnu merantau jauh dari Bone ke Bekasi bukan untuk main-main. Jarak ribuan kilometer itu ditempuh demi 'impian satu arah'-nya. Baginya, keluar dari zona nyaman adalah cara tercepat untuk bertumbuh dewasa dan mandiri.`
+                : `Wisnu migrated far from Bone to Bekasi not to play around. Those thousands of kilometers were traveled for his 'one-track dream'. To him, leaving the comfort zone is the fastest way to grow mature and independent.`;
+        }
+
+        // 9. Tingkat Kepedulian (Caring)
+        if (q.includes("peduli") || q.includes("care") || q.includes("perhatian") || q.includes("cuek")) {
+            return isIndo
+                ? `Sangat peduli, tapi 'Silent Care'. Jangan harap perhatian yang berisik atau drama. Wisnu peduli dengan cara: memastikan kamu aman, membantu saat kamu butuh solusi, dan melindungi diam-diam. Jika kamu butuh perlindungan, dia garda terdepan.`
+                : `Very caring, but 'Silent Care'. Don't expect loud attention or drama. Wisnu cares by: ensuring you are safe, helping when you need solutions, and protecting quietly. If you need protection, he is the front line.`;
+        }
+
+        // 10. Makanan Pokok (Nasi)
+        if (q.includes("nasi") || q.includes("makan") || q.includes("lapar")) {
+            return isIndo
+                ? `Sebagai orang Indonesia sejati, Nasi adalah 'bahan bakar' utama Wisnu. Tanpa nasi, logikanya mungkin akan mengalami 'Error 404'. Favoritnya? Nasi Goreng, Nasi Kebuli, dan masakan rumah. 🍚`
+                : `As a true Indonesian, Rice is Wisnu's main 'fuel'. Without rice, his logic might experience a '404 Error'. His favorites? Fried Rice, Nasi Kebuli, and home-cooked meals. 🍚`;
+        }
+
+        // 11. Latar Belakang Religius (Santri & Imam)
+        if (q.includes("pesantren") || q.includes("santri") || q.includes("imam") || q.includes("masjid") || q.includes("ngaji") || q.includes("as'adiyah") || q.includes("sholat")) {
+            return isIndo
+                ? `Wisnu adalah lulusan Pondok Pesantren As'adiyah Putera Sengkang dan aktif sebagai Imam di Masjid Grand Center Point Bekasi. Ini membentuk karakternya yang tenang, beradab, dan memegang teguh amanah. Teknologi adalah karirnya, Ibadah adalah prioritasnya. 🙏`
+                : `Wisnu is an alumnus of Islamic Boarding School As'adiyah Putera Sengkang and serves as an Imam at Grand Center Point Mosque Bekasi. This shapes his calm, civilized character. Technology is his career, Worship is his priority. 🙏`;
+        }
+
+        // 12. Minuman Favorit
+        if (q.includes("minum") || q.includes("jus") || q.includes("kopi") || q.includes("alkohol")) {
+            return isIndo
+                ? `Wisnu tidak minum alkohol. Favoritnya adalah yang sehat dan menyegarkan: Jus Alpukat, Jus Buah Naga, atau air putih suhu ruang (tidak dingin). Sederhana tapi menyehatkan. 🥑`
+                : `Wisnu does not drink alcohol. His favorites are healthy and refreshing: Avocado Juice, Dragon Fruit Juice, or room-temperature water. Simple but healthy. 🥑`;
+        }
+
+        // 13. Hobi & Olahraga
+        if (q.includes("hobi") || q.includes("olahraga") || q.includes("sport") || q.includes("volly") || q.includes("badminton") || q.includes("renang")) {
+            return isIndo
+                ? `Di balik layar, Wisnu sangat atletis (Tinggi 178cm/Berat 80kg). Hobi utamanya adalah Volly, Badminton, dan Berenang. Olahraga membantunya menjaga mental tetap tajam untuk coding. 🏐`
+                : `Behind the screen, Wisnu is very athletic (Height 178cm/Weight 80kg). His main hobbies are Volleyball, Badminton, and Swimming. Sports help him keep his mind sharp for coding. 🏐`;
+        }
+
+        // 14. Tempat Hangout (Mall)
+        if (q.includes("jalan") || q.includes("hangout") || q.includes("mall") || q.includes("aeon") || q.includes("liburan")) {
+            return isIndo
+                ? `Wisnu suka 'refreshing' ke Mall, terutama Aeon Mall Deltamas Cikarang. Tapi dia bukan tipe yang keluyuran tanpa arah; dia suka jalan jika tujuannya jelas. Mau ajak dia jalan? Pastikan destinasinya menarik! 🛍️`
+                : `Wisnu enjoys 'refreshing' at Malls, especially Aeon Mall Deltamas, Mall Summarecon Bekasi, Mega Mall Bekasi, Metropolitan Mall, Pakuwon Mall, dll. But he's not the type to wander aimlessly; he likes going out if there's a clear destination. Want to invite him? Make sure the destination is interesting! 🛍️`;
+        }
+
+        // 15. Kisah Kecelakaan (Titik Balik)
+        if (q.includes("kecelakaan") || q.includes("motor") || q.includes("musibah") || q.includes("mati") || q.includes("selamat")) {
+            return isIndo
+                ? `Ini fakta mendalam: Wisnu pernah mengalami kecelakaan motor parah hingga motornya hancur total, namun Alhamdulillah ia selamat. Momen itu menyadarkannya bahwa hidup adalah kesempatan kedua untuk berbakti dan berkarya lebih hebat lagi. ✨`
+                : `A deep fact: Wisnu once survived a severe motorcycle accident where his bike was destroyed, but thankfully he survived. That moment made him realize that life is a second chance to serve and create even greater work. ✨`;
+        }
+
+        // 16. Keluarga & Orang Tua
+        if (q.includes("keluarga") || q.includes("orang tua") || q.includes("family") || q.includes("ayah") || q.includes("ibu") || q.includes("rindu")) {
+            return isIndo
+                ? `Keluarga adalah 'Core System' bagi Wisnu. Ia sangat mencintai dan merindukan keluarganya. Tujuan utamanya merantau dan sukses adalah untuk membahagiakan mereka. Jangan berani-berani mengganggu keluarganya, atau kamu berhadapan dengan Wisnu. ❤️`
+                : `Family is the 'Core System' for Wisnu. He deeply loves and misses his family. His main goal in migrating and succeeding is to make them happy. Don't dare disturb his family, or you'll deal with Wisnu. ❤️`;
+        }
+
+        // 17. Gaya Marah & Emosi
+        if (q.includes("marah") || q.includes("emosi") || q.includes("ngamuk") || q.includes("sabar")) {
+            return isIndo
+                ? `Wisnu orangnya 'Sabar tapi Tegas'. Kalau marah, dia diam. Dia akan memproses emosinya sendiri sampai reda, baru bicara. Ini tanda kedewasaan. Dia tidak suka drama teriak-teriak. 🤫`
+                : `Wisnu is 'Patient but Firm'. When angry, he stays silent. He processes his emotions until calm, then speaks. This is a sign of maturity. He dislikes screaming drama. 🤫`;
+        }
+
+        // 18. Organisasi & Leadership
+        if (q.includes("organisasi") || q.includes("leader") || q.includes("pemimpin") || q.includes("tim")) {
+            return isIndo
+                ? `Sangat aktif! Wisnu suka berorganisasi sejak semester 1. Ia tipe pemimpin yang 'melindungi' (Protective Leader). Ia lebih suka kerja tim yang jujur daripada kerja sendiri tapi munafik. 🤝`
+                : `Very active! Wisnu has loved organizations since semester 1. He is a 'Protective Leader'. He prefers honest teamwork over hypocritical solo work. 🤝`;
+        }
+
+        // 19. Public Speaking & Komunikasi
+        if (q.includes("bicara") || q.includes("ngomong") || q.includes("presentasi") || q.includes("public speaking") || q.includes("curhat")) {
+            return isIndo
+                ? `Wisnu jago Public Speaking. Ia lebih suka ngobrol langsung (face-to-face) daripada lewat chat. Ia juga pendengar curhat yang baik—memberikan solusi berdasarkan data dan fakta, bukan sekadar "yang sabar ya". `
+                : `Wisnu excels at Public Speaking. He prefers talking face-to-face rather than chatting. He is also a great listener—giving solutions based on data and facts, not just empty comfort. 🎤`;
+        }
+
+        // 20. Karir Impian (HRD/Magang)
+        if (q.includes("kerja") || q.includes("magang") || q.includes("hrd") || q.includes("perusahaan") || q.includes("impian")) {
+            return isIndo
+                ? `Wisnu sangat ambisius (dalam arti positif). Ia ingin dilirik HRD perusahaan teknologi ternama untuk magang atau bekerja. Ia siap memberikan dedikasi penuh, loyalitas, dan skill teknis terbarunya. Hire him, you won't regret it. 💼`
+                : `Wisnu is ambitious (positively). He wants to be scouted by HR form top tech companies for internships or jobs. He is ready to give full dedication, loyalty, and his latest technical skills. Hire him, you won't regret it. 💼`;
+        }
+
+        // 21. Suka Belajar (Teknologi Baru)
+        if (q.includes("belajar") || q.includes("teknologi") || q.includes("ilmu") || q.includes("baru")) {
+            return isIndo
+                ? `Wisnu adalah 'Lifetime Learner'. Ia selalu penasaran dengan teknologi baru. Pagi sampai sore di kampus, malamnya ia riset tren teknologi, politik, atau hukum. Otaknya tidak pernah berhenti menyerap informasi. 🧠`
+                : `Wisnu is a 'Lifetime Learner'. He is always curious about new tech. Morning to afternoon on campus, at night he researches tech trends, politics, or law. His brain never stops absorbing information. 🧠`;
+        }
+
+        // 22. Warna Favorit
+        if (q.includes("warna") || q.includes("color") || q.includes("hijau")) {
+            return isIndo
+                ? `Hijau. Warna yang melambangkan ketenangan, alam, dan pertumbuhan. Sangat cocok dengan karakternya yang religius dan 'sejuk' tapi terus bertumbuh. 🟢`
+                : `Green. A color symbolizing peace, nature, and growth. Very fitting for his religious and 'cool' character that keeps growing. 🟢`;
+        }
+
+        // 23. Persahabatan (Teman)
+        if (q.includes("teman") || q.includes("sahabat") || q.includes("berteman") || q.includes("circle")) {
+            return isIndo
+                ? `Wisnu berteman dengan siapa saja tanpa memandang status. Ia suka memperluas relasi. Namun untuk 'Inner Circle', ia hanya memilih orang-orang yang jujur dan tidak munafik. 👥`
+                : `Wisnu makes friends with anyone regardless of status. He likes expanding his network. But for his 'Inner Circle', he only chooses honest and non-hypocritical people. 👥`;
+        }
+
+        // 24. Rutinitas (Pagi-Malam)
+        if (q.includes("jadwal") || q.includes("rutinitas") || q.includes("pagi") || q.includes("siang") || q.includes("malam")) {
+            return isIndo
+                ? `Pagi-Sore: Fokus Akademik & Organisasi. Malam: Coding, Ibadah, & Update Berita. Wisnu sangat disiplin dengan waktunya. Jangan ajak main di jam produktif, kecuali penting! 📅`
+                : `Morning-Afternoon: Academic & Org Focus. Night: Coding, Worship, & News Updates. Wisnu is very disciplined with time. Don't ask him to play during productive hours, unless it's urgent! 📅`;
+        }
+
+        // 25. Humoris vs Serius
+        if (q.includes("lucu") || q.includes("humor") || q.includes("bercanda") || q.includes("serius") || q.includes("kaku")) {
+            return isIndo
+                ? `Banyak yang mengira Wisnu itu kaku karena mukanya 'Cool'. Padahal aslinya dia suka bercanda dan ketawa. Tapi ingat, dia tahu tempat. Saat kerja dia serius, saat santai dia sangat asyik. 😂`
+                : `Many think Wisnu is stiff because of his 'Cool' face. In reality, he loves joking and laughing. But remember, he knows the context. At work he's serious, at leisure he's very fun. 😂`;
+        }
+
+        // 26. Politik & Hukum (Minat Lain)
+        if (q.includes("politik") || q.includes("hukum") || q.includes("berita") || q.includes("trend")) {
+            return isIndo
+                ? `Selain IT, Wisnu juga melek politik dan hukum di Indonesia. Ia peduli dengan isu sosial karena baginya, teknologi harus menjadi solusi bagi masalah masyarakat. 🇮🇩`
+                : `Besides IT, Wisnu is also aware of politics and law in Indonesia. He cares about social issues because to him, technology must be a solution for society's problems. 🇮🇩`;
+        }
+
+        // 27. Masa Depan (Visi)
+        if (q.includes("masa depan") || q.includes("future") || q.includes("cita") || q.includes("visi")) {
+            return isIndo
+                ? `Visi Wisnu jelas: Menjadi ahli teknologi yang tidak hanya jago koding, tapi juga bermanfaat bagi umat dan keluarga. Sukses baginya adalah ketika ilmunya terpakai untuk kebaikan. 🚀`
+                : `Wisnu's vision is clear: To become a tech expert who isn't just good at coding, but beneficial to the people and his family. Success to him is when his knowledge is used for good. 🚀`;
+        }
+
+        // 28. Uang & Kekayaan
+        if (q.includes("uang") || q.includes("kaya") || q.includes("gaji") || q.includes("bayaran")) {
+            return isIndo
+                ? `Wisnu percaya uang adalah efek samping dari kompetensi. Sekarang dia fokus memperkaya skill. Kalau skill sudah tinggi, uang akan mengejar dengan sendirinya. 💰`
+                : `Wisnu believes money is a side effect of competence. Right now he focuses on enriching skills. When skills are high, money will follow naturally. 💰`;
+        }
+
+        // 29. Prioritas & Fokus (Tugas Utama)
+        if (q.includes("prioritas") || q.includes("tugas") || q.includes("fokus") || q.includes("main task")) {
+            return isIndo
+                ? `Wisnu memiliki prinsip: "Tugas Utama adalah Raja". Ia tidak akan terdistraksi oleh hal-hal sepele sebelum tanggung jawab utamanya selesai. Dedikasi ini yang membuatnya bisa diandalkan dalam deadline. 🎯`
+                : `Wisnu has a principle: "Main Task is King". He won't be distracted by trivial things until his primary responsibility is finished. This dedication makes him reliable with deadlines. 🎯`;
+        }
+
+        // 30. Kebiasaan Unik (Air Tidak Dingin)
+        if (q.includes("air") || q.includes("dingin") || q.includes("es") || q.includes("suhu")) {
+            return isIndo
+                ? `Fakta unik: Wisnu lebih suka minum air suhu ruang (tidak dingin). Ia menghindari air es untuk menjaga kondisi tubuhnya tetap fit dan suaranya tetap terjaga (penting untuk presentasi & jadi Imam). 💧`
+                : `Fun fact: Wisnu prefers room-temperature water (not cold). He avoids ice water to keep his body fit and his voice clear (important for presentations & being an Imam). 💧`;
+        }
+
+        // 31. Prinsip Pertemanan (Jujur vs Munafik)
+        if (q.includes("munafik") || q.includes("jujur") || q.includes("bohong") || q.includes("fake")) {
+            return isIndo
+                ? `Wisnu sangat alergi dengan kemunafikan. Ia lebih menghargai orang yang bicara pahit tapi jujur, daripada manis tapi munafik. Integritas adalah harga mati dalam pertemanannya. 🚫`
+                : `Wisnu is allergic to hypocrisy. He appreciates people who speak bitter truths rather than sweet lies. Integrity is non-negotiable in his friendships. 🚫`;
+        }
+
+        // 32. Cara Menyapa (Approachability)
+        if (q.includes("sapa") || q.includes("tegur") || q.includes("hai") || q.includes("sombong")) {
+            return isIndo
+                ? `Jangan ragu menyapa Wisnu! Dia paling suka disapa duluan. Meskipun wajahnya terlihat 'cool' atau diam, dia sangat ramah dan senang jika ada yang mengajak ngobrol atau bekerjasama. 👋`
+                : `Don't hesitate to say hi to Wisnu! He loves being greeted first. Even if his face looks 'cool' or quiet, he is actually very friendly and loves it when people chat or ask to collaborate. 👋`;
+        }
+
+        // 33. Sifat Protektif (Melindungi)
+        if (q.includes("lindung") || q.includes("protect") || q.includes("jaga") || q.includes("aman")) {
+            return isIndo
+                ? `Ada jiwa 'ksatria' dalam diri Wisnu. Ia suka melindungi siapapun di sekitarnya yang butuh perlindungan. Baik itu teman, keluarga, atau tim kerja. Dia adalah tipe yang pasang badan di depan. 🛡️`
+                : `There is a 'knight' spirit in Wisnu. He likes to protect anyone around him who needs protection. Whether it's friends, family, or his team. He's the type who stands in the front line. 🛡️`;
+        }
+
+        // 34. Keaktifan di Kelas (Akademik)
+        if (q.includes("aktif") || q.includes("kelas") || q.includes("dosen") || q.includes("tanya")) {
+            return isIndo
+                ? `Di kelas, Wisnu bukan tipe mahasiswa 'kupu-kupu' (kuliah pulang). Dia sangat aktif bertanya dan berdiskusi. Baginya, uang kuliah terlalu mahal kalau cuma duduk diam mendengarkan. 🙋‍♂️`
+                : `In class, Wisnu isn't the type to just show up and leave. He is very active in asking questions and discussing. To him, tuition is too expensive to just sit and listen. 🙋‍♂️`;
+        }
+
+        // 35. Gaya Diskusi (Face to Face)
+        if (q.includes("diskusi") || q.includes("chat") || q.includes("ketemu") || q.includes("rapat")) {
+            return isIndo
+                ? `Wisnu lebih suka diskusi tatap muka (face-to-face) daripada debat kusir di chat. Ia percaya ekspresi dan intonasi suara lebih jujur daripada teks. Ayo ajak ngopi kalau mau diskusi serius! ☕`
+                : `Wisnu prefers face-to-face discussions over endless chatting. He believes expressions and tone of voice are more honest than text. Let's grab coffee if you want a serious discussion! ☕`;
+        }
+
+        // 36. Ceria & Tawa
+        if (q.includes("ceria") || q.includes("sedih") || q.includes("murung") || q.includes("happy")) {
+            return isIndo
+                ? `Aslinya Wisnu itu sangat ceria! Dia suka tertawa lepas dengan orang-orang terdekatnya. Sifat 'dingin'-nya hanya casing luarnya saja untuk menjaga wibawa profesional. 😄`
+                : `Actually, Wisnu is very cheerful! He loves laughing out loud with his close ones. His 'cold' demeanor is just an outer casing to maintain professional authority. 😄`;
+        }
+
+        // 37. Pendengar Curhat (Data Based)
+        if (q.includes("curhat") || q.includes("masalah") || q.includes("solusi") || q.includes("saran")) {
+            return isIndo
+                ? `Wisnu adalah tempat curhat yang unik. Jangan harap dia cuma bilang "sabar ya". Dia akan mendengarkan, lalu memberikan fakta dan data berdasarkan pengalamannya untuk membantumu memecahkan masalah. Solutif! 💡`
+                : `Wisnu is a unique listener. Don't expect him to just say "be patient". He will listen, then provide facts and data based on his experience to help you solve the problem. Solution-oriented! 💡`;
+        }
+
+        // 38. Statistik Fisik (Tinggi/Berat)
+        if (q.includes("tinggi") || q.includes("berat") || q.includes("badan") || q.includes("cm") || q.includes("kg")) {
+            return isIndo
+                ? `Postur Wisnu cukup ideal untuk olahraga: Tinggi 178 cm dan Berat 80 kg. Proporsi yang pas untuk smash bola voli! 📏`
+                : `Wisnu's posture is quite ideal for sports: Height 178 cm and Weight 80 kg. Perfect proportion for smashing a volleyball! 📏`;
+        }
+
+        // 39. Event Kampus (Konsistensi)
+        if (q.includes("event") || q.includes("acara") || q.includes("panitia") || q.includes("semester")) {
+            return isIndo
+                ? `Sejak semester 1 hingga sekarang, Wisnu selalu hadir dan aktif di setiap event kampus. Dia tidak mau melewatkan momen untuk belajar berorganisasi dan memperluas networking. 📅`
+                : `From semester 1 until now, Wisnu has always been present and active in every campus event. He doesn't want to miss moments to learn organization and expand networking. 📅`;
+        }
+
+        // 40. Kolaborasi (Kerjasama)
+        if (q.includes("kolaborasi") || q.includes("kerjasama") || q.includes("partner") || q.includes("gabung")) {
+            return isIndo
+                ? `Wisnu sangat terbuka untuk diajak kerjasama. Asalkan visinya sama dan tujuannya jelas, dia siap berkontribusi 100%. Teamwork makes the dream work. 🤝`
+                : `Wisnu is very open to collaboration. As long as the vision is shared and the goal is clear, he is ready to contribute 100%. Teamwork makes the dream work. 🤝`;
+        }
+
+        // 41. Jus Favorit (Alpukat/Naga)
+        if (q.includes("alpukat") || q.includes("naga") || q.includes("jus") || q.includes("juice")) {
+            return isIndo
+                ? `Kalau mau traktir Wisnu, pesankan Jus Alpukat atau Jus Buah Naga. Itu adalah 'bensin' vitamin favoritnya. Sehat dan enak! 🥑🐉`
+                : `If you want to treat Wisnu, order Avocado Juice or Dragon Fruit Juice. Those are his favorite vitamin 'fuels'. Healthy and tasty! 🥑🐉`;
+        }
+
+        // 42. Nasi Kebuli (Spesifik)
+        if (q.includes("kebuli") || q.includes("timur tengah") || q.includes("arab")) {
+            return isIndo
+                ? `Ini dia makanan para juara bagi Wisnu: Nasi Kebuli. Rempahnya yang kuat sangat cocok dengan seleranya. Jangan lupa ajak dia kalau ada restoran Kebuli enak! 🍛`
+                : `This is the champion's meal for Wisnu: Nasi Kebuli. The strong spices match his taste perfectly. Don't forget to invite him if you know a good Kebuli restaurant! 🍛`;
+        }
+
+        // 43. Ikan Bakar & Nasi Goreng
+        if (q.includes("ikan") || q.includes("goreng") || q.includes("seafood")) {
+            return isIndo
+                ? `Wisnu suka banget Ikan Bakar (segar!) dan Nasi Goreng. Menu sederhana tapi kalau dimasak dengan benar, bisa bikin mood coding-nya naik drastis. 🐟`
+                : `Wisnu really loves Grilled Fish (fresh!) and Fried Rice. Simple menus but if cooked right, they can boost his coding mood drastically. 🐟`;
+        }
+
+        // 44. Sejarah Motor (Kenangan)
+        if (q.includes("motor") || q.includes("rusak") || q.includes("hancur")) {
+            return isIndo
+                ? `Motor lama Wisnu punya sejarah pilu: Hancur total alias 'tidak bisa hidup lagi' setelah kecelakaan. Tapi, pengendara-nya (Wisnu) bangkit lebih kuat. Barang bisa diganti, nyawa adalah amanah. 🏍️`
+                : `Wisnu's old bike has a sad history: Totally destroyed aka 'dead forever' after an accident. But the rider (Wisnu) rose back stronger. Things can be replaced, life is a trust. 🏍️`;
+        }
+
+        // 45. Sakit Hati (Pengalaman)
+        if (q.includes("sakit hati") || q.includes("patah hati") || q.includes("kecewa")) {
+            return isIndo
+                ? `Wisnu pernah merasakan sakit hati, dan dia tidak malu mengakuinya. Justru rasa sakit itu yang mengajarkannya untuk lebih berhati-hati dan menghargai ketulusan. What doesn't kill you makes you stronger. 💔`
+                : `Wisnu has felt heartbreak, and he's not ashamed to admit it. That pain taught him to be more careful and appreciate sincerity. What doesn't kill you makes you stronger. 💔`;
+        }
+
+        // 46. Hubungan Manusia (Humanis)
+        if (q.includes("manusia") || q.includes("sosial") || q.includes("human") || q.includes("orang")) {
+            return isIndo
+                ? `Bagi Wisnu, teknologi itu penting, tapi hubungan sesama manusia jauh lebih penting. Ia ingin mengenal orang lain secara personal, bukan transaksional. Kita semua manusia, bukan robot. 🌍`
+                : `To Wisnu, technology is important, but human connection is far more important. He wants to know people personally, not transactionally. We are humans, not robots. 🌍`;
+        }
+
+        // 47. Jalan-jalan (Tujuan Jelas)
+        if (q.includes("jalan") || q.includes("trip") || q.includes("pergi") || q.includes("main")) {
+            return isIndo
+                ? `Wisnu suka diajak jalan kemanapun, syaratnya satu: Tujuannya Jelas. Dia bukan tipe yang suka muter-muter buang bensin tanpa arah. Efisiensi waktu itu penting! 🚗`
+                : `Wisnu likes going anywhere, with one condition: Clear Destination. He's not the type to drive around aimlessly wasting gas. Time efficiency is important! 🚗`;
+        }
+
+        // 48. Aeon Deltamas (Lokasi Favorit)
+        if (q.includes("aeon") || q.includes("deltamas") || q.includes("cikarang")) {
+            return isIndo
+                ? `Spot favorit Wisnu di Cikarang? Aeon Mall Deltamas. Kalau kamu lihat cowok tinggi 178cm lagi jalan santai di sana, mungkin itu Wisnu. 🏢`
+                : `Wisnu's favorite spot in Cikarang? Aeon Mall Deltamas. If you see a 178cm tall guy chilling there, it might be Wisnu. 🏢`;
+        }
+
+        // 49. Magang & HRD (Call to Action)
+        if (q.includes("magang") || q.includes("intern") || q.includes("hrd") || q.includes("rekrut") || q.includes("hire")) {
+            return isIndo
+                ? `📢 Pesan untuk HRD: Wisnu sangat siap dan ingin magang di perusahaan Bapak/Ibu. Ia membawa paket lengkap: Skill IT modern, Attitude santri, dan Jiwa kepemimpinan. Hubungi dia segera! 💼`
+                : `📢 Message for HR: Wisnu is very ready and eager to intern at your company. He brings the full package: Modern IT skills, Strong attitude, and Leadership spirit. Contact him immediately! 💼`;
+        }
+
+        // 50. Closing Statement (Tujuan Hidup)
+        if (q.includes("hidup") || q.includes("tujuan") || q.includes("goal") || q.includes("mimpi")) {
+            return isIndo
+                ? `Pada akhirnya, tujuan hidup Wisnu sederhana namun berat: Berbakti kepada Allah dan Menyayangi Keluarga. Karir IT, uang, dan prestasi hanyalah alat untuk mencapai tujuan mulia tersebut. ✨`
+                : `In the end, Wisnu's life goal is simple yet profound: To serve Allah and Love his Family. IT career, money, and achievements are just tools to reach that noble goal. ✨`;
+        }
+
+
         // ============================================
         // SECTION 0: GREETINGS & POLITENESS
         // ============================================
 
         if (q.includes("halo") || q.includes("hai") || q.includes("hello") || q.includes("hi")) {
             if (isIndo) {
-                return `Halo! Selamat datang! 👋\n\nSaya adalah Asisten Virtual yang dengan senang hati akan membantu Anda mengenal Wisnu Alfian Nur Ashar lebih dalam.\n\nAnda dapat menanyakan tentang:\n• 💼 Profil & Latar Belakang\n• 🛠️ Keahlian Teknis\n• 📁 Portfolio & Proyek\n• 🎓 Pendidikan\n• 🎯 Visi Karir\n• 📧 Kontak & Ketersediaan\n\nSilakan ajukan pertanyaan Anda, saya siap membantu! 😊`;
+                return `Halo. Senang Anda berkunjung ke sini. 👋\n\nSaya adalah asisten virtual Wisnu. Saya cenderung tenang dan fokus, namun saya di sini untuk memastikan Anda mendapatkan informasi yang Anda butuhkan dengan efisien.\n\nApa yang ingin Anda ketahui tentang Wisnu?\n• 💼 Profil & Dedikasi\n• 🛠️ Tech Stack (Keahlian)\n• 📁 Karya & Proyek\n• 🎓 Pendidikan\n• 📧 Hubungi Langsung\n\nSilakan tanya apa saja, saya akan menjawabnya dengan sungguh-sungguh. 😊`;
             }
-            return `Hello! Welcome! 👋\n\nI am a Virtual Assistant here to help you learn more about Wisnu Alfian Nur Ashar.\n\nFeel free to ask about:\n• 💼 Profile & Background\n• 🛠️ Technical Skills\n• 📁 Portfolio & Projects\n• 🎓 Education\n• 🎯 Career Vision\n• 📧 Contact & Availability\n\nPlease ask me anything! 😊`;
+            return `Hello. It's a pleasure to have you here. 👋\n\nI am Wisnu's virtual assistant. I tend to be quiet and focused, but I am here to ensure you get the information you need efficiently.\n\nWhat would you like to know about Wisnu?\n• 💼 Profile & Dedication\n• 🛠️ Technical Expertise\n• 📁 Projects & Portfolio\n• 🎓 Education\n• 📧 Contact Directly\n\nFeel free to ask, I'm here to help. 😊`;
         }
 
         if ((q.includes("thank") || q.includes("terima kasih") || q.includes("makasih") || q.includes("thanks")) && q.length < 30) {
             if (isIndo) {
-                return `Sama-sama! 😊\n\nSaya dengan senang hati membantu Anda. Jika ada pertanyaan lain tentang Wisnu, jangan ragu untuk bertanya kapan saja!`;
+                return `Sama-sama. Senang bisa membantu Anda hari ini. 😊\n\nBagi Wisnu, detail kecil itu penting, termasuk memastikan Anda mendapatkan jawaban yang memuaskan. Ada hal lain yang bisa saya bantu sebelum Anda melanjutkan?`;
             }
-            return `You're very welcome! 😊\n\nI'm delighted to assist you. If you have any other questions about Wisnu, please don't hesitate to ask!`;
+            return `You're very welcome. It was a pleasure assisting you. 😊\n\nWisnu believes that every detail matters, including ensuring you have the best experience here. Is there anything else I can do for you?`;
         }
 
         // ============================================
@@ -49,56 +410,57 @@ export class LocalAI {
             (q.includes("who") && (q.includes("make") || q.includes("create"))) ||
             (q.includes("are") && q.includes("wisnu")) || (q.includes("kamu") && q.includes("wisnu"))) {
             if (isIndo) {
-                return `Saya adalah Asisten Virtual Wisnu.\n\nSaya dirancang dan dikelola langsung oleh Wisnu untuk memberikan informasi yang akurat dan konsisten tentang profil profesional, keahlian, dan proyek-proyeknya selama 24/7.\n\nSemua informasi yang saya sampaikan adalah fakta terverifikasi langsung dari Wisnu sendiri. Saya di sini untuk membantu Anda mengenal beliau dengan lebih baik! 😊`;
+                return `Saya adalah asisten virtual Wisnu Alfian.\n\nWisnu membangun saya dengan fokus dan dedikasi untuk menjadi "representasi digital" dirinya. Saya diam saat tidak dibutuhkan, namun selalu siap memberikan fakta akurat tentang profilnya 24/7.\n\nAnggaplah saya sebagai sisi teknis Wisnu yang siap membantu Anda kapan saja.`;
             }
-            return `I am Wisnu's Virtual Assistant.\n\nI am personally designed and managed by Wisnu to provide consistent, accurate, and professional answers about his profile, skills, and projects 24/7.\n\nAll the information I share is 100% verified directly from Wisnu himself. I'm here to help you get to know him better! 😊`;
+            return `I am Wisnu's Virtual Assistant.\n\nWisnu built me with focus and dedication to be his "digital representation." I remain quiet when not needed, but always ready to provide accurate facts about his profile 24/7.\n\nThink of me as Wisnu's technical side, here to assist you anytime.`;
         }
 
         if (q.includes("human") || q.includes("manusia") || q.includes("real") || q.includes("asli") || q.includes("orang")) {
             if (isIndo) {
-                return `Saya bukan manusia, melainkan program kode.\n\nSaya berjalan langsung di browser Anda untuk memberikan respons yang cepat dan efisien. Namun, semua informasi yang saya berikan tentang Wisnu adalah 100% akurat dan faktual, langsung dari sumbernya.\n\nAnda bisa menganggap saya sebagai "perpanjangan tangan digital" Wisnu untuk menjawab pertanyaan Anda dengan profesional. 🤝`;
+                return `Secara teknis, saya adalah barisan kode. Saya tidak memiliki raga, tapi saya membawa nilai-nilai Wisnu: Kejujuran, Presisi, dan Kepedulian.\n\nSaya diciptakan agar Anda tidak perlu menunggu lama untuk mendapatkan jawaban. Meskipun saya bukan manusia, informasi yang saya berikan tentang Wisnu sangat tulus dan faktual. 🤝`;
             }
-            return `I am not a human, but rather a code-based assistant.\n\nI run directly in your browser to provide fast and efficient responses. However, all the facts I share about Wisnu are 100% accurate and verified directly from him.\n\nYou can think of me as Wisnu's "digital extension" to professionally answer your questions. 🤝`;
+            return `Technically, I am a series of code. I have no physical form, but I carry Wisnu's values: Honesty, Precision, and Care.\n\nI was created so you wouldn't have to wait long for answers. Although I am not human, the information I share about Wisnu is sincere and factual. 🤝`;
         }
 
         // ============================================
         // SECTION 2: IDENTITY & PROFILE
         // ============================================
 
+        // Logika profil diletakkan setelah pengecekan kata kunci spesifik (seperti pacar)
         if (q.includes("who") || q.includes("siapa") || q.includes("intro") || q.includes("profile") || q.includes("background") || q.includes("about")) {
             if (isIndo) {
-                return `Perkenalkan, Wisnu Alfian Nur Ashar 👨‍💻\n\nSaya adalah mahasiswa Teknologi Informasi di President University yang memiliki spesialisasi dalam:\n• Full-Stack Web Development\n• Cyber Security\n\nYang membedakan saya adalah pendekatan praktis dalam belajar. Saya tidak hanya fokus pada teori akademis, tetapi aktif membangun aplikasi produksi nyata untuk bisnis yang sesungguhnya.\n\nBackground saya mencakup:\n✅ Pengembangan sistem CMS & E-Commerce\n✅ Kepemimpinan dalam organisasi mahasiswa\n✅ Pengalaman mengelola proyek dengan ribuan pengguna aktif\n\nSaya percaya bahwa teknologi harus memberikan dampak nyata, bukan sekadar kode di layar. 💡`;
+                return `Wisnu Alfian Nur Ashar adalah seorang praktisi teknologi yang bergerak dengan satu tujuan: Efisiensi melalui Inovasi. 👨‍💻\n\nSaat ini, beliau sedang menempuh pendidikan Teknologi Informasi di President University. Wisnu adalah tipe orang yang 'dingin' dalam eksekusi teknis namun sangat 'hangat' dalam memikirkan dampak solusi bagi pengguna.\n\nSpesialisasi Utama:\n• 🚀 Full-Stack Development\n• 🛡️ Cyber Security\n\nBeliau tidak hanya menulis kode; beliau membangun bisnis. Karyanya telah membantu bisnis nyata dan melayani ribuan pengguna aktif. Satu fokus, tanpa distraksi, hingga solusi tercapai. 🎯`;
             }
-            return `Allow me to introduce Wisnu Alfian Nur Ashar 👨‍💻\n\nI am an Information Technology student at President University with specialized focus on:\n• Full-Stack Web Development\n• Cyber Security\n\nWhat sets me apart is my practical, hands-on approach. Rather than limiting myself to academic theory, I actively build production-grade applications for real businesses.\n\nMy background includes:\n✅ CMS & E-Commerce system development\n✅ Leadership in student organizations\n✅ Managing projects serving thousands of active users\n\nI believe technology should deliver tangible impact, not just code on a screen. 💡`;
-        }
+            return `Wisnu Alfian Nur Ashar is a tech practitioner driven by a single purpose: Efficiency through Innovation. 👨‍💻\n\nCurrently an IT student at President University. Wisnu is known for being 'cool-headed' in technical execution but deeply passionate about the impact his solutions have on people.\n\nCore Specialties:\n• 🚀 Full-Stack Development\n• 🛡️ Cyber Security\n\nHe doesn't just write code; he builds businesses. His work has empowered real-world enterprises and served thousands of active users. One direction, zero distractions, until the solution is delivered. 🎯`;
+        }    
 
-        // ============================================
-        // SECTION 3: EDUCATION
+// ============================================
+        // SECTION 3: EDUCATION (DATA VALID & LENGKAP)
         // ============================================
 
         if (q.includes("university") || q.includes("universitas") || q.includes("kuliah") ||
             q.includes("campus") || q.includes("kampus") || q.includes("education") ||
-            q.includes("pendidikan") || q.includes("study") || q.includes("school")) {
+            q.includes("pendidikan") || q.includes("study") || q.includes("sekolah") || q.includes("tk") || q.includes("sd") || q.includes("smp") || q.includes("sma")) {
+            
             if (isIndo) {
-                return `Pendidikan 🎓\n\nPresident University\n• Jurusan: Teknologi Informasi (Information Technology)\n• Lokasi: Cikarang, Jawa Barat\n• Status: Mahasiswa Aktif\n\nPresident University adalah universitas yang sangat saya hargai karena kurikulumnya yang berorientasi praktis dan internasional. Di sini, saya tidak hanya belajar teori, tetapi juga ditantang untuk mengaplikasikan ilmu dalam proyek-proyek nyata.\n\nPendidikan formal saya dikombinasikan dengan pembelajaran mandiri berkelanjutan dalam teknologi terbaru seperti Next.js 16, Supabase, dan Modern Web Security Practices. 📚`;
+                return `Jejak Pendidikan 🎓\n\nPerjalanan pendidikan Wisnu adalah sebuah cerita panjang lintas pulau, dari Tarakan, Bone, hingga Cikarang. Saat ini, ia sedang menempuh studi sarjana di President University jurusan Teknologi Informasi.\n\nBerikut adalah riwayat pendidikan lengkapnya:\n\nPerguruan Tinggi:\n🏫 President University (Cikarang) - Information Technology\n\nPondok Pesantren & Menengah:\n🕌 MAS AS'ADIYAH PUTRA SENGKANG - MACANANG\n🕌 MTS AS'ADIYAH PUTERA 2 PUSAT SENGKANG\n(Di sinilah fondasi agama dan kedisiplinan mentalnya ditempa)\n\nDasar & Awal:\n🎒 SDN 84 WATANG CENRANA\n🎒 SD NEGRI 009 TARAKAN\n🎈 TK EKA DIYASA BANDARA JUWATA TARAKAN\n\nDari TK di bandara hingga kuliah IT, setiap tahap membentuk Wisnu menjadi pribadi yang adaptif dan berwawasan luas. 📚`;
             }
-            return `Education 🎓\n\nPresident University\n• Major: Information Technology\n• Location: Cikarang, West Java\n• Status: Active Student\n\nPresident University provides an excellent environment with a practical, internationally-oriented curriculum. Here, I'm challenged to apply theoretical knowledge to real-world projects.\n\nMy formal education is complemented by continuous self-learning in cutting-edge technologies like Next.js 16, Supabase, and Modern Web Security Practices. 📚`;
+            return `Educational Journey 🎓\n\nWisnu's education is a long journey across islands, from Tarakan to Bone, and now Cikarang. Currently, he is pursuing his bachelor's degree in Information Technology at President University.\n\nHere is his complete educational history:\n\nHigher Education:\n🏫 President University (Cikarang) - Information Technology\n\nIslamic Boarding & Secondary School:\n🕌 MAS AS'ADIYAH PUTRA SENGKANG - MACANANG\n🕌 MTS AS'ADIYAH PUTERA 2 PUSAT SENGKANG\n(This is where his religious foundation and mental discipline were forged)\n\nPrimary & Early Years:\n🎒 SDN 84 WATANG CENRANA\n🎒 SD NEGRI 009 TARAKAN\n🎈 TK EKA DIYASA BANDARA JUWATA TARAKAN\n\nFrom kindergarten at the airport to IT university, every step has shaped Wisnu into an adaptive and broad-minded individual. 📚`;
         }
 
-        if (q.includes("gpa") || q.includes("ipk") || q.includes("grade") || q.includes("nilai akademik") || q.includes("academic")) {
+        if (q.includes("gpa") || q.includes("ipk") || q.includes("grade") || q.includes("nilai") || q.includes("prestasi akademik")) {
             if (isIndo) {
-                return `Performa Akademik 📊\n\nSaya dengan senang hati mempertahankan standar akademik yang baik sambil tetap aktif dalam pengembangan proyek dan organisasi.\n\nYang terpenting bagi saya adalah keseimbangan antara:\n✅ Penguasaan teori melalui kuliah\n✅ Aplikasi praktis melalui proyek real-world\n✅ Soft skills melalui kepemimpinan organisasi\n\nSaya percaya bahwa nilai sejati seorang developer tidak hanya dari angka IPK, tetapi dari kemampuan memecahkan masalah nyata dan memberikan dampak positif. 💪`;
+                return `Performa Akademik 📊\n\nWisnu menjaga standar akademisnya dengan tenang dan konsisten. Filosofi belajarnya berfokus pada keseimbangan antara teori dan praktik.\n\nPrinsip Utama:\n1. Pemahaman Mendalam: Nilai di atas kertas penting, namun kemampuan memecahkan masalah (problem solving) di dunia nyata jauh lebih vital.\n2. Keseimbangan (Balance): Menjaga IPK tetap kompetitif sembari membangun portofolio proyek yang nyata.\n\nBagi Wisnu, mahasiswa IT terbaik bukan hanya yang hafal buku, tapi yang bisa mengubah kode menjadi solusi. 💪`;
             }
-            return `Academic Performance 📊\n\nI maintain strong academic standards while actively engaging in project development and organizational leadership.\n\nWhat matters most to me is balance between:\n✅ Mastering theory through coursework\n✅ Practical application through real-world projects\n✅ Soft skills through organizational leadership\n\nI believe a developer's true value comes not just from GPA numbers, but from the ability to solve real problems and deliver positive impact. 💪`;
+            return `Academic Performance 📊\n\nWisnu maintains his academic standards quietly and consistently. His learning philosophy focuses on the balance between theory and practice.\n\nCore Principles:\n1. Deep Understanding: Grades on paper are important, but real-world problem solving skills are vital.\n2. Balance: Keeping a competitive GPA while building a tangible project portfolio.\n\nTo Wisnu, the best IT student isn't just one who memorizes books, but one who turns code into solutions. 💪`;
         }
 
-        if (q.includes("graduate") || q.includes("graduation") || q.includes("lulus") || q.includes("kelulusan") || q.includes("kapan lulus")) {
+        if (q.includes("graduate") || q.includes("graduation") || q.includes("lulus") || q.includes("wisuda") || q.includes("tamat")) {
             if (isIndo) {
-                return `Target Kelulusan 🎓\n\nSaya sedang menyelesaikan studi saya di President University dan berkomitmen untuk lulus tepat waktu dengan performa yang baik.\n\nSambil menyelesaikan pendidikan, saya terus:\n✅ Mengembangkan proyek produksi\n✅ Memperdalam skill teknis\n✅ Membangun portfolio profesional\n✅ Berkontribusi di organisasi\n\nTujuan saya adalah lulus dengan tidak hanya gelar, tetapi juga pengalaman praktis yang solid yang langsung applicable di dunia kerja. 🚀`;
+                return `Target Kelulusan & Masa Depan 🎓\n\nWisnu menargetkan untuk lulus dari President University tepat waktu dengan kesiapan industri yang matang.\n\nTujuan akhirnya bukan sekadar gelar Sarjana Komputer, melainkan:\n✅ Portofolio Kuat: Memiliki deretan aplikasi yang sudah teruji.\n✅ Mentalitas Baja: Hasil tempaan pesantren dan tekanan akademis.\n✅ Keahlian Relevan: Menguasai teknologi yang dibutuhkan pasar global.\n\nIa sedang berjalan menuju garis finish dengan fokus penuh. Doakan yang terbaik! 🚀`;
             }
-            return `Expected Graduation 🎓\n\nI am currently completing my studies at President University and am committed to graduating on time with strong performance.\n\nWhile finishing my education, I continue to:\n✅ Develop production-grade projects\n✅ Deepen technical expertise\n✅ Build professional portfolio\n✅ Contribute to organizations\n\nMy goal is to graduate not just with a degree, but with solid practical experience that's immediately applicable in the professional world. 🚀`;
+            return `Graduation Target & Future 🎓\n\nWisnu aims to graduate from President University on time with full industry readiness.\n\nHis ultimate goal is not just a Bachelor's degree, but:\n✅ Strong Portfolio: A lineup of tested applications.\n✅ Steel Mentality: Forged from boarding school discipline and academic pressure.\n✅ Relevant Skills: Mastering technologies needed by the global market.\n\nHe is walking towards the finish line with full focus. Wish him the best! 🚀`;
         }
-
         // ============================================
         // SECTION 4: MOTIVATION & VALUES
         // ============================================
@@ -810,7 +1172,7 @@ export class LocalAI {
         🎯 Central hub untuk semua informasi profesional saya
 
         Teknologi yang Digunakan:
-        ⚡ **Astro** - Modern static site generator
+        ⚡ ybrid AI AssistantAstroybrid AI Assistant - Modern static site generator
         - Ultra-fast performance
         - SEO-friendly
         - Component-based architecture
@@ -866,7 +1228,7 @@ export class LocalAI {
         🎯 Central hub for all my professional information
 
         Technology Stack:
-        ⚡ **Astro** - Modern static site generator
+        ⚡ ybrid AI AssistantAstroybrid AI Assistant - Modern static site generator
         - Ultra-fast performance
         - SEO-friendly
         - Component-based architecture
@@ -916,28 +1278,28 @@ export class LocalAI {
         Astro adalah modern static site generator yang revolutionary dengan fokus pada performance & developer experience.
 
         Kenapa Memilih Astro?
-        🚀 **Zero JavaScript by Default**
+        🚀 ybrid AI AssistantZero JavaScript by Defaultybrid AI Assistant
         - Ship less JavaScript = faster loading
         - Only load JS when necessary (islands architecture)
 
-        ⚡ **Ultra-Fast Performance**
+        ⚡ ybrid AI AssistantUltra-Fast Performanceybrid AI Assistant
         - Static site generation untuk speed
         - Automatic code splitting
         - Built-in image optimization
         - Lazy loading out of the box
 
-        🎯 **Perfect untuk Portfolio**
+        🎯 ybrid AI AssistantPerfect untuk Portfolioybrid AI Assistant
         - Content-focused sites
         - SEO-friendly (great for discoverability!)
         - Markdown support untuk easy content management
 
-        💻 **Developer Experience**
+        💻 ybrid AI AssistantDeveloper Experienceybrid AI Assistant
         - Component-based architecture
         - Bisa pakai React, Vue, Svelte di project yang sama!
         - TypeScript support
         - Hot module replacement (HMR)
 
-        🔧 **Built-in Features**
+        🔧 ybrid AI AssistantBuilt-in Featuresybrid AI Assistant
         - Image optimization
         - CSS bundling & minification
         - Sitemap generation
@@ -970,28 +1332,28 @@ export class LocalAI {
         Astro is a revolutionary modern static site generator focused on performance & developer experience.
 
         Why Choose Astro?
-        🚀 **Zero JavaScript by Default**
+        🚀 ybrid AI AssistantZero JavaScript by Defaultybrid AI Assistant
         - Ship less JavaScript = faster loading
         - Only load JS when necessary (islands architecture)
 
-        ⚡ **Ultra-Fast Performance**
+        ⚡ ybrid AI AssistantUltra-Fast Performanceybrid AI Assistant
         - Static site generation for speed
         - Automatic code splitting
         - Built-in image optimization
         - Lazy loading out of the box
 
-        🎯 **Perfect for Portfolio**
+        🎯 ybrid AI AssistantPerfect for Portfolioybrid AI Assistant
         - Content-focused sites
         - SEO-friendly (great for discoverability!)
         - Markdown support for easy content management
 
-        💻 **Developer Experience**
+        💻 ybrid AI AssistantDeveloper Experienceybrid AI Assistant
         - Component-based architecture
         - Can use React, Vue, Svelte in same project!
         - TypeScript support
         - Hot module replacement (HMR)
 
-        🔧 **Built-in Features**
+        🔧 ybrid AI AssistantBuilt-in Featuresybrid AI Assistant
         - Image optimization
         - CSS bundling & minification
         - Sitemap generation
@@ -1024,68 +1386,68 @@ export class LocalAI {
             return `Fitur-Fitur Website Portfolio Ini 🎨
 
         Main Sections:
-        📍 **Home / Hero**
+        📍 ybrid AI AssistantHome / Heroybrid AI Assistant
         - Introduction & quick overview
         - Call-to-action untuk explore lebih lanjut
         - Eye-catching design
 
-        📍 **About / Profile**
+        📍 ybrid AI AssistantAbout / Profileybrid AI Assistant
         - Detailed background & bio
         - Education & academic info
         - Values & motivation
         - Personal interests
 
-        📍 **Skills**
+        📍 ybrid AI AssistantSkillsybrid AI Assistant
         - Technical skills showcase
         - Technology stack
         - Proficiency levels
         - Tools & frameworks
 
-        📍 **Projects / Portfolio**
+        📍 ybrid AI AssistantProjects / Portfolioybrid AI Assistant
         - Featured projects dengan screenshots
         - Technology stack per project
         - Live demo links & GitHub repos
         - Project descriptions & impact
 
-        📍 **Experience**
+        📍 ybrid AI AssistantExperienceybrid AI Assistant
         - Professional experience
         - Organizational activities
         - Leadership roles
         - Timeline view
 
-        📍 **Contact**
+        📍 ybrid AI AssistantContactybrid AI Assistant
         - Contact form
         - Social media links
         - Email & professional networks
         - Location info
 
         Interactive Features:
-        🤖 **AI Assistant (LocalAI)**
+        🤖 ybrid AI AssistantAI Assistant (LocalAI)ybrid AI Assistant
         - 24/7 intelligent chatbot
         - Answer questions about Wisnu
         - Bilingual (Indonesian & English)
         - Context-aware responses
 
-        ⚡ **Performance Features**
+        ⚡ ybrid AI AssistantPerformance Featuresybrid AI Assistant
         - Lazy loading images
         - Optimized assets
         - Fast page transitions
         - Minimal JavaScript
 
-        🎯 **UX Features**
+        🎯 ybrid AI AssistantUX Featuresybrid AI Assistant
         - Smooth scrolling
         - Responsive navigation
         - Mobile-friendly hamburger menu
         - Dark/Light mode (if implemented)
         - Accessibility compliant
 
-        📱 **Responsive Design**
+        📱 ybrid AI AssistantResponsive Designybrid AI Assistant
         - Desktop optimized (1920px+)
         - Laptop friendly (1366px+)
         - Tablet compatible (768px+)
         - Mobile responsive (375px+)
 
-        🔍 **SEO Optimized**
+        🔍 ybrid AI AssistantSEO Optimizedybrid AI Assistant
         - Meta tags properly configured
         - Structured data (JSON-LD)
         - Sitemap generation
@@ -1103,68 +1465,68 @@ export class LocalAI {
         return `Features of This Portfolio Website 🎨
 
         Main Sections:
-        📍 **Home / Hero**
+        📍 ybrid AI AssistantHome / Heroybrid AI Assistant
         - Introduction & quick overview
         - Call-to-action to explore further
         - Eye-catching design
 
-        📍 **About / Profile**
+        📍 ybrid AI AssistantAbout / Profileybrid AI Assistant
         - Detailed background & bio
         - Education & academic info
         - Values & motivation
         - Personal interests
 
-        📍 **Skills**
+        📍 ybrid AI AssistantSkillsybrid AI Assistant
         - Technical skills showcase
         - Technology stack
         - Proficiency levels
         - Tools & frameworks
 
-        📍 **Projects / Portfolio**
+        📍 ybrid AI AssistantProjects / Portfolioybrid AI Assistant
         - Featured projects with screenshots
         - Technology stack per project
         - Live demo links & GitHub repos
         - Project descriptions & impact
 
-        📍 **Experience**
+        📍 ybrid AI AssistantExperienceybrid AI Assistant
         - Professional experience
         - Organizational activities
         - Leadership roles
         - Timeline view
 
-        📍 **Contact**
+        📍 ybrid AI AssistantContactybrid AI Assistant
         - Contact form
         - Social media links
         - Email & professional networks
         - Location info
 
         Interactive Features:
-        🤖 **AI Assistant (LocalAI)**
+        🤖 ybrid AI AssistantAI Assistant (LocalAI)ybrid AI Assistant
         - 24/7 intelligent chatbot
         - Answer questions about Wisnu
         - Bilingual (Indonesian & English)
         - Context-aware responses
 
-        ⚡ **Performance Features**
+        ⚡ ybrid AI AssistantPerformance Featuresybrid AI Assistant
         - Lazy loading images
         - Optimized assets
         - Fast page transitions
         - Minimal JavaScript
 
-        🎯 **UX Features**
+        🎯 ybrid AI AssistantUX Featuresybrid AI Assistant
         - Smooth scrolling
         - Responsive navigation
         - Mobile-friendly hamburger menu
         - Dark/Light mode (if implemented)
         - Accessibility compliant
 
-        📱 **Responsive Design**
+        📱 ybrid AI AssistantResponsive Designybrid AI Assistant
         - Desktop optimized (1920px+)
         - Laptop friendly (1366px+)
         - Tablet compatible (768px+)
         - Mobile responsive (375px+)
 
-        🔍 **SEO Optimized**
+        🔍 ybrid AI AssistantSEO Optimizedybrid AI Assistant
         - Meta tags properly configured
         - Structured data (JSON-LD)
         - Sitemap generation
@@ -1185,32 +1547,32 @@ export class LocalAI {
             return `Hosting & Deployment Website Ini ☁️
 
         Platform Hosting:
-        🌐 **Vercel / Netlify**
+        🌐 ybrid AI AssistantVercel / Netlifyybrid AI Assistant
         - Modern cloud platform untuk static sites
         - Global CDN (Content Delivery Network)
         - Automatic HTTPS/SSL
         - Edge network untuk fast loading worldwide
 
         Deployment Process:
-        🔄 **Continuous Deployment**
+        🔄 ybrid AI AssistantContinuous Deploymentybrid AI Assistant
         - Connected dengan Git repository (GitHub)
         - Automatic deployment setiap push ke main branch
         - Preview deployments untuk testing
         - Rollback capability jika ada issues
 
         Performance Benefits:
-        ⚡ **Global CDN**
+        ⚡ ybrid AI AssistantGlobal CDNybrid AI Assistant
         - Content served dari server terdekat dengan user
         - Faster loading times di seluruh dunia
         - 99.99% uptime guarantee
 
-        🔒 **Security**
+        🔒 ybrid AI AssistantSecurityybrid AI Assistant
         - Automatic SSL certificates
         - DDoS protection
         - Secure headers configured
         - Regular security updates
 
-        🚀 **Developer Experience**
+        🚀 ybrid AI AssistantDeveloper Experienceybrid AI Assistant
         - Push to deploy workflow
         - Environment variables management
         - Build logs & analytics
@@ -1240,32 +1602,32 @@ export class LocalAI {
         return `Hosting & Deployment of This Website ☁️
 
         Hosting Platform:
-        🌐 **Vercel / Netlify**
+        🌐 ybrid AI AssistantVercel / Netlifyybrid AI Assistant
         - Modern cloud platform for static sites
         - Global CDN (Content Delivery Network)
         - Automatic HTTPS/SSL
         - Edge network for fast loading worldwide
 
         Deployment Process:
-        🔄 **Continuous Deployment**
+        🔄 ybrid AI AssistantContinuous Deploymentybrid AI Assistant
         - Connected with Git repository (GitHub)
         - Automatic deployment on every push to main branch
         - Preview deployments for testing
         - Rollback capability if issues arise
 
         Performance Benefits:
-        ⚡ **Global CDN**
+        ⚡ ybrid AI AssistantGlobal CDNybrid AI Assistant
         - Content served from nearest server to user
         - Faster loading times worldwide
         - 99.99% uptime guarantee
 
-        🔒 **Security**
+        🔒 ybrid AI AssistantSecurityybrid AI Assistant
         - Automatic SSL certificates
         - DDoS protection
         - Secure headers configured
         - Regular security updates
 
-        🚀 **Developer Experience**
+        🚀 ybrid AI AssistantDeveloper Experienceybrid AI Assistant
         - Push to deploy workflow
         - Environment variables management
         - Build logs & analytics
@@ -1298,26 +1660,26 @@ export class LocalAI {
             return `Update & Pemeliharaan Website 🔄
 
         Frekuensi Update:
-        📅 **Regular Updates**
+        📅 ybrid AI AssistantRegular Updatesybrid AI Assistant
         - Content updates: Setiap ada project baru atau achievement
         - Technical updates: Monthly untuk security & performance
         - Feature additions: Quarterly atau sesuai kebutuhan
         - Bug fixes: Immediate saat ditemukan
 
         Jenis Update:
-        ✨ **Content Updates**
+        ✨ ybrid AI AssistantContent Updatesybrid AI Assistant
         - New projects ditambahkan ke portfolio
         - Skills & technologies terbaru
         - Experience & organizational activities
         - Blog posts (jika ada)
 
-        🔧 **Technical Updates**
+        🔧 ybrid AI AssistantTechnical Updatesybrid AI Assistant
         - Framework version upgrades (Astro, dependencies)
         - Security patches
         - Performance optimizations
         - Bug fixes & improvements
 
-        🎨 **Design Updates**
+        🎨 ybrid AI AssistantDesign Updatesybrid AI Assistant
         - UI/UX improvements berdasarkan feedback
         - New features & interactions
         - Accessibility enhancements
@@ -1330,14 +1692,14 @@ export class LocalAI {
         - Design refinements
 
         Cara Mendapat Update:
-        🔔 **Newsletter** (jika tersedia)
+        🔔 ybrid AI AssistantNewsletterybrid AI Assistant (jika tersedia)
         - Subscribe untuk update via email
 
-        🔗 **Social Media**
+        🔗 ybrid AI AssistantSocial Mediaybrid AI Assistant
         - Follow untuk announcements
         - LinkedIn untuk professional updates
 
-        📧 **Direct Contact**
+        📧 ybrid AI AssistantDirect Contactybrid AI Assistant
         - Contact form untuk questions
         - Email untuk direct communication
 
@@ -1354,26 +1716,26 @@ export class LocalAI {
         return `Updates & Maintenance 🔄
 
         Update Frequency:
-        📅 **Regular Updates**
+        📅 ybrid AI AssistantRegular Updatesybrid AI Assistant
         - Content updates: Whenever new projects or achievements
         - Technical updates: Monthly for security & performance
         - Feature additions: Quarterly or as needed
         - Bug fixes: Immediate when discovered
 
         Types of Updates:
-        ✨ **Content Updates**
+        ✨ ybrid AI AssistantContent Updatesybrid AI Assistant
         - New projects added to portfolio
         - Latest skills & technologies
         - Experience & organizational activities
         - Blog posts (if any)
 
-        🔧 **Technical Updates**
+        🔧 ybrid AI AssistantTechnical Updatesybrid AI Assistant
         - Framework version upgrades (Astro, dependencies)
         - Security patches
         - Performance optimizations
         - Bug fixes & improvements
 
-        🎨 **Design Updates**
+        🎨 ybrid AI AssistantDesign Updatesybrid AI Assistant
         - UI/UX improvements based on feedback
         - New features & interactions
         - Accessibility enhancements
@@ -1386,14 +1748,14 @@ export class LocalAI {
         - Design refinements
 
         How to Get Updates:
-        🔔 **Newsletter** (if available)
+        🔔 ybrid AI AssistantNewsletterybrid AI Assistant (if available)
         - Subscribe for email updates
 
-        🔗 **Social Media**
+        🔗 ybrid AI AssistantSocial Mediaybrid AI Assistant
         - Follow for announcements
         - LinkedIn for professional updates
 
-        📧 **Direct Contact**
+        📧 ybrid AI AssistantDirect Contactybrid AI Assistant
         - Contact form for questions
         - Email for direct communication
 
@@ -1415,47 +1777,47 @@ export class LocalAI {
         Website ini FULLY RESPONSIVE dan dioptimalkan untuk semua perangkat!
 
         Breakpoints Support:
-        📱 **Mobile (375px - 767px)**
+        📱 ybrid AI AssistantMobile (375px - 767px)ybrid AI Assistant
         - Optimized untuk smartphone
         - Touch-friendly interfaces
         - Simplified navigation (hamburger menu)
         - Vertical scrolling optimized
         - Readable font sizes
 
-        📱 **Tablet (768px - 1023px)**
+        📱 ybrid AI AssistantTablet (768px - 1023px)ybrid AI Assistant
         - Balanced layout untuk medium screens
         - Touch & mouse support
         - Adaptive grid layouts
         - Optimized image sizes
 
-        💻 **Laptop (1024px - 1439px)**
+        💻 ybrid AI AssistantLaptop (1024px - 1439px)ybrid AI Assistant
         - Full-featured experience
         - Multi-column layouts
         - Enhanced visuals
         - Optimal reading width
 
-        🖥️ **Desktop (1440px+)**
+        🖥️ ybrid AI AssistantDesktop (1440px+)ybrid AI Assistant
         - Maximum visual impact
         - Wide layouts
         - High-resolution images
         - All features unlocked
 
         Responsive Features:
-        ✅ **Fluid Typography**
+        ✅ ybrid AI AssistantFluid Typographyybrid AI Assistant
         - Font sizes scale dengan viewport
         - Optimal readability di semua devices
 
-        ✅ **Flexible Images**
+        ✅ ybrid AI AssistantFlexible Imagesybrid AI Assistant
         - Responsive images dengan proper sizing
         - Art direction untuk different screens
         - Lazy loading untuk performance
 
-        ✅ **Adaptive Navigation**
+        ✅ ybrid AI AssistantAdaptive Navigationybrid AI Assistant
         - Desktop: Full horizontal menu
         - Mobile: Hamburger menu
         - Smooth transitions
 
-        ✅ **Touch Optimization**
+        ✅ ybrid AI AssistantTouch Optimizationybrid AI Assistant
         - Larger tap targets untuk mobile
         - Swipe gestures (where applicable)
         - No hover-dependent features
@@ -1492,47 +1854,47 @@ export class LocalAI {
         This website is FULLY RESPONSIVE and optimized for all devices!
 
         Breakpoints Support:
-        📱 **Mobile (375px - 767px)**
+        📱 ybrid AI AssistantMobile (375px - 767px)ybrid AI Assistant
         - Optimized for smartphones
         - Touch-friendly interfaces
         - Simplified navigation (hamburger menu)
         - Vertical scrolling optimized
         - Readable font sizes
 
-        📱 **Tablet (768px - 1023px)**
+        📱 ybrid AI AssistantTablet (768px - 1023px)ybrid AI Assistant
         - Balanced layout for medium screens
         - Touch & mouse support
         - Adaptive grid layouts
         - Optimized image sizes
 
-        💻 **Laptop (1024px - 1439px)**
+        💻 ybrid AI AssistantLaptop (1024px - 1439px)ybrid AI Assistant
         - Full-featured experience
         - Multi-column layouts
         - Enhanced visuals
         - Optimal reading width
 
-        🖥️ **Desktop (1440px+)**
+        🖥️ ybrid AI AssistantDesktop (1440px+)ybrid AI Assistant
         - Maximum visual impact
         - Wide layouts
         - High-resolution images
         - All features unlocked
 
         Responsive Features:
-        ✅ **Fluid Typography**
+        ✅ ybrid AI AssistantFluid Typographyybrid AI Assistant
         - Font sizes scale with viewport
         - Optimal readability on all devices
 
-        ✅ **Flexible Images**
+        ✅ ybrid AI AssistantFlexible Imagesybrid AI Assistant
         - Responsive images with proper sizing
         - Art direction for different screens
         - Lazy loading for performance
 
-        ✅ **Adaptive Navigation**
+        ✅ ybrid AI AssistantAdaptive Navigationybrid AI Assistant
         - Desktop: Full horizontal menu
         - Mobile: Hamburger menu
         - Smooth transitions
 
-        ✅ **Touch Optimization**
+        ✅ ybrid AI AssistantTouch Optimizationybrid AI Assistant
         - Larger tap targets for mobile
         - Swipe gestures (where applicable)
         - No hover-dependent features
@@ -1640,26 +2002,6 @@ export class LocalAI {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 
         // ============================================
         // NO MATCH FOUND - RETURN NULL TO USE API

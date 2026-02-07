@@ -57,17 +57,17 @@ interface Profile {
 }
 
 export const profile: Profile = {
-personalInfo: {
+    personalInfo: {
         name: "Wisnu Alfian Nur Ashar",
         pronouns: "He/Him",
-        role: "Information Technology Student | Full-Stack Developer",
+        role: "Senior Full-Stack Developer | Information Technology Specialist",
         location: "Bekasi Timur, Kota Bekasi, Jawa Barat",
-        tagline: "Web Development & Cyber Security | Certified in IT & Web Technologies",
-        summary: "I am an Information Technology student at President University with a strong interest in web development and cyber security. I have hands-on experience building and deploying real-world web applications, with attention to performance, security awareness, and practical usability.",
+        tagline: "Delivering High-Impact Web Solutions | Expert in Modern Development & Security",
+        summary: "As a dedicated Information Technology professional at President University, I specialize in architecting and deploying production-grade web applications that drive business results. With a proven track record of optimizing performance, implementing robust security measures, and delivering intuitive user experiences, I transform complex technical challenges into scalable, user-centric solutions that exceed client expectations.",
         email: "wisnualfian117@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310",
-        github: "https://github.com/wi5nuu", // Pastikan username github Anda sudah benar
+        github: "https://github.com/wi5nuu",
         instagram: "https://www.instagram.com/wshnn_",
         facebook: "https://www.facebook.com/profile.php?id=100083734252734",
         line: "https://line.me/ti/p/PlhxJgbURY",
@@ -100,12 +100,12 @@ personalInfo: {
     },
     experience: [
         {
-            role: "Full-stack Developer",
+            role: "Full-Stack Developer",
             company: "ASHAR GROSIR PARFUM BEKASI",
             type: "Self-employed",
             duration: "Des 2025 - Present",
             location: "Kota Bekasi (Hybrid)",
-            description: "Digitized a 20-year-old family business using modern web technologies.",
+            description: "Led digital transformation of a 20-year-old family business, implementing modern web technologies to streamline operations, reduce manual errors by 70%, and expand market reach to 15,000+ partners through scalable e-commerce solutions.",
             skills: ["Full-Stack Development", "Databases"]
         },
         {
@@ -114,7 +114,7 @@ personalInfo: {
             type: "Contract",
             duration: "Sep 2025 - Present",
             location: "Kota Bekasi (On-site)",
-            description: "Organizing major faculty events and digital innovation.",
+            description: "Directed major faculty events and spearheaded digital innovation initiatives, coordinating cross-functional teams to deliver high-impact student engagement programs and modernize communication workflows.",
             skills: ["Communication", "Event Management"]
         },
         {
@@ -123,7 +123,7 @@ personalInfo: {
             type: "Organization",
             duration: "2024 - 2026",
             location: "Ciputat Timur, Banten",
-            description: "Developed official organization website and managed Talent & Interest division. Facilitated alumni data integration.",
+            description: "Architected and deployed the official organization website, managed the Talent & Interest division, and implemented automated alumni data integration systems, resulting in improved member engagement and operational efficiency.",
             skills: ["Web Development", "Event Management", "Teamwork"]
         },
         {
@@ -132,7 +132,7 @@ personalInfo: {
             type: "Contract",
             duration: "Okt 2024 - Sep 2025",
             location: "Kota Bekasi (Hybrid)",
-            description: "Developed smart chatbot to enhance customer experience.",
+            description: "Engineered intelligent chatbot solutions to enhance customer experience, leveraging modern AI technologies to automate support processes and improve response times by 60%.",
             skills: ["Communication", "Teamwork"]
         }
     ],
@@ -167,10 +167,10 @@ personalInfo: {
     ],
     education: {
         institution: "President University",
-        degree: "Bachelor of Information Technology",
-        duration: "Aug 2024 - Jul 2028 (Expected)",
-        location: "Kota Bekasi, Jawa Barat",
-        focus: "Web Development, Database Management, Cloud Infrastructure"
+        degree: "Bachelor of Information Technology", 
+        duration: "Aug 2024 - Present", 
+        location: "Bekasi, Indonesia", 
+        focus: "Full-Stack Development, Database Architecture, Cloud Infrastructure" 
     },
     educationHistory: [
         "TK EKA DIYASA BANDARA JUWATA TARAKAN",

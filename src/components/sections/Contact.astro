@@ -94,20 +94,14 @@ const socialLinks = [
     e.preventDefault();
     
     responseMsg.classList.add('hidden');
-    responseMsg.classList.remove('text-red-500', 'text-green-600');
-
-    const turnstileResponse = form.querySelector('[name="cf-turnstile-response"]').value;
-    if (!turnstileResponse) {
-      responseMsg.innerText = "Please complete the security check.";
-      responseMsg.classList.add('text-red-500');
-      responseMsg.classList.remove('hidden');
-      return;
-    }
-
     btn.disabled = true;
     btnText.innerText = 'Sending...';
 
     const formData = new FormData(form);
+    
+    // HAPUS data turnstile agar Web3Forms tidak mengira kita pakai fitur Pro
+    formData.delete('cf-turnstile-response'); 
+
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
@@ -120,31 +114,23 @@ const socialLinks = [
       body: json
     })
     .then(async (response) => {
-      let result = await response.json();
       if (response.status == 200) {
-        responseMsg.classList.add('text-green-600');
-        responseMsg.innerText = "Pesan berhasil terkirim! Terima kasih, Wisnu.";
+        responseMsg.className = "text-center text-sm font-medium mt-4 text-green-600";
+        responseMsg.innerText = "Pesan berhasil terkirim! Saya akan segera menghubungi Anda.";
         form.reset();
-        if (window.turnstile) window.turnstile.reset();
       } else {
-        responseMsg.classList.add('text-red-500');
-        responseMsg.innerText = result.message || "Something went wrong.";
+        responseMsg.className = "text-center text-sm font-medium mt-4 text-red-500";
+        responseMsg.innerText = "Terjadi kesalahan, silakan coba lagi.";
       }
     })
     .catch(error => {
-      responseMsg.classList.add('text-red-500');
-      responseMsg.innerText = "Error connecting to server.";
+      responseMsg.className = "text-center text-sm font-medium mt-4 text-red-500";
+      responseMsg.innerText = "Gagal terhubung ke server.";
     })
     .finally(() => {
       responseMsg.classList.remove('hidden');
       btn.disabled = false;
       btnText.innerText = 'Send Message';
-      
-      setTimeout(() => {
-        if(responseMsg.classList.contains('text-green-600')) {
-          responseMsg.classList.add('hidden');
-        }
-      }, 5000);
     });
   });
 </script>
