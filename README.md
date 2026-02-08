@@ -8,8 +8,8 @@ A modern, responsive, and SEO-optimized portfolio website featuring an intellige
 
 - **Modern Tech Stack**: Built on the latest Astro 5 framework for blazing fast performance.
 - **Sage Green Aesthetic**: A custom-designed minimal interface with a professional color palette.
-- **Intelligent AI Assistant**: ybrid AI Assistant chatbot that answers 400+ questions about Wisnu's background, skills, and projects in both Indonesian and English.
-- **Hybrid Architecture**:
+- **Intelligent AI Assistant**: Hybrid AI Assistant chatbot that answers 400+ questions about Wisnu's background, skills, and projects in both Indonesian and English.
+- **HHybrid Architecture**:
   - **Landing Page**: A rich, scrolling home page (`/`) showcasing all sections.
   - **Multi-Page**: Dedicated SEO-friendly pages for `/about`, `/projects`, `/experience`, `/skills`, `/contact`.
 - **Interactive Elements**:
@@ -35,7 +35,7 @@ A modern, responsive, and SEO-optimized portfolio website featuring an intellige
   - Headings: *Cormorant Garamond*
   - Body: *Outfit*
 - **Language**: TypeScript - Type-safe JavaScript
-- **AI Assistant**: Custom ybrid AI Assistant implementation in TypeScript
+- **AI Assistant**: Custom Hybrid AI Assistant implementation in TypeScript
 - **Build Tools**: Vite (via Astro), PostCSS, Autoprefixer
 
 ## 📂 Project Structure
@@ -127,7 +127,7 @@ This project is ready to deploy to any static hosting provider (Vercel, Netlify,
 
 ## 🤖 AI Assistant Features
 
-The ybrid AI Assistant assistant can answer questions about:
+The Hybrid AI Assistant assistant can answer questions about:
 - **Profile & Identity**: Background, introduction, personality
 - **Education**: University, major, GPA, graduation timeline
 - **Technical Skills**: React, Next.js, TypeScript, Node.js, Flutter, Laravel, etc.
@@ -155,8 +155,8 @@ A modern, responsive, and SEO-optimized portfolio website featuring an intellige
 
 - **Modern Tech Stack**: Built on the latest Astro 5 framework for blazing fast performance.
 - **Sage Green Aesthetic**: A custom-designed minimal interface with a professional color palette.
-- **Intelligent AI Assistant**: ybrid AI Assistant chatbot that answers 400+ questions about Wisnu's background, skills, and projects in both Indonesian and English.
-- **Hybrid Architecture**:
+- **Intelligent AI Assistant**: Hybrid AI Assistant chatbot that answers 400+ questions about Wisnu's background, skills, and projects in both Indonesian and English.
+- **HHybrid Architecture**:
   - **Landing Page**: A rich, scrolling home page (`/`) showcasing all sections.
   - **Multi-Page**: Dedicated SEO-friendly pages for `/about`, `/projects`, `/experience`, `/skills`, `/contact`.
 - **Interactive Elements**:
@@ -182,7 +182,7 @@ A modern, responsive, and SEO-optimized portfolio website featuring an intellige
   - Headings: *Cormorant Garamond*
   - Body: *Outfit*
 - **Language**: TypeScript - Type-safe JavaScript
-- **AI Assistant**: Custom ybrid AI Assistant implementation in TypeScript
+- **AI Assistant**: Custom Hybrid AI Assistant implementation in TypeScript
 - **Build Tools**: Vite (via Astro), PostCSS, Autoprefixer
 
 ## 📂 Project Structure
@@ -274,7 +274,7 @@ This project is ready to deploy to any static hosting provider (Vercel, Netlify,
 
 ## 🤖 AI Assistant Features
 
-The ybrid AI Assistant assistant can answer questions about:
+The Hybrid AI Assistant assistant can answer questions about:
 - **Profile & Identity**: Background, introduction, personality
 - **Education**: University, major, GPA, graduation timeline
 - **Technical Skills**: React, Next.js, TypeScript, Node.js, Flutter, Laravel, etc.
@@ -301,7 +301,7 @@ A modern, responsive, and SEO-optimized portfolio website built with **Astro 5**
 
 - **Modern Tech Stack**: Built on the latest Astro 5 framework for blazing fast performance.
 - **Sage Green Aesthetic**: A custom-designed minimal interface with a professional color palette.
-- **Hybrid Architecture**: 
+- **HHybrid Architecture**: 
   - **Landing Page**: A rich, scrolling home page (`/`) showcasing all sections.
   - **Multi-Page**: Dedicated SEO-friendly pages for `/about`, `/projects`, `/experience`, etc.
 - **Interactive Elements**:

@@ -185,7 +185,25 @@ export const profile: Profile = {
         "PUFA Computer Science",
         "PUMA Informatic"
     ],
-    certifications: [
+certifications: [
+        {
+            name: "Data Integrations Certification",
+            issuer: "HubSpot Academy",
+            date: "Feb 2026",
+            expiry: "Mar 2027",
+            id: "ab0238d2c3f14a16bfb744c1a9e28356",
+            image: "/Data_Integrations_Certification.png",
+            
+        },
+        {
+            name: "Social Media Marketing Certification II",
+            issuer: "HubSpot Academy",
+            date: "Feb 2026",
+            expiry: "Mar 2028",
+            id: "70e50cd6f564443aaf383aa2b8886281",
+            image: "/Social_Media_Marketing_Certification.png",
+            
+        },
         {
             name: "Google Ads Search Certification",
             issuer: "Skillshop",
