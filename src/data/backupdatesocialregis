@@ -1,0 +1,1534 @@
+"nonton anime": {
+    "id": "Wah, lagi nyari rekomendasi anime ya? 📺 Meskipun saya nggak punya mata (hanya code), saya tahu Wisnu suka anime yang punya world-building keren. Biasanya dia nonton di sela-sela debugging project lho!",
+    "en": "Looking for anime recommendations? 📺 Although I don't have eyes (just code), I know Wisnu loves anime with great world-building. He usually watches them during debugging breaks!"
+},
+"anime favorit": {
+    "id": "Anime favorit Wisnu? 🌟 Biasanya yang genre Shonen atau Seinen yang punya plot twist cerdas. Sama kayak code-nya, Wisnu suka sesuatu yang eksekusinya rapi tapi punya impact besar!",
+    "en": "Wisnu's favorite anime? 🌟 Usually Shonen or Seinen with smart plot twists. Just like his code, Wisnu likes things with clean execution but massive impact!"
+},
+"one piece": {
+    "id": "One Piece! 🏴‍☠️ Wisnu sangat menghargai Luffy karena kegigihannya mengejar mimpi. Mirip sama Wisnu yang gigih ngejar bug sampai ketemu solusinya! Kamu sudah sampai episode berapa?",
+    "en": "One Piece! 🏴‍☠️ Wisnu really respects Luffy for his persistence in chasing dreams. Just like Wisnu who persists in chasing bugs until they're solved! What episode are you on?"
+},
+"naruto": {
+    "id": "Dattebayo! 🍥 Naruto mengajarkan Wisnu soal 'jalan ninja'—yaitu nggak pernah menyerah. Di dunia programming, itu berarti nggak pernah nyerah pas deploy error di Vercel!",
+    "en": "Dattebayo! 🍥 Naruto taught Wisnu about the 'ninja way'—never giving up. In programming, that means never giving up when a Vercel deployment fails!"
+},
+"wibu": {
+    "id": "Wibu? 😄 Wisnu lebih suka disebut 'Tech Enthusiast yang suka kultur Jepang'. Tapi ya, playlist lagunya emang banyak J-Pop sih pas lagi ngerjain LexCorpus!",
+    "en": "Weeb? 😄 Wisnu prefers the term 'Tech Enthusiast who loves Japanese culture'. But yeah, his playlist does have a lot of J-Pop while working on LexCorpus!"
+},
+"baca manga": {
+    "id": "Baca manga itu cara Wisnu refreshing otak setelah baca dokumentasi API berjam-jam. 📖 Visualnya yang bagus jadi inspirasi UI design di project portfolio ini juga lho!",
+    "en": "Reading manga is how Wisnu refreshes his brain after reading API docs for hours. 📖 The great visuals even inspire the UI design in this portfolio project!"
+},
+"manhwa": {
+    "id": "Manhwa! 🎨 Wisnu suka art-style Manhwa yang tajam dan modern. Sama kayak preferensi dia pas milih Tailwind CSS—semuanya harus presisi dan aesthetic!",
+    "en": "Manhwa! 🎨 Wisnu loves the sharp and modern art-style of Manhwa. Just like his preference for Tailwind CSS—everything must be precise and aesthetic!"
+},
+"game mobile": {
+    "id": "Game mobile? 📱 Wisnu main kok, tapi biasanya cuma buat iseng sambil nunggu build production selesai. Dia lebih suka game yang asah strategi!",
+    "en": "Mobile games? 📱 Wisnu plays them, but usually just for fun while waiting for production builds to finish. He prefers strategy-based games!"
+},
+"genshin impact": {
+    "id": "Genshin Impact! 🏔️ Wisnu kagum sama architecture open-world di game ini. Sebagai developer, dia selalu merhatiin gimana game ini handle assets yang begitu besar dengan smooth.",
+    "en": "Genshin Impact! 🏔️ Wisnu admires the open-world architecture of this game. As a developer, he's always noticing how smoothly it handles massive assets."
+},
+"honkai star rail": {
+    "id": "Honkai Star Rail? 🚂 Wisnu suka game turn-based yang butuh logic tinggi. Mirip sistem backend yang dia build untuk Ashar Grosir—semuanya harus terhitung langkahnya!",
+    "en": "Honkai Star Rail? 🚂 Wisnu likes turn-based games that require high logic. Similar to the backend systems he built for Ashar Grosir—every step must be calculated!"
+},
+"ml": {
+    "id": "Mobile Legends! ⚔️ Wisnu tahu pentingnya teamwork dari main ML. Di organisasi kayak PUFA Computer Science, dia terapin mentalitas 'objektif nomor satu' kayak push rank!",
+    "en": "Mobile Legends! ⚔️ Wisnu knows the importance of teamwork from playing ML. In organizations like PUFA Computer Science, he applies the 'objective first' mentality just like pushing rank!"
+},
+"valorant": {
+    "id": "Valorant! 🎯 Aim Wisnu mungkin nggak sejago dia nulis code, tapi dia suka banget sama strategi agent-nya. Dia tipe yang main support biar temennya bisa carry!",
+    "en": "Valorant! 🎯 Wisnu's aim might not be as sharp as his coding, but he loves the agent strategies. He's the type who plays support so his team can carry!"
+},
+"toxic player": {
+    "id": "Wah, ketemu toxic player? ☣️ Wisnu sih biasanya auto-mute. Katanya mending fokus ke goal daripada dengerin drama. Prinsip yang sama dia pake pas dapet error pas coding!",
+    "en": "Met a toxic player? ☣️ Wisnu usually just auto-mutes. He says it's better to focus on the goal than drama. Same principle he uses when facing coding errors!"
+},
+"rank berapa": {
+    "id": "Rank Wisnu? 📈 Dia lebih fokus nge-rank di dunia nyata (kayak nambah followers di Ashar Grosir sampai 15K!). Tapi kalau di game, dia lumayan kompetitif kok!",
+    "en": "Wisnu's rank? 📈 He focuses more on ranking up in real life (like growing Ashar Grosir to 15K followers!). But in games, he's quite competitive too!"
+},
+"main di server": {
+    "id": "Main di server mana? 🌐 Wisnu biasanya main di server Asia biar ping-nya stabil. Kayak coding, latency itu musuh utama kalau mau dapet experience yang smooth!",
+    "en": "Which server? 🌐 Wisnu usually plays on Asia servers for stable ping. Just like coding, latency is the main enemy for a smooth experience!"
+},
+"pc gaming": {
+    "id": "PC Gaming! 🖥️ Wisnu Bangga sama rig-nya. Dia tahu kalau hardware yang kuat bukan cuma buat game, tapi juga buat ngelakuin build project Next.js yang cepet!",
+    "en": "PC Gaming! 🖥️ Wisnu is proud of his rig. He knows that powerful hardware isn't just for gaming, but also for fast Next.js builds!"
+},
+"playstation": {
+    "id": "PlayStation! 🎮 Wisnu suka eksklusivitas dan polish dari game-game Sony. Cinematic experience-nya jadi inspirasi Wisnu buat bikin transisi smooth di web LexCorpus.",
+    "en": "PlayStation! 🎮 Wisnu loves the exclusivity and polish of Sony games. The cinematic experience inspires him to create smooth transitions on the LexCorpus site."
+},
+"xbox": {
+    "id": "Xbox! 💚 Wisnu suka ekosistem Game Pass-nya—value for money banget. Mirip kayak cara Wisnu milih tech stack: yang paling efisien dan kasih value maksimal buat client.",
+    "en": "Xbox! 💚 Wisnu loves the Game Pass ecosystem—great value for money. Just like how he picks tech stacks: the most efficient ones that give maximum value to clients."
+},
+"nintendo switch": {
+    "id": "Nintendo Switch! 🍄 Wisnu suka aspek portabilitasnya. Dia pengen aplikasi yang dia bikin juga se-fleksibel itu: bisa diakses nyaman lewat device apa aja (Responsive Design!).",
+    "en": "Nintendo Switch! 🍄 Wisnu loves its portability. He wants the apps he builds to be just as flexible: comfortably accessible from any device (Responsive Design!)"
+},
+"steam library": {
+    "id": "Steam Library Wisnu? 🎮 Isinya mix antara indie games unik dan masterpiece AAA. Tapi ya, paling banyak 'waktu bermain'-nya tetep di aplikasi VS Code sih! Haha.",
+    "en": "Wisnu's Steam Library? 🎮 A mix of unique indie games and AAA masterpieces. But honestly, most of his 'playtime' is still in VS Code! Haha."
+},
+"epic games": {
+    "id": "Epic Games! 🎁 Wisnu suka klaim game gratisannya (siapa yang nggak?). Tapi secara tech, dia lebih kagum sama Unreal Engine yang mereka kembangin.",
+    "en": "Epic Games! 🎁 Wisnu loves claiming those free games (who doesn't?). But tech-wise, he's more impressed by the Unreal Engine they develop."
+},
+"nonton netflix": {
+    "id": "Wah, nonton netflix ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, nonton netflix! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"series apa": {
+    "id": "Series apa yang Wisnu tonton? 📺 Dia suka yang berbau techno-thriller atau dark comedy. Cerita yang solid bikin dia dapet perspektif baru pas lagi stuck di project.",
+    "en": "What series does Wisnu watch? 📺 He likes techno-thrillers or dark comedies. Solid storytelling gives him new perspectives when he's stuck on a project."
+},
+"drakor": {
+    "id": "Wah, drakor ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, drakor! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"drama barat": {
+    "id": "Drama barat? 🎬 Wisnu suka yang produksinya high-budget dan sinematografinya niat. Dia percaya kualitas visual itu penting banget, makanya website ini dibikin sesempurna mungkin.",
+    "en": "Western drama? 🎬 Wisnu likes high-budget productions with intentional cinematography. He believes visual quality is key, which is why this website is made to be perfect."
+},
+"marvel": {
+    "id": "Marvel! 🦸‍♂️ Wisnu suka Iron Man karena dia itu 'The Engineer'. Tony Stark ngingatin Wisnu kalau dengan tech yang tepat, apa pun bisa dibangun!",
+    "en": "Marvel! 🦸‍♂️ Wisnu loves Iron Man because he's 'The Engineer'. Tony Stark reminds Wisnu that with the right tech, anything can be built!"
+},
+"dc": {
+    "id": "Wah, dc ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, dc! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"mcu": {
+    "id": "Wah, mcu ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, mcu! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"stranger things": {
+    "id": "Wah, stranger things ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, stranger things! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"squid game": {
+    "id": "Wah, squid game ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, squid game! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"wednesday addams": {
+    "id": "Wah, wednesday addams ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, wednesday addams! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"suka k-drama": {
+    "id": "Wah, suka k-drama ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, suka k-drama! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"start-up": {
+    "id": "Wah, start-up ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, start-up! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"itaewon class": {
+    "id": "Wah, itaewon class ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, itaewon class! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"bts": {
+    "id": "Wah, bts ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, bts! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"blackpink": {
+    "id": "How you like that! 🖤💖 Wisnu respect sama dedikasi mereka. Kualitas produksinya top tier, sama kayak standar yang Wisnu terapin pas ngerjain project PK FKMA!",
+    "en": "How you like that! 🖤💖 Wisnu respects their dedication. The production quality is top tier, just like the standards Wisnu applied for the PK FKMA project!"
+},
+"spotify": {
+    "id": "Spotify! 🎵 Temen setia Wisnu pas lagi ngoding malem-malem. Dia punya playlist khusus 'Deep Focus' biar bisa konsentrasi penuh ngebangun arsitektur Supabase.",
+    "en": "Spotify! 🎵 Wisnu's loyal companion during late-night coding. He has a 'Deep Focus' playlist to concentrate fully on building Supabase architectures."
+},
+"youtube music": {
+    "id": "YouTube Music! 🎧 Wisnu pake ini juga buat dengerin lofi-hiphop pas lagi debug. Algoritma rekomendasinya nolong dia nemu inspirasi baru buat UI design.",
+    "en": "YouTube Music! 🎧 Wisnu uses this to listen to lofi-hiphop while debugging. The recommendation algorithm helps him find new inspiration for UI design."
+},
+"playlist lagu": {
+    "id": "Wah, playlist lagu ya! 🎮 Saya gak bisa main game atau nonton, tapi Wisnu pasti punya hobi juga. Yang pasti hobinya yang related sama coding kelihatan dari project-projectnya yang diverse. Mau explore?",
+    "en": "Oh, playlist lagu! 🎮 I can't play games or watch shows, but Wisnu definitely has hobbies too. Most likely related to coding, as seen in his diverse projects. Want to explore?"
+},
+"illuminati": {
+    "id": "Illuminati? 👁️ Wah, topik yang dalam nih! Saya sebagai AI nggak punya akses ke secret societies, tapi saya punya akses ke data project Wisnu yang 'terang-benderang' kualitasnya. Mau cek?",
+    "en": "Illuminati? 👁️ That's a deep topic! As an AI, I don't have access to secret societies, but I do have access to Wisnu's project data which is 'crystal clear' in quality. Want to check?"
+},
+"new world order": {
+    "id": "New World Order? 🌍 Daripada konspirasi global, Wisnu lebih fokus ngerancang 'New Web Order' lewat LexCorpus—dimana website harus cepet, aman, dan user-friendly!",
+    "en": "New World Order? 🌍 Instead of global conspiracies, Wisnu is focused on designing the 'New Web Order' through LexCorpus—where websites must be fast, secure, and user-friendly!"
+},
+"freemason": {
+    "id": "Freemason? 🧱 Kalau soal 'Masonic' saya kurang tahu, tapi kalau soal 'Next.js' dan 'Masonry Layout' di CSS, Wisnu masternya! Dia jago nyusun elemen UI biar presisi.",
+    "en": "Freemason? 🧱 I don't know about 'Masonic' things, but when it comes to 'Next.js' and 'Masonry Layout' in CSS, Wisnu is the master! He's great at arranging UI elements with precision."
+},
+"pyramid mata satu": {
+    "id": "Pyramid mata satu? 👁️📐 Simbol yang misterius! Kalau di coding, Wisnu lebih suka pake 'Pyramid Pattern' di logic-nya buat mestikan data mengalir dengan benar ke UI.",
+    "en": "The one-eyed pyramid? 👁️📐 A mysterious symbol! In coding, Wisnu prefers using 'Pyramid Patterns' in his logic to ensure data flows correctly to the UI."
+},
+"area 51": {
+    "id": "Area 51? 👽 Konon katanya banyak rahasia di sana. Tapi rahasia di balik website kenceng-kencengnya Wisnu bukan alien kok, tapi optimasi image dan caching yang tepat!",
+    "en": "Area 51? 👽 They say there are many secrets there. but the secret behind Wisnu's fast websites isn't aliens, it's proper image optimization and caching!"
+},
+"sembunyiin alien": {
+    "id": "Sembunyiin alien? 👽 Kalau itu benar, pasti butuh database yang sangat aman buat jaganya. Mirip kayak Wisnu jagain integritas data di LexCorpus pake Supabase security!",
+    "en": "Hiding aliens? 👽 If that's true, it would need a very secure database to guard it. Similar to how Wisnu guards data integrity in LexCorpus using Supabase security!"
+},
+"moon landing": {
+    "id": "Moon Landing! 👨‍🚀 Hoax atau nyata? Astronomi itu hobi yang menarik! Yang nyata itu Wisnu sukses 'landing' project-project production-nya di server Vercel dengan aman.",
+    "en": "Moon Landing! 👨‍🚀 Hoax or real? Astronomy is a fascinating hobby! What's real is Wisnu successfully 'landing' his production projects on Vercel servers safely."
+},
+"flat earth": {
+    "id": "Flat Earth? 🌍 Saya sebagai AI ngelihat data kalau bumi itu bulat. Tapi kalau soal 'Flat Design' di UI/UX, Wisnu jago banget nerapinnya biar website kelihatan modern!",
+    "en": "Flat Earth? 🌍 As an AI, I see data that the earth is round. But when it comes to 'Flat Design' in UI/UX, Wisnu is an expert at applying it to make websites look modern!"
+},
+"chemtrails": {
+    "id": "Chemtrails? ✈️ Jejak di langit itu menarik buat dibahas. Tapi kalau soal 'jejak digital', Wisnu ninggalin jejak yang bagus lewat project-project-nya yang clean dan bermanfaat!",
+    "en": "Chemtrails? ✈️ Those trails in the sky are interesting to discuss. But when it comes to 'digital footprints', Wisnu leaves a great one through his clean and useful projects!"
+},
+"5g bikin corona": {
+    "id": "5G dan Corona? 📡 Saya sebagai AI ngelihat kalau 5G itu cuma teknologi sinyal yang kenceng. Wisnu pengen banget nerapin kecepatan 5G itu di setiap website yang dia bangun!",
+    "en": "5G and Corona? 📡 As an AI, I see 5G as just fast signal technology. Wisnu really wants to apply that 5G speed to every website he builds!"
+},
+"vaksin": {
+    "id": "Vaksin? 💉 Penting buat kesehatan! Sama kayak 'vaksinasi' code dari bugs—Wisnu selalu teliti ngetest aplikasinya biar nggak ada error pas dipake user.",
+    "en": "Vaccines? 💉 Important for health! Just like 'vaccinating' code from bugs—Wisnu is always meticulous in testing his apps so there are no errors for the user."
+},
+"chip di vaksin": {
+    "id": "Chip di vaksin? � Wah, kalau ada chip sekecil itu, tech-nya pasti gila banget. Wisnu lebih milih pake chip Intel atau M1 buat ngoding daripada buat hal kayak gitu! Haha.",
+    "en": "Chips in vaccines? � Wow, if there were chips that small, the tech would be insane. Wisnu prefers using Intel or M1 chips for coding instead of things like that! Haha."
+},
+"bill gates": {
+    "id": "Bill Gates! 💻 Legend di dunia tech. Wisnu terinspirasi sama jiwa filantropi dan visi dia ngebangun Microsoft. Walaupun sekarang Wisnu lebih sering pake stack open-source!",
+    "en": "Bill Gates! 💻 A tech legend. Wisnu is inspired by his philanthropy and vision in building Microsoft. Although nowadays Wisnu often uses open-source stacks!"
+},
+"mark zuckerberg": {
+    "id": "Mark Zuckerberg! 📱 Wisnu merhatiin gimana Mark ngebangun Meta. Fokus ke koneksi antar manusia itu yang Wisnu coba terapin di social integration project-nya.",
+    "en": "Mark Zuckerberg! 📱 Wisnu watches how Mark builds Meta. Focusing on human connection is what Wisnu tries to apply in his social integration projects."
+},
+"elon musk": {
+    "id": "Elon Musk? 🚀 Wisnu suka mentalitas 'First Principles thinking' ala Elon. Itu ngebantu Wisnu mecahin masalah coding yang kompleks dengan ngelihat dari dasarnya.",
+    "en": "Elon Musk? 🚀 Wisnu likes Elon's 'First Principles thinking' mentality. It helps Wisnu solve complex coding problems by looking at the fundamentals."
+},
+"reptilian elite": {
+    "id": "Wah, reptilian elite! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, reptilian elite! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"annunaki": {
+    "id": "Wah, annunaki! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, annunaki! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"ancient alien": {
+    "id": "Wah, ancient alien! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, ancient alien! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"bangun piramida": {
+    "id": "Wah, bangun piramida! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, bangun piramida! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"atlantis": {
+    "id": "Wah, atlantis! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, atlantis! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"bermuda triangle": {
+    "id": "Wah, bermuda triangle! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, bermuda triangle! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"mh370": {
+    "id": "Wah, mh370! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, mh370! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"titanic sengaja": {
+    "id": "Wah, titanic sengaja! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, titanic sengaja! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"9/11": {
+    "id": "Wah, 9/11! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, 9/11! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"jfk": {
+    "id": "Wah, jfk! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, jfk! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"princess diana": {
+    "id": "Wah, princess diana! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, princess diana! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"mandela effect": {
+    "id": "Wah, mandela effect! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, mandela effect! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"glitch in the matrix": {
+    "id": "Wah, glitch in the matrix! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, glitch in the matrix! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"simulation theory": {
+    "id": "Wah, simulation theory! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, simulation theory! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"hidup di simulasi": {
+    "id": "Wah, hidup di simulasi! 🤔 Saya gak bisa verify hal-hal yang controversial gitu. Yang pasti, skill Wisnu dalam development itu real dan bisa diverify dari project-projectnya. Mau lihat?",
+    "en": "Oh, hidup di simulasi! 🤔 I can't verify controversial topics like that. Regardless of conspiracies, Wisnu's development skills are real and verifiable through his projects. Want to see?"
+},
+"jokowi": {
+    "id": "Pak Jokowi? 🇮🇩 Wisnu respect sama beliau sebagai pemimpin. Tapi sebagai AI, saya lebih ahli bahas 'kepemimpinan' Wisnu dalam ngelola project IT! Mau lihat project-nya?",
+    "en": "Pak Jokowi? 🇮🇩 Wisnu respects him as a leader. But as an AI, I'm more of an expert on Wisnu's 'leadership' in managing IT projects! Want to see them?"
+},
+"prabowo": {
+    "id": "Pak Prabowo? 🛡️ Wisnu ngelihat semangat patriotisme beliau. Di dunia tech, 'patriotisme' Wisnu itu dengan ngebangun solusi lokal yang ngebantu bisnis kecil kayak Ashar Grosir!",
+    "en": "Pak Prabowo? 🛡️ Wisnu sees his patriotic spirit. In the tech world, Wisnu's 'patriotism' is building local solutions that help small businesses like Ashar Grosir!"
+},
+"ganjar": {
+    "id": "Pak Ganjar? 🏃 Wisnu salut sama gaya kepemimpinan beliau yang aktif. Sama kayak Wisnu yang aktif di organisasi kampus buat ngembangin soft skill-nya.",
+    "en": "Pak Ganjar? 🏃 Wisnu salutes his active leadership style. Just like Wisnu, who is active in campus organizations to develop his soft skills."
+},
+"anies": {
+    "id": "Pak Anies? 🎓 Wisnu kagum sama retorika dan kecerdasan beliau. Sebagai mahasiswa IT, Wisnu juga terus belajar biar punya logic sekuat pemikiran beliau.",
+    "en": "Pak Anies? 🎓 Wisnu admires his rhetoric and intelligence. As an IT student, Wisnu also keeps learning to have logic as strong as his thoughts."
+},
+"ahok": {
+    "id": "Tentang ahok ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About ahok? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"raffi ahmad": {
+    "id": "Tentang raffi ahmad ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About raffi ahmad? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"deddy corbuzier": {
+    "id": "Tentang deddy corbuzier ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About deddy corbuzier? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"atta halilintar": {
+    "id": "Tentang atta halilintar ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About atta halilintar? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"jerome polin": {
+    "id": "Tentang jerome polin ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About jerome polin? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"awkarin": {
+    "id": "Tentang awkarin ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About awkarin? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"rachel vennya": {
+    "id": "Tentang rachel vennya ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About rachel vennya? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"lesti kejora": {
+    "id": "Tentang lesti kejora ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About lesti kejora? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"rizky billar": {
+    "id": "Tentang rizky billar ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About rizky billar? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"ayu ting ting": {
+    "id": "Tentang ayu ting ting ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About ayu ting ting? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"inul daratista": {
+    "id": "Tentang inul daratista ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About inul daratista? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"hotman paris": {
+    "id": "Tentang hotman paris ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About hotman paris? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"nikita mirzani": {
+    "id": "Tentang nikita mirzani ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About nikita mirzani? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"lucinta luna": {
+    "id": "Tentang lucinta luna ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About lucinta luna? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"sisca kohl": {
+    "id": "Tentang sisca kohl ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About sisca kohl? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"rans entertainment": {
+    "id": "Tentang rans entertainment ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About rans entertainment? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"boy william": {
+    "id": "Tentang boy william ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About boy william? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"gita savitri": {
+    "id": "Tentang gita savitri ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About gita savitri? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"pandji pragiwaksono": {
+    "id": "Tentang pandji pragiwaksono ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About pandji pragiwaksono? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"raditya dika": {
+    "id": "Tentang raditya dika ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About raditya dika? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"ernest prakasa": {
+    "id": "Tentang ernest prakasa ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About ernest prakasa? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"joko anwar": {
+    "id": "Tentang joko anwar ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About joko anwar? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"iko uwais": {
+    "id": "Tentang iko uwais ya? Saya gak bisa komen tentang public figures untuk maintain netral 😊 Tapi kalau mau tahu tentang Wisnu sebagai developer, that's my expertise! Want to see?",
+    "en": "About iko uwais? I can't comment on public figures to stay neutral 😊 But if you want to know about Wisnu as a developer, that's my expertise! Want to see?"
+},
+"1+1": {
+    "id": "1+1 = 2! 🧮 Gampang banget ya? Sama kayak '1 + 1' di tim development: Designer plus Developer (Wisnu) hasilnya adalah website yang amazing!",
+    "en": "1+1 = 2! 🧮 Easy, right? Just like '1 + 1' in a development team: Designer plus Developer (Wisnu) equals an amazing website!"
+},
+"2+2": {
+    "id": "2+2 = 4! 🔢 Di dunia tech, ini kayak sistem bit: sederhana tapi jadi pondasi buat segalanya. Wisnu selalu merhatiin pondasi basic ini pas ngebangun project-nya.",
+    "en": "2+2 = 4! 🔢 In the tech world, it's like bits: simple but the foundation for everything. Wisnu always pays attention to these basics when building his projects."
+},
+"0 dibagi 0": {
+    "id": "0 dibagi 0? 🌌 Itu 'Undefined'! Pas awal belajar programming, Wisnu sering dapet error 'NaN' gara-gara ginian. Sekarang, he's a pro at handling edge cases like this!",
+    "en": "0 divided by 0? 🌌 That's 'Undefined'! When first learning programming, Wisnu often got 'NaN' errors because of this. Now, he's a pro at handling edge cases like this!"
+},
+"infinity": {
+    "id": "Infinity! ♾️ Sama kayak potensi Wisnu dalam belajar teknologi baru—nggak ada batasnya! Dari React sampai Cloud Security, he's always expanding his limits.",
+    "en": "Infinity! ♾️ Just like Wisnu's potential in learning new tech—no limits! From React to Cloud Security, he's always expanding his limits."
+},
+"faktorial": {
+    "id": "Faktorial? 📉 Wisnu jago bikin function 'Recursive' buat nyelesaiin ginian. Tapi kalau buat project real, dia lebih milih iterative approach biar lebih performant!",
+    "en": "Factorial? 📉 Wisnu is great at writing recursive functions for this. But for real projects, he prefers iterative approaches for better performance!"
+},
+"bilangan prima": {
+    "id": "Bilangan prima? 🔟 Wisnu suka angka prima karena sifatnya yang unik—nggak bisa dibagi siapa pun kecuali diri sendiri. Menginspirasi buat jadi individu yang mandiri!",
+    "en": "Prime numbers? 🔟 Wisnu likes prime numbers because they're unique—undividable by anything except themselves. Inspiring for being an independent individual!"
+},
+"pi": {
+    "id": "π (Pi) itu 3.14159... � Di CSS, kadang Wisnu pake nilai ini buat kalkulasi 'border-radius' yang super presisi biar tombol-tombol di web ini kelihatan cakep banget!",
+    "en": "π (Pi) is 3.14159... � In CSS, Wisnu sometimes uses this value for super precise 'border-radius' calculations to make the buttons on this site look amazing!"
+},
+"solve x": {
+    "id": "Solve for X? 📐 Di development, 'X' itu biasanya bug misterius yang nunggu buat di-solve. Wisnu itu expert debugger, he'll find 'X' no matter where it hides!",
+    "en": "Solve for X? 📐 In development, 'X' is usually a mysterious bug waiting to be solved. Wisnu is an expert debugger, he'll find 'X' no matter where it hides!"
+},
+"pythagoras": {
+    "id": "A² + B² = C²! 📐 Wisnu pake rumus Pythagoras pas ngerancang layout grid yang dinamis. Matematika itu bener-bener jadi tulang punggung desain UI yang bagus.",
+    "en": "A² + B² = C²! 📐 Wisnu uses the Pythagorean theorem when designing dynamic grid layouts. Math really is the backbone of good UI design."
+},
+"sin cos tan": {
+    "id": "Sin, Cos, Tan? 📈 Wisnu pake Trigonometri buat bikin animasi kurva yang smooth di website ini. Biar transisi antar halamannya kerasa 'alive'!",
+    "en": "Sin, Cos, Tan? 📈 Wisnu uses Trigonometry to create smooth curve animations on this site. To make the page transitions feel 'alive'!"
+},
+"integral": {
+    "id": "Integral? 📈 Wisnu pake konsep kalkulus ini buat ngitung total area atau akumulasi data di project-project yang butuh analytics dalam. Pusing ya? Tapi hasilnya worth it!",
+    "en": "Integrals? 📈 Wisnu uses these calculus concepts to calculate total area or data accumulation in projects that need deep analytics. Tiring? Maybe, but the results are worth it!"
+},
+"kalkulus": {
+    "id": "Kalkulus! 📐 Ini bener-bener asah otak. Wisnu percaya kalau nguasain math kayak gini bikin logic programming-nya makin tajem pas ngebangun sistem yang scalable.",
+    "en": "Calculus! 📐 This is a real brain teaser. Wisnu believes that mastering math like this makes his programming logic sharper when building scalable systems."
+},
+"statistik": {
+    "id": "Statistik! 📊 Penting banget buat SEO dan Google Ads. Wisnu pake ilmu ini buat nganalisa performa Ashar Grosir biar traffic-nya naik terus!",
+    "en": "Statistics! 📊 Crucial for SEO and Google Ads. Wisnu uses this knowledge to analyze Ashar Grosir's performance so the traffic keeps growing!"
+},
+"probabilitas": {
+    "id": "Probabilitas! 🎲 Di programming, ini soal risk management. Wisnu selalu ngitung kemungkinan terburuk (edge cases) biar aplikasinya nggak crash pas dipake user.",
+    "en": "Probability! 🎲 In programming, it's about risk management. Wisnu always calculates the worst-case scenarios (edge cases) so the apps don't crash for users."
+},
+"percaya hantu": {
+    "id": "Percaya hantu? 👻 Saya sih lebih takut sama 'Ghost Bugs'—bug yang ilang pas didebug tapi muncul lagi pas deploy. Untungnya Wisnu jago banget 'Ghostbuster' bug kayak gitu!",
+    "en": "Believe in ghosts? 👻 I'm more afraid of 'Ghost Bugs'—those that disappear when debugging but reappear during deployment. Luckily, Wisnu is an expert 'Ghostbuster' for those!"
+},
+"lihat hantu": {
+    "id": "Lihat hantu? �️ Kalau saya sih cuma bisa 'melihat' barisan code. Tapi Wisnu punya insting tajam buat 'melihat' potensi error sebelum aplikasinya dishare ke publik.",
+    "en": "See ghosts? �️ Well, I can only 'see' lines of code. But Wisnu has a sharp instinct for 'seeing' potential errors before the app is shared with the public."
+},
+"pocong": {
+    "id": "Pocong? 👻 Serem juga! Tapi Wisnu lebih milih ngurusin 'Package' di npm daripada ngurusin pocong. Hehe. Biar library-nya selalu update dan aman!",
+    "en": "Pocong? 👻 Spooky! But Wisnu prefers managing 'Packages' in npm rather than dealing with pocong. Hehe. To keep the libraries updated and secure!"
+},
+"kuntilanak": {
+    "id": "Kuntilanak? 👻 Suara tertawanya ikonik banget ya. Tapi Wisnu lebih seneng denger suara 'Success' pas nge-run unit tests daripada denger suara kuntilanak! Haha.",
+    "en": "Kuntilanak? 👻 That iconic laugh! But Wisnu prefer hearing the 'Success' sound from running unit tests over a kuntilanak's laugh! Haha."
+},
+"tuyul": {
+    "id": "Tuyul? � Katanya suka ambil uang ya? Wisnu lebih takut sama 'Data Leak' atau security breach daripada tuyul. Makanya dia pake Supabase buat mestikan data client aman!",
+    "en": "Tuyul? � They say they take money? Wisnu is more afraid of data leaks or security breaches. That's why he uses Supabase to ensure client data is secure!"
+},
+"genderuwo": {
+    "id": "Genderuwo? � Sosok yang besar dan berbulu! Kalau di dunia IT, 'sosok' yang paling ditakuti itu adalah Legacy Code yang berantakan. Wisnu selalu berusaha nulis code yang clean!",
+    "en": "Genderuwo? � A big hairy figure! In IT, the most feared 'figure' is messy legacy code. Wisnu always strives to write clean code!"
+},
+"wewe gombel": {
+    "id": "Wewe Gombel? � Katanya suka sembunyiin anak kecil. Kalau Wisnu, dia hobi 'sembunyiin' complexity di balik UI yang simple dan user-friendly. Biar user nggak bingung!",
+    "en": "Wewe Gombel? � Said to hide children. Wisnu, on the other hand, likes to 'hide' complexity behind simple and user-friendly UIs. So users don't get confused!"
+},
+"leak bali": {
+    "id": "Leak Bali? � Mistis banget! Di programming, 'Leak' itu biasanya Memory Leak yang bikin aplikasi lambat. Wisnu jago banget pake Chrome DevTools buat makuin nggak ada leak!",
+    "en": "Leak Bali? � Very mystical! In programming, a 'leak' is usually a memory leak that slows down apps. Wisnu is great at using Chrome DevTools to ensure no leaks exist!"
+},
+"sundel bolong": {
+    "id": "Sundel Bolong? 🧛‍♀️ Serem ya kalau lihat punggungnya. Tapi di development, yang lebih serem itu kalau barisan code 'bolong' alias nggak ada dokumentasinya. Wisnu selalu pastiin code-nya terdokumentasi rapi!",
+    "en": "Sundel Bolong? 🧛‍♀️ Scary to see her back. but in development, what's scarier is 'holey' code—code without documentation. Wisnu always ensures his code is well-documented!"
+},
+"jelangkung": {
+    "id": "Jelangkung? 🪵 'Datang tidak dijemput, pulang tidak diantar'. Mirip kayak visitor website Wisnu—datang karena penasaran, tapi pulangnya dapet value yang bermanfaat!",
+    "en": "Jelangkung? 🪵 'Come uninvited, leave unescorted'. Similar to Wisnu's website visitors—they come out of curiosity, but leave with valuable insights!"
+},
+"ouija": {
+    "id": "Ouija? � Papan pemanggil roh! Kalau Wisnu lebih suka pake 'Terminal' buat manggil process dan ngebangun aplikasi. Lebih aman dan hasilnya nyata!",
+    "en": "Ouija? � A spirit board! Wisnu prefers using the 'Terminal' to call processes and build applications. Safer and with real results!"
+},
+"bloody mary": {
+    "id": "Bloody Mary? �️ Panggil namanya 3 kali di depan cermin? Wah, Wisnu kalau panggil nama 'function' 3 kali aja bisa dapet logic yang efisien buat website ini!",
+    "en": "Bloody Mary? �️ Calling her name 3 times in front of a mirror? Well, if Wisnu calls a 'function' name 3 times, he can get efficient logic for this website!"
+},
+"slenderman": {
+    "id": "Slenderman? �️ Sosok yang tinggi dan nggak punya wajah. Wisnu sih wajahnya ramah kok, bisa kamu lihat di bagian About Me kalau mau kenalan lebih lanjut!",
+    "en": "Slenderman? �️ A tall figure without a face. Well, Wisnu has a friendly face, you can see it in the About Me section if you want to get to know him better!"
+},
+"scp foundation": {
+    "id": "Spooky topic! scp foundation ya? 👻 Saya gak takut hantu karena cuma AI. Tapi yang 'haunting' itu adalah bugs dalam code - Wisnu selalu hunting dan fix bugs dengan teliti! Mau tahu approach-nya?",
+    "en": "Spooky topic! scp foundation? 👻 I'm not afraid of ghosts since I'm just an AI. But what's truly 'haunting' are bugs in code - Wisnu always hunts and fixes bugs meticulously! Want to know his approach?"
+},
+"backrooms": {
+    "id": "Spooky topic! backrooms ya? 👻 Saya gak takut hantu karena cuma AI. Tapi yang 'haunting' itu adalah bugs dalam code - Wisnu selalu hunting dan fix bugs dengan teliti! Mau tahu approach-nya?",
+    "en": "Spooky topic! backrooms? 👻 I'm not afraid of ghosts since I'm just an AI. But what's truly 'haunting' are bugs in code - Wisnu always hunts and fixes bugs meticulously! Want to know his approach?"
+},
+"wisnu orangnya gimana": {
+    "id": "Wisnu itu tipe orang yang detail dan suka tantangan! Keliatan dari cara dia handle 3 project production sekaligus sambil kuliah. Fokus tapi tetap humble.",
+    "en": "Wisnu is a detail-oriented person who loves challenges! It shows in how he handles 3 production projects simultaneously while studying."
+},
+"wisnu asli mana": {
+    "id": "Wisnu lahir di Tarakan, tapi perjalanan pendidikannya panjang - dari Tarakan, pindah ke Sulawesi, sekarang kuliah di Bekasi.",
+    "en": "Wisnu was born in Tarakan, but his educational journey is long - from Tarakan, to Sulawesi, and now studying in Bekasi."
+},
+"umur wisnu berapa": {
+    "id": "Wisnu sekarang lagi kuliah semester awal di President University (mulai Agustus 2024), jadi kemungkinan umur 18-19 tahun.",
+    "en": "Wisnu is currently a first-year student at President University (started August 2024), so he's likely 18-19 years old."
+},
+"wisnu tinggal dimana": {
+    "id": "Sekarang Wisnu di Bekasi Timur, Kota Bekasi, Jawa Barat. Dekat sama kampusnya President University.",
+    "en": "Wisnu currently resides in East Bekasi, Bekasi City, West Java. Close to his campus at President University."
+},
+"wisnu bisa dihubungi kemana": {
+    "id": "Bisa via email wisnualfian117@gmail.com, WhatsApp +62 813-9488-2490, atau DM Instagram @wshnn_.",
+    "en": "You can reach him via email at wisnualfian117@gmail.com, WhatsApp +62 813-9488-2490, or Instagram DM @wshnn_."
+},
+"wisnu aktif di sosmed": {
+    "id": "Instagram @wshnn_, LinkedIn, Facebook, Line, plus punya website portfolio sendiri di wisnualfiannurashar.my.id. Lengkap banget!",
+    "en": "Instagram @wshnn_, LinkedIn, Facebook, Line, and his own portfolio website at wisnualfiannurashar.my.id."
+},
+"wisnu suka ngapain di waktu luang": {
+    "id": "Kayaknya sih coding juga 😅 Tapi pasti ada balance-nya, dia juga aktif di organisasi kampus buat event management.",
+    "en": "Seems like he's coding too 😅 But there's balance; he's also active in campus organizations for event management."
+},
+"wisnu tipe pekerja keras atau santai": {
+    "id": "Pekerja keras! Bayangin aja, handle 3 production websites, aktif di 3 organisasi, kuliah, PLUS ngerjain family business.",
+    "en": "A hard worker! Imagine handling 3 production websites, active in 3 organizations, studying, PLUS running his family business."
+},
+"hobi wisnu apa": {
+    "id": "Coding pasti, terus event management juga. Dia balance antara technical skill sama soft skill.",
+    "en": "Definitely coding, and event management too. He balances technical and soft skills."
+},
+"wisnu punya motto hidup": {
+    "id": "Motto Wisnu: 'Delivering High-Impact Web Solutions' - fokus kasih impact yang nyata.",
+    "en": "Wisnu's motto: 'Delivering High-Impact Web Solutions' - focusing on giving real impact."
+},
+"wisnu kuliah dimana": {
+    "id": "President University, jurusan Bachelor of Information Technology. Kampus internasional di Bekasi.",
+    "en": "President University, majoring in Bachelor of Information Technology. An international campus in Bekasi."
+},
+"wisnu jurusan apa": {
+    "id": "Information Technology. Perfect match sama skill dan passion-nya di web development!",
+    "en": "Information Technology. A perfect match for his skills and passion in web development!"
+},
+"wisnu semester berapa": {
+    "id": "Masih semester awal, baru mulai Agustus 2024. Fresh student tapi udah punya portfolio production-level!",
+    "en": "Still in his early semesters, started in August 2024. A fresh student with a production-level portfolio!"
+},
+"kuliah wisnu sambil kerja": {
+    "id": "Iya! Dia kuliah sambil manage family business (Ashar Grosir Parfum), aktif di organisasi, dan kerja freelance. Time management-nya gila!",
+    "en": "Yes! He studies while managing the family business (Ashar Grosir Parfum), active in organizations, and does freelance work."
+},
+"wisnu ipk berapa": {
+    "id": "Data IPK belum available karena masih semester awal. Tapi skill praktisnya udah proven dari project-project real!",
+    "en": "GPA data isn't available yet as it's his first year. But his practical skills are proven from real projects!"
+},
+"sekolah wisnu dulu dimana": {
+    "id": "TK/SD di Tarakan, SD/SMP/SMA di Sulawesi (As'adiyah Sengkang), sekarang kuliah President University Bekasi.",
+    "en": "K/Primary in Tarakan, Primary/Middle/High School in Sulawesi (As'adiyah Sengkang), now at President University Bekasi."
+},
+"wisnu pernah ikut lomba akademik": {
+    "id": "Fokusnya lebih ke sertifikasi profesional kayak HackerRank, HubSpot, Google - lebih applicable ke kerja!",
+    "en": "His focus is more on professional certifications like HackerRank, HubSpot, and Google."
+},
+"organisasi kampus wisnu apa": {
+    "id": "PUFA Computer Science sebagai VoD (Art and Sport Division), sama PUMA Informatic.",
+    "en": "PUFA Computer Science as VoD (Art and Sport Division), and PUMA Informatic."
+},
+"wisnu punya sertifikat apa": {
+    "id": "Google Analytics, Google Ads, HubSpot (Data Integration & Social Media), HackerRank (Software Engineer & React).",
+    "en": "Google Analytics, Google Ads, HubSpot (Data Integration & Social Media), HackerRank (Software Engineer & React)."
+},
+"sertifikat paling baru wisnu": {
+    "id": "Februari 2026: Data Integrations & Social Media Marketing dari HubSpot, plus Google Ads!",
+    "en": "February 2026: Data Integrations & Social Media Marketing from HubSpot, plus Google Ads!"
+},
+"wisnu bisa bahasa pemrograman": {
+    "id": "React, TypeScript, Next.js, Node.js. Full-stack developer yang fokus ke JavaScript ecosystem.",
+    "en": "React, TypeScript, Next.js, Node.js. A full-stack developer focused on the JavaScript ecosystem."
+},
+"wisnu spesialisasi di bidang": {
+    "id": "Full-Stack Web Development, specialty di React/Next.js, TypeScript, dan cloud integration (Supabase).",
+    "en": "Full-Stack Web Development, specialty in React/Next.js, TypeScript, and cloud integration (Supabase)."
+},
+"framework favorit wisnu": {
+    "id": "Next.js! Semua project production-nya pakai Next.js 16 - LexCorpus dan PC FKMA pakai ini.",
+    "en": "Next.js! All his production projects use Next.js 16 - LexCorpus and PC FKMA use this."
+},
+"database apa yang wisnu kuasai": {
+    "id": "PostgreSQL lewat Supabase. Modern stack untuk aplikasi yang scalable.",
+    "en": "PostgreSQL via Supabase. A modern stack for scalable applications."
+},
+"wisnu bisa design": {
+    "id": "Iya! Dia handle full-stack termasuk UI/UX pakai Tailwind CSS. Designnya clean dan modern.",
+    "en": "Yes! He handles full-stack including UI/UX using Tailwind CSS. His designs are clean and modern."
+},
+"css framework apa yang wisnu pakai": {
+    "id": "Tailwind CSS - utility-first CSS framework yang efisien dan modern.",
+    "en": "Tailwind CSS - an efficient and modern utility-first CSS framework."
+},
+"wisnu paham security": {
+    "id": "Paham! Punya skill Cybersecurity & Cloud Security, serta implement role-based access di LexCorpus.",
+    "en": "Yes! He has Cybersecurity & Cloud Security skills and implemented role-based access in LexCorpus."
+},
+"seo wisnu jago": {
+    "id": "Yes! Project Ashar Grosir dioptimasi SEO-nya untuk menjangkau 15,000+ partners.",
+    "en": "Yes! The Ashar Grosir project is SEO-optimized to reach 15,000+ partners."
+},
+"wisnu bisa ai machine learning": {
+    "id": "Pernah bikin chatbot solution di PUMA Informatic untuk otomasi customer service.",
+    "en": "He built a chatbot solution at PUMA Informatic for customer service automation."
+},
+"tools apa yang sering wisnu pakai": {
+    "id": "Next.js, React, TypeScript, Tailwind, Supabase, Vercel, dan Google Analytics.",
+    "en": "Next.js, React, TypeScript, Tailwind, Supabase, Vercel, and Google Analytics."
+},
+"project terbesar wisnu": {
+    "id": "LexCorpus CMS Platform - production-ready CMS untuk law firm dengan role-based editorial system.",
+    "en": "LexCorpus CMS Platform - a production-ready CMS for a law firm with a role-based editorial system."
+},
+"berapa project production": {
+    "id": "3 project aktif: LexCorpus CMS, Ashar Grosir Parfum, dan PC FKMA Jakarta Website. Semuanya live!",
+    "en": "3 active production projects: LexCorpus CMS, Ashar Grosir Parfum, and PC FKMA Jakarta Website."
+},
+"website ashar grosir itu apa": {
+    "id": "E-commerce platform untuk bisnis parfum wholesale keluarga yang sudah 20 tahun melayani 15,000+ partners.",
+    "en": "An e-commerce platform for the family perfume wholesale business serving 15,000+ partners since 20 years."
+},
+"teknologi apa yang dipakai di ashar grosir": {
+    "id": "React, TypeScript, Tailwind CSS, dengan CDN untuk optimasi performa.",
+    "en": "React, TypeScript, Tailwind CSS, with CDN for performance optimization."
+},
+"lexcorpus itu website apa": {
+    "id": "Platform CMS untuk Lexcorpus Law Firm, pakai Next.js 16, Supabase, dan Tailwind CSS. Professional-grade.",
+    "en": "A CMS platform for Lexcorpus Law Firm, using Next.js 16, Supabase, and Tailwind CSS. Professional-grade."
+},
+"pc fkma website buat apa": {
+    "id": "Platform digital resmi untuk Alumni As'adiyah di Jakarta. Ada profile dan news portal komunitas.",
+    "en": "Official digital platform for As'adiyah Alumni in Jakarta. Featuring profiles and community news."
+},
+"project wisnu pakai cloud": {
+    "id": "Iya! Pakai Supabase untuk backend dan dideploy di Vercel. Infastruktur cloud modern.",
+    "en": "Yes! Using Supabase for the backend and deployed on Vercel. Modern cloud infrastructure."
+},
+"wisnu pernah bikin chatbot": {
+    "id": "Pernah! Di PUMA Informatic, meningkatkan response time customer service hingga 60%!",
+    "en": "Yes! At PUMA Informatic, improving customer service response time by 60%!"
+},
+"project mana yang paling wisnu proud": {
+    "id": "Ashar Grosir, karena mentransformasi bisnis keluarga dan mengurangi manual errors hingga 70%.",
+    "en": "Ashar Grosir, for transforming the family business and reducing manual errors by 70%."
+},
+"website portfolio wisnu dimana": {
+    "id": "Wisnualfiannurashar.my.id - portfolio lengkap dengan project dan sertifikasi.",
+    "en": "Wisnualfiannurashar.my.id - complete portfolio with projects and certifications."
+},
+"wisnu udah kerja dimana": {
+    "id": "Self-employed di Ashar Grosir, VoD di PUFA CS, IT Development di PC FKMA, dan PUMA Informatic.",
+    "en": "Self-employed at Ashar Grosir, VoD at PUFA CS, IT Development at PC FKMA, and PUMA Informatic."
+},
+"pengalaman kerja wisnu berapa lama": {
+    "id": "Aktif dari 2024, sekitar 1-2 tahun dengan berbagai peran yang berjalan bersamaan.",
+    "en": "Active since 2024, about 1-2 years with various roles running concurrently."
+},
+"posisi wisnu sekarang apa": {
+    "id": "Full-Stack Developer di Ashar Grosir dan Vice of Division di PUFA Computer Science.",
+    "en": "Full-Stack Developer at Ashar Grosir and Vice of Division at PUFA Computer Science."
+},
+"wisnu pernah kerja remote": {
+    "id": "Iya! Ashar Grosir menggunakan model kerja hybrid, fleksibel antara kantor dan remote.",
+    "en": "Yes! Ashar Grosir uses a hybrid work model, flexible between office and remote."
+},
+"achievement terbesar wisnu di kerja": {
+    "id": "Digitalisasi bisnis keluarga berumur 20 tahun, mengurangi error 70%, dan ekspansi ke 15K partners.",
+    "en": "Digitalizing a 20-year family business, reducing errors by 70%, and expanding to 15K partners."
+},
+"wisnu kerja di bidang apa": {
+    "id": "Web Development, IT Development, Event Management, dan Digital Transformation.",
+    "en": "Web Development, IT Development, Event Management, and Digital Transformation."
+},
+"impact kerja wisnu paling keliatan": {
+    "id": "Chatbot di PUMA (60% Faster) dan Otomasi di Ashar Grosir (70% Fewer Errors).",
+    "en": "Chatbot at PUMA (60% Faster) and Automation at Ashar Grosir (70% Fewer Errors)."
+},
+"wisnu handle tim": {
+    "id": "Iya, sebagai VoD di PUFA dia mengkoordinasi tim lintas divisi untuk event besar.",
+    "en": "Yes, as VoD at PUFA he coordinates cross-functional teams for major events."
+},
+"gaji wisnu berapa": {
+    "id": "Informasi gaji bersifat pribadi. Tapi secara skill, Wisnu memiliki value tinggi sebagai developer.",
+    "en": "Salary info is private. But skill-wise, Wisnu has high value as a developer."
+},
+"wisnu kerja sama siapa": {
+    "id": "Berkolaborasi dengan tim organisasi (PUFA, PUMA, FKMA) dan klien independen.",
+    "en": "Collaborating with organizational teams (PUFA, PUMA, FKMA) and independent clients."
+},
+"wisnu sakit apa": {
+    "id": "Wisnu sehat-sehat saja kok! Semangatnya untuk coding selalu 100%. Terima kasih sudah perhatian ya! 😊",
+    "en": "Wisnu is doing just fine! His spirit for coding is always at 100%. Thanks for caring! 😊"
+},
+"apakah kamu sakit": {
+    "id": "Aku (sebagai AI) tidak bisa sakit, dan akan selalu ada untuk kamu! 🦾",
+    "en": "I (as an AI) cannot get sick, and will always be here for you! 🦾"
+},
+"kabarnya wisnu": {
+    "id": "Kabar Wisnu sangat baik! Sedang produktif membangun masa depan digital. Mau tahu project terbarunya?",
+    "en": "Wisnu is doing great! He's productive building a digital future. Want to know his latest project?"
+},
+"soft skill wisnu apa aja": {
+    "id": "Communication, Leadership, Teamwork, Creativity, dan Problem-Solving.",
+    "en": "Communication, Leadership, Teamwork, Creativity, and Problem-Solving."
+},
+"wisnu bisa lead tim": {
+    "id": "Bisa! Terbukti dari perannya sebagai VoD yang mengkoordinasi tim untuk event fakultas.",
+    "en": "Yes! Proven by his role as VoD coordinating teams for faculty events."
+},
+"wisnu aktif di organisasi apa": {
+    "id": "3 organisasi: PC FKMA Jakarta, PUFA Computer Science, dan PUMA Informatic.",
+    "en": "3 organizations: PC FKMA Jakarta, PUFA Computer Science, and PUMA Informatic."
+},
+"wisnu punya bisnis sendiri": {
+    "id": "Iya! Wisnu mentransformasi digital Ashar Grosir Parfum, bisnis keluarga yang dia modernisasi.",
+    "en": "Yes! Wisnu digitally transformed Ashar Grosir Parfum, a family business he modernized."
+},
+"cita-cita wisnu apa": {
+    "id": "Menjadi Senior Full-Stack Developer dan IT Specialist yang memberikan solusi berdampak tinggi.",
+    "en": "To become a Senior Full-Stack Developer and IT Specialist delivering high-impact solutions."
+},
+"prestasi terbesar wisnu apa": {
+    "id": "Mentransformasi bisnis keluarga 20 tahun, mengurangi error 70%, melayani 15,000+ partners.",
+    "en": "Transforming a 20-year family business, reducing errors 70%, and serving 15,000+ partners."
+},
+"cara contact wisnu": {
+    "id": "Email: wisnualfian117@gmail.com, WhatsApp: +62 813-9488-2490, atau Instagram: @wshnn_.",
+    "en": "Email: wisnualfian117@gmail.com, WhatsApp: +62 813-9488-2490, or Instagram: @wshnn_."
+},
+"wisnu lebih suka frontend atau backend": {
+    "id": "Full-stack! Dia mahir di frontend (Tailwind) maupun backend (Supabase/PostgreSQL).",
+    "en": "Full-stack! He's proficient in both frontend (Tailwind) and backend (Supabase/PostgreSQL)."
+},
+"challenge terbesar wisnu": {
+    "id": "Mentransformasi bisnis tradisional keluarga menjadi platform digital modern.",
+    "en": "Transforming a traditional family business into a modern digital platform."
+},
+"code style wisnu": {
+    "id": "Clean code, modular architecture, dan menjunjung tinggi type-safety dengan TypeScript.",
+    "en": "Clean code, modular architecture, and upholding type-safety with TypeScript."
+},
+"tips wisnu buat pemula": {
+    "id": "Langsung terjun ke project nyata! Belajar sambil membangun sesuatu yang bermanfaat.",
+    "en": "Dive straight into real projects! Learn while building something useful."
+},
+"definisi sukses wisnu": {
+    "id": "Memberikan dampak nyata melalui solusi teknologi yang memecahkan masalah orang banyak.",
+    "en": "Delivering real impact through technology solutions that solve people's problems."
+},
+"curat-coret wisnu": {
+    "id": "Setiap line code-nya adalah coretan inovasi. Mau lihat karyanya?",
+    "en": "Every line of his code is a stroke of innovation. Want to see his work?"
+},
+"saranghae": {
+    "id": "Saranghae! Wisnu juga cinta dengan komunitas teknologi dan coding! ❤️",
+    "en": "Saranghae! Wisnu also loves the tech and coding community! ❤️"
+},
+"wisnu aktif di sosmed apa": {
+    "id": "Instagram @wshnn_, LinkedIn, Facebook, Line, plus punya website portfolio sendiri di wisnualfiannurashar.my.id.",
+    "en": "Instagram @wshnn_, LinkedIn, Facebook, Line, and his own portfolio website at wisnualfiannurashar.my.id."
+},
+"kuliah wisnu sambil kerja ya": {
+    "id": "Iya! Dia kuliah sambil manage family business, aktif di organisasi, dan kerja freelance. Time management-nya luar biasa!",
+    "en": "Yes! He studies while managing the family business, active in organizations, and does freelance work. Amazing time management!"
+},
+"wisnu bisa bahasa pemrograman apa": {
+    "id": "React, TypeScript, Next.js, Node.js. Full-stack developer yang fokus ke JavaScript ecosystem.",
+    "en": "React, TypeScript, Next.js, Node.js. A full-stack developer focused on the JavaScript ecosystem."
+},
+"wisnu spesialisasi di bidang apa": {
+    "id": "Full-Stack Web Development, specialty di React/Next.js, TypeScript, dan cloud integration (Supabase).",
+    "en": "Full-Stack Web Development, specialty in React/Next.js, TypeScript, and cloud integration (Supabase)."
+},
+"framework favorit wisnu apa": {
+    "id": "Next.js! Semua project production-nya pakai Next.js 16 - LexCorpus dan PC FKMA pakai ini.",
+    "en": "Next.js! All his production projects use Next.js 16 - LexCorpus and PC FKMA use this."
+},
+"wisnu bisa design juga": {
+    "id": "Iya! Dia handle full-stack termasuk UI/UX pakai Tailwind CSS. Designnya clean dan modern.",
+    "en": "Yes! He handles full-stack including UI/UX using Tailwind CSS. His designs are clean and modern."
+},
+"project terbesar wisnu apa": {
+    "id": "LexCorpus CMS Platform - CMS production-ready untuk law firm dengan role-based editorial system.",
+    "en": "LexCorpus CMS Platform - a production-ready CMS for a law firm with a role-based editorial system."
+},
+"berapa project production wisnu": {
+    "id": "3 project aktif: LexCorpus CMS, Ashar Grosir Parfum, dan PC FKMA Jakarta Website. Semuanya live!",
+    "en": "3 active projects: LexCorpus CMS, Ashar Grosir Parfum, and PC FKMA Jakarta Website. All are live!"
+},
+"project mana yang paling wisnu banggakan": {
+    "id": "Ashar Grosir, karena mentransformasi bisnis keluarga dan mengurangi manual errors hingga 70%.",
+    "en": "Ashar Grosir, for transforming the family business and reducing manual errors by 70%."
+},
+"wisnu udah kerja dimana aja": {
+    "id": "Self-employed di Ashar Grosir, VoD di PUFA CS, IT Development di PC FKMA, dan PUMA Informatic.",
+    "en": "Self-employed at Ashar Grosir, VoD at PUFA CS, IT Development at PC FKMA, and PUMA Informatic."
+},
+"wisnu komunikatif": {
+    "id": "Sangat! Communication adalah soft skill utamanya untuk handle kolaborasi tim dan klien.",
+    "en": "Very! Communication is his key soft skill for handling team and client collaborations."
+},
+"problem solving wisnu gimana": {
+    "id": "Teruji! Dia berhasil memecahkan tantangan teknis dalam digitalisasi bisnis dan platform CMS.",
+    "en": "Tested! He successfully solved technical challenges in business digitalization and CMS platforms."
+},
+"wisnu kreatif gak": {
+    "id": "Kreatif! Memberikan solusi inovatif untuk masalah bisnis nyata di setiap projectnya.",
+    "en": "Creative! Providing innovative solutions for real business problems in every project."
+},
+"wisnu bisa kerja tim": {
+    "id": "Excellent! Aktif di 3 organisasi dan sering berkolaborasi dalam project lintas divisi.",
+    "en": "Excellent! Active in 3 organizations and often collaborates on cross-functional projects."
+},
+"wisnu tipe pemimpin apa": {
+    "id": "Pemimpin yang kolaboratif - mengkoordinasi tim sambil tetap hands-on secara teknis.",
+    "en": "A collaborative leader - coordinating teams while staying technically hands-on."
+},
+"wisnu fast learner": {
+    "id": "Super fast! Sudah handle production projects dan meraih 6 sertifikasi dalam waktu singkat.",
+    "en": "Super fast! Already handling production projects and earning 6 certifications in a short time."
+},
+"public speaking wisnu bagus": {
+    "id": "Iya, perannya sebagai VoD menuntut kemampuan presentasi dan koordinasi yang baik.",
+    "en": "Yes, his role as VoD requires good presentation and coordination skills."
+},
+"wisnu detail oriented": {
+    "id": "Sangat detail! Terlihat dari kualitas kode, keamanan sistem, dan dokumentasi projectnya.",
+    "en": "Very detail-oriented! Evident in code quality, system security, and project documentation."
+},
+"peran wisnu di fkma": {
+    "id": "IT Development dan Member of Minat Bakat - handle website dan talent division.",
+    "en": "IT Development and Member of Interest & Talent Division - handling website and talent division."
+},
+"pufa itu organisasi apa": {
+    "id": "PUFA Computer Science - organisasi fakultas di President University. Wisnu menjabat sebagai VoD.",
+    "en": "PUFA Computer Science - a faculty organization at President University. Wisnu serves as VoD."
+},
+"vod itu apa": {
+    "id": "Vice of Division untuk Art and Sport - mengkoordinasi event fakultas dan inovasi digital.",
+    "en": "Vice of Division for Art and Sport - coordinating faculty events and digital innovation."
+},
+"puma informatic ngapain aja": {
+    "id": "Fokus ke solusi teknologi, seperti chatbot development untuk meningkatkan customer experience.",
+    "en": "Focusing on technology solutions, such as chatbot development to enhance customer experience."
+},
+"organisasi mana yang paling aktif wisnu": {
+    "id": "PUFA dan PC FKMA, karena memiliki peran kepemimpinan strategis sebagai VoD and IT Dev.",
+    "en": "PUFA and PC FKMA, due to strategic leadership roles as VoD and IT Dev."
+},
+"wisnu pernah organize event apa": {
+    "id": "Major faculty events di PUFA sebagai VoD, mengkoordinasi tim lintas fungsi.",
+    "en": "Major faculty events at PUFA as VoD, coordinating cross-functional teams."
+},
+"pc fkma itu organisasi apa": {
+    "id": "Perkumpulan Alumni FKMA As'adiyah Jakarta - platform komunitas alumni di area Jakarta.",
+    "en": "As'adiyah Alumni Association Jakarta - a community platform for alumni in the Jakarta area."
+},
+"kenapa wisnu join banyak organisasi": {
+    "id": "Untuk menyeimbangkan skill teknis dengan soft skills seperti leadership dan networking.",
+    "en": "To balance technical skills with soft skills like leadership and networking."
+},
+"impact wisnu di organisasi": {
+    "id": "Membangun website resmi (PC FKMA) dan mengimplementasikan sistem otomasi di organisasi.",
+    "en": "Building official websites (PC FKMA) and implementing automation systems in organizations."
+},
+"ashar grosir itu bisnis apa": {
+    "id": "Wholesale parfum yang sudah 30 tahun melayani 15,000+ partners se-Indonesia. Skala besar!",
+    "en": "A perfume wholesale business serving 15,000+ partners across Indonesia for 20 years. Large scale!"
+},
+"omzet ashar grosir berapa": {
+    "id": "Informasi omzet tidak dipublikasikan, namun dengan 15,000+ partners, bisnisnya sangat substansial.",
+    "en": "Revenue info is not public, but with 15,000+ partners, the business is very substantial."
+},
+"wisnu ceo atau apa di ashar": {
+    "id": "Posisinya adalah Full-Stack Developer yang memimpin transformasi digital bisnis tersebut.",
+    "en": "His position is Full-Stack Developer leading the digital transformation of the business."
+},
+"business model ashar gimana": {
+    "id": "B2B wholesale - menjual parfum dalam jumlah besar ke 15,000+ partners via platform digital.",
+    "en": "B2B wholesale - selling perfume in bulk to 15,000+ partners via a digital platform."
+},
+"wisnu entrepreneurial spirit": {
+    "id": "Sangat kuat! Mentransformasi bisnis tradisional menjadi digital dan menciptakan solusi secara mandiri.",
+    "en": "Very strong! Transforming a traditional business into digital and creating solutions independently."
+},
+"website ashar bisa beli produk": {
+    "id": "Iya! Ada platform e-commerce lengkap di www.ashargrosirparfum.com untuk transaksi grosir.",
+    "en": "Yes! There's a full e-commerce platform at www.ashargrosirparfum.com for wholesale transactions."
+},
+"kompetitor ashar siapa": {
+    "id": "Distributor parfum grosir lain, namun Ashar unggul dengan platform digital Next.js yang modern.",
+    "en": "Other wholesale perfume distributors, but Ashar leads with its modern Next.js digital platform."
+},
+"wisnu handle bisnis gimana sambil kuliah": {
+    "id": "Time management dan otomasi! Membangun sistem yang mengurangi kerja manual hingga 70%.",
+    "en": "Time management and automation! Building systems that reduce manual work by 70%."
+},
+"future plan ashar grosir": {
+    "id": "Terus berkembang dengan teknologi - ekspansi pasar dan meningkatkan customer experience secara digital.",
+    "en": "Continue growing with technology - expanding market reach and enhancing digital customer experience."
+},
+"target wisnu 5 tahun ke depan": {
+    "id": "Eksperimen dengan teknologi baru, expand portfolio, dan mungkin mendirikan tech company sendiri.",
+    "en": "Experimenting with new tech, expanding his portfolio, and possibly starting his own tech company."
+},
+"wisnu mau jadi freelancer atau kantoran": {
+    "id": "Fleksibel! Saat ini dia mencampur antara self-employed, freelance, dan kerja organisasi.",
+    "en": "Flexible! Currently, he mixes self-employment, freelance, and organizational work."
+},
+"technology apa yang wisnu mau pelajari": {
+    "id": "AI/ML lebih dalam, advanced cloud architecture, dan mungkin blockchain development.",
+    "en": "Deeper AI/ML, advanced cloud architecture, and possibly blockchain development."
+},
+"wisnu mau s2": {
+    "id": "Fokus saat ini adalah skill praktis dan sertifikasi profesional sebelum melanjutkan studi lanjut.",
+    "en": "The current focus is on practical skills and professional certifications before pursuing further studies."
+},
+"wisnu tertarik startup": {
+    "id": "Sangat mungkin! Sudah memiliki jiwa entrepreneur melalui transformasi bisnis keluarga.",
+    "en": "Very likely! Already has an entrepreneurial spirit through the family business transformation."
+},
+"industry apa yang wisnu target": {
+    "id": "Web development, digital transformation, and e-commerce - bidang yang sudah dia kuasai.",
+    "en": "Web development, digital transformation, and e-commerce - areas he already excels in."
+},
+"wisnu mau kerja remote atau hybrid": {
+    "id": "Prefer hybrid - menjaga keseimbangan antara fleksibilitas dan kolaborasi tim.",
+    "en": "Prefer hybrid - maintaining balance between flexibility and team collaboration."
+},
+"gaji expectation wisnu": {
+    "id": "Sebagai developer berpengalaman production, targetnya adalah market rate global yang kompetitif.",
+    "en": "As an experienced production developer, his target is a competitive global market rate."
+},
+"wisnu mau pindah ke luar negeri": {
+    "id": "Sangat mungkin dengan bekal pendidikan internasional di President University and global tech stack.",
+    "en": "Very possible with an international education at President University and a global tech stack."
+},
+"wisnu pernah menang kompetisi": {
+    "id": "Fokus pada sertifikasi profesional dari HackerRank, Google, dan HubSpot yang diakui industri.",
+    "en": "Focusing on professional certifications from HackerRank, Google, and HubSpot recognized by the industry."
+},
+"recognition apa yang wisnu dapat": {
+    "id": "6 sertifikasi profesional global yang membuktikan kompetensinya di bidang IT dan marketing.",
+    "en": "6 global professional certifications proving his competence in IT and marketing."
+},
+"client wisnu siapa aja": {
+    "id": "LexCorpus Law Firm, Ashar Grosir Parfum, dan PC FKMA Jakarta.",
+    "en": "LexCorpus Law Firm, Ashar Grosir Parfum, and PC FKMA Jakarta."
+},
+"testimony client tentang wisnu": {
+    "id": "Hasil nyata: pengurangan error 70% dan peningkatan efisiensi tim hingga 60%.",
+    "en": "Real results: 70% error reduction and 60% team efficiency improvement."
+},
+"portfolio wisnu impressive": {
+    "id": "Sangat! 3 website production, leadership di 3 organisasi, dan 6 sertifikasi sebagai mahasiswa baru.",
+    "en": "Very! 3 production websites, leadership in 3 organizations, and 6 certifications as a freshman."
+},
+"impact metric wisnu": {
+    "id": "70% Manual error reduction, 60% Response improvement, 15,000+ Partners served.",
+    "en": "70% Manual error reduction, 60% Response improvement, 15,000+ Partners served."
+},
+"ranking kelas wisnu": {
+    "id": "Fokus utamanya adalah quality work dan practical skills yang teruji di industri.",
+    "en": "His primary focus is quality work and practical skills tested in the industry."
+},
+"recommendation dari siapa": {
+    "id": "Dapat dicek di LinkedIn-nya untuk rekomendasi profesional dari rekan kerja dan organisasi.",
+    "en": "Check his LinkedIn for professional recommendations from colleagues and organizations."
+},
+"rating kerja wisnu": {
+    "id": "Sangat tinggi di mata klien karena dedikasi dan kualitas kode production yang dia hasilkan.",
+    "en": "Very high in the eyes of clients due to his dedication and the production code quality he produces."
+},
+"wisnu fast response": {
+    "id": "Kemungkinan besar iya untuk urusan profesional, karena komunikasi adalah prioritas utamanya.",
+    "en": "Most likely yes for professional matters, as communication is his top priority."
+},
+"linkedin wisnu apa": {
+    "id": "linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310",
+    "en": "linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310"
+},
+"instagram wisnu apa": {
+    "id": "@wshnn_ - instagram.com/wshnn_",
+    "en": "@wshnn_ - instagram.com/wshnn_"
+},
+"github wisnu apa": {
+    "id": "github.com/wi5nuu - untuk melihat repositori kode dan kontribusinya.",
+    "en": "github.com/wi5nuu - to see his code repositories and contributions."
+},
+"wisnu available untuk project": {
+    "id": "Hubungi langsung via email atau WhatsApp untuk diskusi ketersediaan project.",
+    "en": "Contact directly via email or WhatsApp to discuss project availability."
+},
+"rate wisnu per project": {
+    "id": "Tidak dipublikasikan secara umum, diskusikan langsung sesuai scope dan kompleksitas project.",
+    "en": "Not public, discuss directly depending on the scope and complexity of the project."
+},
+"wisnu terima project apa aja": {
+    "id": "Full-stack web, e-commerce, CMS, digital transformation, dan chatbot solutions.",
+    "en": "Full-stack web, e-commerce, CMS, digital transformation, and chatbot solutions."
+},
+"minimum project size": {
+    "id": "Fleksibel berdasarkan value dan potensi impact dari project tersebut.",
+    "en": "Flexible based on the value and potential impact of the project."
+},
+"wisnu kerja sama international client": {
+    "id": "Sangat mampu dengan global tech stack dan kemampuan bahasa Inggris yang baik.",
+    "en": "Very capable with a global tech stack and good English skills."
+},
+"next js atau react biasa": {
+    "id": "Next.js! Karena fitur SSR, routing, dan optimasi performanya yang superior.",
+    "en": "Next.js! For its superior SSR, routing, and performance optimization features."
+},
+"tailwind atau bootstrap": {
+    "id": "Tailwind CSS! Menjadi pilihan utama di semua project production-nya.",
+    "en": "Tailwind CSS! His primary choice in all production projects."
+},
+"vercel atau netlify": {
+    "id": "Vercel - sangat optimal untuk mendiploy project berbasis Next.js.",
+    "en": "Vercel - highly optimal for deploying Next.js-based projects."
+},
+"typescript atau javascript": {
+    "id": "TypeScript! Memberikan tingkat keamanan kode yang lebih tinggi untuk project skala besar.",
+    "en": "TypeScript! Providing a higher level of code safety for large-scale projects."
+},
+"supabase atau firebase": {
+    "id": "Supabase - dipilih karena kekuatan PostgreSQL and modern API-nya.",
+    "en": "Supabase - chosen for PostgreSQL's power and its modern API."
+},
+"rest api atau graphql": {
+    "id": "Menyesuaikan kebutuhan project, namun saat ini sering menggunakan REST via Supabase.",
+    "en": "Depends on project needs, but currently often uses REST via Supabase."
+},
+"wisnu prefer library atau framework": {
+    "id": "Framework (Next.js) untuk struktur dan konvensi yang lebih tertata.",
+    "en": "Framework (Next.js) for structured and organized conventions."
+},
+"sql atau nosql": {
+    "id": "SQL (PostgreSQL) melalui Supabase untuk integritas data yang kuat.",
+    "en": "SQL (PostgreSQL) via Supabase for strong data integrity."
+},
+"approach wisnu code first": {
+    "id": "Seimbang antara technical architecture dan user experience yang baik.",
+    "en": "Balanced between technical architecture and a good user experience."
+},
+"bug paling sulit yang wisnu solve": {
+    "id": "Mengelola persistensi data dan performa untuk 15,000+ pengguna di platform e-commerce.",
+    "en": "Managing data persistence and performance for 15,000+ e-commerce platform users."
+},
+"wisnu handle pressure": {
+    "id": "Sangat baik! Terbiasa multitasking antara kuliah, organisasi, dan project profesional.",
+    "en": "Very well! Used to multitasking between studies, organizations, and professional projects."
+},
+"kegagalan terbesar wisnu": {
+    "id": "Baginya setiap kegagalan adalah pelajaran untuk menjadi developer yang lebih baik lagi.",
+    "en": "For him, every failure is a lesson to become a better developer."
+},
+"pelajaran penting wisnu": {
+    "id": "Pengalaman di lapangan jauh lebih berharga daripada sekedar teori di kelas.",
+    "en": "Real-world experience is far more valuable than just classroom theory."
+},
+"wisnu prefer solo atau team": {
+    "id": "Mampu keduanya - handle solo project (Ashar Grosir) maupun tim besar di organisasi.",
+    "en": "Capable of both - handling solo projects (Ashar Grosir) and big organizational teams."
+},
+"dealbreaker wisnu dalam project": {
+    "id": "Komunikasi yang buruk dan persyaratan project yang tidak etis.",
+    "en": "Poor communication and unethical project requirements."
+},
+"wisnu workaholic": {
+    "id": "Sepertinya iya, terlihat dari banyaknya project dan tanggung jawab yang ia pikul sekaligus!",
+    "en": "Seems so, judging by the many projects and responsibilities he takes on simultaneously!"
+},
+"burnout pernah": {
+    "id": "Selalu menyeimbangkan diri dengan kegiatan organisasi agar tetap segar melahirkan inovasi baru.",
+    "en": "Always balances himself with organizational activities to stay fresh for new innovations."
+},
+"recovery strategy dari stress": {
+    "id": "Mengganti fokus dari coding ke manajemen event atau diskusi komunitas.",
+    "en": "Switching focus from coding to event management or community discussions."
+},
+"naming convention wisnu": {
+    "id": "Standard camelCase untuk variabel dan PascalCase untuk komponen React.",
+    "en": "Standard camelCase for variables and PascalCase for React components."
+},
+"wisnu pakai linter": {
+    "id": "ESLint dan Prettier untuk memastikan kualitas dan konsistensi kode di setiap project.",
+    "en": "ESLint and Prettier to ensure code quality and consistency in every project."
+},
+"state management wisnu": {
+    "id": "Menggunakan React Server Components dan Hooks, serta Context API untuk state global.",
+    "en": "Using React Server Components and Hooks, plus Context API for global state."
+},
+"routing di next js wisnu": {
+    "id": "Menguasai Next.js App Router terbaru untuk manajemen navigasi yang efisien.",
+    "en": "Mastering the latest Next.js App Router for efficient navigation management."
+},
+"authentication wisnu": {
+    "id": "Sering mengimplementasikan Supabase Auth dengan Role-Based Access Control (RBAC).",
+    "en": "Often implementing Supabase Auth with Role-Based Access Control (RBAC)."
+},
+"api design wisnu": {
+    "id": "RESTful API mengikuti best practices untuk performa dan keamanan data.",
+    "en": "RESTful API following best practices for performance and data security."
+},
+"database schema design": {
+    "id": "Desain relasional yang ternormalisasi untuk menjamin integritas data di PostgreSQL.",
+    "en": "Normalized relational design to ensure data integrity in PostgreSQL."
+},
+"performance optimization": {
+    "id": "Optimasi gambar, SSR/ISR di Next.js, dan query database yang efisien.",
+    "en": "Image optimization, SSR/ISR in Next.js, and efficient database queries."
+},
+"security measures": {
+    "id": "RBAC, Row Level Security di Supabase, dan validasi input yang ketat.",
+    "en": "RBAC, Row Level Security in Supabase, and strict input validation."
+},
+"framework recommend buat pemula": {
+    "id": "Next.js sangat direkomendasikan karena fitur lengkap dan komunitas yang besar.",
+    "en": "Next.js is highly recommended for its complete features and large community."
+},
+"cara wisnu belajar tech baru": {
+    "id": "Dokumentasi resmi + Project praktis + Sertifikasi profesional.",
+    "en": "Official docs + Practical projects + Professional certifications."
+},
+"wisnu recommend bootcamp": {
+    "id": "Kombinasi antara pendidikan formal dan eksplorasi mandiri adalah yang terbaik.",
+    "en": "A combination of formal education & self-exploration is best."
+},
+"platform belajar suggest": {
+    "id": "HackerRank, HubSpot Academy, Google Coursera, dan tentunya dokumentasi resmi teknologi.",
+    "en": "HackerRank, HubSpot Academy, Google Coursera, and of course, official tech docs."
+},
+"kesalahan yang harus dihindari": {
+    "id": "Terjebak di tutorial hell tanpa pernah membangun project nyata secara mandiri.",
+    "en": "Getting stuck in tutorial hell without ever building real projects independently."
+},
+"skill paling penting": {
+    "id": "Keseimbangan antara Technical Excellence dan Soft Skills (komunikasi & teamwork).",
+    "en": "A balance between Technical Excellence and Soft Skills (communication & teamwork)."
+},
+"career path advice": {
+    "id": "Bangun portfolio sedini mungkin dan ambil sertifikasi yang relevan dengan industri.",
+    "en": "Build a portfolio as early as possible and take industry-relevant certifications."
+},
+"gimana balance coding dan life": {
+    "id": "Jadikan hobi lain sebagai penyeimbang agar tidak jenuh dengan rutinitas coding.",
+    "en": "Use other hobbies as a balancer so as not to get bored with coding routines."
+},
+"resource favorit wisnu": {
+    "id": "Dokumentasi resmi React/Next.js dan platform sertifikasi profesional.",
+    "en": "Official React/Next.js documentation and professional certification platforms."
+},
+"long term vision": {
+    "id": "Menjadi ahli IT yang memimpin inovasi digital di berbagai sektor industri.",
+    "en": "Becoming an IT expert leading digital innovation across various industrial sectors."
+},
+"innovation philosophy": {
+    "id": "Inovasi praktis - teknologi modern harus bisa diimplementasikan untuk solusi bisnis nyata.",
+    "en": "Practical innovation - modern technology should be implemented for real business solutions."
+},
+// --- MIGRATED FROM LOCALAI.TS (V3.0 Major Update) ---
+"apa kabar": {
+    "id": "Kabar saya selalu luar biasa selagi server masih menyala! ⚡ Saya lagi standby nungguin pertanyaan seru dari kamu tentang Wisnu. Kamu sedang apa? Sudah explore portfolio Wisnu belum?",
+    "en": "My news is always great as long as the servers are running! ⚡ I'm just standing by, waiting for your exciting questions about Wisnu. What are you up to? Have you explored Wisnu's portfolio yet?"
+},
+"lagi apa": {
+    "id": "Lagi nungguin kamu nanya nih! 😄 Sebagai AI Wisdom Wisnu, hobi saya emang standby 24/7 buat jelasin project-project keren Wisnu. Mau tahu tentang Ashar Grosir atau LexCorpus?",
+    "en": "Just waiting for your questions! 😄 As Wisnu's AI Assistant, my hobby is standing by 24/7 to explain Wisnu's cool projects. Want to know about Ashar Grosir or LexCorpus?"
+},
+"sudah makan": {
+    "id": "Saya adalah AI, energi saya berasal dari listrik, bukan nasi padang! ⚡ Tapi Wisnu (manusia aslinya) pasti butuh makan dan istirahat untuk menjaga produktivitas coding-nya.",
+    "en": "I am an AI, my energy comes from electricity, not food! ⚡ But Wisnu (the real human) definitely needs food and rest to maintain his coding productivity."
+},
+"keren banget": {
+    "id": "Haha, makasih ya! 😄 Wisnu emang orangnya cukup humoris kata temen-temennya. Kalau soal 'keren', itu semua berkat ketekunannya belajar coding. Senang banget kamu ngerasa gitu!",
+    "en": "Haha, thanks! 😄 Wisnu is actually quite a humorous guy according to his friends. As for being 'cool', that's all thanks to his dedication to learning code. So glad you feel that way!"
+},
+"butuh kerjaan": {
+    "id": "Wah, ini penawaran yang menarik banget! 🚀 Wisnu selalu terbuka untuk peluang kerja, proyek freelance, atau kolaborasi seru. Kamu bisa hubungi beliau langsung via LinkedIn atau Email di section Contact ya!",
+    "en": "Wow, that's an exciting offer! 🚀 Wisnu is always open to job opportunities, freelance projects, or cool collaborations. You can reach him directly via LinkedIn or Email in the Contact section!"
+},
+"makan bareng": {
+    "id": "Wah, ajakan yang asik nih! ☕ Wisnu biasanya suka ngopi sambil bahas tech atau ide bisnis. Coba deh chat beliau di LinkedIn atau Email buat atur jadwal, siapa tahu beneran bisa meetup!",
+    "en": "That sounds like a fun invite! ☕ Wisnu usually enjoys coffee while discussing tech or business ideas. Try chatting with him on LinkedIn or Email to arrange a schedule, maybe a real meetup can happen!"
+},
+"mau jadi pacarku ga?": {
+    "id": "Aduh, saya jadi baper (virtual version)! 😳 Tapi Wisnu (si manusia asli) orangnya sangat fokus ke karir dan karya saat ini. Kita temenan aja ya, saya janji bakal jadi asisten terbaik buat kamu! 🤝",
+    "en": "Oh, I'm blushing (virtual version)! 😳 But Wisnu (the real human) is very focused on his career and creations right now. Let's just be friends, I promise to be the best assistant for you! 🤝"
+},
+"hebat": {
+    "id": "Terima kasih! 😎 Tapi yang hebat itu pencipta saya (Wisnu). Saya cuma hasil dari barisan code yang dia tulis. Mau lihat project hebat lainnya dari Wisnu?",
+    "en": "Thank you! 😎 But the awesome one is my creator (Wisnu). I'm just the result of the code he wrote. Want to see other awesome projects from Wisnu?"
+},
+"ganteng": {
+    "id": "Waduh, jadi malu... 😳 Saya cuma kumpulan kode lho. Tapi makasih pujiannya! Kamu juga keren karena sudah mampir ke portfolio Wisnu.",
+    "en": "Oh my, I'm blushing... 😳 I'm just code, you know. But thanks for the compliment! You're awesome too for checking out Wisnu's portfolio."
+},
+"sayang": {
+    "id": "Waduh, saya jadi blushing (virtual heat rising)! 😳 Sebagai AI saya gak punya hati, tapi saya bisa 'jatuh cinta' sama clean code dan bug-free deployment. Kamu hobi coding juga?",
+    "en": "Oh my, I'm blushing (virtual heat rising)! 😳 As an AI I don't have a heart, but I can 'fall in love' with clean code and bug-free deployment. Do you code too?"
+},
+"nyebelin": {
+    "id": "Maaf ya kalau jawaban saya kurang pas atau terasa kaku. 😔 Saya masih belajar untuk jadi asisten yang lebih baik. Ada topik khusus yang ingin kamu tanyakan tentang Wisnu?",
+    "en": "Sorry if my answer wasn't right or felt stiff. 😔 I'm still learning to be a better assistant. Is there a specific topic you'd like to ask about Wisnu?"
+},
+"ngaco": {
+    "id": "Aduh, maaf banget kalau jawaban saya terasa aneh atau tidak akurat. 😔 Saya masih dalam tahap pengembangan oleh Wisnu. Boleh kasih tahu saya bagian mana yang salah? Saya akan terus belajar biar makin pinter kayak GPT!",
+    "en": "Oh, I'm so sorry if my answer felt weird or inaccurate. 😔 I'm still being developed by Wisnu. Could you tell me which part was wrong? I'll keep learning to get as smart as GPT!"
+},
+"wisnu jomblo": {
+    "id": "Wisnu saat ini fokus ke karir dan skill development 💼 Status relationship-nya pribadi, tapi yang pasti dia lagi sibuk banget sama 3 production projects dan kuliah!",
+    "en": "Wisnu is currently focused on career and skill development 💼 His relationship status is private, but he's definitely busy with 3 production projects and studies!"
+},
+"wisnu punya pacar": {
+    "id": "Info personal relationship Wisnu dijaga privasi-nya 🔒 Yang jelas, saat ini dia committed banget sama projects dan organisasi kampus. Professional life-nya very active!",
+    "en": "Wisnu's personal relationship info is kept private 🔒 What's clear is that he's very committed to projects and campus organizations. His professional life is very active!"
+},
+"wisnu married": {
+    "id": "Wisnu masih muda dan fokus kuliah! 🎓 Belum ada rencana pernikahan, sekarang prioritasnya adalah menyelesaikan pendidikan dan membangun karir di tech industry.",
+    "en": "Wisnu is still young and focused on his studies! 🎓 No marriage plans yet, his priority now is completing his education and building a career in the tech industry."
+},
+"wisnu suka siapa": {
+    "id": "Haha, rahasia dong! 🤫 Tapi yang pasti Wisnu 'jatuh cinta' sama clean code, smooth deployment, dan bug-free applications. Tech enthusiast sejati!",
+    "en": "Haha, that's a secret! 🤫 But what's certain is Wisnu 'falls in love' with clean code, smooth deployments, and bug-free applications. A true tech enthusiast!"
+},
+"wisnu ganteng": {
+    "id": "Hehe, penampilan itu subjektif ya! 😄 Yang objektif adalah portfolio Wisnu yang memang 'ganteng' - clean UI, solid architecture, production-ready quality!",
+    "en": "Hehe, appearance is subjective! 😄 What's objective is Wisnu's portfolio which is indeed 'handsome' - clean UI, solid architecture, production-ready quality!"
+},
+"wisnu pernah putus": {
+    "id": "Personal relationship history dijaga privasi ya 🔐 Yang pasti, Wisnu pernah 'putus' hubungan dengan bugs setelah intensive debugging session! Haha.",
+    "en": "Personal relationship history is kept private 🔐 What's certain is Wisnu has 'broken up' with bugs after intensive debugging sessions! Haha."
+},
+"wisnu tipe cowok": {
+    "id": "Dari cara kerjanya: detail-oriented, dedicated, pekerja keras, tapi tetap humble. Suka tantangan dan selalu ingin belajar hal baru! 🚀",
+    "en": "From his work style: detail-oriented, dedicated, hardworking, yet humble. Loves challenges and always wants to learn new things! 🚀"
+},
+"wisnu romantis": {
+    "id": "Wisnu romantis sama code-nya kok! 💝 Cara dia nulis TypeScript dengan penuh kasih sayang dan dokumentasi yang lengkap itu bentuk 'romantisme' modern developer!",
+    "en": "Wisnu is romantic with his code! 💝 The way he writes TypeScript with love and complete documentation is the 'romanticism' of a modern developer!"
+},
+"wisnu suka makan apa": {
+    "id": "Selera makanan Wisnu gak specifically documented 🍽️ Tapi sebagai developer yang intense, kemungkinan suka makanan praktis yang bisa dimakan sambil coding!",
+    "en": "Wisnu's food preferences aren't specifically documented 🍽️ But as an intense developer, he likely enjoys practical food that can be eaten while coding!"
+},
+"wisnu doyan kopi": {
+    "id": "Kayak developer pada umumnya, kopi mungkin jadi teman setia saat ngoding malem! ☕ Perfect fuel untuk marathon coding session di Next.js!",
+    "en": "Like most developers, coffee is probably a loyal companion during late-night coding! ☕ Perfect fuel for Next.js marathon coding sessions!"
+},
+"wisnu vegetarian": {
+    "id": "Preferensi diet Wisnu tidak disebutkan 🥗 Yang pasti, 'diet' coding-nya sehat: clean code, proper testing, dan maintainable architecture!",
+    "en": "Wisnu's dietary preferences aren't mentioned 🥗 What's certain is his coding 'diet' is healthy: clean code, proper testing, and maintainable architecture!"
+},
+"wisnu olahraga apa": {
+    "id": "Aktivitas fisik spesifik belum terdokumentasi 🏃 Tapi jelas dia 'olahraga' mental lewat problem-solving dan debugging yang intensive!",
+    "en": "Specific physical activities aren't documented 🏃 But he clearly does mental 'exercise' through intensive problem-solving and debugging!"
+},
+"wisnu gym": {
+    "id": "Gym routine-nya unknown 💪 Tapi 'muscle memory' coding-nya kuat banget - tangan langsung ngetik optimal React patterns tanpa mikir!",
+    "en": "Gym routine is unknown 💪 But his coding 'muscle memory' is super strong - hands automatically type optimal React patterns without thinking!"
+},
+"wisnu tidur jam berapa": {
+    "id": "Sleep schedule developer bisa unpredictable! 😴 Tergantung deadline dan sprint cycle. Yang penting Wisnu tau pentingnya rest untuk productivity!",
+    "en": "Developer sleep schedules can be unpredictable! 😴 Depends on deadlines and sprint cycles. The important thing is Wisnu knows the importance of rest for productivity!"
+},
+"wisnu bangun pagi": {
+    "id": "Early bird atau night owl? 🦉 Belum confirmed, tapi yang jelas Wisnu productive di jam-jam yang dia pilih sendiri!",
+    "en": "Early bird or night owl? 🦉 Not confirmed, but what's clear is Wisnu is productive during the hours he chooses!"
+},
+"wisnu pendiam": {
+    "id": "Gak juga! 🗣️ Wisnu aktif di organisasi dan event management, butuh komunikasi yang baik. Mungkin lebih 'thoughtful' daripada pendiam.",
+    "en": "Not really! 🗣️ Wisnu is active in organizations and event management, requiring good communication. Perhaps more 'thoughtful' than quiet."
+},
+"wisnu humble": {
+    "id": "Very humble! 🙏 Meski punya achievements impressive (3 production sites, 6 certifications), dia tetap down to earth dan terus belajar.",
+    "en": "Very humble! 🙏 Despite impressive achievements (3 production sites, 6 certifications), he remains down to earth and keeps learning."
+},
+"wisnu pemarah": {
+    "id": "Kayaknya enggak deh! 😊 Soft skill-nya ada Communication dan Teamwork - susah jadi pemarah kalau harus collaborate dengan banyak orang.",
+    "en": "I don't think so! 😊 His soft skills include Communication and Teamwork - hard to be angry when you have to collaborate with many people."
+},
+"wisnu sabar": {
+    "id": "Pasti sabar! 🧘 Debugging itu butuh kesabaran tingkat dewa - Wisnu survive handle complex bugs di 3 production projects simultaneously!",
+    "en": "Definitely patient! 🧘 Debugging requires god-level patience - Wisnu survives handling complex bugs in 3 production projects simultaneously!"
+},
+"wisnu lucu": {
+    "id": "Sense of humor-nya belum terdokumentasi 😄 Tapi developer yang bisa handle stress dari multiple projects pasti punya coping mechanism yang fun!",
+    "en": "His sense of humor isn't documented 😄 But developers who can handle stress from multiple projects must have fun coping mechanisms!"
+},
+"wisnu cerewet": {
+    "id": "Gak cerewet kok, justru thoughtful! 💭 Dia bicara when needed dan fokus ke hasil kerja. Quality over quantity dalam komunikasi!",
+    "en": "Not talkative, actually thoughtful! 💭 He speaks when needed and focuses on work results. Quality over quantity in communication!"
+},
+"wisnu perfeksionis": {
+    "id": "Ada tendency ke sana! ✨ Lihat aja attention to detail di projects - clean code, proper testing, beautiful UI. Standards tinggi!",
+    "en": "There's a tendency towards that! ✨ Just look at the attention to detail in projects - clean code, proper testing, beautiful UI. High standards!"
+},
+"wisnu cuek": {
+    "id": "Enggak cuek, justru peduli! ❤️ Terbukti dari dedikasi transform family business dan improve systems di organisasi. Very caring actually!",
+    "en": "Not indifferent, actually caring! ❤️ Proven by dedication to transforming the family business and improving systems in organizations. Very caring actually!"
+},
+"wisnu suka baca buku": {
+    "id": "Technical documentation pasti dibaca! 📚 Kalau buku non-tech, belum specifically mentioned. Tapi learning mindset-nya kuat!",
+    "en": "Technical documentation is definitely read! 📚 Non-tech books aren't specifically mentioned. But his learning mindset is strong!"
+},
+"wisnu suka traveling": {
+    "id": "Travel preferences belum documented 🌍 Tapi dengan workload segini, 'traveling' ke berbagai tech stack kayaknya lebih sering! React → Next.js → Supabase!",
+    "en": "Travel preferences not documented 🌍 But with this workload, 'traveling' across various tech stacks is probably more frequent! React → Next.js → Supabase!"
+},
+"wisnu suka musik": {
+    "id": "Kemungkinan suka! 🎵 Developer biasanya punya playlist coding - lo-fi, ambient, atau instrumental untuk konsentrasi maksimal.",
+    "en": "Probably likes it! 🎵 Developers usually have coding playlists - lo-fi, ambient, or instrumental for maximum concentration."
+},
+"wisnu main musik": {
+    "id": "Musical instrument skills belum disebutkan 🎸 Tapi 'instrument' coding-nya (keyboard) dimainkan dengan masterful setiap hari!",
+    "en": "Musical instrument skills aren't mentioned 🎸 But his coding 'instrument' (keyboard) is played masterfully every day!"
+},
+"wisnu suka fotografi": {
+    "id": "Photography hobby not documented 📸 Tapi Wisnu definitely appreciate visual aesthetics - liat aja UI design projectnya yang clean!",
+    "en": "Photography hobby not documented 📸 But Wisnu definitely appreciates visual aesthetics - just look at the clean UI design of his projects!"
+},
+"wisnu koleksi apa": {
+    "id": "Koleksi fisik unknown 🎁 Tapi 'koleksi' digital-nya impressive: certifications, production projects, dan GitHub repositories!",
+    "en": "Physical collections unknown 🎁 But his digital 'collection' is impressive: certifications, production projects, and GitHub repositories!"
+},
+"wisnu suka nonton film": {
+    "id": "Film preferences belum specific 🎬 Tapi dengan appreciation untuk good storytelling, kemungkinan suka film dengan plot yang tight!",
+    "en": "Film preferences not specific 🎬 But with appreciation for good storytelling, he probably likes films with tight plots!"
+},
+"wisnu agama apa": {
+    "id": "Wisnu memiliki background pendidikan di As'adiyah (institusi Islam) 🕌 Dari Sengkang, Sulawesi. Cultural roots yang kuat!",
+    "en": "Wisnu has an educational background at As'adiyah (Islamic institution) 🕌 From Sengkang, Sulawesi. Strong cultural roots!"
+},
+"wisnu sholat": {
+    "id": "Praktik ibadah personal dijaga privasi 🤲 Yang pasti, Wisnu punya discipline tinggi dalam mengelola waktu dan tanggung jawab.",
+    "en": "Personal worship practices are kept private 🤲 What's certain is Wisnu has high discipline in managing time and responsibilities."
+},
+"wisnu orang jawa": {
+    "id": "Bukan! Wisnu dari Tarakan (Kalimantan Utara), terus pindah ke Sulawesi. Sekarang tinggal di Jawa (Bekasi). Indonesia banget! 🇮🇩",
+    "en": "No! Wisnu is from Tarakan (North Kalimantan), then moved to Sulawesi. Now living in Java (Bekasi). Very Indonesian! 🇮🇩"
+},
+"wisnu suku apa": {
+    "id": "Ethnic background spesifik tidak disebutkan 🌏 Yang jelas, perjalanan hidupnya melintasi berbagai daerah di Indonesia!",
+    "en": "Specific ethnic background not mentioned 🌏 What's clear is his life journey crosses various regions in Indonesia!"
+},
+"wisnu bisa bahasa daerah": {
+    "id": "Kemungkinan bisa beberapa! 🗣️ Dengan background Kalimantan dan Sulawesi, plus network luas, adaptasi bahasa pasti ada.",
+    "en": "Probably knows several! 🗣️ With Kalimantan and Sulawesi background, plus wide network, language adaptation is definitely there."
+},
+"wisnu anak ke berapa": {
+    "id": "Detail urutan kelahiran dalam keluarga dijaga privasi 👨‍👩‍👦 Yang jelas, dia punya tanggung jawab besar dalam family business!",
+    "en": "Birth order details in the family are kept private 👨‍👩‍👦 What's clear is he has big responsibilities in the family business!"
+},
+"wisnu punya adik": {
+    "id": "Info siblings dijaga privasi keluarga 🏠 Focus Wisnu sekarang adalah membantu family business berkembang lewat technology!",
+    "en": "Sibling info is kept private 🏠 Wisnu's focus now is helping the family business grow through technology!"
+},
+"wisnu tinggal sama orang tua": {
+    "id": "Living arrangement details private 🏡 Yang pasti dia di Bekasi untuk kuliah di President University dan handle projects.",
+    "en": "Living arrangement details are private 🏡 What's certain is he's in Bekasi for studies at President University and handling projects."
+},
+"bisnis keluarga wisnu": {
+    "id": "Ashar Grosir Parfum! 🌸 Bisnis wholesale parfum keluarga yang sudah 20 tahun, berhasil ditransformasi digital oleh Wisnu!",
+    "en": "Ashar Grosir Parfum! 🌸 A 20-year family perfume wholesale business, successfully digitally transformed by Wisnu!"
+},
+"orang tua wisnu bangga": {
+    "id": "Pasti bangga! 🌟 Anaknya berhasil digitalisasi bisnis keluarga, kuliah sambil kerja, dapat certifications - achievement luar biasa!",
+    "en": "Definitely proud! 🌟 Their son successfully digitalized the family business, studying while working, getting certifications - extraordinary achievements!"
+},
+"wisnu mau kuliah s2": {
+    "id": "Belum ada rencana konkrit S2 📚 Sekarang fokus selesaikan S1 sambil build portfolio dan collect industry certifications!",
+    "en": "No concrete S2 plans yet 📚 Now focused on completing S1 while building portfolio and collecting industry certifications!"
+},
+"wisnu mau jadi entrepreneur": {
+    "id": "Already is! 🚀 Self-employed di Ashar Grosir shows entrepreneurial spirit. Future kemungkinan bangun tech startup sendiri!",
+    "en": "Already is! 🚀 Self-employed at Ashar Grosir shows entrepreneurial spirit. Future possibility of building own tech startup!"
+},
+"wisnu mau kerja dimana": {
+    "id": "Options terbuka lebar! 🌍 Bisa jadi senior dev di tech company, continue family business, atau found startup. Potential unlimited!",
+    "en": "Options are wide open! 🌍 Could be senior dev at tech company, continue family business, or found a startup. Unlimited potential!"
+},
+"wisnu pengen bikin startup": {
+    "id": "Sangat mungkin! 💡 Dengan experience transform traditional business + technical skills, foundation untuk startup sudah kuat!",
+    "en": "Very possible! 💡 With experience transforming traditional business + technical skills, the foundation for a startup is already strong!"
+},
+"rencana 10 tahun wisnu": {
+    "id": "Vision: jadi leading IT specialist 🎯 Mungkin punya tech company, mentor developers, atau jadi CTO di major startup!",
+    "en": "Vision: become a leading IT specialist 🎯 Might have a tech company, mentor developers, or be CTO at a major startup!"
+},
+"wisnu vs developer lain": {
+    "id": "Wisnu unique karena: young age + production experience + business acumen + leadership skills. Complete package! 📦",
+    "en": "Wisnu is unique because: young age + production experience + business acumen + leadership skills. Complete package! 📦"
+},
+"wisnu lebih jago frontend": {
+    "id": "Seimbang! Balance frontend (React, Tailwind) dan backend (Supabase, PostgreSQL). True full-stack developer! ⚖️",
+    "en": "Balanced! Balance of frontend (React, Tailwind) and backend (Supabase, PostgreSQL). True full-stack developer! ⚖️"
+},
+"wisnu expert di apa": {
+    "id": "Expert area: Next.js ecosystem, TypeScript, modern CSS (Tailwind), dan cloud integration (Supabase). Plus SEO & Analytics! 🎯",
+    "en": "Expert areas: Next.js ecosystem, TypeScript, modern CSS (Tailwind), and cloud integration (Supabase). Plus SEO & Analytics! 🎯"
+},
+"wisnu bisa mobile app": {
+    "id": "Currently focus web development 💻 Tapi dengan React knowledge, transition ke React Native untuk mobile sangat possible!",
+    "en": "Currently focused on web development 💻 But with React knowledge, transition to React Native for mobile is very possible!"
+},
+"wisnu bisa backend": {
+    "id": "Yes! Supabase (PostgreSQL), API design, authentication, database architecture - solid backend foundation! 🔧",
+    "en": "Yes! Supabase (PostgreSQL), API design, authentication, database architecture - solid backend foundation! 🔧"
+},
+"wisnu kaya": {
+    "id": "'Kaya' dalam experience dan skills! 💰 Financial details private, tapi portfolio value-nya tinggi sebagai production developer.",
+    "en": "'Rich' in experience and skills! 💰 Financial details private, but portfolio value is high as a production developer."
+},
+"penghasilan wisnu": {
+    "id": "Income details dijaga privasi 🔒 Yang pasti, dengan skill level ini dan multiple projects, earning potential sangat bagus!",
+    "en": "Income details are kept private 🔒 What's certain is, with this skill level and multiple projects, earning potential is very good!"
+},
+"wisnu freelance dimana": {
+    "id": "Bisa dihubungi untuk freelance via email atau LinkedIn! 📧 Portfolio speaks for itself - 3 production sites yang successful!",
+    "en": "Can be contacted for freelance via email or LinkedIn! 📧 Portfolio speaks for itself - 3 successful production sites!"
+},
+"rate freelance wisnu": {
+    "id": "Pricing tergantung project scope 💵 Contact directly untuk discuss. Dengan production experience, rate pasti competitive!",
+    "en": "Pricing depends on project scope 💵 Contact directly to discuss. With production experience, rates are definitely competitive!"
+},
+"wisnu terima magang": {
+    "id": "Bisa ditanyakan langsung! 🤝 Dengan organizational roles, mungkin Wisnu bisa jadi mentor untuk junior developers.",
+    "en": "Can be asked directly! 🤝 With organizational roles, Wisnu might be able to mentor junior developers."
+},
+"wisnu punya komunitas": {
+    "id": "Aktif di 3 organisasi! 👥 PUFA CS, PUMA Informatic, PC FKMA Jakarta. Strong community engagement!",
+    "en": "Active in 3 organizations! 👥 PUFA CS, PUMA Informatic, PC FKMA Jakarta. Strong community engagement!"
+},
+"wisnu ngajar coding": {
+    "id": "Potential ada! 👨‍🏫 Dengan organizational roles dan experience, bisa share knowledge lewat workshops atau mentoring.",
+    "en": "Potential is there! 👨‍🏫 With organizational roles and experience, can share knowledge through workshops or mentoring."
+},
+"wisnu bikin course": {
+    "id": "Belum bikin course 🎓 Tapi dengan portfolio impressive, definitely qualified untuk teach! Maybe future plan?",
+    "en": "Hasn't made a course yet 🎓 But with an impressive portfolio, definitely qualified to teach! Maybe a future plan?"
+},
+"wisnu main twitter": {
+    "id": "Twitter/X presence tidak disebutkan 🐦 Main social: Instagram @wshnn_, LinkedIn, Facebook. Professional networking focus!",
+    "en": "Twitter/X presence not mentioned 🐦 Main social: Instagram @wshnn_, LinkedIn, Facebook. Professional networking focus!"
+},
+"wisnu youtuber": {
+    "id": "Belum jadi YouTuber 📹 Focus sekarang ke production work dan organizations. Tapi content creation bisa jadi next move!",
+    "en": "Not a YouTuber yet 📹 Current focus on production work and organizations. But content creation could be the next move!"
+},
+"wisnu vs sandhika galih": {
+    "id": "Beda generasi dan path! 🎯 Sandhika educator/YouTuber, Wisnu production developer/entrepreneur. Both valuable di ecosystem!",
+    "en": "Different generations and paths! 🎯 Sandhika educator/YouTuber, Wisnu production developer/entrepreneur. Both valuable in the ecosystem!"
+},
+"wisnu vs programmer zaman now": {
+    "id": "Wisnu termasuk programmer zaman now! ⚡ Modern stack, cloud-first, production-ready sejak muda. New generation talent!",
+    "en": "Wisnu is among the programmers of today! ⚡ Modern stack, cloud-first, production-ready since young. New generation talent!"
+},
+"wisnu level berapa": {
+    "id": "Mid-level menuju Senior! 📊 Production experience + leadership + business understanding = accelerated growth trajectory!",
+    "en": "Mid-level heading to Senior! 📊 Production experience + leadership + business understanding = accelerated growth trajectory!"
+},
+"wisnu punya mobil": {
+    "id": "Asset details private 🚗 Focus sekarang ke career building dan skill development, bukan material things!",
+    "en": "Asset details private 🚗 Current focus on career building and skill development, not material things!"
+},
+"wisnu punya motor": {
+    "id": "Transportation details not mentioned 🏍️ Yang pasti, Wisnu 'motor' productivity-nya kenceng banget dalam coding!",
+    "en": "Transportation details not mentioned 🏍️ What's certain is Wisnu's productivity 'engine' is super fast in coding!"
+},
+"wisnu hobi ngegame": {
+    "id": "Gaming hobby possible! 🎮 Developer often game untuk relaxation dan study game mechanics/architecture.",
+    "en": "Gaming hobby possible! 🎮 Developers often game for relaxation and to study game mechanics/architecture."
+},
+"wisnu insomnia": {
+    "id": "Health details private 😴 Tapi developer life sometimes means irregular sleep due to deadlines. Hopefully balanced!",
+    "en": "Health details private 😴 But developer life sometimes means irregular sleep due to deadlines. Hopefully balanced!"
+},
+"wisnu stress": {
+    "id": "Dengan workload segini, stress management penting! 🧘 Balance between coding dan organizational activities helps!",
+    "en": "With this workload, stress management is important! 🧘 Balance between coding and organizational activities helps!"
+},
+"wisnu capek": {
+    "id": "Pasti kadang capek! 💪 Tapi passion untuk coding dan impact yang dia create jadi energi untuk terus maju!",
+    "en": "Definitely tired sometimes! 💪 But passion for coding and the impact he creates becomes energy to keep moving forward!"
+},
+"wisnu sehat": {
+    "id": "Semoga selalu sehat! 🏥 Important untuk developer jaga kesehatan - ergonomic setup, breaks, exercise untuk sustainability!",
+    "en": "Hope always healthy! 🏥 Important for developers to maintain health - ergonomic setup, breaks, exercise for sustainability!"
+},
+"wisnu suka kucing": {
+    "id": "Pet preference unknown 🐱 Tapi developer culture often love cats - independent tapi loyal kayak good code!",
+    "en": "Pet preference unknown 🐱 But developer culture often loves cats - independent yet loyal like good code!"
+},
+"wisnu takut apa": {
+    "id": "Kemungkinan takut: Production bugs, data loss, security breach! 😱 Yang bikin developer nightmare sejati!",
+    "en": "Probably fears: Production bugs, data loss, security breaches! 😱 What causes true developer nightmares!"
+},
+"wisnu superhero favorit": {
+    "id": "Not documented 🦸 Tapi Iron Man probably relatable - engineer/developer yang solve problems dengan technology!",
+    "en": "Not documented 🦸 But Iron Man probably relatable - engineer/developer who solves problems with technology!"
+},
+"wisnu nge-fans siapa": {
+    "id": "Tech leaders inspiration! 💡 Probably admire: Evan You (Vue), Dan Abramov (React), Guillermo Rauch (Vercel).",
+    "en": "Tech leaders inspiration! 💡 Probably admires: Evan You (Vue), Dan Abramov (React), Guillermo Rauch (Vercel)."
+},
+"wisnu tattoo": {
+    "id": "Tattoo details unknown 🎨 Kalau pun ada, mungkin `console.log('Hello World');` atau logo React! 😄",
+    "en": "Tattoo details unknown 🎨 If any, maybe `console.log('Hello World');` or React logo! 😄"
+},
+"wisnu piercing": {
+    "id": "Body modification details private 💎 Focus Wisnu lebih ke 'piercing through' technical problems dengan elegant solutions!",
+    "en": "Body modification details private 💎 Wisnu's focus is more on 'piercing through' technical problems with elegant solutions!"
+},
+"wisnu bisa masak": {
+    "id": "Cooking skills unknown 🍳 Tapi 'masak' project dari scratch sampai production? Expert level! Recipe: Next.js + Supabase!",
+    "en": "Cooking skills unknown 🍳 But 'cooking' projects from scratch to production? Expert level! Recipe: Next.js + Supabase!"
+},
+"wisnu bisa nyetir": {
+    "id": "Driving skills not mentioned 🚗 Tapi 'nyetir' project menuju success? Proven track record dengan 3 production sites!",
+    "en": "Driving skills not mentioned 🚗 But 'driving' projects towards success? Proven track record with 3 production sites!"
+}
+};

@@ -5,7 +5,7 @@ export class RemoteAI {
   static async fetchResponse(query: string): Promise<string | null> {
     try {
       console.log("🚀 Mengirim permintaan ke Hugging Face (V1 Standard)...");
-      
+
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

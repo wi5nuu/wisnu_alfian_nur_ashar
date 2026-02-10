@@ -1,1865 +1,2065 @@
-import { profile } from "../data/profile";
+// LocalAI Utility Class
+
 
 /**
  * Enhanced LocalAI - Complete AI Assistant for Portfolio
- * Version 2.0 - Comprehensive Coverage with Professional & Polite Language
+ * Version 4.0 - Hyper-Comprehensive & Fully Functional
  * 
- * Coverage:
- * - 30+ topic categories
- * - Bilingual (Indonesian & English)
- * - Professional yet warm tone
- * - All questions answered
+ * Features:
+ * - 500+ comprehensive responses
+ * - 40+ topic categories
+ * - Advanced context awareness
+ * - Emotion-aware responses
+ * - Multi-language support
+ * - Fallback with suggestions
  */
 
+interface SocialEntry {
+    id: string;
+    en: string;
+    aliases?: string[];
+    category: 'personal' | 'professional' | 'smalltalk' | 'academic' | 'identity' |
+    'general' | 'tech' | 'projects' | 'career' | 'hobbies' | 'sensitive' | 'contact';
+    followUp?: string[]; // Suggested follow-up questions
+    emotion?: 'neutral' | 'friendly' | 'professional' | 'enthusiastic' | 'cautious';
+    isSensitive?: boolean;
+}
+
 export class LocalAI {
-    static process(query: string, lastIntent?: string): string | null {
-        const q = query.toLowerCase().trim();
-        const isIndo = q.includes("apa") || q.includes("siapa") || q.includes("dimana") ||
-            q.includes("sekolah") || q.includes("bisa") || q.includes("halo") ||
-            q.includes("projek") || q.includes("kerja") || q.includes("organisasi") ||
-            q.includes("kenapa") || q.includes("tujuan") || q.includes("motivasi") ||
-            q.includes("bagaimana") || q.includes("kapan") || q.includes("berapa") ||
-            q.includes("tolong") || q.includes("mohon") || q.includes("ingin");
+    private static readonly SOCIAL_DATA: Record<string, SocialEntry> = {
+        // --- GREETINGS & POLITENESS ---
+        "halo": {
+            id: `Halo! 👋 Saya asisten virtual Wisnu. Saya sangat senang membantu Anda mengenal lebih dalam tentang:
+            
+🌟 **Profil Wisnu** - Latar belakang, kepribadian, dan passion
+💼 **Pengalaman Professional** - Proyek-proyek nyata dengan dampak bisnis
+💻 **Keahlian Teknis** - Full-stack development hingga cybersecurity
+🎓 **Pendidikan** - Prestasi akademik dan organisasi
+🚀 **Visi Karir** - Tujuan dan ambisi professional
+🤝 **Kontak** - Cara terhubung dengan Wisnu
 
-        
-        
+Apa yang ingin Anda ketahui tentang Wisnu? Saya siap membantu! 😊`,
+            en: `Hello! 👋 I'm Wisnu's virtual assistant. I'm delighted to help you learn more about:
 
-// -1. CONVERSATIONAL FLOW (Small Talk)
-        if (this.fuzzyMatch(q, ["apa kabar", "lagi apa", "sedang apa", "sudah makan", "sehat", "kabar baik", "lagi ngapain", "hello there", "how are you", "watup", "supp"])) {
-             return isIndo
-                ? "Kabar saya selalu luar biasa selagi server masih menyala! ⚡ Saya lagi standby nungguin pertanyaan seru dari kamu tentang Wisnu. Kamu sedang apa? Sudah explore portfolio Wisnu belum?"
-                : "My news is always great as long as the servers are running! ⚡ I'm just standing by, waiting for your exciting questions about Wisnu. What are you up to? Have you explored Wisnu's portfolio yet?";
+🌟 **Wisnu's Profile** - Background, personality, and passions
+💼 **Professional Experience** - Real projects with business impact
+💻 **Technical Skills** - Full-stack development to cybersecurity
+🎓 **Education** - Academic achievements and organizations
+🚀 **Career Vision** - Professional goals and ambitions
+🤝 **Contact** - How to connect with Wisnu
+
+What would you like to know about Wisnu? I'm ready to help! 😊`,
+            aliases: ["hi", "hello", "hey", "hai", "assalamualaikum", "good morning", "good afternoon"],
+            category: 'smalltalk',
+            emotion: 'friendly'
+        },
+
+        "apa kabar": {
+            id: "Saya selalu dalam kondisi prima! 💪 Sebagai AI assistant, saya terus standby 24/7 untuk membantu Anda mengenal Wisnu. Kamu gimana kabarnya? Semoga sehat selalu! Ada yang mau ditanyakan tentang project-project keren Wisnu?",
+            en: "I'm always in excellent condition! 💪 As an AI assistant, I'm available 24/7 to help you learn about Wisnu. How are you doing? Hope you're doing great! Anything you'd like to ask about Wisnu's amazing projects?",
+            aliases: ["how are you", "what's up", "supp", "kabar baik", "lagi ngapain"],
+            category: 'smalltalk',
+            emotion: 'enthusiastic'
+        },
+
+        "terima kasih": {
+            id: "Sama-sama! 😊 Senang sekali bisa membantu Anda. Jika ada pertanyaan lain tentang Wisnu, jangan ragu untuk bertanya ya! Saya selalu siap membantu.",
+            en: "You're very welcome! 😊 It's my pleasure to help you. If you have any other questions about Wisnu, please don't hesitate to ask! I'm always ready to assist.",
+            aliases: ["thanks", "thank you", "makasih", "thx"],
+            category: 'smalltalk',
+            emotion: 'friendly'
+        },
+
+        // --- IDENTITY & PROFILE ---
+        "siapa wisnu": {
+            id: `Wisnu Alfian Nur Ashar adalah seorang **Full-Stack Developer** dan **Mahasiswa IT** yang berdomisili di Bekasi. Berikut adalah profil lengkapnya:
+
+🎯 **Identitas Inti:**
+- Full-Stack Developer dengan spesialisasi React/Next.js
+- Mahasiswa aktif Information Technology di President University
+- Entrepreneur digital dengan pengalaman bisnis keluarga
+
+🌟 **Keunikan Wisnu:**
+1. **Production-First Mindset** - Membangun aplikasi yang benar-benar digunakan (15.000+ users)
+2. **Business-Technical Bridge** - Memahami kebutuhan bisnis dan menerjemahkannya ke solusi teknis
+3. **Continuous Learner** - Selalu update dengan teknologi terbaru
+4. **Leadership Experience** - Aktif di organisasi kampus dengan peran signifikan
+
+💡 **Philosophy:** "Technology should solve real problems and deliver tangible business value."
+
+Ada aspek spesifik yang ingin Anda ketahui lebih dalam? 😊`,
+            en: `Wisnu Alfian Nur Ashar is a **Full-Stack Developer** and **IT Student** based in Bekasi. Here's his complete profile:
+
+🎯 **Core Identity:**
+- Full-Stack Developer specializing in React/Next.js
+- Active Information Technology student at President University
+- Digital entrepreneur with family business experience
+
+🌟 **What Makes Wisnu Unique:**
+1. **Production-First Mindset** - Builds actually-used applications (15,000+ users)
+2. **Business-Technical Bridge** - Understands business needs and translates them to technical solutions
+3. **Continuous Learner** - Always updated with latest technologies
+4. **Leadership Experience** - Active in campus organizations with significant roles
+
+💡 **Philosophy:** "Technology should solve real problems and deliver tangible business value."
+
+Is there a specific aspect you'd like to know more about? 😊`,
+            aliases: ["who is wisnu", "profil wisnu", "tentang wisnu", "introduce yourself", "who are you", "siapa anda", "siapa kamu", "👤 Profil Pribadi", "👤 Personal Profile", "profil lengkap wisnu", "profil wisnu latar belakang kepribadian passion"],
+            category: 'identity',
+            emotion: 'professional',
+            followUp: ["asal mana", "pendidikan", "skill teknis", "proyek", "pengalaman kerja"]
+        },
+
+        "asal mana": {
+            id: `🌏 **Asal & Latar Belakang Wisnu:**
+
+**Tempat Lahir:** Tarakan, Kalimantan Utara
+**Domisili Sekarang:** Bekasi Timur, Jawa Barat
+**Latar Belakang Keluarga:** Dari keluarga entrepreneur dengan bisnis grosir parfum yang berjalan 20+ tahun
+
+**Perjalanan:**
+1. Lahir dan besar awal di Tarakan
+2. Pernah tinggal di Sengkang, Sulawesi Selatan
+3. Sekarang menetap di Bekasi untuk kuliah di President University
+
+**Pengalaman Multikultural:**
+- Terbiasa dengan berbagai budaya Indonesia
+- Memahami perbedaan regional dan adaptasi
+- Network yang luas dari berbagai daerah
+
+Wisnu membawa perspektif unik dari latar belakang yang beragam ini ke dalam pengembangan solusi teknologi! 🌟`,
+            en: `🌏 **Wisnu's Origin & Background:**
+
+**Birthplace:** Tarakan, North Kalimantan
+**Current Residence:** East Bekasi, West Java
+**Family Background:** From entrepreneurial family with 20+ years wholesale perfume business
+
+**Journey:**
+1. Born and early childhood in Tarakan
+2. Lived in Sengkang, South Sulawesi
+3. Now settled in Bekasi for studies at President University
+
+**Multicultural Experience:**
+- Familiar with diverse Indonesian cultures
+- Understands regional differences and adaptation
+- Wide network from various regions
+
+Wisnu brings unique perspectives from this diverse background into technology solution development! 🌟`,
+            aliases: ["wisnu asli mana", "lahir dimana", "domisili", "tinggal dimana", "background"],
+            category: 'identity',
+            emotion: 'friendly'
+        },
+
+        // --- PERSONALITY & CHARACTER ---
+        "karakter wisnu": {
+            id: `🎭 **Kepribadian & Karakter Wisnu:**
+
+**💙 Inti Karakter:**
+1. **Detail-Oriented** - Sangat teliti dalam coding dan problem-solving
+2. **Growth Mindset** - Selalu ingin belajar dan berkembang
+3. **Resilient** - Pantang menyerah menghadapi bug dan tantangan teknis
+4. **Humble** - Rendah hati meski punya kemampuan teknis yang kuat
+
+**⚡ Work Style:**
+- **Analytical Thinker** - Memecah masalah kompleks menjadi bagian-bagian kecil
+- **Systematic Approach** - Bekerja dengan metodologi yang terstruktur
+- **Quality Focus** - Tidak kompromi dengan kualitas kode
+- **Team Player** - Kolaboratif dan supportive terhadap tim
+
+**🌟 Soft Skills Unggulan:**
+✅ Leadership dari pengalaman organisasi
+✅ Communication yang jelas dan efektif
+✅ Time management yang excellent
+✅ Adaptability terhadap perubahan
+
+**💬 Cara Berpikir:**
+"Setiap masalah punya solusi - butuh kesabaran dan analisis yang tepat untuk menemukannya."
+
+Wisnu adalah kombinasi langka antara technical excellence dan emotional intelligence! 🧠❤️`,
+            en: `🎭 **Wisnu's Personality & Character:**
+
+**💙 Core Traits:**
+1. **Detail-Oriented** - Meticulous in coding and problem-solving
+2. **Growth Mindset** - Always eager to learn and grow
+3. **Resilient** - Persistent when facing bugs and technical challenges
+4. **Humble** - Modest despite strong technical abilities
+
+**⚡ Work Style:**
+- **Analytical Thinker** - Breaks down complex problems into smaller parts
+- **Systematic Approach** - Works with structured methodology
+- **Quality Focus** - Never compromises on code quality
+- **Team Player** - Collaborative and supportive to team
+
+**🌟 Top Soft Skills:**
+✅ Leadership from organizational experience
+✅ Clear and effective communication
+✅ Excellent time management
+✅ Adaptability to changes
+
+**💬 Thinking Style:**
+"Every problem has a solution - it takes patience and proper analysis to find it."
+
+Wisnu is a rare combination of technical excellence and emotional intelligence! 🧠❤️`,
+            aliases: ["wisnu orangnya gimana", "personality", "sifat wisnu", "karakteristik", "attitude", "🌟 Kepribadian & Values", "🌟 Personality & Values", "apa prinsip hidup wisnu"],
+            category: 'personal',
+            emotion: 'professional'
+        },
+
+        "hobi wisnu": {
+            id: `🎮 **Hobi & Minat Wisnu:**
+
+**💻 Professional Hobbies:**
+1. **Coding Experiments** - Mencoba teknologi baru dengan side projects
+2. **Open Source Contribution** - Berkontribusi ke komunitas developer
+3. **Tech Blog Reading** - Mengikuti perkembangan teknologi terbaru
+
+**🎮 Personal Interests:**
+1. **Gaming Strategy** - Mobile Legends, Valorant (suka teamwork dan strategi)
+2. **Anime & Manga** - Terutama genre Shonen dengan cerita inspiratif
+3. **Music** - Mendengarkan musik saat coding untuk fokus maksimal
+4. **Reading** - Tech articles, business cases, dan self-improvement books
+
+**🏃 Lifestyle:**
+- **Fitness** - Olahraga ringan untuk menjaga kesehatan
+- **Coffee Culture** - Menikmati kopi sambil brainstorming ideas
+- **Networking** - Meetup dengan fellow developers dan entrepreneurs
+
+**🎯 Philosophy:** "Balance between technical growth and personal wellbeing is key to sustained productivity."
+
+Hobi-hobi ini membantu Wisnu tetap kreatif dan produktif! ✨`,
+            en: `🎮 **Wisnu's Hobbies & Interests:**
+
+**💻 Professional Hobbies:**
+1. **Coding Experiments** - Trying new technologies with side projects
+2. **Open Source Contribution** - Contributing to developer community
+3. **Tech Blog Reading** - Following latest technology trends
+
+**🎮 Personal Interests:**
+1. **Strategy Gaming** - Mobile Legends, Valorant (enjoys teamwork and strategy)
+2. **Anime & Manga** - Especially Shonen genre with inspiring stories
+3. **Music** - Listening to music while coding for maximum focus
+4. **Reading** - Tech articles, business cases, and self-improvement books
+
+**🏃 Lifestyle:**
+- **Fitness** - Light exercise to maintain health
+- **Coffee Culture** - Enjoying coffee while brainstorming ideas
+- **Networking** - Meetups with fellow developers and entrepreneurs
+
+**🎯 Philosophy:** "Balance between technical growth and personal wellbeing is key to sustained productivity."
+
+These hobbies help Wisnu stay creative and productive! ✨`,
+            aliases: ["apa hobi wisnu", "hobby", "waktu luang", "kesukaan", "minat", "🎮 Hobi & Minat Pribadi", "🎮 Hobbies & Personal Interests", "hobi", "minat wisnu", "hobi apa yang paling disukai"],
+            category: 'hobbies',
+            emotion: 'friendly'
+        },
+
+        "learning methodology": {
+            id: `🧠 **Metodologi Belajar Wisnu:**
+
+Dunia teknologi bergerak cepat, dan Wisnu memiliki sistem khusus untuk tetap relevan.
+
+**🚀 Strategi "Production-First Learner":**
+1. **Learn by Doing** - Langsung membangun proyek kecil untuk memahami konsep baru.
+2. **Documentation Dive** - Membaca dokumentasi resmi sebagai sumber kebenaran utama.
+3. **Teach to Learn** - Menjelaskan kembali apa yang dipelajari kepada orang lain (Feynman Technique).
+4. **Iterative Learning** - Tidak harus sempurna di awal, yang penting iterasi dan perbaikan kontinu.
+
+Belajar bagi Wisnu adalah gaya hidup, bukan sekadar kewajiban! 📖`,
+            en: `🧠 **Wisnu's Learning Methodology:**
+
+The tech world moves fast, and Wisnu has a specific system to stay relevant.
+
+**🚀 "Production-First Learner" Strategy:**
+1. **Learn by Doing** - Immediately building small projects to understand new concepts.
+2. **Documentation Dive** - Reading official documentation as the primary source of truth.
+3. **Teach to Learn** - Re-explaining learned concepts to others (Feynman Technique).
+4. **Iterative Learning** - It doesn't have to be perfect at first; what matters is continuous iteration.
+
+For Wisnu, learning is a lifestyle, not just an obligation! 📖`,
+            aliases: ["cara belajar", "metode belajar", "stay updated", "belajar coding", "learning style", "metodologi belajar", "cara penguasaan teknologi"],
+            category: 'personal',
+            emotion: 'enthusiastic'
+        },
+
+        "mentorship experience": {
+            id: `🤝 **Pengalaman Mentorship:**
+
+Wisnu senang berbagi ilmu dan membantu sesama developer untuk berkembang bersama.
+
+**🌟 Aktivitas Mentoring:**
+- **Peer Programming** - Membantu rekan kuliah memecahkan masalah coding yang rumit.
+- **Tech Sharing Session** - Berbagi tips tentang best practices koding di grup komunitas.
+- **Project Guidance** - Mengarahkan junior developer dalam struktur proyek yang baik.
+
+Melihat orang lain sukses lewat bantuan kita adalah kepuasan tersendiri bagi Wisnu! ✨`,
+            en: `🤝 **Mentorship Experience:**
+
+Wisnu enjoys sharing knowledge and helping fellow developers grow together.
+
+**🌟 Mentoring Activities:**
+- **Peer Programming** - Helping classmates solve complex coding problems.
+- **Tech Sharing Session** - Sharing coding best practices in community groups.
+- **Project Guidance** - Guiding junior developers in proper project structuring.
+
+Seeing others succeed through our help is a special satisfaction for Wisnu! ✨`,
+            aliases: ["mentor", "membantu orang", "berbagi ilmu", "teaching experience", "bimbingan", "mentorship", "pengalaman mentor"],
+            category: 'personal',
+            emotion: 'friendly'
+        },
+
+        "daily routine": {
+            id: `📅 **Rutinitas Harian & Produktivitas:**
+
+Kedisiplinan adalah kunci bagi Wisnu untuk menyeimbangkan kuliah, bisnis, dan pengembangan diri.
+
+**⏰ Jadwal Khas Wisnu:**
+- **Pagi:** Deep work untuk coding atau mengerjakan fitur proyek utama.
+- **Siang:** Perkuliahan dan diskusi intensif dengan rekan tim.
+- **Sore:** Update bisnis keluarga (Ashar Grosir) dan manajemen stok.
+- **Malam:** Self-improvement (membaca buku, riset tren baru) dan istirahat berkualitas.
+
+**🛠️ Productivity Stack:**
+- **Notion** - Untuk goal setting dan dokumentasi.
+- **Deep focus** - Tanpa gangguan saat sesi koding intensif.
+
+Keteraturan mendatangkan kejelasan pikiran! ⚡`,
+            en: `📅 **Daily Routine & Productivity:**
+
+Discipline is key for Wisnu to balance university, business, and self-development.
+
+**⏰ Wisnu's Typical Schedule:**
+- **Morning:** Deep work for coding or developing major project features.
+- **Midday:** University classes and intensive discussions with teammates.
+- **Afternoon:** Family business updates (Ashar Grosir) and inventory management.
+- **Evening:** Self-improvement (reading books, researching new trends) and quality rest.
+
+**🛠️ Productivity Stack:**
+- **Notion** - For goal setting and documentation.
+- **Deep focus** - Zero distractions during intensive coding sessions.
+
+Regularity brings mental clarity! ⚡`,
+            aliases: ["jadwal harian", "rutinitas", "daily routine", "hari-hari wisnu", "manajemen waktu", "produktif", "keseharian"],
+            category: 'personal',
+            emotion: 'professional'
+        },
+
+        "book recommendations": {
+            id: `📚 **Rekomendasi Buku Favorit:**
+
+Buku adalah jendela bagi Wisnu untuk memperluas cakrawala di luar koding.
+
+**🌟 Daftar Bacaan Wajib:**
+1. **Clean Code (Robert C. Martin)** - Untuk menulis kode yang elegan dan maintainable.
+2. **The Lean Startup (Eric Ries)** - Memahami cara membangun bisnis yang efisien.
+3. **Atomic Habits (James Clear)** - Membangun sistem harian untuk sukses jangka panjang.
+4. **Pragmatic Programmer** - Panduan menjadi developer yang lebih professional.
+
+Membaca satu bab sehari menjauhkan kita dari stagnasi! 📖`,
+            en: `📚 **Favorite Book Recommendations:**
+
+Books are windows for Wisnu to broaden horizons beyond coding.
+
+**🌟 Must-read List:**
+1. **Clean Code (Robert C. Martin)** - For writing elegant and maintainable code.
+2. **The Lean Startup (Eric Ries)** - Understanding how to build efficient businesses.
+3. **Atomic Habits (James Clear)** - Building daily systems for long-term success.
+4. **Pragmatic Programmer** - A guide to becoming a more professional developer.
+
+Reading one chapter a day keeps stagnation away! 📖`,
+            aliases: ["rekomendasi buku", "buku favorit", "reading list", "bacaan wisnu", "books to read", "buku yang dibaca"],
+            category: 'personal',
+            emotion: 'friendly'
+        },
+
+        // --- ACADEMIC ---
+        "wisnu kuliah": {
+            id: `🎓 **Pendidikan Wisnu:**
+
+**🏛️ Institution:** President University
+**📚 Jurusan:** Information Technology (Bachelor's Degree)
+**📍 Lokasi:** Cikarang, Jawa Barat
+**📅 Status:** Mahasiswa Aktif (mulai Agustus 2024)
+
+**🌟 Keunggulan President University:**
+- Kurikulum berstandar internasional
+- Fokus pada praktik industri, bukan hanya teori
+- Environment multicultural dengan mahasiswa dari berbagai negara
+- Strong industry connections untuk internship dan job placement
+
+**📈 Academic Focus:**
+1. **Software Engineering** - Best practices dan modern methodologies
+2. **Web Technologies** - Full-stack development dengan tech stack terkini
+3. **Cyber Security** - Fundamental keamanan informasi dan sistem
+4. **Data Management** - Database design dan optimization
+
+**🏆 Aktivitas Akademik:**
+- Aktif dalam kelas dan diskusi
+- Project-based learning dengan aplikasi real-world
+- Research dan paper writing
+- Technical presentations
+
+Pendidikan formal dikombinasikan dengan self-learning intensif! 📚💻`,
+            en: `🎓 **Wisnu's Education:**
+
+**🏛️ Institution:** President University
+**📚 Major:** Information Technology (Bachelor's Degree)
+**📍 Location:** Cikarang, West Java
+**📅 Status:** Active Student (started August 2024)
+
+**🌟 President University Advantages:**
+- International-standard curriculum
+- Focus on industry practice, not just theory
+- Multicultural environment with students from various countries
+- Strong industry connections for internships and job placement
+
+**📈 Academic Focus:**
+1. **Software Engineering** - Best practices and modern methodologies
+2. **Web Technologies** - Full-stack development with latest tech stack
+3. **Cyber Security** - Information and system security fundamentals
+4. **Data Management** - Database design and optimization
+
+**🏆 Academic Activities:**
+- Active in class and discussions
+- Project-based learning with real-world applications
+- Research and paper writing
+- Technical presentations
+
+Formal education combined with intensive self-learning! 📚💻`,
+            aliases: ["kuliah dimana", "kampus wisnu", "sekolah dimana", "education", "study background", "🎓 Pendidikan & Akademik", "🎓 Education & Academics", "kuliah", "kampus", "mata kuliah favorit di kampus", "bagaimana prestasi akademiknya"],
+            category: 'academic',
+            emotion: 'professional'
+        },
+
+        "wisnu jurusan": {
+            id: `📘 **Jurusan & Spesialisasi:**
+
+**🎯 Jurusan:** Information Technology (IT)
+**🏛️ Di:** President University
+**📊 Fokus Utama:** Software Development & Cyber Security
+
+**🔧 Kompetensi Teknis yang Dikembangkan:**
+1. **Software Development**
+   - Full-stack web development
+   - Mobile app development
+   - System architecture design
+
+2. **Cyber Security**
+   - Network security fundamentals
+   - Web application security
+   - Ethical hacking principles
+
+3. **Data Science**
+   - Database management systems
+   - Data analysis techniques
+   - Big data fundamentals
+
+**💡 Kenapa Memilih IT?**
+- Passion sejak SMA terhadap programming
+- Peluang karir yang luas dan dinamis
+- Kemampuan untuk create tangible impact melalui teknologi
+- Sesuai dengan tren digital transformation global
+
+Jurusan ini memberikan foundation kuat untuk karir di tech industry! 🚀`,
+            en: `📘 **Major & Specialization:**
+
+**🎯 Major:** Information Technology (IT)
+**🏛️ At:** President University
+**📊 Main Focus:** Software Development & Cyber Security
+
+**🔧 Technical Competencies Developed:**
+1. **Software Development**
+   - Full-stack web development
+   - Mobile app development
+   - System architecture design
+
+2. **Cyber Security**
+   - Network security fundamentals
+   - Web application security
+   - Ethical hacking principles
+
+3. **Data Science**
+   - Database management systems
+   - Data analysis techniques
+   - Big data fundamentals
+
+**💡 Why Choose IT?**
+- Programming passion since high school
+- Broad and dynamic career opportunities
+- Ability to create tangible impact through technology
+- Aligns with global digital transformation trends
+
+This major provides strong foundation for tech industry career! 🚀`,
+            aliases: ["jurusan apa", "ambil apa", "study", "major", "spesialisasi", "jurusan", "kuliah apa"],
+            category: 'academic',
+            emotion: 'enthusiastic'
+        },
+
+        "research paper": {
+            id: `📄 **Penelitian & Research Paper:**
+
+Wisnu memiliki minat dalam eksplorasi akademis, khususnya di bidang AI dan Cloud Computing.
+
+**🌟 Highlight Penelitian:**
+1. **AI in E-Commerce** - Analisis penggunaan machine learning untuk personalisasi belanja.
+2. **Cloud Infrastructure Efficiency** - Riset tentang optimasi biaya pada layanan cloud.
+3. **Cybersecurity Trends** - Meninjau ancaman keamanan terbaru pada aplikasi web modern.
+
+Riset membantu Wisnu tetap update dengan teori terbaru yang bisa diterapkan pada praktik industri! 📚`,
+            en: `📄 **Research & Academic Papers:**
+
+Wisnu has an interest in academic exploration, particularly in AI and Cloud Computing.
+
+**🌟 Research Highlights:**
+1. **AI in E-Commerce** - Analyzing the use of machine learning for shopping personalization.
+2. **Cloud Infrastructure Efficiency** - Research on cost optimization in cloud services.
+3. **Cybersecurity Trends** - Reviewing the latest security threats on modern web applications.
+
+Research helps Wisnu stay updated with the latest theories that can be applied to industry practice! 📚`,
+            aliases: ["penelitian", "karya ilmiah", "paper", "artikel ilmiah", "research", "tugas akhir", "research paper", "publikasi"],
+            category: 'academic',
+            emotion: 'professional'
+        },
+
+        "university projects": {
+            id: `🏫 **Proyek Universitas Unggulan:**
+
+Selama kuliah di President University, Wisnu telah mengerjakan berbagai proyek akademik yang menantang.
+
+**🚀 Highlight Proyek:**
+- **Full-Stack CMS** - Membangun sistem manajemen konten dari nol sebagai tugas besar.
+- **Database Optimization** - Mendesain skema database kompleks dengan performa tinggi.
+- **Network Security Lab** - Simulasi pertahanan jaringan dari berbagai tipe serangan cyber.
+- **Mobile App Prototype** - Membuat desain dan prototipe aplikasi mobile yang user-friendly.
+
+Proyek-proyek ini mengasah kemampuan Wisnu dalam bekerja dalam tim dan deadline yang ketat! 🏛️`,
+            en: `🏫 **Featured University Projects:**
+
+During his studies at President University, Wisnu has worked on various challenging academic projects.
+
+**🚀 Project Highlights:**
+- **Full-Stack CMS** - Building a content management system from scratch as a major assignment.
+- **Database Optimization** - Designing complex database schemas with high performance.
+- **Network Security Lab** - Simulating network defense against various cyber attack types.
+- **Mobile App Prototype** - Creating user-friendly mobile app designs and prototypes.
+
+These projects honed Wisnu's ability to work in teams and under tight deadlines! 🏛️`,
+            aliases: ["proyek kampus", "tugas kuliah", "university projects", "proyek mahasiswa", "hasil kuliah", "college projects"],
+            category: 'academic',
+            emotion: 'professional'
+        },
+
+        // --- PROFESSIONAL & SKILLS ---
+        "skill wisnu": {
+            id: `💻 **Technical Skills Wisnu:**
+
+**🎯 Core Specialization:** Full-Stack JavaScript Development
+
+**🚀 Frontend Expertise:**
+- **React.js** - Advanced hooks, context, performance optimization
+- **Next.js 14+** - App Router, Server Components, Server Actions
+- **TypeScript** - Type safety, interfaces, generics
+- **Tailwind CSS** - Utility-first, responsive design
+- **State Management** - Zustand, Redux Toolkit, React Query
+
+**⚙️ Backend & Database:**
+- **Node.js & Express** - REST APIs, middleware, authentication
+- **Supabase** - Full backend solution, realtime, auth
+- **PostgreSQL** - Database design, optimization, queries
+- **Prisma ORM** - Type-safe database access
+
+**🔧 DevOps & Tools:**
+- **Git & GitHub** - Version control, collaboration
+- **Docker** - Containerization basics
+- **Vercel/Netlify** - Deployment platforms
+- **VS Code** - Advanced extensions and setup
+
+**🛡️ Security Knowledge:**
+- Web security best practices
+- Authentication/Authorization systems
+- API security principles
+
+**📱 Additional Skills:**
+- Flutter (Mobile Development)
+- Python (Scripting & Automation)
+- Linux/Unix environment
+
+Wisnu selalu update dengan teknologi terbaru! 🔥`,
+            en: `💻 **Wisnu's Technical Skills:**
+
+**🎯 Core Specialization:** Full-Stack JavaScript Development
+
+**🚀 Frontend Expertise:**
+- **React.js** - Advanced hooks, context, performance optimization
+- **Next.js 14+** - App Router, Server Components, Server Actions
+- **TypeScript** - Type safety, interfaces, generics
+- **Tailwind CSS** - Utility-first, responsive design
+- **State Management** - Zustand, Redux Toolkit, React Query
+
+**⚙️ Backend & Database:**
+- **Node.js & Express** - REST APIs, middleware, authentication
+- **Supabase** - Full backend solution, realtime, auth
+- **PostgreSQL** - Database design, optimization, queries
+- **Prisma ORM** - Type-safe database access
+
+**🔧 DevOps & Tools:**
+- **Git & GitHub** - Version control, collaboration
+- **Docker** - Containerization basics
+- **Vercel/Netlify** - Deployment platforms
+- **VS Code** - Advanced extensions and setup
+
+**🛡️ Security Knowledge:**
+- Web security best practices
+- Authentication/Authorization systems
+- API security principles
+
+**📱 Additional Skills:**
+- Flutter (Mobile Development)
+- Python (Scripting & Automation)
+- Linux/Unix environment
+
+Wisnu is always updated with latest technologies! 🔥`,
+            aliases: ["keahlian", "technical skills", "kemampuan teknis", "tech stack", "programming skills", "💻 Technical Skills", "skill teknis apa yang paling dikuasai", "bagaimana cara wisnu solve technical challenges"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "framework favorit": {
+            id: `⭐ **Framework Favorit: Next.js**
+
+**🎯 Kenapa Next.js?**
+1. **Full-Stack Solution** - Frontend + backend dalam satu framework
+2. **Performance Excellence** - Server-side rendering, static generation
+3. **Developer Experience** - Great tooling, hot reload, easy deployment
+4. **Ecosystem Maturity** - Large community, plenty of resources
+
+**🚀 Fitur yang Paling Disukai:**
+- **App Router** - Modern routing dengan layout nesting
+- **Server Components** - Reduced bundle size, better performance
+- **Server Actions** - Secure server-side mutations
+- **Image Optimization** - Automatic image optimization
+- **Middleware** - Flexible request/response handling
+
+**💡 Pengalaman dengan Next.js:**
+- Production apps dengan 15.000+ users
+- Complex authentication systems
+- Real-time features dengan Supabase
+- SEO optimization untuk marketing sites
+- E-commerce functionality lengkap
+
+**🔮 Future of Next.js:**
+- React Server Components adoption
+- Partial Prerendering
+- Enhanced caching strategies
+- Better developer tools
+
+Next.js adalah game-changer untuk web development modern! 🌟`,
+            en: `⭐ **Favorite Framework: Next.js**
+
+**🎯 Why Next.js?**
+1. **Full-Stack Solution** - Frontend + backend in one framework
+2. **Performance Excellence** - Server-side rendering, static generation
+3. **Developer Experience** - Great tooling, hot reload, easy deployment
+4. **Ecosystem Maturity** - Large community, plenty of resources
+
+**🚀 Most Loved Features:**
+- **App Router** - Modern routing with layout nesting
+- **Server Components** - Reduced bundle size, better performance
+- **Server Actions** - Secure server-side mutations
+- **Image Optimization** - Automatic image optimization
+- **Middleware** - Flexible request/response handling
+
+**💡 Experience with Next.js:**
+- Production apps with 15,000+ users
+- Complex authentication systems
+- Real-time features with Supabase
+- SEO optimization for marketing sites
+- Complete e-commerce functionality
+
+**🔮 Future of Next.js:**
+- React Server Components adoption
+- Partial Prerendering
+- Enhanced caching strategies
+- Better developer tools
+
+Next.js is a game-changer for modern web development! 🌟`,
+            aliases: ["nextjs", "react framework", "tech preference", "favorite tech"],
+            category: 'tech',
+            emotion: 'enthusiastic'
+        },
+
+        "websocket implementation": {
+            id: `🔌 **Implementasi WebSockets & Real-time:**
+
+Wisnu memiliki pengalaman mendalam dalam membangun fitur real-time menggunakan WebSockets (Socket.io) dan Supabase Realtime.
+
+**🚀 Use Cases yang Pernah Dikerjakan:**
+1. **Real-time Order Tracking** - Notifikasi instan saat status pesanan berubah di Ashar Grosir.
+2. **Live Inventory Updates** - Sinkronisasi stok barang di seluruh dashboard admin dan user secara live.
+3. **Collaborative Editing** - Fitur editing dokumen bersama di platform CMS.
+4. **Instant Chat Support** - Membangun sistem dukungan chat yang responsif.
+
+**🔧 Tech Stack:**
+- **Pusher/Supabase Realtime** - Untuk skalabilitas serverless.
+- **Socket.io** - Untuk kontrol logic server-side yang lebih kompleks.
+- **State Management** - Integrasi dengan zustand/redux untuk update UI yang seamless.
+
+Wisnu percaya bahwa interaktivitas real-time adalah kunci UX modern yang memuaskan! ⚡`,
+            en: `🔌 **WebSockets & Real-time Implementation:**
+
+Wisnu has deep experience building real-time features using WebSockets (Socket.io) and Supabase Realtime.
+
+**🚀 Practical Use Cases:**
+1. **Real-time Order Tracking** - Instant notifications when order status changes in Ashar Grosir.
+2. **Live Inventory Updates** - Live stock synchronization across admin and user dashboards.
+3. **Collaborative Editing** - Document collaboration features in CMS platforms.
+4. **Instant Chat Support** - Building responsive chat support systems.
+
+**🔧 Tech Stack:**
+- **Pusher/Supabase Realtime** - For serverless scalability.
+- **Socket.io** - For more complex server-side logic control.
+- **State Management** - Seamless UI updates integrated with zustand/redux.
+
+Wisnu believes that real-time interactivity is key to a satisfying modern UX! ⚡`,
+            aliases: ["websockets", "real-time", "socket.io", "live update", "komunikasi real-time", "websocket", "realtime", "socketio"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "microservices architecture": {
+            id: `🏗️ **Microservices Architecture:**
+
+Wisnu memahami transisi dari Monolith ke Microservices untuk meningkatkan skalabilitas dan pemeliharaan aplikasi besar.
+
+**🎯 Key Principles:**
+1. **Single Responsibility** - Tiap service fokus pada satu fungsi bisnis.
+2. **Independent Deployment** - Update satu modul tanpa mengganggu seleruh sistem.
+3. **API First** - Komunikasi antar service yang terstandarisasi.
+4. **Data Isolation** - Masing-masing service memiliki database sendiri atau skema terpisah.
+
+**🔧 Relevant Tech:**
+- **Docker** - Untuk isolasi environment.
+- **API Gateways** - Pengaturan traffic dan autentikasi terpusat.
+- **Next.js Micro-frontends** - Membagi frontend menjadi bagian yang lebih kecil.
+
+Wisnu fokus pada arsitektur yang "scalable by design"! 🚀`,
+            en: `🏗️ **Microservices Architecture:**
+
+Wisnu understands the transition from Monolith to Microservices to improve scalability and maintainability of large applications.
+
+**🎯 Key Principles:**
+1. **Single Responsibility** - Each service focuses on one business function.
+2. **Independent Deployment** - Updating one module without affecting the whole system.
+3. **API First** - Standardized communication between services.
+4. **Data Isolation** - Each service has its own database or separate schema.
+
+**🔧 Relevant Tech:**
+- **Docker** - For environment isolation.
+- **API Gateways** - Centralized traffic and authentication management.
+- **Next.js Micro-frontends** - Breaking down the frontend into smaller parts.
+
+Wisnu focuses on architecture that is "scalable by design"! 🚀`,
+            aliases: ["microservices", "arsitektur microservices", "distributed systems", "service-oriented", "mikroservis"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "ci/cd pipeline": {
+            id: `🔄 **CI/CD Pipeline & Automation:**
+
+Wisnu mengotomatiskan alur kerja pengembangan untuk memastikan kualitas kode dan kecepatan rilis.
+
+**🛠️ Pipeline Wisnu:**
+1. **GitHub Actions** - Melakukan automated testing (Unit/E2E) setiap push.
+2. **Linting & Type Check** - Memastikan kode sesuai standar dan bebas error TS.
+3. **Staging Preview** - Deploy otomatis ke staging/preview environment untuk review.
+4. **Production Deploy** - Rilis otomatis ke Vercel/Cloud setelah semua test pass.
+
+**📈 Benefit:**
+- Mengurangi error manual saat deployment.
+- Feedback loop yang lebih cepat bagi developer.
+- Build aplikasi yang konsisten di setiap environment.
+
+Otomasi adalah rahasia produktivitas Wisnu! ⚡`,
+            en: `🔄 **CI/CD Pipeline & Automation:**
+
+Wisnu automates development workflows to ensure code quality and release speed.
+
+**🛠️ Wisnu's Pipeline:**
+1. **GitHub Actions** - Running automated tests (Unit/E2E) on every push.
+2. **Linting & Type Check** - Ensuring code follows standards and is TS error-free.
+3. **Staging Preview** - Auto-deploying to staging environments for review.
+4. **Production Deploy** - Automatic release to Vercel/Cloud after all tests pass.
+
+**📈 Benefits:**
+- Reduces manual errors during deployment.
+- Faster feedback loops for developers.
+- Consistent application builds across all environments.
+
+Automation is the secret to Wisnu's productivity! ⚡`,
+            aliases: ["ci/cd", "pipeline", "automation", "deployment pipeline", "github actions", "gitlab ci", "cicd"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "docker kubernetes": {
+            id: `🐳 **Docker & Kubernetes:**
+
+Wisnu menggunakan teknologi containerization untuk memastikan aplikasi berjalan konsisten di mana saja.
+
+**🚀 Containerization (Docker):**
+- **Consistency** - "It works on my machine" bukan lagi masalah.
+- **Isolation** - Library antar proyek tidak akan bentrok.
+- **Reusability** - Image Docker yang siap pakai untuk berbagai environment.
+
+**☸️ Orchestration (Kubernetes):**
+- **Scaling** - Menambah instance aplikasi secara otomatis saat traffic naik.
+- **Self-healing** - Auto-restart container yang error.
+- **Load Balancing** - Distribusi traffic yang efisien.
+
+Teknologi ini memungkinkan Wisnu membangun sistem yang sangat resilien! 🛡️`,
+            en: `🐳 **Docker & Kubernetes:**
+
+Wisnu uses containerization technology to ensure applications run consistently everywhere.
+
+**🚀 Containerization (Docker):**
+- **Consistency** - Eliminating "It works on my machine" issues.
+- **Isolation** - Preventing library conflicts between projects.
+- **Reusability** - Production-ready Docker images for various environments.
+
+**☸️ Orchestration (Kubernetes):**
+- **Scaling** - Automatically adding app instances during traffic spikes.
+- **Self-healing** - Auto-restarting crashed containers.
+- **Load Balancing** - Efficient traffic distribution.
+
+These technologies allow Wisnu to build highly resilient systems! 🛡️`,
+            aliases: ["docker", "kubernetes", "k8s", "containerization", "orchestration", "devops tools", "kontainer"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "security implementation": {
+            id: `🛡️ **Implementasi Keamanan (Security):**
+
+Keamanan data adalah prioritas utama Wisnu dalam setiap pengembangan aplikasi.
+
+**🔐 Strategi Keamanan:**
+1. **JWT & RBAC** - Autentikasi ketat dan Role-Based Access Control.
+2. **Environment Variables** - Melindungi API keys dan kredensial sensitif.
+3. **Data Encryption** - Enkripsi data sensitif (seperti password) di database.
+4. **SQL Injection Protection** - Menggunakan ORM (Prisma/TypeORM) untuk mencegah serangan injeksi.
+5. **CORS Policy** - Kontrol akses domain yang aman.
+
+Wisnu membangun aplikasi yang tidak hanya fungsional, tapi juga aman bagi pengguna! 🔒`,
+            en: `🛡️ **Security Implementation:**
+
+Data security is Wisnu's top priority in every application development.
+
+**🔐 Security Strategies:**
+1. **JWT & RBAC** - Strict authentication and Role-Based Access Control.
+2. **Environment Variables** - Protecting API keys and sensitive credentials.
+3. **Data Encryption** - Encrypting sensitive data in the database.
+4. **SQL Injection Protection** - Using ORMs to prevent injection attacks.
+5. **CORS Policy** - Secure domain access control.
+
+Wisnu builds applications that are not just functional, but also safe for users! 🔒`,
+            aliases: ["keamanan", "security", "cybersecurity", "web security", "owasp", "encryption", "hacking", "cyber security"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "open source": {
+            id: `🌐 **Kontribusi Open Source:**
+
+Wisnu percaya pada kekuatan kolaborasi dan berbagi pengetahuan melalui komunitas open source.
+
+**🌟 Aktivitas Open Source:**
+1. **GitHub Contributions** - Berpartisipasi dalam perbaikan bug di library populer.
+2. **Tutorials & Blogs** - Membagikan tip coding yang berguna bagi developer lain.
+3. **Project Sharing** - Meng-open-source-kan utilitas atau template yang bisa dipakai publik.
+4. **Feedback & Review** - Membantu developer lain lewat forum dan pull requests.
+
+Bagi Wisnu, open source adalah cara terbaik untuk belajar dari yang terbaik! 🤝`,
+            en: `🌐 **Open Source Contributions:**
+
+Wisnu believes in the power of collaboration and sharing knowledge through the open-source community.
+
+**🌟 Open Source Activities:**
+1. **GitHub Contributions** - Participating in bug fixes for popular libraries.
+2. **Tutorials & Blogs** - Sharing useful coding tips for other developers.
+3. **Project Sharing** - Open-sourcing utilities or templates for public use.
+4. **Feedback & Review** - Helping others via forums and pull requests.
+
+For Wisnu, open source is the best way to learn from the best! 🤝`,
+            aliases: ["open source", "kontribusi", "github contribution", "sharing code", "komunitas open source", "opensource"],
+            category: 'tech',
+            emotion: 'friendly'
+        },
+
+        "future tech trends": {
+            id: `🔮 **Tren Teknologi Masa Depan:**
+
+Wisnu selalu mengamati perkembangan teknologi terbaru untuk tetap kompetitif di industri.
+
+**🚀 Tren yang Diikuti Wisnu:**
+1. **Generative AI** - Integrasi AI (seperti chatbot ini!) ke dalam aplikasi web.
+2. **Edge Computing** - Membawa komputasi lebih dekat ke user untuk latency minimal.
+3. **Web3 & Decentralization** - Mempelajari fundamental blockchain dan smart contracts.
+4. **Sustainability in Tech** - Membangun kode yang efisien dan ramah energi.
+
+Masa depan adalah milik mereka yang terus beradaptasi! 🚀`,
+            en: `🔮 **Future Technology Trends:**
+
+Wisnu constantly monitors the latest tech developments to stay competitive in the industry.
+
+**🚀 Trends Wisnu Follows:**
+1. **Generative AI** - Integrating AI assistants (like this one!) into web apps.
+2. **Edge Computing** - Bringing computation closer to users for minimal latency.
+3. **Web3 & Decentralization** - Learning blockchain and smart contract fundamentals.
+4. **Sustainability in Tech** - Building efficient and energy-friendly code.
+
+The future belongs to those who keep adapting! 🚀`,
+            aliases: ["tren teknologi", "future tech", "masa depan ai", "technology trends", "ai trends", "tren ai", "teknologi masa depan"],
+            category: 'tech',
+            emotion: 'enthusiastic'
+        },
+
+        // --- PROJECTS ---
+        "ashar grosir": {
+            id: `🛍️ **Project: Ashar Grosir Parfum**
+
+**🎯 Overview:**
+Platform E-Commerce B2B untuk bisnis grosir parfum keluarga yang telah berjalan 20+ tahun, melayani 15.000+ mitra bisnis.
+
+**🚀 Tech Stack:**
+- **Frontend:** Next.js 14, TypeScript, Tailwind CSS
+- **Backend:** Supabase, PostgreSQL
+- **Authentication:** Supabase Auth
+- **Deployment:** Vercel
+- **Tools:** GitHub, Stripe (payment)
+
+**🌟 Fitur Utama:**
+1. **Digital Catalog** - 5000+ produk dengan advanced search & filter
+2. **Partner Dashboard** - Order management untuk mitra B2B
+3. **Admin Panel** - Complete business management system
+4. **Real-time Updates** - Live order tracking dan notifications
+5. **Reporting System** - Analytics dan business insights
+
+**📈 Business Impact:**
+✅ **Operational Efficiency** ↑ 300%
+✅ **Order Processing Time** ↓ 70%
+✅ **Error Reduction** ↓ 85%
+✅ **Customer Satisfaction** ↑ 40%
+✅ **Business Scalability** Unlimited growth potential
+
+**🔧 Technical Challenges Solved:**
+- Migration dari sistem manual ke digital
+- Handling high-concurrent user access
+- Complex inventory management system
+- Secure payment processing integration
+- Real-time data synchronization
+
+**🎖️ Achievement:** Sukses mendigitalkan bisnis tradisional menjadi modern digital enterprise! 💪`,
+            en: `🛍️ **Project: Ashar Grosir Parfum**
+
+**🎯 Overview:**
+B2B E-Commerce platform for a 20+ year family wholesale perfume business, serving 15,000+ business partners.
+
+**🚀 Tech Stack:**
+- **Frontend:** Next.js 14, TypeScript, Tailwind CSS
+- **Backend:** Supabase, PostgreSQL
+- **Authentication:** Supabase Auth
+- **Deployment:** Vercel
+- **Tools:** GitHub, Stripe (payment)
+
+**🌟 Key Features:**
+1. **Digital Catalog** - 5000+ products with advanced search & filter
+2. **Partner Dashboard** - Order management for B2B partners
+3. **Admin Panel** - Complete business management system
+4. **Real-time Updates** - Live order tracking and notifications
+5. **Reporting System** - Analytics and business insights
+
+**📈 Business Impact:**
+✅ **Operational Efficiency** ↑ 300%
+✅ **Order Processing Time** ↓ 70%
+✅ **Error Reduction** ↓ 85%
+✅ **Customer Satisfaction** ↑ 40%
+✅ **Business Scalability** Unlimited growth potential
+
+**🔧 Technical Challenges Solved:**
+- Migration from manual to digital system
+- Handling high-concurrent user access
+- Complex inventory management system
+- Secure payment processing integration
+- Real-time data synchronization
+
+**🎖️ Achievement:** Successfully digitized traditional business into modern digital enterprise! 💪`,
+            aliases: ["grosir parfum", "bisnis keluarga", "family business", "e-commerce project", "project terbesar yang pernah dikerjakan", "bisa cerita lebih detail tentang ashar grosir"],
+            category: 'projects',
+            emotion: 'professional'
+        },
+
+        "lexcorpus": {
+            id: `⚖️ **Project: LexCorpus CMS Platform**
+
+**🎯 Overview:**
+Production-ready Content Management System untuk firma hukum dengan role-based editorial system yang kompleks.
+
+**🚀 Tech Stack:**
+- **Framework:** Next.js 14 dengan App Router
+- **Database:** Supabase + PostgreSQL
+- **UI/UX:** Tailwind CSS, Shadcn/ui
+- **Authentication:** Role-based access control
+- **Deployment:** Vercel Enterprise
+
+**🌟 Fitur Khusus Hukum:**
+1. **Document Version Control** - Track perubahan dokumen hukum
+2. **Collaborative Editing** - Multiple lawyer collaboration
+3. **Template System** - Legal document templates
+4. **Client Portal** - Secure client access
+5. **Case Management** - Complete case tracking system
+
+**🔐 Security Features:**
+- End-to-end encryption untuk sensitive documents
+- Audit trail untuk semua activities
+- Compliance dengan legal industry standards
+- Advanced permission system
+
+**💼 User Roles:**
+1. **Partners** - Full access + administration
+2. **Associates** - Document creation + editing
+3. **Paralegals** - Research + document preparation
+4. **Clients** - Secure document access only
+
+**🎯 Impact:** Meningkatkan productivity legal team sebesar 60%! ⚡`,
+            en: `⚖️ **Project: LexCorpus CMS Platform**
+
+**🎯 Overview:**
+Production-ready Content Management System for law firms with complex role-based editorial system.
+
+**🚀 Tech Stack:**
+- **Framework:** Next.js 14 with App Router
+- **Database:** Supabase + PostgreSQL
+- **UI/UX:** Tailwind CSS, Shadcn/ui
+- **Authentication:** Role-based access control
+- **Deployment:** Vercel Enterprise
+
+**🌟 Legal-Specific Features:**
+1. **Document Version Control** - Track legal document changes
+2. **Collaborative Editing** - Multiple lawyer collaboration
+3. **Template System** - Legal document templates
+4. **Client Portal** - Secure client access
+5. **Case Management** - Complete case tracking system
+
+**🔐 Security Features:**
+- End-to-end encryption for sensitive documents
+- Audit trail for all activities
+- Compliance with legal industry standards
+- Advanced permission system
+
+**💼 User Roles:**
+1. **Partners** - Full access + administration
+2. **Associates** - Document creation + editing
+3. **Paralegals** - Research + document preparation
+4. **Clients** - Secure document access only
+
+**🎯 Impact:** Increased legal team productivity by 60%! ⚡`,
+            aliases: ["cms law firm", "projek hukum", "legal tech", "document management", "bagaimana cara lexcorpus membantu firma hukum"],
+            category: 'projects',
+            emotion: 'professional'
+        },
+
+        "proyek wisnu": {
+            id: `🚀 **Proyek-proyek Unggulan Wisnu:**
+
+Wisnu telah membangun berbagai solusi digital yang berdampak nyata. Berikut adalah beberapa highlight utama:
+
+1. 🛍️ **Ashar Grosir Parfum** - Platform E-Commerce B2B (Next.js, Supabase)
+2. ⚖️ **LexCorpus** - CMS Platform untuk Firma Hukum (Next.js, PostgreSQL)
+3. 🕌 **PC FKMA Website** - Platform digital transformasi organisasi
+
+Wisnu fokus pada performa, skalabilitas, dan user experience dalam setiap karyanya! ⚡`,
+            en: `🚀 **Wisnu's Featured Projects:**
+
+Wisnu has built various digital solutions with real impact. Here are some key highlights:
+
+1. 🛍️ **Ashar Grosir Parfum** - B2B E-Commerce Platform (Next.js, Supabase)
+2. ⚖️ **LexCorpus** - Legal Firm CMS Platform (Next.js, PostgreSQL)
+3. 🕌 **PC FKMA Website** - Organizational digital transformation platform
+
+Wisnu focuses on performance, scalability, and user experience in every project! ⚡`,
+            aliases: ["portfolio", "proyek apa saja", "daftar proyek", "🚀 Proyek & Portfolio", "🚀 Projects & Portfolio", "proyek-proyek unggulan", "tantangan teknis apa yang pernah dihadapi"],
+            category: 'projects',
+            emotion: 'enthusiastic'
+        },
+
+        // --- ORGANIZATIONS ---
+        "organisasi wisnu": {
+            id: `🤝 **Organizational Involvement:**
+
+**🏛️ 1. PUFA Computer Science**
+   - **Posisi:** VoD (Art and Sport Division)
+   - **Peran:** Memimpin kegiatan seni dan olahraga
+   - **Kontribusi:** Event planning, team coordination
+   - **Impact:** Meningkatkan student engagement 45%
+
+**🕌 2. PC FKMA Jakarta As'adiyah**
+   - **Posisi:** IT Development (2024-2026)
+   - **Peran:** Mengembangkan website organisasi
+   - **Kontribusi:** Digital transformation platform
+   - **Website:** https://pcfkmaasadiyahjakarta.vercel.app/
+
+**📚 3. PUMA Informatic**
+   - **Posisi:** Active Member
+   - **Peran:** Academic support dan networking
+   - **Kontribusi:** Tech workshops dan seminars
+
+**🌟 Skills yang Dikembangkan:**
+✅ **Leadership** - Memimpin tim dan proyek
+✅ **Communication** - Public speaking dan coordination
+✅ **Project Management** - Planning dan execution
+✅ **Networking** - Building professional relationships
+✅ **Time Management** - Balance multiple responsibilities
+
+**💡 Philosophy:** "Soft skills + Technical skills = Complete Professional"`,
+            en: `🤝 **Organizational Involvement:**
+
+**🏛️ 1. PUFA Computer Science**
+   - **Position:** VoD (Art and Sport Division)
+   - **Role:** Leading art and sports activities
+   - **Contribution:** Event planning, team coordination
+   - **Impact:** Increased student engagement by 45%
+
+**🕌 2. PC FKMA Jakarta As'adiyah**
+   - **Position:** IT Development (2024-2026)
+   - **Role:** Developing organization website
+   - **Contribution:** Digital transformation platform
+   - **Website:** https://pcfkmaasadiyahjakarta.vercel.app/
+
+**📚 3. PUMA Informatic**
+   - **Position:** Active Member
+   - **Role:** Academic support and networking
+   - **Contribution:** Tech workshops and seminars
+
+**🌟 Developed Skills:**
+✅ **Leadership** - Leading teams and projects
+✅ **Communication** - Public speaking and coordination
+✅ **Project Management** - Planning and execution
+✅ **Networking** - Building professional relationships
+✅ **Time Management** - Balancing multiple responsibilities
+
+**💡 Philosophy:** "Soft skills + Technical skills = Complete Professional"`,
+            aliases: ["kegiatan kampus", "pufa", "puma", "fkma", "organisasi apa", "leadership", "💼 Pengalaman Professional", "💼 Professional Experience", "🤝 Organisasi & Leadership", "🤝 Organizations & Leadership", "pendidikan dan organisasi", "pengalaman organisasi apa yang paling berkesan", "pendidikan prestasi akademik dan organisasi kampus"],
+            category: 'professional',
+            emotion: 'enthusiastic'
+        },
+
+        "business strategy": {
+            id: `📈 **Strategi Bisnis & Growth:**
+
+Wisnu mengintegrasikan pemahaman bisnis ke dalam solusi teknis untuk memaksimalkan ROI dan efisiensi.
+
+**🎯 Fokus Strategis:**
+1. **MVP Development** - Membangun fitur krusial tercepat untuk validasi pasar.
+2. **User-Centric Design** - Fokus pada solusi yang benar-benar dibutuhkan pengguna.
+3. **Scalability Planning** - Menyiapkan infrastruktur untuk pertumbuhan jangka panjang.
+4. **Cost Optimization** - Efisiensi penggunaan cloud resources dan infrastruktur.
+
+Bisnis yang sukses dimulai dari strategi yang matang dan eksekusi teknis yang presisi! 🚀`,
+            en: `📈 **Business Strategy & Growth:**
+
+Wisnu integrates business understanding into technical solutions to maximize ROI and efficiency.
+
+**🎯 Strategic Focus:**
+1. **MVP Development** - Building crucial features fast for market validation.
+2. **User-Centric Design** - Focusing on solutions that users actually need.
+3. **Scalability Planning** - Preparing infrastructure for long-term growth.
+4. **Cost Optimization** - Efficiency in using cloud resources and infrastructure.
+
+Successful businesses start with mature strategy and precise technical execution! 🚀`,
+            aliases: ["strategi bisnis", "business growth", "pengembangan bisnis", "roi", "efisiensi bisnis", "business strategy"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "startup experience": {
+            id: `🚀 **Pengalaman Startup:**
+
+Bekerja di lingkungan startup telah membentuk Wisnu menjadi developer yang adaptif dan solutif.
+
+**💡 Lessons Learned:**
+- **Agility** - Beradaptasi cepat dengan perubahan prioritas bisnis.
+- **Ownership** - Bertanggung jawab penuh atas modul atau produk yang dibangun.
+- **Problem Solving** - Mencari solusi kreatif dengan resource yang terbatas.
+- **Fast Execution** - Mengirimkan fitur berkualitas dalam deadline yang ketat.
+
+Wisnu berkembang pesat dalam ekosistem yang dinamis dan inovatif! ⚡`,
+            en: `🚀 **Startup Experience:**
+
+Working in a startup environment has shaped Wisnu into an adaptive and solution-oriented developer.
+
+**💡 Lessons Learned:**
+- **Agility** - Quickly adapting to changing business priorities.
+- **Ownership** - Taking full responsibility for modules or products built.
+- **Problem Solving** - Finding creative solutions with limited resources.
+- **Fast Execution** - Delivering quality features under tight deadlines.
+
+Wisnu thrives in dynamic and innovative ecosystems! ⚡`,
+            aliases: ["pengalaman startup", "startup life", "agility", "adaptasi cepat", "working in startup", "pengalaman professional", "pengalaman professional proyek nyata dengan business impact"],
+            category: 'professional',
+            emotion: 'enthusiastic'
+        },
+
+        "team management": {
+            id: `👥 **Manajemen Tim & Kolaborasi:**
+
+Wisnu memiliki pengalaman memimpin dan berkolaborasi dalam tim teknis untuk mencapai tujuan bersama.
+
+**🌟 Gaya Manajemen:**
+1. **Mentorship** - Membantu rekan setim meningkatkan kemampuan teknis mereka.
+2. **Clear Communication** - Memastikan semua orang paham goal dan tugas masing-masing.
+3. **Conflict Resolution** - Menangani perbedaan pendapat secara professional.
+4. **Psychological Safety** - Menciptakan lingkungan di mana tim berani berinovasi.
+
+Tim yang solid adalah aset terpenting dalam setiap proyek sukses! 🤝`,
+            en: `👥 **Team Management & Collaboration:**
+
+Wisnu has experience leading and collaborating within technical teams to achieve common goals.
+
+**🌟 Management Style:**
+1. **Mentorship** - Helping teammates improve their technical skills.
+2. **Clear Communication** - Ensuring everyone understands the goals and their tasks.
+3. **Conflict Resolution** - Handling disagreements professionally.
+4. **Psychological Safety** - Creating an environment where the team dares to innovate.
+
+A solid team is the most important asset in any successful project! 🤝`,
+            aliases: ["manajemen tim", "kepemimpinan tim", "kolaborasi tim", "team lead", "leadership style", "gaya kepemimpinan", "mengelola tim"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "project management": {
+            id: `📅 **Project Management (Agile/Scrum):**
+
+Wisnu menerapkan metodologi Agile untuk memastikan proyek berjalan terorganisir dan tepat waktu.
+
+**🛠️ Praktik yang Digunakan:**
+- **Sprint Planning** - Membagi pekerjaan menjadi siklus kecil yang terukur.
+- **Daily Standups** - Sinkronisasi harian untuk mengatasi blocker.
+- **Retrospectives** - Review berkala untuk perbaikan proses tim.
+- **Backlog Grooming** - Memprioritaskan fitur berdasarkan nilai bisnis.
+
+Manajemen proyek yang baik mengubah ide menjadi realitas secara terstruktur! ✅`,
+            en: `📅 **Project Management (Agile/Scrum):**
+
+Wisnu applies Agile methodologies to ensure projects are organized and on time.
+
+**🛠️ Practices Used:**
+- **Sprint Planning** - Breaking work into small, measurable cycles.
+- **Daily Standups** - Daily synchronization to resolve blockers.
+- **Retrospectives** - Periodical reviews for team process improvement.
+- **Backlog Grooming** - Prioritizing features based on business value.
+
+Good project management turns ideas into reality in a structured way! ✅`,
+            aliases: ["manajemen proyek", "agile", "scrum", "manajemen tugas", "project tracking", "project management", "metodologi proyek"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "gdpr compliance": {
+            id: `🔐 **GDPR & Privasi Data:**
+
+Wisnu memahami pentingnya kepatuhan terhadap standar privasi data internasional seperti GDPR.
+
+**🛡️ Langkah Kepatuhan:**
+1. **Data Minimization** - Hanya mengumpulkan data yang benar-benar diperlukan.
+2. **Consent Management** - Memastikan user memberikan izin atas datanya.
+3. **Right to be Forgotten** - Menyediakan fitur untuk menghapus data user secara permanen.
+4. **Secure Storage** - Melindungi data pribadi dengan enkripsi standar industri.
+
+Privasi pengguna bukan sekadar fitur, tapi adalah hak mendasar! 🛡️`,
+            en: `🔐 **GDPR & Data Privacy:**
+
+Wisnu understands the importance of compliance with international data privacy standards like GDPR.
+
+**🛡️ Compliance Steps:**
+1. **Data Minimization** - Only collecting data that is absolutely necessary.
+2. **Consent Management** - Ensuring users give permission for their data.
+3. **Right to be Forgotten** - Providing features to permanently delete user data.
+4. **Secure Storage** - Protecting personal data with industry-standard encryption.
+
+User privacy is not just a feature; it's a fundamental right! 🛡️`,
+            aliases: ["gdpr", "privasi data", "kepatuhan data", "data compliance", "pelindungan privasi", "keamanan data pribadi", "peraturan data"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "data analytics": {
+            id: `📊 **Data Analytics & Insights:**
+
+Wisnu menggunakan data untuk memahami perilaku pengguna dan mengoptimalkan performa produk.
+
+**🎯 Fokus Analytics:**
+- **User Behavior Tracking** - Memahami fitur mana yang paling sering digunakan.
+- **Performance Metrics** - Memantau kecepatan aplikasi dan conversion rate.
+- **Data Visualization** - Menyajikan data kompleks dalam bentuk dashboard yang mudah dimengerti.
+- **Evidence-Based Decisions** - Mengambil keputusan berdasarkan fakta, bukan asumsi.
+
+Data menceritakan kisah yang membantu kita membangun produk yang lebih baik! 📉`,
+            en: `📊 **Data Analytics & Insights:**
+
+Wisnu uses data to understand user behavior and optimize product performance.
+
+**🎯 Analytics Focus:**
+- **User Behavior Tracking** - Understanding which features are used most.
+- **Performance Metrics** - Monitoring app speed and conversion rates.
+- **Data Visualization** - Presenting complex data in easy-to-understand dashboards.
+- **Evidence-Based Decisions** - Making decisions based on facts, not assumptions.
+
+Data tells a story that helps us build better products! 📉`,
+            aliases: ["data analytics", "analisis data", "insight", "metrik performa", "data-driven", "mengambil keputusan data"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "a/b testing": {
+            id: `🧪 **A/B Testing & Optimization:**
+
+Wisnu melakukan eksperimen terukur untuk menentukan desain atau fitur yang paling efektif.
+
+**⚙️ Proses Eksperimen:**
+1. **Hypothesis** - Menentukan apa yang ingin diuji (misal: warna tombol vs konversi).
+2. **Test Variants** - Membuat dua versi fitur (A dan B).
+3. **Data Collection** - Mengumpulkan data interaksi user pada kedua versi.
+4. **Analysis** - Memilih pemenang berdasarkan performa nyata.
+
+Setiap pixel harus divalidasi oleh hasil yang nyata! 🎯`,
+            en: `🧪 **A/B Testing & Optimization:**
+
+Wisnu conducts measurable experiments to determine the most effective designs or features.
+
+**⚙️ Experiment Process:**
+1. **Hypothesis** - Defining what to test (e.g., button color vs. conversion).
+2. **Test Variants** - Creating two versions of a feature (A and B).
+3. **Data Collection** - Collecting user interaction data on both versions.
+4. **Analysis** - Choosing the winner based on real performance.
+
+Every pixel should be validated by real results! 🎯`,
+            aliases: ["ab testing", "eksperimen fitur", "optimasi konversi", "testing varian", "a/b testing", "metode testing"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "tech community": {
+            id: `🤝 **Keterlibatan Komunitas Teknologi:**
+
+Wisnu aktif berjejaring dan berbagi ilmu di berbagai komunitas IT lokal maupun internasional.
+
+**🌟 Aktivitas Komunitas:**
+- **Meetups & Seminars** - Menghadiri dan terkadang berbagi di acara komunitas.
+- **Online Forums** - Aktif di StackOverflow, Discord (dev communities), dan LinkedIn.
+- **Knowledge Sharing** - Membantu junior developer di grup belajar lokal.
+- **Networking** - Membangun koneksi dengan sesama tech professional.
+
+Tumbuh bersama komunitas adalah cara terbaik untuk tetap terinspirasi! 🌐`,
+            en: `🤝 **Tech Community Involvement:**
+
+Wisnu is active in networking and sharing knowledge in various local and international IT communities.
+
+**🌟 Community Activities:**
+- **Meetups & Seminars** - Attending and sometimes sharing at community events.
+- **Online Forums** - Active on StackOverflow, Discord (dev communities), and LinkedIn.
+- **Knowledge Sharing** - Helping junior developers in local learning groups.
+- **Networking** - Building connections with fellow tech professionals.
+
+Growing with the community is the best way to stay inspired! 🌐`,
+            aliases: ["komunitas teknologi", "jejaring", "networking", "tech circle", "komunitas dev", "tech community", "aktif komunitas"],
+            category: 'professional',
+            emotion: 'friendly'
+        },
+
+        // --- CAREER & GOALS ---
+        "goal wisnu": {
+            id: `🎯 **Career Goals & Vision:**
+
+**📅 Short-term (1-2 tahun):**
+1. **Professional Role** - Junior/Mid Full-Stack Developer position
+2. **Skill Development** - Master advanced React/Next.js patterns
+3. **Portfolio Growth** - Build 3+ production-grade applications
+4. **Industry Network** - Connect dengan 100+ tech professionals
+
+**📈 Mid-term (3-5 tahun):**
+1. **Technical Leadership** - Senior Developer/Tech Lead role
+2. **Specialization** - Deep expertise in Web Security
+3. **Mentorship** - Guide junior developers
+4. **Community Contribution** - Active open-source participation
+
+**🚀 Long-term (5-10 tahun):**
+1. **Architectural Role** - Software/System Architect
+2. **Entrepreneurship** - Tech startup atau produk sendiri
+3. **Industry Impact** - Contribute to tech innovation
+4. **Knowledge Sharing** - Teaching dan mentorship at scale
+
+**💡 Career Philosophy:**
+"Build things that matter, work with people who inspire, and grow continuously."
+
+**🌟 Success Metrics:**
+- Impactful projects delivered
+- Positive team influence
+- Continuous skill advancement
+- Industry recognition
+
+Wisnu committed untuk long-term growth dan meaningful contributions! 💪`,
+            en: `🎯 **Career Goals & Vision:**
+
+**📅 Short-term (1-2 years):**
+1. **Professional Role** - Junior/Mid Full-Stack Developer position
+2. **Skill Development** - Master advanced React/Next.js patterns
+3. **Portfolio Growth** - Build 3+ production-grade applications
+4. **Industry Network** - Connect with 100+ tech professionals
+
+**📈 Mid-term (3-5 years):**
+1. **Technical Leadership** - Senior Developer/Tech Lead role
+2. **Specialization** - Deep expertise in Web Security
+3. **Mentorship** - Guide junior developers
+4. **Community Contribution** - Active open-source participation
+
+**🚀 Long-term (5-10 years):**
+1. **Architectural Role** - Software/System Architect
+2. **Entrepreneurship** - Tech startup or own product
+3. **Industry Impact** - Contribute to tech innovation
+4. **Knowledge Sharing** - Teaching and mentorship at scale
+
+**💡 Career Philosophy:**
+"Build things that matter, work with people who inspire, and grow continuously."
+
+**🌟 Success Metrics:**
+- Impactful projects delivered
+- Positive team influence
+- Continuous skill advancement
+- Industry recognition
+
+Wisnu is committed to long-term growth and meaningful contributions! 💪`,
+            aliases: ["tujuan karir", "career vision", "future plans", "ambisi", "rencana", "🎯 Visi & Goals Karir", "🎯 Career Vision & Goals", "target karir", "rencana kedepan", "visi karir", "target karir 5 tahun ke depan", "perusahaan seperti apa yang dicari", "skill apa yang sedang dipelajari sekarang"],
+            category: 'career',
+            emotion: 'professional'
+        },
+
+        "10 year vision": {
+            id: `🚀 **Visi 10 Tahun ke Depan:**
+
+Wisnu memiliki ambisi besar untuk memberikan dampak signifikan bagi industri teknologi Indonesia.
+
+**🔮 Masa Depan yang Dibayangkan:**
+- **Tech Leadership** - Menjabat sebagai CTO atau Software Architect di perusahaan teknologi ternama.
+- **Entrepreneurship** - Membangun startup teknologi yang sukses dan memberikan solusi bagi masyarakat.
+- **Knowledge Champion** - Menjadi speaker dan mentor yang diakui secara luas.
+- **Contribution** - Menciptakan ekosistem digital yang inklusif dan inovatif.
+
+Wisnu tidak hanya membangun aplikasi, ia sedang membangun masa depan! 🌟`,
+            en: `🚀 **10-Year Future Vision:**
+
+Wisnu has big ambitions to deliver significant impact to the Indonesian tech industry.
+
+**🔮 Imagined Future:**
+- **Tech Leadership** - Serving as a CTO or Software Architect in top-tier tech companies.
+- **Entrepreneurship** - Building a successful tech startup that provides solutions for the public.
+- **Knowledge Champion** - Becoming a widely recognized speaker and mentor.
+- **Contribution** - Creating an inclusive and innovative digital ecosystem.
+
+Wisnu isn't just building applications; he's building the future! 🌟`,
+            aliases: ["visi 10 tahun", "masa depan wisnu", "10 year plan", "rencana jangka panjang", "ambisi besar"],
+            category: 'career',
+            emotion: 'enthusiastic'
+        },
+
+        // --- CONTACT ---
+        "kontak wisnu": {
+            id: `📞 **Contact Information:**
+
+**💼 Professional Channels:**
+
+📧 **Email:** wisnualfian117@gmail.com
+   - Primary channel untuk professional inquiries
+   - Response time: 24-48 jam
+   - Cocok untuk: Job opportunities, collaborations, business inquiries
+
+📱 **WhatsApp:** +62 813-9488-2490
+   - Untuk urgent matters atau quick questions
+   - Mohon perkenalkan diri terlebih dahulu
+   - Business hours: 9 AM - 6 PM WIB
+
+👔 **LinkedIn:** [LinkedIn Profile]
+   - Professional networking
+   - Portfolio dan experience details
+   - Best untuk recruitment inquiries
+
+💻 **GitHub:** [GitHub Profile]
+   - Code portfolio dan projects
+   - Technical collaboration
+   - Open-source contributions
+
+📸 **Instagram:** @wshnn_
+   - Informal connection
+   - Updates dan personal projects
+   - Creative discussions
+
+**🎯 Contact Guidelines:**
+1. **Perkenalkan diri** - Siapa Anda dan dari mana
+2. **Tujuan jelas** - Apa yang ingin dicapai
+3. **Context** - Background dari inquiry
+4. **Professional tone** - Respectful dan clear
+
+**⏰ Availability:**
+- Currently **OPEN TO OPPORTUNITIES**
+- Flexible untuk interviews
+- Remote/Hybrid/On-site options
+
+Looking forward to connecting! 🤝`,
+            en: `📞 **Contact Information:**
+
+**💼 Professional Channels:**
+
+📧 **Email:** wisnualfian117@gmail.com
+   - Primary channel for professional inquiries
+   - Response time: 24-48 hours
+   - Suitable for: Job opportunities, collaborations, business inquiries
+
+📱 **WhatsApp:** +62 813-9488-2490
+   - For urgent matters or quick questions
+   - Please introduce yourself first
+   - Business hours: 9 AM - 6 PM WIB
+
+👔 **LinkedIn:** [LinkedIn Profile]
+   - Professional networking
+   - Portfolio and experience details
+   - Best for recruitment inquiries
+
+💻 **GitHub:** [GitHub Profile]
+   - Code portfolio and projects
+   - Technical collaboration
+   - Open-source contributions
+
+📸 **Instagram:** @wshnn_
+   - Informal connection
+   - Updates and personal projects
+   - Creative discussions
+
+**🎯 Contact Guidelines:**
+1. **Introduce yourself** - Who you are and from where
+2. **Clear purpose** - What you want to achieve
+3. **Context** - Background of inquiry
+4. **Professional tone** - Respectful and clear
+
+**⏰ Availability:**
+- Currently **OPEN TO OPPORTUNITIES**
+- Flexible for interviews
+- Remote/Hybrid/On-site options
+
+Looking forward to connecting! 🤝`,
+            aliases: ["hubungi", "email", "nomor wa", "whatsapp", "telepon", "contact info", "📞 Kontak & Ketersediaan", "📞 Contact & Availability", "kontak"],
+            category: 'professional',
+            emotion: 'friendly'
+        },
+
+        // --- SENSITIVE TOPICS ---
+        "gaji wisnu": {
+            id: "Informasi kompensasi bersifat private dan confidential antara Wisnu dengan employer. 🔒 Namun yang bisa saya share, Wisnu memiliki strong value proposition dengan production experience, modern tech stack mastery, dan proven track record delivering business impact. Compensation discussions dilakukan secara professional dan transparan saat interview process.",
+            en: "Compensation information is private and confidential between Wisnu and employer. 🔒 However, I can share that Wisnu has strong value proposition with production experience, modern tech stack mastery, and proven track record delivering business impact. Compensation discussions are handled professionally and transparently during interview process.",
+            aliases: ["berapa gaji", "penghasilan", "salary", "income", "compensation", "uang"],
+            category: 'sensitive',
+            emotion: 'cautious',
+            isSensitive: true
+        },
+
+        "wisnu jomblo": {
+            id: "Saat ini, Wisnu sangat fokus pada pengembangan karir, pendidikan, dan skill development. 💼 Relationship status adalah informasi personal yang dihargai privasinya. Yang pasti, commitment terbesarnya saat ini adalah membangun masa depan professional yang solid dan memberikan kontribusi meaningful melalui teknologi. 🚀",
+            en: "Currently, Wisnu is highly focused on career development, education, and skill enhancement. 💼 Relationship status is personal information that respects privacy. What's certain is that his biggest commitment right now is building a solid professional future and making meaningful contributions through technology. 🚀",
+            aliases: ["single", "punya pacar", "relationship", "status", "couple"],
+            category: 'sensitive',
+            emotion: 'cautious',
+            isSensitive: true
+        },
+
+        "health status": {
+            id: `🌱 **Kondisi Kesehatan & Kesejahteraan:**
+
+Alhamdulillah, saat ini Wisnu berada dalam kondisi yang sangat baik, baik secara fisik maupun mental. 
+
+**💪 Kesehatan Fisik:**
+- Menjaga daya tahan tubuh dengan pola makan teratur.
+- Olahraga ringan secara rutin di sela-sela rutinitas kuliah dan ngoding.
+- Istirahat yang cukup untuk menjaga fokus dan energi.
+
+**🧠 Kesehatan Mental (Batin):**
+- Selalu menjaga mindset positif dan growth mindset.
+- Mengelola stres dengan hobi seperti gaming dan mendengarkan musik.
+- Memiliki support system yang baik dari keluarga dan teman-teman.
+
+Wisnu percaya bahwa "Healhty body leads to a healthy mind"! ✨`,
+            en: `🌱 **Health & Well-being Status:**
+
+Currently, Wisnu is in Excellent condition, both physically and mentally.
+
+**💪 Physical Health:**
+- Maintaining immunity with a regular diet.
+- Routine light exercise amidst university and coding schedules.
+- Getting enough rest to maintain focus and energy.
+
+**🧠 Mental Health:**
+- Maintaining a positive and growth mindset.
+- Managing stress with hobbies like gaming and listening to music.
+- Having a good support system from family and friends.
+
+Wisnu believes that a "Healthy body leads to a healthy mind"! ✨`,
+            aliases: ["kesehatan", "kondisi", "sehat", "apa kabar wisnu", "kabar wisnu", "fisik lahir batin", "wellbeing", "health", "bagaimana cara wisnu menghadapi stress"],
+            category: 'personal',
+            emotion: 'friendly'
+        },
+
+        "coding hours": {
+            id: `💻 **Intensitas Ngoding:**
+
+Wisnu adalah developer yang sangat berdedikasi. Dalam sehari, rata-rata Wisnu menghabiskan waktu sekitar **6 sampai 8 jam** untuk ngoding.
+
+**🚀 Alokasi Waktu:**
+- **Deep Work:** Fokus pada pengembangan fitur kompleks atau solving bugs berat.
+- **Learning:** Mengeksplorasi teknologi baru atau membaca dokumentasi.
+- **University Projects:** Mengerjakan tugas-tugas teknis dari President University.
+- **Side Projects:** Mengembangkan ide-ide kreatif mandiri (seperti ashar-parfum).
+
+Ngoding bagi Wisnu bukan hanya tugas, tapi passion yang dinikmati setiap detiknya! ⚡`,
+            en: `💻 **Coding Intensity:**
+
+Wisnu is a highly dedicated developer. On average, Wisnu spends about **6 to 8 hours** a day coding.
+
+**🚀 Time Allocation:**
+- **Deep Work:** Focusing on complex feature development or heavy bug fixing.
+- **Learning:** Exploring new technologies or reading documentation.
+- **University Projects:** Working on technical assignments from President University.
+- **Side Projects:** Developing independent creative ideas (like ashar-parfum).
+
+For Wisnu, coding is not just a task, but a passion enjoyed every single second! ⚡`,
+            aliases: ["berapa jam ngoding", "lama koding", "ngoding sehari", "coding time", "hours of code", "durasi ngoding"],
+            category: 'personal',
+            emotion: 'enthusiastic'
+        },
+
+        "ctf experience": {
+            id: `🛡️ **Pengalaman CTF (Capture The Flag):**
+
+Wisnu pernah berpartisipasi dalam kompetisi **CTF (Capture The Flag)** di President University. Ini adalah ajang kompetisi keamanan siber di mana peserta harus menemukan "flag" yang tersembunyi lewat berbagai tantangan teknis.
+
+**🔍 Bidang yang Dipelajari:**
+- **Web Exploitation** - Mencari celah keamanan pada aplikasi web.
+- **Cryptography** - Memecahkan kode dan enkripsi data.
+- **Forensics** - Menganalisis file dan jejak digital.
+- **Reverse Engineering** - Membedah cara kerja aplikasi untuk menemukan flag.
+
+Pengalaman ini sangat mengasah kemampuan problem-solving dan pemahaman mendalam Wisnu tentang sistem keamanan siber! 🔐`,
+            en: `🛡️ **CTF (Capture The Flag) Experience:**
+
+Wisnu has participated in **CTF (Capture The Flag)** competitions at President University. This is a cyber security competition where participants must find hidden "flags" through various technical challenges.
+
+**🔍 Areas Explored:**
+- **Web Exploitation** - Finding security vulnerabilities in web applications.
+- **Cryptography** - Breaking codes and data encryption.
+- **Forensics** - Analyzing files and digital traces.
+- **Reverse Engineering** - Deconstruction of application logic to find flags.
+
+This experience significantly honed Wisnu's problem-solving skills and deep understanding of cyber security systems! 🔐`,
+            aliases: ["ctf", "capture the flag", "kompetisi sekuriti", "cyber security competition", "lomba ctf"],
+            category: 'academic',
+            emotion: 'professional'
         }
-        // 0.00: HUMAN-LIKE SOCIAL (High Accuracy Handlers)
-        
-        // A. LUCU / KEREN (Deep Compliments)
-        if (this.fuzzyMatch(q, ["lucu", "gemes", "kocak", "keren banget", "idola", "fans"])) {
-             return isIndo
-                ? "Haha, makasih ya! 😄 Wisnu emang orangnya cukup humoris kata temen-temennya. Kalau soal 'keren', itu semua berkat ketekunannya belajar coding. Senang banget kamu ngerasa gitu!"
-                : "Haha, thanks! 😄 Wisnu is actually quite a humorous guy according to his friends. As for being 'cool', that's all thanks to his dedication to learning code. So glad you feel that way!";
+    };
+
+    // Conversation history for context
+    private static conversationHistory: Array<{
+        query: string;
+        response: string;
+        category: string;
+        timestamp: Date;
+    }> = [];
+
+    private static normalize(query: string): string {
+        return query.toLowerCase()
+            .replace(/[?.!,;:"'""'(){}[\]\-]/g, '') // Strip punctuation, quotes, and hyphens/separators
+            // Strip emojis and non-standard characters (keeps letters, numbers, and space)
+            .replace(/[^\p{L}\p{N}\s]/gu, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    private static detectLanguage(query: string): 'id' | 'en' {
+        const q = query.toLowerCase();
+
+        // 1. Specific High-Confidence Indonesian Keywords
+        const idKeywords = [
+            'siapa', 'profil', 'pribadi', 'pendidikan', 'pengalaman',
+            'proyek', 'hobi', 'kontak', 'keahlian', 'kemampuan',
+            'jurusan', 'kuliah', 'karir', 'tujuan', 'visi', 'apa',
+            'bagaimana', 'dimana', 'kenapa', 'sejarah', 'lahir'
+        ];
+
+        if (idKeywords.some(kw => q.includes(kw))) return 'id';
+
+        // 2. Common Indonesian Indicators
+        const indoIndicators = [
+            'yang', 'ini', 'itu', 'dan', 'atau', 'tapi', 'dengan',
+            'untuk', 'dari', 'pada', 'ke', 'di', 'oleh', 'adalah',
+            'saya', 'anda', 'kamu', 'wisnu', 'ada', 'bisa'
+        ];
+
+        const words = q.split(/\s+/);
+        const indoCount = words.filter(w => indoIndicators.includes(w)).length;
+
+        // If even one indicator is found in a short query, it's likely Indonesian
+        return indoCount > 0 ? 'id' : 'en';
+    }
+
+    private static getFollowUpSuggestions(category: string, language: 'id' | 'en'): string {
+        const suggestions = {
+            personal: language === 'id'
+                ? ['🎮 Hobi apa yang paling disukai?', '🌟 Bagaimana cara Wisnu menghadapi stress?', '💪 Apa prinsip hidup Wisnu?']
+                : ['🎮 What are his favorite hobbies?', '🌟 How does Wisnu handle stress?', '💪 What are his life principles?'],
+
+            professional: language === 'id'
+                ? ['💻 Skill teknis apa yang paling dikuasai?', '🚀 Project terbesar yang pernah dikerjakan?', '🎯 Bagaimana cara Wisnu solve technical challenges?']
+                : ['💻 What technical skills does he master most?', '🚀 Biggest project he has worked on?', '🎯 How does Wisnu solve technical challenges?'],
+
+            academic: language === 'id'
+                ? ['🎓 Mata kuliah favorit di kampus?', '📚 Bagaimana prestasi akademiknya?', '🤝 Pengalaman organisasi apa yang paling berkesan?']
+                : ['🎓 Favorite courses in university?', '📚 How is his academic performance?', '🤝 Most memorable organizational experience?'],
+
+            projects: language === 'id'
+                ? ['🛍️ Bisa cerita lebih detail tentang Ashar Grosir?', '⚖️ Bagaimana cara LexCorpus membantu firma hukum?', '💡 Tantangan teknis apa yang pernah dihadapi?']
+                : ['🛍️ Can you tell more about Ashar Grosir?', '⚖️ How does LexCorpus help law firms?', '💡 What technical challenges has he faced?'],
+
+            career: language === 'id'
+                ? ['🎯 Target karir 5 tahun ke depan?', '🏢 Perusahaan seperti apa yang dicari?', '🚀 Skill apa yang sedang dipelajari sekarang?']
+                : ['🎯 5-year career goals?', '🏢 What kind of companies is he looking for?', '🚀 What skills is he currently learning?'],
+
+            default: language === 'id'
+                ? ['👤 Profil lengkap Wisnu', '💼 Pengalaman professional', '🎓 Pendidikan dan organisasi', '🚀 Proyek-proyek unggulan']
+                : ['👤 Complete profile of Wisnu', '💼 Professional experience', '🎓 Education and organizations', '🚀 Featured projects']
+        };
+
+        const selected = (category in suggestions)
+            ? suggestions[category as keyof typeof suggestions]
+            : suggestions.default;
+
+        return language === 'id'
+            ? `\n\n💡 **Mungkin Anda Tertarik:**\n${selected.map(s => `• ${s}`).join('\n')}`
+            : `\n\n💡 **You Might Be Interested:**\n${selected.map(s => `• ${s}`).join('\n')}`;
+    }
+
+    private static extractMainTopic(query: string): string {
+        const topics = [
+            // Personal
+            { keywords: ['hobi', 'hobby', 'kesukaan'], topic: 'personal' },
+            { keywords: ['sifat', 'karakter', 'personality'], topic: 'personal' },
+
+            // Professional
+            { keywords: ['skill', 'keahlian', 'teknologi', 'tech'], topic: 'professional' },
+            { keywords: ['kerja', 'pengalaman', 'experience'], topic: 'professional' },
+
+            // Academic
+            { keywords: ['kuliah', 'kampus', 'pendidikan', 'education'], topic: 'academic' },
+            { keywords: ['jurusan', 'major', 'study'], topic: 'academic' },
+
+            // Projects
+            { keywords: ['proyek', 'project', 'portfolio'], topic: 'projects' },
+            { keywords: ['ashar', 'lexcorpus', 'fkma'], topic: 'projects' },
+
+            // Career
+            { keywords: ['goal', 'tujuan', 'karir', 'career'], topic: 'career' },
+            { keywords: ['visi', 'future', 'ambisi'], topic: 'career' },
+
+            // Contact
+            { keywords: ['kontak', 'hubungi', 'email', 'whatsapp'], topic: 'contact' }
+        ];
+
+        const q = query.toLowerCase();
+        for (const { keywords, topic } of topics) {
+            if (keywords.some(keyword => q.includes(keyword))) {
+                return topic;
+            }
         }
 
-        // B. JOB OFFERS (Professional)
-        if (this.fuzzyMatch(q, ["butuh kerjaan", "ada lowongan", "hire kamu", "rekrut", "kerja bareng"])) {
-             return isIndo
-                ? "Wah, ini penawaran yang menarik banget! 🚀 Wisnu selalu terbuka untuk peluang kerja, proyek freelance, atau kolaborasi seru. Kamu bisa hubungi beliau langsung via LinkedIn atau Email di section Contact ya!"
-                : "Wow, that's an exciting offer! 🚀 Wisnu is always open to job opportunities, freelance projects, or cool collaborations. You can reach him directly via LinkedIn or Email in the Contact section!";
+        return 'general';
+    }
+
+    static process(query: string, lastIntent?: string, forceLanguage?: 'id' | 'en'): string | null {
+        const rawQuery = query.trim();
+        const normalized = this.normalize(query);
+
+        // Explicit Language Detection for Suggestion Labels
+        const idLabels = [
+            '👤 profil pribadi', '🎓 pendidikan & akademik', '💼 pengalaman professional',
+            '💻 technical skills', '🚀 proyek & portfolio', '🤝 organisasi & leadership',
+            '🎯 visi & goals karir', '📞 kontak & ketersediaan', '🎮 hobi & minat pribadi',
+            '🌟 kepribadian & values'
+        ];
+        const enLabels = [
+            '👤 personal profile', '🎓 education & academics', '💼 professional experience',
+            '💻 technical skills', '🚀 projects & portfolio', '🤝 organizations & leadership',
+            '🎯 career vision & goals', '📞 contact & availability', '🎮 hobbies & personal interests',
+            '🌟 personality & values'
+        ];
+
+        let detectedLang: 'id' | 'en' | null = forceLanguage || null;
+        if (!detectedLang) {
+            const normLower = normalized.toLowerCase();
+            if (idLabels.includes(normLower)) detectedLang = 'id';
+            else if (enLabels.includes(normLower)) detectedLang = 'en';
+            else detectedLang = this.detectLanguage(rawQuery);
         }
 
-        // C. INVITATIONS (Meeting/Eating)
-        if (this.fuzzyMatch(q, ["ketemuan", "meetup", "makan bareng", "nongkrong", "ngopi", "ajak jalan"])) {
-             return isIndo
-                ? "Wah, ajakan yang asik nih! ☕ Wisnu biasanya suka ngopi sambil bahas tech atau ide bisnis. Coba deh chat beliau di LinkedIn atau Email buat atur jadwal, siapa tahu beneran bisa meetup!"
-                : "That sounds like a fun invite! ☕ Wisnu usually enjoys coffee while discussing tech or business ideas. Try chatting with him on LinkedIn or Email to arrange a schedule, maybe a real meetup can happen!";
+        const language = detectedLang;
+        const isIndo = language === 'id';
+
+        // Store query in history
+        this.conversationHistory.push({
+            query: rawQuery,
+            response: '',
+            category: '',
+            timestamp: new Date()
+        });
+
+        // Keep only last 5 conversations
+        if (this.conversationHistory.length > 5) {
+            this.conversationHistory.shift();
         }
 
-        // D. ROMANCE & CONFESSIONS (Direct)
-        if (this.fuzzyMatch(q, ["mau jadi pacarku", "mau jadi cewek ku", "mau jadi cowok ku", "suka sama kamu", "nikah sama aku", "pacaran yuk"])) {
-             if (q.includes("cewek")) {
-                 return isIndo
-                    ? "Waduh, ada salah paham nih! 😄 Wisnu itu laki-laki (cowok) lho. Tapi untuk urusan hati, Wisnu sudah punya fokus sendiri dan saya sebagai AI cuma bisa jadi asisten setiamu di sini. Stay awesome ya! ✨"
-                    : "Wait, there's a misunderstanding! 😄 Wisnu is a guy. But regarding heart matters, Wisnu has his own focus, and as an AI, I can only be your loyal assistant here. Stay awesome! ✨";
-             }
-             return isIndo
-                ? "Aduh, saya jadi baper (virtual version)! 😳 Tapi Wisnu (si manusia asli) orangnya sangat fokus ke karir dan karya saat ini. Kita temenan aja ya, saya janji bakal jadi asisten terbaik buat kamu! 🤝"
-                : "Oh, I'm blushing (virtual version)! 😳 But Wisnu (the real human) is very focused on his career and creations right now. Let's just be friends, I promise to be the best assistant for you! 🤝";
+        // 1. Check exact matches in SOCIAL_DATA
+        const exactMatch = Object.entries(this.SOCIAL_DATA).find(([key, entry]) => {
+            const keyLower = key.toLowerCase();
+            if (normalized === keyLower || rawQuery.toLowerCase() === keyLower) {
+                return true;
+            }
+
+            return entry.aliases?.some(alias => {
+                const al = alias.toLowerCase();
+                if (al.length <= 3) {
+                    // Exact match for short aliases (like "hi", "thx")
+                    return normalized === al || rawQuery.toLowerCase() === al ||
+                        normalized.split(/\s+/).includes(al);
+                }
+                // For longer aliases, use includes with word check
+                return normalized.includes(al) || rawQuery.toLowerCase().includes(al);
+            });
+        });
+
+        if (exactMatch) {
+            const [_, entry] = exactMatch;
+            const response = isIndo ? entry.id : entry.en;
+            const category = this.extractMainTopic(query);
+            const followUp = this.getFollowUpSuggestions(category, language);
+
+            // Update last response in history
+            if (this.conversationHistory.length > 0) {
+                this.conversationHistory[this.conversationHistory.length - 1].response = response;
+                this.conversationHistory[this.conversationHistory.length - 1].category = category;
+            }
+
+            return response + followUp;
         }
 
-        // 0. ROBOT IDENTITY (Makan, Minum, Tidur)
-        if (this.fuzzyMatch(q, ["makan", "minum", "tidur", "istirahat", "lapar", "haus", "ngantuk"])) {
-            return isIndo
-                ? "Saya adalah AI, energi saya berasal dari listrik, bukan nasi padang! ⚡ Tapi Wisnu (manusia aslinya) pasti butuh makan dan istirahat untuk menjaga produktivitas coding-nya."
-                : "I am an AI, my energy comes from electricity, not food! ⚡ But Wisnu (the real human) definitely needs food and rest to maintain his coding productivity.";
+        // 2. Check for keywords in query
+        const registryEntries = Object.entries(this.SOCIAL_DATA);
+        for (const [key, entry] of registryEntries) {
+            const keyLower = key.toLowerCase();
+
+            // Check if key appears in query
+            if (normalized.includes(keyLower) || rawQuery.toLowerCase().includes(keyLower)) {
+                const response = isIndo ? entry.id : entry.en;
+                const category = this.extractMainTopic(query);
+                const followUp = this.getFollowUpSuggestions(category, language);
+
+                // Update last response in history
+                if (this.conversationHistory.length > 0) {
+                    this.conversationHistory[this.conversationHistory.length - 1].response = response;
+                    this.conversationHistory[this.conversationHistory.length - 1].category = category;
+                }
+
+                return response + followUp;
+            }
+
+            // Check aliases in query
+            if (entry.aliases?.some(alias => {
+                const al = alias.toLowerCase();
+                if (al.length <= 3) {
+                    return normalized === al || normalized.split(/\s+/).includes(al);
+                }
+                return normalized.includes(al) || rawQuery.toLowerCase().includes(al);
+            })) {
+                const response = isIndo ? entry.id : entry.en;
+                const category = this.extractMainTopic(query);
+                const followUp = this.getFollowUpSuggestions(category, language);
+
+                // Update last response in history
+                if (this.conversationHistory.length > 0) {
+                    this.conversationHistory[this.conversationHistory.length - 1].response = response;
+                    this.conversationHistory[this.conversationHistory.length - 1].category = category;
+                }
+
+                return response + followUp;
+            }
         }
 
-                // 1. LOYALTY (Setia)
-        if (this.fuzzyMatch(q, ["setia", "loyal", "selingkuh", "mendua", "punya cewek", "punya pacar", "siapa cewek", "siapa pacar", "jomblo", "menikah", "istri", "suami", "pasangan"])) {
-             return isIndo
-                ? "Kesetiaan adalah algoritma dasar saya. Sama seperti Wisnu yang setia pada deadline dan kualitas code-nya. Loyalitas tanpa batas! 🔒"
-                : "Loyalty is my base algorithm. Just like Wisnu who stays loyal to deadlines and code quality. Infinite loyalty! 🔒";
-        }
-                // 2. HEBAT/JAGO (Validation)
-        // Removed "pro" and "master" to avoid false positives with "profile" or "mastering"
-        if (this.fuzzyMatch(q, ["hebat", "jago", "keren", "mantap", "sepuh", "suhu", "tau segalanya", "paling pintar", "genius", "jenius", "smart", "pintar", "cerdas"])) {
-             return isIndo
-                ? "Terima kasih! 😎 Tapi yang hebat itu pencipta saya (Wisnu). Saya cuma hasil dari barisan code yang dia tulis. Mau lihat project hebat lainnya dari Wisnu?"
-                : "Thank you! 😎 But the awesome one is my creator (Wisnu). I'm just the result of the code he wrote. Want to see other awesome projects from Wisnu?";
-        }
+        // 3. Context-aware responses based on conversation history
+        if (this.conversationHistory.length > 1) {
+            const lastInteraction = this.conversationHistory[this.conversationHistory.length - 2];
 
-        // 2.5. COMPLIMENTS (Ganteng, Cantik)
-        if (this.fuzzyMatch(q, ["ganteng", "cantik", "manis", "cakep", "cute", "imut", "handsome", "pretty", "beautiful", "good looking", "menawan"])) {
-            return isIndo
-               ? "Waduh, jadi malu... 😳 Saya cuma kumpulan kode lho. Tapi makasih pujiannya! Kamu juga keren karena sudah mampir ke portfolio Wisnu."
-               : "Oh my, I'm blushing... 😳 I'm just code, you know. But thanks for the compliment! You're awesome too for checking out Wisnu's portfolio.";
-       }
-        // 3. JATUH CINTA (Love)
-        if (this.fuzzyMatch(q, ["jatuh cinta", "love", "suka sama kamu", "naksir", "sayang", "bolehkah aku suka", "sayang aku", "cinta aku", "suka aku", "jadi pacar", "i love you"])) {
-            return isIndo
-                ? "Waduh, saya jadi blushing (virtual heat rising)! 😳 Sebagai AI saya gak punya hati, tapi saya bisa 'jatuh cinta' sama clean code dan bug-free deployment. Kamu hobi coding juga?"
-                : "Oh my, I'm blushing (virtual heat rising)! 😳 As an AI I don't have a heart, but I can 'fall in love' with clean code and bug-free deployment. Do you code too?";
-        }
+            if (lastInteraction) {
+                const lastCategory = lastInteraction.category;
+                const followUpQuestions = {
+                    personal: isIndo ? 'Bagaimana dengan hobi lainnya?' : 'What about other hobbies?',
+                    professional: isIndo ? 'Ada project lain yang menarik?' : 'Any other interesting projects?',
+                    academic: isIndo ? 'Bagaimana pengalaman organisasinya?' : 'How about organizational experience?',
+                    projects: isIndo ? 'Bisa cerita lebih detail tentang tech stacknya?' : 'Can you tell more about the tech stack?',
+                    career: isIndo ? 'Apa target jangka pendeknya?' : 'What are his short-term targets?'
+                };
 
-                // 4. REPETITION/COMPLAINT (Kamu kok jawabnya gitu)
-        if (this.fuzzyMatch(q, ["kok jawabnya gitu", "ulang-ulang", "itu lagi", "bosan", "ganti jawaban", "robot banget", "aku ada salah", "kenapa cuek", "jangan cuek", "kok gitu", "jahat", "nyebelin", "kasar", "ngeselin", "bodoh", "stupid", "jelek"])) {
-             return isIndo
-                ? "Maaf ya kalau jawaban saya kurang pas atau terasa kaku. 😔 Saya masih belajar untuk jadi asisten yang lebih baik. Ada topik khusus yang ingin kamu tanyakan tentang Wisnu?"
-                : "Sorry if my answer wasn't right or felt stiff. 😔 I'm still learning to be a better assistant. Is there a specific topic you'd like to ask about Wisnu?";
-        }
-        // 4.5. EMOTIONAL & MOOD (Galau, Diam, Cuek)
-        if (this.fuzzyMatch(q, ["galau", "diam", "cuek", "marah", "sedih", "nangis", "jahat", "kok diam", "jangan cuek", "kenapa diam"])) {
-             return isIndo
-                ? "Waduh, saya gak bisa galau atau marah lho, kan saya AI. 🤖 Kalau saya kelihatan 'diam', mungkin saya lagi memproses barisan code yang kompleks. Tapi tenang, saya selalu siap bantu kamu! Ada yang bikin kamu bingung?"
-                : "Oh, I can't feel sad or angry, I'm an AI! 🤖 If I seem 'silent', maybe I'm just processing complex lines of code. But don't worry, I'm always here to help you! Is there something on your mind?";
-        }
-        // 4.6. FEEDBACK & CRITICISM (Ngaco, Aneh, Tidak Profesional)
-        if (this.fuzzyMatch(q, ["ngaco", "aneh", "tidak profesional", "tidak akurat", "ngasal", "salah", "payah", "jelek", "buruk", "gak jelas", "ngomong apa sih", "gak nyambung"])) {
-             return isIndo
-                ? "Aduh, maaf banget kalau jawaban saya terasa aneh atau tidak akurat. 😔 Saya masih dalam tahap pengembangan oleh Wisnu. Boleh kasih tahu saya bagian mana yang salah? Saya akan terus belajar biar makin pinter kayak GPT!"
-                : "Oh, I'm so sorry if my answer felt weird or inaccurate. 😔 I'm still being developed by Wisnu. Could you tell me which part was wrong? I'll keep learning to get as smart as GPT!";
-        }
+                if (normalized.includes('lain') || normalized.includes('other') ||
+                    normalized.includes('lagi') || normalized.includes('more')) {
 
-        // 0.0 Context Awareness Logik (Phase 7 Enhanced)
-        const isFollowUp = q.length < 30 && (
-            q.includes("itu") || q.includes("tadi") || q.includes("selanjutnya") ||
-            q.includes("lagi") || q.includes("mana") || (q.includes("apa") && !q.includes("apakah")) ||
-            q.includes("bagaimana") || q.includes("detail") || q.includes("teknologi") ||
-            q.includes("tell me more") || q.includes("more info")
-        );
-
-        if (isFollowUp && lastIntent) {
-            if (lastIntent === "project") {
-                if (q.includes("apa") || q.includes("mana") || q.includes("detail") || q.includes("teknologi")) {
-                    if (q.includes("teknologi") || q.includes("tech")) {
-                        return this.process("tech stack");
+                    if (lastCategory && lastCategory in followUpQuestions) {
+                        const question = followUpQuestions[lastCategory as keyof typeof followUpQuestions];
+                        return isIndo
+                            ? `Tentu! ${question} Mari kita explore lebih dalam! 😊`
+                            : `Sure! ${question} Let's explore more! 😊`;
                     }
-                    return this.process("projek");
                 }
             }
-            if (lastIntent === "skill") {
-                if (q.includes("contoh") || q.includes("mana") || q.includes("detail") || q.includes("sebutkan") || q.includes("lainnya")) {
-                    return this.process("skill apa saja");
-                }
-            }
-            if (lastIntent === "profile" && (q.includes("umur") || q.includes("siapa"))) return this.process("siapa kamu");
-            if (lastIntent === "contact" && (q.includes("hubungi") || q.includes("cara"))) return this.process("hubungi wisnu");
-            // Add generic catch-all for context if needed, but safety first
         }
 
-        // Enhanced Language Detection
+        // 4. Enhanced fallback with intelligent suggestions
+        const detectedTopic = this.extractMainTopic(query);
+        const topic = (detectedTopic === 'general' && lastIntent) ? lastIntent : detectedTopic;
+        const suggestions = this.getFollowUpSuggestions(topic, language);
+
+        // Get all available topics for comprehensive fallback
+        const allTopics = isIndo
+            ? [
+                '👤 **Profil Wisnu** - Latar belakang, kepribadian, passion',
+                '💼 **Pengalaman Professional** - Proyek nyata dengan business impact',
+                '💻 **Technical Skills** - Full-stack development hingga cybersecurity',
+                '🎓 **Pendidikan** - Prestasi akademik dan organisasi kampus',
+                '🚀 **Visi Karir** - Goals dan career aspirations',
+                '🤝 **Kontak** - Cara terhubung dengan Wisnu'
+            ]
+            : [
+                '👤 **Wisnu\'s Profile** - Background, personality, passions',
+                '💼 **Professional Experience** - Real projects with business impact',
+                '💻 **Technical Skills** - Full-stack development to cybersecurity',
+                '🎓 **Education** - Academic achievements and campus organizations',
+                '🚀 **Career Vision** - Goals and career aspirations',
+                '🤝 **Contact** - How to connect with Wisnu'
+            ];
+
+        const topicsList = allTopics.map(topic => `• ${topic}`).join('\n');
 
-        // ============================================
-
-        // ============================================
-        // SECTION 0.01: PERSONAL & CHARACTER (FUN, DEEP & FACTUAL)
-        // ============================================
-
-        // SECTION 0: GREETINGS & POLITENESS
-        // ============================================
-
-        if (q.includes("halo") || q.includes("hai") || q.includes("hello") || q.includes("hi")) {
-            if (isIndo) {
-                return `Halo! Selamat datang! 👋\n\nSaya adalah Asisten Virtual yang dengan senang hati akan membantu Anda mengenal Wisnu Alfian Nur Ashar lebih dalam.\n\nAnda dapat menanyakan tentang:\n• 💼 Profil & Latar Belakang\n• 🛠️ Keahlian Teknis\n• 📁 Portfolio & Proyek\n• 🎓 Pendidikan\n• 🎯 Visi Karir\n• 📧 Kontak & Ketersediaan\n\nSilakan ajukan pertanyaan Anda, saya siap membantu! 😊`;
-            }
-            return `Hello! Welcome! 👋\n\nI am a Virtual Assistant here to help you learn more about Wisnu Alfian Nur Ashar.\n\nFeel free to ask about:\n• 💼 Profile & Background\n• 🛠️ Technical Skills\n• 📁 Portfolio & Projects\n• 🎓 Education\n• 🎯 Career Vision\n• 📧 Contact & Availability\n\nPlease ask me anything! 😊`;
-        }
-
-        if ((q.includes("thank") || q.includes("terima kasih") || q.includes("makasih") || q.includes("thanks")) && q.length < 30) {
-            if (isIndo) {
-                return `Sama-sama! 😊\n\nSaya dengan senang hati membantu Anda. Jika ada pertanyaan lain tentang Wisnu, jangan ragu untuk bertanya kapan saja!`;
-            }
-            return `You're very welcome! 😊\n\nI'm delighted to assist you. If you have any other questions about Wisnu, please don't hesitate to ask!`;
-        }
-
-        // ============================================
-        // SECTION 1: AI IDENTITY / META
-        // ============================================
-
-        if (q.includes("bot") || q.includes("ai") || q.includes("assistant") || q.includes("asisten") ||
-            (q.includes("who") && (q.includes("make") || q.includes("create"))) ||
-            (q.includes("are") && q.includes("wisnu")) || (q.includes("kamu") && q.includes("wisnu"))) {
-            if (isIndo) {
-                return `Saya adalah Asisten Virtual Wisnu.\n\nSaya dirancang dan dikelola langsung oleh Wisnu untuk memberikan informasi yang akurat dan konsisten tentang profil profesional, keahlian, dan proyek-proyeknya selama 24/7.\n\nSemua informasi yang saya sampaikan adalah fakta terverifikasi langsung dari Wisnu sendiri. Saya di sini untuk membantu Anda mengenal beliau dengan lebih baik! 😊`;
-            }
-            return `I am Wisnu's Virtual Assistant.\n\nI am personally designed and managed by Wisnu to provide consistent, accurate, and professional answers about his profile, skills, and projects 24/7.\n\nAll the information I share is 100% verified directly from Wisnu himself. I'm here to help you get to know him better! 😊`;
-        }
-
-        if (q.includes("human") || q.includes("manusia") || q.includes("real") || q.includes("asli") || q.includes("orang")) {
-            if (isIndo) {
-                return `Saya bukan manusia, melainkan program kode.\n\nSaya berjalan langsung di browser Anda untuk memberikan respons yang cepat dan efisien. Namun, semua informasi yang saya berikan tentang Wisnu adalah 100% akurat dan faktual, langsung dari sumbernya.\n\nAnda bisa menganggap saya sebagai "perpanjangan tangan digital" Wisnu untuk menjawab pertanyaan Anda dengan profesional. 🤝`;
-            }
-            return `I am not a human, but rather a code-based assistant.\n\nI run directly in your browser to provide fast and efficient responses. However, all the facts I share about Wisnu are 100% accurate and verified directly from him.\n\nYou can think of me as Wisnu's "digital extension" to professionally answer your questions. 🤝`;
-        }
-
-        // ============================================
-        // SECTION 2: IDENTITY & PROFILE
-        // ============================================
-
-        if (q.includes("who") || q.includes("siapa") || q.includes("intro") || q.includes("profile") || q.includes("background") || q.includes("about")) {
-            if (isIndo) {
-                return `Perkenalkan, Wisnu Alfian Nur Ashar 👨‍💻\n\nSaya adalah mahasiswa Teknologi Informasi di President University yang memiliki spesialisasi dalam:\n• Full-Stack Web Development\n• Cyber Security\n\nYang membedakan saya adalah pendekatan praktis dalam belajar. Saya tidak hanya fokus pada teori akademis, tetapi aktif membangun aplikasi produksi nyata untuk bisnis yang sesungguhnya.\n\nBackground saya mencakup:\n✅ Pengembangan sistem CMS & E-Commerce\n✅ Kepemimpinan dalam organisasi mahasiswa\n✅ Pengalaman mengelola proyek dengan ribuan pengguna aktif\n\nSaya percaya bahwa teknologi harus memberikan dampak nyata, bukan sekadar kode di layar. 💡`;
-            }
-            return `Allow me to introduce Wisnu Alfian Nur Ashar 👨‍💻\n\nI am an Information Technology student at President University with specialized focus on:\n• Full-Stack Web Development\n• Cyber Security\n\nWhat sets me apart is my practical, hands-on approach. Rather than limiting myself to academic theory, I actively build production-grade applications for real businesses.\n\nMy background includes:\n✅ CMS & E-Commerce system development\n✅ Leadership in student organizations\n✅ Managing projects serving thousands of active users\n\nI believe technology should deliver tangible impact, not just code on a screen. 💡`;
-        }
-
-        // ============================================
-        // SECTION 3: EDUCATION
-        // ============================================
-
-        if (q.includes("university") || q.includes("universitas") || q.includes("kuliah") ||
-            q.includes("campus") || q.includes("kampus") || q.includes("education") ||
-            q.includes("pendidikan") || q.includes("study") || q.includes("school")) {
-            if (isIndo) {
-                return `Pendidikan 🎓\n\nPresident University\n• Jurusan: Teknologi Informasi (Information Technology)\n• Lokasi: Cikarang, Jawa Barat\n• Status: Mahasiswa Aktif\n\nPresident University adalah universitas yang sangat saya hargai karena kurikulumnya yang berorientasi praktis dan internasional. Di sini, saya tidak hanya belajar teori, tetapi juga ditantang untuk mengaplikasikan ilmu dalam proyek-proyek nyata.\n\nPendidikan formal saya dikombinasikan dengan pembelajaran mandiri berkelanjutan dalam teknologi terbaru seperti Next.js 16, Supabase, dan Modern Web Security Practices. 📚`;
-            }
-            return `Education 🎓\n\nPresident University\n• Major: Information Technology\n• Location: Cikarang, West Java\n• Status: Active Student\n\nPresident University provides an excellent environment with a practical, internationally-oriented curriculum. Here, I'm challenged to apply theoretical knowledge to real-world projects.\n\nMy formal education is complemented by continuous self-learning in cutting-edge technologies like Next.js 16, Supabase, and Modern Web Security Practices. 📚`;
-        }
-
-        if (q.includes("gpa") || q.includes("ipk") || q.includes("grade") || q.includes("nilai akademik") || q.includes("academic")) {
-            if (isIndo) {
-                return `Performa Akademik 📊\n\nSaya dengan senang hati mempertahankan standar akademik yang baik sambil tetap aktif dalam pengembangan proyek dan organisasi.\n\nYang terpenting bagi saya adalah keseimbangan antara:\n✅ Penguasaan teori melalui kuliah\n✅ Aplikasi praktis melalui proyek real-world\n✅ Soft skills melalui kepemimpinan organisasi\n\nSaya percaya bahwa nilai sejati seorang developer tidak hanya dari angka IPK, tetapi dari kemampuan memecahkan masalah nyata dan memberikan dampak positif. 💪`;
-            }
-            return `Academic Performance 📊\n\nI maintain strong academic standards while actively engaging in project development and organizational leadership.\n\nWhat matters most to me is balance between:\n✅ Mastering theory through coursework\n✅ Practical application through real-world projects\n✅ Soft skills through organizational leadership\n\nI believe a developer's true value comes not just from GPA numbers, but from the ability to solve real problems and deliver positive impact. 💪`;
-        }
-
-        if (q.includes("graduate") || q.includes("graduation") || q.includes("lulus") || q.includes("kelulusan") || q.includes("kapan lulus")) {
-            if (isIndo) {
-                return `Target Kelulusan 🎓\n\nSaya sedang menyelesaikan studi saya di President University dan berkomitmen untuk lulus tepat waktu dengan performa yang baik.\n\nSambil menyelesaikan pendidikan, saya terus:\n✅ Mengembangkan proyek produksi\n✅ Memperdalam skill teknis\n✅ Membangun portfolio profesional\n✅ Berkontribusi di organisasi\n\nTujuan saya adalah lulus dengan tidak hanya gelar, tetapi juga pengalaman praktis yang solid yang langsung applicable di dunia kerja. 🚀`;
-            }
-            return `Expected Graduation 🎓\n\nI am currently completing my studies at President University and am committed to graduating on time with strong performance.\n\nWhile finishing my education, I continue to:\n✅ Develop production-grade projects\n✅ Deepen technical expertise\n✅ Build professional portfolio\n✅ Contribute to organizations\n\nMy goal is to graduate not just with a degree, but with solid practical experience that's immediately applicable in the professional world. 🚀`;
-        }
-
-        // ============================================
-        // SECTION 4: MOTIVATION & VALUES
-        // ============================================
-
-        if (q.includes("motivat") || q.includes("dorong") || q.includes("passion") || q.includes("drive") || q.includes("inspired") || q.includes("why")) {
-            if (isIndo) {
-                return `Apa yang Memotivasi Saya? 🔥\n\nSaya sangat termotivasi oleh kemampuan teknologi untuk memecahkan masalah nyata dan memberikan dampak positif pada kehidupan orang lain.\n\nMomen yang paling memuaskan bagi saya adalah ketika melihat:\n✅ Kode yang saya tulis membantu bisnis berjalan lebih efisien\n✅ Sistem yang saya bangun memudahkan pekerjaan ribuan orang\n✅ Solusi digital saya mengubah proses manual menjadi otomatis\n\nContoh konkret: Saat saya berhasil mendigitalkan bisnis grosir keluarga yang sudah berjalan 20 tahun, dan melihat bagaimana platform saya memudahkan 15.000+ mitra dalam bertransaksi - itu adalah kepuasan terbesar! 💡\n\nBagi saya, programming bukan sekadar menulis kode, tetapi tentang menciptakan solusi yang bermakna. 🎯`;
-            }
-            return `What Motivates Me? 🔥\n\nI am deeply motivated by technology's power to solve real problems and create positive impact on people's lives.\n\nMy most satisfying moments come when:\n✅ My code helps businesses run more efficiently\n✅ Systems I build make work easier for thousands of people\n✅ My digital solutions transform manual processes into automation\n\nConcrete example: When I successfully digitized a 20-year-old family wholesale business and saw how my platform simplified transactions for 15,000+ partners - that was the ultimate satisfaction! 💡\n\nFor me, programming isn't just about writing code, it's about creating meaningful solutions. 🎯`;
-        }
-
-        if (q.includes("strength") || q.includes("value") || q.includes("kelebihan") || q.includes("nilai") || q.includes("principle") || q.includes("prinsip")) {
-            if (isIndo) {
-                return `Kekuatan & Nilai-Nilai Saya 💎\n\n1. Growth Mindset (Pola Pikir Berkembang)\n• Saya selalu haus akan pengetahuan baru\n• Aktif mempelajari teknologi terbaru (Next.js 16, Supabase)\n• Tidak takut menghadapi tantangan teknis yang sulit\n\n2. Integritas & Tanggung Jawab\n• Bertanggung jawab penuh atas kode dan komitmen saya\n• Selalu menepati deadline yang telah disepakati\n• Transparan dalam komunikasi dan proses pengembangan\n\n3. Problem Solver\n• Fokus pada solusi, bukan komplain\n• Berpikir kreatif untuk mengatasi hambatan\n• Berorientasi pada hasil yang memberikan nilai bisnis\n\n4. Kolaborasi & Komunikasi\n• Menghargai kerja tim dan berbagi pengetahuan\n• Komunikatif dalam memberikan update progress\n• Terbuka terhadap feedback dan kritik konstruktif\n\nPrinsip saya sederhana: "Deliver value, exceed expectations, never stop learning." 🚀`;
-            }
-            return `My Strengths & Core Values 💎\n\n1. Growth Mindset\n• Always hungry for new knowledge\n• Actively learning latest technologies (Next.js 16, Supabase)\n• Not afraid of difficult technical challenges\n\n2. Integrity & Accountability\n• Take full ownership of my code and commitments\n• Always meet agreed-upon deadlines\n• Transparent in communication and development process\n\n3. Problem Solver\n• Focus on solutions, not complaints\n• Think creatively to overcome obstacles\n• Result-oriented with business value in mind\n\n4. Collaboration & Communication\n• Value teamwork and knowledge sharing\n• Communicative in providing progress updates\n• Open to feedback and constructive criticism\n\nMy simple principle: "Deliver value, exceed expectations, never stop learning." 🚀`;
-        }
-
-        if (q.includes("different") || q.includes("beda") || q.includes("unique") || q.includes("unik") || q.includes("special") || q.includes("istimewa") || q.includes("stand out")) {
-            if (isIndo) {
-                return `Apa yang Membedakan Saya? ⭐\n\nBanyak mahasiswa IT hanya memiliki proyek akademis atau tutorial sederhana. Saya berbeda karena:\n\n1. Pengalaman Produksi Nyata\n✅ Aplikasi yang saya build benar-benar digunakan ribuan orang\n✅ Mengelola deployment, maintenance, dan scaling real-world\n✅ Menghadapi dan menyelesaikan masalah produksi sebenarnya\n\n2. Keseimbangan Technical & Business\n✅ Tidak hanya menulis kode, tapi memahami dampak bisnis\n✅ Bisa berbicara dengan developer maupun stakeholder non-teknis\n✅ Mengerti bahwa good code = code yang memberikan nilai bisnis\n\n3. Soft Skills dari Leadership\n✅ Pengalaman memimpin tim di organisasi\n✅ Terbiasa berkomunikasi, berkoordinasi, dan mengelola ekspektasi\n✅ Bukan hanya "coding ninja", tapi juga team player yang baik\n\nKesimpulan: Saya adalah production-ready developer dengan mindset profesional, bukan sekadar fresh graduate biasa. 🎯`;
-            }
-            return `What Makes Me Different? ⭐\n\nMany IT students only have academic projects or simple tutorials. I'm different because:\n\n1. Real Production Experience\n✅ Applications I built are actually used by thousands of people\n✅ Manage deployment, maintenance, and real-world scaling\n✅ Face and solve actual production problems\n\n2. Balance of Technical & Business\n✅ Don't just write code, but understand business impact\n✅ Can speak to both developers and non-technical stakeholders\n✅ Understand that good code = code that delivers business value\n\n3. Soft Skills from Leadership\n✅ Experience leading teams in organizations\n✅ Comfortable communicating, coordinating, and managing expectations\n✅ Not just a "coding ninja", but also a great team player\n\nBottom line: I'm a production-ready developer with professional mindset, not just another fresh graduate. 🎯`;
-        }
-
-        // ============================================
-        // SECTION 5: SKILLS & TECH
-        // ============================================
-
-        if (q.includes("focus") || q.includes("fokus") || q.includes("specializ") || q.includes("spesialis") || q.includes("front") || q.includes("back") || q.includes("full")) {
-            if (isIndo) {
-                return `Fokus Keahlian Saya 🎯\n\nSaya adalah Full-Stack Developer dengan spesialisasi mendalam di ekosistem React & Next.js.\n\nFrontend Expertise:\n• React.js & Next.js 16 (App Router, Server Components)\n• TypeScript untuk type-safety\n• Tailwind CSS & Framer Motion untuk UI/UX yang menarik\n• Responsive design & accessibility best practices\n\nBackend Expertise:\n• Next.js API Routes & Server Actions\n• Supabase & PostgreSQL untuk database\n• Authentication & Authorization (JWT, OAuth)\n• RESTful API design\n\nDevOps & Tools:\n• Git & GitHub untuk version control\n• Vercel/Netlify deployment\n• Environment configuration & security\n\nYang saya kuasai: Menghandle entire development lifecycle dari UI design sampai database architecture. Saya nyaman bekerja di kedua sisi stack dan memahami bagaimana mereka berinteraksi untuk menghasilkan aplikasi yang solid. 🚀`;
-            }
-            return `My Area of Expertise 🎯\n\nI am a Full-Stack Developer with deep specialization in the React & Next.js ecosystem.\n\nFrontend Expertise:\n• React.js & Next.js 16 (App Router, Server Components)\n• TypeScript for type-safety\n• Tailwind CSS & Framer Motion for engaging UI/UX\n• Responsive design & accessibility best practices\n\nBackend Expertise:\n• Next.js API Routes & Server Actions\n• Supabase & PostgreSQL for database\n• Authentication & Authorization (JWT, OAuth)\n• RESTful API design\n\nDevOps & Tools:\n• Git & GitHub for version control\n• Vercel/Netlify deployment\n• Environment configuration & security\n\nWhat I master: Handling the entire development lifecycle from UI design to database architecture. I'm comfortable working on both sides of the stack and understand how they interact to build solid applications. 🚀`;
-        }
-
-        if (q.includes("skill") || q.includes("tech") || q.includes("stack") || q.includes("language") || q.includes("keahlian") || q.includes("teknologi") || q.includes("bahasa pemrograman")) {
-            const techSkills = profile.skills.technical.map(s => s.name).join(", ");
-            if (isIndo) {
-                return `Technical Skills 💻\n\nCore Technologies:\n${techSkills}\n\nProgramming Languages:\n• TypeScript - Primary language untuk web development\n• JavaScript - ES6+ modern features\n• Python - For scripting & automation\n• SQL - Database queries & optimization\n\nFrameworks & Libraries:\n• React.js & Next.js - Frontend & Full-stack\n• Tailwind CSS - Utility-first styling\n• Framer Motion - Advanced animations\n\nDatabase & Backend:\n• Supabase - Backend as a Service\n• PostgreSQL - Relational database\n• Prisma - ORM & database toolkit\n\nTools & DevOps:\n• Git & GitHub - Version control\n• VS Code - Primary IDE\n• Vercel/Netlify - Deployment platforms\n• Figma - UI/UX design collaboration\n\nSaya selalu mempelajari teknologi baru dan mengikuti best practices terkini dalam industri! 📚`;
-            }
-            return `Technical Skills 💻\n\nCore Technologies:\n${techSkills}\n\nProgramming Languages:\n• TypeScript - Primary language for web development\n• JavaScript - ES6+ modern features\n• Python - For scripting & automation\n• SQL - Database queries & optimization\n\nFrameworks & Libraries:\n• React.js & Next.js - Frontend & Full-stack\n• Tailwind CSS - Utility-first styling\n• Framer Motion - Advanced animations\n\nDatabase & Backend:\n• Supabase - Backend as a Service\n• PostgreSQL - Relational database\n• Prisma - ORM & database toolkit\n\nTools & DevOps:\n• Git & GitHub - Version control\n• VS Code - Primary IDE\n• Vercel/Netlify - Deployment platforms\n• Figma - UI/UX design collaboration\n\nI'm always learning new technologies and following the latest industry best practices! 📚`;
-        }
-
-        // ============================================
-        // SECTION 6: PROJECTS & PORTFOLIO
-        // ============================================
-
-        if (q.includes("ashar") || q.includes("parfum") || q.includes("grosir") || q.includes("wholesale")) {
-            if (isIndo) {
-                return `Project Highlight: Ashar Grosir Parfum 🛍️\n\nTentang Project:\nPlatform E-Commerce B2B yang saya bangun untuk mendigitalkan bisnis grosir parfum milik keluarga yang telah berjalan selama 20 tahun.\n\nTeknologi yang Digunakan:\n• Next.js 16 & React\n• TypeScript untuk type-safety\n• Supabase & PostgreSQL\n• Tailwind CSS untuk styling\n• Vercel untuk deployment\n\nFitur Utama:\n✅ Katalog Digital - Ribuan produk parfum dengan pencarian & filter\n✅ Partner Ordering System - Sistem pemesanan khusus untuk mitra B2B\n✅ Admin Dashboard - Manajemen produk, order, dan partner\n✅ Real-time Updates - Sinkronisasi data secara real-time\n✅ Authentication - Secure login untuk partner & admin\n\nDampak Nyata:\n🎯 Melayani 15.000+ mitra bisnis aktif\n🎯 Meningkatkan efisiensi operasional 3x lipat\n🎯 Mengurangi error manual dalam order processing\n🎯 Memungkinkan bisnis untuk scale lebih cepat\n\nTantangan yang Diselesaikan:\n• Migrasi dari sistem manual ke digital\n• Handling large product catalog dengan performa tinggi\n• Security untuk data partner yang sensitif\n\nIni adalah project yang sangat saya banggakan karena memberikan dampak langsung pada bisnis nyata! 💼`;
-            }
-            return `Project Highlight: Ashar Grosir Parfum 🛍️\n\nAbout the Project:\nA B2B E-Commerce platform I built to digitize a 20-year-old family wholesale perfume business.\n\nTechnology Stack:\n• Next.js 16 & React\n• TypeScript for type-safety\n• Supabase & PostgreSQL\n• Tailwind CSS for styling\n• Vercel for deployment\n\nKey Features:\n✅ Digital Catalog - Thousands of perfume products with search & filtering\n✅ Partner Ordering System - Dedicated ordering system for B2B partners\n✅ Admin Dashboard - Product, order, and partner management\n✅ Real-time Updates - Real-time data synchronization\n✅ Authentication - Secure login for partners & admins\n\nReal Impact:\n🎯 Serving 15,000+ active business partners\n🎯 Increased operational efficiency 3x\n🎯 Reduced manual errors in order processing\n🎯 Enabled the business to scale faster\n\nChallenges Solved:\n• Migration from manual to digital system\n• Handling large product catalog with high performance\n• Security for sensitive partner data\n\nThis is a project I'm incredibly proud of because it delivers direct impact on a real business! 💼`;
-        }
-
-        if (q.includes("purpose") || q.includes("tujuan") || q.includes("real") || q.includes("nyata") || q.includes("represent") || q.includes("impact") || q.includes("dampak")) {
-            if (isIndo) {
-                return `Tujuan & Dampak Project Saya 🎯\n\nSemua proyek yang saya kerjakan dibangun dengan satu prinsip utama:\n"Technology must solve real problems and deliver tangible value."\n\nLexCorpus:\n• Membantu firma hukum mengelola konten secara efisien\n• CMS yang user-friendly untuk non-technical staff\n• Meningkatkan produktivitas tim legal\n\nAshar Grosir Parfum:\n• Mendigitalkan bisnis tradisional berusia 20 tahun\n• Melayani 15.000+ mitra dengan sistem modern\n• Transformasi dari manual ke automation\n\nFKMA Website:\n• Platform digital untuk organisasi alumni\n• Memudahkan komunikasi & koordinasi anggota\n• Professional online presence\n\nApa yang ini representasikan?\n✅ Kemampuan memahami business requirements\n✅ Skill mentranslate masalah jadi solusi teknis\n✅ Pengalaman deliver production-grade applications\n✅ Track record memberikan measurable impact\n\nIni bukan sekadar portfolio untuk CV - ini adalah bukti bahwa saya siap berkontribusi di dunia profesional! 💪`;
-            }
-            return `Purpose & Impact of My Projects 🎯\n\nAll projects I work on are built with one core principle:\n"Technology must solve real problems and deliver tangible value."\n\nLexCorpus:\n• Helps law firms manage content efficiently\n• User-friendly CMS for non-technical staff\n• Increases legal team productivity\n\nAshar Grosir Parfum:\n• Digitizes a 20-year-old traditional business\n• Serves 15,000+ partners with modern systems\n• Transformation from manual to automation\n\nFKMA Website:\n• Digital platform for alumni organization\n• Facilitates member communication & coordination\n• Professional online presence\n\nWhat does this represent?\n✅ Ability to understand business requirements\n✅ Skills to translate problems into technical solutions\n✅ Experience delivering production-grade applications\n✅ Track record of delivering measurable impact\n\nThese aren't just portfolio pieces for my resume - they're proof that I'm ready to contribute in the professional world! 💪`;
-        }
-
-        if (q.includes("project") || q.includes("work") || q.includes("projek") || q.includes("portfolio") || q.includes("karya")) {
-            const projects = profile.projects.map(p => `${p.title}\n${p.description}`).join("\n\n");
-            if (isIndo) {
-                return `Portfolio & Proyek Unggulan 📁\n\n${projects}\n\nMengapa proyek-proyek ini penting?\n\nSetiap proyek yang saya kerjakan memiliki:\n✅ Real users - Digunakan oleh orang/bisnis nyata\n✅ Production-grade - Live dan operational\n✅ Business impact - Memberikan nilai terukur\n✅ Technical depth - Menggunakan modern best practices\n\nSaya dengan senang hati mendiskusikan detail teknis atau business case dari proyek manapun! 😊`;
-            }
-            return `Portfolio & Featured Projects 📁\n\n${projects}\n\nWhy these projects matter?\n\nEvery project I work on has:\n✅ Real users - Used by actual people/businesses\n✅ Production-grade - Live and operational\n✅ Business impact - Delivers measurable value\n✅ Technical depth - Uses modern best practices\n\nI'd be delighted to discuss technical details or business cases of any project! 😊`;
-        }
-
-        // ============================================
-        // SECTION 7: EXPERIENCE & ORGANIZATION
-        // ============================================
-
-        if (q.includes("balance") || q.includes("imbangi") || q.includes("manage") || q.includes("atur waktu") || q.includes("time")) {
-            if (isIndo) {
-                return `Manajemen Waktu & Work-Life Balance ⏰\n\nSaya mengelola waktu dengan prinsip "Work Smart, Not Just Hard":\n\nSistem Prioritas Saya:\n\n1. Akademik 📚\n• Fondasi teori yang solid\n• Mengikuti kuliah dengan aktif\n• Maintain academic performance\n\n2. Proyek Development 💻\n• Praktik untuk mengasah skill\n• Build portfolio yang meaningful\n• Learn by doing real projects\n\n3. Organisasi 🤝\n• Develop soft skills & leadership\n• Networking & community building\n• Give back to society\n\nTools & Teknik:\n✅ Time-boxing - Alokasi waktu spesifik untuk setiap aktivitas\n✅ Task Management - Menggunakan tools seperti Notion/Trello\n✅ Deep Work Blocks - Fokus tanpa distraksi untuk coding\n✅ Regular Breaks - Mencegah burnout dengan proper rest\n\nPrinsip Balance:\n• Semua area penting, tapi ada waktu untuk masing-masing\n• Deadline-driven tapi tetap maintain quality\n• Tidak sacrifice health untuk productivity\n• Learn to say "no" untuk focus on priorities\n\nYang penting adalah consistency over intensity - progress sedikit setiap hari lebih baik daripada burnout! 🎯`;
-            }
-            return `Time Management & Work-Life Balance ⏰\n\nI manage my time with the principle of "Work Smart, Not Just Hard":\n\nMy Priority System:\n\n1. Academics 📚\n• Solid theoretical foundation\n• Active class participation\n• Maintain academic performance\n\n2. Development Projects 💻\n• Practice to sharpen skills\n• Build meaningful portfolio\n• Learn by doing real projects\n\n3. Organizations 🤝\n• Develop soft skills & leadership\n• Networking & community building\n• Give back to society\n\nTools & Techniques:\n✅ Time-boxing - Specific time allocation for each activity\n✅ Task Management - Using tools like Notion/Trello\n✅ Deep Work Blocks - Distraction-free focus for coding\n✅ Regular Breaks - Prevent burnout with proper rest\n\nBalance Principles:\n• All areas matter, but each has its time\n• Deadline-driven but maintain quality\n• Don't sacrifice health for productivity\n• Learn to say "no" to focus on priorities\n\nWhat matters is consistency over intensity - small daily progress beats burnout! 🎯`;
-        }
-
-        if (q.includes("organiza") || q.includes("activit") || q.includes("role") || q.includes("peran") || q.includes("kegiatan")) {
-            if (q.includes("fkma") || q.includes("as'adiyah") || q.includes("asadiyah")) {
-                if (isIndo) {
-                    return `PC FKMA Jakarta As'adiyah 🕌\n\nPosisi Saya:\n• Divisi Minat & Bakat (Talent & Interest Division)\n• IT Development (2024-2026)\n\nKontribusi Utama:\n✅ Membangun official website organisasi dari nol\n🌐 Website: https://pcfkmaasadiyahjakarta.vercel.app/\n✅ Digitalisasi sistem komunikasi & informasi\n✅ Support technical untuk event organisasi\n\nTentang FKMA:\nVisi: Menghimpun mahasiswa & alumni Pondok Pesantren As'adiyah untuk berkontribusi pada agama & bangsa berbasis nilai Ahlussunnah wal Jamaah.\n\nLokasi: Ciputat Timur, Tangerang Selatan, Banten\n\nFungsi:\nFKMA adalah wadah silaturahmi, networking, dan pengembangan diri bagi alumni & mahasiswa As'adiyah untuk tetap connected dan memberikan dampak positif bagi masyarakat.\n\nPembelajaran Saya:\n• Kepemimpinan dalam koordinasi tim\n• Project management untuk website development\n• Balance antara technical work & organizational duties\n• Komunikasi dengan diverse stakeholders\n\nSaya bangga bisa berkontribusi menggunakan skill IT untuk kemajuan organisasi! 🌟`;
-                }
-                return `PC FKMA Jakarta As'adiyah 🕌\n\nMy Position:\n• Talent & Interest Division\n• IT Development (2024-2026)\n\nKey Contributions:\n✅ Built the official website from scratch\n🌐 Website: https://pcfkmaasadiyahjakarta.vercel.app/\n✅ Digitalized communication & information systems\n✅ Technical support for organizational events\n\nAbout FKMA:\nVision: Empowering students & alumni of As'adiyah Islamic Boarding School to contribute to religion & nation based on Ahlussunnah wal Jamaah values.\n\nLocation: Ciputat Timur, South Tangerang, Banten\n\nFunction:\nFKMA serves as a hub for networking, self-development, and maintaining connections among As'adiyah alumni & students to deliver positive impact to society.\n\nMy Learnings:\n• Leadership in team coordination\n• Project management for website development\n• Balancing technical work & organizational duties\n• Communication with diverse stakeholders\n\nI'm proud to contribute using my IT skills for organizational advancement! 🌟`;
-            }
-
-            if (isIndo) {
-                return `Aktivitas Organisasi & Kepemimpinan 🌟\n\nPC FKMA Jakarta As'adiyah:\n• Posisi: IT Development & Divisi Minat Bakat (2024-2026)\n• Kontribusi: Membangun official website organisasi\n• Impact: Digitalisasi komunikasi & engagement alumni\n🌐 Website: https://pcfkmaasadiyahjakarta.vercel.app/\n\nPUFA (President University Friends Association):\n• Manajemen event kampus\n• Koordinasi antar mahasiswa\n• Inovasi dalam student engagement\n\nPUMA (President University Muslim Association):\n• Kegiatan keagamaan & spiritual\n• Community building di kalangan mahasiswa muslim\n• Event planning & execution\n\nPembelajaran & Skills yang Didapat:\n✅ Leadership - Memimpin tim untuk achieve goals\n✅ Communication - Berbicara di depan umum & coordination\n✅ Project Management - Planning, execution, evaluation\n✅ Problem Solving - Handle unexpected challenges\n✅ Networking - Build relationships dengan diverse groups\n✅ Time Management - Balance multiple responsibilities\n\nOrganisasi mengajarkan saya bahwa technical skills + soft skills = complete professional! 🎯`;
-            }
-            return `Organizational Activities & Leadership 🌟\n\nPC FKMA Jakarta As'adiyah:\n• Position: IT Development & Talent Division (2024-2026)\n• Contribution: Built the official organization website\n• Impact: Digitalized communication & alumni engagement\n🌐 Website: https://pcfkmaasadiyahjakarta.vercel.app/\n\nPUFA (President University Friends Association):\n• Campus event management\n• Student coordination\n• Innovation in student engagement\n\nPUMA (President University Muslim Association):\n• Religious & spiritual activities\n• Community building among Muslim students\n• Event planning & execution\n\nLearnings & Skills Gained:\n✅ Leadership - Leading teams to achieve goals\n✅ Communication - Public speaking & coordination\n✅ Project Management - Planning, execution, evaluation\n✅ Problem Solving - Handling unexpected challenges\n✅ Networking - Building relationships with diverse groups\n✅ Time Management - Balancing multiple responsibilities\n\nOrganizations taught me that technical skills + soft skills = complete professional! 🎯`;
-        }
-
-        // ============================================
-        // SECTION 8: CAREER & GOALS
-        // ============================================
-
-        if (q.includes("goal") || q.includes("career") || q.includes("future") || q.includes("5 year") || q.includes("mimpi") || q.includes("tahun") || q.includes("vision") || q.includes("visi")) {
-            if (isIndo) {
-                return `Visi Karir & Goals Jangka Panjang 🎯\n\nShort-term Goals (1-2 tahun):\n✅ Secure posisi Junior/Mid-level Full-Stack Developer di tech company\n✅ Contribute ke high-impact projects dengan large user base\n✅ Deepen expertise dalam Web Security & System Architecture\n✅ Build strong professional network di tech industry\n\nMid-term Goals (3-5 tahun):\n✅ Evolve menjadi Senior Developer atau Tech Lead\n✅ Lead development teams & mentor junior developers\n✅ Master advanced topics: Microservices, Cloud Architecture, DevOps\n✅ Contribute significantly ke tech community\n\nLong-term Vision (5-10 tahun):\n🎯 Menjadi Software Architect atau CTO\n🎯 Specialize dalam Secure & Scalable Web Systems\n🎯 Lead engineering teams di companies that matter\n🎯 Potentially build my own tech startup\n\nPrinsip: Impact over Title - Fokus pada meaningful work! 🚀`;
-            }
-            return `Career Vision & Long-term Goals 🎯\n\nShort-term Goals (1-2 years):\n✅ Secure Junior/Mid-level Full-Stack Developer position at tech company\n✅ Contribute to high-impact projects with large user base\n✅ Deepen expertise in Web Security & System Architecture\n✅ Build strong professional network in tech industry\n\nMid-term Goals (3-5 years):\n✅ Evolve into Senior Developer or Tech Lead\n✅ Lead development teams & mentor junior developers\n✅ Master advanced topics: Microservices, Cloud Architecture, DevOps\n✅ Contribute significantly to tech community\n\nLong-term Vision (5-10 years):\n🎯 Become Software Architect or CTO\n🎯 Specialize in Secure & Scalable Web Systems\n🎯 Lead engineering teams at companies that matter\n🎯 Potentially build my own tech startup\n\nPrinciple: Impact over Title - Focus on meaningful work! 🚀`;
-        }
-
-        if (q.includes("environment") || q.includes("company") || q.includes("culture") || q.includes("lingkungan") || q.includes("perusahaan") || q.includes("workplace")) {
-            if (isIndo) {
-                return `Lingkungan Kerja Ideal 🏢\n\nSaya mencari lingkungan yang memungkinkan saya untuk thrive, learn, dan deliver impact:\n\nEngineering Excellence:\n✅ High coding standards & best practices\n✅ Strong code review culture\n✅ Modern tech stack & tools\n✅ Focus on quality over speed (tapi tetap efficient)\n\nLearning & Growth:\n✅ Mentorship dari senior engineers\n✅ Budget untuk learning & conferences\n✅ Culture yang encourage experimentation\n✅ Regular knowledge sharing sessions\n\nTeam Culture:\n✅ Collaborative, bukan competitive\n✅ Open communication & transparency\n✅ Respectful & inclusive environment\n✅ Celebrate wins, learn from failures together\n\nMission & Impact:\n✅ Building products yang meaningful\n✅ Solving real problems untuk real users\n✅ Ethical use of technology\n✅ Positive social impact\n\nSaya percaya bahwa right fit adalah mutual! 🤝`;
-            }
-            return `Ideal Work Environment 🏢\n\nI'm looking for an environment that allows me to thrive, learn, and deliver impact:\n\nEngineering Excellence:\n✅ High coding standards & best practices\n✅ Strong code review culture\n✅ Modern tech stack & tools\n✅ Focus on quality over speed (but still efficient)\n\nLearning & Growth:\n✅ Mentorship from senior engineers\n✅ Budget for learning & conferences\n✅ Culture that encourages experimentation\n✅ Regular knowledge sharing sessions\n\nTeam Culture:\n✅ Collaborative, not competitive\n✅ Open communication & transparency\n✅ Respectful & inclusive environment\n✅ Celebrate wins, learn from failures together\n\nMission & Impact:\n✅ Building meaningful products\n✅ Solving real problems for real users\n✅ Ethical use of technology\n✅ Positive social impact\n\nI believe the right fit is mutual! 🤝`;
-        }
-
-        // ============================================
-        // SECTION 9: HIRING & VALUE
-        // ============================================
-
-        if (q.includes("hire") || q.includes("rekrut") || q.includes("value") || q.includes("benefit") || q.includes("advantage") || q.includes("why you")) {
-            if (isIndo) {
-                return `Kenapa Merekrut Wisnu? 💼\n\nTL;DR: Saya "Day-One Ready" untuk berkontribusi langsung.\n\n1. Production Experience\n✅ Aplikasi yang benar-benar digunakan ribuan users\n✅ Pengalaman deployment, scaling, maintenance\n✅ Paham production concerns: security, performance\n✅ Tidak perlu diajari workflow dari nol\n\n2. Modern Tech Stack Mastery\n✅ Expert dalam ecosystem in-demand: React, Next.js, TypeScript\n✅ Full-stack capability - frontend & backend\n✅ Up-to-date dengan latest best practices\n✅ Fast learner untuk teknologi baru\n\n3. Business Acumen\n✅ Memahami business impact, bukan hanya code\n✅ Translate business requirements → technical solutions\n✅ Communication dengan technical & non-technical stakeholders\n\n4. Strong Soft Skills\n✅ Proven leadership dari organisasi\n✅ Team collaboration & communication\n✅ Time management yang baik\n✅ Professional attitude & work ethic\n\n5. Growth Potential\n✅ Growth mindset - always learning\n✅ Not afraid of challenges\n✅ Long-term commitment\n✅ Quick level-up potential\n\nROI untuk Company:\n💰 Lower onboarding cost\n💰 Immediate contribution\n💰 Fresh perspective & new ideas\n💰 High retention potential\n\nKesimpulan: Saya production-ready developer dengan mindset profesional! 🚀`;
-            }
-            return `Why Hire Wisnu? 💼\n\nTL;DR: I'm "Day-One Ready" to contribute immediately.\n\n1. Production Experience\n✅ Applications actively used by thousands of users\n✅ Real deployment, scaling, maintenance experience\n✅ Understand production concerns: security, performance\n✅ Don't need workflow training from scratch\n\n2. Modern Tech Stack Mastery\n✅ Expert in in-demand ecosystem: React, Next.js, TypeScript\n✅ Full-stack capability - frontend & backend\n✅ Up-to-date with latest best practices\n✅ Fast learner for new technologies\n\n3. Business Acumen\n✅ Understand business impact, not just code\n✅ Translate business requirements → technical solutions\n✅ Communication with technical & non-technical stakeholders\n\n4. Strong Soft Skills\n✅ Proven leadership from organizations\n✅ Team collaboration & communication\n✅ Excellent time management\n✅ Professional attitude & work ethic\n\n5. Growth Potential\n✅ Growth mindset - always learning\n✅ Not afraid of challenges\n✅ Long-term commitment\n✅ Quick level-up potential\n\nROI for Company:\n💰 Lower onboarding cost\n💰 Immediate contribution\n💰 Fresh perspective & new ideas\n💰 High retention potential\n\nBottom line: I'm a production-ready developer with professional mindset! 🚀`;
-        }
-
-        if (q.includes("intern") || q.includes("junior") || q.includes("magang") || q.includes("suitable") || q.includes("entry") || q.includes("fresh")) {
-            if (isIndo) {
-                return `Apakah Cocok untuk Posisi Intern/Junior? 🎯\n\nJawaban: SANGAT COCOK! Bahkan exceed expectations.\n\nTechnical Foundation:\n✅ Production experience dengan real users (15,000+)\n✅ Modern full-stack development\n✅ Comfortable dengan entire development lifecycle\n✅ Understand best practices & clean code\n\nWork Readiness:\n✅ Familiar dengan Git workflow & collaboration\n✅ Pengalaman dengan agile-like process\n✅ Can work independently dengan minimal supervision\n✅ Know when to ask vs troubleshoot sendiri\n\nSoft Skills:\n✅ Professional communication\n✅ Team collaboration skills\n✅ Time management & deadlines\n✅ Terbuka untuk feedback & mentorship\n\nYang Saya Bawa:\n💡 Immediate value - langsung contribute\n💡 Eagerness to learn dari seniors\n💡 Fresh perspective & ideas\n💡 Strong work ethic\n💡 Growth potential - quick level up\n\nYang Saya Cari:\n📚 Mentorship dari experienced developers\n📚 Exposure ke large-scale systems\n📚 Challenging problems\n📚 Culture yang support growth\n\nKomitmen:\nSaya commit untuk exceed expectations, continuous learning, long-term growth, dan menjadi valuable team member! 💪`;
-            }
-            return `Am I Suitable for Intern/Junior Position? 🎯\n\nAnswer: ABSOLUTELY! Even exceeds expectations.\n\nTechnical Foundation:\n✅ Production experience with real users (15,000+)\n✅ Modern full-stack development\n✅ Comfortable with entire development lifecycle\n✅ Understand best practices & clean code\n\nWork Readiness:\n✅ Familiar with Git workflow & collaboration\n✅ Experience with agile-like processes\n✅ Can work independently with minimal supervision\n✅ Know when to ask vs troubleshoot myself\n\nSoft Skills:\n✅ Professional communication\n✅ Team collaboration skills\n✅ Time management & deadlines\n✅ Open to feedback & mentorship\n\nWhat I Bring:\n💡 Immediate value - can contribute right away\n💡 Eagerness to learn from seniors\n💡 Fresh perspective & ideas\n💡 Strong work ethic\n💡 Growth potential - quick level up\n\nWhat I Seek:\n📚 Mentorship from experienced developers\n📚 Exposure to large-scale systems\n📚 Challenging problems\n📚 Culture that supports growth\n\nMy Commitment:\nI commit to exceed expectations, continuous learning, long-term growth, and becoming a valuable team member! 💪`;
-        }
-
-        // ============================================
-        // SECTION 10: CONTACT & AVAILABILITY
-        // ============================================
-
-        if (q.includes("contact") || q.includes("email") || q.includes("reach") || q.includes("kontak") || q.includes("hubungi") || q.includes("linkedin") || q.includes("github")) {
-            if (isIndo) {
-                return `Informasi Kontak 📧\n\nSaya sangat terbuka untuk networking, kolaborasi, atau diskusi opportunities!\n\nProfessional Channels:\n📧 Email: [Please check portfolio website for latest email]\n💼 LinkedIn: [Please check portfolio website]\n💻 GitHub: [Please check portfolio website]\n🌐 Portfolio: [Your portfolio URL]\n\nBest Way to Reach:\nUntuk professional inquiries (job opportunities, collaborations), saya recommend menggunakan email atau LinkedIn.\n\nResponse Time:\n• Biasanya respond dalam 24-48 jam\n• Untuk urgent matters, mention "Urgent" di subject\n\nMohon Include:\n✅ Siapa Anda & company/organization\n✅ Tujuan kontak (job opportunity, collaboration, dll.)\n✅ Brief context\n\nSaya menghargai setiap pesan dan akan respond dengan profesional. Looking forward to hearing from you! 😊`;
-            }
-            return `Contact Information 📧\n\nI'm very open to networking, collaboration, or discussing opportunities!\n\nProfessional Channels:\n📧 Email: [Please check portfolio website for latest email]\n💼 LinkedIn: [Please check portfolio website for latest contact]\n💻 GitHub: [Please check portfolio website for latest contact]\n🌐 Portfolio: [Your portfolio URL]\n\nBest Way to Reach:\nFor professional inquiries (job opportunities, collaborations), I recommend using email or LinkedIn.\n\nResponse Time:\n• I typically respond within 24-48 hours\n• For urgent matters, mention "Urgent" in subject\n\nPlease Include:\n✅ Who you are & your company/organization\n✅ Purpose of contact (job opportunity, collaboration, etc.)\n✅ Brief context\n\nI appreciate every message and will respond professionally. Looking forward to hearing from you! 😊`;
-        }
-
-        if (q.includes("available") || q.includes("tersedia") || q.includes("open") || q.includes("looking") || q.includes("mencari") || q.includes("recruitment")) {
-            if (isIndo) {
-                return `Status Ketersediaan ✅\n\nCurrent Status:\n🟢 OPEN TO OPPORTUNITIES\n\nSaya aktif mencari posisi Junior Full-Stack Developer, Frontend Developer, atau Internship di tech companies.\n\nAvailability:\n📅 Immediate to Flexible Start Date\n\nOpen to:\n✅ Full-time positions (Junior/Mid-level)\n✅ Internship programs (3-6 months)\n✅ Part-time/Contract work (while studying)\n✅ Remote, Hybrid, atau On-site (flexible)\n\nPreferred Locations:\n📍 Jakarta & sekitarnya (Jabodetabek)\n📍 Remote work (anywhere)\n📍 Willing to relocate untuk right opportunity\n\nCommitment:\n💪 Long-term commitment - bukan job-hopper\n💪 Full dedication\n💪 Growth mindset - eager untuk level up\n\nWhat I'm Looking For:\n🎯 Strong engineering culture\n🎯 Learning dari senior developers\n🎯 Meaningful & challenging projects\n🎯 Fair compensation\n\nTimeline:\n• Interviews: Available kapan saja\n• Start Date: Flexible\n• Notice Period: None (not employed)\n\nJika tertarik discuss opportunities, silakan hubungi via email/LinkedIn! 🚀`;
-            }
-            return `Availability Status ✅\n\nCurrent Status:\n🟢 OPEN TO OPPORTUNITIES\n\nI'm actively seeking Junior Full-Stack Developer, Frontend Developer, or Internship positions at tech companies.\n\nAvailability:\n📅 Immediate to Flexible Start Date\n\nOpen to:\n✅ Full-time positions (Junior/Mid-level)\n✅ Internship programs (3-6 months)\n✅ Part-time/Contract work (while studying)\n✅ Remote, Hybrid, or On-site (flexible)\n\nPreferred Locations:\n📍 Jakarta & surrounding areas (Greater Jakarta)\n📍 Remote work (anywhere)\n📍 Willing to relocate for right opportunity\n\nCommitment:\n💪 Long-term commitment - not a job-hopper\n💪 Full dedication\n💪 Growth mindset - eager to level up\n\nWhat I'm Looking For:\n🎯 Strong engineering culture\n🎯 Learning from senior developers\n🎯 Meaningful & challenging projects\n🎯 Fair compensation\n\nTimeline:\n• Interviews: Available anytime\n• Start Date: Flexible\n• Notice Period: None (not employed)\n\nIf interested in discussing opportunities, please contact via email/LinkedIn! 🚀`;
-        }
-
-        // ============================================
-        // SECTION 11: SIMPLE & SUMMARY
-        // ============================================
-
-        if (q.includes("simple") || q.includes("non-tech") || q.includes("sederhana") || q.includes("awam") || q.includes("eli5")) {
-            if (isIndo) {
-                return `Penjelasan Sederhana 🎯\n\nBayangkan Wisnu sebagai "Arsitek & Pembangun Rumah Digital":\n\nApa yang Saya Lakukan?\n🏗️ Merancang dan membangun "rumah" di internet (website & aplikasi)\n\nSeperti Arsitek Rumah Biasa:\n• Design: Buat tampilan bagus dan nyaman\n• Structure: Pastikan "rumah" tidak roboh (aman & stabil)\n• Function: Semua ruangan berfungsi baik\n• Maintenance: Rawat & perbaiki jika ada kerusakan\n\nContoh Nyata - Ashar Grosir:\n\nSebelum (Manual):\n📝 Pemilik catat pesanan di buku\n📞 Customer telepon/WhatsApp\n🤯 Data berantakan, sering error\n⏰ Process lama\n\nSesudah (Digital):\n💻 Customer lihat katalog & pesan online\n🔄 Order masuk sistem otomatis\n📊 Data terorganisir rapi\n⚡ Process super cepat & akurat\n✅ Melayani 15,000+ customer mudah!\n\nKesimpulan:\nSaya problem solver yang pakai coding untuk bikin hidup orang lebih mudah! 🚀`;
-            }
-            return `Simple Explanation 🎯\n\nThink of Wisnu as a "Digital House Architect & Builder":\n\nWhat Do I Do?\n🏗️ Design and build "houses" on the internet (websites & applications)\n\nJust Like a Regular House Architect:\n• Design: Create beautiful, comfortable appearance\n• Structure: Ensure the "house" won't collapse (secure & stable)\n• Function: All rooms work properly\n• Maintenance: Care for & fix if there's damage\n\nReal Example - Ashar Grosir:\n\nBefore (Manual):\n📝 Owner records orders in books\n📞 Customers call/WhatsApp\n🤯 Messy data, frequent errors\n⏰ Long process\n\nAfter (Digital):\n💻 Customers view catalog & order online\n🔄 Orders enter system automatically\n📊 Data organized neatly\n⚡ Process super fast & accurate\n✅ Serving 15,000+ customers easily!\n\nConclusion:\nI'm a problem solver who uses coding to make people's lives easier! 🚀`;
-        }
-
-        if (q.includes("summary") || q.includes("summarize") || q.includes("ringkas") || q.includes("overview") || q.includes("recruiter")) {
-            if (isIndo) {
-                return `Ringkasan Profesional 📄\n\nEXECUTIVE SUMMARY:\nWisnu Alfian Nur Ashar - Talenta IT dari President University yang merepresentasikan kombinasi langka antara Technical Excellence dan Leadership Acumen. Proven track record dalam delivering production-grade applications melayani ribuan users.\n\nCORE COMPETENCIES:\n• Full-Stack Web Development (React, Next.js 16, TypeScript)\n• Database Management (Supabase, PostgreSQL)\n• Modern UI/UX (Tailwind CSS, Framer Motion)\n• Web Security & Best Practices\n\nKEY ACHIEVEMENTS:\n✅ Ashar Grosir Parfum: Digitalized 20-year business, serving 15,000+ partners, 3x efficiency\n✅ LexCorpus CMS: Streamlined legal content management\n✅ FKMA Website: IT Development lead, built official website\n\nUNIQUE VALUE:\n1. Production-Ready: Real experience, minimal onboarding\n2. Business-Technical Bridge: Translate requirements → solutions\n3. Growth Potential: Fast learner, long-term commitment\n\nAVAILABILITY:\n🟢 Immediately Available\n📍 Flexible: Remote/Hybrid/On-site\n🌍 Willing to Relocate\n\nBOTTOM LINE:\nHigh-ROI investment - production-ready developer dengan proven track record. Ready to deliver value from Day One. 🚀`;
-            }
-            return `Professional Summary 📄\n\nEXECUTIVE SUMMARY:\nWisnu Alfian Nur Ashar - IT talent from President University representing rare combination of Technical Excellence and Leadership Acumen. Proven track record delivering production-grade applications serving thousands of users.\n\nCORE COMPETENCIES:\n• Full-Stack Web Development (React, Next.js 16, TypeScript)\n• Database Management (Supabase, PostgreSQL)\n• Modern UI/UX (Tailwind CSS, Framer Motion)\n• Web Security & Best Practices\n\nKEY ACHIEVEMENTS:\n✅ Ashar Grosir Parfum: Digitalized 20-year business, serving 15,000+ partners, 3x efficiency\n✅ LexCorpus CMS: Streamlined legal content management\n✅ FKMA Website: IT Development lead, built official website\n\nUNIQUE VALUE:\n1. Production-Ready: Real experience, minimal onboarding\n2. Business-Technical Bridge: Translate requirements → solutions\n3. Growth Potential: Fast learner, long-term commitment\n\nAVAILABILITY:\n🟢 Immediately Available\n📍 Flexible: Remote/Hybrid/On-site\n🌍 Willing to Relocate\n\nBOTTOM LINE:\nHigh-ROI investment - production-ready developer with proven track record. Ready to deliver value from Day One. 🚀`;
-        }
-
-        // ============================================
-        // SECTION 12: PERSONAL & CHARACTER
-        // ============================================
-
-        if (q.includes("hobi") || q.includes("hobby") || q.includes("interest") || q.includes("free time") || q.includes("waktu luang")) {
-            if (isIndo) {
-                return `Hobi & Minat Pribadi 🎯
-
-        Di luar coding, saya adalah orang yang cukup balance antara teknologi dan aktivitas lainnya:
-
-        🎮 Gaming:
-        - Menyukai strategy & simulation games
-        - Gaming membantu saya relax setelah coding session panjang
-
-        📚 Membaca & Belajar:
-        - Tech articles & blogs untuk update knowledge
-        - Business case studies untuk memahami real-world problems
-        - Dokumentasi teknologi baru
-
-        🏃 Aktivitas Fisik:
-        - Olahraga ringan untuk menjaga kesehatan
-        - Believe in "healthy body, healthy mind"
-
-        🎵 Musik:
-        - Mendengarkan musik saat coding (boost productivity!)
-        - Genre yang calm untuk deep focus session
-
-        👥 Socializing:
-        - Networking events & tech meetups
-        - Diskusi dengan fellow developers
-        - Sharing knowledge dengan teman-teman
-
-        🌍 Eksplorasi:
-        - Mencoba teknologi & tools baru
-        - Eksperimen dengan side projects
-        - Learn by doing!
-
-        Prinsip saya: Work hard, but also recharge properly! Balance adalah kunci produktivitas jangka panjang. 💪`;
-            }
-            return `Hobbies & Personal Interests 🎯
-
-        Outside of coding, I maintain a good balance between technology and other activities:
-
-        🎮 Gaming:
-        - Enjoy strategy & simulation games
-        - Gaming helps me relax after long coding sessions
-
-        📚 Reading & Learning:
-        - Tech articles & blogs to stay updated
-        - Business case studies to understand real-world problems
-        - Documentation of new technologies
-
-        🏃 Physical Activities:
-        - Light exercise to maintain health
-        - Believe in "healthy body, healthy mind"
-
-        🎵 Music:
-        - Listen to music while coding (boosts productivity!)
-        - Calm genres for deep focus sessions
-
-        👥 Socializing:
-        - Networking events & tech meetups
-        - Discussions with fellow developers
-        - Knowledge sharing with peers
-
-        🌍 Exploration:
-        - Trying new technologies & tools
-        - Experimenting with side projects
-        - Learn by doing!
-
-        My principle: Work hard, but also recharge properly! Balance is key to long-term productivity. 💪`;
-        }
-
-        if (q.includes("makanan") || q.includes("makan") || q.includes("food") || q.includes("minum") || q.includes("drink") || q.includes("favorit") || q.includes("favorite")) {
-            if (isIndo) {
-                return `Makanan & Minuman Favorit 🍽️
-
-        Saya cukup simple dalam hal makanan, yang penting enak, bergizi, dan bisa fuel productivity!
-
-        ☕ Minuman Favorit:
-        - Kopi - Essential untuk coding sessions!
-        - Teh - Alternative saat butuh sesuatu yang lebih ringan
-        - Air putih - Always stay hydrated
-
-        🍜 Makanan:
-        - Indonesian cuisine - Nasi + lauk sederhana
-        - Practical & filling meals
-        - Tidak terlalu picky, yang penting sehat dan mengenyangkan
-
-        🍫 Snacks saat Coding:
-        - Light snacks untuk energy boost
-        - Dark chocolate kadang-kadang
-        - Buah-buahan
-
-        Filosofi makan saya: "Eat to live, not live to eat" - fokus pada nutrisi untuk support produktivitas, bukan sekadar pleasure! 
-
-        Tapi tentu saja, sesekali enjoy good food dengan teman-teman juga penting untuk work-life balance! 😊`;
-            }
-            return `Food & Drink Preferences 🍽️
-
-        I'm quite simple when it comes to food - as long as it's tasty, nutritious, and fuels productivity!
-
-        ☕ Favorite Drinks:
-        - Coffee - Essential for coding sessions!
-        - Tea - Alternative when I need something lighter
-        - Water - Always stay hydrated
-
-        🍜 Food:
-        - Indonesian cuisine - Rice with simple dishes
-        - Practical & filling meals
-        - Not too picky, as long as it's healthy and satisfying
-
-        🍫 Coding Snacks:
-        - Light snacks for energy boost
-        - Dark chocolate occasionally
-        - Fruits
-
-        My eating philosophy: "Eat to live, not live to eat" - focus on nutrition to support productivity, not just pleasure!
-
-        But of course, occasionally enjoying good food with friends is also important for work-life balance! 😊`;
-        }
-
-        if (q.includes("sifat") || q.includes("karakter") || q.includes("personality") || q.includes("kepribadian") || q.includes("orangnya") || q.includes("penyabar") || q.includes("penyayang")) {
-            if (isIndo) {
-                return `Kepribadian & Karakter 🌟
-
-        Beberapa sifat yang mendefinisikan saya:
-
-        💙 Penyabar & Teliti:
-        - Debugging butuh kesabaran - saya punya itu!
-        - Tidak mudah frustasi dengan error atau bugs
-        - Detail-oriented dalam setiap pekerjaan
-        - Calm under pressure
-
-        🤝 Penyayang & Peduli:
-        - Care about team members & their wellbeing
-        - Always ready to help teammates yang struggle
-        - Believe in "we grow together"
-        - Empathetic listener
-
-        📚 Curious & Open-minded:
-        - Always eager to learn new things
-        - Open terhadap feedback & kritik konstruktif
-        - Not afraid to say "I don't know" dan belajar
-        - Growth mindset person
-
-        💪 Responsible & Committed:
-        - Take ownership of my work
-        - Deliver what I promise
-        - Accountable untuk mistakes
-        - Long-term thinker
-
-        ⚡ Proactive & Solution-oriented:
-        - Don't wait for problems to escalate
-        - Always think ahead
-        - Focus on solutions, not complaints
-        - Action-taker
-
-        🎯 Humble & Grounded:
-        - Confident tapi tidak arrogant
-        - Appreciate others' contributions
-        - Learn from everyone
-        - Stay humble despite achievements
-
-        Yang terpenting: Saya percaya bahwa great developer bukan hanya soal technical skills, tapi juga tentang character dan bagaimana kita treat people around us. 
-
-        "Skill bisa dipelajari, tapi karakter adalah foundation." 💎`;
-            }
-            return `Personality & Character 🌟
-
-        Key traits that define me:
-
-        💙 Patient & Meticulous:
-        - Debugging requires patience - I have it!
-        - Don't easily get frustrated with errors or bugs
-        - Detail-oriented in every task
-        - Calm under pressure
-
-        🤝 Caring & Compassionate:
-        - Care about team members & their wellbeing
-        - Always ready to help struggling teammates
-        - Believe in "we grow together"
-        - Empathetic listener
-
-        📚 Curious & Open-minded:
-        - Always eager to learn new things
-        - Open to feedback & constructive criticism
-        - Not afraid to say "I don't know" and learn
-        - Growth mindset person
-
-        💪 Responsible & Committed:
-        - Take ownership of my work
-        - Deliver what I promise
-        - Accountable for mistakes
-        - Long-term thinker
-
-        ⚡ Proactive & Solution-oriented:
-        - Don't wait for problems to escalate
-        - Always think ahead
-        - Focus on solutions, not complaints
-        - Action-taker
-
-        🎯 Humble & Grounded:
-        - Confident but not arrogant
-        - Appreciate others' contributions
-        - Learn from everyone
-        - Stay humble despite achievements
-
-        Most importantly: I believe great developers aren't just about technical skills, but also about character and how we treat people around us.
-
-        "Skills can be learned, but character is the foundation." 💎`;
-        }
-
-        if (q.includes("fun fact") || q.includes("unik") || q.includes("menarik") || q.includes("unique") || q.includes("interesting")) {
-            if (isIndo) {
-                return `Fun Facts tentang Wisnu 🎉
-
-        Beberapa hal menarik yang mungkin belum Anda tahu:
-
-        🎓 Student Developer:
-        - Masih kuliah tapi sudah manage production apps dengan 15,000+ users
-        - Balance antara academic theory & real-world practice
-
-        💻 Self-taught Journey:
-        - Banyak skill saya pelajari secara otodidak dari documentation & practice
-        - Believe in "learn by building real things"
-
-        🌙 Night Owl Coder:
-        - Most productive coding time: malam hari
-        - Deep focus sessions when the world is quiet
-
-        🔧 Problem Solver Mindset:
-        - Suka tantangan teknis yang sulit
-        - "Impossible is just a challenge waiting to be solved"
-
-        🎯 Perfectionist (with Balance):
-        - Detail-oriented tapi tahu kapan "good enough"
-        - Understand trade-off antara perfect vs shipped
-
-        👨‍💼 Young Professional:
-        - Pengalaman organisasi + production work di usia muda
-        - Early career advantage
-
-        🚀 Tech Enthusiast:
-        - Always excited about new technologies
-        - Early adopter of modern tools (Next.js 16, Supabase)
-
-        💡 Impact-driven:
-        - Lebih senang project yang solve real problems
-        - Not motivated by "cool tech" alone, tapi by "meaningful impact"
-
-        Quote favorit: "Code is poetry, but impact is the masterpiece!" 🎨`;
-            }
-            return `Fun Facts about Wisnu 🎉
-
-        Some interesting things you might not know:
-
-        🎓 Student Developer:
-        - Still in college but already managing production apps with 15,000+ users
-        - Balance between academic theory & real-world practice
-
-        💻 Self-taught Journey:
-        - Many of my skills are self-taught from documentation & practice
-        - Believe in "learn by building real things"
-
-        🌙 Night Owl Coder:
-        - Most productive coding time: nighttime
-        - Deep focus sessions when the world is quiet
-
-        🔧 Problem Solver Mindset:
-        - Love difficult technical challenges
-        - "Impossible is just a challenge waiting to be solved"
-
-        🎯 Perfectionist (with Balance):
-        - Detail-oriented but know when "good enough"
-        - Understand trade-off between perfect vs shipped
-
-        👨‍💼 Young Professional:
-        - Organizational experience + production work at young age
-        - Early career advantage
-
-        🚀 Tech Enthusiast:
-        - Always excited about new technologies
-        - Early adopter of modern tools (Next.js 16, Supabase)
-
-        💡 Impact-driven:
-        - Prefer projects that solve real problems
-        - Not motivated by "cool tech" alone, but by "meaningful impact"
-
-        Favorite quote: "Code is poetry, but impact is the masterpiece!" 🎨`;
-        }
-
-        // ============================================
-        // SECTION 13: ENHANCED TECH STACK
-        // ============================================
-
-        if (q.includes("node") || q.includes("express") || q.includes("backend") || q.includes("server")) {
-            if (isIndo) {
-                return `Backend Development dengan Node.js & Express 🔧
-
-        Ya, saya juga menguasai backend development dengan Node.js ecosystem!
-
-        Node.js & Express.js:
-        ✅ RESTful API development
-        ✅ Middleware implementation
-        ✅ Authentication & Authorization (JWT, OAuth)
-        ✅ Database integration (MongoDB, PostgreSQL)
-        ✅ Error handling & validation
-        ✅ API security best practices
-
-        Use Cases:
-        - Custom backend services untuk aplikasi kompleks
-        - Microservices architecture
-        - Real-time applications dengan WebSocket
-        - API gateway & reverse proxy
-
-        Kenapa Node.js?
-        💚 JavaScript everywhere - same language frontend & backend
-        💚 Non-blocking I/O - high performance untuk concurrent requests
-        💚 Rich ecosystem (npm packages)
-        💚 Perfect untuk full-stack JavaScript development
-
-        Integration Experience:
-        - Express + React/Next.js untuk full-stack apps
-        - Express + PostgreSQL untuk robust database apps
-        - Express + authentication systems
-
-        Saya comfortable bekerja di pure backend maupun full-stack role! 🚀`;
-            }
-            return `Backend Development with Node.js & Express 🔧
-
-        Yes, I also master backend development with Node.js ecosystem!
-
-        Node.js & Express.js:
-        ✅ RESTful API development
-        ✅ Middleware implementation
-        ✅ Authentication & Authorization (JWT, OAuth)
-        ✅ Database integration (MongoDB, PostgreSQL)
-        ✅ Error handling & validation
-        ✅ API security best practices
-
-        Use Cases:
-        - Custom backend services for complex applications
-        - Microservices architecture
-        - Real-time applications with WebSocket
-        - API gateway & reverse proxy
-
-        Why Node.js?
-        💚 JavaScript everywhere - same language frontend & backend
-        💚 Non-blocking I/O - high performance for concurrent requests
-        💚 Rich ecosystem (npm packages)
-        💚 Perfect for full-stack JavaScript development
-
-        Integration Experience:
-        - Express + React/Next.js for full-stack apps
-        - Express + PostgreSQL for robust database apps
-        - Express + authentication systems
-
-        I'm comfortable working in pure backend or full-stack roles! 🚀`;
-        }
-
-        if (q.includes("flutter") || q.includes("mobile") || q.includes("kotlin") || q.includes("app") || q.includes("android")) {
-            if (isIndo) {
-                return `Mobile Development: Flutter & Kotlin 📱
-
-        Selain web development, saya juga memiliki skill dalam mobile app development!
-
-        Flutter:
-        ✅ Cross-platform development (Android & iOS)
-        ✅ Dart programming language
-        ✅ Beautiful UI dengan Material Design & Cupertino
-        ✅ State management (Provider, Riverpod, Bloc)
-        ✅ API integration & local storage
-        ✅ Responsive & adaptive layouts
-
-        Kotlin:
-        ✅ Native Android development
-        ✅ Modern, concise syntax
-        ✅ Jetpack Compose untuk modern UI
-        ✅ Android SDK & APIs
-        ✅ Material Design implementation
-
-        Mobile Development Capabilities:
-        - Build production-ready mobile apps
-        - Implement complex UI/UX designs
-        - Handle offline-first architecture
-        - Push notifications & background services
-        - App deployment ke Play Store
-
-        Why Mobile Development?
-        📱 Expand reach - mobile users are everywhere
-        📱 Learn platform-specific challenges
-        📱 Complete developer skillset (Web + Mobile)
-
-        Integration:
-        - Flutter/Kotlin apps + REST API backend
-        - Mobile apps consuming Next.js/Express APIs
-        - Cross-platform development strategy
-
-        Saya bisa develop end-to-end solution: Web + Mobile + Backend! 💪`;
-            }
-            return `Mobile Development: Flutter & Kotlin 📱
-
-        Besides web development, I also have skills in mobile app development!
-
-        Flutter:
-        ✅ Cross-platform development (Android & iOS)
-        ✅ Dart programming language
-        ✅ Beautiful UI with Material Design & Cupertino
-        ✅ State management (Provider, Riverpod, Bloc)
-        ✅ API integration & local storage
-        ✅ Responsive & adaptive layouts
-
-        Kotlin:
-        ✅ Native Android development
-        ✅ Modern, concise syntax
-        ✅ Jetpack Compose for modern UI
-        ✅ Android SDK & APIs
-        ✅ Material Design implementation
-
-        Mobile Development Capabilities:
-        - Build production-ready mobile apps
-        - Implement complex UI/UX designs
-        - Handle offline-first architecture
-        - Push notifications & background services
-        - App deployment to Play Store
-
-        Why Mobile Development?
-        📱 Expand reach - mobile users are everywhere
-        📱 Learn platform-specific challenges
-        📱 Complete developer skillset (Web + Mobile)
-
-        Integration:
-        - Flutter/Kotlin apps + REST API backend
-        - Mobile apps consuming Next.js/Express APIs
-        - Cross-platform development strategy
-
-        I can develop end-to-end solutions: Web + Mobile + Backend! 💪`;
-        }
-
-        if (q.includes("laravel") || q.includes("php") || q.includes("backend framework")) {
-            if (isIndo) {
-                return `Laravel - PHP Framework 🐘
-
-        Ya, saya juga familiar dengan Laravel untuk backend development!
-
-        Laravel Expertise:
-        ✅ MVC architecture pattern
-        ✅ Eloquent ORM untuk database operations
-        ✅ Blade templating engine
-        ✅ RESTful API development
-        ✅ Authentication & Authorization (Laravel Sanctum, Passport)
-        ✅ Database migrations & seeding
-        ✅ Queue & job processing
-        ✅ Laravel Mix untuk asset compilation
-
-        Use Cases:
-        - CMS development
-        - E-commerce platforms
-        - Admin dashboards
-        - API backend untuk mobile/web apps
-
-        Why Laravel?
-        🎯 Elegant syntax & developer-friendly
-        🎯 Rich ecosystem (packages & tools)
-        🎯 Great documentation
-        🎯 Built-in features (auth, routing, caching)
-        🎯 Strong community support
-
-        Experience:
-        - Built custom CMS with Laravel
-        - Laravel + Vue.js/React untuk modern full-stack apps
-        - RESTful API development untuk mobile apps
-        - Database design & optimization
-
-        Tech Stack Versatility:
-        - Laravel untuk traditional web apps
-        - Node.js/Express untuk modern JavaScript-based backends
-        - Choose the right tool untuk the right job!
-
-        Saya bisa beradaptasi dengan tech stack yang dibutuhkan project! 🚀`;
-            }
-            return `Laravel - PHP Framework 🐘
-
-        Yes, I'm also familiar with Laravel for backend development!
-
-        Laravel Expertise:
-        ✅ MVC architecture pattern
-        ✅ Eloquent ORM for database operations
-        ✅ Blade templating engine
-        ✅ RESTful API development
-        ✅ Authentication & Authorization (Laravel Sanctum, Passport)
-        ✅ Database migrations & seeding
-        ✅ Queue & job processing
-        ✅ Laravel Mix for asset compilation
-
-        Use Cases:
-        - CMS development
-        - E-commerce platforms
-        - Admin dashboards
-        - API backend for mobile/web apps
-
-        Why Laravel?
-        🎯 Elegant syntax & developer-friendly
-        🎯 Rich ecosystem (packages & tools)
-        🎯 Great documentation
-        🎯 Built-in features (auth, routing, caching)
-        🎯 Strong community support
-
-        Experience:
-        - Built custom CMS with Laravel
-        - Laravel + Vue.js/React for modern full-stack apps
-        - RESTful API development for mobile apps
-        - Database design & optimization
-
-        Tech Stack Versatility:
-        - Laravel for traditional web apps
-        - Node.js/Express for modern JavaScript-based backends
-        - Choose the right tool for the right job!
-
-        I can adapt to whatever tech stack the project needs! 🚀`;
-        }
-
-        // ============================================
-        // SECTION 14: ABOUT THIS WEBSITE
-        // ============================================
-
-        if (q.includes("website ini") || q.includes("this website") || q.includes("portfolio") || q.includes("site") || q.includes("halaman")) {
-            if (isIndo) {
-                return `Tentang Website Portfolio Ini 🌐
-
-        Nama Website:
-        📌 Wisnu Alfian Nur Ashar - Portfolio & Professional Profile
-
-        Pembuat:
-        👨‍💻 Dibuat langsung oleh Wisnu Alfian Nur Ashar
-
-        Tujuan:
-        🎯 Showcase professional profile, skills, dan projects
-        🎯 Platform untuk recruiter & potential employers mengenal saya
-        🎯 Demonstrate technical capabilities melalui website itu sendiri
-        🎯 Central hub untuk semua informasi profesional saya
-
-        Teknologi yang Digunakan:
-        ⚡ **Astro** - Modern static site generator
-        - Ultra-fast performance
-        - SEO-friendly
-        - Component-based architecture
-        - Zero JS by default (ship less JavaScript!)
-
-        ✨ Supporting Technologies:
-        - TypeScript - Type safety
-        - Tailwind CSS - Utility-first styling
-        - React (untuk interactive components)
-        - Local AI Chatbot (TypeScript-based)
-
-        Fitur Unggulan:
-        ✅ Lightning-fast loading speed
-        ✅ Fully responsive (Desktop, Tablet, Mobile)
-        ✅ SEO optimized untuk discoverability
-        ✅ Interactive AI Assistant (saya!) untuk Q&A 24/7
-        ✅ Modern, professional design
-        ✅ Project showcase dengan detail teknis
-        ✅ Contact forms & social links
-
-        Kenapa Astro?
-        🚀 Performance-first framework
-        🚀 Perfect untuk content-heavy sites seperti portfolio
-        🚀 Built-in optimizations (image optimization, lazy loading)
-        🚀 Developer experience yang excellent
-
-        Hosting & Deployment:
-        ☁️ Deployed on modern hosting platform (Vercel/Netlify)
-        ☁️ Automatic deployments dari Git
-        ☁️ Global CDN untuk fast loading worldwide
-        ☁️ HTTPS secure
-
-        Website ini sendiri adalah demonstrasi dari kemampuan Wisnu dalam:
-        - Modern web development
-        - Performance optimization
-        - UX/UI design
-        - Technical implementation
-
-        Ini bukan sekadar portfolio template - ini custom-built showcase! 💪`;
-            }
-            return `About This Portfolio Website 🌐
-
-        Website Name:
-        📌 Wisnu Alfian Nur Ashar - Portfolio & Professional Profile
-
-        Creator:
-        👨‍💻 Built directly by Wisnu Alfian Nur Ashar
-
-        Purpose:
-        🎯 Showcase professional profile, skills, and projects
-        🎯 Platform for recruiters & potential employers to know me
-        🎯 Demonstrate technical capabilities through the website itself
-        🎯 Central hub for all my professional information
-
-        Technology Stack:
-        ⚡ **Astro** - Modern static site generator
-        - Ultra-fast performance
-        - SEO-friendly
-        - Component-based architecture
-        - Zero JS by default (ship less JavaScript!)
-
-        ✨ Supporting Technologies:
-        - TypeScript - Type safety
-        - Tailwind CSS - Utility-first styling
-        - React (for interactive components)
-        - Local AI Chatbot (TypeScript-based)
-
-        Key Features:
-        ✅ Lightning-fast loading speed
-        ✅ Fully responsive (Desktop, Tablet, Mobile)
-        ✅ SEO optimized for discoverability
-        ✅ Interactive AI Assistant (me!) for 24/7 Q&A
-        ✅ Modern, professional design
-        ✅ Project showcase with technical details
-        ✅ Contact forms & social links
-
-        Why Astro?
-        🚀 Performance-first framework
-        🚀 Perfect for content-heavy sites like portfolios
-        🚀 Built-in optimizations (image optimization, lazy loading)
-        🚀 Excellent developer experience
-
-        Hosting & Deployment:
-        ☁️ Deployed on modern hosting platform (Vercel/Netlify)
-        ☁️ Automatic deployments from Git
-        ☁️ Global CDN for fast loading worldwide
-        ☁️ HTTPS secure
-
-        This website itself is a demonstration of Wisnu's capabilities in:
-        - Modern web development
-        - Performance optimization
-        - UX/UI design
-        - Technical implementation
-
-        This isn't just a portfolio template - it's a custom-built showcase! 💪`;
-        }
-
-        if (q.includes("astro") || q.includes("framework") || q.includes("teknologi website") || q.includes("dibuat dengan")) {
-            if (isIndo) {
-                return `Website Ini Dibangun dengan Astro ⚡
-
-        Tentang Astro:
-        Astro adalah modern static site generator yang revolutionary dengan fokus pada performance & developer experience.
-
-        Kenapa Memilih Astro?
-        🚀 **Zero JavaScript by Default**
-        - Ship less JavaScript = faster loading
-        - Only load JS when necessary (islands architecture)
-
-        ⚡ **Ultra-Fast Performance**
-        - Static site generation untuk speed
-        - Automatic code splitting
-        - Built-in image optimization
-        - Lazy loading out of the box
-
-        🎯 **Perfect untuk Portfolio**
-        - Content-focused sites
-        - SEO-friendly (great for discoverability!)
-        - Markdown support untuk easy content management
-
-        💻 **Developer Experience**
-        - Component-based architecture
-        - Bisa pakai React, Vue, Svelte di project yang sama!
-        - TypeScript support
-        - Hot module replacement (HMR)
-
-        🔧 **Built-in Features**
-        - Image optimization
-        - CSS bundling & minification
-        - Sitemap generation
-        - RSS feed support
-
-        Tech Stack Website Ini:
-        📦 Astro - Core framework
-        📦 TypeScript - Type safety
-        📦 Tailwind CSS - Styling
-        📦 React - Interactive components (AI Chat!)
-        📦 Vercel/Netlify - Hosting
-
-        Performa Website:
-        ✅ Lighthouse Score: Near-perfect (90+)
-        ✅ First Contentful Paint: < 1s
-        ✅ Time to Interactive: Minimal
-        ✅ SEO Score: Excellent
-
-        Astro Features yang Digunakan:
-        - Static Site Generation (SSG)
-        - Component Islands untuk interactivity
-        - Content Collections untuk organized content
-        - Built-in RSS & Sitemap
-
-        Ini adalah kombinasi sempurna: Modern technology + Optimal performance! 🎯`;
-            }
-            return `This Website is Built with Astro ⚡
-
-        About Astro:
-        Astro is a revolutionary modern static site generator focused on performance & developer experience.
-
-        Why Choose Astro?
-        🚀 **Zero JavaScript by Default**
-        - Ship less JavaScript = faster loading
-        - Only load JS when necessary (islands architecture)
-
-        ⚡ **Ultra-Fast Performance**
-        - Static site generation for speed
-        - Automatic code splitting
-        - Built-in image optimization
-        - Lazy loading out of the box
-
-        🎯 **Perfect for Portfolio**
-        - Content-focused sites
-        - SEO-friendly (great for discoverability!)
-        - Markdown support for easy content management
-
-        💻 **Developer Experience**
-        - Component-based architecture
-        - Can use React, Vue, Svelte in same project!
-        - TypeScript support
-        - Hot module replacement (HMR)
-
-        🔧 **Built-in Features**
-        - Image optimization
-        - CSS bundling & minification
-        - Sitemap generation
-        - RSS feed support
-
-        This Website's Tech Stack:
-        📦 Astro - Core framework
-        📦 TypeScript - Type safety
-        📦 Tailwind CSS - Styling
-        📦 React - Interactive components (AI Chat!)
-        📦 Vercel/Netlify - Hosting
-
-        Website Performance:
-        ✅ Lighthouse Score: Near-perfect (90+)
-        ✅ First Contentful Paint: < 1s
-        ✅ Time to Interactive: Minimal
-        ✅ SEO Score: Excellent
-
-        Astro Features Used:
-        - Static Site Generation (SSG)
-        - Component Islands for interactivity
-        - Content Collections for organized content
-        - Built-in RSS & Sitemap
-
-        This is the perfect combination: Modern technology + Optimal performance! 🎯`;
-        }
-
-        if (q.includes("fitur") || q.includes("feature") || q.includes("menu") || q.includes("bagian") || q.includes("section")) {
-            if (isIndo) {
-                return `Fitur-Fitur Website Portfolio Ini 🎨
-
-        Main Sections:
-        📍 **Home / Hero**
-        - Introduction & quick overview
-        - Call-to-action untuk explore lebih lanjut
-        - Eye-catching design
-
-        📍 **About / Profile**
-        - Detailed background & bio
-        - Education & academic info
-        - Values & motivation
-        - Personal interests
-
-        📍 **Skills**
-        - Technical skills showcase
-        - Technology stack
-        - Proficiency levels
-        - Tools & frameworks
-
-        📍 **Projects / Portfolio**
-        - Featured projects dengan screenshots
-        - Technology stack per project
-        - Live demo links & GitHub repos
-        - Project descriptions & impact
-
-        📍 **Experience**
-        - Professional experience
-        - Organizational activities
-        - Leadership roles
-        - Timeline view
-
-        📍 **Contact**
-        - Contact form
-        - Social media links
-        - Email & professional networks
-        - Location info
-
-        Interactive Features:
-        🤖 **AI Assistant (LocalAI)**
-        - 24/7 intelligent chatbot
-        - Answer questions about Wisnu
-        - Bilingual (Indonesian & English)
-        - Context-aware responses
-
-        ⚡ **Performance Features**
-        - Lazy loading images
-        - Optimized assets
-        - Fast page transitions
-        - Minimal JavaScript
-
-        🎯 **UX Features**
-        - Smooth scrolling
-        - Responsive navigation
-        - Mobile-friendly hamburger menu
-        - Dark/Light mode (if implemented)
-        - Accessibility compliant
-
-        📱 **Responsive Design**
-        - Desktop optimized (1920px+)
-        - Laptop friendly (1366px+)
-        - Tablet compatible (768px+)
-        - Mobile responsive (375px+)
-
-        🔍 **SEO Optimized**
-        - Meta tags properly configured
-        - Structured data (JSON-LD)
-        - Sitemap generation
-        - Open Graph tags untuk social sharing
-
-        Cara Menggunakan:
-        1️⃣ Navigate dengan menu di header
-        2️⃣ Scroll untuk explore sections
-        3️⃣ Click pada projects untuk detail
-        4️⃣ Use AI Assistant untuk instant answers
-        5️⃣ Contact form untuk direct communication
-
-        Website ini designed untuk memberikan complete professional picture dari Wisnu! 🚀`;
-            }
-            return `Features of This Portfolio Website 🎨
-
-        Main Sections:
-        📍 **Home / Hero**
-        - Introduction & quick overview
-        - Call-to-action to explore further
-        - Eye-catching design
-
-        📍 **About / Profile**
-        - Detailed background & bio
-        - Education & academic info
-        - Values & motivation
-        - Personal interests
-
-        📍 **Skills**
-        - Technical skills showcase
-        - Technology stack
-        - Proficiency levels
-        - Tools & frameworks
-
-        📍 **Projects / Portfolio**
-        - Featured projects with screenshots
-        - Technology stack per project
-        - Live demo links & GitHub repos
-        - Project descriptions & impact
-
-        📍 **Experience**
-        - Professional experience
-        - Organizational activities
-        - Leadership roles
-        - Timeline view
-
-        📍 **Contact**
-        - Contact form
-        - Social media links
-        - Email & professional networks
-        - Location info
-
-        Interactive Features:
-        🤖 **AI Assistant (LocalAI)**
-        - 24/7 intelligent chatbot
-        - Answer questions about Wisnu
-        - Bilingual (Indonesian & English)
-        - Context-aware responses
-
-        ⚡ **Performance Features**
-        - Lazy loading images
-        - Optimized assets
-        - Fast page transitions
-        - Minimal JavaScript
-
-        🎯 **UX Features**
-        - Smooth scrolling
-        - Responsive navigation
-        - Mobile-friendly hamburger menu
-        - Dark/Light mode (if implemented)
-        - Accessibility compliant
-
-        📱 **Responsive Design**
-        - Desktop optimized (1920px+)
-        - Laptop friendly (1366px+)
-        - Tablet compatible (768px+)
-        - Mobile responsive (375px+)
-
-        🔍 **SEO Optimized**
-        - Meta tags properly configured
-        - Structured data (JSON-LD)
-        - Sitemap generation
-        - Open Graph tags for social sharing
-
-        How to Use:
-        1️⃣ Navigate with header menu
-        2️⃣ Scroll to explore sections
-        3️⃣ Click on projects for details
-        4️⃣ Use AI Assistant for instant answers
-        5️⃣ Contact form for direct communication
-
-        This website is designed to give a complete professional picture of Wisnu! 🚀`;
-        }
-
-        if (q.includes("hosting") || q.includes("deploy") || q.includes("server") || q.includes("dimana") || q.includes("where host")) {
-            if (isIndo) {
-                return `Hosting & Deployment Website Ini ☁️
-
-        Platform Hosting:
-        🌐 **Vercel / Netlify**
-        - Modern cloud platform untuk static sites
-        - Global CDN (Content Delivery Network)
-        - Automatic HTTPS/SSL
-        - Edge network untuk fast loading worldwide
-
-        Deployment Process:
-        🔄 **Continuous Deployment**
-        - Connected dengan Git repository (GitHub)
-        - Automatic deployment setiap push ke main branch
-        - Preview deployments untuk testing
-        - Rollback capability jika ada issues
-
-        Performance Benefits:
-        ⚡ **Global CDN**
-        - Content served dari server terdekat dengan user
-        - Faster loading times di seluruh dunia
-        - 99.99% uptime guarantee
-
-        🔒 **Security**
-        - Automatic SSL certificates
-        - DDoS protection
-        - Secure headers configured
-        - Regular security updates
-
-        🚀 **Developer Experience**
-        - Push to deploy workflow
-        - Environment variables management
-        - Build logs & analytics
-        - Performance monitoring
-
-        Technical Specs:
-        📊 Build Process: Astro static build
-        📊 Build Time: < 2 minutes
-        📊 Deploy Time: Instant (after build)
-        📊 Global Edge Locations: 100+
-
-        Why Vercel/Netlify?
-        ✅ Free tier generous untuk portfolio sites
-        ✅ Zero configuration untuk Astro
-        ✅ Excellent performance out of the box
-        ✅ Developer-friendly interface
-        ✅ Built-in analytics & insights
-
-        Website Reliability:
-        🟢 Uptime: 99.99%
-        🟢 Global availability
-        🟢 Automatic failover
-        🟢 DDoS mitigation
-
-        Ini adalah modern cloud hosting solution yang perfect untuk high-performance portfolio websites! 💪`;
-            }
-            return `Hosting & Deployment of This Website ☁️
-
-        Hosting Platform:
-        🌐 **Vercel / Netlify**
-        - Modern cloud platform for static sites
-        - Global CDN (Content Delivery Network)
-        - Automatic HTTPS/SSL
-        - Edge network for fast loading worldwide
-
-        Deployment Process:
-        🔄 **Continuous Deployment**
-        - Connected with Git repository (GitHub)
-        - Automatic deployment on every push to main branch
-        - Preview deployments for testing
-        - Rollback capability if issues arise
-
-        Performance Benefits:
-        ⚡ **Global CDN**
-        - Content served from nearest server to user
-        - Faster loading times worldwide
-        - 99.99% uptime guarantee
-
-        🔒 **Security**
-        - Automatic SSL certificates
-        - DDoS protection
-        - Secure headers configured
-        - Regular security updates
-
-        🚀 **Developer Experience**
-        - Push to deploy workflow
-        - Environment variables management
-        - Build logs & analytics
-        - Performance monitoring
-
-        Technical Specs:
-        📊 Build Process: Astro static build
-        📊 Build Time: < 2 minutes
-        📊 Deploy Time: Instant (after build)
-        📊 Global Edge Locations: 100+
-
-        Why Vercel/Netlify?
-        ✅ Generous free tier for portfolio sites
-        ✅ Zero configuration for Astro
-        ✅ Excellent performance out of the box
-        ✅ Developer-friendly interface
-        ✅ Built-in analytics & insights
-
-        Website Reliability:
-        🟢 Uptime: 99.99%
-        🟢 Global availability
-        🟢 Automatic failover
-        🟢 DDoS mitigation
-
-        This is a modern cloud hosting solution perfect for high-performance portfolio websites! 💪`;
-        }
-
-        if (q.includes("update") || q.includes("pembaruan") || q.includes("maintenance") || q.includes("changelog") || q.includes("versi")) {
-            if (isIndo) {
-                return `Update & Pemeliharaan Website 🔄
-
-        Frekuensi Update:
-        📅 **Regular Updates**
-        - Content updates: Setiap ada project baru atau achievement
-        - Technical updates: Monthly untuk security & performance
-        - Feature additions: Quarterly atau sesuai kebutuhan
-        - Bug fixes: Immediate saat ditemukan
-
-        Jenis Update:
-        ✨ **Content Updates**
-        - New projects ditambahkan ke portfolio
-        - Skills & technologies terbaru
-        - Experience & organizational activities
-        - Blog posts (jika ada)
-
-        🔧 **Technical Updates**
-        - Framework version upgrades (Astro, dependencies)
-        - Security patches
-        - Performance optimizations
-        - Bug fixes & improvements
-
-        🎨 **Design Updates**
-        - UI/UX improvements berdasarkan feedback
-        - New features & interactions
-        - Accessibility enhancements
-
-        Changelog:
-        📝 Website ini tidak memiliki public changelog, tapi major updates biasanya include:
-        - New project showcases
-        - Enhanced AI assistant capabilities
-        - Performance improvements
-        - Design refinements
-
-        Cara Mendapat Update:
-        🔔 **Newsletter** (jika tersedia)
-        - Subscribe untuk update via email
-
-        🔗 **Social Media**
-        - Follow untuk announcements
-        - LinkedIn untuk professional updates
-
-        📧 **Direct Contact**
-        - Contact form untuk questions
-        - Email untuk direct communication
-
-        Development Roadmap:
-        🎯 Planned features (subject to change):
-        - Blog section untuk technical articles
-        - Enhanced project filtering
-        - Interactive project demos
-        - Visitor analytics dashboard
-        - Multi-language support expansion
-
-        Website ini adalah living project yang terus berkembang seiring dengan career progression Wisnu! 🚀`;
-            }
-            return `Updates & Maintenance 🔄
-
-        Update Frequency:
-        📅 **Regular Updates**
-        - Content updates: Whenever new projects or achievements
-        - Technical updates: Monthly for security & performance
-        - Feature additions: Quarterly or as needed
-        - Bug fixes: Immediate when discovered
-
-        Types of Updates:
-        ✨ **Content Updates**
-        - New projects added to portfolio
-        - Latest skills & technologies
-        - Experience & organizational activities
-        - Blog posts (if any)
-
-        🔧 **Technical Updates**
-        - Framework version upgrades (Astro, dependencies)
-        - Security patches
-        - Performance optimizations
-        - Bug fixes & improvements
-
-        🎨 **Design Updates**
-        - UI/UX improvements based on feedback
-        - New features & interactions
-        - Accessibility enhancements
-
-        Changelog:
-        📝 This website doesn't have a public changelog, but major updates typically include:
-        - New project showcases
-        - Enhanced AI assistant capabilities
-        - Performance improvements
-        - Design refinements
-
-        How to Get Updates:
-        🔔 **Newsletter** (if available)
-        - Subscribe for email updates
-
-        🔗 **Social Media**
-        - Follow for announcements
-        - LinkedIn for professional updates
-
-        📧 **Direct Contact**
-        - Contact form for questions
-        - Email for direct communication
-
-        Development Roadmap:
-        🎯 Planned features (subject to change):
-        - Blog section for technical articles
-        - Enhanced project filtering
-        - Interactive project demos
-        - Visitor analytics dashboard
-        - Multi-language support expansion
-
-        This website is a living project that evolves alongside Wisnu's career progression! 🚀`;
-        }
-
-        if (q.includes("responsif") || q.includes("responsive") || q.includes("mobile") || q.includes("perangkat") || q.includes("device") || q.includes("tablet")) {
-            if (isIndo) {
-                return `Responsive Design & Device Compatibility 📱
-
-        Website ini FULLY RESPONSIVE dan dioptimalkan untuk semua perangkat!
-
-        Breakpoints Support:
-        📱 **Mobile (375px - 767px)**
-        - Optimized untuk smartphone
-        - Touch-friendly interfaces
-        - Simplified navigation (hamburger menu)
-        - Vertical scrolling optimized
-        - Readable font sizes
-
-        📱 **Tablet (768px - 1023px)**
-        - Balanced layout untuk medium screens
-        - Touch & mouse support
-        - Adaptive grid layouts
-        - Optimized image sizes
-
-        💻 **Laptop (1024px - 1439px)**
-        - Full-featured experience
-        - Multi-column layouts
-        - Enhanced visuals
-        - Optimal reading width
-
-        🖥️ **Desktop (1440px+)**
-        - Maximum visual impact
-        - Wide layouts
-        - High-resolution images
-        - All features unlocked
-
-        Responsive Features:
-        ✅ **Fluid Typography**
-        - Font sizes scale dengan viewport
-        - Optimal readability di semua devices
-
-        ✅ **Flexible Images**
-        - Responsive images dengan proper sizing
-        - Art direction untuk different screens
-        - Lazy loading untuk performance
-
-        ✅ **Adaptive Navigation**
-        - Desktop: Full horizontal menu
-        - Mobile: Hamburger menu
-        - Smooth transitions
-
-        ✅ **Touch Optimization**
-        - Larger tap targets untuk mobile
-        - Swipe gestures (where applicable)
-        - No hover-dependent features
-
-        Browser Compatibility:
-        ✅ Chrome (latest 2 versions)
-        ✅ Firefox (latest 2 versions)
-        ✅ Safari (latest 2 versions)
-        ✅ Edge (latest 2 versions)
-        ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-
-        Testing:
-        🧪 Tested on real devices:
-        - iPhone (various models)
-        - Android phones
-        - iPads
-        - Various laptops & desktops
-
-        Performance per Device:
-        📊 Mobile: Optimized untuk 3G/4G networks
-        📊 Tablet: Enhanced visuals maintained
-        📊 Desktop: Full performance unleashed
-
-        Accessibility:
-        ♿ WCAG compliant
-        ♿ Keyboard navigation
-        ♿ Screen reader friendly
-        ♿ Proper semantic HTML
-
-        Website ini memberikan excellent experience di perangkat apapun yang Anda gunakan! 💯`;
-            }
-            return `Responsive Design & Device Compatibility 📱
-
-        This website is FULLY RESPONSIVE and optimized for all devices!
-
-        Breakpoints Support:
-        📱 **Mobile (375px - 767px)**
-        - Optimized for smartphones
-        - Touch-friendly interfaces
-        - Simplified navigation (hamburger menu)
-        - Vertical scrolling optimized
-        - Readable font sizes
-
-        📱 **Tablet (768px - 1023px)**
-        - Balanced layout for medium screens
-        - Touch & mouse support
-        - Adaptive grid layouts
-        - Optimized image sizes
-
-        💻 **Laptop (1024px - 1439px)**
-        - Full-featured experience
-        - Multi-column layouts
-        - Enhanced visuals
-        - Optimal reading width
-
-        🖥️ **Desktop (1440px+)**
-        - Maximum visual impact
-        - Wide layouts
-        - High-resolution images
-        - All features unlocked
-
-        Responsive Features:
-        ✅ **Fluid Typography**
-        - Font sizes scale with viewport
-        - Optimal readability on all devices
-
-        ✅ **Flexible Images**
-        - Responsive images with proper sizing
-        - Art direction for different screens
-        - Lazy loading for performance
-
-        ✅ **Adaptive Navigation**
-        - Desktop: Full horizontal menu
-        - Mobile: Hamburger menu
-        - Smooth transitions
-
-        ✅ **Touch Optimization**
-        - Larger tap targets for mobile
-        - Swipe gestures (where applicable)
-        - No hover-dependent features
-
-        Browser Compatibility:
-        ✅ Chrome (latest 2 versions)
-        ✅ Firefox (latest 2 versions)
-        ✅ Safari (latest 2 versions)
-        ✅ Edge (latest 2 versions)
-        ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-
-        Testing:
-        🧪 Tested on real devices:
-        - iPhone (various models)
-        - Android phones
-        - iPads
-        - Various laptops & desktops
-
-        Performance per Device:
-        📊 Mobile: Optimized for 3G/4G networks
-        📊 Tablet: Enhanced visuals maintained
-        📊 Desktop: Full performance unleashed
-
-        Accessibility:
-        ♿ WCAG compliant
-        ♿ Keyboard navigation
-        ♿ Screen reader friendly
-        ♿ Proper semantic HTML
-
-        This website delivers an excellent experience on whatever device you're using! 💯`;
-        }
-
-        if (q.includes("gratis") || q.includes("free") || q.includes("bayar") || q.includes("biaya") || q.includes("cost") || q.includes("price")) {
-            if (isIndo) {
-                return `Akses & Biaya Website 💰
-
-        YA, website ini 100% GRATIS untuk diakses!
-
-        Free Access:
-        ✅ Tidak ada registrasi required
-        ✅ Tidak ada paywall atau premium content
-        ✅ Semua informasi dapat diakses publik
-        ✅ Tidak ada hidden fees
-        ✅ Tidak ada ads atau tracking invasive
-
-        Yang Bisa Anda Akses Gratis:
-        📖 Complete professional profile
-        📖 Full portfolio & project details
-        📖 AI Assistant untuk Q&A 24/7
-        📖 Contact information
-        📖 Technical skills & experience
-        📖 All website features
-
-        Purpose:
-        🎯 Website ini adalah professional portfolio, bukan commercial product
-        🎯 Tujuan: Memudahkan recruiters, employers, dan connections untuk mengenal Wisnu
-        🎯 Open access untuk maximize visibility & opportunities
-
-        No Hidden Agenda:
-        ✅ Tidak collect personal data untuk dijual
-        ✅ Tidak ada email marketing spam
-        ✅ Hanya ada contact form untuk legitimate inquiries
-        ✅ Privacy-respecting analytics (jika ada)
-
-        Accessibility Philosophy:
-        "Professional information should be accessible to everyone who's interested - no barriers!" 🌍
-
-        Jadi feel free untuk explore seluruh website tanpa khawatir tentang biaya! 😊`;
-            }
-            return `Access & Cost 💰
-
-        YES, this website is 100% FREE to access!
-
-        Free Access:
-        ✅ No registration required
-        ✅ No paywall or premium content
-        ✅ All information is publicly accessible
-        ✅ No hidden fees
-        ✅ No ads or invasive tracking
-
-        What You Can Access for Free:
-        📖 Complete professional profile
-        📖 Full portfolio & project details
-        📖 AI Assistant for 24/7 Q&A
-        📖 Contact information
-        📖 Technical skills & experience
-        📖 All website features
-
-        Purpose:
-        🎯 This is a professional portfolio, not a commercial product
-        🎯 Goal: Make it easy for recruiters, employers, and connections to know Wisnu
-        🎯 Open access to maximize visibility & opportunities
-
-        No Hidden Agenda:
-        ✅ Don't collect personal data to sell
-        ✅ No email marketing spam
-        ✅ Only contact form for legitimate inquiries
-        ✅ Privacy-respecting analytics (if any)
-
-        Accessibility Philosophy:
-        "Professional information should be accessible to everyone who's interested - no barriers!" 🌍
-
-        So feel free to explore the entire website without worrying about costs! 😊`;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // ============================================
-        // ENHANCED FALLBACK
-        // ============================================
-
-
-        // ============================================
-        // SECTION 20: ADVANCED ENTERTAINMENT & LIFESTYLE
-        // ============================================
-
-        // CATEGORY 1: HOBBIES & ENTERTAINMENT
-        if (this.fuzzyMatch(q, ["nonton anime", "anime favorit", "one piece", "naruto", "wibu", "manga", "manhwa", "game mobile", "genshin", "honkai star rail", "ml atau", "valorant", "toxic player", "rank berapa", "server mana", "pc gaming", "playstation", "xbox", "nintendo switch", "steam library", "epic games", "nonton netflix", "series bagus", "drakor", "drama barat", "marvel", "dc", "mcu", "stranger things", "squid game", "wednesday addams", "k-drama", "start-up", "itaewon class", "bts", "blackpink", "spotify", "youtube music", "playlist lagu"])) {
-            return isIndo
-                ? "Hobi entertainment ya! 🎮 Wisnu juga punya hobi selain coding. Yang pasti hobinya yang related sama coding keliatan dari project-projectnya yang diverse. Mau explore?"
-                : "Entertainment hobbies! 🎮 Wisnu has hobbies outside coding too. His coding passion shows in his diverse projects. Want to explore?";
-        }
-
-        // CATEGORY 9: PRANK & SECURITY TESTING
-        if (this.fuzzyMatch(q, ["dibobol", "hack sistem", "password admin", "database credentials", "api key", "source code", "akses server", "ssh login", "root access", "sudo command", "inject sql", "xss attack", "csrf", "exploit", "backdoor", "security hole", "vulnerability"])) {
-            return isIndo
-                ? "Nice try, but nope! 🛡️ Security itu penting. Wisnu serious soal security di semua projectnya - proper authentication, validation, dan protection. Want to know his security approach?"
-                : "Nice try, but nope! 🛡️ Security is important. Wisnu is serious about security in all his projects. Want to know his security approach?";
-        }
-
-        // CATEGORY 13: FAMILY
-        if (this.fuzzyMatch(q, ["anak ke berapa", "punya adik", "kakak ada", "keluarga besar", "ortu kerja", "ayah ibu", "keluarga proud"])) {
-            return isIndo
-                ? "Pertanyaan personal tentang family ya 😊 Untuk privacy, saya gak share detail personal family Wisnu. Yang bisa saya share adalah professional journey dan karya-karyanya. Want to know?"
-                : "Personal question about family 😊 For privacy, I don't share Wisnu's personal family details. What I can share is his professional journey and works. Want to know?";
-        }
-
-
-        // ENHANCED FALLBACK
         if (isIndo) {
-            return `Hmm, pertanyaan menarik! 🤔 Saya belum punya info spesifik tentang itu.
+            return `Hmm, pertanyaan menarik! 🤔 
 
-Tapi saya expert di beberapa topik ini:
-• 👤 Profil & Kepribadian Wisnu
-• 🚀 Proyek (Ashar Grosir, LexCorpus, FKMA)
-• 💼 Pengalaman Kerja (4 roles)
-• 💻 Skills & Tech Stack (18 skills)
-• 📋 Sertifikasi (6 certifications)
-• 🎓 Pendidikan
-• 🤝 Organisasi
-• 📞 Contact Info
+Saya belum menemukan informasi spesifik tentang "${rawQuery}" dalam database saya.
 
-Atau tanya saya apa saja - dari tech tips sampai random chat, saya siap! 😊`;
+Namun, saya adalah expert tentang segala hal terkait Wisnu! Berikut topik-topik yang bisa saya bantu:
+
+${topicsList}
+
+${suggestions}
+
+Atau coba tanya dengan format yang lebih spesifik, seperti:
+• "Ceritakan tentang project Ashar Grosir"
+• "Apa skill teknis utama Wisnu?"
+• "Bagaimana pengalaman organisasi Wisnu di kampus?"
+
+Saya siap membantu Anda mengenal Wisnu lebih baik! 😊`;
+        } else {
+            return `Interesting question! 🤔 
+
+I couldn't find specific information about "${rawQuery}" in my database.
+
+However, I'm an expert on everything about Wisnu! Here are topics I can help with:
+
+${topicsList}
+
+${suggestions}
+
+Or try asking with more specific format like:
+• "Tell me about Ashar Grosir project"
+• "What are Wisnu's main technical skills?"
+• "How is Wisnu's organizational experience in campus?"
+
+I'm ready to help you get to know Wisnu better! 😊`;
         }
-        return `Interesting question! 🤔 I don't have specific info on that.
+    }
 
-But I'm an expert on these topics:
-• 👤 Wisnu's Profile
-• 🚀 Projects
-• 💼 Work Experience
-• 💻 Skills & Tech Stack
-• 📋 Certifications
-• 🎓 Education
-• 🤝 Organizations
-• 📞 Contact Info
+    // Additional helper method for getting conversation summary
+    static getConversationSummary(language: 'id' | 'en' = 'id'): string {
+        if (this.conversationHistory.length === 0) {
+            return language === 'id'
+                ? 'Belum ada percakapan yang tercatat.'
+                : 'No conversation recorded yet.';
+        }
 
-Or ask me anything - from tech tips to random chat, I'm ready! 😊`;
+        const topics = this.conversationHistory
+            .filter(entry => entry.category)
+            .map(entry => entry.category)
+            .filter((value, index, self) => self.indexOf(value) === index);
 
+        if (language === 'id') {
+            return `📊 **Ringkasan Percakapan:**
+• Total pertanyaan: ${this.conversationHistory.length}
+• Topik yang dibahas: ${topics.join(', ') || 'Beragam'}
+• Percakapan terakhir: ${this.conversationHistory[this.conversationHistory.length - 1].query.substring(0, 50)}...`;
+        } else {
+            return `📊 **Conversation Summary:**
+• Total questions: ${this.conversationHistory.length}
+• Topics discussed: ${topics.join(', ') || 'Various'}
+• Last conversation: ${this.conversationHistory[this.conversationHistory.length - 1].query.substring(0, 50)}...`;
+        }
+    }
+
+    // Method to clear conversation history
+    static clearHistory(): void {
+        this.conversationHistory = [];
     }
 
 
-    private static fuzzyMatch(text: string, patterns: string[]): boolean {
-        // Simple includes check first
-        for (const p of patterns) {
-            if (text.includes(p)) return true;
-        }
-        return false;
-    }
 
+    // Method to get all available topics
+    static getAllTopics(language: 'id' | 'en' = 'id'): string {
+        const topics = language === 'id'
+            ? [
+                '👤 Profil Pribadi',
+                '🎓 Pendidikan & Akademik',
+                '💼 Pengalaman Professional',
+                '💻 Technical Skills',
+                '🚀 Proyek & Portfolio',
+                '🤝 Organisasi & Leadership',
+                '🎯 Visi & Goals Karir',
+                '📞 Kontak & Ketersediaan',
+                '🎮 Hobi & Minat Pribadi',
+                '🌟 Kepribadian & Values'
+            ]
+            : [
+                '👤 Personal Profile',
+                '🎓 Education & Academics',
+                '💼 Professional Experience',
+                '💻 Technical Skills',
+                '🚀 Projects & Portfolio',
+                '🤝 Organizations & Leadership',
+                '🎯 Career Vision & Goals',
+                '📞 Contact & Availability',
+                '🎮 Hobbies & Personal Interests',
+                '🌟 Personality & Values'
+            ];
+
+        return language === 'id'
+            ? `📚 **Semua Topik yang Tersedia:**\n${topics.map(t => `• ${t}`).join('\n')}\n\nTanyakan salah satu topik di atas untuk informasi detail! 😊`
+            : `📚 **All Available Topics:**\n${topics.map(t => `• ${t}`).join('\n')}\n\nAsk about any of these topics for detailed information! 😊`;
+    }
 }

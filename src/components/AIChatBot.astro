@@ -209,10 +209,28 @@ import { X, Send } from "lucide-astro";
             ? "bg-white border border-slate-100 text-slate-600 rounded-tl-sm"
             : "bg-slate-900 text-white rounded-tr-sm";
 
+        // Security Patch: Simple escaping + Markdown-lite rendering
+        const escapeHtml = (unsafe: string) => {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        };
+
+        const renderMessage = (content: string) => {
+            let escaped = escapeHtml(content);
+            // Support Bold (**text**)
+            escaped = escaped.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+            // Support Line Breaks
+            return escaped.replace(/\n/g, "<br>");
+        };
+
         div.innerHTML = `
              ${iconHtml}
              <div class="p-3 rounded-2xl shadow-sm max-w-[80%] text-sm leading-relaxed ${bubbleClass}">
-               ${text.replace(/\n/g, "<br>")}
+               ${renderMessage(text)}
              </div>
            `;
         messagesContainer.appendChild(div);

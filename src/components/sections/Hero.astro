@@ -60,7 +60,9 @@ const slides = [
       {profile.personalInfo.tagline}
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-4 md:gap-5 animate-fade-in-up delay-300">
+    <div
+      class="flex flex-col sm:flex-row gap-4 md:gap-5 animate-fade-in-up delay-300"
+    >
       <a
         href="/projects"
         class="btn bg-white text-sage-900 hover:bg-sage-50 shadow-lg px-8 py-3 rounded-full font-medium transition-all duration-300 group"
@@ -133,14 +135,14 @@ const slides = [
 
   function nextSlide() {
     if (images.length === 0) return;
-    
+
     if (images[currentIndex]) {
       images[currentIndex].classList.remove("opacity-100");
       images[currentIndex].classList.add("opacity-0");
     }
-    
+
     currentIndex = (currentIndex + 1) % totalSlides;
-    
+
     if (images[currentIndex]) {
       images[currentIndex].classList.remove("opacity-0");
       images[currentIndex].classList.add("opacity-100");
@@ -156,7 +158,7 @@ const slides = [
   const typeDelay = 100;
   const eraseDelay = 50;
   const newTextDelay = 2000;
-  
+
   const textElement = document.getElementById("typewriter-text");
   const glowElement = document.getElementById("typewriter-text-glow");
 
@@ -171,25 +173,23 @@ const slides = [
     if (!isDeleting && charIndex < text.length) {
       // 1. SEDANG MENGETIK
       const currentText = text.substring(0, charIndex + 1);
-      
+
       // Update Text Langsung di sini
       textElement.textContent = currentText;
       if (glowElement) glowElement.textContent = currentText;
 
       charIndex++;
       setTimeout(type, typeDelay);
-
     } else if (isDeleting && charIndex > 0) {
       // 2. SEDANG MENGHAPUS
       const currentText = text.substring(0, charIndex - 1);
-      
+
       // Update Text Langsung di sini
       textElement.textContent = currentText;
       if (glowElement) glowElement.textContent = currentText;
 
       charIndex--;
       setTimeout(type, eraseDelay);
-
     } else {
       // 3. GANTI MODE (Ngetik <-> Hapus)
       isDeleting = !isDeleting;

@@ -134,7 +134,9 @@ export class AIService {
     // 6. Analytics logging
     const responseTime = Date.now() - startTime;
     const isFallback = response?.includes("Maaf, saya belum memiliki informasi") ||
-      response?.includes("I'm sorry, I don't have specific information");
+      response?.includes("I'm sorry, I don't have specific information") ||
+      response?.includes("Saya belum menemukan informasi spesifik") ||
+      response?.includes("I couldn't find specific information");
 
     if (isFallback) {
       this.fallbackCount++;
