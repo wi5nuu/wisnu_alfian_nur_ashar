@@ -9,17 +9,24 @@ import { X, Send } from "lucide-astro";
         aria-label="Toggle AI Assistant"
     >
         <div class="relative">
-            <img 
-                src="/logo.png" 
-                alt="AI" 
+            <img
+                src="/logo.png"
+                alt="AI"
                 class="w-10 h-10 rounded-full object-cover border-2 border-white/20"
             />
-            <div class="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full animate-pulse border-2 border-slate-900"></div>
+            <div
+                class="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full animate-pulse border-2 border-slate-900"
+            >
+            </div>
         </div>
-        
+
         <div class="flex flex-col items-start">
-            <span class="text-sm font-bold text-white leading-tight">Wisnu's AI</span>
-            <span class="text-[10px] text-slate-400 font-medium">Chat with me</span>
+            <span class="text-sm font-bold text-white leading-tight"
+                >Wisnu's AI</span
+            >
+            <span class="text-[10px] text-slate-400 font-medium"
+                >Chat with me</span
+            >
         </div>
     </button>
 
@@ -27,44 +34,68 @@ import { X, Send } from "lucide-astro";
         id="chat-window"
         class="fixed bottom-28 md:bottom-24 right-4 left-4 md:left-auto md:right-6 w-auto md:w-[380px] bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 transform scale-95 opacity-0 pointer-events-none transition-all duration-300 origin-bottom overflow-hidden flex flex-col max-h-[60vh] md:max-h-[500px] z-[120]"
     >
-        <div class="bg-slate-900 p-4 flex items-center justify-between text-white shrink-0 relative overflow-hidden">
-             <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+        <div
+            class="bg-slate-900 p-4 flex items-center justify-between text-white shrink-0 relative overflow-hidden"
+        >
+            <div
+                class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"
+            >
+            </div>
 
             <div class="flex items-center gap-3 relative z-10">
                 <div class="relative">
-                    <img 
-                        src="/logo.png" 
-                        alt="AI Avatar" 
+                    <img
+                        src="/logo.png"
+                        alt="AI Avatar"
                         class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm"
                     />
-                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900"></div>
+                    <div
+                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900"
+                    >
+                    </div>
                 </div>
                 <div>
                     <h3 class="font-bold text-sm text-white">Wisnu's AI</h3>
-                    <p class="text-[10px] text-blue-200 uppercase tracking-wider font-medium">
+                    <p
+                        class="text-[10px] text-blue-200 uppercase tracking-wider font-medium"
+                    >
                         Online & Ready
                     </p>
                 </div>
             </div>
-            <button id="chat-close" class="p-2 hover:bg-white/10 rounded-full transition-colors relative z-10 text-white/80 hover:text-white">
+            <button
+                id="chat-close"
+                class="p-2 hover:bg-white/10 rounded-full transition-colors relative z-10 text-white/80 hover:text-white"
+            >
                 <X class="w-5 h-5" />
             </button>
         </div>
 
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50 h-[350px]">
+        <div
+            id="chat-messages"
+            class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50 h-[350px]"
+        >
             <div class="flex gap-3">
-                <img 
-                    src="/logo.png" 
-                    alt="AI" 
+                <img
+                    src="/logo.png"
+                    alt="AI"
                     class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm"
                 />
-                <div class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-slate-100 text-sm text-slate-600">
-                    Hi! I'm Wisnu's virtual assistant. Ask me about his <strong>skills</strong>, <strong>projects</strong>, or <strong>experience</strong>!
+                <div
+                    class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-slate-100 text-sm text-slate-600"
+                >
+                    Hi! I'm Wisnu's virtual assistant. Ask me about his <strong
+                        >skills</strong
+                    >, <strong>projects</strong>, or <strong>experience</strong
+                    >!
                 </div>
             </div>
         </div>
 
-        <form id="chat-form" class="p-3 border-t border-slate-100 bg-white flex gap-2 shrink-0">
+        <form
+            id="chat-form"
+            class="p-3 border-t border-slate-100 bg-white flex gap-2 shrink-0"
+        >
             <input
                 type="text"
                 id="chat-input"
@@ -72,7 +103,10 @@ import { X, Send } from "lucide-astro";
                 class="flex-1 bg-slate-50 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-slate-900/10 focus:outline-none placeholder:text-slate-400"
                 autocomplete="off"
             />
-            <button type="submit" class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 active:scale-95 shadow-md">
+            <button
+                type="submit"
+                class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 active:scale-95 shadow-md"
+            >
                 <Send class="w-4 h-4" />
             </button>
         </form>
@@ -94,20 +128,36 @@ import { X, Send } from "lucide-astro";
     function toggleChat() {
         isOpen = !isOpen;
         if (isOpen) {
-            windowEl?.classList.remove("scale-95", "opacity-0", "pointer-events-none");
-            windowEl?.classList.add("scale-100", "opacity-100", "pointer-events-auto");
+            windowEl?.classList.remove(
+                "scale-95",
+                "opacity-0",
+                "pointer-events-none",
+            );
+            windowEl?.classList.add(
+                "scale-100",
+                "opacity-100",
+                "pointer-events-auto",
+            );
             setTimeout(() => input?.focus(), 300);
         } else {
-            windowEl?.classList.add("scale-95", "opacity-0", "pointer-events-none");
-            windowEl?.classList.remove("scale-100", "opacity-100", "pointer-events-auto");
+            windowEl?.classList.add(
+                "scale-95",
+                "opacity-0",
+                "pointer-events-none",
+            );
+            windowEl?.classList.remove(
+                "scale-100",
+                "opacity-100",
+                "pointer-events-auto",
+            );
         }
     }
 
     desktopToggle?.addEventListener("click", toggleChat);
 
     // Event Delegation untuk Mobile Trigger
-    document.body.addEventListener('click', function(e) {
-        if ((e.target as Element).closest('#mobile-ai-trigger')) {
+    document.body.addEventListener("click", function (e) {
+        if ((e.target as Element).closest("#mobile-ai-trigger")) {
             e.preventDefault();
             toggleChat();
         }
@@ -123,15 +173,24 @@ import { X, Send } from "lucide-astro";
         addMessage(query, "user");
         input.value = "";
         const typingId = showTypingIndicator();
+        input.disabled = true;
 
         try {
+            // Get response from service
             const response = await AIService.getResponse(query);
-            if (typingId) removeTypingIndicator(typingId);
-            addMessage(response, "ai");
+
+            // Professional 3-second delay
+            setTimeout(() => {
+                if (typingId) removeTypingIndicator(typingId);
+                addMessage(response, "ai");
+                input.disabled = false;
+                input.focus();
+            }, 3000);
         } catch (error) {
             console.error("AI Error:", error);
             if (typingId) removeTypingIndicator(typingId);
             addMessage("Maaf, terjadi kesalahan. Coba lagi nanti.", "ai");
+            input.disabled = false;
         }
     });
 
@@ -157,7 +216,8 @@ import { X, Send } from "lucide-astro";
              </div>
            `;
         messagesContainer.appendChild(div);
-        if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        if (messagesContainer)
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     function showTypingIndicator() {
@@ -175,8 +235,11 @@ import { X, Send } from "lucide-astro";
                <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-150"></span>
              </div>`;
         messagesContainer.appendChild(div);
-        if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        if (messagesContainer)
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         return id;
     }
-    function removeTypingIndicator(id: string) { document.getElementById(id)?.remove(); }
+    function removeTypingIndicator(id: string) {
+        document.getElementById(id)?.remove();
+    }
 </script>
