@@ -181,6 +181,15 @@ projects: [
         description: "Luxury winery-inspired website template with gold-accent dark theme, Ken Burns animations, testimonial system, and integrated contact form.",
         techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Formspree", "Vercel"],
         image: "/WiskostResidence.png"
+    },
+    {
+    title: "Portfolio Display",
+    role: "Full-Stack Developer",
+    status: "Production",
+    link: "https://portofolio-display.netlify.app/",
+    description: "A high-impact, immersive portfolio showcase featuring a dark cyberpunk aesthetic. Built with advanced 3D elements like a rotating album cube and smooth, scroll-driven animations to deliver a premium user experience.",
+    techStack: ["React 19", "TypeScript", "Three.js", "GSAP", "Tailwind CSS", "Lenis"],
+    image: "/portfolio-display.png" 
     }
 ],
 
