@@ -1,6 +1,7 @@
 ---
 import { profile } from "../../data/profile";
 import { Award, CheckCircle } from "lucide-astro";
+import ImageModal from "../ImageModal.astro";
 ---
 
 <section id="certifications" class="section bg-cream-50">
@@ -47,8 +48,10 @@ import { Award, CheckCircle } from "lucide-astro";
                     rounded-xl
                     transition-transform duration-300
                     hover:scale-105
+                    cursor-pointer
                   "
                   loading="lazy"
+                  onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`}
                 />
               ) : (
                 <Award class="w-12 h-12 text-sage-400" />

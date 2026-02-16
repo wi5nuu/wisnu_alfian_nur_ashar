@@ -1,0 +1,50 @@
+---
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div
+  id={id}
+  class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden"
+>
+  <div class="relative max-w-4xl max-h-full p-4">
+    <button
+      class="absolute top-2 right-2 text-white text-2xl font-bold hover:text-gray-300"
+      onclick={`closeModal('${id}')`}
+    >
+      &times;
+    </button>
+    <img
+      id={`${id}-img`}
+      src=""
+      alt=""
+      class="max-w-full max-h-full object-contain"
+    />
+  </div>
+</div>
+
+<script>
+  function openModal(modalId: string, imgSrc: string, alt: string) {
+    const modal = document.getElementById(modalId);
+    const img = document.getElementById(`${modalId}-img`) as HTMLImageElement;
+    if (modal && img) {
+      img.src = imgSrc;
+      img.alt = alt;
+      modal.classList.remove('hidden');
+    }
+  }
+
+  function closeModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  }
+
+  // Expose functions globally
+  (window as any).openModal = openModal;
+  (window as any).closeModal = closeModal;
+</script>

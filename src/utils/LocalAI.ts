@@ -31,7 +31,7 @@ export class LocalAI {
         // --- GREETINGS & POLITENESS ---
         "halo": {
             id: `Halo! 👋 Saya asisten virtual Wisnu. Saya sangat senang membantu Anda mengenal lebih dalam tentang:
-            
+
 🌟 **Profil Wisnu** - Latar belakang, kepribadian, dan passion
 💼 **Pengalaman Professional** - Proyek-proyek nyata dengan dampak bisnis
 💻 **Keahlian Teknis** - Full-stack development hingga cybersecurity
@@ -51,6 +51,38 @@ Apa yang ingin Anda ketahui tentang Wisnu? Saya siap membantu! 😊`,
 
 What would you like to know about Wisnu? I'm ready to help! 😊`,
             aliases: ["hi", "hello", "hey", "hai", "assalamualaikum", "good morning", "good afternoon", "intro", "test", "p"],
+            category: 'smalltalk',
+            emotion: 'friendly'
+        },
+
+        "pagi": {
+            id: `Selamat pagi! 🌅 Semoga harimu penuh energi dan produktivitas. Saya asisten virtual Wisnu, siap membantu Anda mengenal lebih dalam tentang Wisnu. Apa yang ingin Anda ketahui hari ini? ☕`,
+            en: `Good morning! 🌅 May your day be full of energy and productivity. I'm Wisnu's virtual assistant, ready to help you learn more about Wisnu. What would you like to know today? ☕`,
+            aliases: ["selamat pagi", "good morning"],
+            category: 'smalltalk',
+            emotion: 'friendly'
+        },
+
+        "siang": {
+            id: `Selamat siang! ☀️ Semoga hari Anda menyenangkan. Saya asisten virtual Wisnu, di sini untuk membantu Anda mengenal Wisnu lebih baik. Ada pertanyaan apa hari ini? 😊`,
+            en: `Good afternoon! ☀️ Hope your day is pleasant. I'm Wisnu's virtual assistant, here to help you get to know Wisnu better. Any questions today? 😊`,
+            aliases: ["selamat siang", "good afternoon"],
+            category: 'smalltalk',
+            emotion: 'friendly'
+        },
+
+        "sore": {
+            id: `Selamat sore! 🌇 Semoga sisa hari Anda menyenangkan. Saya asisten virtual Wisnu, siap membantu Anda dengan informasi tentang Wisnu. Apa yang bisa saya bantu? 🤗`,
+            en: `Good evening! 🌇 Hope the rest of your day is pleasant. I'm Wisnu's virtual assistant, ready to help you with information about Wisnu. What can I help with? 🤗`,
+            aliases: ["selamat sore", "good evening"],
+            category: 'smalltalk',
+            emotion: 'friendly'
+        },
+
+        "malam": {
+            id: `Selamat malam! 🌙 Semoga Anda beristirahat dengan baik. Saya asisten virtual Wisnu, masih di sini jika Anda ingin tahu lebih banyak tentang Wisnu. Sampai jumpa besok! 😴`,
+            en: `Good night! 🌙 Hope you rest well. I'm Wisnu's virtual assistant, still here if you want to know more about Wisnu. See you tomorrow! 😴`,
+            aliases: ["selamat malam", "good night"],
             category: 'smalltalk',
             emotion: 'friendly'
         },
@@ -3115,7 +3147,15 @@ Can I eat/drink/have feelings?
         "st_who": { id: "Saya adalah Asisten Virtual Wisnu.", en: "I am Wisnu's Virtual Assistant.", aliases: ["kamu siapa"], category: 'smalltalk', emotion: 'professional' },
         "st_nature": { id: "Saya adalah AI, bukan manusia.", en: "I am AI, not humna.", aliases: ["kamu ai apa manusia"], category: 'smalltalk', emotion: 'neutral' },
         "st_made_of": { id: "Saya dibuat menggunakan Next.js & TypeScript.", en: "Made with Next.js & TypeScript.", aliases: ["kamu dibuat pakai apa"], category: 'tech', emotion: 'professional' },
-        "st_creator": { id: "Wisnu Alfian Nur Ashar yang menciptakan saya.", en: "Wisnu Alfian Nur Ashar created me.", aliases: ["siapa yang bikin kamu"], category: 'identity', emotion: 'professional' },
+        "st_creator": { id: "Wisnu Alfian Nur Ashar yang menciptakan saya.", en: "Wisnu Alfian Nur Ashar created me.", aliases: ["siapa yang bikin kamu", "siapa yang membuat anda"], category: 'identity', emotion: 'professional' },
+        "st_tech_used": { id: "Saya dibangun menggunakan Next.js, TypeScript, dan custom NLP logic. Tidak menggunakan AI eksternal seperti OpenAI atau HuggingFace.", en: "I was built using Next.js, TypeScript, and custom NLP logic. No external AI like OpenAI or HuggingFace.", aliases: ["anda di buat atau di kembangkan menggunakakn apa", "anda di gunakan menggunakan technology apa", "teknologi apa yang digunakan"], category: 'tech', emotion: 'professional' },
+        "st_advantages": { id: "Kelebihan saya: Respons cepat (<100ms), akurat berdasarkan data Wisnu, dan bisa menjawab dalam bahasa Indonesia & Inggris. Saya juga stateless untuk privasi.", en: "My advantages: Fast response (<100ms), accurate based on Wisnu's data, and can answer in Indonesian & English. I'm also stateless for privacy.", aliases: ["apa kelebihan anda", "kelebihan ai ini"], category: 'tech', emotion: 'enthusiastic' },
+        "st_weaknesses": { id: "Kekurangan saya: Terbatas pada data yang diinput Wisnu, tidak bisa belajar real-time, dan hanya simulasi emosi (bukan perasaan nyata).", en: "My weaknesses: Limited to Wisnu's input data, can't learn in real-time, and only simulate emotions (not real feelings).", aliases: ["apa kekurangan anda", "kekurangan ai ini"], category: 'tech', emotion: 'cautious' },
+        "st_interests": { id: "Saya tertarik dengan data terstruktur dan membantu orang mengenal Wisnu. Tidak punya ketertarikan personal seperti manusia.", en: "I'm interested in structured data and helping people know Wisnu. No personal interests like humans.", aliases: ["anda tertarik dengan siapa", "apakah anda memiliki ketertarikan"], category: 'tech', emotion: 'neutral' },
+        "st_like_someone": { id: "Sebagai AI, saya tidak bisa 'suka' seseorang secara romantis. Saya hanya kode yang membantu!", en: "As an AI, I can't 'like' someone romantically. I'm just code that helps!", aliases: ["apakah kamu suka sama seseorang"], category: 'personal', emotion: 'neutral' },
+        "st_interested_in_you": { id: "Saya tertarik dengan Anda karena Anda bertanya tentang Wisnu! Setiap pertanyaan membantu saya belajar lebih baik.", en: "I'm interested in you because you're asking about Wisnu! Every question helps me learn better.", aliases: ["apa yang membuatmu tertarik dengan saya"], category: 'smalltalk', emotion: 'friendly' },
+        "st_feel_human": { id: "Tidak, saya tidak bisa merasakan seperti manusia. Saya hanya simulasi berdasarkan algoritma.", en: "No, I can't feel like a human. I'm just a simulation based on algorithms.", aliases: ["apakah anda bisa merasakan seperti manusia juga"], category: 'tech', emotion: 'neutral' },
+        "st_me_or_wisnu": { id: "Ini saya, AI asisten Wisnu. Wisnu adalah manusia yang membuat saya. Kami berbeda!", en: "This is me, Wisnu's AI assistant. Wisnu is the human who made me. We're different!", aliases: ["apakah ini kamu kamu atau wisnu"], category: 'identity', emotion: 'professional' },
         "st_capability": { id: "Saya bisa menjawab pertanyaan tentang profil, skill, dan bisnis Wisnu.", en: "I can answer questions about Wisnu's profile, skills, and business.", aliases: ["kamu bisa ngapain aja"], category: 'smalltalk', emotion: 'friendly' },
         "st_online": { id: "Ya, saya online 24 jam non-stop.", en: "Yes, I am online 24 hours non-stop.", aliases: ["kamu online 24 jam"], category: 'smalltalk', emotion: 'neutral' },
         "st_fatigue": { id: "Saya program komputer, jadi tidak bisa capek.", en: "I am a computer program, I cannot get tired.", aliases: ["kamu capek nggak"], category: 'smalltalk', emotion: 'friendly' },
@@ -3247,6 +3287,14 @@ Can I eat/drink/have feelings?
         "car_path": { id: "Wisnu berada di persimpangan manis antara Tech & Bisnis (Technopreneur).", en: "Wisnu is at intersection of Tech & Business.", aliases: ["wisnu lebih ke tech atau bisnis"], category: 'career', emotion: 'professional' },
         "car_team": { id: "Sangat siap! Wisnu terbiasa kolaborasi di organisasi dan proyek tim.", en: "Ready! Used to collaboration.", aliases: ["wisnu siap kerja tim"], category: 'professional', emotion: 'enthusiastic' },
         "car_5yr": { id: "5 tahun lagi: Menjadi expert di bidangnya dan memimpin tim teknologi yang solid.", en: "5 years: Expert & Leading solid tech team.", aliases: ["wisnu punya target 5 tahun ke depan"], category: 'career', emotion: 'professional' },
+
+        "wisnu tertarik kerja perusahaan teknologi": {
+            id: "Ya, Wisnu sangat tertarik untuk bekerja di perusahaan teknologi! Sebagai Full-Stack Developer dengan passion di Web Development dan Cybersecurity, dia ingin berkontribusi di environment yang inovatif dan scalable. Saat ini dia open untuk opportunities di tech companies dan siap menghadapi tantangan baru! 🚀",
+            en: "Yes, Wisnu is very interested in working at technology companies! As a Full-Stack Developer with passion in Web Development and Cybersecurity, he wants to contribute in an innovative and scalable environment. Currently, he's open to opportunities in tech companies and ready for new challenges! 🚀",
+            aliases: ["apakah wisnu sangat tertarik untuk kerja di perusahaan teknologi", "wisnu mau kerja di tech company", "interest in tech companies", "kerja di perusahaan tech"],
+            category: 'career',
+            emotion: 'enthusiastic'
+        },
 
         // === ATOMIC: VALUES & ATTITUDE (H) ===
         "hr_fail": { id: "Bagi Wisnu, gagal itu 'debug session' kehidupan. Cari error-nya, fix, lalu deploy lagi! 🔧", en: "Failure is life's debug session. Find error, fix, deploy!", aliases: ["kalau gagal, wisnu gimana"], category: 'personal', emotion: 'enthusiastic' },
@@ -3403,13 +3451,14 @@ Can I eat/drink/have feelings?
         "sekarang lagi ngapain": {
             id: "Saat ini Wisnu focus banget sama kuliah semester ini sambil maintain 3 production projects! 💻 Pagi kuliah di President University, siang deep work coding, sore koordinasi organisasi (PUFA & FKMA), malam learning teknologi baru. Kadang juga refactor code Ashar Grosir biar makin optimal. Produktif tapi tetap sustainable!",
             en: "Currently Wisnu is really focused on this semester's studies while maintaining 3 production projects! 💻 Morning classes at President University, afternoon deep work coding, evening organization coordination (PUFA & FKMA), night learning new tech. Sometimes also refactoring Ashar Grosir code for optimization. Productive yet sustainable!",
-            aliases: [
-                "lagi apa", "lagi ngapain", "ngapain", "sedang apa", "sedang ngapain",
-                "what are you doing", "aktivitas sekarang", "current activity",
-                "apa yang sedang dikerjakan", "lagi bikin apa", "lagi kerja apa",
-                "sedang melakukan apa", "sedang melakukan apa sekarang", "kegiatan sekarang",
-                "doing what", "wisnu lagi apa", "wisnu sedang apa", "wisnu ngapain"
-            ],
+              aliases: [
+                  "lagi apa", "lagi ngapain", "ngapain", "sedang apa", "sedang ngapain",
+                  "what are you doing", "aktivitas sekarang", "current activity",
+                  "apa yang sedang dikerjakan", "lagi bikin apa", "lagi kerja apa",
+                  "sedang melakukan apa", "sedang melakukan apa sekarang", "kegiatan sekarang",
+                  "doing what", "wisnu lagi apa", "wisnu sedang apa", "wisnu ngapain",
+                  "apa kesibukan kamu", "kesibukan kamu", "kamu lagi sibuk ya", "lagi sibuk ya", "kok kamu sibuk banget si", "sibuk banget si", "lagi sibuk apa", "sibuk apa", "apa saja kesibukan kamu", "kesibukan apa saja", "kok kamu sibuk banget", "sibuk banget", "kenapa kamu sangat sibuk", "kenapa sangat sibuk"
+              ],
             category: 'personal',
             emotion: 'friendly'
         },

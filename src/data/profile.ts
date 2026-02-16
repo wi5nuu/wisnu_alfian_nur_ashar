@@ -136,35 +136,54 @@ export const profile: Profile = {
             skills: ["Communication", "Teamwork"]
         }
     ],
-    projects: [
-        {
-            title: "LexCorpus CMS Platform",
-            role: "Full-Stack Developer",
-            status: "Production",
-            link: "https://www.lexcorpuslaw.com",
-            description: "Production-ready CMS platform for real client using modern full-stack technologies. Secure role-based editorial system.",
-            techStack: ["Next.js 16", "React 18", "TypeScript", "Tailwind CSS", "Supabase"],
-            image: "/Lexcorpus.png"
-        },
-        {
-            title: "Ashar Grosir Parfum",
-            role: "Full-Stack Developer",
-            status: "Production",
-            link: "https://www.ashargrosirparfum.com",
-            description: "E-Commerce platform for a 20-year-old perfume wholesaler serving 15,000+ partners.",
-            techStack: ["React", "TypeScript", "Utility-first CSS", "CDN"],
-            image: "/AsharGrosirParfum.png"
-        },
-        {
-            title: "PC FKMA Jakarta Website",
-            role: "Full-Stack Developer",
-            status: "Production",
-            link: "https://pcfkmaasadiyahjakarta.vercel.app/",
-            description: "Official digital platform for As'adiyah Alumni in Jakarta. Features profile, news portal, and organizational data.",
-            techStack: ["Next.js", "Tailwind CSS", "Vercel"],
-            image: "/FKMA_Asadiyah_Jakarta.png"
-        }
-    ],
+projects: [
+    {
+        title: "Ashar Grosir Parfum",
+        role: "Full-Stack Developer",
+        status: "Production",
+        link: "https://www.ashargrosirparfum.com",
+        description: "Official E-Commerce platform for a 20-year-old perfume wholesaler serving 15,000+ partners. Built to scale digital transactions and streamline wholesale distribution.",
+        techStack: ["React", "TypeScript", "Utility-first CSS", "CDN"],
+        image: "/AsharGrosirParfum.png"
+    },
+    {
+        title: "LexCorpus CMS Platform",
+        role: "Full-Stack Developer",
+        status: "Production",
+        link: "https://www.lexcorpuslaw.com",
+        description: "Production-ready CMS platform for real client using modern full-stack technologies. Secure role-based editorial system.",
+        techStack: ["Next.js 16", "React 18", "TypeScript", "Tailwind CSS", "Supabase"],
+        image: "/Lexcorpus.png"
+    },
+    {
+        title: "Nuxar Perfumery",
+        role: "Full-Stack Developer",
+        status: "Production",
+        link: "https://www.nuxarperfumery.my.id",
+        description: "High-end cinematic perfume website featuring GSAP animations, 3D transforms, particle effects, and dark luxury UI. Backend deployed with Golang and Railway.",
+        techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
+        image: "/NuxarPerfumery.png"
+    },
+    {
+        title: "PC FKMA Jakarta Website",
+        role: "Full-Stack Developer",
+        status: "Production",
+        link: "https://pcfkmaasadiyahjakarta.vercel.app/",
+        description: "Official digital platform for As'adiyah Alumni in Jakarta. Features profile, news portal, and organizational data.",
+        techStack: ["Next.js", "Tailwind CSS", "Vercel"],
+        image: "/FKMA_Asadiyah_Jakarta.png"
+    },
+    {
+        title: "Wiskost Residence",
+        role: "Frontend Developer",
+        status: "Production",
+        link: "https://wiskost.vercel.app/",
+        description: "Luxury winery-inspired website template with gold-accent dark theme, Ken Burns animations, testimonial system, and integrated contact form.",
+        techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Formspree", "Vercel"],
+        image: "/WiskostResidence.png"
+    }
+],
+
     education: {
         institution: "President University",
         degree: "Bachelor of Information Technology", 
