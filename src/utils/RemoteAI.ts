@@ -9,7 +9,7 @@ export class RemoteAI {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, profileData: profile }),
+        body: JSON.stringify({ query }),
       });
 
       if (!response.ok) {
@@ -21,16 +21,17 @@ export class RemoteAI {
       const data = await response.json();
       console.log("📥 Data mentah dari API:", data);
 
-      /**
-       * FORMAT BARU (OpenAI Standard):
-       * Data yang kita butuhkan ada di: data.choices[0].message.content
-       */
+      // Support multiple formats: OpenAI standard or our custom { response: string }
+      if (data.response) {
+        return data.response.trim();
+      }
+
       if (data && data.choices && data.choices[0] && data.choices[0].message) {
         const aiResponse = data.choices[0].message.content;
         return aiResponse.trim();
       }
 
-      console.error("❌ Format JSON tidak sesuai standar V1:", data);
+      console.error("❌ Format JSON tidak dikenali:", data);
       return null;
 
     } catch (error) {

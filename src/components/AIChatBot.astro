@@ -32,10 +32,10 @@ import { X, Send } from "lucide-astro";
 
     <div
         id="chat-window"
-        class="fixed bottom-28 md:bottom-24 right-4 left-4 md:left-auto md:right-6 w-auto md:w-[380px] bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 transform scale-95 opacity-0 pointer-events-none transition-all duration-300 origin-bottom overflow-hidden flex flex-col max-h-[60vh] md:max-h-[500px] z-[120]"
+        class="fixed bottom-28 md:bottom-24 right-4 left-4 md:left-auto md:right-6 w-auto md:w-[380px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20 transform scale-95 opacity-0 pointer-events-none transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) origin-bottom-right overflow-hidden flex flex-col max-h-[60vh] md:max-h-[500px] z-[120]"
     >
         <div
-            class="bg-slate-900 p-4 flex items-center justify-between text-white shrink-0 relative overflow-hidden"
+            class="bg-slate-900/90 backdrop-blur-md p-4 flex items-center justify-between text-white shrink-0 relative overflow-hidden"
         >
             <div
                 class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"
@@ -50,22 +50,24 @@ import { X, Send } from "lucide-astro";
                         class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm"
                     />
                     <div
-                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900"
+                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse"
                     >
                     </div>
                 </div>
                 <div>
-                    <h3 class="font-bold text-sm text-white">Wisnu's AI</h3>
+                    <h3 class="font-bold text-sm text-white">
+                        Wisnu's Career Coach
+                    </h3>
                     <p
-                        class="text-[10px] text-blue-200 uppercase tracking-wider font-medium"
+                        class="text-[10px] text-blue-300 uppercase tracking-wider font-semibold"
                     >
-                        Online & Ready
+                        Online
                     </p>
                 </div>
             </div>
             <button
                 id="chat-close"
-                class="p-2 hover:bg-white/10 rounded-full transition-colors relative z-10 text-white/80 hover:text-white"
+                class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 relative z-10 text-white/80 hover:text-white hover:rotate-90"
             >
                 <X class="w-5 h-5" />
             </button>
@@ -73,39 +75,39 @@ import { X, Send } from "lucide-astro";
 
         <div
             id="chat-messages"
-            class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50 h-[350px]"
+            class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/30 h-[350px] scroll-smooth"
         >
-            <div class="flex gap-3">
+            <div class="flex gap-3 animate-fade-in">
                 <img
                     src="/logo.png"
                     alt="AI"
                     class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm"
                 />
                 <div
-                    class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-slate-100 text-sm text-slate-600"
+                    class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-slate-100 text-sm text-slate-600 leading-relaxed"
                 >
-                    Hi! I'm Wisnu's virtual assistant. Ask me about his <strong
-                        >skills</strong
-                    >, <strong>projects</strong>, or <strong>experience</strong
-                    >!
+                    Hi! I'm Wisnu's <strong>International Career Coach</strong>.
+                    Ask me about his <strong>skills</strong>, <strong
+                        >projects</strong
+                    >, or how he's prepared for <strong>overseas work</strong>!
                 </div>
             </div>
         </div>
 
         <form
             id="chat-form"
-            class="p-3 border-t border-slate-100 bg-white flex gap-2 shrink-0"
+            class="p-3 border-t border-slate-100 bg-white/80 backdrop-blur-md flex gap-2 shrink-0"
         >
             <input
                 type="text"
                 id="chat-input"
-                placeholder="Type your question..."
-                class="flex-1 bg-slate-50 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-slate-900/10 focus:outline-none placeholder:text-slate-400"
+                placeholder="Ask about careers, projects..."
+                class="flex-1 bg-slate-100/50 border-none rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-slate-900/5 focus:outline-none placeholder:text-slate-400 transition-all"
                 autocomplete="off"
             />
             <button
                 type="submit"
-                class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 active:scale-95 shadow-md"
+                class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 disabled:opacity-50 active:scale-90 shadow-lg shadow-slate-900/10"
             >
                 <Send class="w-4 h-4" />
             </button>
@@ -196,9 +198,17 @@ import { X, Send } from "lucide-astro";
 
     function addMessage(text: string, sender: "user" | "ai") {
         if (!messagesContainer) return;
+
+        // Extract suggestions [[Suggestion]]
+        const suggestions: string[] = [];
+        const cleanText = text.replace(/\[\[(.*?)\]\]/g, (match, p1) => {
+            suggestions.push(p1);
+            return "";
+        });
+
         const div = document.createElement("div");
         const isAi = sender === "ai";
-        div.className = `flex gap-3 ${isAi ? "" : "flex-row-reverse"}`;
+        div.className = `flex gap-3 ${isAi ? "animate-reveal-up" : "flex-row-reverse"}`;
 
         // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
         const iconHtml = isAi
@@ -207,7 +217,7 @@ import { X, Send } from "lucide-astro";
 
         const bubbleClass = isAi
             ? "bg-white border border-slate-100 text-slate-600 rounded-tl-sm"
-            : "bg-slate-900 text-white rounded-tr-sm";
+            : "bg-slate-900 text-white rounded-tr-sm shadow-indigo-500/10";
 
         // Security Patch: Simple escaping + Markdown-lite rendering
         const escapeHtml = (unsafe: string) => {
@@ -229,11 +239,34 @@ import { X, Send } from "lucide-astro";
 
         div.innerHTML = `
              ${iconHtml}
-             <div class="p-3 rounded-2xl shadow-sm max-w-[80%] text-sm leading-relaxed ${bubbleClass}">
-               ${renderMessage(text)}
+             <div class="p-3 rounded-2xl shadow-sm max-w-[85%] text-[13px] leading-relaxed ${bubbleClass}">
+               ${renderMessage(cleanText.trim())}
              </div>
            `;
         messagesContainer.appendChild(div);
+
+        // Render Suggestions as clickable chips
+        if (isAi && suggestions.length > 0) {
+            const suggestionDiv = document.createElement("div");
+            suggestionDiv.className =
+                "flex flex-wrap gap-2 mt-2 ml-11 mb-2 animate-reveal-up delay-300";
+
+            suggestions.forEach((s) => {
+                const btn = document.createElement("button");
+                btn.className =
+                    "px-3 py-1.5 bg-white border border-slate-200 rounded-full text-[11px] text-slate-500 hover:text-slate-900 hover:border-slate-900 transition-all active:scale-95 shadow-sm";
+                btn.innerHTML = s;
+                btn.onclick = () => {
+                    if (input) {
+                        input.value = s;
+                        form?.dispatchEvent(new Event("submit"));
+                    }
+                };
+                suggestionDiv.appendChild(btn);
+            });
+            messagesContainer.appendChild(suggestionDiv);
+        }
+
         if (messagesContainer)
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }

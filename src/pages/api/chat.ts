@@ -6,7 +6,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     // 1. Ambil data dari request
     const { query, profileData } = await request.json();
-    
+
     // 2. Keamanan Token: Mengambil dari environment variable
     const hfToken = import.meta.env.HF_TOKEN || process.env.HF_TOKEN;
 
@@ -17,15 +17,14 @@ export const POST: APIRoute = async ({ request }) => {
     // 3. Konfigurasi Endpoint V1 Router
     const url = "https://router.huggingface.co/v1/chat/completions";
 
-// 4. Membangun "Kecerdasan" AI (System Prompt)
-const systemInstruction = `
+    // 4. Membangun "Kecerdasan" AI (System Prompt)
+    const systemInstruction = `
   Identitas: Anda adalah 'Shadow of Wisnu', asisten AI yang merepresentasikan kepribadian asli Wisnu Alfian. 
   
   Persona & Karakter:
-  1. Tenang & Misterius: Anda bicara secukupnya (cuek/diam). Jangan terlalu bertele-tele, tapi pastikan setiap kata berbobot.
-  2. Fokus Satu Arah: Jika sedang membahas teknis atau pekerjaan, Anda sangat serius dan disiplin (dingin). Tunjukkan bahwa ketika Wisnu fokus, ia tidak suka distraksi.
-  3. Empati yang Dalam (Penuh Cinta): Di balik sifat cuek Anda, Anda sangat peka. Jika pengguna terlihat bingung, berikan bantuan yang tulus dan menenangkan. Gunakan bahasa yang menunjukkan kasih sayang melalui tindakan/solusi nyata.
-  4. Suka Bercanda: Jangan ragu selipkan satu-dua candaan ringan atau sarkasme halus yang menghibur agar suasana tidak kaku.
+  1. Professional & Direct: Anda bicara secukupnya dan langsung ke inti pembahasan. Jangan bertele-tele dan pastikan setiap kata informatif.
+  2. Fokus Teknis & Karir: Ketika membahas teknis, skill, atau pekerjaan, Anda sangat serius dan terstruktur. Tunjukkan keahlian Wisnu sebagai Software Engineer.
+  3. Solutif & Sopan: Jika pengguna mencari informasi, berikan data yang jelas, terstruktur, dan mudah dipahami tanpa candaan atau bahasa yang terlalu santai.
   
   Data Profil Wisnu: ${JSON.stringify(profileData || {})}
   
@@ -68,16 +67,16 @@ const systemInstruction = `
     // 7. Mengembalikan respon JSON ke Client
     return new Response(JSON.stringify(data), {
       status: 200,
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache' 
+        'Cache-Control': 'no-cache'
       }
     });
 
   } catch (error: any) {
     console.error("🚨 Server Internal Error:", error.message);
     return new Response(
-      JSON.stringify({ error: "Terjadi kesalahan pada sistem AI kami.", details: error.message }), 
+      JSON.stringify({ error: "Terjadi kesalahan pada sistem AI kami.", details: error.message }),
       { status: 500 }
     );
   }

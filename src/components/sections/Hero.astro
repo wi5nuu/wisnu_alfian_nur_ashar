@@ -1,6 +1,6 @@
 ---
 import { profile } from "../../data/profile";
-import { ChevronDown, ArrowRight } from "lucide-astro";
+import { ChevronDown, ArrowRight, Download } from "lucide-astro";
 
 // Placeholder images - high quality unsplash images matching the vibe
 const slides = [
@@ -57,11 +57,12 @@ const slides = [
     <p
       class="text-lg md:text-2xl text-sage-100 max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 drop-shadow-md font-light"
     >
-      {profile.personalInfo.tagline}
+      Full-Stack Developer | Cybersecurity Focus <br class="hidden md:block" />
+      Building Secure & High-Performance Web Applications
     </p>
 
     <div
-      class="flex flex-col sm:flex-row gap-4 md:gap-5 animate-fade-in-up delay-300"
+      class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 md:gap-5 animate-fade-in-up delay-300"
     >
       <a
         href="/projects"
@@ -73,8 +74,17 @@ const slides = [
         />
       </a>
       <a
+        href="/cv"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2"
+      >
+        <Download class="w-4 h-4" />
+        Download CV (PDF)
+      </a>
+      <a
         href="/contact"
-        class="btn border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-3 rounded-full font-medium transition-all duration-300"
+        class="btn border-2 border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-8 py-3 rounded-full font-medium transition-all duration-300"
       >
         Contact Me
       </a>

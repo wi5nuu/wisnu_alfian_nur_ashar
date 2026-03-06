@@ -34,3 +34,23 @@ const description = profile.personalInfo.summary;
 	</main>
 	<Footer />
 </Layout>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: "0px 0px -50px 0px",
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("active");
+			}
+		});
+	}, observerOptions);
+
+	document.addEventListener("astro:page-load", () => {
+		const revealElements = document.querySelectorAll(".reveal-up");
+		revealElements.forEach((el) => observer.observe(el));
+	});
+</script>
