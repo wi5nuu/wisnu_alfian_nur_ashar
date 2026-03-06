@@ -62,10 +62,10 @@ export const profile: Profile = {
     personalInfo: {
         name: "Wisnu Alfian Nur Ashar",
         pronouns: "He/Him",
-        role: "Senior Full-Stack Developer | Information Technology Specialist",
+        role: "Full-Stack Developer & Cyber Security Specialist",
         location: "Bekasi Timur, Kota Bekasi, Jawa Barat",
-        tagline: "Delivering High-Impact Web Solutions | Expert in Modern Development & Security",
-        summary: "As a dedicated Information Technology professional at President University, I specialize in architecting and deploying production-grade web applications that drive business results. With a proven track record of optimizing performance, implementing robust security measures, and delivering intuitive user experiences, I transform complex technical challenges into scalable, user-centric solutions that exceed client expectations.",
+        tagline: "Building Secure, High-Performance Production Systems",
+        summary: "Full-Stack Developer & Cyber Security practitioner with production experience building scalable web applications. Specialized in Next.js, React, Supabase, and secure system design. Delivered platforms supporting 15,000+ users with measurable performance and security improvements. Experienced in leading cross-functional teams to modernize digital infrastructure and streamline business operations.",
         email: "wisnualfian117@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
