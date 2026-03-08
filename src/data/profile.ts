@@ -109,6 +109,15 @@ export const profile: Profile = {
     },
     experience: [
         {
+            role: "Web Developer",
+            company: "Syntecxhub",
+            type: "Internship",
+            duration: "March 2026 - Present",
+            location: "Remote",
+            description: "Developed and maintained remote web applications, utilizing modern web frameworks to deliver responsive and scalable front-end solutions.",
+            skills: ["Web Development", "Teamwork"]
+        },
+        {
             role: "Full-Stack Developer",
             company: "ASHAR GROSIR PARFUM BEKASI",
             type: "Self-employed",
@@ -244,6 +253,44 @@ export const profile: Profile = {
         "PUMA Informatic"
     ],
     certifications: [
+        {
+            name: "AWS Cloud Practitioner Essentials \u2013 Training Completion",
+            issuer: "Amazon Web Services (AWS)",
+            date: "March 2026",
+            id: "",
+            image: "/aws_cloud_practioner_essentials.png"
+        },
+        {
+            name: "AWS Technical Essentials",
+            issuer: "Amazon Web Services (AWS)",
+            date: "January 2026",
+            id: "",
+            image: "/aws_technical_essentials.png"
+        },
+        {
+            name: "Google Ads Search Certification",
+            issuer: "Google Digital Academy (Skillshop)",
+            date: "February 2026",
+            expiry: "February 2027",
+            id: "173326967",
+            image: "/Google_Ads_Search.png"
+        },
+        {
+            name: "Google Analytics Certification",
+            issuer: "Google Digital Academy (Skillshop)",
+            date: "February 2026",
+            expiry: "February 2027",
+            id: "173326065",
+            image: "/Google_Analytics.png"
+        },
+        {
+            name: "Data Integrations Certification",
+            issuer: "HubSpot Academy",
+            date: "February 2026",
+            expiry: "March 2027",
+            id: "ab0238d2c3f14a16bfb744c1a9e28356",
+            image: "/Data_Integrations_Certification.png"
+        },
         {
             name: "Software Engineer Certificate",
             issuer: "HackerRank",

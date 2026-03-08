@@ -69,9 +69,10 @@ import ImageModal from "../ImageModal.astro";
               </p>
 
               <p class="text-xs text-charcoal/50">
-                Issued: {cert.date} • Expires: {cert.expiry}
+                Issued: {cert.date} {cert.expiry ? `\u2022 Expires: ${cert.expiry}` : ""}
               </p>
 
+              {cert.id && (
               <div class="pt-3">
                 <span
                   class="
@@ -87,6 +88,7 @@ import ImageModal from "../ImageModal.astro";
                   Credential ID: {cert.id}
                 </span>
               </div>
+              )}
             </div>
           </div>
         ))

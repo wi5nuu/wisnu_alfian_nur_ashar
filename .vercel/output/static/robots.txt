@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Link langsung ke sitemap index yang dihasilkan Astro
+Sitemap: https://www.wisnualfiannurashar.my.id/sitemap-index.xml

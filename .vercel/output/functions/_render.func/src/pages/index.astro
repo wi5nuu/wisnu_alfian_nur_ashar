@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import About from "../components/sections/About.astro";
+import Experience from "../components/sections/Experience.astro";
+import Projects from "../components/sections/Projects.astro";
+import Skills from "../components/sections/Skills.astro";
+import Education from "../components/sections/Education.astro";
+import Certifications from "../components/sections/Certifications.astro";
+import Contact from "../components/sections/Contact.astro";
+import { profile } from "../data/profile";
+
+const title = `${profile.personalInfo.name} | ${profile.personalInfo.role}`;
+const description = profile.personalInfo.summary;
+---
+
+<Layout title={title} description={description}>
+	<Header />
+	<main>
+		<Hero />
+		<About />
+		<Experience />
+		<Projects />
+		<Skills />
+		<div
+			class="grid md:grid-cols-2 bg-white container-custom py-12 gap-8 items-start"
+		>
+			<Education />
+			<Certifications />
+		</div>
+		<Contact />
+	</main>
+	<Footer />
+</Layout>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: "0px 0px -50px 0px",
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("active");
+			}
+		});
+	}, observerOptions);
+
+	document.addEventListener("astro:page-load", () => {
+		const revealElements = document.querySelectorAll(".reveal-up");
+		revealElements.forEach((el) => observer.observe(el));
+	});
+</script>
