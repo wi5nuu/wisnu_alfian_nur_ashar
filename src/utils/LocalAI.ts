@@ -50,7 +50,7 @@ Apa yang ingin Anda ketahui tentang Wisnu? Saya siap membantu! 😊`,
 🤝 **Contact** - How to connect with Wisnu
 
 What would you like to know about Wisnu? I'm ready to help! 😊`,
-            aliases: ["hi", "hello", "hey", "hai", "assalamualaikum", "good morning", "good afternoon", "intro", "test", "p"],
+            aliases: ["hi", "hello", "hey", "hai", "assalamualaikum", "good morning", "good afternoon", "intro"],
             category: 'smalltalk',
             emotion: 'friendly'
         },
@@ -204,6 +204,32 @@ Wisnu believes technology must solve real problems, not just look cool! 🚀`,
             category: 'identity',
             emotion: 'enthusiastic',
             followUp: ["skill teknis", "proyek unggulan", "career goals"]
+        },
+
+        "syntecxhub": {
+            id: `🏢 **Pengalaman di Syntecxhub:**
+            
+Bagian dari perjalanan profesional Wisnu sebagai **Web Developer Intern** sejak Maret 2026.
+
+**Fokus Utama:**
+- Pengembangan dan pemeliharaan aplikasi web jarak jauh (remote).
+- Menggunakan framework web modern untuk memberikan solusi front-end yang responsif dan skalabel.
+- Kolaborasi dalam tim untuk memastikan kualitas kode dan performa aplikasi.
+
+Wisnu terus mengasah kemampuannya dalam membangun sistem yang efisien di lingkungan kerja yang dinamis! 🚀`,
+            en: `🏢 **Syntecxhub Experience:**
+
+Part of Wisnu's professional journey as a **Web Developer Intern** since March 2026.
+
+**Main Focus:**
+- Developing and maintaining remote web applications.
+- Utilizing modern web frameworks to deliver responsive and scalable front-end solutions.
+- Collaborating within teams to ensure code quality and application performance.
+
+Wisnu continues to hone his skills in building efficient systems in a dynamic work environment! 🚀`,
+            aliases: ["syntecxhub", "internship syntecxhub", "pengalaman syntecxhub", "magang"],
+            category: 'professional',
+            emotion: 'professional'
         },
 
         // --- PERSONALITY & CHARACTER ---
@@ -577,29 +603,27 @@ Research helps Wisnu stay updated with the latest theories that can be applied t
         },
 
         "university projects": {
-            id: `🏫 **Proyek Universitas Unggulan:**
+            id: `🏫 **Proyek Universitas Unggulan & Menantang:**
 
-Selama kuliah di President University, Wisnu telah mengerjakan berbagai proyek akademik yang menantang.
+Selama kuliah di President University, Wisnu telah mengerjakan berbagai proyek akademik yang menantang:
 
-**🚀 Highlight Proyek:**
-- **Full-Stack CMS** - Membangun sistem manajemen konten dari nol sebagai tugas besar.
-- **Database Optimization** - Mendesain skema database kompleks dengan performa tinggi.
-- **Network Security Lab** - Simulasi pertahanan jaringan dari berbagai tipe serangan cyber.
-- **Mobile App Prototype** - Membuat desain dan prototipe aplikasi mobile yang user-friendly.
+1. **Full-Stack CMS** - Membangun sistem manajemen konten dari nol dengan Supabase dan SSR.
+2. **Database Optimization** - Mendesain skema database kompleks untuk performa tinggi dengan 15.000+ simulasi user.
+3. **Network Security Lab** - Simulasi pertahanan jaringan dan audit keamanan (OCTAVE Allegro).
+4. **Mobile App Prototype** - Membuat desain dan prototipe aplikasi mobile yang user-friendly di Android Studio.
 
-Proyek-proyek ini mengasah kemampuan Wisnu dalam bekerja dalam tim dan deadline yang ketat! 🏛️`,
-            en: `🏫 **Featured University Projects:**
+Proyek-proyek ini mengasah kemampuan Wisnu dalam bekerja dalam tim dan menghadapi deadline ketat! 🏛️`,
+            en: `🏫 **Featured & Challenging University Projects:**
 
-During his studies at President University, Wisnu has worked on various challenging academic projects.
+During his studies at President University, Wisnu has worked on various challenging academic projects:
 
-**🚀 Project Highlights:**
-- **Full-Stack CMS** - Building a content management system from scratch as a major assignment.
-- **Database Optimization** - Designing complex database schemas with high performance.
-- **Network Security Lab** - Simulating network defense against various cyber attack types.
-- **Mobile App Prototype** - Creating user-friendly mobile app designs and prototypes.
+1. **Full-Stack CMS** - Building a content management system from scratch with Supabase and SSR.
+2. **Database Optimization** - Designing complex database schemas for high performance with 15,000+ simulated users.
+3. **Network Security Lab** - Simulating network defense and security audits (OCTAVE Allegro).
+4. **Mobile App Prototype** - Creating user-friendly mobile app designs and prototypes in Android Studio.
 
-These projects honed Wisnu's ability to work in teams and under tight deadlines! 🏛️`,
-            aliases: ["proyek kampus", "tugas kuliah", "university projects", "proyek mahasiswa", "hasil kuliah", "college projects"],
+These projects honed Wisnu's ability to work in teams and handle tight deadlines! 🏛️`,
+            aliases: ["proyek kampus", "tugas kuliah", "university projects", "proyek mahasiswa", "hasil kuliah", "college projects", "proyek universitas yang paling menantang"],
             category: 'academic',
             emotion: 'professional'
         },
@@ -2002,6 +2026,28 @@ This experience significantly honed Wisnu's problem-solving skills and deep unde
             id: "Eksperimen dengan teknologi baru, expand portfolio, dan mungkin mendirikan tech company sendiri. 🎯",
             en: "Experimenting with new tech, expanding his portfolio, and possibly starting his own tech company. 🎯",
             aliases: ["5 year goal", "rencana 5 tahun", "future plan"],
+            category: 'career',
+            emotion: 'enthusiastic'
+        },
+
+        "target wisnu 10 tahun ke depan": {
+            id: `🚀 **Visi 10 Tahun ke Depan:**
+
+Wisnu memproyeksikan dirinya sebagai **Technology Leader** atau **Founder** yang memberikan dampak signifikan pada ekosistem digital:
+1. **Founder/CTO:** Membangun dan memimpin perusahaan teknologi yang menyelesaikan masalah skala besar.
+2. **Industry Expert:** Menjadi referensi di bidang Cyber Security dan Scalable Web Systems.
+3. **Angel Investor/Mentor:** Membantu generasi developer berikutnya untuk tumbuh dan berinovasi.
+
+"Membangun legacy yang berkelanjutan melalui teknologi dan kepemimpinan." 🌟`,
+            en: `🚀 **10-Year Future Vision:**
+
+Wisnu projects himself as a **Technology Leader** or **Founder** making a significant impact on the digital ecosystem:
+1. **Founder/CTO:** Building and leading a tech company that solves large-scale problems.
+2. **Industry Expert:** Becoming a reference in Cyber Security and Scalable Web Systems.
+3. **Angel Investor/Mentor:** Helping the next generation of developers grow and innovate.
+
+"Building a sustainable legacy through technology and leadership." 🌟`,
+            aliases: ["10 tahun", "10 year goal", "rencana 10 tahun", "long term goal", "masa depan wisnu"],
             category: 'career',
             emotion: 'enthusiastic'
         },
@@ -3451,14 +3497,14 @@ Can I eat/drink/have feelings?
         "sekarang lagi ngapain": {
             id: "Saat ini Wisnu focus banget sama kuliah semester ini sambil maintain 3 production projects! 💻 Pagi kuliah di President University, siang deep work coding, sore koordinasi organisasi (PUFA & FKMA), malam learning teknologi baru. Kadang juga refactor code Ashar Grosir biar makin optimal. Produktif tapi tetap sustainable!",
             en: "Currently Wisnu is really focused on this semester's studies while maintaining 3 production projects! 💻 Morning classes at President University, afternoon deep work coding, evening organization coordination (PUFA & FKMA), night learning new tech. Sometimes also refactoring Ashar Grosir code for optimization. Productive yet sustainable!",
-              aliases: [
-                  "lagi apa", "lagi ngapain", "ngapain", "sedang apa", "sedang ngapain",
-                  "what are you doing", "aktivitas sekarang", "current activity",
-                  "apa yang sedang dikerjakan", "lagi bikin apa", "lagi kerja apa",
-                  "sedang melakukan apa", "sedang melakukan apa sekarang", "kegiatan sekarang",
-                  "doing what", "wisnu lagi apa", "wisnu sedang apa", "wisnu ngapain",
-                  "apa kesibukan kamu", "kesibukan kamu", "kamu lagi sibuk ya", "lagi sibuk ya", "kok kamu sibuk banget si", "sibuk banget si", "lagi sibuk apa", "sibuk apa", "apa saja kesibukan kamu", "kesibukan apa saja", "kok kamu sibuk banget", "sibuk banget", "kenapa kamu sangat sibuk", "kenapa sangat sibuk"
-              ],
+            aliases: [
+                "lagi apa", "lagi ngapain", "ngapain", "sedang apa", "sedang ngapain",
+                "what are you doing", "aktivitas sekarang", "current activity",
+                "apa yang sedang dikerjakan", "lagi bikin apa", "lagi kerja apa",
+                "sedang melakukan apa", "sedang melakukan apa sekarang", "kegiatan sekarang",
+                "doing what", "wisnu lagi apa", "wisnu sedang apa", "wisnu ngapain",
+                "apa kesibukan kamu", "kesibukan kamu", "kamu lagi sibuk ya", "lagi sibuk ya", "kok kamu sibuk banget si", "sibuk banget si", "lagi sibuk apa", "sibuk apa", "apa saja kesibukan kamu", "kesibukan apa saja", "kok kamu sibuk banget", "sibuk banget", "kenapa kamu sangat sibuk", "kenapa sangat sibuk"
+            ],
             category: 'personal',
             emotion: 'friendly'
         },

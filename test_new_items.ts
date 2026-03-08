@@ -1,5 +1,5 @@
 
-import { LocalAI } from "./src/utils/LocalAI";
+import { LocalAI } from "./src/utils/LocalAI.ts";
 import fs from 'fs';
 
 const testCases = [

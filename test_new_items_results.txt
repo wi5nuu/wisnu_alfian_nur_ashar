@@ -98,9 +98,9 @@ Wisnu memiliki minat dalam eksplorasi akademis, khususnya di bi..."
 
 Test #17: "Apa saja proyek universitas yang paling menantang bagi Wisnu?"
 Result: ✅ PASS
-Snippet: "Hmm, pertanyaan menarik! 🤔 
+Snippet: "🏫 **Proyek Universitas Unggulan & Menantang:**
 
-Saya belum menemukan informasi spesifik tentang "Apa saja proyek unive..."
+Selama kuliah di President University, Wisnu telah ..."
 
 Test #18: "Bagaimana metode belajar Wisnu agar cepat menguasai teknologi baru?"
 Result: ✅ PASS
@@ -128,8 +128,8 @@ Buku adalah jendela bagi Wisnu untuk memperluas cakrawala di luar ..."
 
 Test #22: "Di mana Wisnu melihat dirinya dalam 10 tahun ke depan?"
 Result: ✅ PASS
-Snippet: "Hmm, pertanyaan menarik! 🤔 
+Snippet: "🚀 **Visi 10 Tahun ke Depan:**
 
-Saya belum menemukan informasi spesifik tentang "Di mana Wisnu melihat..."
+Wisnu memproyeksikan dirinya sebagai **Technology Leader** atau **Fo..."
 
 --- Final Score: 22/22 ---
