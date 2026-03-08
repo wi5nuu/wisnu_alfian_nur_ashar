@@ -8,9 +8,11 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wisnualfiannurashar.my.id',
-  output: 'server',
+  output: 'static',
   integrations: [sitemap()],
-  adapter: vercel(),
+  adapter: vercel({
+    edge: true
+  }),
   vite: {
     plugins: [tailwindcss()]
   }
