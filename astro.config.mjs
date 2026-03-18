@@ -9,10 +9,7 @@ export default defineConfig({
   site: 'https://wisnu-alfian-nur-ashar.vercel.app',
   output: 'static',
   integrations: [sitemap()],
-  adapter: vercel({
-    webAnalytics: true,
-    edge: true
-  }),
+  adapter: vercel(),
   vite: {
     plugins: [tailwindcss()]
   }
