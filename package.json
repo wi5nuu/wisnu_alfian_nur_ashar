@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && cp -r dist/client/* dist/ || true",
+    "build": "astro build && cp -r dist/client/* dist/ || echo 'Build asset relocation skipped or finished.'",
     "preview": "astro preview",
     "astro": "astro"
   },
