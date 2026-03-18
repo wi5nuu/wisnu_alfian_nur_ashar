@@ -13,7 +13,7 @@ interface Props {
 const {
   title,
   description = profile.personalInfo.summary,
-  url = "https://www.wisnualfiannurashar.my.id/",
+  url = Astro.url.href,
 } = Astro.props;
 
 const siteName = "Wisnu Alfian Nur Ashar | Senior Full-Stack Developer Portfolio";

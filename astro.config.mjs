@@ -6,11 +6,12 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://wisnualfiannurashar.my.id',
+  site: 'https://wisnu-alfian-nur-ashar.vercel.app',
   output: 'static',
   integrations: [sitemap()],
   adapter: vercel({
-    webAnalytics: true
+    webAnalytics: true,
+    edge: true
   }),
   vite: {
     plugins: [tailwindcss()]
