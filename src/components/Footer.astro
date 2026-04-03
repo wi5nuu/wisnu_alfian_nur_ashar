@@ -29,58 +29,75 @@ const socials = [
 ];
 ---
 
-<footer class="relative bg-sage-950 text-white pt-20 pb-10 overflow-hidden">
+<footer class="relative bg-white text-slate-900 pt-12 pb-8 overflow-hidden border-t border-slate-100">
   <div
-    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-sage-500/50 to-transparent"
+    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"
   >
   </div>
   <div
-    class="absolute -top-24 -left-24 w-96 h-96 bg-sage-500/5 rounded-full blur-[100px]"
+    class="absolute -top-24 -left-24 w-96 h-96 bg-slate-50 rounded-full blur-[100px]"
   >
   </div>
 
   <div class="container-custom relative z-10">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
       <div class="md:col-span-5 space-y-6 text-center md:text-left">
         <div>
-          <h2 class="text-2xl font-serif font-bold tracking-tight mb-3">
-            Wisnu Alfian Nur Ashar<span class="text-sage-400">.</span>
+          <h2 class="text-xl font-serif font-bold tracking-tight mb-2 text-slate-950">
+            Wisnu Alfian Nur Ashar<span class="text-slate-400">.</span>
           </h2>
-          <p class="text-sage-300/80 max-w-sm leading-relaxed text-sm">
+          <p class="text-slate-500 max-w-sm leading-relaxed text-sm font-medium">
             {profile.personalInfo.tagline}
           </p>
         </div>
 
         <div class="flex justify-center md:justify-start gap-4">
-          {
-            socials.map((social) => (
-              <a
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group p-2.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-                aria-label={social.label}
-              >
-                <social.icon class="w-5 h-5 text-sage-300 group-hover:text-white transition-colors" />
-              </a>
-            ))
-          }
+          {[
+            { slug: 'github', color: '000000', href: profile.personalInfo.github, label: 'GitHub' },
+            { 
+              isSvg: true, 
+              href: profile.personalInfo.linkedin, 
+              label: 'LinkedIn',
+              svg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-[#0077B5] grayscale group-hover:grayscale-0 transition-all duration-300" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`
+            },
+            { slug: 'instagram', color: 'E4405F', href: profile.personalInfo.instagram, label: 'Instagram' },
+            { slug: 'line', color: '00C300', href: profile.personalInfo.line, label: 'Line' },
+            { slug: 'gmail', color: 'EA4335', href: `mailto:${profile.personalInfo.email}`, label: 'Email' }
+          ].map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group p-2.5 bg-slate-50 border border-slate-100 rounded-xl hover:bg-white hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200 transition-all duration-300 active:scale-90"
+              aria-label={social.label}
+            >
+              {social.isSvg ? (
+                <Fragment set:html={social.svg} />
+              ) : (
+                <img 
+                  src={`https://cdn.simpleicons.org/${social.slug}/${social.color}`} 
+                  alt={social.label} 
+                  class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all duration-300"
+                />
+              )}
+            </a>
+          ))}
         </div>
       </div>
 
       <div class="md:col-span-3 text-center md:text-left">
         <h3
-          class="text-xs uppercase tracking-[0.2em] font-bold text-sage-500 mb-6"
+          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-4"
         >
           Navigation
         </h3>
-        <ul class="space-y-4">
+        <ul class="space-y-3">
           {
             navLinks.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class="text-sage-300 hover:text-white transition-all hover:pl-2 text-sm"
+                  class="text-slate-500 hover:text-black font-bold transition-all hover:pl-2 text-[13px] tracking-wide"
                 >
                   {link.name}
                 </a>
@@ -92,12 +109,12 @@ const socials = [
 
       <div class="md:col-span-4 text-center md:text-left">
         <h3
-          class="text-xs uppercase tracking-[0.2em] font-bold text-sage-500 mb-6"
+          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-4"
         >
           Current Status
         </h3>
         <div
-          class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm"
+          class="bg-slate-50 border border-slate-100 rounded-2xl p-5 backdrop-blur-sm shadow-sm"
         >
           <div
             class="flex items-center gap-3 mb-3 justify-center md:justify-start"
@@ -110,17 +127,17 @@ const socials = [
                 class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
               ></span>
             </span>
-            <span class="text-sm font-medium text-sage-100"
+            <span class="text-sm font-bold text-slate-900"
               >Available for Projects</span
             >
           </div>
-          <p class="text-xs text-sage-400 leading-relaxed mb-4">
+          <p class="text-xs text-slate-500 font-medium leading-relaxed mb-4">
             I'm currently looking for new opportunities and collaborations in
             Web Dev & Cyber Security.
           </p>
           <a
             href={`mailto:${profile.personalInfo.email}`}
-            class="inline-flex items-center text-xs font-bold text-white group"
+            class="inline-flex items-center text-xs font-bold text-slate-900 group hover:underline decoration-slate-950 underline-offset-4"
           >
             START A CONVERSATION
             <ExternalLink
@@ -132,14 +149,14 @@ const socials = [
     </div>
 
     <div
-      class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-sage-500 font-bold"
+      class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-slate-400 font-bold"
     >
       <p>
         &copy; {currentYear} — Designed & Coded by Wisnu Alfian Nur Ashar
       </p>
       <div class="flex gap-6">
         <span
-          class="hover:text-sage-300 transition-colors cursor-default underline decoration-sage-800 underline-offset-4"
+          class="hover:text-black transition-colors cursor-default underline decoration-slate-200 underline-offset-4"
           >Bekasi, Indonesia</span
         >
       </div>

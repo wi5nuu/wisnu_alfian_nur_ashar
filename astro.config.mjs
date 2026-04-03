@@ -7,6 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://wisnu-alfian-nur-ashar.vercel.app',
   output: 'static',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover'
+  },
   integrations: [sitemap()],
   adapter: vercel({
     webAnalytics: true,

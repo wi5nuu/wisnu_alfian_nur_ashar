@@ -32,7 +32,7 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
     <meta name="robots" content="index, follow" />
     <meta
       name="keywords"
-      content="Wisnu Alfian Nur Ashar, Full-Stack Developer, President University, IT Specialist, Web Developer Bekasi, React Developer, Next.js Expert, Cybersecurity, Career Coach"
+      content="Wisnu Alfian Nur Ashar, Full-Stack Developer, President University, IT Software Engineer, Web Developer Bekasi, React Developer, Next.js Expert, Cybersecurity, Career Coach"
     />
 
     <!-- ================= VIEW TRANSITIONS ================= -->
@@ -77,19 +77,15 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
       http-equiv="Content-Security-Policy"
       content="
   default-src 'self';
-  script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; 
+  script-src 'self' 'unsafe-inline'; 
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: https:;
-  connect-src 'self' https://api.web3forms.com https://challenges.cloudflare.com;
+  connect-src 'self' https://api.web3forms.com;
   font-src 'self';
-  frame-src https://challenges.cloudflare.com;
 "
     />
 
-    <script
-      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-      async
-      defer></script>
+
 
     <!-- ================= SCHEMA PERSON ================= -->
     <script type="application/ld+json" is:inline define:vars={{ profile, url, image }}>
@@ -112,7 +108,10 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
           "name": profile.education.institution
         },
         "knowsAbout": [
-          ...profile.skills.technical.map(s => s.name),
+          ...profile.skills.programming.map(s => s.name),
+          ...profile.skills.webTech.map(s => s.name),
+          ...profile.skills.securityCloud.map(s => s.name),
+          ...profile.skills.tools.map(s => s.name),
           ...profile.skills.soft.map(s => s.name)
         ],
         "sameAs": [
@@ -142,7 +141,7 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
   <body class="bg-white text-slate-900 antialiased">
     <div
       id="app"
-      class="min-h-screen flex flex-col transition-colors duration-300"
+      class="min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300"
     >
       <slot />
     </div>

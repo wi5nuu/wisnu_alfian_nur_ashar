@@ -7,8 +7,7 @@ import About from "../components/sections/About.astro";
 import Experience from "../components/sections/Experience.astro";
 import Projects from "../components/sections/Projects.astro";
 import Skills from "../components/sections/Skills.astro";
-import Education from "../components/sections/Education.astro";
-import Certifications from "../components/sections/Certifications.astro";
+import EducationCertifications from "../components/sections/EducationCertifications.astro";
 import Contact from "../components/sections/Contact.astro";
 import { profile } from "../data/profile";
 
@@ -24,12 +23,7 @@ const description = profile.personalInfo.summary;
 		<Experience />
 		<Projects />
 		<Skills />
-		<div
-			class="grid md:grid-cols-2 bg-white container-custom py-12 gap-8 items-start"
-		>
-			<Education />
-			<Certifications />
-		</div>
+		<EducationCertifications />
 		<Contact />
 	</main>
 	<Footer />

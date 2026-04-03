@@ -3,25 +3,37 @@ import { profile } from "../../data/profile";
 import { GraduationCap } from "lucide-astro";
 ---
 
-<section id="education" class="section bg-white">
+<section id="education" class="section bg-white pb-4 md:pb-6">
   <div class="container-custom">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-12">
-        <h2
-          class="text-3xl md:text-4xl font-serif font-bold text-sage-900 mb-4 inline-block relative"
-        >
-          Education
-          <span
-            class="absolute -bottom-2 left-0 w-full h-1 bg-sage-200 rounded-full"
-          ></span>
-        </h2>
-      </div>
+    <div class="text-center mb-12">
+      <h2 class="inline-block relative">
+        Education
+        <span
+          class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"
+        ></span>
+      </h2>
+    </div>
 
+    <!-- EDUCATION SCROLL -->
+    <div class="w-full flex justify-center gap-6 md:gap-8 overflow-x-auto pb-8 snap-x scrollbar-hide px-4 md:px-0">
+      <!-- One card as an example, but flex-ready for more items -->
       <div
-        class="bg-gradient-to-br from-sage-50 to-white p-8 rounded-2xl border border-sage-100 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left"
+        class="
+          bg-gradient-to-br from-white-50 to-white 
+          p-6 
+          rounded-xl 
+          border border-sage-100 
+          shadow-sm 
+          flex flex-col md:flex-row 
+          items-center md:items-start 
+          gap-5 
+          text-center md:text-left
+          min-w-[85vw] md:min-w-[500px]
+          snap-start
+        "
       >
         <div
-          class="shrink-0 w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-sm border border-cream-200 overflow-hidden p-1"
+          class="shrink-0 w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl shadow-sm border border-cream-200 overflow-hidden p-1"
         >
           <img
             src="/president_university.jpeg"
@@ -31,10 +43,10 @@ import { GraduationCap } from "lucide-astro";
         </div>
 
         <div class="flex-1 space-y-2">
-          <h3 class="text-2xl font-bold text-sage-800">
+          <h3 class="font-bold text-sage-800">
             {profile.education.institution}
           </h3>
-          <div class="text-xl text-sage-600 font-serif font-medium">
+          <div class="text-lg text-sage-600 font-serif font-medium">
             {profile.education.degree}
           </div>
           <div class="text-charcoal/60 text-sm">
@@ -52,3 +64,13 @@ import { GraduationCap } from "lucide-astro";
     </div>
   </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

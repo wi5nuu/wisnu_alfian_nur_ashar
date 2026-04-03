@@ -1,206 +1,81 @@
 ---
 import { profile } from "../../data/profile";
-import { Calendar, Briefcase } from "lucide-astro";
+import { Calendar, MapPin, Briefcase } from "lucide-astro";
 ---
 
-<section
-  id="experience"
-  class="section bg-gradient-to-b from-white to-sage-50 relative overflow-hidden py-24"
->
-  <div
-    class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none"
-  >
-    <div
-      class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-sage-200/20 rounded-full blur-[100px]"
-    >
-    </div>
-    <div
-      class="absolute bottom-[10%] left-[-10%] w-[400px] h-[400px] bg-blue-100/30 rounded-full blur-[80px]"
-    >
-    </div>
-  </div>
-
-  <div class="container-custom relative z-10">
-    <div class="text-center mb-16 md:mb-24 reveal">
-      <div
-        class="inline-flex items-center justify-center p-3 bg-sage-100 rounded-2xl mb-4 text-sage-600"
-      >
-        <Briefcase class="w-6 h-6" />
-      </div>
-      <h2
-        class="text-3xl md:text-5xl font-serif font-bold text-sage-900 mb-6 tracking-tight"
-      >
+<section id="experience" class="section bg-white">
+  <div class="container-custom">
+    <div class="text-center mb-10">
+      <h2 class="inline-block relative">
         Work Experience
+        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"></span>
       </h2>
-      <p class="text-charcoal/70 max-w-2xl mx-auto text-lg leading-relaxed">
-        My professional journey transforming ideas into production-grade
-        software solutions.
+      <p class="text-charcoal/60 max-w-xl mx-auto mt-4 text-sm">
+        My professional journey building production systems and leading technical teams.
       </p>
     </div>
 
-    <div class="relative max-w-6xl mx-auto">
-      <div
-        class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-sage-200 via-sage-300 to-transparent rounded-full z-0 reveal-line"
-      >
-      </div>
+    <div class="max-w-3xl mx-auto">
+      <div class="relative">
+        <!-- Timeline vertical line -->
+        <div class="absolute left-3.5 top-0 bottom-0 w-px bg-gradient-to-b from-sage-200 via-sage-300 to-transparent"></div>
 
-      <div class="space-y-12 md:space-y-0">
-        {
-          profile.experience.map((exp, index) => {
-            const isEven = index % 2 === 0;
-            // Tentukan arah animasi berdasarkan posisi zigzag
-            const revealClass = isEven ? "reveal-right" : "reveal-left";
+        <div class="space-y-6">
+          {profile.experience.map((exp, index) => (
+            <div class="relative pl-12 group">
+              <!-- Timeline dot -->
+              <div class="absolute left-0 top-1 flex items-center justify-center w-7 h-7 rounded-full bg-white border-2 border-sage-300 group-hover:border-sage-500 transition-colors z-10 shadow-sm">
+                <div class="w-1.5 h-1.5 bg-sage-400 group-hover:bg-sage-600 rounded-full transition-colors"></div>
+              </div>
 
-            return (
-              <div
-                class={`relative flex flex-col md:flex-row items-center w-full md:mb-12 last:mb-0 group ${isEven ? "md:flex-row-reverse" : ""}`}
-              >
-                <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-white border-4 border-sage-500 shadow-[0_0_0_4px_rgba(255,255,255,1)] z-20 transition-transform duration-300 group-hover:scale-125 group-hover:border-sage-600 reveal">
-                  <div class="w-2 h-2 bg-sage-600 rounded-full animate-pulse" />
-                </div>
-
-                <div class="hidden md:block md:w-1/2" />
-
-                <div
-                  class={`w-full md:w-1/2 pl-12 md:pl-0 ${isEven ? "md:pr-16" : "md:pl-16"} ${revealClass}`}
-                >
-                  <div
-                    class={`
-                    relative bg-white p-6 md:p-8 rounded-2xl 
-                    border border-white/50 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] 
-                    transition-all duration-500 ease-out
-                    hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]
-                    hover:border-sage-200
-                    text-left
-                    ${isEven ? "md:text-right" : "md:text-left"} 
-                  `}
-                  >
-                    <div
-                      class={`
-                      hidden md:block absolute top-9 h-[2px] w-16 bg-sage-200 
-                      transition-all duration-500 group-hover:bg-sage-400
-                      ${isEven ? "-right-16 rounded-r-full" : "-left-16 rounded-l-full"}
-                  `}
-                    >
-                      <div
-                        class={`absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-sage-300 rounded-full ${isEven ? "left-0" : "right-0"}`}
-                      />
+              <!-- Card -->
+              <div class="bg-white border border-slate-100 rounded-xl p-4 md:p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
+                
+                <!-- Header -->
+                <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
+                  <div>
+                    <h3 class="font-bold text-slate-900 text-base leading-tight group-hover:text-sage-600 transition-colors">
+                      {exp.role}
+                    </h3>
+                    <div class="flex items-center gap-2 mt-1 flex-wrap">
+                      <span class="text-sm font-semibold text-sage-700">{exp.company}</span>
+                      <span class="px-2 py-0.5 bg-sage-50 text-sage-600 text-[9px] font-bold uppercase tracking-widest border border-sage-100 rounded-full">
+                        {exp.type}
+                      </span>
                     </div>
+                  </div>
 
-                    <div
-                      class={`flex flex-col gap-1 mb-4 ${isEven ? "md:items-end" : "md:items-start"}`}
-                    >
-                      <h3 class="text-xl md:text-2xl font-bold text-sage-900 group-hover:text-sage-600 transition-colors">
-                        {exp.role}
-                      </h3>
-                      <div
-                        class={`flex flex-wrap items-center gap-2 md:gap-3 ${isEven ? "md:flex-row-reverse" : ""}`}
-                      >
-                        <span class="text-lg font-medium text-sage-700">
-                          {exp.company}
-                        </span>
-                        <span class="hidden md:inline-block w-1.5 h-1.5 rounded-full bg-sage-300" />
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sage-50 text-sage-600 border border-sage-100">
-                          {exp.type}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div
-                      class={`flex items-center gap-2 text-sm text-sage-500 mb-6 font-medium ${isEven ? "md:justify-end" : "md:justify-start"}`}
-                    >
-                      <Calendar class="w-4 h-4" />
+                  <!-- Date + Location -->
+                  <div class="text-right shrink-0">
+                    <div class="flex items-center gap-1 text-[11px] text-slate-400 font-medium justify-end">
+                      <Calendar class="w-3 h-3" />
                       <span>{exp.duration}</span>
                     </div>
-
-                    <p class="text-charcoal/80 mb-6 leading-relaxed text-sm md:text-base">
-                      {exp.description}
-                    </p>
-
-                    <div
-                      class={`flex flex-wrap gap-2 ${isEven ? "justify-start md:justify-end" : "justify-start"}`}
-                    >
-                      {exp.skills.map((skill) => (
-                        <span class="px-3 py-1.5 bg-cream-100/80 text-sage-800 text-xs font-semibold rounded-lg border border-transparent hover:border-sage-200 hover:bg-white transition-colors duration-300">
-                          {skill}
-                        </span>
-                      ))}
+                    <div class="flex items-center gap-1 text-[11px] text-slate-400 justify-end mt-0.5">
+                      <MapPin class="w-3 h-3" />
+                      <span>{exp.location}</span>
                     </div>
                   </div>
                 </div>
+
+                <!-- Description -->
+                <p class="text-[12.5px] text-slate-500 leading-relaxed mb-3 italic">
+                  {exp.description}
+                </p>
+
+                <!-- Skills -->
+                <div class="flex flex-wrap gap-1.5">
+                  {exp.skills.map((skill) => (
+                    <span class="px-2.5 py-0.5 bg-slate-50 text-slate-600 text-[9px] font-bold uppercase tracking-wider border border-slate-100 rounded-md">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            );
-          })
-        }
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  /* Base State Animasi */
-  .reveal,
-  .reveal-left,
-  .reveal-right,
-  .reveal-line {
-    opacity: 0;
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform, opacity;
-  }
-
-  .reveal-left {
-    transform: translateX(-40px);
-  }
-  .reveal-right {
-    transform: translateX(40px);
-  }
-  .reveal-line {
-    transform: scaleY(0);
-    transform-origin: top;
-    transition:
-      transform 1.5s ease-out,
-      opacity 0.5s ease;
-  }
-
-  /* Active State */
-  .active {
-    opacity: 1 !important;
-    transform: translate(0, 0) !important;
-  }
-
-  .reveal-line.active {
-    transform: scaleY(1) !important;
-  }
-</style>
-
-<script>
-  const initExperienceReveal = () => {
-    const observerOptions = { threshold: 0.1 };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    }, observerOptions);
-
-    const elements = document.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right, .reveal-line",
-    );
-
-    elements.forEach((el, index) => {
-      // Logic Delay: Header muncul dulu, baru timeline line, baru kartu satu per satu
-      if (el.classList.contains("reveal-line")) {
-        (el as HTMLElement).style.transitionDelay = "0.5s";
-      } else if (el.closest(".group")) {
-        // Kartu pengalaman akan muncul bergantian
-        (el as HTMLElement).style.transitionDelay = `${index * 0.15}s`;
-      }
-      observer.observe(el);
-    });
-  };
-
-  document.addEventListener("DOMContentLoaded", initExperienceReveal);
-  document.addEventListener("astro:after-swap", initExperienceReveal);
-</script>

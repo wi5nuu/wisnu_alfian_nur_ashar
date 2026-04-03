@@ -4,16 +4,14 @@ import { Award, CheckCircle } from "lucide-astro";
 import ImageModal from "../ImageModal.astro";
 ---
 
-<section id="certifications" class="section bg-cream-50">
+<section id="certifications" class="section bg-cream-50 pt-4 md:pt-6">
   <div class="container-custom">
     <!-- SECTION TITLE -->
-    <div class="text-center mb-14">
-      <h2
-        class="text-3xl md:text-4xl font-serif font-bold text-sage-900 mb-4 inline-block relative"
-      >
+    <div class="text-center mb-10">
+      <h2 class="inline-block relative">
         Certifications
         <span
-          class="absolute -bottom-2 left-0 w-full h-1 bg-sage-300/50 rounded-full"
+          class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 rounded-full"
         ></span>
       </h2>
       <p class="text-sage-600 text-sm mt-4 max-w-xl mx-auto">
@@ -21,8 +19,8 @@ import ImageModal from "../ImageModal.astro";
       </p>
     </div>
 
-    <!-- CERTIFICATION GRID -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <!-- CERTIFICATION SCROLL/FLEX -->
+    <div class="w-full flex gap-6 md:gap-8 max-w-7xl mx-auto overflow-x-auto pb-10 snap-x scrollbar-hide px-4 md:px-6 scroll-pl-4">
       {
         profile.certifications.map((cert) => (
           <div
@@ -34,43 +32,57 @@ import ImageModal from "../ImageModal.astro";
               hover:shadow-lg
               transition-all duration-300
               overflow-hidden
+              min-w-[70vw] md:min-w-[300px]
+              snap-start
             "
           >
             <!-- IMAGE -->
-            <div class="w-full aspect-[4/3] bg-cream-50 flex items-center justify-center p-4">
+            <div class="w-full aspect-video overflow-hidden">
               {cert.image ? (
                 <img
                   src={cert.image}
                   alt={cert.name}
                   class="
                     w-full h-full
-                    object-contain
-                    rounded-xl
-                    transition-transform duration-300
-                    hover:scale-105
+                    object-cover
+                    transition-transform duration-500
+                    hover:scale-110
                     cursor-pointer
                   "
                   loading="lazy"
                   onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`}
                 />
               ) : (
-                <Award class="w-12 h-12 text-sage-400" />
+                <div class="w-full h-full bg-sage-50 flex items-center justify-center">
+                  <Award class="w-10 h-10 text-sage-300" />
+                </div>
               )}
             </div>
 
             <!-- CONTENT -->
-            <div class="p-6 space-y-2">
-              <h3 class="text-lg font-bold text-sage-800 leading-snug">
+            <div class="p-5 space-y-2">
+              <h3 class="font-bold text-sage-900 leading-tight text-sm md:text-base">
                 {cert.name}
               </h3>
 
-              <p class="text-sm font-medium text-sage-600">
+              <p class="text-xs font-semibold text-sage-600">
                 {cert.issuer}
               </p>
 
-              <p class="text-xs text-charcoal/50">
-                Issued: {cert.date} {cert.expiry ? `\u2022 Expires: ${cert.expiry}` : ""}
+              <p class="text-xs text-sage-500/80 italic leading-relaxed">
+                {cert.description}
               </p>
+
+              <div class="flex items-center justify-between pt-2">
+                <p class="text-[10px] font-medium text-charcoal/40 uppercase tracking-wider">
+                  Issued: {cert.date}
+                </p>
+                {cert.expiry && (
+                   <p class="text-[10px] font-medium text-charcoal/40 uppercase tracking-wider">
+                    Expires: {cert.expiry}
+                  </p>
+                )}
+              </div>
 
               {cert.id && (
               <div class="pt-3">
@@ -97,3 +109,13 @@ import ImageModal from "../ImageModal.astro";
     
   </div>
 </section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

@@ -2,51 +2,37 @@
 import { profile } from "../../data/profile";
 ---
 
-<section id="about" class="section bg-white relative overflow-hidden py-20">
+<section id="about" class="section bg-white relative overflow-hidden">
   <div class="container-custom">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <h2
-          class="text-3xl md:text-4xl font-serif font-bold text-sage-900 mb-4 inline-block relative"
-        >
+      <div class="text-center mb-10 reveal">
+        <h2 class="inline-block relative">
           About Me
-
-          <span
-            class="absolute -bottom-2 left-0 w-full h-1 bg-sage-200 rounded-full"
-          ></span>
+          <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"></span>
         </h2>
       </div>
 
-      <div class="grid md:grid-cols-12 gap-12 items-center">
-        <div class="md:col-span-5 relative reveal-left">
-          <div
-            class="aspect-[4/5] bg-sage-100 rounded-2xl overflow-hidden relative shadow-xl group"
-          >
+      <div class="grid md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-4 relative reveal-left h-auto">
+          <div class="bg-white rounded-2xl overflow-hidden relative shadow-lg group">
             <img
               src="/wisnu_alfian_nur_ashar.jpeg"
               alt={profile.personalInfo.name}
-              class="w-full h-full object-cover rounded-2xl group-hover:scale-110 transition-transform duration-700 ease-out"
+              class="w-full h-auto object-contain rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
             />
           </div>
-
-          <div
-            class="absolute -bottom-6 -right-6 w-32 h-32 bg-sage-100/50 rounded-lg -z-10 animate-pulse"
-          >
-          </div>
-
-          <div
-            class="absolute -top-6 -left-6 w-32 h-32 border-2 border-sage-100 rounded-lg -z-10"
-          >
-          </div>
+          
+          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-sage-50 rounded-lg -z-10 hidden md:block"></div>
+          <div class="absolute -top-4 -left-4 w-20 h-20 border border-sage-100 rounded-lg -z-10 hidden md:block"></div>
         </div>
 
-        <div class="md:col-span-7 space-y-6 overflow-hidden">
-          <h3 class="text-2xl font-bold text-sage-800 reveal-left">
+        <div class="md:col-span-8 space-y-4 overflow-hidden">
+          <h3 class="text-xl md:text-2xl font-bold text-sage-900 reveal-left">
             {profile.personalInfo.role}
           </h3>
 
-          <div class="space-y-4 text-charcoal/90 text-lg leading-relaxed">
-            <p class="reveal-right">
+          <div class="space-y-4 text-charcoal/90 text-[15px] leading-snug">
+            <p class="reveal-right font-medium">
               {profile.personalInfo.summary}
             </p>
 
@@ -56,75 +42,27 @@ import { profile } from "../../data/profile";
               applications used by real users.
             </p>
 
-            <p class="reveal-top text-sage-600 font-medium">
+            <p class="reveal-top text-sage-600 font-semibold underline decoration-sage-200 underline-offset-4">
               I am particularly interested in web development, secure
               application design, and modern development workflows.
             </p>
           </div>
 
-          <div class="pt-6 grid grid-cols-2 gap-4 reveal-bottom">
-            <div
-              class="bg-sage-50 p-6 rounded-2xl border border-sage-100 hover:shadow-md transition-shadow"
-            >
-              <span
-                class="block text-3xl font-serif font-bold text-sage-600 mb-1"
-                >2</span
-              >
-
-              <span
-                class="text-sm text-charcoal/70 uppercase tracking-wider font-semibold"
-                >Years Experience</span
-              >
+          <div class="mt-6 reveal-bottom">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-center hover:shadow-sm transition-shadow">
+                <div class="text-2xl font-bold stat-number text-sage-700">8+</div>
+                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Production Apps</div>
+              </div>
+              <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-center hover:shadow-sm transition-shadow">
+                <div class="text-2xl font-bold stat-number text-sage-700">15K+</div>
+                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Users Served</div>
+              </div>
+              <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-center hover:shadow-sm transition-shadow">
+                <div class="text-2xl font-bold stat-number text-sage-700">96</div>
+                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Lighthouse Score</div>
+              </div>
             </div>
-
-            <div
-              class="bg-sage-50 p-6 rounded-2xl border border-sage-100 hover:shadow-md transition-shadow"
-            >
-              <span
-                class="block text-3xl font-serif font-bold text-sage-600 mb-1"
-                >7+</span
-              >
-
-              <span
-                class="text-sm text-charcoal/70 uppercase tracking-wider font-semibold"
-                >Live Projects</span
-              >
-            </div>
-          </div>
-
-          <div
-            class="mt-8 space-y-4 reveal-bottom bg-sage-50/50 p-6 rounded-2xl border border-sage-100"
-          >
-            <h4
-              class="text-xl font-serif font-bold text-sage-900 border-b border-sage-200 pb-2"
-            >
-              Key Achievements
-            </h4>
-            <ul class="space-y-3 text-charcoal/80 pt-2">
-              <li class="flex items-start gap-3">
-                <span class="text-sage-500 font-bold mt-0.5">•</span>
-                <span>Built 7+ production web applications</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-sage-500 font-bold mt-0.5">•</span>
-                <span
-                  >Developed an e-commerce system serving 15,000+ partners</span
-                >
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-sage-500 font-bold mt-0.5">•</span>
-                <span
-                  >Achieved 96 Lighthouse performance score and 1.9s LCP</span
-                >
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-sage-500 font-bold mt-0.5">•</span>
-                <span
-                  >Specialized in secure web architecture and automated risk
-                  management</span
-                >
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -133,59 +71,38 @@ import { profile } from "../../data/profile";
 </section>
 
 <style>
-  /* Keadaan Awal (Hidden) */
-
   .reveal,
   .reveal-left,
   .reveal-right,
   .reveal-bottom,
   .reveal-top {
     opacity: 0;
-
-    transition: all 1s cubic-bezier(0.17, 0.55, 0.55, 1);
-
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: transform, opacity;
   }
 
-  .reveal-left {
-    transform: translateX(-50px);
-  }
-
-  .reveal-right {
-    transform: translateX(50px);
-  }
-
-  .reveal-bottom {
-    transform: translateY(50px);
-  }
-
-  .reveal-top {
-    transform: translateY(-50px);
-  }
-
-  /* Keadaan Setelah Aktif (Muncul) */
+  .reveal-left { transform: translateX(-30px); }
+  .reveal-right { transform: translateX(30px); }
+  .reveal-bottom { transform: translateY(30px); }
+  .reveal-top { transform: translateY(-30px); }
 
   .active {
     opacity: 1 !important;
-
     transform: translate(0, 0) !important;
+  }
+
+  .stat-number {
+    font-family: 'Calibri', 'Trebuchet MS', 'Gill Sans', Arial, sans-serif;
   }
 </style>
 
 <script>
-  const revealElements = () => {
-    const observerOptions = {
-      threshold: 0.15, // Animasi jalan jika 15% elemen terlihat
-    };
-
+  const revealAbout = () => {
+    const observerOptions = { threshold: 0.15 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("active");
-
-          // Opsional: stop observe setelah animasi jalan sekali
-
-          // observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -195,19 +112,11 @@ import { profile } from "../../data/profile";
     );
 
     elements.forEach((el, index) => {
-      // Menambahkan delay otomatis agar muncul bergantian (staggered)
-
-      (el as HTMLElement).style.transitionDelay = `${index * 0.1}s`;
-
+      (el as HTMLElement).style.transitionDelay = `${index * 0.08}s`;
       observer.observe(el);
     });
   };
 
-  // Jalankan saat pertama load
-
-  document.addEventListener("DOMContentLoaded", revealElements);
-
-  // Jalankan saat Astro page swap (jika pakai View Transitions)
-
-  document.addEventListener("astro:after-swap", revealElements);
+  document.addEventListener("DOMContentLoaded", revealAbout);
+  document.addEventListener("astro:after-swap", revealAbout);
 </script>

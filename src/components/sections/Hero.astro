@@ -40,7 +40,7 @@ const slides = [
   </div>
 
   <div
-    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-32 md:pt-16"
+    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-24 md:pt-12"
   >
     <div
       class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
@@ -49,13 +49,13 @@ const slides = [
     </div>
 
     <h1
-      class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
+      class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-4 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
     >
       <span id="typewriter-text"></span><span class="animate-blink">|</span>
     </h1>
 
     <p
-      class="text-lg md:text-2xl text-sage-100 max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 drop-shadow-md font-light"
+      class="text-base md:text-lg text-sage-100 max-w-xl mb-8 leading-snug animate-fade-in-up delay-200 drop-shadow-md font-light"
     >
       {profile.personalInfo.role}
       <br class="hidden md:block" />
@@ -63,31 +63,40 @@ const slides = [
     </p>
 
     <div
-      class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 md:gap-5 animate-fade-in-up delay-300"
+      class="w-full flex flex-row flex-wrap justify-center gap-2 md:gap-5 animate-fade-in-up delay-300"
     >
-      <a
-        href="/projects"
-        class="btn bg-white text-sage-900 hover:bg-sage-50 shadow-lg px-8 py-3 rounded-full font-medium transition-all duration-300 group"
-      >
-        View My Work
-        <ArrowRight
-          class="inline-block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
-        />
-      </a>
       <a
         href="/CV-Wisnu Alfian Nur Ashar.pdf"
         download
-        class="btn border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2"
+        class="btn border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
       >
-        <Download class="w-4 h-4" />
+        <Download class="w-3.5 h-3.5" />
         Download CV (PDF)
       </a>
       <a
         href="/contact"
-        class="btn border-2 border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-8 py-3 rounded-full font-medium transition-all duration-300"
+        class="btn border border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300"
       >
         Contact Me
       </a>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-10 animate-fade-in-up delay-300 border-t border-white/10 pt-8 w-full max-w-xl">
+      <div class="text-center">
+        <div class="text-2xl font-bold stat-number text-white">8+</div>
+        <div class="text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">Production Apps</div>
+      </div>
+      <div class="w-px h-8 bg-white/10 hidden md:block"></div>
+      <div class="text-center">
+        <div class="text-2xl font-bold stat-number text-white">15K+</div>
+        <div class="text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">Users Served</div>
+      </div>
+      <div class="w-px h-8 bg-white/10 hidden md:block"></div>
+      <div class="text-center">
+        <div class="text-2xl font-bold stat-number text-white">30+</div>
+        <div class="text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">GitHub Repos</div>
+      </div>
     </div>
   </div>
 
@@ -117,6 +126,10 @@ const slides = [
 
   .animate-blink {
     animation: blink 1s step-end infinite;
+  }
+
+  .stat-number {
+    font-family: 'Calibri', 'Trebuchet MS', 'Gill Sans', Arial, sans-serif;
   }
 
   @keyframes fadeInUp {
