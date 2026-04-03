@@ -12,6 +12,7 @@
     "@astrojs/check": "^0.9.6",
     "@astrojs/node": "^9.5.4",
     "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/vercel": "^9.0.5",
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@fontsource/outfit": "^5.2.8",
     "@google/generative-ai": "^0.24.1",

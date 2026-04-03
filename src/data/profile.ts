@@ -177,6 +177,16 @@ export const profile: Profile = {
     ],
     projects: [
         {
+            title: "Shooply",
+            role: "Full-Stack Architect",
+            status: "Production",
+            featured: true,
+            link: "#",
+            description: "Enterprise e-commerce platform with a microservices architecture. Features an SSR-optimized Next.js frontend (React Query, Zustand) and an ultra-fast GoFiber backend backed by PostgreSQL, Redis caching, RabbitMQ message queues, and OpenTelemetry.",
+            techStack: ["Next.js 14", "TypeScript", "React Query", "Zustand", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
+            image: "/shooply.png"
+        },
+        {
             title: "Fanguard Strategic Hub",
             role: "Architect & Lead Developer",
             status: "Production",
