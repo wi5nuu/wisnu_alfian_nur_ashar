@@ -182,8 +182,8 @@ export const profile: Profile = {
             status: "Production",
             featured: true,
             link: "#",
-            description: "Enterprise e-commerce platform with a microservices architecture. Features an SSR-optimized Next.js frontend (React Query, Zustand) and an ultra-fast GoFiber backend backed by PostgreSQL, Redis caching, RabbitMQ message queues, and OpenTelemetry.",
-            techStack: ["Next.js 14", "TypeScript", "React Query", "Zustand", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
+            description: "High-performance e-commerce platform with a microservices architecture. Features an SSR-optimized Next.js 14 frontend and a super-fast GoFiber backend. Implements advanced caching (Redis), messaging (RabbitMQ), and comprehensive telemetry (OpenTelemetry, Prometheus).",
+            techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
             image: "/shooply.png"
         },
         {

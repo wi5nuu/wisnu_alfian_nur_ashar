@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wisnu-alfian-nur-ashar.vercel.app',
-  output: 'hybrid',
+  output: 'static',
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'hover'
