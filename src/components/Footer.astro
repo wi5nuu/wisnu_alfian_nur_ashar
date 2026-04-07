@@ -1,5 +1,10 @@
 ---
-import { profile } from "../data/profile";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+
 import {
   Github,
   Linkedin,
@@ -14,10 +19,10 @@ import {
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
-  { name: "Home", href: "#hero" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+  { name: isId ? "Utama" : "Home", href: isId ? "/id" : "/" },
+  { name: isId ? "Proyek" : "Projects", href: isId ? "/id/projects" : "/projects" },
+  { name: isId ? "Keahlian" : "Skills", href: isId ? "/id/skills" : "/skills" },
+  { name: isId ? "Kontak" : "Contact", href: isId ? "/id/contact" : "/contact" },
 ];
 
 const socials = [
@@ -29,13 +34,13 @@ const socials = [
 ];
 ---
 
-<footer class="relative bg-white text-slate-900 pt-12 pb-8 overflow-hidden border-t border-slate-100">
+<footer class="relative bg-white dark:bg-[#0f172a] text-slate-900 dark:text-white pt-12 pb-8 overflow-hidden border-t border-slate-100 dark:border-slate-800">
   <div
-    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"
+    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent"
   >
   </div>
   <div
-    class="absolute -top-24 -left-24 w-96 h-96 bg-slate-50 rounded-full blur-[100px]"
+    class="absolute -top-24 -left-24 w-96 h-96 bg-slate-50 dark:bg-slate-900 rounded-full blur-[100px]"
   >
   </div>
 
@@ -43,10 +48,10 @@ const socials = [
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
       <div class="md:col-span-5 space-y-6 text-center md:text-left">
         <div>
-          <h2 class="text-xl font-serif font-bold tracking-tight mb-2 text-slate-950">
+          <h2 class="text-xl font-serif font-bold tracking-tight mb-2 text-slate-950 dark:text-white">
             Wisnu Alfian Nur Ashar<span class="text-slate-400">.</span>
           </h2>
-          <p class="text-slate-500 max-w-sm leading-relaxed text-sm font-medium">
+          <p class="text-slate-500 dark:text-white max-w-sm leading-relaxed text-sm font-medium">
             {profile.personalInfo.tagline}
           </p>
         </div>
@@ -68,7 +73,7 @@ const socials = [
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="group p-2.5 bg-slate-50 border border-slate-100 rounded-xl hover:bg-white hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200 transition-all duration-300 active:scale-90"
+              class="group p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl hover:bg-white dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-lg hover:shadow-slate-200 dark:hover:shadow-black/30 transition-all duration-300 active:scale-90"
               aria-label={social.label}
             >
               {social.isSvg ? (
@@ -77,7 +82,7 @@ const socials = [
                 <img 
                   src={`https://cdn.simpleicons.org/${social.slug}/${social.color}`} 
                   alt={social.label} 
-                  class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all duration-300"
+                  class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all duration-300 dark:brightness-200 dark:group-hover:brightness-100"
                 />
               )}
             </a>
@@ -87,9 +92,9 @@ const socials = [
 
       <div class="md:col-span-3 text-center md:text-left">
         <h3
-          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-4"
+          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 dark:text-white mb-4"
         >
-          Navigation
+          {isId ? 'Navigasi' : 'Navigation'}
         </h3>
         <ul class="space-y-3">
           {
@@ -97,7 +102,7 @@ const socials = [
               <li>
                 <a
                   href={link.href}
-                  class="text-slate-500 hover:text-black font-bold transition-all hover:pl-2 text-[13px] tracking-wide"
+                  class="text-slate-500 dark:text-white hover:text-black dark:hover:text-white font-bold transition-all hover:pl-2 text-[13px] tracking-wide"
                 >
                   {link.name}
                 </a>
@@ -109,12 +114,12 @@ const socials = [
 
       <div class="md:col-span-4 text-center md:text-left">
         <h3
-          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-4"
+          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 dark:text-white mb-4"
         >
-          Current Status
+          {isId ? 'Status Saat Ini' : 'Current Status'}
         </h3>
         <div
-          class="bg-slate-50 border border-slate-100 rounded-2xl p-5 backdrop-blur-sm shadow-sm"
+          class="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl p-5 backdrop-blur-sm shadow-sm"
         >
           <div
             class="flex items-center gap-3 mb-3 justify-center md:justify-start"
@@ -127,19 +132,18 @@ const socials = [
                 class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
               ></span>
             </span>
-            <span class="text-sm font-bold text-slate-900"
-              >Available for Projects</span
+            <span class="text-sm font-bold text-slate-900 dark:text-white"
+              >{isId ? 'Tersedia untuk Proyek' : 'Available for Projects'}</span
             >
           </div>
-          <p class="text-xs text-slate-500 font-medium leading-relaxed mb-4">
-            I'm currently looking for new opportunities and collaborations in
-            Web Dev & Cyber Security.
+          <p class="text-xs text-slate-500 dark:text-white font-medium leading-relaxed mb-4">
+            {isId ? 'Saya sedang mencari peluang dan kolaborasi baru di bidang Pengembangan Web & Keamanan Siber.' : 'I\'m currently looking for new opportunities and collaborations in Web Dev & Cyber Security.'}
           </p>
           <a
             href={`mailto:${profile.personalInfo.email}`}
-            class="inline-flex items-center text-xs font-bold text-slate-900 group hover:underline decoration-slate-950 underline-offset-4"
+            class="inline-flex items-center text-xs font-bold text-slate-900 dark:text-white group hover:underline decoration-slate-950 dark:decoration-white underline-offset-4"
           >
-            START A CONVERSATION
+            {isId ? 'MULAI KONSULTASI' : 'START A CONVERSATION'}
             <ExternalLink
               class="w-3 h-3 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
             />
@@ -149,15 +153,15 @@ const socials = [
     </div>
 
     <div
-      class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-slate-400 font-bold"
+      class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-slate-400 dark:text-white font-bold"
     >
-      <p>
-        &copy; {currentYear} — Designed & Coded by Wisnu Alfian Nur Ashar
+      <p class="dark:text-white">
+        &copy; {currentYear} — {isId ? 'Didesain & Dibuat' : 'Designed & Coded'} by Wisnu Alfian Nur Ashar
       </p>
       <div class="flex gap-6">
         <span
-          class="hover:text-black transition-colors cursor-default underline decoration-slate-200 underline-offset-4"
-          >Bekasi, Indonesia</span
+          class="text-slate-400 dark:text-white hover:text-black dark:hover:text-slate-300 transition-colors cursor-default underline decoration-slate-200 dark:decoration-slate-700 underline-offset-4"
+          >{profile.personalInfo.location}</span
         >
       </div>
     </div>

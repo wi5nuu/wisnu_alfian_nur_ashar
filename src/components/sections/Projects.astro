@@ -1,24 +1,28 @@
 ---
-import { profile } from '../../data/profile';
+import { profile as profileEn } from '../../data/profile';
+import { profile as profileId } from '../../data/profile_id';
 import { ExternalLink, Github } from 'lucide-astro';
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
 ---
 
-<section id="projects" class="section bg-white">
+<section id="projects" class="section bg-white dark:bg-[#0f172a]">
   <div class="container-custom">
     <div class="text-center mb-10">
-      <h2 class="inline-block relative">
-        Featured Projects
-        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"></span>
+      <h2 class="inline-block relative dark:text-white">
+        {isId ? 'Proyek Unggulan' : 'Featured Projects'}
+        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"></span>
       </h2>
-      <p class="text-charcoal/70 max-w-2xl mx-auto mt-2 text-sm">
-        Real-world applications delivering value to users in production environments.
+      <p class="text-charcoal/70 dark:text-white max-w-2xl mx-auto mt-2 text-sm">
+        {isId ? 'Aplikasi dunia nyata yang memberikan nilai nyata kepada pengguna dalam lingkungan produksi.' : 'Real-world applications delivering value to users in production environments.'}
       </p>
     </div>
 
-    <!-- Unified Projects Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+    <!-- Unified Projects Grid (Slider on Mobile) -->
+    <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar scroll-smooth touch-pan-x">
       {profile.projects.map((project) => (
-        <article class="group relative bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full shadow-sm hover:-translate-y-1">
+        <article class="group relative bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm md:hover:-translate-y-1 w-[85vw] shrink-0 snap-center md:w-auto md:shrink md:snap-none h-auto md:h-full">
           <!-- Status Badge -->
           <div class="absolute top-8 right-3 z-20">
             <span class="px-2.5 py-0.5 bg-slate-950 text-white text-[9px] font-bold uppercase tracking-widest rounded-full shadow-lg border border-white/10">
@@ -36,46 +40,58 @@ import { ExternalLink, Github } from 'lucide-astro';
                   <div class="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
                   <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
                 </div>
-                <div class="relative h-32 md:h-40 overflow-hidden group-hover:opacity-95 transition-opacity">
+                <div class="relative h-40 md:h-40 flex-shrink-0 overflow-hidden group-hover:opacity-95 transition-opacity bg-slate-50">
                   <img 
                     src={project.image} 
                     alt={project.title} 
                     class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
             )}
             
-            <div class="p-5 flex-1 flex flex-col">
-              <div class="mb-3">
-                <h3 class="font-bold text-slate-900 group-hover:text-sage-600 transition-colors text-base">
-                  {project.title}
-                </h3>
-                <p class="text-[9px] text-sage-500 font-bold uppercase tracking-widest mt-0.5">{project.role}</p>
+            <!-- Card body -->
+            <div class="bg-white dark:bg-slate-800 border-x border-b border-slate-100 dark:border-slate-700 rounded-b-xl p-4 md:p-5 flex-1 flex flex-col items-start min-h-[max-content] pb-6">
+              <div class="flex flex-wrap items-center gap-2 mb-2 w-full">
+                <span class={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${project.status === "Production" ? "bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800" : "bg-sage-50 text-sage-600 border border-sage-100 dark:bg-sage-900/30 dark:text-white dark:border-sage-800"}`}>
+                  {project.status === "Production" && isId ? "Produksi" : project.status}
+                </span>
+                {project.featured && (
+                  <span class="text-[10px] uppercase tracking-widest font-bold bg-amber-50 text-amber-600 border border-amber-100 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800 px-2 py-0.5 rounded-full">
+                    {isId ? 'Andalan' : 'Featured'}
+                  </span>
+                )}
               </div>
 
-              <p class="text-slate-500 mb-5 text-xs leading-relaxed flex-1 font-medium italic">
-                "{project.description}"
+              <h3 class="text-lg md:text-xl font-bold text-slate-800 dark:text-white mb-1 leading-tight group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                {project.title}
+              </h3>
+              
+              <div class="text-xs font-semibold text-sage-600 dark:text-white mb-2">{project.role}</div>
+
+              <p class="text-charcoal/70 dark:text-white text-[13px] leading-relaxed mb-4 flex-1 line-clamp-3">
+                {project.description}
               </p>
 
-              <div class="space-y-4 mt-auto">
+              <div class="space-y-4 mt-auto w-full">
                 <!-- Tech Stack -->
-                <div class="flex flex-wrap gap-1.5">
-                  {project.techStack.map(tech => (
-                    <span class="px-2 py-0.5 bg-slate-50 text-slate-700 text-[9px] font-bold border border-slate-100 rounded-md uppercase tracking-tight">
+                <div class="flex flex-wrap gap-1.5 w-full">
+                  {project.techStack.map((tech) => (
+                    <span class="px-2 py-1 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-white text-[10px] font-medium border border-slate-100 dark:border-slate-600 rounded">
                       {tech}
                     </span>
                   ))}
                 </div>
 
                 <!-- Links -->
-                <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-700 w-full">
                   <a 
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    class="text-slate-900 hover:text-black text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 transition-colors underline decoration-slate-200 underline-offset-4"
+                    class="text-slate-900 dark:text-white hover:text-sage-600 dark:hover:text-sage-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 transition-colors underline decoration-slate-200 dark:decoration-slate-700 underline-offset-4"
                   >
                     <ExternalLink class="w-3 h-3" /> Live
                   </a>
@@ -85,7 +101,7 @@ import { ExternalLink, Github } from 'lucide-astro';
                       target="_blank" 
                       rel="noopener noreferrer"
                       title="Source Code"
-                      class="text-slate-400 hover:text-slate-900 flex items-center transition-colors"
+                      class="text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center transition-colors"
                     >
                       <Github class="w-4 h-4" />
                     </a>
@@ -93,12 +109,35 @@ import { ExternalLink, Github } from 'lucide-astro';
                 </div>
               </div>
             </div>
+            
           </div>
           
           <!-- Decorative bottom gradient -->
-          <div class="h-1 bg-gradient-to-r from-slate-200 via-slate-900 to-slate-200 opacity-20"></div>
+          <div class="h-1 bg-gradient-to-r from-slate-200 via-slate-900 to-slate-200 opacity-20 dark:from-slate-800 dark:via-white dark:to-slate-800"></div>
         </article>
       ))}
     </div>
+
+    <!-- "View More on GitHub" CTA -->
+    <div class="mt-8 md:mt-12 text-center relative z-20">
+      <a href={profile.personalInfo.github} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-sm font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-all shadow-md group">
+        <Github class="w-4 h-4" />
+        <span>{isId ? 'Lihat Semua Proyek di GitHub' : 'View all projects on GitHub'}</span>
+        <ExternalLink class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+      </a>
+    </div>
   </div>
 </section>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+</style>

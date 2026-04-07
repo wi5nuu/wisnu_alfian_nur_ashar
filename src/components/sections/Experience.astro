@@ -1,17 +1,21 @@
 ---
-import { profile } from "../../data/profile";
+import { profile as profileEn } from "../../data/profile";
+import { profile as profileId } from "../../data/profile_id";
 import { Calendar, MapPin, Briefcase } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
 ---
 
-<section id="experience" class="section bg-white">
+<section id="experience" class="section bg-white dark:bg-[#0f172a]">
   <div class="container-custom">
     <div class="text-center mb-10">
-      <h2 class="inline-block relative">
-        Work Experience
-        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"></span>
+      <h2 class="inline-block relative dark:text-white">
+        {isId ? 'Pengalaman Kerja' : 'Work Experience'}
+        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"></span>
       </h2>
-      <p class="text-charcoal/60 max-w-xl mx-auto mt-4 text-sm">
-        My professional journey building production systems and leading technical teams.
+      <p class="text-charcoal/60 dark:text-white max-w-xl mx-auto mt-4 text-sm">
+        {isId ? 'Perjalanan karir saya membangun sistem produksi dan memimpin tim teknis.' : 'My professional journey building production systems and leading technical teams.'}
       </p>
     </div>
 
@@ -24,22 +28,22 @@ import { Calendar, MapPin, Briefcase } from "lucide-astro";
           {profile.experience.map((exp, index) => (
             <div class="relative pl-12 group">
               <!-- Timeline dot -->
-              <div class="absolute left-0 top-1 flex items-center justify-center w-7 h-7 rounded-full bg-white border-2 border-sage-300 group-hover:border-sage-500 transition-colors z-10 shadow-sm">
-                <div class="w-1.5 h-1.5 bg-sage-400 group-hover:bg-sage-600 rounded-full transition-colors"></div>
+              <div class="absolute left-0 top-1 flex items-center justify-center w-7 h-7 rounded-full bg-white dark:bg-slate-800 border-2 border-sage-300 dark:border-sage-600 group-hover:border-sage-500 transition-colors z-10 shadow-sm">
+                <div class="w-1.5 h-1.5 bg-sage-400 dark:bg-sage-500 group-hover:bg-sage-600 transition-colors rounded-full"></div>
               </div>
 
               <!-- Card -->
-              <div class="bg-white border border-slate-100 rounded-xl p-4 md:p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
+              <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl p-4 md:p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
                 
                 <!-- Header -->
                 <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
                   <div>
-                    <h3 class="font-bold text-slate-900 text-base leading-tight group-hover:text-sage-600 transition-colors">
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base leading-tight group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
                       {exp.role}
                     </h3>
                     <div class="flex items-center gap-2 mt-1 flex-wrap">
-                      <span class="text-sm font-semibold text-sage-700">{exp.company}</span>
-                      <span class="px-2 py-0.5 bg-sage-50 text-sage-600 text-[9px] font-bold uppercase tracking-widest border border-sage-100 rounded-full">
+                      <span class="text-sm font-semibold text-sage-700 dark:text-white">{exp.company}</span>
+                      <span class="px-2 py-0.5 bg-sage-50 dark:bg-sage-900/30 text-sage-600 dark:text-white text-[9px] font-bold uppercase tracking-widest border border-sage-100 dark:border-sage-800 rounded-full">
                         {exp.type}
                       </span>
                     </div>
@@ -47,11 +51,11 @@ import { Calendar, MapPin, Briefcase } from "lucide-astro";
 
                   <!-- Date + Location -->
                   <div class="text-right shrink-0">
-                    <div class="flex items-center gap-1 text-[11px] text-slate-400 font-medium justify-end">
+                    <div class="flex items-center gap-1 text-[11px] text-slate-400 dark:text-white font-medium justify-end">
                       <Calendar class="w-3 h-3" />
                       <span>{exp.duration}</span>
                     </div>
-                    <div class="flex items-center gap-1 text-[11px] text-slate-400 justify-end mt-0.5">
+                    <div class="flex items-center gap-1 text-[11px] text-slate-400 dark:text-white justify-end mt-0.5">
                       <MapPin class="w-3 h-3" />
                       <span>{exp.location}</span>
                     </div>
@@ -59,14 +63,14 @@ import { Calendar, MapPin, Briefcase } from "lucide-astro";
                 </div>
 
                 <!-- Description -->
-                <p class="text-[12.5px] text-slate-500 leading-relaxed mb-3 italic">
+                <p class="text-[12.5px] text-slate-500 dark:text-white leading-relaxed mb-3 italic">
                   {exp.description}
                 </p>
 
                 <!-- Skills -->
                 <div class="flex flex-wrap gap-1.5">
                   {exp.skills.map((skill) => (
-                    <span class="px-2.5 py-0.5 bg-slate-50 text-slate-600 text-[9px] font-bold uppercase tracking-wider border border-slate-100 rounded-md">
+                    <span class="px-2.5 py-0.5 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-white text-[9px] font-bold uppercase tracking-wider border border-slate-100 dark:border-slate-600 rounded-md">
                       {skill}
                     </span>
                   ))}

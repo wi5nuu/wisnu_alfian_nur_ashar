@@ -1,20 +1,23 @@
 ---
-import { profile } from "../../data/profile";
+import { profile as profileEn } from "../../data/profile";
+import { profile as profileId } from "../../data/profile_id";
 import { Cpu, Users } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
 ---
 
-<section id="skills" class="section bg-cream-50">
+<section id="skills" class="section bg-cream-50 dark:bg-slate-900/50">
   <div class="container-custom">
     <div class="text-center mb-10">
-      <h2 class="inline-block relative">
-        Skills & Expertise
+      <h2 class="inline-block relative dark:text-white">
+        {isId ? 'Keahlian' : 'Skills & Expertise'}
         <span
-          class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 rounded-full"
+          class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-600/50 rounded-full"
         ></span>
       </h2>
-      <p class="text-charcoal/70 max-w-2xl mx-auto mt-4">
-        A comprehensive toolkit for modern web development and digital
-        leadership.
+      <p class="text-charcoal/70 dark:text-white max-w-2xl mx-auto mt-4">
+        {isId ? 'Perangkat lengkap saya untuk pengembangan web modern dan kepemimpinan digital.' : 'A comprehensive toolkit for modern web development and digital leadership.'}
       </p>
     </div>
 
@@ -24,22 +27,22 @@ import { Cpu, Users } from "lucide-astro";
         
         <!-- Programming & Databases -->
         <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 uppercase tracking-widest">
-              Programming & Databases
+          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
+            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
+              {isId ? 'Pemrograman & Basis Data' : 'Programming & Databases'}
             </h3>
           </div>
           <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
             {profile.skills.programming.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 font-medium hover:text-sage-700 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
                 {skill.icon ? (
                   <img 
                     src={`https://cdn.simpleicons.org/${skill.icon}`} 
                     alt="" 
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110" 
+                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]" 
                   />
                 ) : (
-                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
                 )}
                 {skill.name}
               </span>
@@ -49,22 +52,22 @@ import { Cpu, Users } from "lucide-astro";
 
         <!-- Web Technologies -->
         <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 uppercase tracking-widest">
-              Web Technologies
+          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
+            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
+              {isId ? 'Teknologi Web' : 'Web Technologies'}
             </h3>
           </div>
           <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
             {profile.skills.webTech.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 font-medium hover:text-sage-700 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
                 {skill.icon ? (
                   <img 
                     src={`https://cdn.simpleicons.org/${skill.icon}`} 
                     alt="" 
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110" 
+                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]" 
                   />
                 ) : (
-                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
                 )}
                 {skill.name}
               </span>
@@ -74,22 +77,22 @@ import { Cpu, Users } from "lucide-astro";
 
         <!-- Security & Infrastructure -->
         <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 uppercase tracking-widest">
-              Security & Infrastructure
+          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
+            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
+              {isId ? 'Keamanan & Infrastruktur' : 'Security & Infrastructure'}
             </h3>
           </div>
           <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
             {profile.skills.securityCloud.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 font-medium hover:text-sage-700 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
                 {skill.icon ? (
                   <img 
                     src={`https://cdn.simpleicons.org/${skill.icon}`} 
                     alt="" 
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110" 
+                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]" 
                   />
                 ) : (
-                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
                 )}
                 {skill.name}
               </span>
@@ -99,22 +102,22 @@ import { Cpu, Users } from "lucide-astro";
 
         <!-- Specialized Tools -->
         <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 uppercase tracking-widest">
-              Specialized Tools
+          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
+            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
+              {isId ? 'Alat Khusus' : 'Specialized Tools'}
             </h3>
           </div>
           <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
             {profile.skills.tools.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 font-medium hover:text-sage-700 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
                 {skill.icon ? (
                   <img 
                     src={`https://cdn.simpleicons.org/${skill.icon}`} 
                     alt="" 
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110" 
+                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]" 
                   />
                 ) : (
-                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
                 )}
                 {skill.name}
               </span>
@@ -124,17 +127,17 @@ import { Cpu, Users } from "lucide-astro";
       </div>
 
       <!-- Soft Skills (Centered) -->
-      <div class="pt-8 border-t border-cream-200">
+      <div class="pt-8 border-t border-cream-200 dark:border-slate-800">
         <div class="space-y-6 text-center">
-          <div class="flex flex-col items-center border-b border-sage-100 pb-3 w-fit mx-auto px-12">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 uppercase tracking-widest">
-              Soft Skills
+          <div class="flex flex-col items-center border-b border-sage-100 dark:border-sage-800 pb-3 w-fit mx-auto px-12">
+            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
+              {isId ? 'Keterampilan Non-Teknis' : 'Soft Skills'}
             </h3>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-6 gap-y-3 w-fit mx-auto">
             {profile.skills.soft.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 font-medium hover:text-sage-700 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap">
-                <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap">
+                <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
                 {skill.name}
               </span>
             ))}

@@ -1,6 +1,11 @@
 ---
-import { profile } from "../../data/profile";
+import { profile as profileEn } from "../../data/profile";
+import { profile as profileId } from "../../data/profile_id";
 import { ChevronDown, ArrowRight, Download } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+const contactUrl = isId ? '/id/contact' : '/contact';
 
 // Placeholder images - high quality unsplash images matching the vibe
 const slides = [
@@ -24,23 +29,23 @@ const slides = [
 
 <section
   id="hero"
-  class="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden bg-sage-900 dark:bg-dark-bg transition-colors duration-300"
+  class="relative h-auto pb-24 md:pb-0 md:min-h-screen flex items-center justify-center overflow-hidden bg-sage-900 dark:bg-dark-bg transition-colors duration-300"
 >
-  <div class="absolute inset-0 z-0">
+  <div class="absolute inset-0 z-0 h-full w-full">
     {
       slides.map((slide, index) => (
         <div
-          class={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out slider-image ${index === 0 ? "opacity-40" : "opacity-0"}`}
+          class={`absolute inset-0 h-full w-full bg-cover bg-center transition-opacity duration-1000 ease-in-out slider-image ${index === 0 ? "opacity-40" : "opacity-0"}`}
           style={`background-image: url('${slide.image}')`}
           data-index={index}
         />
       ))
     }
-    <div class="absolute inset-0 bg-sage-900/70"></div>
+    <div class="absolute inset-0 h-full w-full bg-sage-900/70"></div>
   </div>
 
   <div
-    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-24 md:pt-12"
+    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-28 md:pt-12"
   >
     <div
       class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
@@ -71,31 +76,31 @@ const slides = [
         class="btn border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
       >
         <Download class="w-3.5 h-3.5" />
-        Download CV (PDF)
+        {isId ? 'Unduh CV (PDF)' : 'Download CV (PDF)'}
       </a>
       <a
-        href="/contact"
+        href={contactUrl}
         class="btn border border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300"
       >
-        Contact Me
+        {isId ? 'Hubungi Saya' : 'Contact Me'}
       </a>
     </div>
 
     <!-- Stats strip -->
-    <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-10 animate-fade-in-up delay-300 border-t border-white/10 pt-8 w-full max-w-xl">
-      <div class="text-center">
-        <div class="text-2xl font-bold stat-number text-white">8+</div>
-        <div class="text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">Production Apps</div>
+    <div class="flex flex-row items-center justify-between w-full max-w-xl mt-10 animate-fade-in-up delay-300 border-t border-white/10 pt-8 px-2 sm:px-8">
+      <div class="text-center flex-1">
+        <div class="text-xl md:text-2xl font-bold stat-number text-white">8+</div>
+        <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Aplikasi Produksi' : 'Production Apps'}</div>
       </div>
-      <div class="w-px h-8 bg-white/10 hidden md:block"></div>
-      <div class="text-center">
-        <div class="text-2xl font-bold stat-number text-white">15K+</div>
-        <div class="text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">Users Served</div>
+      <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
+      <div class="text-center flex-1">
+        <div class="text-xl md:text-2xl font-bold stat-number text-white">15K+</div>
+        <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Pengguna Dilayani' : 'Users Served'}</div>
       </div>
-      <div class="w-px h-8 bg-white/10 hidden md:block"></div>
-      <div class="text-center">
-        <div class="text-2xl font-bold stat-number text-white">30+</div>
-        <div class="text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">GitHub Repos</div>
+      <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
+      <div class="text-center flex-1">
+        <div class="text-xl md:text-2xl font-bold stat-number text-white">30+</div>
+        <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Repositori GitHub' : 'GitHub Repos'}</div>
       </div>
     </div>
   </div>

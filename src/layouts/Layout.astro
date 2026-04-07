@@ -136,9 +136,30 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
     </script>
 
     <meta name="generator" content={Astro.generator} />
+
+    <!-- ================= DARK MODE INITIALIZATION ================= -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+    
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      
+      window.localStorage.setItem("theme", theme);
+    </script>
   </head>
 
-  <body class="bg-white text-slate-900 antialiased">
+  <body class="bg-white dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
     <div
       id="app"
       class="min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300"

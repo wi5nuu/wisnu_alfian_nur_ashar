@@ -12,41 +12,74 @@ const navLinks = [
 ];
 
 const pathname = new URL(Astro.request.url).pathname;
+const isId = pathname.startsWith('/id');
+
+// Helper to construct localized URLs
+const getLocalizedUrl = (path: string, toId: boolean) => {
+  const base = toId ? '/id' : '';
+  const cleanPath = path.startsWith('/id') ? path.substring(3) : path;
+  return `${base}${cleanPath === '' || cleanPath === '/' ? '/' : cleanPath}`;
+};
 ---
 
-<header transition:persist class="hidden md:block fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+<header transition:persist class="hidden md:block fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
   <div class="container-custom flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-1.5">
+    <a href={getLocalizedUrl("/", isId)} class="flex items-center gap-1.5">
       <img src="/logo.png" alt="Logo" class="w-6 h-6 object-contain" />
-      <span class="text-lg font-bold text-slate-900 tracking-tight">Wisnu Alfian Nur Ashar<span class="text-slate-400">.</span></span>
+      <span class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Wisnu Alfian Nur Ashar<span class="text-slate-400 dark:text-white">.</span></span>
     </a>
 
-    <nav class="flex items-center gap-8">
-      {navLinks.map((link) => 
-        !link.isLogo && !link.isAI && (
-        <a href={link.href} class={`text-[13px] tracking-wide transition-all ${pathname === link.href ? "text-slate-950 font-bold border-b-2 border-slate-950" : "text-slate-500 hover:text-slate-950 hover:font-medium"}`}>
-          {link.name}
+    <nav class="flex items-center gap-6">
+      {navLinks.map((link) => {
+        if (link.isLogo || link.isAI) return null;
+        const localizedHref = getLocalizedUrl(link.href, isId);
+        return (
+        <a href={localizedHref} class={`text-[13px] tracking-wide transition-all ${pathname === localizedHref ? "text-slate-950 dark:text-white font-bold border-b-2 border-slate-950 dark:border-white" : "text-slate-500 dark:text-white hover:text-slate-950 dark:hover:text-white hover:font-medium"}`}>
+          {isId && link.name === "About" ? "Tentang" : 
+           isId && link.name === "Projects" ? "Proyek" : 
+           isId && link.name === "Contact" ? "Kontak" : link.name}
         </a>
-      ))}
-      <a href="/contact" class="border border-slate-900 text-slate-900 px-4 py-1.5 rounded-full text-xs hover:bg-slate-900 hover:text-white transition-all">
-        Contact
+        );
+      })}
+      
+      <!-- Theme & Lang Toggles (Desktop) -->
+      <div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-700 pl-6 ml-2">
+        <button id="theme-toggle-desktop" class="p-1.5 text-slate-500 hover:text-slate-900 dark:text-white dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all" aria-label="Toggle Theme">
+          <svg id="moon-icon-desktop" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+          <svg id="sun-icon-desktop" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+        </button>
+        
+        <button id="lang-toggle-desktop" class="text-xs font-bold text-slate-600 dark:text-white hover:text-black dark:hover:text-white px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 transition-colors">
+          {isId ? 'ID' : 'EN'}
+        </button>
+      </div>
+
+      <a href={getLocalizedUrl("/contact", isId)} class="border border-slate-900 dark:border-white text-slate-900 dark:text-white px-4 py-1.5 rounded-full text-xs hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-all">
+        {isId ? 'Hubungi' : 'Contact'}
       </a>
     </nav>
   </div>
 </header>
 
-<div transition:persist class="md:hidden fixed top-2 left-4 right-4 z-50 bg-white/90 backdrop-blur-md px-4 py-2.5 flex justify-between items-center border border-slate-100 rounded-xl shadow-lg ring-1 ring-slate-900/5">
-    <a href="/" class="flex items-center gap-1.5">
+<div transition:persist class="md:hidden fixed top-2 left-4 right-4 z-50 bg-white/90 dark:bg-slate-950/95 backdrop-blur-md px-4 py-2.5 flex justify-between items-center border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg ring-1 ring-slate-900/5">
+    <a href={getLocalizedUrl("/", isId)} class="flex items-center gap-1.5">
         <img src="/logo.png" alt="Logo" class="w-6 h-6 object-contain" />
-        <span class="text-[15px] font-bold text-slate-900 tracking-tight">Wisnu Alfian Nur Ashar</span>
+        <span class="text-[14px] font-bold text-slate-900 dark:text-white tracking-tight">Wisnu Alfian Nur Ashar</span>
     </a>
-    <a href="/contact" class="text-slate-900 p-1.5 active:scale-95 transition-transform bg-slate-50 rounded-full">
-        <Mail size={16} />
-    </a>
+    
+    <div class="flex items-center gap-2">
+      <button id="lang-toggle-mobile" class="text-[10px] font-bold text-slate-600 dark:text-white px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+        {isId ? 'ID' : 'EN'}
+      </button>
+      <button id="theme-toggle-mobile" class="p-1.5 text-slate-600 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
+        <svg id="moon-icon-mobile" class="w-3.5 h-3.5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        <svg id="sun-icon-mobile" class="w-3.5 h-3.5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+      </button>
+    </div>
 </div>
 
 <div transition:persist class="md:hidden fixed bottom-4 left-0 w-full px-6 z-[100]">
-  <nav class="mx-auto max-w-[360px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-slate-100 rounded-[2rem] px-2 py-1">
+  <nav class="mx-auto max-w-[360px] bg-white dark:bg-slate-900 shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)] border border-slate-100 dark:border-slate-800 rounded-[2rem] px-2 py-1">
     <div class="flex items-center justify-around">
       {navLinks.map((link) => {
         const isActive = link.href === pathname || (link.href !== '/' && pathname.startsWith(link.href));
@@ -54,8 +87,8 @@ const pathname = new URL(Astro.request.url).pathname;
         
         if (link.isLogo) {
           return (
-            <a href="/" class="relative -translate-y-6 transition-transform active:scale-95" aria-label="Home">
-              <div class="w-14 h-14 bg-white rounded-full p-1 shadow-xl border border-slate-100 flex items-center justify-center">
+            <a href={getLocalizedUrl("/", isId)} class="relative -translate-y-6 transition-transform active:scale-95" aria-label="Home">
+              <div class="w-14 h-14 bg-white dark:bg-slate-800 rounded-full p-1 shadow-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center">
                 <img src="/logo.png" alt="Home" class="w-full h-full object-cover rounded-full" />
               </div>
             </a>
@@ -76,12 +109,14 @@ const pathname = new URL(Astro.request.url).pathname;
         }
 
         return (
-          <a href={link.href} class="flex flex-col items-center py-2 min-w-[52px] transition-all active:scale-90 group" aria-label={link.name}>
-            <div class={`transition-all duration-300 ${isActive ? "text-slate-950 scale-110" : "text-slate-400 group-hover:text-slate-600"}`}>
+          <a href={getLocalizedUrl(link.href, isId)} class="flex flex-col items-center py-2 min-w-[52px] transition-all active:scale-90 group" aria-label={link.name}>
+            <div class={`transition-all duration-300 ${isActive ? "text-slate-950 dark:text-white scale-110" : "text-slate-400 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-300"}`}>
               {LinkIcon && <LinkIcon size={20} strokeWidth={isActive ? 2.5 : 2} />}
             </div>
-            <span class={`text-[9px] mt-1 font-bold uppercase tracking-widest transition-colors ${isActive ? "text-slate-950" : "text-slate-400"}`}>
-              {link.name}
+            <span class={`text-[9px] mt-1 font-bold uppercase tracking-widest transition-colors ${isActive ? "text-slate-950 dark:text-white" : "text-slate-400 dark:text-white"}`}>
+              {isId && link.name === "About" ? "Tentang" : 
+               isId && link.name === "Projects" ? "Proyek" : 
+               isId && link.name === "Contact" ? "Kontak" : link.name}
             </span>
           </a>
         );
@@ -92,11 +127,82 @@ const pathname = new URL(Astro.request.url).pathname;
 
 <AIChatBot />
 
+<script>
+  // Theme Toggle Logic
+  const setupTheme = () => {
+    const themeBtnDesktop = document.getElementById('theme-toggle-desktop');
+    const themeBtnMobile = document.getElementById('theme-toggle-mobile');
+    const moonIconDesktop = document.getElementById('moon-icon-desktop');
+    const sunIconDesktop = document.getElementById('sun-icon-desktop');
+    const moonIconMobile = document.getElementById('moon-icon-mobile');
+    const sunIconMobile = document.getElementById('sun-icon-mobile');
+
+    const updateIcons = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        moonIconDesktop?.classList.add('hidden');
+        moonIconMobile?.classList.add('hidden');
+        sunIconDesktop?.classList.remove('hidden');
+        sunIconMobile?.classList.remove('hidden');
+      } else {
+        sunIconDesktop?.classList.add('hidden');
+        sunIconMobile?.classList.add('hidden');
+        moonIconDesktop?.classList.remove('hidden');
+        moonIconMobile?.classList.remove('hidden');
+      }
+    };
+
+    const toggleTheme = () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateIcons();
+    };
+
+    // Initial setup
+    updateIcons();
+
+    // Listeners
+    themeBtnDesktop?.addEventListener('click', toggleTheme);
+    themeBtnMobile?.addEventListener('click', toggleTheme);
+  };
+
+  // Language Toggle Logic
+  const setupLang = () => {
+    const langBtnDesktop = document.getElementById('lang-toggle-desktop');
+    const langBtnMobile = document.getElementById('lang-toggle-mobile');
+    
+    const toggleLang = () => {
+      const isId = window.location.pathname.startsWith('/id');
+      const currentPath = window.location.pathname;
+      let newPath = '';
+      
+      if (isId) {
+        // Switch ID -> EN
+        newPath = currentPath.substring(3);
+        if (newPath === '') newPath = '/';
+      } else {
+        // Switch EN -> ID
+        newPath = '/id' + (currentPath === '/' ? '' : currentPath);
+      }
+      
+      window.location.href = newPath;
+    };
+
+    langBtnDesktop?.addEventListener('click', toggleLang);
+    langBtnMobile?.addEventListener('click', toggleLang);
+  };
+
+  // Run on load and after view transitions
+  document.addEventListener('astro:page-load', () => {
+    setupTheme();
+    setupLang();
+  });
+</script>
+
 <style>
   @media (max-width: 768px) {
     body {
       padding-bottom: 120px;
-      padding-top: 86px; /* Increased for floating header */
     }
   }
   a, button {

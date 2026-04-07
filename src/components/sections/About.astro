@@ -1,66 +1,71 @@
 ---
-import { profile } from "../../data/profile";
+import { profile as profileEn } from "../../data/profile";
+import { profile as profileId } from "../../data/profile_id";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
 ---
 
-<section id="about" class="section bg-white relative overflow-hidden">
-  <div class="container-custom">
+<section id="about" class="section bg-white dark:bg-[#0f172a] relative overflow-hidden -mt-8 rounded-t-[2.5rem] md:-mt-12 md:rounded-t-[3rem] z-20 shadow-[0_-8px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.4)]">
+  <div class="container-custom pt-8 md:pt-4">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-10 reveal">
-        <h2 class="inline-block relative">
-          About Me
-          <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"></span>
+        <h2 class="inline-block relative dark:text-white">
+          {isId ? 'Tentang Saya' : 'About Me'}
+          <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"></span>
         </h2>
       </div>
 
-      <div class="grid md:grid-cols-12 gap-8 items-center">
-        <div class="md:col-span-4 relative reveal-left h-auto">
-          <div class="bg-white rounded-2xl overflow-hidden relative shadow-lg group">
+      <div class="grid md:grid-cols-12 gap-6 md:gap-8 items-center">
+        <div class="md:col-span-4 relative reveal-left h-auto max-w-[280px] mx-auto md:max-w-none">
+          <div class="bg-white rounded-[2rem] md:rounded-2xl overflow-hidden relative shadow-xl md:shadow-lg group">
             <img
               src="/wisnu_alfian_nur_ashar.jpeg"
               alt={profile.personalInfo.name}
-              class="w-full h-auto object-contain rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
+              class="w-full h-auto object-contain rounded-[2rem] md:rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
             />
           </div>
           
-          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-sage-50 rounded-lg -z-10 hidden md:block"></div>
-          <div class="absolute -top-4 -left-4 w-20 h-20 border border-sage-100 rounded-lg -z-10 hidden md:block"></div>
+          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-sage-50 dark:bg-sage-900/40 rounded-lg -z-10 hidden md:block"></div>
+          <div class="absolute -top-4 -left-4 w-20 h-20 border border-sage-100 dark:border-sage-800 rounded-lg -z-10 hidden md:block"></div>
         </div>
 
-        <div class="md:col-span-8 space-y-4 overflow-hidden">
-          <h3 class="text-xl md:text-2xl font-bold text-sage-900 reveal-left">
+        <div class="md:col-span-8 space-y-4 overflow-hidden bg-slate-50/50 dark:bg-slate-800/80 md:bg-transparent md:dark:bg-transparent rounded-3xl md:rounded-none p-5 md:p-0 shadow-sm md:shadow-none border border-slate-100 dark:border-slate-700 md:border-transparent md:dark:border-transparent mt-2 md:mt-0">
+          <h3 class="text-lg md:text-2xl font-bold text-sage-900 dark:text-white reveal-left text-center md:text-left">
             {profile.personalInfo.role}
           </h3>
 
-          <div class="space-y-4 text-charcoal/90 text-[15px] leading-snug">
-            <p class="reveal-right font-medium">
+          <div class="space-y-3 md:space-y-4 text-charcoal/90 dark:text-white text-sm md:text-[15px] leading-snug">
+            <p class="reveal-right font-medium text-center md:text-left dark:text-white">
               {profile.personalInfo.summary}
             </p>
 
-            <p class="reveal-bottom">
-              Beyond academics, I have worked on several real-world projects,
-              including business websites, CMS-based platforms, and e-commerce
-              applications used by real users.
+            <p class="reveal-bottom text-center md:text-left dark:text-white">
+              {isId 
+                ? 'Di luar bidang akademik, saya telah mengerjakan beberapa proyek dunia nyata, termasuk situs web bisnis, platform berbasis CMS, dan aplikasi e-commerce yang digunakan oleh pengguna sebenarnya.'
+                : 'Beyond academics, I have worked on several real-world projects, including business websites, CMS-based platforms, and e-commerce applications used by real users.'}
             </p>
 
-            <p class="reveal-top text-sage-600 font-semibold underline decoration-sage-200 underline-offset-4">
-              I am particularly interested in web development, secure
-              application design, and modern development workflows.
+            <p class="reveal-top text-sage-600 dark:text-white font-semibold underline decoration-sage-200 dark:decoration-sage-700 underline-offset-4 text-center md:text-left">
+              {isId
+                ? 'Saya memiliki ketertarikan khusus pada pengembangan web masa depan, desain aplikasi yang mutlak aman, serta alur kerja dan sistem modern.'
+                : 'I am particularly interested in web development, secure application design, and modern development workflows.'}
             </p>
           </div>
 
-          <div class="mt-6 reveal-bottom">
-            <div class="grid grid-cols-3 gap-3">
-              <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-center hover:shadow-sm transition-shadow">
-                <div class="text-2xl font-bold stat-number text-sage-700">8+</div>
-                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Production Apps</div>
+          <div class="mt-4 reveal-bottom border-t border-slate-200 dark:border-slate-700 pt-4 md:border-none md:pt-2">
+            <div class="grid grid-cols-3 gap-2 md:gap-3">
+              <div class="bg-white md:bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl md:rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                <div class="text-xl md:text-2xl font-bold stat-number text-sage-700 dark:text-white">8+</div>
+                <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-400 dark:text-white font-bold mt-1">{isId ? 'Aplikasi Produksi' : 'Production Apps'}</div>
               </div>
-              <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-center hover:shadow-sm transition-shadow">
-                <div class="text-2xl font-bold stat-number text-sage-700">15K+</div>
-                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Users Served</div>
+              <div class="bg-white md:bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl md:rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                <div class="text-xl md:text-2xl font-bold stat-number text-sage-700 dark:text-white">15K+</div>
+                <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-400 dark:text-white font-bold mt-1">{isId ? 'Pengguna Dilayani' : 'Users Served'}</div>
               </div>
-              <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-center hover:shadow-sm transition-shadow">
-                <div class="text-2xl font-bold stat-number text-sage-700">96</div>
-                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mt-1">Lighthouse Score</div>
+              <div class="bg-white md:bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl md:rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                <div class="text-xl md:text-2xl font-bold stat-number text-sage-700 dark:text-white">30+</div>
+                <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-400 dark:text-white font-bold mt-1">{isId ? 'Repositori GitHub' : 'GitHub Repos'}</div>
               </div>
             </div>
           </div>

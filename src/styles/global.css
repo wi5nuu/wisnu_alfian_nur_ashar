@@ -38,11 +38,17 @@
   --font-serif: "Cormorant Garamond", serif;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Menggunakan background white yang baru (lebih sejuk) */
-    @apply bg-white text-charcoal font-sans antialiased;
+    /* Transition untuk perpindahan tema yang mulus */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body {
+    @apply bg-white dark:bg-[#0f172a] text-charcoal dark:text-slate-200 font-sans antialiased transition-colors duration-300 relative;
   }
 
   h1 { @apply text-4xl md:text-5xl; }

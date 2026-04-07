@@ -1,10 +1,14 @@
 ---
-import { profile } from "../../data/profile";
+import { profile as profileEn } from "../../data/profile";
+import { profile as profileId } from "../../data/profile_id";
 import { Award, CheckCircle } from "lucide-astro";
 import ImageModal from "../ImageModal.astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
 ---
 
-<section id="education" class="section bg-cream-50">
+<section id="education" class="section bg-cream-50 dark:bg-slate-900/50">
   <div class="container-custom">
 
     <!-- Two-column layout: Education (left) + Certifications (right) -->
@@ -13,16 +17,16 @@ import ImageModal from "../ImageModal.astro";
       <!-- ===== LEFT: EDUCATION ===== -->
       <div class="lg:col-span-4 flex flex-col items-center">
         <div class="text-center mb-6 w-full">
-          <h2 class="inline-block relative">
-            Education
-            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"></span>
+          <h2 class="inline-block relative dark:text-white">
+            {isId ? 'Pendidikan' : 'Education'}
+            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"></span>
           </h2>
         </div>
 
         <!-- Education Card -->
-        <div class="w-full bg-white rounded-xl border border-slate-100 shadow-sm p-5 flex flex-col gap-4 items-center text-center">
+        <div class="w-full bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm p-5 flex flex-col gap-4 items-center text-center">
           <!-- Logo -->
-          <div class="shrink-0 w-16 h-16 bg-white rounded-xl shadow-sm border border-cream-200 overflow-hidden p-1">
+          <div class="shrink-0 w-16 h-16 bg-white dark:bg-slate-700 rounded-xl shadow-sm border border-cream-200 dark:border-slate-600 overflow-hidden p-1">
             <img
               src="/president_university.jpeg"
               alt="President University"
@@ -31,18 +35,18 @@ import ImageModal from "../ImageModal.astro";
           </div>
 
           <div class="flex-1 space-y-1.5 text-center w-full">
-            <h3 class="font-bold text-slate-900 text-base leading-tight">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base leading-tight">
               {profile.education.institution}
             </h3>
-            <div class="text-sm text-sage-600 font-serif font-semibold leading-snug">
+            <div class="text-sm text-sage-600 dark:text-white font-serif font-semibold leading-snug">
               {profile.education.degree}
             </div>
             <div class="text-[11px] text-slate-400 font-medium uppercase tracking-wider">
               {profile.education.duration} · {profile.education.location}
             </div>
-            <div class="pt-3 mt-2 border-t border-slate-100">
-              <p class="text-xs text-slate-500 leading-relaxed">
-                <span class="font-bold text-sage-700">Focus: </span>
+            <div class="pt-3 mt-2 border-t border-slate-100 dark:border-slate-700">
+              <p class="text-xs text-slate-500 dark:text-white leading-relaxed">
+                <span class="font-bold text-sage-700 dark:text-white">Fokus: </span>
                 {profile.education.focus}
               </p>
             </div>
@@ -53,12 +57,12 @@ import ImageModal from "../ImageModal.astro";
       <!-- ===== RIGHT: CERTIFICATIONS ===== -->
       <div class="lg:col-span-8 flex flex-col items-center lg:items-start">
         <div class="text-center lg:text-left mb-6 w-full">
-          <h2 class="inline-block relative">
-            Certifications
-            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 rounded-full"></span>
+          <h2 class="inline-block relative dark:text-white">
+            {isId ? 'Sertifikasi' : 'Certifications'}
+            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-600/50 rounded-full"></span>
           </h2>
           <p class="text-slate-400 text-xs mt-3 font-medium uppercase tracking-widest">
-            Professional certifications validating technical expertise.
+            {isId ? 'Sertifikasi profesional yang memvalidasi keahlian.' : 'Professional certifications validating technical expertise.'}
           </p>
         </div>
 
@@ -69,8 +73,10 @@ import ImageModal from "../ImageModal.astro";
               <div
                 class="
                   bg-white
+                  dark:bg-slate-800
                   rounded-2xl
                   border border-slate-100
+                  dark:border-slate-700
                   shadow-sm
                   hover:shadow-lg
                   transition-all duration-300
@@ -97,32 +103,32 @@ import ImageModal from "../ImageModal.astro";
                       onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`}
                     />
                   ) : (
-                    <div class="w-full h-full bg-sage-50 flex items-center justify-center">
-                      <Award class="w-10 h-10 text-sage-300" />
+                    <div class="w-full h-full bg-sage-50 dark:bg-slate-700 flex items-center justify-center">
+                      <Award class="w-10 h-10 text-sage-300 dark:text-white" />
                     </div>
                   )}
                 </div>
 
                 <!-- CONTENT -->
                 <div class="p-4 space-y-1.5">
-                  <h3 class="font-bold text-slate-900 leading-tight text-xs">
+                  <h3 class="font-bold text-slate-900 dark:text-white leading-tight text-xs">
                     {cert.name}
                   </h3>
 
-                  <p class="text-[10px] font-bold text-sage-600 uppercase tracking-wider">
+                  <p class="text-[10px] font-bold text-sage-600 dark:text-white uppercase tracking-wider">
                     {cert.issuer}
                   </p>
 
-                  <p class="text-[10px] text-slate-400 italic leading-relaxed">
+                  <p class="text-[10px] text-slate-500 dark:text-white italic leading-relaxed line-clamp-3">
                     {cert.description}
                   </p>
 
-                  <div class="flex items-center justify-between pt-1.5 border-t border-slate-50">
-                    <p class="text-[9px] font-medium text-slate-300 uppercase tracking-wider">
+                  <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 dark:border-slate-700 mt-2">
+                    <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">
                       {cert.date}
                     </p>
                     {cert.expiry && (
-                       <p class="text-[9px] font-medium text-slate-300 uppercase tracking-wider">
+                       <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">
                         Exp: {cert.expiry}
                       </p>
                     )}
@@ -135,7 +141,11 @@ import ImageModal from "../ImageModal.astro";
                         inline-flex items-center gap-1
                         text-[9px] font-bold
                         text-sage-700
+                        dark:text-white
                         bg-sage-50
+                        dark:bg-sage-900/30
+                        border border-sage-100
+                        dark:border-sage-800
                         px-2 py-0.5
                         rounded-full
                         uppercase tracking-widest

@@ -1,0 +1,17 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ContactSection from "../../components/sections/Contact.astro";
+
+const title = "Kontak | Wisnu Alfian Nur Ashar";
+const description = "Mari terhubung untuk peluang atau kolaborasi.";
+---
+
+<Layout title={title} description={description}>
+    <Header />
+    <main class="pt-20 min-h-[80vh] flex flex-col justify-center">
+        <ContactSection />
+    </main>
+    <Footer />
+</Layout>
