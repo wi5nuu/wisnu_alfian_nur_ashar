@@ -184,7 +184,7 @@ export const profile: Profile = {
             link: "#",
             description: "High-performance e-commerce platform with a microservices architecture. Features an SSR-optimized Next.js 14 frontend and a super-fast GoFiber backend. Implements advanced caching (Redis), messaging (RabbitMQ), and comprehensive telemetry (OpenTelemetry, Prometheus).",
             techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
-            image: "/shooply.png"
+            image: "/projects/shooply.png"
         },
         {
             title: "Fanguard Strategic Hub",
@@ -195,7 +195,7 @@ export const profile: Profile = {
             link: "https://vanguard-execution.vercel.app/",
             description: "Enterprise-grade execution hub and strategic management platform. Features a high-performance Fastify backend, real-time RBAC security, and a sophisticated Next.js dashboard.",
             techStack: ["Next.js 14", "Fastify", "PostgreSQL", "Prisma", "Redis", "Docker", "Socket.io", "Radix UI", "shadcn/ui", "Zustand", "Vitest"],
-            image: "/vanguard.png"
+            image: "/projects/vanguard.png"
         },
         {
             title: "Risk Shield System",
@@ -206,7 +206,7 @@ export const profile: Profile = {
             link: "https://riskshield.vercel.app/",
             description: "Advanced AI-assisted GRC platform automating OCTAVE Allegro methodology. Features Google Gemini Pro integration, real-time risk analytics, and automated compliance reporting.",
             techStack: ["Next.js 14", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion", "Supabase", "Google Gemini Pro", "jsPDF", "Recharts"],
-            image: "/riskshieldsystem.png"
+            image: "/projects/riskshieldsystem.png"
         },
         {
             title: "Human Firewall",
@@ -217,7 +217,7 @@ export const profile: Profile = {
             link: "https://humanfirewall.vercel.app/",
             description: "Cybersecurity awareness platform with interactive learning, phishing simulations, and progress tracking for organizations.",
             techStack: ["React", "TypeScript", "Supabase", "Tailwind CSS"],
-            image: "/humanfirewallintelligenceplatform.png"
+            image: "/projects/humanfirewallintelligenceplatform.png"
         },
         {
             title: "Ashar Grosir Parfum",
@@ -228,7 +228,7 @@ export const profile: Profile = {
             link: "https://www.ashargrosirparfum.com",
             description: "Official E-Commerce platform for a 20-year-old perfume wholesaler serving 15,000+ partners. Optimized for scale with edge delivery and streamlined wholesale distribution.",
             techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
-            image: "/AsharGrosirParfum.png"
+            image: "/projects/AsharGrosirParfum.png"
         },
         {
             title: "LexCorpus CMS Platform",
@@ -239,7 +239,7 @@ export const profile: Profile = {
             link: "https://www.lexcorpuslaw.com",
             description: "Production-ready CMS and legal research platform. Features secure role-based editorial systems, legal document management, and rich text analysis.",
             techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
-            image: "/Lexcorpus.png"
+            image: "/projects/Lexcorpus.png"
         },
         {
             title: "Nuxar Perfumery",
@@ -249,7 +249,7 @@ export const profile: Profile = {
             link: "https://www.nuxarperfumery.my.id",
             description: "High-end cinematic perfume website featuring GSAP animations, 3D transforms, particle effects, and dark luxury UI. Backend deployed with Golang and Railway.",
             techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
-            image: "/NuxarPerfumery.png"
+            image: "/projects/NuxarPerfumery.png"
         },
         {
             title: "PC FKMA Jakarta Website",
@@ -260,7 +260,7 @@ export const profile: Profile = {
             link: "https://pcfkmaasadiyahjakarta.vercel.app/",
             description: "Official digital platform for As'adiyah Alumni in Jakarta. Features profile, news portal, and organizational data.",
             techStack: ["Next.js", "Tailwind CSS", "Vercel"],
-            image: "/FKMA_Asadiyah_Jakarta.png"
+            image: "/projects/FKMA_Asadiyah_Jakarta.png"
         },
         {
             title: "Wiskost Residence",
@@ -271,7 +271,7 @@ export const profile: Profile = {
             link: "https://wiskost.vercel.app/",
             description: "Luxury winery-inspired residence website template with gold-accent dark theme, professional management system, and automated deployment pipeline.",
             techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Docker", "Hugging Face", "Formspree", "Vercel"],
-            image: "/WiskostResidence.png"
+            image: "/projects/WiskostResidence.png"
         }
     ],
     education: {
@@ -301,7 +301,7 @@ export const profile: Profile = {
             date: "March 2026",
             id: "10034834",
             description: "Foundational course covering front-end and back-end integration, focusing on scalable JavaScript architectures.",
-            image: "/Full-Stack_Development_101.png"
+            image: "/certifications/Full-Stack_Development_101.png"
         },
         {
             name: "Belajar Dasar Pemrograman Web",
@@ -310,7 +310,7 @@ export const profile: Profile = {
             expiry: "March 2029",
             id: "JLX1VWN35Z72",
             description: "Fundamental training on semantic HTML, CSS layouts, and professional website structure standards.",
-            image: "/Dicoding_Web_Dasar.png"
+            image: "/certifications/Dicoding_Web_Dasar.png"
         },
         {
             name: "AWS Cloud Practitioner Essentials \u2013 Training Completion",
@@ -318,7 +318,7 @@ export const profile: Profile = {
             date: "March 2026",
             id: "",
             description: "Comprehensive overview of cloud concepts, security, architecture, and core global infrastructure.",
-            image: "/aws_cloud_practioner_essentials.png"
+            image: "/certifications/aws_cloud_practioner_essentials.png"
         },
         {
             name: "AWS Technical Essentials",
@@ -326,7 +326,7 @@ export const profile: Profile = {
             date: "January 2026",
             id: "",
             description: "Technical deep-dive into AWS services including compute, database, storage, networking, and security.",
-            image: "/aws_technical_essentials.png"
+            image: "/certifications/aws_technical_essentials.png"
         },
         {
             name: "Google Ads Search Certification",
@@ -335,7 +335,7 @@ export const profile: Profile = {
             expiry: "February 2027",
             id: "173326967",
             description: "Mastery of Google Search campaigns, audience strategies, and performance optimization for conversion.",
-            image: "/Google_Ads_Search.png"
+            image: "/certifications/Google_Ads_Search.png"
         },
         {
             name: "Google Analytics Certification",
@@ -344,7 +344,7 @@ export const profile: Profile = {
             expiry: "February 2027",
             id: "173326065",
             description: "Setup and data analysis expertise using Google Analytics to derive actionable user insights.",
-            image: "/Google_Analytics.png"
+            image: "/certifications/Google_Analytics.png"
         },
         {
             name: "Data Integrations Certification",
@@ -353,7 +353,7 @@ export const profile: Profile = {
             expiry: "March 2027",
             id: "ab0238d2c3f14a16bfb744c1a9e28356",
             description: "Expertise in connecting diverse software systems to centralize and automate business data flows.",
-            image: "/Data_Integrations_Certification.png"
+            image: "/certifications/Data_Integrations_Certification.png"
         },
         {
             name: "Software Engineer Certificate",
@@ -361,7 +361,7 @@ export const profile: Profile = {
             date: "January 2026",
             id: "D73F5CD372E0",
             description: "Validation of core engineering principles, algorithm design, and systematic debugging capabilities.",
-            image: "/Software_Engineer.png"
+            image: "/certifications/Software_Engineer.png"
         },
         {
             name: "Frontend Developer (React)",
@@ -369,7 +369,23 @@ export const profile: Profile = {
             date: "January 2026",
             id: "84B47591D6EC",
             description: "Advanced proficiency in React, component state management, and performance-driven UI development.",
-            image: "/Frontend_Developer.png"
+            image: "/certifications/Frontend_Developer.png"
+        },
+        {
+            name: "Golang (Basic)",
+            issuer: "HackerRank",
+            date: "January 2026",
+            id: "C9F8A2B1E3D4",
+            description: "Fundamental proficiency in Go programming language, covering syntax, data structures, concurrency patterns, and standard library usage.",
+            image: "/certifications/golang.png"
+        },
+        {
+            name: "Software Engineer Intern",
+            issuer: "HackerRank",
+            date: "January 2026",
+            id: "E4D7F2A9C1B5",
+            description: "Comprehensive assessment of software engineering fundamentals including data structures, algorithms, problem-solving, and clean code practices.",
+            image: "/certifications/software_engineer_intern.png"
         }
     ]
 };

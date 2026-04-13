@@ -76,7 +76,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error: any) {
     console.error("🚨 Server Internal Error:", error.message);
     return new Response(
-      JSON.stringify({ error: "Terjadi kesalahan pada sistem AI kami.", details: error.message }),
+      JSON.stringify({ error: "Terjadi kesalahan pada sistem AI kami." }),
       { status: 500 }
     );
   }

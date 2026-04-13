@@ -10,13 +10,13 @@ Label: "💼 Pengalaman Professional"
   Preview: [🤝 **Organizational Involvement:**  **🏛️ 1. PUFA Computer Science**    - **Posisi:** VoD (Art and Sport Division)    - **Peran:** Memimpin kegiatan s...]
 Label: "💻 Technical Skills"
   Result: ✅ MATCHED
-  Preview: [💻 **Technical Skills Wisnu:**  **🎯 Core Specialization:** Full-Stack JavaScript Development  **🚀 Frontend Expertise:** - **React.js** - Advanced ho...]
+  Preview: [💻 **Wisnu's Technical Skills:**  **🎯 Core Specialization:** Full-Stack JavaScript Development  **🚀 Frontend Expertise:** - **React.js** - Advanced ...]
 Label: "🚀 Proyek & Portfolio"
   Result: ✅ MATCHED
   Preview: [🚀 **Proyek-proyek Unggulan Wisnu:**  Wisnu telah membangun berbagai solusi digital yang berdampak nyata. Berikut adalah beberapa highlight utama:  1....]
 Label: "🤝 Organisasi & Leadership"
   Result: ✅ MATCHED
-  Preview: [🤝 **Organizational Involvement:**  **🏛️ 1. PUFA Computer Science**    - **Posisi:** VoD (Art and Sport Division)    - **Peran:** Memimpin kegiatan s...]
+  Preview: [🤝 **Organizational Involvement:**  **🏛️ 1. PUFA Computer Science**    - **Position:** VoD (Art and Sport Division)    - **Role:** Leading art and sp...]
 Label: "🎯 Visi & Goals Karir"
   Result: ✅ MATCHED
   Preview: [🎯 **Career Goals & Vision:**  **📅 Short-term (1-2 tahun):** 1. **Professional Role** - Junior/Mid Full-Stack Developer position 2. **Skill Developme...]
@@ -25,13 +25,13 @@ Label: "📞 Kontak & Ketersediaan"
   Preview: [📞 **Contact Information:**  **💼 Professional Channels:**  📧 **Email:** wisnualfian117@gmail.com    - Primary channel untuk professional inquiries  ...]
 Label: "🎮 Hobi & Minat Pribadi"
   Result: ✅ MATCHED
-  Preview: [🎮 **Hobi & Minat Wisnu:**  **💻 Professional Hobbies:** 1. **Coding Experiments** - Mencoba teknologi baru dengan side projects 2. **Open Source Cont...]
+  Preview: [🔥 **Passion & Fokus Utama Wisnu:**  **"Delivering High-Impact Web Solutions"** bukan sekedar slogan, tapi DNA-nya!  **3 Pilar Passion Wisnu:** 1. **�...]
 Label: "🌟 Kepribadian & Values"
   Result: ✅ MATCHED
   Preview: [🎭 **Kepribadian & Karakter Wisnu:**  **💙 Inti Karakter:** 1. **Detail-Oriented** - Sangat teliti dalam coding dan problem-solving 2. **Growth Mindse...]
 Label: "👤 Personal Profile"
   Result: ✅ MATCHED
-  Preview: [Wisnu Alfian Nur Ashar is a **Full-Stack Developer** and **IT Student** based in Bekasi. Here's his complete profile:  🎯 **Core Identity:** - Full-St...]
+  Preview: [Wisnu Alfian Nur Ashar adalah seorang **Full-Stack Developer** dan **Mahasiswa IT** yang berdomisili di Bekasi. Berikut adalah profil lengkapnya:  🎯 ...]
 Label: "🎓 Education & Academics"
   Result: ✅ MATCHED
   Preview: [🎓 **Wisnu's Education:**  **🏛️ Institution:** President University **📚 Major:** Information Technology (Bachelor's Degree) **📍 Location:** Cikaran...]
@@ -40,7 +40,7 @@ Label: "💼 Professional Experience"
   Preview: [🤝 **Organizational Involvement:**  **🏛️ 1. PUFA Computer Science**    - **Position:** VoD (Art and Sport Division)    - **Role:** Leading art and sp...]
 Label: "💻 Technical Skills"
   Result: ✅ MATCHED
-  Preview: [💻 **Technical Skills Wisnu:**  **🎯 Core Specialization:** Full-Stack JavaScript Development  **🚀 Frontend Expertise:** - **React.js** - Advanced ho...]
+  Preview: [💻 **Wisnu's Technical Skills:**  **🎯 Core Specialization:** Full-Stack JavaScript Development  **🚀 Frontend Expertise:** - **React.js** - Advanced ...]
 Label: "🚀 Projects & Portfolio"
   Result: ✅ MATCHED
   Preview: [🚀 **Wisnu's Featured Projects:**  Wisnu has built various digital solutions with real impact. Here are some key highlights:  1. 🛍️ **Ashar Grosir Pa...]
@@ -49,7 +49,7 @@ Label: "🤝 Organizations & Leadership"
   Preview: [🤝 **Organizational Involvement:**  **🏛️ 1. PUFA Computer Science**    - **Position:** VoD (Art and Sport Division)    - **Role:** Leading art and sp...]
 Label: "🎯 Career Vision & Goals"
   Result: ✅ MATCHED
-  Preview: [🎯 **Career Goals & Vision:**  **📅 Short-term (1-2 years):** 1. **Professional Role** - Junior/Mid Full-Stack Developer position 2. **Skill Developme...]
+  Preview: [🎯 **Career Goals & Vision:**  **📅 Short-term (1-2 tahun):** 1. **Professional Role** - Junior/Mid Full-Stack Developer position 2. **Skill Developme...]
 Label: "📞 Contact & Availability"
   Result: ✅ MATCHED
   Preview: [📞 **Contact Information:**  **💼 Professional Channels:**  📧 **Email:** wisnualfian117@gmail.com    - Primary channel for professional inquiries    ...]

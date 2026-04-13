@@ -58,16 +58,11 @@ const socials = [
 
         <div class="flex justify-center md:justify-start gap-4">
           {[
-            { slug: 'github', color: '000000', href: profile.personalInfo.github, label: 'GitHub' },
-            { 
-              isSvg: true, 
-              href: profile.personalInfo.linkedin, 
-              label: 'LinkedIn',
-              svg: `<svg viewBox="0 0 24 24" class="w-5 h-5 fill-[#0077B5] grayscale group-hover:grayscale-0 transition-all duration-300" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`
-            },
-            { slug: 'instagram', color: 'E4405F', href: profile.personalInfo.instagram, label: 'Instagram' },
-            { slug: 'line', color: '00C300', href: profile.personalInfo.line, label: 'Line' },
-            { slug: 'gmail', color: 'EA4335', href: `mailto:${profile.personalInfo.email}`, label: 'Email' }
+            { icon: Github, href: profile.personalInfo.github, label: 'GitHub' },
+            { icon: Linkedin, href: profile.personalInfo.linkedin, label: 'LinkedIn' },
+            { icon: Instagram, href: profile.personalInfo.instagram, label: 'Instagram' },
+            { icon: MessageCircle, href: profile.personalInfo.line, label: 'Line' },
+            { icon: Mail, href: `mailto:${profile.personalInfo.email}`, label: 'Email' }
           ].map((social) => (
             <a
               href={social.href}
@@ -76,15 +71,7 @@ const socials = [
               class="group p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl hover:bg-white dark:hover:bg-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-lg hover:shadow-slate-200 dark:hover:shadow-black/30 transition-all duration-300 active:scale-90"
               aria-label={social.label}
             >
-              {social.isSvg ? (
-                <Fragment set:html={social.svg} />
-              ) : (
-                <img 
-                  src={`https://cdn.simpleicons.org/${social.slug}/${social.color}`} 
-                  alt={social.label} 
-                  class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all duration-300 dark:brightness-200 dark:group-hover:brightness-100"
-                />
-              )}
+              <social.icon class="w-5 h-5 text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300" />
             </a>
           ))}
         </div>

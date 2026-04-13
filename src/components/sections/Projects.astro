@@ -41,11 +41,12 @@ const profile = isId ? profileId : profileEn;
                   <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
                 </div>
                 <div class="relative h-40 md:h-40 flex-shrink-0 overflow-hidden group-hover:opacity-95 transition-opacity bg-slate-50">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  <img
+                    src={project.image}
+                    alt={project.title}
                     loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
@@ -87,20 +88,21 @@ const profile = isId ? profileId : profileEn;
 
                 <!-- Links -->
                 <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-700 w-full">
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
+                  <a
+                    href={project.link}
+                    target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`View ${project.title} live demo`}
                     class="text-slate-900 dark:text-white hover:text-sage-600 dark:hover:text-sage-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 transition-colors underline decoration-slate-200 dark:decoration-slate-700 underline-offset-4"
                   >
                     <ExternalLink class="w-3 h-3" /> Live
                   </a>
                   {project.github && (
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
+                    <a
+                      href={project.github}
+                      target="_blank"
                       rel="noopener noreferrer"
-                      title="Source Code"
+                      aria-label={`View ${project.title} source code on GitHub`}
                       class="text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center transition-colors"
                     >
                       <Github class="w-4 h-4" />
@@ -126,6 +128,16 @@ const profile = isId ? profileId : profileEn;
         <ExternalLink class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </a>
     </div>
+
+    <!-- Mobile swipe hint -->
+    <div class="md:hidden flex justify-center mt-6">
+      <div class="flex items-center gap-2 text-[10px] text-slate-400 dark:text-white/40 font-medium tracking-wider uppercase">
+        <span>Swipe up to continue</span>
+        <div class="w-4 h-6 border border-slate-300 dark:border-slate-600 rounded-full flex justify-center">
+          <div class="w-1 h-1.5 bg-sage-400 dark:bg-sage-500 rounded-full mt-1 animate-bounce"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -141,3 +153,49 @@ const profile = isId ? profileId : profileEn;
     scrollbar-width: none;  /* Firefox */
   }
 </style>
+
+<script is:inline>
+  (function() {
+    // Touch swipe to navigate between sections on mobile
+    const section = document.getElementById("projects");
+    if (!section || window.innerWidth >= 768) return;
+
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let isSwiping = false;
+
+    section.addEventListener("touchstart", function(e) {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      isSwiping = true;
+    }, { passive: true });
+
+    section.addEventListener("touchend", function(e) {
+      if (!isSwiping) return;
+      isSwiping = false;
+
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaY = touchStartY - touchEndY;
+      const deltaX = Math.abs(touchStartX - touchEndX);
+
+      // Only trigger if vertical swipe is dominant (more vertical than horizontal)
+      if (Math.abs(deltaY) > 80 && Math.abs(deltaY) > deltaX) {
+        // Swipe up -> next section
+        if (deltaY > 0) {
+          const nextSection = section.nextElementSibling;
+          if (nextSection) {
+            nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+        // Swipe down -> previous section
+        else if (deltaY < 0) {
+          const prevSection = section.previousElementSibling;
+          if (prevSection) {
+            prevSection.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }
+      }
+    }, { passive: true });
+  })();
+</script>

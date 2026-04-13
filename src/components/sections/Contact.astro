@@ -71,6 +71,8 @@ const socialLinks = [
                 <a
                   href={item.href}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
                   class="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-sage-300 hover:bg-white hover:text-sage-900 transition-all duration-300 active:scale-90"
                 >
                   <item.icon class="w-3.5 h-3.5" />
@@ -95,7 +97,7 @@ const socialLinks = [
             <input
               type="hidden"
               name="access_key"
-              value="06fc49f0-58b2-493d-a3ae-cc560f16ef98"
+              value={import.meta.env.WEB3FORMS_ACCESS_KEY || "06fc49f0-58b2-493d-a3ae-cc560f16ef98"}
             />
             <input
               type="hidden"
@@ -111,10 +113,12 @@ const socialLinks = [
 
             <div>
               <label
+                for="contact-name"
                 class="block text-[10px] font-bold text-sage-400 dark:text-white uppercase tracking-widest mb-1.5"
                 >{isId ? 'Nama Lengkap' : 'Full Name'}</label
               >
               <input
+                id="contact-name"
                 type="text"
                 name="name"
                 required
@@ -125,10 +129,12 @@ const socialLinks = [
 
             <div>
               <label
+                for="contact-email"
                 class="block text-[10px] font-bold text-sage-400 dark:text-white uppercase tracking-widest mb-1.5"
                 >{isId ? 'Alamat Email' : 'Email Address'}</label
               >
               <input
+                id="contact-email"
                 type="email"
                 name="email"
                 required
@@ -139,10 +145,12 @@ const socialLinks = [
 
             <div>
               <label
+                for="contact-message"
                 class="block text-[10px] font-bold text-sage-400 dark:text-white uppercase tracking-widest mb-1.5"
                 >{isId ? 'Pesan' : 'Message'}</label
               >
               <textarea
+                id="contact-message"
                 name="message"
                 required
                 rows="3"

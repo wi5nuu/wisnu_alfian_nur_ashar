@@ -11,11 +11,11 @@ const normalized = query.toLowerCase().replace(/[?.!,]/g, '').replace(/\s+/g, ' 
 console.log(`Normalized: "${normalized}"`);
 
 // 1. Check Exact Match
-const entries = (LocalAI as any).SOCIAL_DATA;
+const entries = (LocalAI as any).SOCIAL_DATA as Record<string, { aliases?: string[] }>;
 for (const [key, entry] of Object.entries(entries)) {
     const keyLower = key.toLowerCase();
     const isExact = (normalized === keyLower || rawQuery.toLowerCase() === keyLower);
-    const matchedAlias = entry.aliases?.find(alias =>
+    const matchedAlias = entry.aliases?.find((alias: string) =>
         normalized.includes(alias.toLowerCase()) ||
         rawQuery.toLowerCase().includes(alias.toLowerCase())
     );

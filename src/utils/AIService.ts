@@ -1,6 +1,4 @@
 import { LocalAI } from "./LocalAI";
-import { RemoteAI } from "./RemoteAI";
-import { profile } from "../data/profile";
 
 /**
  * AIService - Enhanced Conversational Orchestrator

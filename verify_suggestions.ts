@@ -13,11 +13,11 @@ console.log("--- Starting Suggestion Verification ---\n");
 
 testCases.forEach((tc, i) => {
     const response = LocalAI.process(tc.query);
-    const passed = response.toLowerCase().includes(tc.expected.toLowerCase());
+    const passed = response ? response.toLowerCase().includes(tc.expected.toLowerCase()) : false;
     console.log(`${i + 1}. Query: "${tc.query}"`);
     console.log(`   Response Match: ${passed ? "✅ PASS" : "❌ FAIL"}`);
     if (!passed) {
         console.log(`   Expected to include: "${tc.expected}"`);
-        console.log(`   Actual: "${response.substring(0, 100)}..."`);
+        console.log(`   Actual: "${response ? response.substring(0, 100) : 'null'}..."`);
     }
 });

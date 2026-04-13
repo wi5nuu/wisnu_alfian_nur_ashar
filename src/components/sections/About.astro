@@ -16,16 +16,28 @@ const profile = isId ? profileId : profileEn;
         </h2>
       </div>
 
+      <!-- Mobile only: Static photo below heading -->
+      <div class="md:hidden flex justify-center mb-8 reveal">
+        <div class="w-[200px] h-[250px] rounded-3xl overflow-hidden shadow-xl ring-1 ring-slate-100 dark:ring-slate-700 bg-white">
+          <img
+            src="/wisnu_alfian_nur_ashar.jpeg"
+            alt={profile.personalInfo.name}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
       <div class="grid md:grid-cols-12 gap-6 md:gap-8 items-center">
-        <div class="md:col-span-4 relative reveal-left h-auto max-w-[280px] mx-auto md:max-w-none">
+        <!-- Ghost target for floating photo (desktop only) - matches original image card -->
+        <div id="about-photo-target" class="md:col-span-4 relative reveal-left h-auto max-w-[280px] mx-auto md:max-w-none">
           <div class="bg-white rounded-[2rem] md:rounded-2xl overflow-hidden relative shadow-xl md:shadow-lg group">
-            <img
-              src="/wisnu_alfian_nur_ashar.jpeg"
-              alt={profile.personalInfo.name}
-              class="w-full h-auto object-contain rounded-[2rem] md:rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
-            />
+            <!-- Placeholder that matches the image dimensions -->
+            <div class="w-full aspect-[3/4] bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-[2rem] md:rounded-2xl"></div>
           </div>
-          
+          <!-- Decorative elements (original) -->
           <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-sage-50 dark:bg-sage-900/40 rounded-lg -z-10 hidden md:block"></div>
           <div class="absolute -top-4 -left-4 w-20 h-20 border border-sage-100 dark:border-sage-800 rounded-lg -z-10 hidden md:block"></div>
         </div>
@@ -41,7 +53,7 @@ const profile = isId ? profileId : profileEn;
             </p>
 
             <p class="reveal-bottom text-center md:text-left dark:text-white">
-              {isId 
+              {isId
                 ? 'Di luar bidang akademik, saya telah mengerjakan beberapa proyek dunia nyata, termasuk situs web bisnis, platform berbasis CMS, dan aplikasi e-commerce yang digunakan oleh pengguna sebenarnya.'
                 : 'Beyond academics, I have worked on several real-world projects, including business websites, CMS-based platforms, and e-commerce applications used by real users.'}
             </p>

@@ -7,21 +7,21 @@ const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 const contactUrl = isId ? '/id/contact' : '/contact';
 
-// Placeholder images - high quality unsplash images matching the vibe
+// Placeholder images - optimized sizes for hero slider
 const slides = [
   {
     image:
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop",
     alt: "Minimalist workspace",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1200&auto=format&fit=crop",
     alt: "Coding environment",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop",
     alt: "Modern design aesthetic",
   },
 ];
@@ -45,63 +45,75 @@ const slides = [
   </div>
 
   <div
-    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-28 md:pt-12"
+    class="container-custom relative z-10 flex flex-col md:flex-row items-center md:items-center text-center md:text-left text-white pt-28 md:pt-12"
   >
-    <div
-      class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
-    >
-      Hello, I'm
+    <!-- Text Content (left on desktop) -->
+    <div class="flex-1 flex flex-col items-center md:items-start">
+      <div
+        class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
+      >
+        Hello, I'm
+      </div>
+
+      <h1
+        class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-4 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
+      >
+        <span id="typewriter-text"></span><span class="animate-blink">|</span>
+      </h1>
+
+      <p
+        class="text-base md:text-lg text-sage-100 max-w-xl mb-8 leading-snug animate-fade-in-up delay-200 drop-shadow-md font-light"
+      >
+        {profile.personalInfo.role}
+        <br class="hidden md:block" />
+        {profile.personalInfo.tagline}
+      </p>
+
+      <div
+        class="w-full flex flex-row flex-wrap justify-center md:justify-start gap-2 md:gap-5 animate-fade-in-up delay-300"
+      >
+        <a
+          href="/CV-Wisnu Alfian Nur Ashar.pdf"
+          download
+          class="btn border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
+        >
+          <Download class="w-3.5 h-3.5" />
+          {isId ? 'Unduh CV (PDF)' : 'Download CV (PDF)'}
+        </a>
+        <a
+          href={contactUrl}
+          class="btn border border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300"
+        >
+          {isId ? 'Hubungi Saya' : 'Contact Me'}
+        </a>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="flex flex-row items-center justify-between w-full max-w-xl mt-10 animate-fade-in-up delay-300 border-t border-white/10 pt-8 px-2 sm:px-8">
+        <div class="text-center flex-1">
+          <div class="text-xl md:text-2xl font-bold stat-number text-white">8+</div>
+          <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Aplikasi Produksi' : 'Production Apps'}</div>
+        </div>
+        <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
+        <div class="text-center flex-1">
+          <div class="text-xl md:text-2xl font-bold stat-number text-white">15K+</div>
+          <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Pengguna Dilayani' : 'Users Served'}</div>
+        </div>
+        <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
+        <div class="text-center flex-1">
+          <div class="text-xl md:text-2xl font-bold stat-number text-white">30+</div>
+          <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Repositori GitHub' : 'GitHub Repos'}</div>
+        </div>
+      </div>
     </div>
 
-    <h1
-      class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-4 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
-    >
-      <span id="typewriter-text"></span><span class="animate-blink">|</span>
-    </h1>
-
-    <p
-      class="text-base md:text-lg text-sage-100 max-w-xl mb-8 leading-snug animate-fade-in-up delay-200 drop-shadow-md font-light"
-    >
-      {profile.personalInfo.role}
-      <br class="hidden md:block" />
-      {profile.personalInfo.tagline}
-    </p>
-
+    <!-- Spacer for floating photo position (desktop only) -->
     <div
-      class="w-full flex flex-row flex-wrap justify-center gap-2 md:gap-5 animate-fade-in-up delay-300"
+      id="hero-photo-target"
+      class="hidden md:flex flex-1 justify-end items-center relative"
+      aria-hidden="true"
     >
-      <a
-        href="/CV-Wisnu Alfian Nur Ashar.pdf"
-        download
-        class="btn border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
-      >
-        <Download class="w-3.5 h-3.5" />
-        {isId ? 'Unduh CV (PDF)' : 'Download CV (PDF)'}
-      </a>
-      <a
-        href={contactUrl}
-        class="btn border border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300"
-      >
-        {isId ? 'Hubungi Saya' : 'Contact Me'}
-      </a>
-    </div>
-
-    <!-- Stats strip -->
-    <div class="flex flex-row items-center justify-between w-full max-w-xl mt-10 animate-fade-in-up delay-300 border-t border-white/10 pt-8 px-2 sm:px-8">
-      <div class="text-center flex-1">
-        <div class="text-xl md:text-2xl font-bold stat-number text-white">8+</div>
-        <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Aplikasi Produksi' : 'Production Apps'}</div>
-      </div>
-      <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
-      <div class="text-center flex-1">
-        <div class="text-xl md:text-2xl font-bold stat-number text-white">15K+</div>
-        <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Pengguna Dilayani' : 'Users Served'}</div>
-      </div>
-      <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
-      <div class="text-center flex-1">
-        <div class="text-xl md:text-2xl font-bold stat-number text-white">30+</div>
-        <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Repositori GitHub' : 'GitHub Repos'}</div>
-      </div>
+      <div class="w-[320px] lg:w-[400px] h-[400px] lg:h-[500px] rounded-3xl"></div>
     </div>
   </div>
 
@@ -188,7 +200,6 @@ const slides = [
   const newTextDelay = 2000;
 
   const textElement = document.getElementById("typewriter-text");
-  const glowElement = document.getElementById("typewriter-text-glow");
 
   let charIndex = 0;
   let isDeleting = false;
@@ -196,30 +207,17 @@ const slides = [
   function type() {
     if (!textElement) return;
 
-    // --- LOGIKA UTAMA (Tanpa Fungsi Pembantu yang bikin error) ---
-
     if (!isDeleting && charIndex < text.length) {
-      // 1. SEDANG MENGETIK
       const currentText = text.substring(0, charIndex + 1);
-
-      // Update Text Langsung di sini
       textElement.textContent = currentText;
-      if (glowElement) glowElement.textContent = currentText;
-
       charIndex++;
       setTimeout(type, typeDelay);
     } else if (isDeleting && charIndex > 0) {
-      // 2. SEDANG MENGHAPUS
       const currentText = text.substring(0, charIndex - 1);
-
-      // Update Text Langsung di sini
       textElement.textContent = currentText;
-      if (glowElement) glowElement.textContent = currentText;
-
       charIndex--;
       setTimeout(type, eraseDelay);
     } else {
-      // 3. GANTI MODE (Ngetik <-> Hapus)
       isDeleting = !isDeleting;
       if (!isDeleting) {
         setTimeout(type, 500);

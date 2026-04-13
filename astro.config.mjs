@@ -14,8 +14,29 @@ export default defineConfig({
   integrations: [sitemap()],
   adapter: vercel({
     webAnalytics: true,
+    // Performance optimizations
+    images: {
+      domains: ['images.unsplash.com'],
+    },
   }),
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    // Build optimizations
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['astro', 'astro:transitions'],
+          },
+        },
+      },
+    },
+    // Resolve optimization
+    resolve: {
+      alias: {
+        '~': '/src',
+      },
+    },
   }
 });

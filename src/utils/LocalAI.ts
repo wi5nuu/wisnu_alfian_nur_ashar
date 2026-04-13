@@ -1689,6 +1689,572 @@ Wisnu believes that a "Healthy body leads to a healthy mind"! ✨`,
             emotion: 'friendly'
         },
 
+        // --- CERTIFICATIONS ---
+        "certifications overview": {
+            id: `🏅 **Sertifikasi Profesional Wisnu:**
+
+Wisnu telah memperoleh **6 sertifikasi profesional** dari platform terkemuka:
+
+**💻 Technical Certifications:**
+1. **Golang (Basic)** - HackerRank - Go syntax, data structures, concurrent programming
+2. **Software Engineer Intern** - HackerRank - Problem-solving, algorithms, code quality
+3. **JavaScript (Basic)** - HackerRank - JS fundamentals, DOM, async programming
+
+**📊 Business & Marketing:**
+4. **Inbound Marketing** - HubSpot Academy
+5. **Social Media Marketing** - HubSpot Academy
+6. **IT Support Professional** - Google (Coursera)
+
+**🎯 Value:** Industry-recognized credentials, international competency benchmark, continuous learning commitment! 🚀`,
+            en: `🏅 **Wisnu's Professional Certifications:**
+
+Wisnu has obtained **6 professional certifications** from leading platforms:
+
+**💻 Technical Certifications:**
+1. **Golang (Basic)** - HackerRank - Go syntax, data structures, concurrent programming
+2. **Software Engineer Intern** - HackerRank - Problem-solving, algorithms, code quality
+3. **JavaScript (Basic)** - HackerRank - JS fundamentals, DOM, async programming
+
+**📊 Business & Marketing:**
+4. **Inbound Marketing** - HubSpot Academy
+5. **Social Media Marketing** - HubSpot Academy
+6. **IT Support Professional** - Google (Coursera)
+
+**🎯 Value:** Industry-recognized credentials, international competency benchmark, continuous learning commitment! 🚀`,
+            aliases: ["sertifikasi", "certifications", "what certifications", "apa saja sertifikasi", "daftar sertifikat"],
+            category: 'professional',
+            emotion: 'professional',
+            followUp: ["skill teknis", "proyek unggulan"]
+        },
+
+        "golang certification": {
+            id: `🐹 **Sertifikasi Golang (Basic) - HackerRank:**
+
+**Kompetensi:** Go syntax, data types, control structures, functions, arrays/slices, maps, structs, interfaces, error handling, goroutines basics.
+
+**Kenapa Golang?** Performance tinggi, built-in concurrency, digunakan Google/Uber/Twitch, bahasa utama untuk Docker/Kubernetes.
+
+**Penerapan:** Backend services, microservices, CLI tools, cloud-native apps. Multi-language proficiency! 🚀`,
+            en: `🐹 **Golang (Basic) Certification - HackerRank:**
+
+**Competencies:** Go syntax, data types, control structures, functions, arrays/slices, maps, structs, interfaces, error handling, goroutines basics.
+
+**Why Golang?** High performance, built-in concurrency, used by Google/Uber/Twitch, primary language for Docker/Kubernetes.
+
+**Applications:** Backend services, microservices, CLI tools, cloud-native apps. Multi-language proficiency! 🚀`,
+            aliases: ["golang", "go language", "go programming", "sertifikasi golang", "golang hackerank"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "software engineer certification": {
+            id: `💼 **Software Engineer Intern - HackerRank:**
+
+**Validated:** Problem-solving, data structures (arrays, lists, trees, hash maps), algorithms (sorting, searching, graph), Big-O analysis, code quality, debugging.
+
+**Benchmark:** HackerRank digunakan 2,500+ companies (Google, Facebook, Goldman Sachs) untuk technical hiring. Industry-recognized credential! 💪`,
+            en: `💼 **Software Engineer Intern - HackerRank:**
+
+**Validated:** Problem-solving, data structures (arrays, lists, trees, hash maps), algorithms (sorting, searching, graph), Big-O analysis, code quality, debugging.
+
+**Benchmark:** HackerRank used by 2,500+ companies (Google, Facebook, Goldman Sachs) for technical hiring. Industry-recognized credential! 💪`,
+            aliases: ["software engineer intern", "software engineer certificate", "hackerrank software engineer", "sertifikasi software engineer"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        // --- TECHNICAL DEEP DIVES ---
+        "technical deep dive nextjs": {
+            id: `🔍 **Deep Dive: Next.js Architecture:**
+
+**Rendering Strategies:** SSG (static build-time), SSR (per-request), CSR (browser), ISR (update after build).
+
+**App Router (13+):** Layouts, loading UI, error boundaries, Server Components (zero bundle size), Client Components ('use client').
+
+**Performance:** Automatic code splitting, image/font optimization, <1s First Contentful Paint, 95+ Lighthouse score, 15,000+ users handled.
+
+**Security:** Server Actions, environment variables, CSP headers, API routes.
+
+**Best Practices:** Server Components default, streaming with Suspense, ISR for dynamic data, proper caching, error boundaries! ⚡`,
+            en: `🔍 **Deep Dive: Next.js Architecture:**
+
+**Rendering Strategies:** SSG (static build-time), SSR (per-request), CSR (browser), ISR (update after build).
+
+**App Router (13+):** Layouts, loading UI, error boundaries, Server Components (zero bundle size), Client Components ('use client').
+
+**Performance:** Automatic code splitting, image/font optimization, <1s First Contentful Paint, 95+ Lighthouse score, 15,000+ users handled.
+
+**Security:** Server Actions, environment variables, CSP headers, API routes.
+
+**Best Practices:** Server Components default, streaming with Suspense, ISR for dynamic data, proper caching, error boundaries! ⚡`,
+            aliases: ["nextjs deep dive", "nextjs architecture", "next.js internals", "how nextjs works", "nextjs advanced"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "technical deep dive cybersecurity": {
+            id: `🛡️ **Deep Dive: Cybersecurity Implementation:**
+
+**Auth:** JWT with signed payloads, RBAC dengan hierarchical roles, refresh token rotation, HttpOnly cookies.
+
+**OWASP Top 10 Mitigation:**
+- SQL Injection: Prisma ORM, Zod validation, minimal DB privileges
+- XSS: React escaping, CSP headers, DOMPurify, HttpOnly cookies
+- CSRF: SameSite cookies, CSRF tokens, custom headers
+- Misconfiguration: Env variables, Helmet.js, npm audit, restrictive CORS
+
+**Data Protection:** AES-256 at rest, TLS 1.3 in transit, bcrypt (cost 12+), data minimization.
+
+**Real-World:** 15,000+ users secured, zero breaches, PCI-DSS compliant, quarterly audits. "Secure by design, not afterthought!" 🔒`,
+            en: `🛡️ **Deep Dive: Cybersecurity Implementation:**
+
+**Auth:** JWT with signed payloads, RBAC with hierarchical roles, refresh token rotation, HttpOnly cookies.
+
+**OWASP Top 10 Mitigation:**
+- SQL Injection: Prisma ORM, Zod validation, minimal DB privileges
+- XSS: React escaping, CSP headers, DOMPurify, HttpOnly cookies
+- CSRF: SameSite cookies, CSRF tokens, custom headers
+- Misconfiguration: Env variables, Helmet.js, npm audit, restrictive CORS
+
+**Data Protection:** AES-256 at rest, TLS 1.3 in transit, bcrypt (cost 12+), data minimization.
+
+**Real-World:** 15,000+ users secured, zero breaches, PCI-DSS compliant, quarterly audits. "Secure by design, not afterthought!" 🔒`,
+            aliases: ["cybersecurity deep dive", "security implementation", "owasp", "jwt security", "web security"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "technical deep dive database": {
+            id: `🗄️ **Deep Dive: Database Architecture & Optimization:**
+
+**PostgreSQL:** Normalization (3NF), strategic denormalization, UUIDs, TIMESTAMPTZ, proper constraints.
+
+**Indexing:** B-Tree for equality/range, composite for multi-column, partial for filtered, GIN for full-text.
+
+**Optimization:** EXPLAIN ANALYZE, N+1 prevention (Prisma include), connection pooling (PgBouncer), Redis caching.
+
+**Prisma:** Transactions for consistency, batch operations, type-safe queries, migrations.
+
+**Metrics:** 5,000+ products with sub-100ms queries, 15,000+ users concurrent, 99.9% uptime, zero data loss! 🚀`,
+            en: `🗄️ **Deep Dive: Database Architecture & Optimization:**
+
+**PostgreSQL:** Normalization (3NF), strategic denormalization, UUIDs, TIMESTAMPTZ, proper constraints.
+
+**Indexing:** B-Tree for equality/range, composite for multi-column, partial for filtered, GIN for full-text.
+
+**Optimization:** EXPLAIN ANALYZE, N+1 prevention (Prisma include), connection pooling (PgBouncer), Redis caching.
+
+**Prisma:** Transactions for consistency, batch operations, type-safe queries, migrations.
+
+**Metrics:** 5,000+ products with sub-100ms queries, 15,000+ users concurrent, 99.9% uptime, zero data loss! 🚀`,
+            aliases: ["database deep dive", "postgresql optimization", "database architecture", "prisma orm", "database design"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        // --- CAREER ADVICE & MENTORSHIP ---
+        "career advice for juniors": {
+            id: `💡 **Career Advice untuk Junior Developers:**
+
+**1. Build Real Projects:** Bukan tutorial hell - solve actual problems, deploy to production, get user feedback.
+
+**2. Master Fundamentals:** Data structures, HTTP/DNS, SQL, Git. Frameworks change, fundamentals stay.
+
+**3. Read Documentation:** Official docs > YouTube tutorials. Understand the "why" behind decisions.
+
+**4. Network & Build in Public:** Contribute to open source, share on LinkedIn, attend meetups.
+
+**5. Think Business:** Understand problems, measure impact, communicate to non-technical, ROI mindset.
+
+**6. Consistency > Intensity:** 1 hour daily > 10 hours weekly. Build sustainable habits.
+
+**7. Get Certified:** HackerRank for validation, cloud certs for credibility.
+
+**Wisnu's Timeline:** 3 production apps, 6 certs, proven track record dalam <1 tahun. "Focus on progress, not perfection!" 🚀`,
+            en: `💡 **Career Advice for Junior Developers:**
+
+**1. Build Real Projects:** Not tutorial hell - solve actual problems, deploy to production, get user feedback.
+
+**2. Master Fundamentals:** Data structures, HTTP/DNS, SQL, Git. Frameworks change, fundamentals stay.
+
+**3. Read Documentation:** Official docs > YouTube tutorials. Understand the "why" behind decisions.
+
+**4. Network & BUILD in Public:** Contribute to open source, share on LinkedIn, attend meetups.
+
+**5. Think Business:** Understand problems, measure impact, communicate to non-technical, ROI mindset.
+
+**6. Consistency > Intensity:** 1 hour daily > 10 hours weekly. Build sustainable habits.
+
+**7. Get Certified:** HackerRank for validation, cloud certs for credibility.
+
+**Wisnu's Timeline:** 3 production apps, 6 certs, proven track record in <1 year. "Focus on progress, not perfection!" 🚀`,
+            aliases: ["advice for juniors", "career advice", "how to start coding", "tips for beginners", "career mentorship"],
+            category: 'career',
+            emotion: 'professional',
+            followUp: ["skill teknis", "proyek unggulan", "sertifikasi"]
+        },
+
+        // --- PROJECT ARCHITECTURE ---
+        "project architecture ashar grosir": {
+            id: `🏗️ **Architecture Deep Dive: Ashar Grosir:**
+
+**Architecture:** Frontend (Next.js) dengan 3 portals (Customer, Partner, Admin) → Backend (Supabase/PostgreSQL) → External Services (Stripe, Email, Analytics).
+
+**Tech Stack:** Next.js 14, TypeScript, Supabase, PostgreSQL, Prisma, Stripe, Vercel.
+
+**Database:** 50+ tables, Row Level Security, functions for business logic, triggers, materialized views.
+
+**Security:** JWT + RBAC, rate limiting, input validation, restrictive CORS, env variables.
+
+**Performance:** SSG for catalog, ISR for pricing, image optimization, DB indexing, caching.
+
+**Metrics:** 70% faster processing, 85% fewer errors, 300% efficiency increase, 15,000+ users, 99.9% uptime! 🚀`,
+            en: `🏗️ **Architecture Deep Dive: Ashar Grosir:**
+
+**Architecture:** Frontend (Next.js) with 3 portals (Customer, Partner, Admin) → Backend (Supabase/PostgreSQL) → External Services (Stripe, Email, Analytics).
+
+**Tech Stack:** Next.js 14, TypeScript, Supabase, PostgreSQL, Prisma, Stripe, Vercel.
+
+**Database:** 50+ tables, Row Level Security, functions for business logic, triggers, materialized views.
+
+**Security:** JWT + RBAC, rate limiting, input validation, restrictive CORS, env variables.
+
+**Performance:** SSG for catalog, ISR for pricing, image optimization, DB indexing, caching.
+
+**Metrics:** 70% faster processing, 85% fewer errors, 300% efficiency increase, 15,000+ users, 99.9% uptime! 🚀`,
+            aliases: ["ashar grosir architecture", "system architecture", "project architecture", "tech architecture"],
+            category: 'projects',
+            emotion: 'professional'
+        },
+
+        // --- PROFESSIONAL INTERVIEW QUESTIONS ---
+        "what are your strengths": {
+            id: `💪 **Wisnu's Strengths:**
+
+**Technical:**
+1. **Production-First Mindset** - 15,000+ users, production-ready code, scalable solutions
+2. **Full-Stack Proficiency** - React, Next.js, TypeScript, Supabase, PostgreSQL, Prisma
+3. **Business Acumen** - 70% error reduction, ROI-driven, stakeholder communication
+
+**Soft Skills:**
+4. **Leadership** - 3 organizations, team coordination, mentoring
+5. **Continuous Learning** - 6 certifications, growth mindset
+6. **Problem-Solving** - HackerRank certified, analytical thinker
+
+**Proof:** 3 production sites, 6 certs, leadership roles, measurable impact.
+
+"My strength: bridging technical excellence with business impact. I build solutions, not just code." 🎯`,
+            en: `💪 **Wisnu's Strengths:**
+
+**Technical:**
+1. **Production-First Mindset** - 15,000+ users, production-ready code, scalable solutions
+2. **Full-Stack Proficiency** - React, Next.js, TypeScript, Supabase, PostgreSQL, Prisma
+3. **Business Acumen** - 70% error reduction, ROI-driven, stakeholder communication
+
+**Soft Skills:**
+4. **Leadership** - 3 organizations, team coordination, mentoring
+5. **Continuous Learning** - 6 certifications, growth mindset
+6. **Problem-Solving** - HackerRank certified, analytical thinker
+
+**Proof:** 3 production sites, 6 certs, leadership roles, measurable impact.
+
+"My strength: bridging technical excellence with business impact. I build solutions, not just code." 🎯`,
+            aliases: ["what are your strengths", "apa kelebihan kamu", "strengths", "kelebihan wisnu"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "why should we hire you": {
+            id: `🎯 **Why Hire Wisnu:**
+
+**Immediate Value:**
+1. **Production-Ready Day One** - 3 shipped apps, understands deployment/maintenance
+2. **Proven Track Record** - 15,000+ users impacted, 70% efficiency improvement, zero breaches
+
+**Growth Potential:**
+3. **Fast Learner** - 6 certs quickly, consistently learning, applied to production
+4. **Long-term Investment** - Growth mindset, aligned career goals
+
+**Team Fit:**
+5. **Collaborative** - Leadership experience, communication skills, humble but confident
+6. **Business-Minded** - ROI-driven, can communicate to stakeholders
+
+**ROI:** Faster onboarding, higher productivity, better decisions, lower risk.
+
+"Hire me for production experience, business understanding, and growth mindset. I deliver value from day one." 🚀`,
+            en: `🎯 **Why Hire Wisnu:**
+
+**Immediate Value:**
+1. **Production-Ready Day One** - 3 shipped apps, understands deployment/maintenance
+2. **Proven Track Record** - 15,000+ users impacted, 70% efficiency improvement, zero breaches
+
+**Growth Potential:**
+3. **Fast Learner** - 6 certs quickly, consistently learning, applied to production
+4. **Long-term Investment** - Growth mindset, aligned career goals
+
+**Team Fit:**
+5. **Collaborative** - Leadership experience, communication skills, humble but confident
+6. **Business-Minded** - ROI-driven, can communicate to stakeholders
+
+**ROI:** Faster onboarding, higher productivity, better decisions, lower risk.
+
+"Hire me for production experience, business understanding, and growth mindset. I deliver value from day one." 🚀`,
+            aliases: ["why should we hire you", "kenapa harus hire kamu", "why hire wisnu", "value proposition"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "tell me about your experience": {
+            id: `📋 **Experience Overview:**
+
+**Professional:**
+1. **Web Developer Intern - Syntecxhub** (Mar 2026-Present) - Remote web apps, modern frameworks, team collaboration
+2. **Digital Transformation Lead - Ashar Grosir** - 15,000+ partner B2B platform, 70% faster processing, Next.js/Supabase/Stripe
+
+**Academic:** Information Technology at President University (Aug 2024-Present) - Software Engineering, Web Technologies, Cyber Security
+
+**Leadership:** VoD at PUFA Computer Science (45% engagement increase), IT Development at PC FKMA (2024-2026)
+
+**Certifications:** 6 total - HackerRank (Golang, Software Engineer, JavaScript), HubSpot (Inbound, Social Media), Google (IT Support)
+
+**Summary:** 3 production sites, 6 certs, 3 leadership roles, measurable business impact.
+
+"Full-Stack Developer with 15,000+ user experience. I combine academic learning with real-world impact." 🚀`,
+            en: `📋 **Experience Overview:**
+
+**Professional:**
+1. **Web Developer Intern - Syntecxhub** (Mar 2026-Present) - Remote web apps, modern frameworks, team collaboration
+2. **Digital Transformation Lead - Ashar Grosir** - 15,000+ partner B2B platform, 70% faster processing, Next.js/Supabase/Stripe
+
+**Academic:** Information Technology at President University (Aug 2024-Present) - Software Engineering, Web Technologies, Cyber Security
+
+**Leadership:** VoD at PUFA Computer Science (45% engagement increase), IT Development at PC FKMA (2024-2026)
+
+**Certifications:** 6 total - HackerRank (Golang, Software Engineer, JavaScript), HubSpot (Inbound, Social Media), Google (IT Support)
+
+**Summary:** 3 production sites, 6 certs, 3 leadership roles, measurable business impact.
+
+"Full-Stack Developer with 15,000+ user experience. I combine academic learning with real-world impact." 🚀`,
+            aliases: ["tell me about your experience", "ceritakan pengalaman kamu", "work experience", "experience summary"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        "what projects have you built": {
+            id: `🚀 **Projects Portfolio:**
+
+**1. Ashar Grosir (B2B E-Commerce):** Next.js 14, Supabase, PostgreSQL, Stripe. 15,000+ users, 5,000+ products. 70% faster processing, 85% fewer errors, 300% efficiency increase.
+
+**2. LexCorpus (Legal CMS):** Next.js 14, Supabase, PostgreSQL. Document version control, collaborative editing, RBAC (Partners/Associates/Paralegals/Clients), end-to-end encryption. 60% productivity increase.
+
+**3. PC FKMA Website:** Next.js, Supabase. Organization platform, member management, event coordination. Live: https://pcfkmaasadiyahjakarta.vercel.app/
+
+**4. University Projects:** Full-Stack CMS, Database Optimization (15,000+ users), Network Security Lab (OCTAVE Allegro), Mobile App Prototype.
+
+**Summary:** 7+ projects (3 production, 4 academic), 15,000+ users impacted, measurable business impact in every project. 🎯`,
+            en: `🚀 **Projects Portfolio:**
+
+**1. Ashar Grosir (B2B E-Commerce):** Next.js 14, Supabase, PostgreSQL, Stripe. 15,000+ users, 5,000+ products. 70% faster processing, 85% fewer errors, 300% efficiency increase.
+
+**2. LexCorpus (Legal CMS):** Next.js 14, Supabase, PostgreSQL. Document version control, collaborative editing, RBAC (Partners/Associates/Paralegals/Clients), end-to-end encryption. 60% productivity increase.
+
+**3. PC FKMA Website:** Next.js, Supabase. Organization platform, member management, event coordination. Live: https://pcfkmaasadiyahjakarta.vercel.app/
+
+**4. University Projects:** Full-Stack CMS, Database Optimization (15,000+ users), Network Security Lab (OCTAVE Allegro), Mobile App Prototype.
+
+**Summary:** 7+ projects (3 production, 4 academic), 15,000+ users impacted, measurable business impact in every project. 🎯`,
+            aliases: ["what projects have you built", "proyek apa saja yang dibuat", "portfolio projects", "what have you built"],
+            category: 'projects',
+            emotion: 'professional'
+        },
+
+        "how to contact wisnu": {
+            id: `📞 **Contact Wisnu:**
+
+**📧 Email:** wisnualfian117@gmail.com (24-48h response, job opportunities)
+**📱 WhatsApp:** +62 813-9488-2490 (9AM-6PM WIB, urgent matters)
+**👔 LinkedIn:** Professional networking, recruitment
+**💻 GitHub:** Code review, open-source
+**📸 Instagram:** @wshnn_ (casual updates)
+
+**Guidelines:** Introduce yourself, state purpose, provide context, professional tone.
+
+**Status:** OPEN TO OPPORTUNITIES - Remote/Hybrid/On-site. 🤝`,
+            en: `📞 **Contact Wisnu:**
+
+**📧 Email:** wisnualfian117@gmail.com (24-48h response, job opportunities)
+**📱 WhatsApp:** +62 813-9488-2490 (9AM-6PM WIB, urgent matters)
+**👔 LinkedIn:** Professional networking, recruitment
+**💻 GitHub:** Code review, open-source
+**📸 Instagram:** @wshnn_ (casual updates)
+
+**Guidelines:** Introduce yourself, state purpose, provide context, professional tone.
+
+**Status:** OPEN TO OPPORTUNITIES - Remote/Hybrid/On-site. 🤝`,
+            aliases: ["how to contact", "contact wisnu", "email wisnu", "how to reach", "cara hubungi wisnu"],
+            category: 'contact',
+            emotion: 'friendly'
+        },
+
+        "what is your tech stack": {
+            id: `💻 **Tech Stack:**
+
+**Frontend:** React, Next.js 14+, TypeScript, Tailwind CSS, Shadcn/ui, Zustand/Redux/React Query
+**Backend:** Node.js, Express, Supabase, Serverless Functions, REST APIs
+**Database:** PostgreSQL, Prisma ORM, Redis caching
+**DevOps:** Git, Docker basics, Vercel/Netlify, CI/CD (GitHub Actions)
+**Security:** JWT, RBAC, bcrypt, AES-256, TLS 1.3, OWASP mitigation, Helmet.js, CSP
+**Additional:** Flutter, Python, Golang (HackerRank certified), Linux/Unix
+
+**Current Focus:** Next.js 15/React 19, AWS/GCP, AI/ML integration, advanced DB optimization.
+
+"Choose the right tool, not the trendiest one. Focus on solving problems effectively." 🚀`,
+            en: `💻 **Tech Stack:**
+
+**Frontend:** React, Next.js 14+, TypeScript, Tailwind CSS, Shadcn/ui, Zustand/Redux/React Query
+**Backend:** Node.js, Express, Supabase, Serverless Functions, REST APIs
+**Database:** PostgreSQL, Prisma ORM, Redis caching
+**DevOps:** Git, Docker basics, Vercel/Netlify, CI/CD (GitHub Actions)
+**Security:** JWT, RBAC, bcrypt, AES-256, TLS 1.3, OWASP mitigation, Helmet.js, CSP
+**Additional:** Flutter, Python, Golang (HackerRank certified), Linux/Unix
+
+**Current Focus:** Next.js 15/React 19, AWS/GCP, AI/ML integration, advanced DB optimization.
+
+"Choose the right tool, not the trendiest one. Focus on solving problems effectively." 🚀`,
+            aliases: ["what is your tech stack", "tech stack", "what technologies", "stack teknologi"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "what certifications do you have": {
+            id: `🏅 **Certifications:**
+
+**Technical (HackerRank):**
+1. **Golang (Basic)** - Go syntax, data structures, concurrency
+2. **Software Engineer Intern** - Problem-solving, algorithms, code quality
+3. **JavaScript (Basic)** - JS fundamentals, DOM, async
+
+**Business (HubSpot):**
+4. **Inbound Marketing** - Content marketing, SEO, lead generation
+5. **Social Media Marketing** - Strategy, analytics, community building
+
+**IT (Google/Coursera):**
+6. **IT Support Professional** - Infrastructure, networking, security
+
+**Summary:** 6 certs across Software Engineering, Web Development, Marketing, IT Infrastructure. Industry-recognized credentials! 🚀`,
+            en: `🏅 **Certifications:**
+
+**Technical (HackerRank):**
+1. **Golang (Basic)** - Go syntax, data structures, concurrency
+2. **Software Engineer Intern** - Problem-solving, algorithms, code quality
+3. **JavaScript (Basic)** - JS fundamentals, DOM, async
+
+**Business (HubSpot):**
+4. **Inbound Marketing** - Content marketing, SEO, lead generation
+5. **Social Media Marketing** - Strategy, analytics, community building
+
+**IT (Google/Coursera):**
+6. **IT Support Professional** - Infrastructure, networking, security
+
+**Summary:** 6 certs across Software Engineering, Web Development, Marketing, IT Infrastructure. Industry-recognized credentials! 🚀`,
+            aliases: ["what certifications do you have", "sertifikasi apa saja", "certifications list"],
+            category: 'professional',
+            emotion: 'professional'
+        },
+
+        // --- TECHNICAL INTERVIEW QUESTIONS ---
+        "technical interview react": {
+            id: `⚛️ **React Interview Prep:**
+
+**Core Concepts:**
+- **Hooks:** useState, useEffect (cleanup), useContext, useMemo/useCallback, custom hooks
+- **State:** Local, lifted, Context API, Zustand/Redux, React Query for server state
+- **Performance:** memo, useMemo/useCallback, code splitting, virtualization, debouncing
+
+**Common Questions:**
+- **Virtual DOM:** Lightweight DOM representation, diffing algorithm, batch updates
+- **Server Components:** Run on server, reduce bundle size, direct DB access
+- **Forms:** Controlled components, Zod/Yup validation, React Hook Form
+- **Keys:** Identify list changes, use stable IDs (not index)
+
+**Tips:** Explain "why", provide production examples, discuss trade-offs. 💪`,
+            en: `⚛️ **React Interview Prep:**
+
+**Core Concepts:**
+- **Hooks:** useState, useEffect (cleanup), useContext, useMemo/useCallback, custom hooks
+- **State:** Local, lifted, Context API, Zustand/Redux, React Query for server state
+- **Performance:** memo, useMemo/useCallback, code splitting, virtualization, debouncing
+
+**Common Questions:**
+- **Virtual DOM:** Lightweight DOM representation, diffing algorithm, batch updates
+- **Server Components:** Run on server, reduce bundle size, direct DB access
+- **Forms:** Controlled components, Zod/Yup validation, React Hook Form
+- **Keys:** Identify list changes, use stable IDs (not index)
+
+**Tips:** Explain "why", provide production examples, discuss trade-offs. 💪`,
+            aliases: ["react interview", "react interview questions", "react technical", "interview react"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "technical interview system design": {
+            id: `🏗️ **System Design Interview:**
+
+**Framework:**
+1. **Requirements:** Functional, non-functional (scalability, performance), constraints
+2. **High-Level:** Client → Load Balancer → API → DB + Cache (Redis) + Queue
+3. **Components:** API layer, service layer, data layer, infrastructure
+4. **Data Modeling:** Entities, schema, indexing, partitioning
+5. **Scaling:** Horizontal/vertical, read replicas, sharding, CDN/Redis/browser cache
+
+**Example (E-Commerce):** Next.js SSR/SSG, Node.js/Express API, PostgreSQL read replicas, Redis cache, RabbitMQ queue, S3 storage, CloudFront CDN.
+
+**Tips:** Clarify requirements, think out loud, discuss trade-offs, consider failures, mention monitoring. 🚀`,
+            en: `🏗️ **System Design Interview:**
+
+**Framework:**
+1. **Requirements:** Functional, non-functional (scalability, performance), constraints
+2. **High-Level:** Client → Load Balancer → API → DB + Cache (Redis) + Queue
+3. **Components:** API layer, service layer, data layer, infrastructure
+4. **Data Modeling:** Entities, schema, indexing, partitioning
+5. **Scaling:** Horizontal/vertical, read replicas, sharding, CDN/Redis/browser cache
+
+**Example (E-Commerce):** Next.js SSR/SSG, Node.js/Express API, PostgreSQL read replicas, Redis cache, RabbitMQ queue, S3 storage, CloudFront CDN.
+
+**Tips:** Clarify requirements, think out loud, discuss trade-offs, consider failures, mention monitoring. 🚀`,
+            aliases: ["system design", "system design interview", "architecture interview", "scalability design"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
+        "security expertise": {
+            id: `🛡️ **Security Expertise:**
+
+**OWASP Top 10:** RBAC, encryption (AES-256, bcrypt), parameterized queries, threat modeling, security headers, dependency scanning, MFA, CSRF protection, audit trails, input validation.
+
+**Testing:** SAST (SonarQube), DAST, Snyk/npm audit, penetration testing, security code reviews.
+
+**Cloud Security (AWS):** IAM, Security Groups, KMS, CloudTrail, WAF. Zero Trust, Defense in Depth, least privilege, secrets management, regular audits.
+
+**Real-World:** 15,000+ accounts secured, zero breaches, PCI-DSS compliant, quarterly audits, incident response plan.
+
+"Security is smart defenses, not walls. Every layer assumes failure below." 🔒`,
+            en: `🛡️ **Security Expertise:**
+
+**OWASP Top 10:** RBAC, encryption (AES-256, bcrypt), parameterized queries, threat modeling, security headers, dependency scanning, MFA, CSRF protection, audit trails, input validation.
+
+**Testing:** SAST (SonarQube), DAST, Snyk/npm audit, penetration testing, security code reviews.
+
+**Cloud Security (AWS):** IAM, Security Groups, KMS, CloudTrail, WAF. Zero Trust, Defense in Depth, least privilege, secrets management, regular audits.
+
+**Real-World:** 15,000+ accounts secured, zero breaches, PCI-DSS compliant, quarterly audits, incident response plan.
+
+"Security is smart defenses, not walls. Every layer assumes failure below." 🔒`,
+            aliases: ["security expertise", "cloud security", "aws security", "cybersecurity knowledge", "owasp"],
+            category: 'tech',
+            emotion: 'professional'
+        },
+
         "coding hours": {
             id: `💻 **Intensitas Ngoding:**
 

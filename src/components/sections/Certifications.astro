@@ -42,6 +42,8 @@ import ImageModal from "../ImageModal.astro";
                 <img
                   src={cert.image}
                   alt={cert.name}
+                  loading="lazy"
+                  decoding="async"
                   class="
                     w-full h-full
                     object-cover
@@ -49,7 +51,6 @@ import ImageModal from "../ImageModal.astro";
                     hover:scale-110
                     cursor-pointer
                   "
-                  loading="lazy"
                   onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`}
                 />
               ) : (

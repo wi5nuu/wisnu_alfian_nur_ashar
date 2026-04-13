@@ -1,76 +1,85 @@
 ---
 import { profile } from "../../data/profile";
-import { GraduationCap } from "lucide-astro";
+import { GraduationCap, MapPin, Calendar } from "lucide-astro";
 ---
 
-<section id="education" class="section bg-white pb-4 md:pb-6">
+<section id="education" class="section bg-white dark:bg-[#0f172a] pb-4 md:pb-6">
   <div class="container-custom">
     <div class="text-center mb-12">
-      <h2 class="inline-block relative">
-        Education
+      <h2 class="inline-block relative dark:text-white">
+        {profile.personalInfo.name.split(' ')[0] === 'Wisnu' ? 'Education' : 'Pendidikan'}
         <span
-          class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 rounded-full"
+          class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"
         ></span>
       </h2>
     </div>
 
-    <!-- EDUCATION SCROLL -->
-    <div class="w-full flex justify-center gap-6 md:gap-8 overflow-x-auto pb-8 snap-x scrollbar-hide px-4 md:px-0">
-      <!-- One card as an example, but flex-ready for more items -->
-      <div
-        class="
-          bg-gradient-to-br from-white-50 to-white 
-          p-6 
-          rounded-xl 
-          border border-sage-100 
-          shadow-sm 
-          flex flex-col md:flex-row 
-          items-center md:items-start 
-          gap-5 
-          text-center md:text-left
-          min-w-[85vw] md:min-w-[500px]
-          snap-start
-        "
-      >
-        <div
-          class="shrink-0 w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl shadow-sm border border-cream-200 overflow-hidden p-1"
-        >
-          <img
-            src="/president_university.jpeg"
-            alt="President University"
-            class="w-full h-full object-cover rounded-xl"
-          />
-        </div>
+    <div class="max-w-3xl mx-auto">
+      <div class="relative">
+        <!-- Timeline vertical line -->
+        <div class="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-sage-200 dark:from-sage-700 via-sage-300 dark:via-sage-600 to-transparent"></div>
 
-        <div class="flex-1 space-y-2">
-          <h3 class="font-bold text-sage-800">
-            {profile.education.institution}
-          </h3>
-          <div class="text-lg text-sage-600 font-serif font-medium">
-            {profile.education.degree}
-          </div>
-          <div class="text-charcoal/60 text-sm">
-            {profile.education.duration} • {profile.education.location}
-          </div>
+        <ul class="space-y-6">
+          <!-- Current Education -->
+          <li class="relative pl-12 group">
+            <!-- Timeline dot -->
+            <div class="absolute left-0 top-1 flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-slate-800 border-2 border-sage-300 dark:border-sage-600 group-hover:border-sage-500 transition-colors z-10 shadow-sm">
+              <GraduationCap class="w-4 h-4 text-sage-500 dark:text-sage-400" />
+            </div>
 
-          <div class="pt-4 mt-4 border-t border-sage-100">
-            <p class="text-charcoal/80 leading-relaxed">
-              <span class="font-bold text-sage-700">Focus:</span>
-              {profile.education.focus}
-            </p>
-          </div>
-        </div>
+            <!-- Card -->
+            <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl p-4 md:p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 shadow-sm">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white text-base leading-tight group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                    {profile.education.institution}
+                  </h3>
+                  <div class="text-sm text-sage-700 dark:text-sage-300 font-medium mt-1">
+                    {profile.education.degree}
+                  </div>
+                </div>
+
+                <!-- Duration + Location -->
+                <div class="text-right shrink-0 space-y-1">
+                  <div class="flex items-center gap-1.5 text-[11px] text-slate-400 dark:text-white/60 font-medium justify-end sm:justify-end">
+                    <Calendar class="w-3 h-3" />
+                    <span>{profile.education.duration}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 text-[11px] text-slate-400 dark:text-white/60 justify-end">
+                    <MapPin class="w-3 h-3" />
+                    <span>{profile.education.location}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Focus -->
+              <div class="pt-3 border-t border-sage-100 dark:border-sage-700">
+                <p class="text-[12.5px] text-slate-500 dark:text-white/70 leading-relaxed">
+                  <span class="font-semibold text-sage-600 dark:text-sage-300">Focus:</span>
+                  {profile.education.focus}
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <!-- Education History -->
+          {profile.educationHistory && profile.educationHistory.map((school, index) => (
+            <li class="relative pl-12 group">
+              <!-- Timeline dot -->
+              <div class="absolute left-1.5 top-2 w-5 h-5 rounded-full bg-white dark:bg-slate-800 border-2 border-sage-200 dark:border-sage-700 group-hover:border-sage-400 transition-colors z-10">
+                <div class="w-1.5 h-1.5 bg-sage-300 dark:bg-sage-500 group-hover:bg-sage-500 rounded-full mx-auto mt-1.5 transition-colors"></div>
+              </div>
+
+              <!-- School name -->
+              <div class="bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 rounded-lg p-3 md:p-4 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
+                <p class="text-[13px] text-slate-600 dark:text-white/70 font-medium leading-relaxed">
+                  {school}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-</style>

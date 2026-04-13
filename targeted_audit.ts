@@ -5,7 +5,7 @@ const query = "🤝 Organisasi & Leadership";
 const rawQuery = query.toLowerCase();
 const normalized = query.toLowerCase().replace(/[?.!,]/g, '').replace(/\s+/g, ' ').trim();
 
-const entries = (LocalAI as any).SOCIAL_DATA;
+const entries = (LocalAI as any).SOCIAL_DATA as Record<string, { aliases?: string[] }>;
 console.log("--- Match Audit ---");
 for (const [key, entry] of Object.entries(entries)) {
     // Check key
