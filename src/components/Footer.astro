@@ -34,11 +34,10 @@ const socials = [
 ];
 ---
 
-<footer class="relative bg-white dark:bg-[#0f172a] text-slate-900 dark:text-white pt-12 pb-8 overflow-hidden border-t border-slate-100 dark:border-slate-800">
+<footer class="relative bg-white dark:bg-transparent text-slate-900 dark:text-white pt-12 pb-8 overflow-hidden border-t border-slate-100 dark:border-transparent">
   <div
-    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent"
+    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent dark:hidden"
   >
-  </div>
   <div
     class="absolute -top-24 -left-24 w-96 h-96 bg-slate-50 dark:bg-slate-900 rounded-full blur-[100px]"
   >
@@ -140,7 +139,7 @@ const socials = [
     </div>
 
     <div
-      class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-slate-400 dark:text-white font-bold"
+      class="pt-8 border-t border-slate-100 dark:border-transparent flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-slate-400 dark:text-white font-bold"
     >
       <p class="dark:text-white">
         &copy; {currentYear} — {isId ? 'Didesain & Dibuat' : 'Designed & Coded'} by Wisnu Alfian Nur Ashar

@@ -6,19 +6,19 @@ const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
-<section id="about" class="section bg-white dark:bg-[#0f172a] relative overflow-hidden -mt-8 rounded-t-[2.5rem] md:-mt-12 md:rounded-t-[3rem] z-20 shadow-[0_-8px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.4)]">
+<section id="about" class="section relative overflow-hidden z-20">
   <div class="container-custom pt-8 md:pt-4">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-10 reveal">
-        <h2 class="inline-block relative dark:text-white">
+        <h2 class="inline-block relative text-sage-900 dark:text-white">
           {isId ? 'Tentang Saya' : 'About Me'}
-          <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"></span>
+          <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200/60 dark:bg-sage-500/50 rounded-full"></span>
         </h2>
       </div>
 
       <!-- Mobile only: Static photo below heading -->
       <div class="md:hidden flex justify-center mb-8 reveal">
-        <div class="w-[200px] h-[250px] rounded-3xl overflow-hidden shadow-xl ring-1 ring-slate-100 dark:ring-slate-700 bg-white">
+        <div class="w-[200px] h-[250px] rounded-3xl overflow-hidden shadow-xl ring-1 ring-slate-200/60 dark:ring-transparent">
           <img
             src="/wisnu_alfian_nur_ashar.jpeg"
             alt={profile.personalInfo.name}
@@ -30,54 +30,73 @@ const profile = isId ? profileId : profileEn;
         </div>
       </div>
 
-      <div class="grid md:grid-cols-12 gap-6 md:gap-8 items-center">
-        <!-- Ghost target for floating photo (desktop only) - matches original image card -->
-        <div id="about-photo-target" class="md:col-span-4 relative reveal-left h-auto max-w-[280px] mx-auto md:max-w-none">
-          <div class="bg-white rounded-[2rem] md:rounded-2xl overflow-hidden relative shadow-xl md:shadow-lg group">
-            <!-- Placeholder that matches the image dimensions -->
-            <div class="w-full aspect-[3/4] bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-[2rem] md:rounded-2xl"></div>
+      <div class="flex flex-col md:grid md:grid-cols-12 gap-8 items-start">
+        <!-- Desktop: Photo (sticky) -->
+        <div class="md:col-span-4 relative hidden md:block">
+          <div class="sticky top-24">
+            <div class="relative group">
+              <!-- Decorative behind -->
+              <div class="absolute -bottom-3 -right-3 w-full h-full bg-sage-200/60 dark:bg-sage-800/40 rounded-2xl"></div>
+              <div class="absolute -top-3 -left-3 w-16 h-16 border-2 border-sage-200/60 dark:border-transparent rounded-xl"></div>
+              <!-- Photo card -->
+              <div class="relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl ring-1 ring-slate-200/60 dark:ring-transparent aspect-[3/4]">
+                <img
+                  src="/wisnu_alfian_nur_ashar.jpeg"
+                  alt={profile.personalInfo.name}
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+                <!-- Subtle overlay gradient at bottom -->
+                <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+              </div>
+            </div>
           </div>
-          <!-- Decorative elements (original) -->
-          <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-sage-50 dark:bg-sage-900/40 rounded-lg -z-10 hidden md:block"></div>
-          <div class="absolute -top-4 -left-4 w-20 h-20 border border-sage-100 dark:border-sage-800 rounded-lg -z-10 hidden md:block"></div>
         </div>
 
-        <div class="md:col-span-8 space-y-4 overflow-hidden bg-slate-50/50 dark:bg-slate-800/80 md:bg-transparent md:dark:bg-transparent rounded-3xl md:rounded-none p-5 md:p-0 shadow-sm md:shadow-none border border-slate-100 dark:border-slate-700 md:border-transparent md:dark:border-transparent mt-2 md:mt-0">
-          <h3 class="text-lg md:text-2xl font-bold text-sage-900 dark:text-white reveal-left text-center md:text-left">
+        <!-- Content -->
+        <div class="md:col-span-8 space-y-5 reveal-left">
+          <h3 class="text-lg md:text-2xl font-bold text-sage-900 dark:text-sage-300 text-center md:text-left">
             {profile.personalInfo.role}
           </h3>
 
-          <div class="space-y-3 md:space-y-4 text-charcoal/90 dark:text-white text-sm md:text-[15px] leading-snug">
-            <p class="reveal-right font-medium text-center md:text-left dark:text-white">
+          <div class="space-y-3 text-sm md:text-[15px] leading-relaxed">
+            <p class="text-charcoal/90 dark:text-slate-200 font-medium text-center md:text-left">
               {profile.personalInfo.summary}
             </p>
 
-            <p class="reveal-bottom text-center md:text-left dark:text-white">
+            <p class="text-charcoal/80 dark:text-slate-300 text-center md:text-left">
               {isId
                 ? 'Di luar bidang akademik, saya telah mengerjakan beberapa proyek dunia nyata, termasuk situs web bisnis, platform berbasis CMS, dan aplikasi e-commerce yang digunakan oleh pengguna sebenarnya.'
                 : 'Beyond academics, I have worked on several real-world projects, including business websites, CMS-based platforms, and e-commerce applications used by real users.'}
             </p>
 
-            <p class="reveal-top text-sage-600 dark:text-white font-semibold underline decoration-sage-200 dark:decoration-sage-700 underline-offset-4 text-center md:text-left">
+            <p class="text-sage-700 dark:text-sage-400 font-semibold underline decoration-sage-300/60 dark:decoration-sage-600 underline-offset-4 text-center md:text-left">
               {isId
                 ? 'Saya memiliki ketertarikan khusus pada pengembangan web masa depan, desain aplikasi yang mutlak aman, serta alur kerja dan sistem modern.'
                 : 'I am particularly interested in web development, secure application design, and modern development workflows.'}
             </p>
           </div>
 
-          <div class="mt-4 reveal-bottom border-t border-slate-200 dark:border-slate-700 pt-4 md:border-none md:pt-2">
-            <div class="grid grid-cols-3 gap-2 md:gap-3">
-              <div class="bg-white md:bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl md:rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-xl md:text-2xl font-bold stat-number text-sage-700 dark:text-white">8+</div>
-                <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-400 dark:text-white font-bold mt-1">{isId ? 'Aplikasi Produksi' : 'Production Apps'}</div>
+          <!-- Stats Row -->
+          <div class="grid grid-cols-3 gap-3 md:gap-4 pt-4">
+            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center">
+              <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">8+</div>
+              <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
+                {isId ? 'Aplikasi Produksi' : 'Production Apps'}
               </div>
-              <div class="bg-white md:bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl md:rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-xl md:text-2xl font-bold stat-number text-sage-700 dark:text-white">15K+</div>
-                <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-400 dark:text-white font-bold mt-1">{isId ? 'Pengguna Dilayani' : 'Users Served'}</div>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center">
+              <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">15K+</div>
+              <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
+                {isId ? 'Pengguna Dilayani' : 'Users Served'}
               </div>
-              <div class="bg-white md:bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl md:rounded-xl p-3 md:p-4 text-center shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-xl md:text-2xl font-bold stat-number text-sage-700 dark:text-white">30+</div>
-                <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-400 dark:text-white font-bold mt-1">{isId ? 'Repositori GitHub' : 'GitHub Repos'}</div>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center">
+              <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">30+</div>
+              <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
+                {isId ? 'Repositori GitHub' : 'GitHub Repos'}
               </div>
             </div>
           </div>
@@ -88,26 +107,19 @@ const profile = isId ? profileId : profileEn;
 </section>
 
 <style>
-  .reveal,
-  .reveal-left,
-  .reveal-right,
-  .reveal-bottom,
-  .reveal-top {
+  .reveal, .reveal-left, .reveal-right, .reveal-bottom, .reveal-top {
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: transform, opacity;
   }
-
   .reveal-left { transform: translateX(-30px); }
   .reveal-right { transform: translateX(30px); }
   .reveal-bottom { transform: translateY(30px); }
   .reveal-top { transform: translateY(-30px); }
-
   .active {
     opacity: 1 !important;
     transform: translate(0, 0) !important;
   }
-
   .stat-number {
     font-family: 'Calibri', 'Trebuchet MS', 'Gill Sans', Arial, sans-serif;
   }
@@ -118,22 +130,15 @@ const profile = isId ? profileId : profileEn;
     const observerOptions = { threshold: 0.15 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
+        if (entry.isIntersecting) entry.target.classList.add("active");
       });
     }, observerOptions);
-
-    const elements = document.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right, .reveal-bottom, .reveal-top",
-    );
-
+    const elements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-bottom, .reveal-top");
     elements.forEach((el, index) => {
       (el as HTMLElement).style.transitionDelay = `${index * 0.08}s`;
       observer.observe(el);
     });
   };
-
   document.addEventListener("DOMContentLoaded", revealAbout);
   document.addEventListener("astro:after-swap", revealAbout);
 </script>

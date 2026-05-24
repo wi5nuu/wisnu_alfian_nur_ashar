@@ -8,20 +8,32 @@ interface Props {
   title: string;
   description?: string;
   url?: string;
+  ogType?: "website" | "article";
+  noIndex?: boolean;
 }
 
 const {
   title,
   description = profile.personalInfo.summary,
   url = Astro.url.href,
+  ogType = "website",
+  noIndex = false,
 } = Astro.props;
 
-const siteName = "Wisnu Alfian Nur Ashar | Senior Full-Stack Developer Portfolio";
-const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
+const siteName = "Wisnu Alfian Nur Ashar | Full-Stack Developer & Cyber Security";
+const siteUrl = "https://www.wisnualfiannurashar.my.id";
+const ogImage = `${siteUrl}/og-image.png`;
+const isId = Astro.url.pathname.startsWith("/id");
+const lang = isId ? "id" : "en";
+
+// Build alternate language URLs
+const currentPath = Astro.url.pathname;
+const enUrl = currentPath.startsWith("/id") ? currentPath.replace("/id", "") || "/" : currentPath;
+const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath === "/" ? "" : currentPath}`;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <!-- ================= BASIC ================= -->
     <meta charset="UTF-8" />
@@ -29,29 +41,31 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
     <title>{title} | {profile.personalInfo.name}</title>
     <meta name="description" content={description} />
     <meta name="author" content={profile.personalInfo.name} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
+    <meta name="googlebot" content={noIndex ? "noindex" : "index, follow"} />
     <meta
       name="keywords"
-      content="Wisnu Alfian Nur Ashar, Full-Stack Developer, President University, IT Software Engineer, Web Developer Bekasi, React Developer, Next.js Expert, Cybersecurity, Career Coach"
+      content="Wisnu Alfian Nur Ashar, Full-Stack Developer, President University, IT Software Engineer, Web Developer Bekasi, React Developer, Next.js Expert, Cybersecurity, Career Coach, Portfolio"
     />
+    <meta name="theme-color" content="#2a3b3e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="format-detection" content="telephone=no" />
 
     <!-- ================= RESOURCE HINTS (Performance) ================= -->
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="preconnect" href="https://cdn.simpleicons.org" />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.simpleicons.org" />
     <link rel="dns-prefetch" href="https://api.web3forms.com" />
-
-    <!-- Prefetch critical resources -->
-    <link rel="preload" href="/wisnu_alfian_nur_ashar.jpeg" as="image" fetchpriority="high" />
-    <link rel="preload" href="/logo.png" as="image" fetchpriority="high" />
 
     <!-- ================= VIEW TRANSITIONS ================= -->
     <ClientRouter />
 
-    <!-- ================= CANONICAL ================= -->
+    <!-- ================= CANONICAL & HREFLANG ================= -->
     <link rel="canonical" href={url} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${enUrl}`} />
+    <link rel="alternate" hreflang="id" href={`${siteUrl}${idUrl}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
 
     <!-- ================= GOOGLE VERIFICATION ================= -->
     <meta
@@ -59,56 +73,52 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
       content="EJ_C4tjJumyHkl6RwAdqafUs-zgyK2KjvQ6zTy1_LDQ"
     />
 
-    <!-- ================= THEME ================= -->
-    <meta name="theme-color" content="#0f172a" />
-
     <!-- ================= OPEN GRAPH ================= -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={siteName} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={`${title} | ${profile.personalInfo.name}`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${profile.personalInfo.name} — ${profile.personalInfo.role}`} />
+    <meta property="og:locale" content={isId ? "id_ID" : "en_US"} />
+    <meta property="og:locale:alternate" content={isId ? "en_US" : "id_ID"} />
 
     <!-- ================= TWITTER ================= -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:site" content="@wisnualfian" />
+    <meta name="twitter:creator" content="@wisnualfian" />
+    <meta name="twitter:title" content={`${title} | ${profile.personalInfo.name}`} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={`${profile.personalInfo.name} — ${profile.personalInfo.role}`} />
 
     <!-- ================= FAVICON & PWA ================= -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/android-chrome-192x192.png" color="#2a3b3e" />
 
-    <!-- ================= SECURITY (CSP) ================= -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="
-  default-src 'self';
-  script-src 'self' 'unsafe-inline'; 
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' data: https:;
-  connect-src 'self' https://api.web3forms.com;
-  font-src 'self';
-"
-    />
-
-
-
-    <!-- ================= SCHEMA PERSON ================= -->
-    <script type="application/ld+json" is:inline define:vars={{ profile, url, image }}>
+    <!-- ================= SCHEMA.ORG: PERSON ================= -->
+    <script type="application/ld+json" is:inline define:vars={{ profile, siteUrl, ogImage }}>
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": profile.personalInfo.name,
-        "url": url,
-        "image": image,
+        "givenName": "Wisnu",
+        "familyName": "Alfian Nur Ashar",
+        "alternateName": "Wisnu Alfian",
+        "url": siteUrl,
+        "image": ogImage,
         "jobTitle": profile.personalInfo.role,
         "description": profile.personalInfo.summary,
+        "birthPlace": {
+          "@type": "Place",
+          "name": "Tarakan, Indonesia"
+        },
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Kota Bekasi",
@@ -117,61 +127,89 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
         },
         "affiliation": {
           "@type": "CollegeOrUniversity",
+          "name": profile.education.institution,
+          "url": "https://www.president.ac.id"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
           "name": profile.education.institution
         },
         "knowsAbout": [
-          ...profile.skills.programming.map(s => s.name),
-          ...profile.skills.webTech.map(s => s.name),
-          ...profile.skills.securityCloud.map(s => s.name),
-          ...profile.skills.tools.map(s => s.name),
-          ...profile.skills.soft.map(s => s.name)
+          "Full-Stack Web Development",
+          "Cybersecurity",
+          "React", "Next.js", "TypeScript", "Python", "Golang",
+          "Cloud Security", "Penetration Testing",
+          "AI/ML", "Computer Vision",
+          "Database Architecture", "API Development"
+        ],
+        "knowsLanguage": [
+          { "@type": "Language", "name": "Indonesian", "alternateName": "id" },
+          { "@type": "Language", "name": "English", "alternateName": "en" }
         ],
         "sameAs": [
           "https://linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310",
-          "https://github.com/wi5nuu"
+          "https://github.com/wi5nuu",
+          "https://www.instagram.com/wshnn_",
+          "https://line.me/ti/p/PlhxJgbURY"
         ]
       }
     </script>
 
-    <!-- ================= SCHEMA WEBSITE ================= -->
-    <script type="application/ld+json" is:inline define:vars={{ siteName, url }}>
+    <!-- ================= SCHEMA.ORG: WEBSITE + SEARCH ACTION ================= -->
+    <script type="application/ld+json" is:inline define:vars={{ siteName, siteUrl }}>
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": siteName,
-        "url": url,
+        "url": siteUrl,
+        "inLanguage": ["en", "id"],
         "publisher": {
           "@type": "Person",
           "name": "Wisnu Alfian Nur Ashar"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": siteUrl + "/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
         }
+    }
+    </script>
+
+    <!-- ================= SCHEMA.ORG: ITEMLIST (NAVIGATION) ================= -->
+    <script type="application/ld+json" is:inline define:vars={{ siteUrl }}>
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Portfolio Navigation",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "url": siteUrl + "/" },
+          { "@type": "ListItem", "position": 2, "name": "About", "url": siteUrl + "/about" },
+          { "@type": "ListItem", "position": 3, "name": "Projects", "url": siteUrl + "/projects" },
+          { "@type": "ListItem", "position": 4, "name": "Skills", "url": siteUrl + "/skills" },
+          { "@type": "ListItem", "position": 5, "name": "Experience", "url": siteUrl + "/experience" },
+          { "@type": "ListItem", "position": 6, "name": "Contact", "url": siteUrl + "/contact" }
+        ]
       }
     </script>
 
-    <meta name="generator" content={Astro.generator} />
-
-    <!-- ================= DARK MODE INITIALIZATION ================= -->
+    <!-- ================= DARK MODE INITIALIZATION (FOUC prevention) ================= -->
     <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-          return localStorage.getItem("theme");
+      (function() {
+        var theme;
+        try { theme = localStorage.getItem("theme"); } catch(e) {}
+        if (!theme) {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        document.documentElement.style.colorScheme = theme;
       })();
-    
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-      
-      window.localStorage.setItem("theme", theme);
     </script>
   </head>
 
-  <body class="bg-white dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
+  <body class="bg-white text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
     <div
       id="app"
       class="min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300"
@@ -179,7 +217,6 @@ const image = `${url}wisnu_alfian_nur_ashar.jpeg`;
       <slot />
     </div>
 
-    <!-- ================= AI CHATBOT ================= -->
     <AIChatBot />
   </body>
 </html>

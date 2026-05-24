@@ -18,6 +18,7 @@ interface Profile {
     skills: {
         programming: { name: string; icon?: string }[];
         webTech: { name: string; icon?: string }[];
+        aiMl: { name: string; icon?: string }[];
         securityCloud: { name: string; icon?: string }[];
         tools: { name: string; icon?: string }[];
         soft: { name: string }[];
@@ -66,10 +67,10 @@ export const profile: Profile = {
     personalInfo: {
         name: "Wisnu Alfian Nur Ashar",
         pronouns: "He/Him",
-        role: "Full-Stack Developer & Cyber Security",
+        role: "Software Engineer",
         location: "Bekasi Timur, Kota Bekasi, Jawa Barat",
         tagline: "Building Secure, High-Performance Production Systems",
-        summary: "Full-Stack Developer & Cyber Security practitioner with production experience building scalable web applications. Specialized in Next.js, React, Supabase, and secure system design. Delivered platforms supporting 15,000+ users with measurable performance and security improvements. Experienced in leading cross-functional teams to modernize digital infrastructure and streamline business operations.",
+        summary: "Software Engineer with extensive experience in architecting and delivering high-performance software solutions. My expertise encompasses full-cycle development, ranging from web application engineering and robust system design to the implementation of scalable cloud infrastructure. I am dedicated to bridging complex technical challenges with elegant, efficient solutions, fostering a collaborative approach in cross-functional environments. With a strong foundation in modern development practices, I focus on engineering reliable, production-grade systems that streamline business operations and enhance digital architecture.",
         email: "wisnualfian117@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
@@ -102,6 +103,18 @@ export const profile: Profile = {
             { name: "shadcn/ui", icon: "shadcnui" },
             { name: "SEO", icon: "google" },
             { name: "API Development", icon: "postman" },
+        ],
+        aiMl: [
+            { name: "YOLOv8", icon: "pytorch" },
+            { name: "FastAPI", icon: "fastapi" },
+            { name: "OpenCV", icon: "opencv" },
+            { name: "Kaggle", icon: "kaggle" },
+            { name: "Roboflow", icon: "roboflow" },
+            { name: "Google Cloud Run", icon: "googlecloud" },
+            { name: "HuggingFace", icon: "huggingface" },
+            { name: "Google Gemini", icon: "googlegemini" },
+            { name: "Computer Vision", icon: "pytorch" },
+            { name: "Model Fine-Tuning", icon: "huggingface" },
         ],
         securityCloud: [
             { name: "Cybersecurity", icon: "hackthebox" },
@@ -176,6 +189,17 @@ export const profile: Profile = {
         }
     ],
     projects: [
+        {
+            title: "ColonyAI",
+            role: "Product Owner & AI Engineer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/colonyai",
+            link: "https://colonyai-eta.vercel.app",
+            description: "AI-powered Automated Plate Count Reader for microbiology laboratories. Fine-tuned YOLOv8 object detection model achieving 94.1% mAP@0.5, 94.7% precision, and 92.5% recall across 56,124 bounding box annotations. Converts agar plate images into standardized CFU/ml reports in under 2 minutes — reducing inter-analyst variability by 92.5%. Features CLAHE preprocessing, Hough Circle plate detection, SA-001 merged colony estimation, GUM measurement uncertainty, SHA-256 chained audit trail for ISO 17025 compliance, and BPOM & SNI compliant PDF/CSV reporting. Built with FastAPI, Next.js 14, PostgreSQL, and deployed on Railway with CI/CD pipelines.",
+            techStack: ["YOLOv8", "FastAPI", "Next.js 14", "TypeScript", "PostgreSQL", "OpenCV", "AWS S3", "Railway", "Vercel"],
+            image: "/projects/ColonyAI.png"
+        },
         {
             title: "Shooply",
             role: "Full-Stack Architect",

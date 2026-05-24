@@ -4280,24 +4280,31 @@ Can I eat/drink/have feelings?
     private static extractMainTopic(query: string): string {
         const topics = [
             // Personal
-            { keywords: ['hobi', 'hobby', 'kesukaan'], topic: 'personal' },
-            { keywords: ['sifat', 'karakter', 'personality'], topic: 'personal' },
+            { keywords: ['hobi', 'hobby', 'kesukaan', 'minat pribadi', 'personal interest', 'waktu luang', 'free time', 'sifat', 'karakter', 'personality', 'kepribadian', 'attitude', 'values', 'prinsip', 'filosofi', 'philosophy'], topic: 'personal' },
 
-            // Professional
-            { keywords: ['skill', 'keahlian', 'teknologi', 'tech'], topic: 'professional' },
-            { keywords: ['kerja', 'pengalaman', 'experience'], topic: 'professional' },
+            // Professional / Skills
+            { keywords: ['skill', 'keahlian', 'teknologi', 'tech', 'tech stack', 'kemampuan', 'ability', 'bisa', 'mampu', 'framework', 'library', 'language', 'bahasa', 'programming', 'coding', 'react', 'next', 'typescript', 'javascript', 'python', 'node', 'tailwind', 'css', 'html', 'database', 'sql', 'nosql', 'supabase', 'docker', 'aws', 'cloud', 'frontend', 'backend', 'fullstack', 'full-stack', 'cyber', 'security', 'keamanan', 'ai', 'machine learning', 'ml', 'yolo', 'opencv'], topic: 'professional' },
+
+            // Experience
+            { keywords: ['kerja', 'pengalaman', 'experience', 'work', 'job', 'pekerjaan', 'intern', 'internship', 'magang', 'company', 'perusahaan', 'syntecxhub', 'pufa', 'puma', 'employment', 'role', 'posisi'], topic: 'professional' },
 
             // Academic
-            { keywords: ['kuliah', 'kampus', 'pendidikan', 'education'], topic: 'academic' },
-            { keywords: ['jurusan', 'major', 'study'], topic: 'academic' },
+            { keywords: ['kuliah', 'kampus', 'pendidikan', 'education', 'university', 'sekolah', 'school', 'jurusan', 'major', 'study', 'degree', 'gpa', 'president', 'as\'adiyah', 'sengkang', 'tarakan', 'akademik', 'academic', 'sertifikasi', 'certification', 'sertifikat', 'certificate', 'course', 'kursus', 'training', 'pelatihan'], topic: 'academic' },
 
             // Projects
-            { keywords: ['proyek', 'project', 'portfolio'], topic: 'projects' },
-            { keywords: ['ashar', 'lexcorpus', 'fkma'], topic: 'projects' },
+            { keywords: ['proyek', 'project', 'portfolio', 'portofolio', 'app', 'application', 'website', 'web', 'platform', 'build', 'buat', 'develop', 'ashar', 'grosir', 'lexcorpus', 'fkma', 'colonyai', 'colony', 'risk', 'firewall', 'cms', 'ecommerce', 'e-commerce', 'parfum', 'perfume', 'human', 'puma', 'chatbot', 'karya', 'hasil'], topic: 'projects' },
 
             // Career
-            { keywords: ['goal', 'tujuan', 'karir', 'career'], topic: 'career' },
-            { keywords: ['visi', 'future', 'ambisi'], topic: 'career' },
+            { keywords: ['goal', 'tujuan', 'karir', 'career', 'visi', 'future', 'ambisi', 'ambition', 'dream', 'mimpi', 'plan', 'rencana', 'target', 'aspiration', 'cita', 'passion', 'passionate'], topic: 'career' },
+
+            // Contact
+            { keywords: ['kontak', 'contact', 'email', 'hubungi', 'reach', 'phone', 'telepon', 'whatsapp', 'linkedin', 'github', 'social', 'media', 'twitter', 'instagram', 'address', 'alamat', 'connecting', 'network'], topic: 'contact' },
+
+            // Organization
+            { keywords: ['organisasi', 'organization', 'community', 'komunitas', 'club', 'volunteer', 'sukarela', 'event', 'acara', 'leadership', 'kepemimpinan', 'committee', 'panitia', 'ormawa', 'ukm', 'bem', 'fakultas'], topic: 'academic' },
+
+            // Profile
+            { keywords: ['siapa', 'who', 'profil', 'profile', 'about', 'tentang', 'introduce', 'nama', 'name', 'identity', 'identitas', 'latar', 'background', 'asal', 'lahir', 'domisili', 'tinggal', 'umur', 'age'], topic: 'personal' },
 
             // Contact
             { keywords: ['kontak', 'hubungi', 'email', 'whatsapp'], topic: 'contact' }
@@ -4355,80 +4362,67 @@ Can I eat/drink/have feelings?
             this.conversationHistory.shift();
         }
 
-        // 1. Check exact matches in SOCIAL_DATA
-        const exactMatch = Object.entries(this.SOCIAL_DATA).find(([key, entry]) => {
+        // 1. Fuzzy scoring — find best matching entry
+        const queryWords = normalized.split(/\s+/);
+        let bestMatch: { entry: SocialEntry; score: number } | null = null;
+
+        for (const [key, entry] of Object.entries(this.SOCIAL_DATA)) {
+            let score = 0;
             const keyLower = key.toLowerCase();
+
+            // Exact key match (highest priority)
             if (normalized === keyLower || rawQuery.toLowerCase() === keyLower) {
-                return true;
+                score = 100;
+            } else {
+                // Key phrase match
+                if (normalized.includes(keyLower)) {
+                    score += 20 + keyLower.length;
+                }
+
+                // Alias matching
+                if (entry.aliases) {
+                    for (const alias of entry.aliases) {
+                        const al = alias.toLowerCase();
+                        if (al.length <= 3) {
+                            // Short aliases: word-level match
+                            if (queryWords.includes(al)) {
+                                score += 15;
+                            }
+                        } else {
+                            // Longer aliases: substring match
+                            if (normalized.includes(al) || rawQuery.toLowerCase().includes(al)) {
+                                score += 10 + al.length;
+                            }
+                        }
+                    }
+                }
+
+                // Partial word overlap (fuzzy)
+                const keyWords = keyLower.split(/\s+/);
+                for (const kw of keyWords) {
+                    if (kw.length > 2 && queryWords.some(qw => qw.includes(kw) || kw.includes(qw))) {
+                        score += 5;
+                    }
+                }
             }
 
-            return entry.aliases?.some(alias => {
-                const al = alias.toLowerCase();
-                if (al.length <= 3) {
-                    // Exact match for short aliases (like "hi", "thx")
-                    return normalized === al || rawQuery.toLowerCase() === al ||
-                        normalized.split(/\s+/).includes(al);
-                }
-                // For longer aliases, use includes with word check
-                return normalized.includes(al) || rawQuery.toLowerCase().includes(al);
-            });
-        });
+            if (score > 0 && (!bestMatch || score > bestMatch.score)) {
+                bestMatch = { entry, score };
+            }
+        }
 
-        if (exactMatch) {
-            const [_, entry] = exactMatch;
-            const response = isIndo ? entry.id : entry.en;
+        // Threshold: need at least score 5 to consider a match
+        if (bestMatch && bestMatch.score >= 5) {
+            const response = isIndo ? bestMatch.entry.id : bestMatch.entry.en;
             const category = this.extractMainTopic(query);
             const followUp = this.getFollowUpSuggestions(category, language);
 
-            // Update last response in history
             if (this.conversationHistory.length > 0) {
                 this.conversationHistory[this.conversationHistory.length - 1].response = response;
                 this.conversationHistory[this.conversationHistory.length - 1].category = category;
             }
 
             return response + followUp;
-        }
-
-        // 2. Check for keywords in query
-        const registryEntries = Object.entries(this.SOCIAL_DATA);
-        for (const [key, entry] of registryEntries) {
-            const keyLower = key.toLowerCase();
-
-            // Check if key appears in query
-            if (normalized.includes(keyLower) || rawQuery.toLowerCase().includes(keyLower)) {
-                const response = isIndo ? entry.id : entry.en;
-                const category = this.extractMainTopic(query);
-                const followUp = this.getFollowUpSuggestions(category, language);
-
-                // Update last response in history
-                if (this.conversationHistory.length > 0) {
-                    this.conversationHistory[this.conversationHistory.length - 1].response = response;
-                    this.conversationHistory[this.conversationHistory.length - 1].category = category;
-                }
-
-                return response + followUp;
-            }
-
-            // Check aliases in query
-            if (entry.aliases?.some(alias => {
-                const al = alias.toLowerCase();
-                if (al.length <= 3) {
-                    return normalized === al || normalized.split(/\s+/).includes(al);
-                }
-                return normalized.includes(al) || rawQuery.toLowerCase().includes(al);
-            })) {
-                const response = isIndo ? entry.id : entry.en;
-                const category = this.extractMainTopic(query);
-                const followUp = this.getFollowUpSuggestions(category, language);
-
-                // Update last response in history
-                if (this.conversationHistory.length > 0) {
-                    this.conversationHistory[this.conversationHistory.length - 1].response = response;
-                    this.conversationHistory[this.conversationHistory.length - 1].category = category;
-                }
-
-                return response + followUp;
-            }
         }
 
         // 3. Context-aware responses based on conversation history

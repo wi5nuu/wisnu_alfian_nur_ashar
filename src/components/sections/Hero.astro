@@ -1,56 +1,28 @@
 ---
 import { profile as profileEn } from "../../data/profile";
 import { profile as profileId } from "../../data/profile_id";
-import { ChevronDown, ArrowRight, Download } from "lucide-astro";
+import { Download } from "lucide-astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 const contactUrl = isId ? '/id/contact' : '/contact';
-
-// Placeholder images - optimized sizes for hero slider
-const slides = [
-  {
-    image:
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop",
-    alt: "Minimalist workspace",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1200&auto=format&fit=crop",
-    alt: "Coding environment",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop",
-    alt: "Modern design aesthetic",
-  },
-];
 ---
 
 <section
   id="hero"
-  class="relative h-auto pb-24 md:pb-0 md:min-h-screen flex items-center justify-center overflow-hidden bg-sage-900 dark:bg-dark-bg transition-colors duration-300"
+  class="relative h-auto pb-24 md:pb-0 md:min-h-screen flex items-center justify-center overflow-hidden bg-sage-900 dark:bg-transparent transition-colors duration-300"
 >
-  <div class="absolute inset-0 z-0 h-full w-full">
-    {
-      slides.map((slide, index) => (
-        <div
-          class={`absolute inset-0 h-full w-full bg-cover bg-center transition-opacity duration-1000 ease-in-out slider-image ${index === 0 ? "opacity-40" : "opacity-0"}`}
-          style={`background-image: url('${slide.image}')`}
-          data-index={index}
-        />
-      ))
-    }
-    <div class="absolute inset-0 h-full w-full bg-sage-900/70"></div>
+  <div class="absolute inset-0 z-0 h-full w-full bg-gradient-to-br from-sage-900 via-slate-900 to-sage-800 dark:hidden">
+    <div class="absolute inset-0 h-full w-full bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.06)_0%,_transparent_60%)]"></div>
   </div>
 
   <div
-    class="container-custom relative z-10 flex flex-col md:flex-row items-center md:items-center text-center md:text-left text-white pt-28 md:pt-12"
+    class="container-custom relative z-10 flex flex-col items-center text-center text-white pt-28 md:pt-12"
   >
     <!-- Text Content (left on desktop) -->
-    <div class="flex-1 flex flex-col items-center md:items-start">
+    <div class="flex-1 flex flex-col items-center">
       <div
-        class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
+        class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-md text-sage-50 border border-white/20 dark:border-transparent rounded-full text-sm font-medium tracking-wide animate-fade-in-up"
       >
         Hello, I'm
       </div>
@@ -70,36 +42,36 @@ const slides = [
       </p>
 
       <div
-        class="w-full flex flex-row flex-wrap justify-center md:justify-start gap-2 md:gap-5 animate-fade-in-up delay-300"
+        class="w-full flex flex-row flex-wrap justify-center gap-2 md:gap-5 animate-fade-in-up delay-300"
       >
         <a
           href="/CV-Wisnu Alfian Nur Ashar.pdf"
           download
-          class="btn border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
+          class="btn border border-white/30 dark:border-transparent text-white hover:bg-white/10 backdrop-blur-sm px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2"
         >
           <Download class="w-3.5 h-3.5" />
           {isId ? 'Unduh CV (PDF)' : 'Download CV (PDF)'}
         </a>
         <a
           href={contactUrl}
-          class="btn border border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300"
+          class="btn border border-transparent bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm px-5 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 dark:border-transparent"
         >
           {isId ? 'Hubungi Saya' : 'Contact Me'}
         </a>
       </div>
 
       <!-- Stats strip -->
-      <div class="flex flex-row items-center justify-between w-full max-w-xl mt-10 animate-fade-in-up delay-300 border-t border-white/10 pt-8 px-2 sm:px-8">
+      <div class="flex flex-row items-center justify-between w-full max-w-xl mt-10 animate-fade-in-up delay-300 border-t border-white/10 dark:border-transparent pt-8 px-2 sm:px-8">
         <div class="text-center flex-1">
           <div class="text-xl md:text-2xl font-bold stat-number text-white">8+</div>
           <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Aplikasi Produksi' : 'Production Apps'}</div>
         </div>
-        <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
+        <div class="w-px h-8 bg-white/10 dark:bg-transparent flex-shrink-0"></div>
         <div class="text-center flex-1">
           <div class="text-xl md:text-2xl font-bold stat-number text-white">15K+</div>
           <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Pengguna Dilayani' : 'Users Served'}</div>
         </div>
-        <div class="w-px h-8 bg-white/10 flex-shrink-0"></div>
+        <div class="w-px h-8 bg-white/10 dark:bg-transparent flex-shrink-0"></div>
         <div class="text-center flex-1">
           <div class="text-xl md:text-2xl font-bold stat-number text-white">30+</div>
           <div class="text-[8px] md:text-[10px] uppercase tracking-widest text-white/50 font-medium mt-0.5">{isId ? 'Repositori GitHub' : 'GitHub Repos'}</div>
@@ -107,21 +79,14 @@ const slides = [
       </div>
     </div>
 
-    <!-- Spacer for floating photo position (desktop only) -->
-    <div
-      id="hero-photo-target"
-      class="hidden md:flex flex-1 justify-end items-center relative"
-      aria-hidden="true"
-    >
-      <div class="w-[320px] lg:w-[400px] h-[400px] lg:h-[500px] rounded-3xl"></div>
-    </div>
   </div>
 
+  <!-- Scroll chevron (hidden)
   <div
     class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce hidden md:block"
   >
     <ChevronDown class="w-8 h-8" />
-  </div>
+  </div> -->
 </section>
 
 <style>
@@ -168,31 +133,6 @@ const slides = [
 </style>
 
 <script>
-  // --- SLIDER LOGIC ---
-  const images = document.querySelectorAll(".slider-image");
-  let currentIndex = 0;
-  const totalSlides = images.length;
-
-  function nextSlide() {
-    if (images.length === 0) return;
-
-    if (images[currentIndex]) {
-      images[currentIndex].classList.remove("opacity-100");
-      images[currentIndex].classList.add("opacity-0");
-    }
-
-    currentIndex = (currentIndex + 1) % totalSlides;
-
-    if (images[currentIndex]) {
-      images[currentIndex].classList.remove("opacity-0");
-      images[currentIndex].classList.add("opacity-100");
-    }
-  }
-
-  if (totalSlides > 1) {
-    setInterval(nextSlide, 6000);
-  }
-
   // --- TYPEWRITER LOGIC ---
   const text = "Wisnu Alfian Nur Ashar";
   const typeDelay = 100;

@@ -6,258 +6,208 @@ const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 
 const skillCategories = [
-  {
-    title: isId ? 'Pemrograman & Basis Data' : 'Programming & Databases',
-    skills: profile.skills.programming,
-  },
-  {
-    title: isId ? 'Teknologi Web' : 'Web Technologies',
-    skills: profile.skills.webTech,
-  },
-  {
-    title: isId ? 'Keamanan & Infrastruktur' : 'Security & Infrastructure',
-    skills: profile.skills.securityCloud,
-  },
-  {
-    title: isId ? 'Alat Khusus' : 'Specialized Tools',
-    skills: profile.skills.tools,
-  },
-  {
-    title: isId ? 'Keterampilan Non-Teknis' : 'Soft Skills',
-    skills: profile.skills.soft,
-  },
+  { title: isId ? 'Pemrograman & Basis Data' : 'Programming & Databases', skills: profile.skills.programming },
+  { title: isId ? 'Teknologi Web' : 'Web Technologies', skills: profile.skills.webTech },
+  { title: isId ? 'AI & Machine Learning' : 'AI & Machine Learning', skills: profile.skills.aiMl },
+  { title: isId ? 'Keamanan & Infrastruktur' : 'Security & Infrastructure', skills: profile.skills.securityCloud },
+  { title: isId ? 'Alat Khusus' : 'Specialized Tools', skills: profile.skills.tools },
+  { title: isId ? 'Keterampilan Non-Teknis' : 'Soft Skills', skills: profile.skills.soft },
 ];
 ---
 
-<section id="skills" class="section bg-cream-50 dark:bg-slate-900/50">
+<section id="skills" class="section">
   <div class="container-custom">
     <div class="text-center mb-10">
-      <h2 class="inline-block relative dark:text-white">
+      <h2 class="inline-block relative text-sage-900 dark:text-white">
         {isId ? 'Keahlian' : 'Skills & Expertise'}
-        <span
-          class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-600/50 rounded-full"
-        ></span>
+        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-500/50 rounded-full"></span>
       </h2>
-      <p class="text-charcoal/70 dark:text-white max-w-2xl mx-auto mt-4 text-sm">
+      <p class="text-charcoal/70 dark:text-slate-400 max-w-2xl mx-auto mt-4 text-sm">
         {isId ? 'Perangkat lengkap saya untuk pengembangan web modern dan kepemimpinan digital.' : 'A comprehensive toolkit for modern web development and digital leadership.'}
       </p>
     </div>
 
-    <!-- Mobile: Horizontal Scroll Cards (Categories) -->
-    <div class="md:hidden">
-      <div
-        id="skills-scroll"
-        class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 px-4 hide-scrollbar scroll-smooth touch-pan-x"
-      >
-        {skillCategories.map((category) => (
-          <div class="w-[85vw] min-w-[85vw] shrink-0 snap-center bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm">
-            <h3 class="text-xs font-bold text-sage-900 dark:text-white uppercase tracking-widest border-b border-sage-100 dark:border-sage-700 pb-2.5 mb-3">
-              {category.title}
-            </h3>
-            <div class="flex flex-wrap gap-x-4 gap-y-2">
-              {category.skills.map((skill) => (
-                <span class="text-[12px] text-charcoal/80 dark:text-white font-medium flex items-center gap-2 whitespace-nowrap group">
-                  {skill.icon ? (
-                    <img
-                      src={`https://cdn.simpleicons.org/${skill.icon}`}
-                      alt=""
-                      class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]"
-                    />
-                  ) : (
-                    <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
-                  )}
-                  {skill.name}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- Scroll indicator -->
-      <div class="flex justify-center mt-2">
-        <div class="flex items-center gap-2 text-[10px] text-slate-400 dark:text-white/40 font-medium tracking-wider uppercase">
-          <span>Swipe to see more</span>
-          <div class="w-4 h-6 border border-slate-300 dark:border-slate-600 rounded-full flex justify-center">
-            <div class="w-1 h-1.5 bg-sage-400 dark:bg-sage-500 rounded-full mt-1 animate-bounce" style="animation-direction: alternate;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Desktop: Original 4-Column Grid -->
-    <div class="hidden md:block max-w-6xl mx-auto space-y-12">
-      <!-- Technical Expertise Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 items-start px-4 md:px-0">
-
-        <!-- Programming & Databases -->
-        <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
-              {isId ? 'Pemrograman & Basis Data' : 'Programming & Databases'}
-            </h3>
-          </div>
-          <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
-            {profile.skills.programming.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+    <!-- ========== MOBILE: Simple List Layout ========== -->
+    <div class="md:hidden px-4 space-y-8">
+      {skillCategories.map((category) => (
+        <div>
+          <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-4">
+            {category.title}
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            {category.skills.map((skill) => (
+              <span class="text-[13px] text-charcoal/80 dark:text-slate-300 font-medium flex items-center gap-2">
                 {skill.icon ? (
                   <img
                     src={`https://cdn.simpleicons.org/${skill.icon}`}
                     alt=""
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]"
+                    loading="lazy"
+                    class="w-4 h-4 shrink-0 dark:brightness-90"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
                   />
-                ) : (
-                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
-                )}
+                ) : null}
+                <span class="w-1.5 h-1.5 bg-sage-400 rounded-full shrink-0" style={skill.icon ? 'display:none' : ''} />
                 {skill.name}
               </span>
             ))}
           </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- ========== DESKTOP: Grid Layout ========== -->
+    <div class="hidden md:block max-w-6xl mx-auto">
+
+      <!-- Row 1: 5 Technical Categories -->
+      <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8 mb-10">
+
+        <!-- Programming & Databases -->
+        <div class="min-w-0">
+          <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
+            {isId ? 'Pemrograman & Basis Data' : 'Programming & Databases'}
+          </h3>
+          <ul class="space-y-1.5">
+            {profile.skills.programming.map((skill) => (
+              <li class="text-[12px] text-charcoal/80 dark:text-slate-300 font-medium flex items-center gap-2 hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default">
+                {skill.icon ? (
+                  <img src={`https://cdn.simpleicons.org/${skill.icon}`} alt="" loading="lazy" class="w-3.5 h-3.5 shrink-0 dark:brightness-90" />
+                ) : (
+                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+                )}
+                <span class="truncate">{skill.name}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <!-- Web Technologies -->
-        <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
-              {isId ? 'Teknologi Web' : 'Web Technologies'}
-            </h3>
-          </div>
-          <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
+        <div class="min-w-0">
+          <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
+            {isId ? 'Teknologi Web' : 'Web Technologies'}
+          </h3>
+          <ul class="space-y-1.5">
             {profile.skills.webTech.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+              <li class="text-[12px] text-charcoal/80 dark:text-slate-300 font-medium flex items-center gap-2 hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default">
                 {skill.icon ? (
-                  <img
-                    src={`https://cdn.simpleicons.org/${skill.icon}`}
-                    alt=""
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]"
-                  />
+                  <img src={`https://cdn.simpleicons.org/${skill.icon}`} alt="" loading="lazy" class="w-3.5 h-3.5 shrink-0 dark:brightness-90" />
                 ) : (
-                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
+                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
                 )}
-                {skill.name}
-              </span>
+                <span class="truncate">{skill.name}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+
+        <!-- AI & Machine Learning -->
+        <div class="min-w-0">
+          <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
+            {isId ? 'AI & ML' : 'AI & Machine Learning'}
+          </h3>
+          <ul class="space-y-1.5">
+            {profile.skills.aiMl.map((skill) => (
+              <li class="text-[12px] text-charcoal/80 dark:text-slate-300 font-medium flex items-center gap-2 hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default">
+                {skill.icon ? (
+                  <img src={`https://cdn.simpleicons.org/${skill.icon}`} alt="" loading="lazy" class="w-3.5 h-3.5 shrink-0 dark:brightness-90" />
+                ) : (
+                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+                )}
+                <span class="truncate">{skill.name}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <!-- Security & Infrastructure -->
-        <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
-              {isId ? 'Keamanan & Infrastruktur' : 'Security & Infrastructure'}
-            </h3>
-          </div>
-          <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
+        <div class="min-w-0">
+          <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
+            {isId ? 'Keamanan & Infra' : 'Security & Infra'}
+          </h3>
+          <ul class="space-y-1.5">
             {profile.skills.securityCloud.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+              <li class="text-[12px] text-charcoal/80 dark:text-slate-300 font-medium flex items-center gap-2 hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default">
                 {skill.icon ? (
-                  <img
-                    src={`https://cdn.simpleicons.org/${skill.icon}`}
-                    alt=""
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]"
-                  />
+                  <img src={`https://cdn.simpleicons.org/${skill.icon}`} alt="" loading="lazy" class="w-3.5 h-3.5 shrink-0 dark:brightness-90" />
                 ) : (
-                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
+                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
                 )}
-                {skill.name}
-              </span>
+                <span class="truncate">{skill.name}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
         <!-- Specialized Tools -->
-        <div class="space-y-4 text-center sm:text-left">
-          <div class="flex flex-col items-center sm:items-start border-b border-sage-100 dark:border-sage-800 pb-2.5">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
-              {isId ? 'Alat Khusus' : 'Specialized Tools'}
-            </h3>
-          </div>
-          <div class="grid grid-cols-2 gap-x-6 gap-y-1.5 w-fit mx-auto sm:mx-0 text-left">
+        <div class="min-w-0">
+          <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
+            {isId ? 'Alat Khusus' : 'Specialized Tools'}
+          </h3>
+          <ul class="space-y-1.5">
             {profile.skills.tools.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap group">
+              <li class="text-[12px] text-charcoal/80 dark:text-slate-300 font-medium flex items-center gap-2 hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default">
                 {skill.icon ? (
-                  <img
-                    src={`https://cdn.simpleicons.org/${skill.icon}`}
-                    alt=""
-                    class="w-3.5 h-3.5 object-contain transition-transform group-hover:scale-110 dark:invert-[0.8]"
-                  />
+                  <img src={`https://cdn.simpleicons.org/${skill.icon}`} alt="" loading="lazy" class="w-3.5 h-3.5 shrink-0 dark:brightness-90" />
                 ) : (
-                  <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
+                  <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
                 )}
-                {skill.name}
-              </span>
+                <span class="truncate">{skill.name}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Row 2: Soft Skills -->
+      <div class="pt-6 border-t border-cream-200 dark:border-transparent">
+        <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest text-center mb-4">
+          {isId ? 'Keterampilan Non-Teknis' : 'Soft Skills'}
+        </h3>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          {profile.skills.soft.map((skill) => (
+            <span class="text-[12px] text-charcoal/80 dark:text-slate-300 font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center gap-2">
+              <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+              {skill.name}
+            </span>
+          ))}
         </div>
       </div>
 
-      <!-- Soft Skills (Centered) -->
-      <div class="pt-8 border-t border-cream-200 dark:border-slate-800">
-        <div class="space-y-6 text-center">
-          <div class="flex flex-col items-center border-b border-sage-100 dark:border-sage-800 pb-3 w-fit mx-auto px-12">
-            <h3 class="text-xs md:text-sm font-bold text-sage-900 dark:text-white uppercase tracking-widest">
-              {isId ? 'Keterampilan Non-Teknis' : 'Soft Skills'}
-            </h3>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-6 gap-y-3 w-fit mx-auto">
-            {profile.skills.soft.map((skill) => (
-              <span class="text-[11px] md:text-[13px] text-charcoal/80 dark:text-white font-medium hover:text-sage-700 dark:hover:text-sage-400 transition-colors cursor-default flex items-center justify-start gap-2 whitespace-nowrap">
-                <span class="w-1 h-1 bg-sage-400 dark:bg-sage-500 rounded-full shrink-0" />
-                {skill.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 
 <script is:inline>
   (function() {
     const section = document.getElementById("skills");
     if (!section || window.innerWidth >= 768) return;
-
     let touchStartY = 0;
     let touchStartX = 0;
     let isSwiping = false;
-
     section.addEventListener("touchstart", function(e) {
       touchStartY = e.touches[0].clientY;
       touchStartX = e.touches[0].clientX;
       isSwiping = true;
     }, { passive: true });
-
     section.addEventListener("touchend", function(e) {
       if (!isSwiping) return;
       isSwiping = false;
-
       const touchEndY = e.changedTouches[0].clientY;
       const touchEndX = e.changedTouches[0].clientX;
       const deltaY = touchStartY - touchEndY;
       const deltaX = Math.abs(touchStartX - touchEndX);
-
       if (Math.abs(deltaY) > 80 && Math.abs(deltaY) > deltaX) {
         if (deltaY > 0) {
           const nextSection = section.nextElementSibling;
-          if (nextSection) {
-            nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
+          if (nextSection) nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
         } else if (deltaY < 0) {
           const prevSection = section.previousElementSibling;
-          if (prevSection) {
-            prevSection.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
+          if (prevSection) prevSection.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       }
     }, { passive: true });

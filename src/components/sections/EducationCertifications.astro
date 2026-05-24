@@ -8,45 +8,37 @@ const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
-<section id="education" class="section bg-cream-50 dark:bg-slate-900/50">
+<section id="education" class="section">
   <div class="container-custom">
-
-    <!-- Two-column layout: Education (left) + Certifications (right) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
       <!-- ===== LEFT: EDUCATION ===== -->
       <div class="lg:col-span-4 flex flex-col items-center">
         <div class="text-center mb-6 w-full">
-          <h2 class="inline-block relative dark:text-white">
+          <h2 class="inline-block relative text-sage-900 dark:text-white">
             {isId ? 'Pendidikan' : 'Education'}
-            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"></span>
+            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-500/50 rounded-full"></span>
           </h2>
         </div>
 
-        <!-- Education Card -->
-        <div class="w-full bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm p-5 flex flex-col gap-4 items-center text-center">
-          <!-- Logo -->
+        <div class="w-full bg-white dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-5 flex flex-col gap-4 items-center text-center">
           <div class="shrink-0 w-16 h-16 bg-white dark:bg-slate-700 rounded-xl shadow-sm border border-cream-200 dark:border-slate-600 overflow-hidden p-1">
-            <img
-              src="/president_university.jpeg"
-              alt="President University"
-              class="w-full h-full object-cover rounded-xl"
-            />
+            <img src="/president_university.jpeg" alt="President University" class="w-full h-full object-cover rounded-xl" />
           </div>
 
           <div class="flex-1 space-y-1.5 text-center w-full">
             <h3 class="font-bold text-slate-900 dark:text-white text-base leading-tight">
               {profile.education.institution}
             </h3>
-            <div class="text-sm text-sage-600 dark:text-white font-serif font-semibold leading-snug">
+            <div class="text-sm text-sage-600 dark:text-sage-400 font-serif font-semibold leading-snug">
               {profile.education.degree}
             </div>
             <div class="text-[11px] text-slate-400 font-medium uppercase tracking-wider">
               {profile.education.duration} · {profile.education.location}
             </div>
-            <div class="pt-3 mt-2 border-t border-slate-100 dark:border-slate-700">
-              <p class="text-xs text-slate-500 dark:text-white leading-relaxed">
-                <span class="font-bold text-sage-700 dark:text-white">Fokus: </span>
+            <div class="pt-3 mt-2 border-t border-slate-100 dark:border-transparent">
+              <p class="text-xs text-slate-500 dark:text-slate-300 leading-relaxed">
+                <span class="font-bold text-sage-700 dark:text-sage-400">Fokus: </span>
                 {profile.education.focus}
               </p>
             </div>
@@ -57,112 +49,51 @@ const profile = isId ? profileId : profileEn;
       <!-- ===== RIGHT: CERTIFICATIONS ===== -->
       <div class="lg:col-span-8 flex flex-col items-center lg:items-start">
         <div class="text-center lg:text-left mb-6 w-full">
-          <h2 class="inline-block relative dark:text-white">
+          <h2 class="inline-block relative text-sage-900 dark:text-white">
             {isId ? 'Sertifikasi' : 'Certifications'}
-            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-600/50 rounded-full"></span>
+            <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-500/50 rounded-full"></span>
           </h2>
           <p class="text-slate-400 text-xs mt-3 font-medium uppercase tracking-widest">
             {isId ? 'Sertifikasi profesional yang memvalidasi keahlian.' : 'Professional certifications validating technical expertise.'}
           </p>
         </div>
 
-        <!-- Horizontally scrollable certification cards -->
         <div class="w-full flex gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide scroll-pl-0">
-          {
-            profile.certifications.map((cert) => (
-              <div
-                class="
-                  bg-white
-                  dark:bg-slate-800
-                  rounded-2xl
-                  border border-slate-100
-                  dark:border-slate-700
-                  shadow-sm
-                  hover:shadow-lg
-                  transition-all duration-300
-                  overflow-hidden
-                  min-w-[220px] max-w-[260px]
-                  snap-start
-                  shrink-0
-                "
-              >
-                <!-- IMAGE -->
-                <div class="w-full aspect-video overflow-hidden">
-                  {cert.image ? (
-                    <img
-                      src={cert.image}
-                      alt={cert.name}
-                      class="
-                        w-full h-full
-                        object-cover
-                        transition-transform duration-500
-                        hover:scale-110
-                        cursor-pointer
-                      "
-                      loading="lazy"
-                      onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`}
-                    />
-                  ) : (
-                    <div class="w-full h-full bg-sage-50 dark:bg-slate-700 flex items-center justify-center">
-                      <Award class="w-10 h-10 text-sage-300 dark:text-white" />
-                    </div>
-                  )}
+          {profile.certifications.map((cert) => (
+            <div class="bg-white dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden min-w-[220px] max-w-[260px] snap-start shrink-0">
+              <div class="w-full aspect-video overflow-hidden">
+                {cert.image ? (
+                  <img src={cert.image} alt={cert.name} class="w-full h-full object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" loading="lazy" onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`} />
+                ) : (
+                  <div class="w-full h-full bg-sage-50 dark:bg-sage-900/40 flex items-center justify-center">
+                    <Award class="w-10 h-10 text-sage-300 dark:text-sage-400" />
+                  </div>
+                )}
+              </div>
+
+              <div class="p-4 space-y-1.5">
+                <h3 class="font-bold text-slate-900 dark:text-white leading-tight text-xs">{cert.name}</h3>
+                <p class="text-[10px] font-bold text-sage-600 dark:text-sage-400 uppercase tracking-wider">{cert.issuer}</p>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 italic leading-relaxed line-clamp-3">{cert.description}</p>
+
+                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 dark:border-transparent mt-2">
+                  <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">{cert.date}</p>
+                  {cert.expiry && <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">Exp: {cert.expiry}</p>}
                 </div>
 
-                <!-- CONTENT -->
-                <div class="p-4 space-y-1.5">
-                  <h3 class="font-bold text-slate-900 dark:text-white leading-tight text-xs">
-                    {cert.name}
-                  </h3>
-
-                  <p class="text-[10px] font-bold text-sage-600 dark:text-white uppercase tracking-wider">
-                    {cert.issuer}
-                  </p>
-
-                  <p class="text-[10px] text-slate-500 dark:text-white italic leading-relaxed line-clamp-3">
-                    {cert.description}
-                  </p>
-
-                  <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 dark:border-slate-700 mt-2">
-                    <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">
-                      {cert.date}
-                    </p>
-                    {cert.expiry && (
-                       <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">
-                        Exp: {cert.expiry}
-                      </p>
-                    )}
-                  </div>
-
-                  {cert.id && (
+                {cert.id && (
                   <div class="pt-1">
-                    <span
-                      class="
-                        inline-flex items-center gap-1
-                        text-[9px] font-bold
-                        text-sage-700
-                        dark:text-white
-                        bg-sage-50
-                        dark:bg-sage-900/30
-                        border border-sage-100
-                        dark:border-sage-800
-                        px-2 py-0.5
-                        rounded-full
-                        uppercase tracking-widest
-                      "
-                    >
+                    <span class="inline-flex items-center gap-1 text-[9px] font-bold text-sage-700 dark:text-sage-300 bg-sage-50 dark:bg-sage-900/40 border border-sage-100 dark:border-slate-700/50 px-2 py-0.5 rounded-full uppercase tracking-widest">
                       <CheckCircle class="w-2.5 h-2.5" />
                       {cert.id}
                     </span>
                   </div>
-                  )}
-                </div>
+                )}
               </div>
-            ))
-          }
+            </div>
+          ))}
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -170,11 +101,6 @@ const profile = isId ? profileId : profileEn;
 <ImageModal id="cert-modal" />
 
 <style>
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 </style>

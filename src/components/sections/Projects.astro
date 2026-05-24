@@ -2,45 +2,44 @@
 import { profile as profileEn } from '../../data/profile';
 import { profile as profileId } from '../../data/profile_id';
 import { ExternalLink, Github } from 'lucide-astro';
+import ProjectDetailModal from '../ProjectDetailModal.astro';
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
-<section id="projects" class="section bg-white dark:bg-[#0f172a]">
+<section id="projects" class="section">
   <div class="container-custom">
     <div class="text-center mb-10">
-      <h2 class="inline-block relative dark:text-white">
+      <h2 class="inline-block relative text-sage-900 dark:text-white">
         {isId ? 'Proyek Unggulan' : 'Featured Projects'}
-        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-600 rounded-full"></span>
+        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-500/50 rounded-full"></span>
       </h2>
-      <p class="text-charcoal/70 dark:text-white max-w-2xl mx-auto mt-2 text-sm">
+      <p class="text-charcoal/70 dark:text-slate-400 max-w-2xl mx-auto mt-2 text-sm">
         {isId ? 'Aplikasi dunia nyata yang memberikan nilai nyata kepada pengguna dalam lingkungan produksi.' : 'Real-world applications delivering value to users in production environments.'}
       </p>
     </div>
 
-    <!-- Unified Projects Grid (Slider on Mobile) -->
     <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar scroll-smooth touch-pan-x">
-      {profile.projects.map((project) => (
-        <article class="group relative bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm md:hover:-translate-y-1 w-[85vw] shrink-0 snap-center md:w-auto md:shrink md:snap-none h-auto md:h-full">
-          <!-- Status Badge -->
+      {profile.projects.map((project) => {
+        const projectJson = JSON.stringify(project).replace(/'/g, "\\'");
+        return (
+        <article class="group relative bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-transparent overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm md:hover:-translate-y-1 w-[85vw] shrink-0 snap-center md:w-auto md:shrink md:snap-none h-auto md:h-full cursor-pointer" onclick={`openProjectModal('project-detail-modal', ${projectJson})`}>
           <div class="absolute top-8 right-3 z-20">
             <span class="px-2.5 py-0.5 bg-slate-950 text-white text-[9px] font-bold uppercase tracking-widest rounded-full shadow-lg border border-white/10">
               {project.status || 'Verified'}
             </span>
           </div>
 
-          <!-- Project Content -->
           <div class="h-full flex flex-col">
             {project.image && (
               <div class="relative w-full">
-                <!-- Browser Header Mockup -->
-                <div class="w-full h-5 bg-slate-100 border-b border-slate-200 flex items-center gap-1 px-3">
+                <div class="w-full h-5 bg-slate-100 dark:bg-slate-700 border-b border-slate-200 dark:border-transparent flex items-center gap-1 px-3">
                   <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
                   <div class="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
                   <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
                 </div>
-                <div class="relative h-40 md:h-40 flex-shrink-0 overflow-hidden group-hover:opacity-95 transition-opacity bg-slate-50">
+                <div class="relative h-40 md:h-40 flex-shrink-0 overflow-hidden group-hover:opacity-95 transition-opacity bg-slate-50 dark:bg-slate-700">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -52,15 +51,14 @@ const profile = isId ? profileId : profileEn;
                 </div>
               </div>
             )}
-            
-            <!-- Card body -->
-            <div class="bg-white dark:bg-slate-800 border-x border-b border-slate-100 dark:border-slate-700 rounded-b-xl p-4 md:p-5 flex-1 flex flex-col items-start min-h-[max-content] pb-6">
+
+            <div class="bg-white dark:bg-slate-800/60 border-x border-b border-slate-100 dark:border-transparent rounded-b-xl p-4 md:p-5 flex-1 flex flex-col items-start min-h-[max-content] pb-6">
               <div class="flex flex-wrap items-center gap-2 mb-2 w-full">
-                <span class={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${project.status === "Production" ? "bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800" : "bg-sage-50 text-sage-600 border border-sage-100 dark:bg-sage-900/30 dark:text-white dark:border-sage-800"}`}>
+                <span class={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${project.status === "Production" ? "bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-transparent" : "bg-sage-50 text-sage-600 border border-sage-100 dark:bg-sage-900/40 dark:text-sage-300 dark:border-transparent"}`}>
                   {project.status === "Production" && isId ? "Produksi" : project.status}
                 </span>
                 {project.featured && (
-                  <span class="text-[10px] uppercase tracking-widest font-bold bg-amber-50 text-amber-600 border border-amber-100 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800 px-2 py-0.5 rounded-full">
+                  <span class="text-[10px] uppercase tracking-widest font-bold bg-amber-50 text-amber-600 border border-amber-100 dark:bg-amber-900/40 dark:text-emerald-400 dark:border-transparent px-2 py-0.5 rounded-full">
                     {isId ? 'Andalan' : 'Featured'}
                   </span>
                 )}
@@ -69,133 +67,38 @@ const profile = isId ? profileId : profileEn;
               <h3 class="text-lg md:text-xl font-bold text-slate-800 dark:text-white mb-1 leading-tight group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
                 {project.title}
               </h3>
-              
-              <div class="text-xs font-semibold text-sage-600 dark:text-white mb-2">{project.role}</div>
 
-              <p class="text-charcoal/70 dark:text-white text-[13px] leading-relaxed mb-4 flex-1 line-clamp-3">
+              <div class="text-xs font-semibold text-sage-600 dark:text-sage-300 mb-2">{project.role}</div>
+
+              <p class="text-charcoal/70 dark:text-slate-300 text-[13px] leading-relaxed mb-4 flex-1 line-clamp-3">
                 {project.description}
               </p>
 
               <div class="space-y-4 mt-auto w-full">
-                <!-- Tech Stack -->
                 <div class="flex flex-wrap gap-1.5 w-full">
                   {project.techStack.map((tech) => (
-                    <span class="px-2 py-1 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-white text-[10px] font-medium border border-slate-100 dark:border-slate-600 rounded">
+                    <span class="px-2 py-1 bg-slate-50 dark:bg-slate-700/60 text-slate-600 dark:text-slate-300 text-[10px] font-medium border border-slate-100 dark:border-transparent rounded">
                       {tech}
                     </span>
                   ))}
                 </div>
-
-                <!-- Links -->
-                <div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-700 w-full">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} live demo`}
-                    class="text-slate-900 dark:text-white hover:text-sage-600 dark:hover:text-sage-400 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5 transition-colors underline decoration-slate-200 dark:decoration-slate-700 underline-offset-4"
-                  >
-                    <ExternalLink class="w-3 h-3" /> Live
-                  </a>
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.title} source code on GitHub`}
-                      class="text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center transition-colors"
-                    >
-                      <Github class="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
               </div>
             </div>
-            
+
+            <div class="h-1 bg-gradient-to-r from-slate-200 via-slate-900 to-slate-200 opacity-20 dark:opacity-0"></div>
           </div>
-          
-          <!-- Decorative bottom gradient -->
-          <div class="h-1 bg-gradient-to-r from-slate-200 via-slate-900 to-slate-200 opacity-20 dark:from-slate-800 dark:via-white dark:to-slate-800"></div>
         </article>
-      ))}
+      )})}
     </div>
 
-    <!-- "View More on GitHub" CTA -->
     <div class="mt-8 md:mt-12 text-center relative z-20">
-      <a href={profile.personalInfo.github} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-sm font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-all shadow-md group">
+      <a href={profile.personalInfo.github} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 dark:bg-slate-700 text-white rounded-full text-sm font-medium hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-md group border border-transparent dark:border-slate-600">
         <Github class="w-4 h-4" />
         <span>{isId ? 'Lihat Semua Proyek di GitHub' : 'View all projects on GitHub'}</span>
         <ExternalLink class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </a>
     </div>
-
-    <!-- Mobile swipe hint -->
-    <div class="md:hidden flex justify-center mt-6">
-      <div class="flex items-center gap-2 text-[10px] text-slate-400 dark:text-white/40 font-medium tracking-wider uppercase">
-        <span>Swipe up to continue</span>
-        <div class="w-4 h-6 border border-slate-300 dark:border-slate-600 rounded-full flex justify-center">
-          <div class="w-1 h-1.5 bg-sage-400 dark:bg-sage-500 rounded-full mt-1 animate-bounce"></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<style>
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .hide-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-</style>
-
-<script is:inline>
-  (function() {
-    // Touch swipe to navigate between sections on mobile
-    const section = document.getElementById("projects");
-    if (!section || window.innerWidth >= 768) return;
-
-    let touchStartY = 0;
-    let touchStartX = 0;
-    let isSwiping = false;
-
-    section.addEventListener("touchstart", function(e) {
-      touchStartY = e.touches[0].clientY;
-      touchStartX = e.touches[0].clientX;
-      isSwiping = true;
-    }, { passive: true });
-
-    section.addEventListener("touchend", function(e) {
-      if (!isSwiping) return;
-      isSwiping = false;
-
-      const touchEndY = e.changedTouches[0].clientY;
-      const touchEndX = e.changedTouches[0].clientX;
-      const deltaY = touchStartY - touchEndY;
-      const deltaX = Math.abs(touchStartX - touchEndX);
-
-      // Only trigger if vertical swipe is dominant (more vertical than horizontal)
-      if (Math.abs(deltaY) > 80 && Math.abs(deltaY) > deltaX) {
-        // Swipe up -> next section
-        if (deltaY > 0) {
-          const nextSection = section.nextElementSibling;
-          if (nextSection) {
-            nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }
-        // Swipe down -> previous section
-        else if (deltaY < 0) {
-          const prevSection = section.previousElementSibling;
-          if (prevSection) {
-            prevSection.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
-        }
-      }
-    }, { passive: true });
-  })();
-</script>
+<ProjectDetailModal id="project-detail-modal" />

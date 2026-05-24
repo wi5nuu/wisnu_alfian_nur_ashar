@@ -1,5 +1,10 @@
-@import "@fontsource/outfit";
-@import "@fontsource/cormorant-garamond";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/600.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/700.css";
 
 @import "tailwindcss";
 
@@ -41,14 +46,27 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  :root {
+    --section-bg: #ffffff;
+  }
+
+  .dark {
+    --section-bg: transparent;
+  }
+
   html {
     scroll-behavior: smooth;
     /* Transition untuk perpindahan tema yang mulus */
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   body {
-    @apply bg-white dark:bg-[#0f172a] text-charcoal dark:text-slate-200 font-sans antialiased transition-colors duration-300 relative;
+    @apply bg-white text-charcoal font-sans antialiased transition-colors duration-300 relative;
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, #1e3a2f 0%, #0f172a 50%, #1a3333 100%) fixed;
+    @apply text-slate-200;
   }
 
   h1 { @apply text-4xl md:text-5xl; }
@@ -68,6 +86,9 @@
 
   .section {
     @apply py-10 md:py-16;
+    background: var(--section-bg);
+    transition: background 0.3s ease;
+    border: none;
   }
 
   .btn {
@@ -84,8 +105,7 @@
   }
 
   .card {
-    /* Border cream-200 sekarang lebih ke abu-abu muda, cocok untuk tema biru */
-    @apply bg-white rounded-xl shadow-sm border border-cream-200 p-6 hover:shadow-md transition-shadow duration-300;
+    @apply bg-white dark:bg-slate-800/60 rounded-xl shadow-sm border border-cream-200 dark:border-transparent p-6 hover:shadow-md transition-shadow duration-300;
   }
 
   .reveal-up {
@@ -100,7 +120,7 @@
   }
 
   .glass-effect {
-    @apply bg-white/70 backdrop-blur-md border border-white/20;
+    @apply bg-white/70 dark:bg-slate-800/40 backdrop-blur-md border border-white/20 dark:border-transparent;
   }
 }
 
@@ -111,6 +131,13 @@
 
 .animate-pulse-soft {
   animation: pulse-soft 2s infinite ease-in-out;
+}
+
+/* ===== SECTION BACKGROUND: Light/Dark adaptive gradient (defined in @layer components .section) ===== */
+
+/* Hero keeps its own gradient always */
+#hero {
+  background: none !important;
 }
 
 /* Custom Scrollbar for Lightweight feel */

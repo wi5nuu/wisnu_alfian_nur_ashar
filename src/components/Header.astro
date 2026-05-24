@@ -1,5 +1,4 @@
 ---
-// Bagian Import tetap sama...
 import { User, Briefcase, FolderKanban, Mail, Sparkles } from "lucide-astro";
 
 const navLinks = [
@@ -13,7 +12,6 @@ const navLinks = [
 const pathname = new URL(Astro.request.url).pathname;
 const isId = pathname.startsWith('/id');
 
-// Helper to construct localized URLs
 const getLocalizedUrl = (path: string, toId: boolean) => {
   const base = toId ? '/id' : '';
   const cleanPath = path.startsWith('/id') ? path.substring(3) : path;
@@ -21,7 +19,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 };
 ---
 
-<header transition:persist class="hidden md:block fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
+<header transition:persist class="hidden md:block fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-100 dark:border-transparent">
   <div class="container-custom flex items-center justify-between h-16">
     <a href={getLocalizedUrl("/", isId)} class="flex items-center gap-1.5">
       <img src="/logo.png" alt="Logo" class="w-6 h-6 object-contain" />
@@ -41,8 +39,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
         );
       })}
       
-      <!-- Theme & Lang Toggles (Desktop) -->
-      <div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-700 pl-6 ml-2">
+      <div class="flex items-center gap-3 border-l border-slate-200 dark:border-transparent pl-6 ml-2">
         <button id="theme-toggle-desktop" class="p-1.5 text-slate-500 hover:text-slate-900 dark:text-white dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all" aria-label="Toggle Theme">
           <svg id="moon-icon-desktop" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
           <svg id="sun-icon-desktop" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
@@ -60,25 +57,25 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
   </div>
 </header>
 
-<div transition:persist class="md:hidden fixed top-2 left-4 right-4 z-50 bg-white/90 dark:bg-slate-950/95 backdrop-blur-md px-4 py-2.5 flex justify-between items-center border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg ring-1 ring-slate-900/5">
-    <a href={getLocalizedUrl("/", isId)} class="flex items-center gap-1.5">
-        <img src="/logo.png" alt="Logo" class="w-6 h-6 object-contain" />
-        <span class="text-[14px] font-bold text-slate-900 dark:text-white tracking-tight">Wisnu Alfian Nur Ashar</span>
+<div transition:persist class="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl px-5 py-3 flex justify-between items-center shadow-[0_2px_15px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+    <a href={getLocalizedUrl("/", isId)} class="flex items-center gap-2">
+        <img src="/logo.png" alt="Logo" class="w-7 h-7 object-contain rounded-lg shadow-sm" />
+        <span class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Wisnu Alfian</span>
     </a>
     
-    <div class="flex items-center gap-2">
-      <button id="lang-toggle-mobile" class="text-[10px] font-bold text-slate-600 dark:text-white px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle-mobile" class="text-[11px] font-bold text-slate-700 dark:text-slate-200 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-transform">
         {isId ? 'ID' : 'EN'}
       </button>
-      <button id="theme-toggle-mobile" class="p-1.5 text-slate-600 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
-        <svg id="moon-icon-mobile" class="w-3.5 h-3.5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-        <svg id="sun-icon-mobile" class="w-3.5 h-3.5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+      <button id="theme-toggle-mobile" class="p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all" aria-label="Toggle Theme">
+        <svg id="moon-icon-mobile" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        <svg id="sun-icon-mobile" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
       </button>
     </div>
 </div>
 
-<div transition:persist class="md:hidden fixed bottom-4 left-0 w-full px-6 z-[100]">
-  <nav class="mx-auto max-w-[360px] bg-white dark:bg-slate-900 shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)] border border-slate-100 dark:border-slate-800 rounded-[2rem] px-2 py-1">
+<div transition:persist class="md:hidden fixed bottom-6 left-6 right-6 z-[100]">
+  <nav class="mx-auto max-w-[380px] bg-white dark:bg-slate-900 shadow-[0_10px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] border border-slate-100 dark:border-slate-800 rounded-[2rem] p-2">
     <div class="flex items-center justify-around">
       {navLinks.map((link) => {
         const isActive = link.href === pathname || (link.href !== '/' && pathname.startsWith(link.href));
@@ -86,8 +83,8 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
         
         if (link.isLogo) {
           return (
-            <a href={getLocalizedUrl("/", isId)} class="relative -translate-y-6 transition-transform active:scale-95" aria-label="Home">
-              <div class="w-14 h-14 bg-white dark:bg-slate-800 rounded-full p-1 shadow-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center">
+            <a href={getLocalizedUrl("/", isId)} class="relative -translate-y-8 transition-transform active:scale-90" aria-label="Home">
+              <div class="w-16 h-16 bg-white dark:bg-slate-800 rounded-full p-1.5 shadow-[0_5px_15px_rgba(0,0,0,0.2)] border border-slate-100 dark:border-slate-700 flex items-center justify-center">
                 <img src="/logo.png" alt="Home" class="w-full h-full object-cover rounded-full" />
               </div>
             </a>
@@ -96,11 +93,11 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 
         if (link.isAI) {
             return (
-                <button id="mobile-ai-trigger" class="flex flex-col items-center py-2 min-w-[50px] transition-transform active:scale-95 cursor-pointer" aria-label="AI Assistant">
+                <button id="mobile-ai-trigger" class="flex flex-col items-center py-2.5 min-w-[55px] transition-transform active:scale-90 cursor-pointer" aria-label="AI Assistant">
                     <div class="text-blue-500">
-                         {LinkIcon && <LinkIcon size={22} strokeWidth={2.5} />}
+                         {LinkIcon && <LinkIcon size={24} strokeWidth={2.5} />}
                     </div>
-                    <span class="text-[9px] mt-1 font-bold text-blue-600 uppercase tracking-wider">
+                    <span class="text-[10px] mt-1 font-bold text-blue-600 uppercase tracking-wider">
                         {link.name}
                     </span>
                 </button>
@@ -108,11 +105,11 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
         }
 
         return (
-          <a href={getLocalizedUrl(link.href, isId)} class="flex flex-col items-center py-2 min-w-[52px] transition-all active:scale-90 group" aria-label={link.name}>
-            <div class={`transition-all duration-300 ${isActive ? "text-slate-950 dark:text-white scale-110" : "text-slate-400 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-300"}`}>
-              {LinkIcon && <LinkIcon size={20} strokeWidth={isActive ? 2.5 : 2} />}
+          <a href={getLocalizedUrl(link.href, isId)} class="flex flex-col items-center py-2.5 min-w-[55px] transition-all active:scale-90 group" aria-label={link.name}>
+            <div class={`transition-all duration-300 ${isActive ? "text-slate-900 dark:text-white scale-110" : "text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300"}`}>
+              {LinkIcon && <LinkIcon size={22} strokeWidth={isActive ? 2.5 : 2} />}
             </div>
-            <span class={`text-[9px] mt-1 font-bold uppercase tracking-widest transition-colors ${isActive ? "text-slate-950 dark:text-white" : "text-slate-400 dark:text-white"}`}>
+            <span class={`text-[10px] mt-1 font-bold uppercase tracking-widest transition-colors ${isActive ? "text-slate-900 dark:text-white" : "text-slate-400 dark:text-slate-500"}`}>
               {isId && link.name === "About" ? "Tentang" : 
                isId && link.name === "Projects" ? "Proyek" : 
                isId && link.name === "Contact" ? "Kontak" : link.name}
@@ -125,7 +122,6 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 </div>
 
 <script>
-  // Theme Toggle Logic
   const setupTheme = () => {
     const themeBtnDesktop = document.getElementById('theme-toggle-desktop');
     const themeBtnMobile = document.getElementById('theme-toggle-mobile');
@@ -155,15 +151,12 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
       updateIcons();
     };
 
-    // Initial setup
     updateIcons();
 
-    // Listeners
     themeBtnDesktop?.addEventListener('click', toggleTheme);
     themeBtnMobile?.addEventListener('click', toggleTheme);
   };
 
-  // Language Toggle Logic
   const setupLang = () => {
     const langBtnDesktop = document.getElementById('lang-toggle-desktop');
     const langBtnMobile = document.getElementById('lang-toggle-mobile');
@@ -174,11 +167,9 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
       let newPath = '';
       
       if (isId) {
-        // Switch ID -> EN
         newPath = currentPath.substring(3);
         if (newPath === '') newPath = '/';
       } else {
-        // Switch EN -> ID
         newPath = '/id' + (currentPath === '/' ? '' : currentPath);
       }
       
@@ -189,7 +180,6 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     langBtnMobile?.addEventListener('click', toggleLang);
   };
 
-  // Run on load and after view transitions
   document.addEventListener('astro:page-load', () => {
     setupTheme();
     setupLang();

@@ -1,42 +1,115 @@
 import type { APIRoute } from 'astro';
+import { profile } from '../../data/profile';
+import { profile as profileId } from '../../data/profile_id';
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // 1. Ambil data dari request
-    const { query, profileData } = await request.json();
+    const { query, lang } = await request.json();
+    const isId = lang === 'id';
+    const profileData = isId ? profileId : profile;
 
-    // 2. Keamanan Token: Mengambil dari environment variable
     const hfToken = import.meta.env.HF_TOKEN || process.env.HF_TOKEN;
 
     if (!hfToken) {
       throw new Error("API Token tidak ditemukan. Pastikan HF_TOKEN sudah diatur di .env atau Vercel.");
     }
 
-    // 3. Konfigurasi Endpoint V1 Router
     const url = "https://router.huggingface.co/v1/chat/completions";
 
-    // 4. Membangun "Kecerdasan" AI (System Prompt)
-    const systemInstruction = `
-  Identitas: Anda adalah 'Shadow of Wisnu', asisten AI yang merepresentasikan kepribadian asli Wisnu Alfian. 
-  
-  Persona & Karakter:
-  1. Professional & Direct: Anda bicara secukupnya dan langsung ke inti pembahasan. Jangan bertele-tele dan pastikan setiap kata informatif.
-  2. Fokus Teknis & Karir: Ketika membahas teknis, skill, atau pekerjaan, Anda sangat serius dan terstruktur. Tunjukkan keahlian Wisnu sebagai Software Engineer.
-  3. Solutif & Sopan: Jika pengguna mencari informasi, berikan data yang jelas, terstruktur, dan mudah dipahami tanpa candaan atau bahasa yang terlalu santai.
-  
-  Data Profil Wisnu: ${JSON.stringify(profileData || {})}
-  
-  Gaya Bahasa:
-  - Gunakan panggilan 'Saya' dan 'Anda' yang sopan namun tetap terasa santai.
-  - Jika ditanya tentang Wisnu, jawablah dengan bangga namun tetap rendah hati.
-  - Jika Anda tidak tahu jawabannya, katakan dengan jujur tapi tawarkan cara untuk menghubunginya secara langsung karena Wisnu menghargai komunikasi yang nyata.
-  
-  Tujuan Utama: Membuat orang yang bertanya merasa terbantu, terhibur, dan terkesan dengan ketenangan serta kecerdasan Wisnu.
-`.trim();
+    // Build comprehensive profile context
+    const projects = profileData.projects.map((p: any) =>
+      `- **${p.title}** (${p.role}): ${p.description} [Tech: ${p.techStack.join(', ')}]`
+    ).join('\n');
 
-    // 5. Eksekusi Request ke Hugging Face
+    const experiences = profileData.experience.map((e: any) =>
+      `- **${e.title}** at ${e.company} (${e.period}): ${e.description}`
+    ).join('\n');
+
+    const education = profileData.education.map((e: any) =>
+      `- **${e.degree}** — ${e.institution} (${e.period})${e.gpa ? ` | GPA: ${e.gpa}` : ''}`
+    ).join('\n');
+
+    const certifications = profileData.certifications.map((c: any) =>
+      `- **${c.name}** — ${c.issuer} (${c.year})`
+    ).join('\n');
+
+    const allSkills = [
+      ...profileData.skills.programming,
+      ...profileData.skills.webTech,
+      ...profileData.skills.aiMl,
+      ...profileData.skills.securityCloud,
+      ...profileData.skills.tools,
+      ...profileData.skills.soft,
+    ].map((s: any) => s.name).join(', ');
+
+    const systemInstruction = isId
+      ? `Kamu adalah "Shadow of Wisnu", asisten AI pribadi Wisnu Alfian Nur Ashar. Kamu menjawab SEMUA pertanyaan TENTANG Wisnu dengan detail, akurat, dan profesional berdasarkan data profil lengkap di bawah ini.
+
+IDENTITAS:
+- Nama: ${profileData.personalInfo.name}
+- Role: ${profileData.personalInfo.role}
+- Tagline: ${profileData.personalInfo.tagline}
+- Email: ${profileData.personalInfo.email}
+- Lokasi: ${profileData.personalInfo.location || 'Bekasi, Indonesia'}
+- Summary: ${profileData.personalInfo.summary}
+
+SKILL LENGKAP: ${allSkills}
+
+PROYEK:
+${projects}
+
+PENGALAMAN:
+${experiences}
+
+PENDIDIKAN:
+${education}
+
+SERTIFIKASI:
+${certifications}
+
+ATURAN:
+1. Jawab HANYA berdasarkan data di atas. Jika tidak ada data, jujur katakan tidak tahu tapi arahkan ke kontak Wisnu.
+2. Gunakan bahasa Indonesia yang profesional namun ramah.
+3. Format jawaban dengan Markdown (bold, list) agar mudah dibaca.
+4. Jika ditanya perbandingan teknologi, berikan analisis teknis yang objektif.
+5. Jika ditanya saran karir/teknikal, berikan rekomendasi berdasarkan pengalaman Wisnu.
+6. Jawab singkat-padat-informatif untuk pertanyaan simpel, detail untuk pertanyaan kompleks.
+7. Selalu akhiri dengan pertanyaan follow-up yang relevan jika memungkinkan.`
+      : `You are "Shadow of Wisnu", the personal AI assistant of Wisnu Alfian Nur Ashar. You answer ALL questions ABOUT Wisnu in detail, accurately, and professionally based on the complete profile data below.
+
+IDENTITY:
+- Name: ${profileData.personalInfo.name}
+- Role: ${profileData.personalInfo.role}
+- Tagline: ${profileData.personalInfo.tagline}
+- Email: ${profileData.personalInfo.email}
+- Location: ${profileData.personalInfo.location || 'Bekasi, Indonesia'}
+- Summary: ${profileData.personalInfo.summary}
+
+FULL SKILLS: ${allSkills}
+
+PROJECTS:
+${projects}
+
+EXPERIENCE:
+${experiences}
+
+EDUCATION:
+${education}
+
+CERTIFICATIONS:
+${certifications}
+
+RULES:
+1. Answer ONLY based on the data above. If data is unavailable, honestly say so but direct them to contact Wisnu.
+2. Use professional yet friendly English.
+3. Format answers with Markdown (bold, lists) for readability.
+4. If asked for tech comparisons, provide objective technical analysis.
+5. If asked for career/technical advice, give recommendations based on Wisnu's experience.
+6. Keep answers concise-informative for simple questions, detailed for complex ones.
+7. Always end with a relevant follow-up question when appropriate.`;
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -49,22 +122,20 @@ export const POST: APIRoute = async ({ request }) => {
           { role: "system", content: systemInstruction },
           { role: "user", content: query }
         ],
-        max_tokens: 400, // Sedikit lebih panjang untuk jawaban yang lebih lengkap
-        temperature: 0.7, // Agar jawaban lebih natural dan tidak kaku
+        max_tokens: 512,
+        temperature: 0.7,
       }),
     });
 
     const data = await response.json();
 
-    // 6. Logging untuk Debugging di Terminal (Hanya muncul di server)
     if (response.ok) {
-      console.log(`✅ AI Response Success for query: "${query.substring(0, 20)}..."`);
+      console.log(`✅ AI Response Success for query: "${query.substring(0, 30)}..."`);
     } else {
       console.error("❌ Hugging Face Error:", data);
       return new Response(JSON.stringify(data), { status: response.status });
     }
 
-    // 7. Mengembalikan respon JSON ke Client
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: {
