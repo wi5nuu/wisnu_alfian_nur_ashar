@@ -124,179 +124,199 @@ import { X, Send } from "lucide-astro";
 <script>
     import { AIService } from "../utils/AIService";
 
-    const desktopToggle = document.getElementById("chat-toggle-desktop");
-    const closeBtn = document.getElementById("chat-close");
-    const windowEl = document.getElementById("chat-window");
-    const form = document.getElementById("chat-form") as HTMLFormElement;
-    const input = document.getElementById("chat-input") as HTMLInputElement;
-    const messagesContainer = document.getElementById("chat-messages");
+    const initChatBot = () => {
+        const desktopToggle = document.getElementById("chat-toggle-desktop");
+        const closeBtn = document.getElementById("chat-close");
+        const windowEl = document.getElementById("chat-window");
+        const form = document.getElementById("chat-form") as HTMLFormElement;
+        const input = document.getElementById("chat-input") as HTMLInputElement;
+        const messagesContainer = document.getElementById("chat-messages");
 
-    let isOpen = false;
-
-    function toggleChat() {
-        isOpen = !isOpen;
-        if (isOpen) {
-            windowEl?.classList.remove(
-                "scale-95",
-                "opacity-0",
-                "pointer-events-none",
-            );
-            windowEl?.classList.add(
-                "scale-100",
-                "opacity-100",
-                "pointer-events-auto",
-            );
-            setTimeout(() => input?.focus(), 300);
-        } else {
-            windowEl?.classList.add(
-                "scale-95",
-                "opacity-0",
-                "pointer-events-none",
-            );
-            windowEl?.classList.remove(
-                "scale-100",
-                "opacity-100",
-                "pointer-events-auto",
-            );
-        }
-    }
-
-    desktopToggle?.addEventListener("click", toggleChat);
-
-    // Event Delegation untuk Mobile Trigger
-    document.body.addEventListener("click", function (e) {
-        if ((e.target as Element).closest("#mobile-ai-trigger")) {
-            e.preventDefault();
-            toggleChat();
-        }
-    });
-
-    closeBtn?.addEventListener("click", toggleChat);
-
-    form?.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const query = input.value.trim();
-        if (!query) return;
-
-        addMessage(query, "user");
-        input.value = "";
-        const typingId = showTypingIndicator();
-        input.disabled = true;
-
-        try {
-            // Get response from service
-            const response = await AIService.getResponse(query);
-
-            // Professional 3-second delay
-            setTimeout(() => {
-                if (typingId) removeTypingIndicator(typingId);
-                addMessage(response, "ai");
-                input.disabled = false;
-                input.focus();
-            }, 3000);
-        } catch (error) {
-            console.error("AI Error:", error);
-            if (typingId) removeTypingIndicator(typingId);
-            addMessage("Maaf, terjadi kesalahan. Coba lagi nanti.", "ai");
-            input.disabled = false;
-        }
-    });
-
-    function addMessage(text: string, sender: "user" | "ai") {
-        if (!messagesContainer) return;
-
-        // Extract suggestions [[Suggestion]]
-        const suggestions: string[] = [];
-        const cleanText = text.replace(/\[\[(.*?)\]\]/g, (match, p1) => {
-            suggestions.push(p1);
-            return "";
-        });
-
-        const div = document.createElement("div");
-        const isAi = sender === "ai";
-        div.className = `flex gap-3 ${isAi ? "animate-reveal-up" : "flex-row-reverse"}`;
-
-        // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
-        const iconHtml = isAi
-            ? `<img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />`
-            : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">You</div>`;
-
-        const bubbleClass = isAi
-            ? "bg-white border border-slate-100 text-slate-600 rounded-tl-sm"
-            : "bg-slate-900 text-white rounded-tr-sm shadow-indigo-500/10";
-
-        // Security Patch: Simple escaping + Markdown-lite rendering
-        const escapeHtml = (unsafe: string) => {
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+        // Clean up mobile trigger listener if it was previously added
+        const handleMobileTrigger = (e: MouseEvent) => {
+            if ((e.target as Element).closest("#mobile-ai-trigger")) {
+                e.preventDefault();
+                toggleChat();
+            }
         };
+        document.body.removeEventListener("click", (window as any)._mobileTriggerHandler);
+        (window as any)._mobileTriggerHandler = handleMobileTrigger;
+        document.body.addEventListener("click", handleMobileTrigger);
 
-        const renderMessage = (content: string) => {
-            let escaped = escapeHtml(content);
-            // Support Bold (**text**)
-            escaped = escaped.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-            // Support Line Breaks
-            return escaped.replace(/\n/g, "<br>");
-        };
+        let isOpen = false;
 
-        div.innerHTML = `
-             ${iconHtml}
-             <div class="p-3 rounded-2xl shadow-sm max-w-[85%] text-[13px] leading-relaxed ${bubbleClass}">
-               ${renderMessage(cleanText.trim())}
-             </div>
-           `;
-        messagesContainer.appendChild(div);
+        function toggleChat() {
+            isOpen = !isOpen;
+            if (isOpen) {
+                windowEl?.classList.remove(
+                    "scale-95",
+                    "opacity-0",
+                    "pointer-events-none",
+                );
+                windowEl?.classList.add(
+                    "scale-100",
+                    "opacity-100",
+                    "pointer-events-auto",
+                );
+                setTimeout(() => input?.focus(), 300);
+            } else {
+                windowEl?.classList.add(
+                    "scale-95",
+                    "opacity-0",
+                    "pointer-events-none",
+                );
+                windowEl?.classList.remove(
+                    "scale-100",
+                    "opacity-100",
+                    "pointer-events-auto",
+                );
+            }
+        }
 
-        // Render Suggestions as clickable chips
-        if (isAi && suggestions.length > 0) {
-            const suggestionDiv = document.createElement("div");
-            suggestionDiv.className =
-                "flex flex-wrap gap-2 mt-2 ml-11 mb-2 animate-reveal-up delay-300";
+        if (desktopToggle) {
+            desktopToggle.onclick = toggleChat;
+        }
 
-            suggestions.forEach((s) => {
-                const btn = document.createElement("button");
-                btn.className =
-                    "px-3 py-1.5 bg-white border border-slate-200 rounded-full text-[11px] text-slate-500 hover:text-slate-900 hover:border-slate-900 transition-all active:scale-95 shadow-sm";
-                btn.innerHTML = s;
-                btn.onclick = () => {
+        if (closeBtn) {
+            closeBtn.onclick = toggleChat;
+        }
+
+        const handleQuerySubmit = async (query: string) => {
+            if (!query || !input || !messagesContainer) return;
+
+            addMessage(query, "user");
+            input.value = "";
+            const typingId = showTypingIndicator();
+            input.disabled = true;
+
+            try {
+                // Get response from service
+                const response = await AIService.getResponse(query);
+
+                // Professional 3-second delay
+                setTimeout(() => {
+                    if (typingId) removeTypingIndicator(typingId);
+                    addMessage(response, "ai");
                     if (input) {
-                        input.value = s;
-                        form?.dispatchEvent(new Event("submit"));
+                        input.disabled = false;
+                        input.focus();
                     }
-                };
-                suggestionDiv.appendChild(btn);
-            });
-            messagesContainer.appendChild(suggestionDiv);
+                }, 3000);
+            } catch (error) {
+                console.error("AI Error:", error);
+                if (typingId) removeTypingIndicator(typingId);
+                addMessage("Maaf, terjadi kesalahan. Coba lagi nanti.", "ai");
+                if (input) input.disabled = false;
+            }
+        };
+
+        if (form) {
+            form.onsubmit = (e) => {
+                e.preventDefault();
+                if (input) {
+                    handleQuerySubmit(input.value.trim());
+                }
+            };
         }
 
-        if (messagesContainer)
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
+        function addMessage(text: string, sender: "user" | "ai") {
+            if (!messagesContainer) return;
 
-    function showTypingIndicator() {
-        if (!messagesContainer) return;
-        const id = "typing-" + Date.now();
-        const div = document.createElement("div");
-        div.id = id;
-        div.className = "flex gap-3";
-        // Menggunakan IMG tag untuk indikator typing juga
-        div.innerHTML = `
-             <img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />
-             <div class="bg-white p-3 rounded-2xl flex gap-1 items-center h-10 border border-slate-100 shadow-sm">
-               <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
-               <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-75"></span>
-               <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-150"></span>
-             </div>`;
-        messagesContainer.appendChild(div);
-        if (messagesContainer)
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        return id;
-    }
-    function removeTypingIndicator(id: string) {
-        document.getElementById(id)?.remove();
-    }
+            // Extract suggestions [[Suggestion]]
+            const suggestions: string[] = [];
+            const cleanText = text.replace(/\[\[(.*?)\]\]/g, (match, p1) => {
+                suggestions.push(p1);
+                return "";
+            });
+
+            const div = document.createElement("div");
+            const isAi = sender === "ai";
+            div.className = `flex gap-3 ${isAi ? "animate-reveal-up" : "flex-row-reverse"}`;
+
+            // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
+            const iconHtml = isAi
+                ? `<img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />`
+                : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">You</div>`;
+
+            const bubbleClass = isAi
+                ? "bg-white border border-slate-100 text-slate-600 rounded-tl-sm"
+                : "bg-slate-900 text-white rounded-tr-sm shadow-indigo-500/10";
+
+            // Security Patch: Simple escaping + Markdown-lite rendering
+            const escapeHtml = (unsafe: string) => {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            };
+
+            const renderMessage = (content: string) => {
+                let escaped = escapeHtml(content);
+                // Support Bold (**text**)
+                escaped = escaped.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+                // Support Line Breaks
+                return escaped.replace(/\n/g, "<br>");
+            };
+
+            div.innerHTML = `
+                 ${iconHtml}
+                 <div class="p-3 rounded-2xl shadow-sm max-w-[85%] text-[13px] leading-relaxed ${bubbleClass}">
+                   ${renderMessage(cleanText.trim())}
+                 </div>
+               `;
+            messagesContainer.appendChild(div);
+
+            // Render Suggestions as clickable chips
+            if (isAi && suggestions.length > 0) {
+                const suggestionDiv = document.createElement("div");
+                suggestionDiv.className =
+                    "flex flex-wrap gap-2 mt-2 ml-11 mb-2 animate-reveal-up delay-300";
+
+                suggestions.forEach((s) => {
+                    const btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.className =
+                        "px-3 py-1.5 bg-white border border-slate-200 rounded-full text-[11px] text-slate-500 hover:text-slate-900 hover:border-slate-900 transition-all active:scale-95 shadow-sm";
+                    btn.innerHTML = s;
+                    btn.onclick = () => {
+                        handleQuerySubmit(s);
+                    };
+                    suggestionDiv.appendChild(btn);
+                });
+                messagesContainer.appendChild(suggestionDiv);
+            }
+
+            if (messagesContainer)
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            if (!messagesContainer) return null;
+            const id = "typing-" + Date.now();
+            const div = document.createElement("div");
+            div.id = id;
+            div.className = "flex gap-3";
+            // Menggunakan IMG tag untuk indikator typing juga
+            div.innerHTML = `
+                 <img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />
+                 <div class="bg-white p-3 rounded-2xl flex gap-1 items-center h-10 border border-slate-100 shadow-sm">
+                   <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+                   <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-75"></span>
+                   <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-150"></span>
+                 </div>`;
+            messagesContainer.appendChild(div);
+            if (messagesContainer)
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return id;
+        }
+        function removeTypingIndicator(id: string) {
+            document.getElementById(id)?.remove();
+        }
+    };
+
+    // Initialize on first load and subsequent view transition page loads
+    initChatBot();
+    document.addEventListener("astro:page-load", initChatBot);
 </script>
