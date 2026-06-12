@@ -38,7 +38,7 @@ const description = profile.personalInfo.summary;
 
 	let observer = null;
 
-	document.addEventListener("astro:page-load", () => {
+	const initObserver = () => {
 		if (!observer) {
 			observer = new IntersectionObserver((entries) => {
 				entries.forEach((entry) => {
@@ -49,9 +49,13 @@ const description = profile.personalInfo.summary;
 			}, observerOptions);
 		}
 
-		const revealElements = document.querySelectorAll(".reveal-up");
+		const revealElements = document.querySelectorAll(
+			".reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom"
+		);
 		revealElements.forEach((el) => observer.observe(el));
-	});
+	};
+
+	document.addEventListener("astro:page-load", initObserver);
 
 	document.addEventListener("astro:before-swap", () => {
 		if (observer) {

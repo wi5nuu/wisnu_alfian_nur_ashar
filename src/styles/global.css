@@ -69,10 +69,10 @@
     @apply text-slate-200;
   }
 
-  h1 { @apply text-4xl md:text-5xl; }
-  h2 { @apply text-2xl md:text-3xl font-serif font-bold text-sage-900 mb-4; }
-  h3 { @apply text-xl md:text-2xl font-bold text-sage-800; }
-  h4 { @apply text-lg md:text-xl font-bold text-sage-800; }
+  h1 { @apply text-4xl sm:text-5xl md:text-6xl; }
+  h2 { @apply text-3xl sm:text-4xl font-serif font-bold text-sage-900 mb-4; }
+  h3 { @apply text-2xl sm:text-3xl font-bold text-sage-800; }
+  h4 { @apply text-xl sm:text-2xl font-bold text-sage-800; }
 
   p {
     @apply leading-snug text-charcoal/80 text-[15px] md:text-base;
@@ -108,16 +108,53 @@
     @apply bg-white dark:bg-slate-800/60 rounded-xl shadow-sm border border-cream-200 dark:border-transparent p-6 hover:shadow-md transition-shadow duration-300;
   }
 
+  /* --- SMOOTH SCROLL (PPT-LIKE) ANIMATIONS --- */
   .reveal-up {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .reveal-up.active {
-    opacity: 1;
-    transform: translateY(0);
+  .reveal-down {
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-zoom {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Active State for all reveals */
+  .reveal-up.active, 
+  .reveal-down.active,
+  .reveal-left.active, 
+  .reveal-right.active, 
+  .reveal-zoom.active {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+
+  /* Delays for staggered animations */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+  .delay-500 { transition-delay: 500ms; }
 
   .glass-effect {
     @apply bg-white/70 dark:bg-slate-800/40 backdrop-blur-md border border-white/20 dark:border-transparent;
@@ -140,15 +177,33 @@
   background: none !important;
 }
 
-/* Custom Scrollbar for Lightweight feel */
-::-webkit-scrollbar {
-  width: 6px;
+/* Custom Scrollbar for Lightweight feel (Desktop only to prevent issues on mobile Android/iOS) */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sage-200 rounded-full hover:bg-sage-300 transition-colors;
+  }
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
+/* Global Utility to completely hide scrollbars on specific elements */
+.hide-scrollbar::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-sage-200 rounded-full hover:bg-sage-300 transition-colors;
+.hide-scrollbar,
+.scrollbar-hide {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+  -webkit-overflow-scrolling: touch;  /* Smooth scroll on iOS */
 }
