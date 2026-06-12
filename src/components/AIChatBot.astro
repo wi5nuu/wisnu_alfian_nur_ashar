@@ -79,7 +79,7 @@ import { X, Send } from "lucide-astro";
 
         <div
             id="chat-messages"
-            class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/30 h-[350px] scroll-smooth"
+            class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/30 h-[350px] scroll-smooth text-slate-900"
         >
             <div class="flex gap-3 animate-fade-in">
                 <img
@@ -90,7 +90,7 @@ import { X, Send } from "lucide-astro";
                     class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm"
                 />
                 <div
-                    class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-slate-100 text-sm text-slate-600 leading-relaxed"
+                    class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-slate-100 text-sm text-slate-800 leading-relaxed"
                 >
                     Hi! I'm Wisnu's <strong>International Career Coach</strong>.
                     Ask me about his <strong>skills</strong>, <strong
@@ -108,7 +108,7 @@ import { X, Send } from "lucide-astro";
                 type="text"
                 id="chat-input"
                 placeholder="Ask about careers, projects..."
-                class="flex-1 bg-slate-100/50 border-none rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-slate-900/5 focus:outline-none placeholder:text-slate-400 transition-all"
+                class="flex-1 bg-slate-100 border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:ring-2 focus:ring-slate-900/5 focus:outline-none placeholder:text-slate-500 transition-all"
                 autocomplete="off"
             />
             <button
@@ -239,7 +239,7 @@ import { X, Send } from "lucide-astro";
                 : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">You</div>`;
 
             const bubbleClass = isAi
-                ? "bg-white border border-slate-100 text-slate-600 rounded-tl-sm"
+                ? "bg-white border border-slate-100 text-slate-800 rounded-tl-sm"
                 : "bg-slate-900 text-white rounded-tr-sm shadow-indigo-500/10";
 
             // Security Patch: Simple escaping + Markdown-lite rendering
