@@ -190,6 +190,17 @@ export const profile: Profile = {
     ],
     projects: [
         {
+            title: "SENTINEL-X",
+            role: "Full-Stack Architect",
+            status: "Proof of Concept",
+            featured: true,
+            github: "https://github.com/wi5nuu/SENTINEL-X-X-Domain-Threat-Fusion-Platform",
+            link: "https://github.com/wi5nuu/SENTINEL-X-X-Domain-Threat-Fusion-Platform",
+            description: "Multi-Domain Threat Intelligence & Fusion Platform. An integrated simulation system for situational awareness, AI-based correlation with Multi-Modal architecture, and real-time automated incident response across various domain sources (Aviation, Maritime, Cyber, Space, Seismic, RF/SIGINT).",
+            techStack: ["FastAPI", "React", "PyTorch", "Kafka", "TimescaleDB", "Blockchain", "Docker"],
+            image: "/projects/sentinelx.png"
+        },
+        {
             title: "ColonyAI",
             role: "Product Owner & AI Engineer",
             status: "Production",
