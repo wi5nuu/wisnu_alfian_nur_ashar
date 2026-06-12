@@ -45,7 +45,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
           <svg id="sun-icon-desktop" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
         </button>
         
-        <button id="lang-toggle-desktop" class="text-xs font-bold text-slate-600 dark:text-white hover:text-black dark:hover:text-white px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 transition-colors">
+        <button id="lang-toggle-desktop" class="text-xs font-bold text-slate-600 dark:text-white hover:text-black dark:hover:text-white px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 transition-colors" aria-label="Ganti Bahasa">
           {isId ? 'ID' : 'EN'}
         </button>
       </div>
@@ -64,10 +64,10 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     </a>
     
     <div class="flex items-center gap-3">
-      <button id="lang-toggle-mobile" class="text-[11px] font-bold text-slate-700 dark:text-slate-200 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-transform">
+      <button id="lang-toggle-mobile" class="text-[11px] font-bold text-slate-700 dark:text-slate-200 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-transform" aria-label="Ganti Bahasa">
         {isId ? 'ID' : 'EN'}
       </button>
-      <button id="theme-toggle-mobile" class="p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all" aria-label="Toggle Theme">
+      <button id="theme-toggle-mobile" class="p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all" aria-label="Ganti Tema">
         <svg id="moon-icon-mobile" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
         <svg id="sun-icon-mobile" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
       </button>
