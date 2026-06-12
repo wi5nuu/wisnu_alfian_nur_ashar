@@ -17,7 +17,7 @@ const skillCategories = [
 
 <section id="skills" class="section">
   <div class="container-custom">
-    <div class="text-center mb-10">
+    <div class="text-center mb-10 reveal-up">
       <h2 class="inline-block relative text-sage-900 dark:text-white">
         {isId ? 'Keahlian' : 'Skills & Expertise'}
         <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-500/50 rounded-full"></span>
@@ -29,8 +29,8 @@ const skillCategories = [
 
     <!-- ========== MOBILE: Simple List Layout ========== -->
     <div class="md:hidden px-4 space-y-8">
-      {skillCategories.map((category) => (
-        <div>
+      {skillCategories.map((category, index) => (
+        <div class="reveal-up" style={`transition-delay: ${index * 100}ms`}>
           <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-4">
             {category.title}
           </h3>
@@ -42,6 +42,7 @@ const skillCategories = [
                     src={`https://cdn.simpleicons.org/${skill.icon}`}
                     alt=""
                     loading="lazy"
+                    decoding="async"
                     class="w-4 h-4 shrink-0 dark:brightness-90"
                     onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
                   />
@@ -62,7 +63,7 @@ const skillCategories = [
       <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8 mb-10">
 
         <!-- Programming & Databases -->
-        <div class="min-w-0">
+        <div class="min-w-0 reveal-up delay-100">
           <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
             {isId ? 'Pemrograman & Basis Data' : 'Programming & Databases'}
           </h3>
@@ -81,7 +82,7 @@ const skillCategories = [
         </div>
 
         <!-- Web Technologies -->
-        <div class="min-w-0">
+        <div class="min-w-0 reveal-up delay-200">
           <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
             {isId ? 'Teknologi Web' : 'Web Technologies'}
           </h3>
@@ -100,7 +101,7 @@ const skillCategories = [
         </div>
 
         <!-- AI & Machine Learning -->
-        <div class="min-w-0">
+        <div class="min-w-0 reveal-up delay-300">
           <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
             {isId ? 'AI & ML' : 'AI & Machine Learning'}
           </h3>
@@ -119,7 +120,7 @@ const skillCategories = [
         </div>
 
         <!-- Security & Infrastructure -->
-        <div class="min-w-0">
+        <div class="min-w-0 reveal-up delay-400">
           <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
             {isId ? 'Keamanan & Infra' : 'Security & Infra'}
           </h3>
@@ -138,7 +139,7 @@ const skillCategories = [
         </div>
 
         <!-- Specialized Tools -->
-        <div class="min-w-0">
+        <div class="min-w-0 reveal-up delay-500">
           <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest border-b border-sage-100 dark:border-slate-700/50 pb-2.5 mb-3 truncate">
             {isId ? 'Alat Khusus' : 'Specialized Tools'}
           </h3>
@@ -159,7 +160,7 @@ const skillCategories = [
       </div>
 
       <!-- Row 2: Soft Skills -->
-      <div class="pt-6 border-t border-cream-200 dark:border-transparent">
+      <div class="pt-6 border-t border-cream-200 dark:border-transparent reveal-up delay-200">
         <h3 class="text-xs font-bold text-sage-900 dark:text-sage-300 uppercase tracking-widest text-center mb-4">
           {isId ? 'Keterampilan Non-Teknis' : 'Soft Skills'}
         </h3>
@@ -177,10 +178,7 @@ const skillCategories = [
   </div>
 </section>
 
-<style>
-  .hide-scrollbar::-webkit-scrollbar { display: none; }
-  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-</style>
+
 
 <script is:inline>
   (function() {

@@ -14,14 +14,14 @@ const profile = isId ? profileId : profileEn;
 
       <!-- ===== LEFT: EDUCATION ===== -->
       <div class="lg:col-span-4 flex flex-col items-center">
-        <div class="text-center mb-6 w-full">
+        <div class="text-center mb-6 w-full reveal-up">
           <h2 class="inline-block relative text-sage-900 dark:text-white">
             {isId ? 'Pendidikan' : 'Education'}
             <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-500/50 rounded-full"></span>
           </h2>
         </div>
 
-        <div class="w-full bg-white dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-5 flex flex-col gap-4 items-center text-center">
+        <div class="w-full bg-white dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-5 flex flex-col gap-4 items-center text-center reveal-zoom delay-100">
           <div class="shrink-0 w-16 h-16 bg-white dark:bg-slate-700 rounded-xl shadow-sm border border-cream-200 dark:border-slate-600 overflow-hidden p-1">
             <img src="/president_university.jpeg" alt="President University" class="w-full h-full object-cover rounded-xl" />
           </div>
@@ -48,7 +48,7 @@ const profile = isId ? profileId : profileEn;
 
       <!-- ===== RIGHT: CERTIFICATIONS ===== -->
       <div class="lg:col-span-8 flex flex-col items-center lg:items-start">
-        <div class="text-center lg:text-left mb-6 w-full">
+        <div class="text-center lg:text-left mb-6 w-full reveal-up delay-200">
           <h2 class="inline-block relative text-sage-900 dark:text-white">
             {isId ? 'Sertifikasi' : 'Certifications'}
             <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-300/50 dark:bg-sage-500/50 rounded-full"></span>
@@ -59,8 +59,11 @@ const profile = isId ? profileId : profileEn;
         </div>
 
         <div class="w-full flex gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide scroll-pl-0">
-          {profile.certifications.map((cert) => (
-            <div class="bg-white dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden min-w-[220px] max-w-[260px] snap-start shrink-0">
+          {profile.certifications.map((cert, index) => (
+            <div 
+              class="bg-white dark:bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden min-w-[220px] max-w-[260px] snap-start shrink-0 reveal-up"
+              style={`transition-delay: ${(index * 150) + 200}ms`}
+            >
               <div class="w-full aspect-video overflow-hidden">
                 {cert.image ? (
                   <img src={cert.image} alt={cert.name} class="w-full h-full object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" loading="lazy" onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`} />
@@ -100,7 +103,4 @@ const profile = isId ? profileId : profileEn;
 
 <ImageModal id="cert-modal" />
 
-<style>
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-</style>
+

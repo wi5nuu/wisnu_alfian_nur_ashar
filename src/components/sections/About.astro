@@ -9,7 +9,7 @@ const profile = isId ? profileId : profileEn;
 <section id="about" class="section relative overflow-hidden z-20">
   <div class="container-custom pt-8 md:pt-4">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-10 reveal">
+      <div class="text-center mb-10 reveal-up">
         <h2 class="inline-block relative text-sage-900 dark:text-white">
           {isId ? 'Tentang Saya' : 'About Me'}
           <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200/60 dark:bg-sage-500/50 rounded-full"></span>
@@ -17,13 +17,12 @@ const profile = isId ? profileId : profileEn;
       </div>
 
       <!-- Mobile only: Static photo below heading -->
-      <div class="md:hidden flex justify-center mb-8 reveal">
+      <div class="md:hidden flex justify-center mb-8 reveal-zoom delay-100">
         <div class="w-[200px] h-[250px] rounded-3xl overflow-hidden shadow-xl ring-1 ring-slate-200/60 dark:ring-transparent">
           <img
             src="/wisnu_alfian_nur_ashar.jpeg"
             alt={profile.personalInfo.name}
-            loading="eager"
-            fetchpriority="high"
+            loading="lazy"
             decoding="async"
             class="w-full h-full object-cover"
           />
@@ -32,7 +31,7 @@ const profile = isId ? profileId : profileEn;
 
       <div class="flex flex-col md:grid md:grid-cols-12 gap-8 items-start">
         <!-- Desktop: Photo (sticky) -->
-        <div class="md:col-span-4 relative hidden md:block">
+        <div class="md:col-span-4 relative hidden md:block reveal-zoom delay-100">
           <div class="sticky top-24">
             <div class="relative group">
               <!-- Decorative behind -->
@@ -43,8 +42,7 @@ const profile = isId ? profileId : profileEn;
                 <img
                   src="/wisnu_alfian_nur_ashar.jpeg"
                   alt={profile.personalInfo.name}
-                  loading="eager"
-                  fetchpriority="high"
+                  loading="lazy"
                   decoding="async"
                   class="w-full h-full object-cover"
                 />
@@ -56,12 +54,12 @@ const profile = isId ? profileId : profileEn;
         </div>
 
         <!-- Content -->
-        <div class="md:col-span-8 space-y-5 reveal-left">
+        <div class="md:col-span-8 space-y-5 reveal-left delay-200">
           <h3 class="text-lg md:text-2xl font-bold text-sage-900 dark:text-sage-300 text-center md:text-left">
             {profile.personalInfo.role}
           </h3>
 
-          <div class="space-y-3 text-sm md:text-[15px] leading-relaxed">
+          <div class="space-y-3 text-[15px] md:text-base leading-relaxed">
             <p class="text-charcoal/90 dark:text-slate-200 font-medium text-center md:text-left">
               {profile.personalInfo.summary}
             </p>
@@ -80,20 +78,20 @@ const profile = isId ? profileId : profileEn;
           </div>
 
           <!-- Stats Row -->
-          <div class="grid grid-cols-3 gap-3 md:gap-4 pt-4">
-            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center">
+          <div class="grid grid-cols-3 gap-3 md:gap-4 pt-4 reveal-up delay-300">
+            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center shadow-sm">
               <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">8+</div>
               <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
                 {isId ? 'Aplikasi Produksi' : 'Production Apps'}
               </div>
             </div>
-            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center">
+            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center shadow-sm">
               <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">15K+</div>
               <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
                 {isId ? 'Pengguna Dilayani' : 'Users Served'}
               </div>
             </div>
-            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center">
+            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center shadow-sm">
               <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">30+</div>
               <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
                 {isId ? 'Repositori GitHub' : 'GitHub Repos'}
@@ -107,38 +105,7 @@ const profile = isId ? profileId : profileEn;
 </section>
 
 <style>
-  .reveal, .reveal-left, .reveal-right, .reveal-bottom, .reveal-top {
-    opacity: 0;
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform, opacity;
-  }
-  .reveal-left { transform: translateX(-30px); }
-  .reveal-right { transform: translateX(30px); }
-  .reveal-bottom { transform: translateY(30px); }
-  .reveal-top { transform: translateY(-30px); }
-  .active {
-    opacity: 1 !important;
-    transform: translate(0, 0) !important;
-  }
   .stat-number {
     font-family: 'Calibri', 'Trebuchet MS', 'Gill Sans', Arial, sans-serif;
   }
 </style>
-
-<script>
-  const revealAbout = () => {
-    const observerOptions = { threshold: 0.15 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("active");
-      });
-    }, observerOptions);
-    const elements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-bottom, .reveal-top");
-    elements.forEach((el, index) => {
-      (el as HTMLElement).style.transitionDelay = `${index * 0.08}s`;
-      observer.observe(el);
-    });
-  };
-  document.addEventListener("DOMContentLoaded", revealAbout);
-  document.addEventListener("astro:after-swap", revealAbout);
-</script>

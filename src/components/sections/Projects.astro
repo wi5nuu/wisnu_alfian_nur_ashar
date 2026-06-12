@@ -10,7 +10,7 @@ const profile = isId ? profileId : profileEn;
 
 <section id="projects" class="section">
   <div class="container-custom">
-    <div class="text-center mb-10">
+    <div class="text-center mb-10 reveal-up">
       <h2 class="inline-block relative text-sage-900 dark:text-white">
         {isId ? 'Proyek Unggulan' : 'Featured Projects'}
         <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-500/50 rounded-full"></span>
@@ -20,11 +20,15 @@ const profile = isId ? profileId : profileEn;
       </p>
     </div>
 
-    <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar scroll-smooth touch-pan-x">
-      {profile.projects.map((project) => {
+    <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar scroll-smooth">
+      {profile.projects.map((project, index) => {
         const projectJson = JSON.stringify(project).replace(/'/g, "\\'");
         return (
-        <article class="group relative bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-transparent overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm md:hover:-translate-y-1 w-[85vw] shrink-0 snap-center md:w-auto md:shrink md:snap-none h-auto md:h-full cursor-pointer" onclick={`openProjectModal('project-detail-modal', ${projectJson})`}>
+        <article 
+          class="group relative bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-transparent overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm md:hover:-translate-y-1 w-[85vw] shrink-0 snap-center md:w-auto md:shrink md:snap-none h-auto md:h-full cursor-pointer reveal-up" 
+          style={`transition-delay: ${index * 150}ms`}
+          onclick={`openProjectModal('project-detail-modal', ${projectJson})`}
+        >
           <div class="absolute top-8 right-3 z-20">
             <span class="px-2.5 py-0.5 bg-slate-950 text-white text-[9px] font-bold uppercase tracking-widest rounded-full shadow-lg border border-white/10">
               {project.status || 'Verified'}
