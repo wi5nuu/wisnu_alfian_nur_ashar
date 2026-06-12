@@ -197,7 +197,7 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
 
     <!-- ================= DARK MODE INITIALIZATION (FOUC prevention) ================= -->
     <script is:inline>
-      (function() {
+      const initTheme = function() {
         var theme;
         try { theme = localStorage.getItem("theme"); } catch(e) {}
         if (!theme) {
@@ -205,7 +205,9 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
         }
         document.documentElement.classList.toggle("dark", theme === "dark");
         document.documentElement.style.colorScheme = theme;
-      })();
+      };
+      initTheme();
+      document.addEventListener("astro:after-swap", initTheme);
     </script>
   </head>
 
