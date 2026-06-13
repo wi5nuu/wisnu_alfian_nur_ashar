@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import AIChatBot from "../components/AIChatBot.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
 import { profile } from "../data/profile";
 import { ClientRouter } from "astro:transitions";
 
@@ -231,6 +232,7 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
       <slot />
     </div>
 
+    <ScrollToTop />
     <AIChatBot />
   </body>
 </html>
