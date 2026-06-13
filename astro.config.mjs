@@ -7,7 +7,7 @@ import compress from 'astro-compress';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.wisnualfiannurashar.my.id',
-  output: 'static',
+  output: 'hybrid',
   build: {
     inlineStylesheets: 'always',
     format: 'file'
