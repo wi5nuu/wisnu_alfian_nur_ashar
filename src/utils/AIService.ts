@@ -201,22 +201,26 @@ export class AIService {
     this.addToHistory(query, intent, 'fallback');
 
     if (lang === 'id') {
-      return `Maaf, saya belum menemukan informasi spesifik tentang itu dalam database saya. 😔
+      return `Terima kasih banyak atas pertanyaan Anda. Mohon maaf sekali, saya belum memiliki informasi spesifik mengenai hal tersebut dalam basis pengetahuan saya saat ini. 
 
-Wisnu menghargai komunikasi langsung — untuk pertanyaan lebih detail, silakan hubungi Wisnu via email di **wisnualfian117@gmail.com**.
+Saya sangat menghargai ketertarikan Anda untuk mengenal Wisnu lebih jauh. Semoga Anda merasa nyaman berinteraksi dengan saya di sini. 
 
-Beberapa hal yang bisa saya bantu:
+Untuk pertanyaan lebih mendalam atau diskusi langsung, silakan hubungi Wisnu melalui email di **wisnualfian117@gmail.com**. Beliau akan dengan senang hati membantu Anda.
+
+Beberapa hal lain yang bisa saya bantu:
 📂 Proyek & portfolio
 💻 Keahlian teknis
 🎓 Pendidikan & sertifikasi
 💼 Pengalaman kerja
 🤝 Kontak & sosial media`;
     }
-    return `Sorry, I couldn't find specific information about that in my database. 😔
+    return `Thank you very much for your question. I sincerely apologize, but I don't have specific information regarding that in my current knowledge base. 
 
-Wisnu appreciates direct communication — for more detailed questions, please reach out via email at **wisnualfian117@gmail.com**.
+I truly appreciate your interest in learning more about Wisnu. I hope you're having a pleasant experience here. 
 
-Here's what I can help with:
+For more detailed inquiries or direct discussions, please feel free to connect with Wisnu via email at **wisnualfian117@gmail.com**. He will be more than happy to assist you.
+
+Other things I can help with:
 📂 Projects & portfolio
 💻 Technical skills
 🎓 Education & certifications
