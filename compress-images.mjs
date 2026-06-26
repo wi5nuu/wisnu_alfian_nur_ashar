@@ -28,11 +28,13 @@ for (const img of images) {
   // Determine max width based on type
   let maxW = 800;
   let quality = 75;
-  if (img.includes('certification')) { maxW = 400; quality = 80; }
+  let fmt = 'png';
+  if (img.includes('certifications')) { maxW = 400; quality = 80; }
   if (img.includes('wisnu_alfian')) { maxW = 400; quality = 80; }
   if (img.includes('president_university')) { maxW = 200; quality = 80; }
   if (img.includes('android-chrome-512')) { maxW = 192; quality = 85; }
   if (img.includes('portfolio-display')) { maxW = 600; quality = 80; }
+  if (img.includes('projects')) { maxW = 400; quality = 82; }
 
   // Skip if already smaller than maxW
   if (info.width <= maxW && sizeKB < 100) continue;
