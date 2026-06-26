@@ -61,6 +61,25 @@ interface Profile {
         description: string;
         image?: string;
     }[];
+    competitions: {
+        name: string;
+        issuer: string;
+        date: string;
+        category: "winner" | "participant";
+        description: string;
+        image?: string;
+    }[];
+    openSource: {
+        organization: string;
+        repo: string;
+        project: string;
+        language: string;
+        bugDescription: string;
+        impact: string;
+        fileLocation: string;
+        maintainerResponse: string;
+        category: string;
+    }[];
 }
 
 export const profile: Profile = {
@@ -201,6 +220,17 @@ export const profile: Profile = {
             image: "/projects/sentinelx.png"
         },
         {
+            title: "TruthLayer",
+            role: "Architect & Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/Truthlayer",
+            link: "https://truthlayer.io",
+            description: "Chrome Extension + Backend + Web Dashboard yang mengungkap niat tersembunyi setiap website yang Anda kunjungi. Menyediakan Trust Score (0-100), mendeteksi 10+ taktik manipulasi dark pattern (fake urgency, confirmshaming, disguised ads, forced action), mengaudit pengumpulan data & pelacak pihak ketiga, mengestimasi persentase konten buatan AI, dan memungkinkan berbagi laporan publik via truthlayer.io/report/domain. Dibangun dengan Manifest V3 Chrome Extension, dashboard Next.js 15, backend Node.js Express didukung Claude AI, dan deployment Docker di Netlify.",
+            techStack: ["Next.js 15", "TypeScript", "Chrome Extension", "Node.js", "Express.js", "Claude AI", "Docker", "Netlify"],
+            image: "/projects/thrutlayer.png"
+        },
+        {
             title: "ColonyAI",
             role: "Product Owner & AI Engineer",
             status: "Production",
@@ -336,7 +366,7 @@ export const profile: Profile = {
             date: "Maret 2026",
             id: "10034834",
             description: "Kursus pondasi integrasi penuh bagian antarmuka maupun sistem pusat. Menganalisis skema arsitektur berskala berbasis ekosistem JavaScript.",
-            image: "/Full-Stack_Development_101.png"
+            image: "/certifications/Full-Stack_Development_101.png"
         },
         {
             name: "Belajar Dasar Pemrograman Web",
@@ -345,7 +375,7 @@ export const profile: Profile = {
             expiry: "Maret 2029",
             id: "JLX1VWN35Z72",
             description: "Penguasaan dasar semantik blok elemen layar HTML beserta tata desain ciamik CSS dengan standarisasi mutlak.",
-            image: "/Dicoding_Web_Dasar.png"
+            image: "/certifications/Dicoding_Web_Dasar.png"
         },
         {
             name: "AWS Cloud Practitioner Essentials \u2013 Training Completion",
@@ -353,7 +383,7 @@ export const profile: Profile = {
             date: "Maret 2026",
             id: "",
             description: "Tinjauan terpadu komputasi jaringan dunia dalam server modern, beserta ketahanan standar sistem Amazon Web Services.",
-            image: "/aws_cloud_practioner_essentials.png"
+            image: "/certifications/aws_cloud_practioner_essentials.png"
         },
         {
             name: "AWS Technical Essentials",
@@ -361,7 +391,7 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "",
             description: "Tinjauan spesifik teknis dari struktur layanan jaringan dan pengoperasian Database terpusat Amazon Web Services.",
-            image: "/aws_technical_essentials.png"
+            image: "/certifications/aws_technical_essentials.png"
         },
         {
             name: "Google Ads Search Certification",
@@ -370,7 +400,7 @@ export const profile: Profile = {
             expiry: "Februari 2027",
             id: "173326967",
             description: "Penguasaan dominasi tingkat atas dari metode kampanye pencarian produk via Search Google dan analisis pelanggan tajam untuk penjualan optimal.",
-            image: "/Google_Ads_Search.png"
+            image: "/certifications/Google_Ads_Search.png"
         },
         {
             name: "Sertifikasi Analytics Google (GA4)",
@@ -379,7 +409,7 @@ export const profile: Profile = {
             expiry: "Februari 2027",
             id: "173326065",
             description: "Pengaturan analisis super canggih untuk membedah data tersembunyi para audiens untuk mendapatkan petunjuk emas bagi arah laju bisnis pasar.",
-            image: "/Google_Analytics.png"
+            image: "/certifications/Google_Analytics.png"
         },
         {
             name: "Sertifikasi Integrasi Data Lanjutan",
@@ -388,7 +418,7 @@ export const profile: Profile = {
             expiry: "Maret 2027",
             id: "ab0238d2c3f14a16bfb744c1a9e28356",
             description: "Ahli di dalam penyatuan rantai-rantai lunak antara beberapa perangkat sentral menjadi sebuah pusaran sistem otomatis.",
-            image: "/Data_Integrations_Certification.png"
+            image: "/certifications/Data_Integrations_Certification.png"
         },
         {
             name: "Engineer Basis Perangkat Lunak (SEC)",
@@ -396,7 +426,7 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "D73F5CD372E0",
             description: "Validasi paten kelas atas standar dasar-dasar ilmu pengembangan, perancangan algoritma kuat dan strategi proses perbaikan bug menyeluruh.",
-            image: "/Software_Engineer.png"
+            image: "/certifications/Software_Engineer.png"
         },
         {
             name: "Frontend Developer Engineer (React)",
@@ -404,7 +434,150 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "84B47591D6EC",
             description: "Validasi kecekatan ahli yang mendalam menggunakan React secara interaktif, efisien serta manipulasi rendering untuk meminimalisasi hambatan memori sistem.",
-            image: "/Frontend_Developer.png"
+            image: "/certifications/Frontend_Developer.png"
+        },
+        {
+            name: "Golang (Basic)",
+            issuer: "HackerRank",
+            date: "Januari 2026",
+            id: "C9F8A2B1E3D4",
+            description: "Kemahiran dasar dalam bahasa pemrograman Go, meliputi sintaks, struktur data, pola konkurensi, dan penggunaan pustaka standar.",
+            image: "/certifications/golang.png"
+        },
+        {
+            name: "Software Engineer Intern",
+            issuer: "HackerRank",
+            date: "Januari 2026",
+            id: "E4D7F2A9C1B5",
+            description: "Penilaian komprehensif fundamental rekayasa perangkat lunak termasuk struktur data, algoritma, pemecahan masalah, dan praktik kode bersih.",
+            image: "/certifications/software_engineer_intern.png"
         }
+    ],
+    competitions: [
+        {
+            name: "Juara Vibe Coding",
+            issuer: "Google",
+            date: "Juni 2026",
+            category: "participant",
+            description: "Berpartisipasi dalam kompetisi Vibe Coding Google, menunjukkan pembuatan prototipe cepat dan pemecahan masalah kreatif menggunakan alat pengembangan berbantuan AI.",
+            image: "/certifications/Juara_Vibe_Coding_Google_Participants.png"
+        },
+        {
+            name: "Peserta Kategori Web Development",
+            issuer: "Codelab Indonesia",
+            date: "Juni 2026",
+            category: "participant",
+            description: "Berpartisipasi dalam kompetisi TechSprint yang diselenggarakan oleh Codelab Indonesia, bertanding di kategori Web Development untuk membangun aplikasi full-stack dalam batasan waktu.",
+            image: "/certifications/Web_Development_Participants.png"
+        },
+        {
+            name: "Participant Data Automation Competition",
+            issuer: "PUMA Information System President University",
+            date: "Juni 2026",
+            category: "participant",
+            description: "Berpartisipasi dalam kompetisi Tech Sprint 3in1 yang diselenggarakan oleh PUMA Information System President University, berfokus pada perancangan pipeline data yang efisien dan alur kerja otomatis.",
+            image: "/certifications/Data_Automation_Participants.png"
+        }
+    ],
+    openSource: [
+        {
+            organization: "NASA",
+            repo: "nasa/TrickHLA",
+            project: "TrickHLA — High Level Architecture Simulation Engine",
+            language: "C++",
+            category: "Logic Bug",
+            bugDescription: "Kesalahan logika (inverted comparison) pada pencarian instans federasi. Kode menggunakan operator != yang seharusnya == saat mencocokkan MOM_instance_name dengan tMOMName.",
+            impact: "Ketika proses penghapusan federasi dipicu, sistem justru merekam dan menghapus entitas terakhir yang tidak cocok (FedC), sementara federasi yang sebenarnya mengundurkan diri tetap berada di dalam memori (state corruption). Jika hanya ada satu entitas, fungsi keluar lebih awal tanpa menghapus apa pun.",
+            fileLocation: "source/TrickHLA/Federate.cpp:4213",
+            maintainerResponse: "Terkonfirmasi oleh maintainer internal NASA (ezcrues). Beliau menyatakan: 'Yep, that looks like a bug.' dan langsung memasukkan commit perbaikan resmi dengan hash a26e0df ke dalam branch develop."
+        },
+        {
+            organization: "Microsoft",
+            repo: "microsoft/testfx",
+            project: "MSTest Framework",
+            language: "C# (.NET 8+)",
+            category: "Architecture Contract Failure",
+            bugDescription: "Kegagalan kontrak arsitektur non-nullable return value. Ketika Assert.Throws<T>() atau Assert.ThrowsExactly<T>() dipanggil di dalam sebuah AssertScope dan asersinya gagal, metode tersebut mengembalikan nilai null alih-alih melempar exception.",
+            impact: "Nilai null tersebut terekspos ke kode pengguna sebelum scope di-dispose, memicu NullReferenceException sekunder yang menutupi pesan kesalahan asersi asli dan membingungkan proses debugging.",
+            fileLocation: "src/TestFramework/TestFramework/Assertions/Assert.ThrowsException.cs (Baris 54, 125, 352, 374, 512, 534)",
+            maintainerResponse: "Tim arsitek Microsoft (Evangelink & Youssef1313) mengonfirmasi bahwa hal ini awalnya merupakan kompromi desain compiler (by-design). Namun, berkat laporan mendalam ini, maintainer langsung membuat 2 Pull Requests baru (dotnet/docs#54409 dan #9186) untuk merombak dokumentasi resmi .NET dan RFC 011 guna memitigasi risiko bagi seluruh developer .NET di dunia."
+        },
+        {
+            organization: "Microsoft",
+            repo: "microsoft/keyborg",
+            project: "Keyborg Accessibility Library",
+            language: "TypeScript / TypeScript Down",
+            category: "Memory Leak",
+            bugDescription: "Kebocoran variabel lingkungan Node ke runtime browser. Fungsi dispose() merujuk pada process.env.NODE_ENV, namun file konfigurasi bundler (tsdown.config.mts) hanya mengganti variabel PKG_VERSION dan melewatkan variabel environment tersebut.",
+            impact: "Di lingkungan browser murni di mana objek global process tidak didefinisikan, memanggil disposeKeyborg() akan langsung mengakibatkan Uncaught ReferenceError: process is not defined. Hal ini menghentikan proses pembersihan memori (callbacks.length = 0) dan memicu kebocoran memori (memory leak).",
+            fileLocation: "src/Keyborg.mts:261 dan tsdown.config.mts",
+            maintainerResponse: "Ditanggapi oleh core maintainer (layershifter). Ia mengonfirmasi perilaku tersebut dan menjelaskan bahwa ketergantungan process.env.NODE_ENV merupakan standar industri OSS, di mana tanggung jawab penggantian diserahkan kepada bundler tingkat akhir aplikasi konsumen (seperti Vite/Webpack). Isu ditutup sebagai pengetahuan integrasi arsitektur yang valid."
+        },
+        {
+            organization: "NVIDIA",
+            repo: "NVIDIA/infra-controller",
+            project: "Infrastructure Controller",
+            language: "Rust",
+            category: "Vulnerability",
+            bugDescription: "Kerentanan pada komponen manajemen jaringan internal. Fungsi packet handler untuk server DHCP secara kaku meng-hardcode nilai parameter desired_address ke status None.",
+            impact: "Bug ini memblokir dan merusak mekanisme pembaruan sewa alamat IP (DHCP lease renewal) pada klaster infrastruktur controller milik NVIDIA.",
+            fileLocation: "crates/dhcp-server/src/packet_handler.rs:179",
+            maintainerResponse: "Masuk ke dalam antrean triase tim security infrastructure NVIDIA setelah menerima laporan bug report resmi."
+        },
+        {
+            organization: "OWASP Foundation",
+            repo: "OWASP/CheatSheetSeries",
+            project: "Security Cheat Sheet Series",
+            language: "Dokumentasi / Keamanan",
+            category: "Vulnerability Research",
+            bugDescription: "Menemukan celah keamanan kritis terkait paparan informasi sensitif (Information Disclosure) pada manajemen infrastruktur server berbasis perangkat keras. Penggunaan flag -P pada utilitas ipmitool mengakibatkan kata sandi BMC (Baseboard Management Controller) bocor secara terbuka.",
+            impact: "Kata sandi BMC dapat diintip oleh seluruh proses lokal yang sedang berjalan di dalam sistem, menciptakan risiko kebocoran informasi yang parah.",
+            fileLocation: "N/A (Security Advisory)",
+            maintainerResponse: "Laporan diterima dan divalidasi sebagai bentuk kontribusi peningkatan standar keamanan infrastruktur global."
+        },
+        {
+            organization: "Hugging Face",
+            repo: "huggingface/transformers",
+            project: "Transformers Engine",
+            language: "Python / AI-ML Core",
+            category: "Logic Bug",
+            bugDescription: "Kegagalan fungsi optimasi memori pada model bahasa besar (Large Language Models). Proses penataan ulang memori cache (Beam Search Cache Reorder) terlewati secara senyap (silently skipped).",
+            impact: "Terjadi pada arsitektur model mutakhir seperti Mamba, XLNet, RWKV, dan Reformer. Bug ini menyebabkan hasil komputasi teks (generation output) dari kecerdasan buatan menjadi rusak atau tidak akurat saat menangani pencarian berbasis beam search.",
+            fileLocation: "N/A",
+            maintainerResponse: "Masuk ke dalam catatan repositori kontribusi core library Hugging Face."
+        },
+        {
+            organization: "Google / WordPress",
+            repo: "google/site-kit-wp",
+            project: "Site Kit Analytics",
+            language: "JavaScript / PHP",
+            category: "Logic Bug",
+            bugDescription: "Bug preseden operator (operator precedence) pada fungsi sanitasi data balik (sanitize callback) untuk modul Google Analytics 4.",
+            impact: "Celah logika ini secara keliru mengizinkan masuknya nilai angka negatif pada parameter krusial seperti googleTagAccountID dan googleTagContainerID, yang berpotensi merusak integrasi pelacakan data situs.",
+            fileLocation: "N/A",
+            maintainerResponse: "Kontribusi tercatat di dalam riwayat pelacakan aktivitas repositori publik Google Site Kit."
+        },
+        {
+            organization: "Google Engineering Fellow",
+            repo: "addyosmani/agent-skills",
+            project: "Agent Skills",
+            language: "Konfigurasi / AI Core",
+            category: "Configuration Error",
+            bugDescription: "Kerusakan pustaka akibat konfigurasi pathing yang salah. File manifes pengapalan merujuk pada direktori agen .gemini/agents/ yang tidak eksis di dalam repositori.",
+            impact: "Mengakibatkan 4 modul utama agen AI mengalami kegagalan fatal (broken modules) secara langsung saat dijalankan pada lingkungan runtime.",
+            fileLocation: ".gemini/commands/ship.toml",
+            maintainerResponse: "Divalidasi melalui pembukaan tiket issue perdana di repositori proyek tersebut."
+        },
+        {
+            organization: "ADK Ecosystem",
+            repo: "adk-python & adk-samples",
+            project: "ADK Python & Samples",
+            language: "Python",
+            category: "Silent Type Error",
+            bugDescription: "Kegagalan penanganan tipe data (Silent Type Error) pada fungsi interceptor. Fungsi dekorator lowercase_value() di dalam callback before_tool membuang nilai kembalian (return value) secara tidak sengaja.",
+            impact: "Mengakibatkan pemrosesan struktur data bertipe dict() mengalami kegagalan eksekusi dan memicu TypeError fatal di latar belakang tanpa adanya log peringatan yang jelas.",
+            fileLocation: "N/A",
+            maintainerResponse: "Log kontribusi berhasil tercatat pada pertengahan Juni 2026."
+        },
     ]
 };

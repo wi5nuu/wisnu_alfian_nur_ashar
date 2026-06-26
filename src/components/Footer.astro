@@ -21,6 +21,7 @@ const currentYear = new Date().getFullYear();
 const navLinks = [
   { name: isId ? "Utama" : "Home", href: isId ? "/id" : "/" },
   { name: isId ? "Proyek" : "Projects", href: isId ? "/id/projects" : "/projects" },
+  { name: "Open Source", href: isId ? "/id/opensource" : "/opensource" },
   { name: isId ? "Keahlian" : "Skills", href: isId ? "/id/skills" : "/skills" },
   { name: isId ? "Kontak" : "Contact", href: isId ? "/id/contact" : "/contact" },
 ];
@@ -34,12 +35,12 @@ const socials = [
 ];
 ---
 
-<footer class="relative bg-white dark:bg-transparent text-slate-900 dark:text-white pt-12 pb-8 overflow-hidden border-t border-slate-100 dark:border-transparent">
+<footer class="relative bg-white dark:bg-slate-900/95 text-slate-900 dark:text-white pt-12 pb-8 overflow-hidden border-t border-slate-100 dark:border-slate-700/50 backdrop-blur-sm">
   <div
-    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent dark:hidden"
-  >
+    class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-600 to-transparent"
+  ></div>
   <div
-    class="absolute -top-24 -left-24 w-96 h-96 bg-slate-50 dark:bg-slate-900 rounded-full blur-[100px]"
+    class="absolute -top-24 -left-24 w-96 h-96 bg-slate-50 dark:bg-sage-600/20 rounded-full blur-[100px]"
   >
   </div>
 
@@ -78,7 +79,7 @@ const socials = [
 
       <div class="md:col-span-3 text-center md:text-left">
         <h3
-          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 dark:text-white mb-4"
+          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 dark:text-slate-300 mb-4"
         >
           {isId ? 'Navigasi' : 'Navigation'}
         </h3>
@@ -88,7 +89,7 @@ const socials = [
               <li>
                 <a
                   href={link.href}
-                  class="text-slate-500 dark:text-white hover:text-black dark:hover:text-white font-bold transition-all hover:pl-2 text-[13px] tracking-wide"
+                  class="text-slate-500 dark:text-slate-300 hover:text-black dark:hover:text-white font-bold transition-all hover:pl-2 text-[13px] tracking-wide"
                 >
                   {link.name}
                 </a>
@@ -100,12 +101,12 @@ const socials = [
 
       <div class="md:col-span-4 text-center md:text-left">
         <h3
-          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 dark:text-white mb-4"
+          class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 dark:text-slate-300 mb-4"
         >
           {isId ? 'Status Saat Ini' : 'Current Status'}
         </h3>
         <div
-          class="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl p-5 backdrop-blur-sm shadow-sm"
+          class="bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-600/50 rounded-2xl p-5 backdrop-blur-sm shadow-sm"
         >
           <div
             class="flex items-center gap-3 mb-3 justify-center md:justify-start"
@@ -122,7 +123,7 @@ const socials = [
               >{isId ? 'Tersedia untuk Proyek' : 'Available for Projects'}</span
             >
           </div>
-          <p class="text-xs text-slate-500 dark:text-white font-medium leading-relaxed mb-4">
+          <p class="text-xs text-slate-500 dark:text-slate-300 font-medium leading-relaxed mb-4">
             {isId ? 'Saya sedang mencari peluang dan kolaborasi baru di bidang Pengembangan Web & Keamanan Siber.' : 'I\'m currently looking for new opportunities and collaborations in Web Dev & Cyber Security.'}
           </p>
           <a
@@ -139,14 +140,14 @@ const socials = [
     </div>
 
     <div
-      class="pt-8 border-t border-slate-100 dark:border-transparent flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-slate-400 dark:text-white font-bold"
+      class="pt-8 border-t border-slate-100 dark:border-slate-700/50 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-300 font-bold"
     >
       <p class="dark:text-white">
         &copy; {currentYear} — {isId ? 'Didesain & Dibuat' : 'Designed & Coded'} by Wisnu Alfian Nur Ashar
       </p>
       <div class="flex gap-6">
         <span
-          class="text-slate-400 dark:text-white hover:text-black dark:hover:text-slate-300 transition-colors cursor-default underline decoration-slate-200 dark:decoration-slate-700 underline-offset-4"
+          class="text-slate-400 dark:text-slate-400 hover:text-black dark:hover:text-slate-200 transition-colors cursor-default underline decoration-slate-200 dark:decoration-slate-700 underline-offset-4"
           >{profile.personalInfo.location}</span
         >
       </div>

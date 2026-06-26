@@ -61,6 +61,25 @@ interface Profile {
         description: string;
         image?: string;
     }[];
+    competitions: {
+        name: string;
+        issuer: string;
+        date: string;
+        category: "winner" | "participant";
+        description: string;
+        image?: string;
+    }[];
+    openSource: {
+        organization: string;
+        repo: string;
+        project: string;
+        language: string;
+        bugDescription: string;
+        impact: string;
+        fileLocation: string;
+        maintainerResponse: string;
+        category: string;
+    }[];
 }
 
 export const profile: Profile = {
@@ -199,6 +218,17 @@ export const profile: Profile = {
             description: "Multi-Domain Threat Intelligence & Fusion Platform. An integrated simulation system for situational awareness, AI-based correlation with Multi-Modal architecture, and real-time automated incident response across various domain sources (Aviation, Maritime, Cyber, Space, Seismic, RF/SIGINT).",
             techStack: ["FastAPI", "React", "PyTorch", "Kafka", "TimescaleDB", "Blockchain", "Docker"],
             image: "/projects/sentinelx.png"
+        },
+        {
+            title: "TruthLayer",
+            role: "Architect & Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/Truthlayer",
+            link: "https://truthlayer.io",
+            description: "Chrome Extension + Backend + Web Dashboard that reveals hidden intentions of every website you visit. Provides Trust Score (0-100), detects 10+ dark pattern manipulation tactics (fake urgency, confirmshaming, disguised ads, forced action), audits data collection & third-party trackers, estimates AI-generated content percentage, and enables public report sharing via truthlayer.io/report/domain. Built with Manifest V3 Chrome Extension, Next.js 15 dashboard, Node.js Express backend powered by Claude AI, and Docker deployment on Netlify.",
+            techStack: ["Next.js 15", "TypeScript", "Chrome Extension", "Node.js", "Express.js", "Claude AI", "Docker", "Netlify"],
+            image: "/projects/thrutlayer.png"
         },
         {
             title: "ColonyAI",
@@ -422,5 +452,132 @@ export const profile: Profile = {
             description: "Comprehensive assessment of software engineering fundamentals including data structures, algorithms, problem-solving, and clean code practices.",
             image: "/certifications/software_engineer_intern.png"
         }
+    ],
+    competitions: [
+        {
+            name: "Juara Vibe Coding",
+            issuer: "Google",
+            date: "June 2026",
+            category: "participant",
+            description: "Participated in Google's Vibe Coding competition, showcasing rapid prototyping and creative problem-solving using AI-assisted development tools.",
+            image: "/certifications/Juara_Vibe_Coding_Google_Participants.png"
+        },
+        {
+            name: "Peserta Kategori Web Development",
+            issuer: "Codelab Indonesia",
+            date: "June 2026",
+            category: "participant",
+            description: "Participated in the TechSprint competition organized by Codelab Indonesia, competing in the Web Development category to build full-stack applications under time constraints.",
+            image: "/certifications/Web_Development_Participants.png"
+        },
+        {
+            name: "Participant Data Automation Competition",
+            issuer: "PUMA Information System President University",
+            date: "June 2026",
+            category: "participant",
+            description: "Participated in the Tech Sprint 3in1 competition organized by PUMA Information System President University, focusing on designing efficient data pipelines and automated workflows.",
+            image: "/certifications/Data_Automation_Participants.png"
+        }
+    ],
+    openSource: [
+        {
+            organization: "NASA",
+            repo: "nasa/TrickHLA",
+            project: "TrickHLA — High Level Architecture Simulation Engine",
+            language: "C++",
+            category: "Logic Bug",
+            bugDescription: "Inverted comparison in federation instance search. The code used != operator instead of == when matching MOM_instance_name against tMOMName.",
+            impact: "When federation removal was triggered, the system recorded and removed the last mismatched entity (FedC) instead of the correct one, causing state corruption. The resigning federation remained in memory, and with only one entity present the function exited early without removing anything.",
+            fileLocation: "source/TrickHLA/Federate.cpp:4213",
+            maintainerResponse: "Confirmed by NASA internal maintainer (ezcrues): 'Yep, that looks like a bug.' Fix committed directly to the develop branch with hash a26e0df."
+        },
+        {
+            organization: "Microsoft",
+            repo: "microsoft/testfx",
+            project: "MSTest Framework",
+            language: "C# (.NET 8+)",
+            category: "Architecture Contract Failure",
+            bugDescription: "Non-nullable return value contract failure. When Assert.Throws<T>() or Assert.ThrowsExactly<T>() was called inside an AssertScope and the assertion failed, the method returned null instead of throwing an exception.",
+            impact: "Null value exposed to user code before scope disposal, triggering a secondary NullReferenceException that masked the original assertion error and confused debugging.",
+            fileLocation: "src/TestFramework/TestFramework/Assertions/Assert.ThrowsException.cs (Lines 54, 125, 352, 374, 512, 534)",
+            maintainerResponse: "Confirmed by Microsoft architects (Evangelink & Youssef1313). Originally a compiler design compromise (by-design), but the report led maintainers to create 2 new Pull Requests (dotnet/docs#54409 and #9186) to overhaul official .NET documentation and RFC 011 to mitigate risk for all .NET developers worldwide."
+        },
+        {
+            organization: "Microsoft",
+            repo: "microsoft/keyborg",
+            project: "Keyborg Accessibility Library",
+            language: "TypeScript / TypeScript Down",
+            category: "Memory Leak",
+            bugDescription: "Node environment variable leak into browser runtime. The dispose() function referenced process.env.NODE_ENV, but the bundler config (tsdown.config.mts) only replaced PKG_VERSION, leaving the environment variable untouched.",
+            impact: "In pure browser environments where the global process object is undefined, calling disposeKeyborg() triggered Uncaught ReferenceError: process is not defined. This halted memory cleanup (callbacks.length = 0) and caused memory leaks.",
+            fileLocation: "src/Keyborg.mts:261 and tsdown.config.mts",
+            maintainerResponse: "Responded by core maintainer (layershifter). Confirmed the behavior and explained that process.env.NODE_ENV dependency is an OSS industry standard where replacement responsibility is delegated to the consumer's final bundler (e.g., Vite/Webpack). Issue closed as valid architectural integration knowledge."
+        },
+        {
+            organization: "NVIDIA",
+            repo: "NVIDIA/infra-controller",
+            project: "Infrastructure Controller",
+            language: "Rust",
+            category: "Vulnerability",
+            bugDescription: "Vulnerability in the internal network management component. The packet handler for the DHCP server rigidly hardcoded the desired_address parameter to None status.",
+            impact: "This bug blocked and corrupted the IP address DHCP lease renewal mechanism on NVIDIA's infrastructure controller clusters.",
+            fileLocation: "crates/dhcp-server/src/packet_handler.rs:179",
+            maintainerResponse: "Entered NVIDIA's infrastructure security team triage queue after receiving the official bug report."
+        },
+        {
+            organization: "OWASP Foundation",
+            repo: "OWASP/CheatSheetSeries",
+            project: "Security Cheat Sheet Series",
+            language: "Documentation / Security",
+            category: "Vulnerability Research",
+            bugDescription: "Critical security gap related to sensitive information exposure on hardware-based server infrastructure management. The -P flag on ipmitool caused BMC (Baseboard Management Controller) passwords to leak openly.",
+            impact: "BMC passwords became visible and could be snooped by all local processes running within the system, creating a severe information disclosure risk.",
+            fileLocation: "N/A (Security Advisory)",
+            maintainerResponse: "Report accepted and validated as a contribution to improving global infrastructure security standards."
+        },
+        {
+            organization: "Hugging Face",
+            repo: "huggingface/transformers",
+            project: "Transformers Engine",
+            language: "Python / AI-ML Core",
+            category: "Logic Bug",
+            bugDescription: "Memory optimization function failure on Large Language Models. The Beam Search Cache Reorder process was silently skipped.",
+            impact: "Affected cutting-edge model architectures including Mamba, XLNet, RWKV, and Reformer. The bug caused corrupted or inaccurate text generation output when handling beam-search-based computation.",
+            fileLocation: "N/A",
+            maintainerResponse: "Recorded in the Hugging Face core library contribution repository history."
+        },
+        {
+            organization: "Google / WordPress",
+            repo: "google/site-kit-wp",
+            project: "Site Kit Analytics",
+            language: "JavaScript / PHP",
+            category: "Logic Bug",
+            bugDescription: "Operator precedence bug in the sanitize callback function for the Google Analytics 4 module.",
+            impact: "This logic flaw erroneously allowed negative numeric values for critical parameters like googleTagAccountID and googleTagContainerID, potentially corrupting site tracking data integration.",
+            fileLocation: "N/A",
+            maintainerResponse: "Contribution recorded in the public Google Site Kit repository activity history."
+        },
+        {
+            organization: "Google Engineering Fellow",
+            repo: "addyosmani/agent-skills",
+            project: "Agent Skills",
+            language: "Configuration / AI Core",
+            category: "Configuration Error",
+            bugDescription: "Library corruption due to incorrect pathing configuration. The shipping manifest file referenced the non-existent .gemini/agents/ directory in the repository.",
+            impact: "Caused 4 main AI agent modules to experience fatal failures immediately upon runtime execution.",
+            fileLocation: ".gemini/commands/ship.toml",
+            maintainerResponse: "Validated through the opening of the inaugural issue ticket in the project repository."
+        },
+        {
+            organization: "ADK Ecosystem",
+            repo: "adk-python & adk-samples",
+            project: "ADK Python & Samples",
+            language: "Python",
+            category: "Silent Type Error",
+            bugDescription: "Silent type error in the interceptor function. The lowercase_value() decorator inside the before_tool callback accidentally discarded the return value.",
+            impact: "Caused dict()-type data structure processing to fail execution and triggered a fatal TypeError in the background without clear warning logs.",
+            fileLocation: "N/A",
+            maintainerResponse: "Contribution log successfully recorded in mid-June 2026."
+        },
     ]
 };
