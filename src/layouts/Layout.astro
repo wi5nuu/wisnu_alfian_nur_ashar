@@ -67,8 +67,6 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
     <meta name="format-detection" content="telephone=no" />
 
     <!-- ================= RESOURCE HINTS (Performance) ================= -->
-    <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
-    <link rel="dns-prefetch" href="https://cdn.simpleicons.org" />
     <link rel="dns-prefetch" href="https://api.web3forms.com" />
 
     <!-- ================= VIEW TRANSITIONS ================= -->
@@ -201,30 +199,36 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
           { "@type": "ListItem", "position": 1, "name": "Home", "url": siteUrl + "/" },
           { "@type": "ListItem", "position": 2, "name": "About", "url": siteUrl + "/about" },
           { "@type": "ListItem", "position": 3, "name": "Projects", "url": siteUrl + "/projects" },
-          { "@type": "ListItem", "position": 4, "name": "Skills", "url": siteUrl + "/skills" },
-          { "@type": "ListItem", "position": 5, "name": "Experience", "url": siteUrl + "/experience" },
-          { "@type": "ListItem", "position": 6, "name": "Contact", "url": siteUrl + "/contact" }
+          { "@type": "ListItem", "position": 4, "name": "Open Source", "url": siteUrl + "/opensource" },
+          { "@type": "ListItem", "position": 5, "name": "Skills", "url": siteUrl + "/skills" },
+          { "@type": "ListItem", "position": 6, "name": "Experience", "url": siteUrl + "/experience" },
+          { "@type": "ListItem", "position": 7, "name": "Contact", "url": siteUrl + "/contact" }
         ]
       }
     </script>
 
     <!-- ================= DARK MODE INITIALIZATION (FOUC prevention) ================= -->
     <script is:inline>
-      const initTheme = function() {
-        var theme;
-        try { theme = localStorage.getItem("theme"); } catch(e) {}
-        if (!theme) {
-          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        document.documentElement.classList.toggle("dark", theme === "dark");
-        document.documentElement.style.colorScheme = theme;
-      };
-      initTheme();
-      document.addEventListener("astro:after-swap", initTheme);
+      (function() {
+        var t;
+        try { t = localStorage.getItem("theme"); } catch(e) {}
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        var c = document.documentElement.classList;
+        t === "dark" ? c.add("dark") : c.remove("dark");
+        document.documentElement.style.colorScheme = t;
+      })();
+      document.addEventListener("astro:after-swap", function initTheme() {
+        var t;
+        try { t = localStorage.getItem("theme"); } catch(e) {}
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        var c = document.documentElement.classList;
+        t === "dark" ? c.add("dark") : c.remove("dark");
+        document.documentElement.style.colorScheme = t;
+      });
     </script>
   </head>
 
-  <body class="bg-white text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
+  <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
     <div
       id="app"
       class="min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300"
