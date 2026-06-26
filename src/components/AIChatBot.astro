@@ -72,6 +72,7 @@ import { X, Send } from "lucide-astro";
             <button
                 id="chat-close"
                 class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 relative z-10 text-white/80 hover:text-white hover:rotate-90"
+                aria-label="Close chat"
             >
                 <X class="w-5 h-5" />
             </button>
@@ -114,6 +115,7 @@ import { X, Send } from "lucide-astro";
             <button
                 type="submit"
                 class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 disabled:opacity-50 active:scale-90 shadow-lg shadow-slate-900/10"
+                aria-label="Send message"
             >
                 <Send class="w-4 h-4" />
             </button>
@@ -122,7 +124,14 @@ import { X, Send } from "lucide-astro";
 </div>
 
 <script>
-    import { AIService } from "../utils/AIService";
+    // Dynamic import — AI modules load only when user opens chat, saving ~950KB on initial load
+    let AIServiceModule: typeof import("../utils/AIService") | null = null;
+    const loadAIService = async () => {
+        if (!AIServiceModule) {
+            AIServiceModule = await import("../utils/AIService");
+        }
+        return AIServiceModule.AIService;
+    };
 
     const initChatBot = () => {
         const desktopToggle = document.getElementById("chat-toggle-desktop");
@@ -132,16 +141,21 @@ import { X, Send } from "lucide-astro";
         const input = document.getElementById("chat-input") as HTMLInputElement;
         const messagesContainer = document.getElementById("chat-messages");
 
-        // Clean up mobile trigger listener if it was previously added
+        // Mobile trigger via event delegation (no global leak, BFCache-safe)
         const handleMobileTrigger = (e: MouseEvent) => {
             if ((e.target as Element).closest("#mobile-ai-trigger")) {
                 e.preventDefault();
                 toggleChat();
             }
         };
-        document.body.removeEventListener("click", (window as any)._mobileTriggerHandler);
-        (window as any)._mobileTriggerHandler = handleMobileTrigger;
-        document.body.addEventListener("click", handleMobileTrigger);
+        document.body.addEventListener("click", handleMobileTrigger, { once: false });
+        
+        // Cleanup on page navigation to allow BFCache
+        const cleanup = () => {
+            document.body.removeEventListener("click", handleMobileTrigger);
+        };
+        document.addEventListener("astro:before-swap", cleanup, { once: true });
+        window.addEventListener("pagehide", cleanup, { once: true });
 
         let isOpen = false;
 
@@ -190,7 +204,8 @@ import { X, Send } from "lucide-astro";
             input.disabled = true;
 
             try {
-                // Get response from service
+                // Load AI module on-demand (code-split from main bundle)
+                const AIService = await loadAIService();
                 const response = await AIService.getResponse(query);
 
                 // Professional 3-second delay
@@ -277,6 +292,7 @@ import { X, Send } from "lucide-astro";
                 suggestions.forEach((s) => {
                     const btn = document.createElement("button");
                     btn.type = "button";
+                    btn.setAttribute("aria-label", s);
                     btn.className =
                         "px-3 py-1.5 bg-white border border-slate-200 rounded-full text-[11px] text-slate-500 hover:text-slate-900 hover:border-slate-900 transition-all active:scale-95 shadow-sm";
                     btn.innerHTML = s;
