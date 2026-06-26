@@ -9,12 +9,12 @@ export default defineConfig({
   site: 'https://www.wisnualfiannurashar.my.id',
   output: 'static',
   build: {
-    inlineStylesheets: 'always',
+    inlineStylesheets: 'never',
     format: 'file'
   },
   compressHTML: true,
   prefetch: {
-    prefetchAll: true,
+    prefetchAll: false,
     defaultStrategy: 'viewport'
   },
   integrations: [sitemap(), compress()],
@@ -32,9 +32,7 @@ export default defineConfig({
       cssCodeSplit: true,
       rollupOptions: {
         output: {
-          manualChunks: {
-            vendor: ['astro', 'astro:transitions'],
-          },
+          manualChunks: undefined,
         },
       },
     },
