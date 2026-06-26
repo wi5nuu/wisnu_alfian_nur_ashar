@@ -11,21 +11,37 @@ import { ArrowUp } from "lucide-astro";
 </button>
 
 <script>
+  let _scrollCleanup: (() => void) | null = null;
+
   const initScrollToTop = () => {
+    // Cleanup previous listener for BFCache
+    if (_scrollCleanup) _scrollCleanup();
+
     const scrollBtn = document.getElementById("scroll-to-top");
     if (!scrollBtn) return;
 
+    let ticking = false;
     const toggleScrollBtn = () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.remove("opacity-0", "translate-y-10", "pointer-events-none");
-        scrollBtn.classList.add("opacity-100", "translate-y-0", "pointer-events-auto");
-      } else {
-        scrollBtn.classList.add("opacity-0", "translate-y-10", "pointer-events-none");
-        scrollBtn.classList.remove("opacity-100", "translate-y-0", "pointer-events-auto");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 300) {
+            scrollBtn.classList.remove("opacity-0", "translate-y-10", "pointer-events-none");
+            scrollBtn.classList.add("opacity-100", "translate-y-0", "pointer-events-auto");
+          } else {
+            scrollBtn.classList.add("opacity-0", "translate-y-10", "pointer-events-none");
+            scrollBtn.classList.remove("opacity-100", "translate-y-0", "pointer-events-auto");
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", toggleScrollBtn);
+    window.addEventListener("scroll", toggleScrollBtn, { passive: true });
+    
+    _scrollCleanup = () => {
+      window.removeEventListener("scroll", toggleScrollBtn);
+    };
     
     scrollBtn.onclick = () => {
       window.scrollTo({
@@ -38,4 +54,7 @@ import { ArrowUp } from "lucide-astro";
   // Initialize on first load and subsequent view transition page loads
   initScrollToTop();
   document.addEventListener("astro:page-load", initScrollToTop);
+  
+  // BFCache safe — clean up on page hide
+  window.addEventListener("pagehide", () => { if (_scrollCleanup) _scrollCleanup(); });
 </script>
