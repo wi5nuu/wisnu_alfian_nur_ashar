@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import OpenSourceSection from "../../components/sections/OpenSource.astro";
+
+const title = "Kontribusi Open Source | Wisnu Alfian Nur Ashar";
+const description = "Laporan resmi penelitian bug dan kontribusi kerentanan keamanan pada proyek open-source kelas dunia termasuk NASA, Microsoft, NVIDIA, OWASP, Hugging Face, dan Google.";
+---
+
+<Layout title={title} description={description}>
+    <Header />
+    <main class="pt-20">
+        <OpenSourceSection />
+    </main>
+    <Footer />
+</Layout>
+
+<script>
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
+
+    let observer = null;
+
+    const initObserver = () => {
+        if (!observer) {
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, observerOptions);
+        }
+
+        const revealElements = document.querySelectorAll(
+            ".reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom"
+        );
+        revealElements.forEach((el) => observer.observe(el));
+    };
+
+    document.addEventListener("astro:page-load", initObserver);
+
+    document.addEventListener("astro:before-swap", () => {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+    });
+</script>
