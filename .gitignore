@@ -29,3 +29,10 @@ build.log
 *.tmp
 # .gitignore
 .env
+
+# debug & audit outputs
+*_out.txt
+test_results.txt
+
+# cache
+.qwen/
