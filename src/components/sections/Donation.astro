@@ -173,7 +173,6 @@ const PAYMENT_NUMBER = '081394882490';
   }
 
   function handlePayClick(method) {
-    console.log('handlePayClick called:', method, new Date().toISOString());
     selectedMethod = method;
     var isId = window.location.pathname.startsWith('/id');
 
@@ -203,8 +202,8 @@ const PAYMENT_NUMBER = '081394882490';
     document.getElementById('donation-submit').disabled = false;
     document.getElementById('donor-name').focus();
 
-    // Try to open the app directly
-    window.location.href = appUrl;
+    // Try to open the app in a new window (doesn't leave the page)
+    window.open(appUrl, '_blank');
 
     setTimeout(function() {
       document.getElementById('donation-form-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -266,7 +265,7 @@ const PAYMENT_NUMBER = '081394882490';
     openAppBtn.onclick = function() {
       if (!appUrl) return;
       navigator.clipboard.writeText(PAYMENT_NUMBER);
-      window.location.href = appUrl;
+      window.open(appUrl, '_blank');
     };
 
     copyBtn.onclick = function() {
