@@ -210,7 +210,7 @@ const PAYMENT_NUMBER = '081394882490';
     document.getElementById('donor-name').focus();
 
     // Try to open the app directly
-    window.open(appUrl, '_blank');
+    window.location.href = appUrl;
 
     setTimeout(function() {
       document.getElementById('donation-form-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -272,7 +272,7 @@ const PAYMENT_NUMBER = '081394882490';
     openAppBtn.onclick = function() {
       if (!appUrl) return;
       navigator.clipboard.writeText(PAYMENT_NUMBER);
-      window.open(appUrl, '_blank');
+      window.location.href = appUrl;
     };
 
     copyBtn.onclick = function() {
