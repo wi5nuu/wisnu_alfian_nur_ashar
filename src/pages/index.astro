@@ -9,6 +9,7 @@ import Projects from "../components/sections/Projects.astro";
 import Skills from "../components/sections/Skills.astro";
 import EducationCertifications from "../components/sections/EducationCertifications.astro";
 import Contact from "../components/sections/Contact.astro";
+import Donation from "../components/sections/Donation.astro";
 import { profile } from "../data/profile";
 
 const title = `${profile.personalInfo.name} | ${profile.personalInfo.role}`;
@@ -26,6 +27,7 @@ const description = profile.personalInfo.summary;
 		<Skills />
 		<EducationCertifications />
 		<Contact />
+		<Donation />
 	</main>
 	<Footer />
 </Layout>
