@@ -4,470 +4,359 @@ const WA_NUMBER = '6281394882490';
 const PAYMENT_NUMBER = '081394882490';
 ---
 
-<section id="donation" class="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white dark:from-slate-900/50 dark:via-slate-900/30 dark:to-slate-900/50">
+<section id="donation" class="relative py-20 md:py-28 overflow-hidden bg-white dark:bg-slate-900/50">
   <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-600 to-transparent"></div>
 
-  <div class="absolute top-40 right-0 w-72 h-72 bg-slate-100 dark:bg-slate-800/30 rounded-full blur-[120px]"></div>
-  <div class="absolute bottom-40 left-0 w-72 h-72 bg-amber-50 dark:bg-amber-900/10 rounded-full blur-[120px]"></div>
-
   <div class="container-custom relative z-10">
-    <div class="text-center mb-12">
-      <span class="inline-block text-xs uppercase tracking-[0.25em] font-bold text-slate-400 dark:text-slate-500 mb-4 reveal-up bg-slate-100 dark:bg-slate-800 px-4 py-1.5 rounded-full">
-        {isId ? '🍩 Dukungan' : '🍩 Support'}
+    <div class="text-center mb-10">
+      <span class="inline-block text-xs uppercase tracking-[0.25em] font-bold text-slate-400 dark:text-slate-500 mb-3 bg-slate-100 dark:bg-slate-800 px-4 py-1.5 rounded-full">
+        🍩 {isId ? 'Dukungan' : 'Support'}
       </span>
-      <h2 class="text-3xl md:text-5xl font-serif font-bold text-slate-950 dark:text-white mb-4 reveal-up">
+      <h2 class="text-2xl md:text-4xl font-serif font-bold text-slate-950 dark:text-white">
         {isId ? 'Beli Saya Donat' : 'Buy Me a Donut'}
       </h2>
-      <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm leading-relaxed reveal-up">
+      <p class="text-slate-500 dark:text-slate-400 max-w-lg mx-auto text-sm mt-2">
         {isId
-          ? 'Setiap donat yang kamu beli adalah bentuk apresiasi dan semangat untuk terus berkarya. Terima kasih untuk setiap dukungannya!'
-          : 'Every donut you buy is a form of appreciation and encouragement to keep creating. Thank you for your support!'}
+          ? 'Dukung karya saya dengan membeli donat. Setiap donasi berarti!'
+          : 'Support my work by buying a donut. Every donation matters!'}
       </p>
     </div>
 
-    <div class="flex items-center justify-center gap-2 md:gap-4 mb-10 reveal-up">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 text-xs font-bold flex items-center justify-center">1</div>
-        <span class="text-xs font-bold text-slate-700 dark:text-slate-300">{isId ? 'Pilih' : 'Choose'}</span>
-      </div>
-      <div class="w-8 h-px bg-slate-200 dark:bg-slate-700"></div>
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-400 text-xs font-bold flex items-center justify-center">2</div>
-        <span class="text-xs font-bold text-slate-400 dark:text-slate-500">{isId ? 'Bayar' : 'Pay'}</span>
-      </div>
-      <div class="w-8 h-px bg-slate-200 dark:bg-slate-700"></div>
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-400 text-xs font-bold flex items-center justify-center">3</div>
-        <span class="text-xs font-bold text-slate-400 dark:text-slate-500">{isId ? 'Konfirmasi' : 'Confirm'}</span>
-      </div>
-    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 max-w-4xl mx-auto">
+      <!-- Left: Payment Card -->
+      <div class="lg:col-span-3 reveal-up">
+        <div class="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-5 md:p-6 shadow-sm">
 
-    <div class="max-w-lg mx-auto reveal-up">
-      <div class="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-100 dark:shadow-black/20 backdrop-blur-sm">
-
-        <div class="text-center mb-6">
-          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-amber-50 dark:bg-amber-900/20 mb-4">
-            <span class="text-4xl">🍩</span>
-          </div>
-          <div class="text-3xl font-bold text-slate-950 dark:text-white">
-            Rp5.000 <span class="text-base font-medium text-slate-400 dark:text-slate-500">/ {isId ? 'donat' : 'donut'}</span>
-          </div>
-        </div>
-
-        <div class="flex items-center justify-center gap-5 mb-6">
-          <button id="donation-minus" class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-xl font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-700" disabled aria-label="{isId ? 'Kurangi' : 'Decrease'}">
-            -
-          </button>
-          <div class="text-center">
-            <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold">{isId ? 'Jumlah' : 'Qty'}</span>
-            <span id="donation-qty" class="block text-4xl font-bold text-slate-950 dark:text-white w-16 text-center tabular-nums">1</span>
-          </div>
-          <button id="donation-plus" class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-xl font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all" aria-label="{isId ? 'Tambah' : 'Increase'}">
-            +
-          </button>
-        </div>
-
-        <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4 mb-6 text-center">
-          <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold">{isId ? 'Total yang harus dibayar' : 'Total to pay'}</span>
-          <div id="donation-total" class="text-3xl font-bold text-slate-950 dark:text-white mt-1">
-            Rp5.000
-          </div>
-        </div>
-
-        <div class="space-y-3 mb-4">
-          <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold text-center flex items-center justify-center gap-2">
-            <span class="flex-1 h-px bg-slate-200 dark:bg-slate-700"></span>
-            <span>{isId ? 'PILIH METODE PEMBAYARAN' : 'PAYMENT METHOD'}</span>
-            <span class="flex-1 h-px bg-slate-200 dark:bg-slate-700"></span>
-          </p>
-
-          <button data-payment="gopay" class="donation-pay-btn w-full flex items-center justify-between px-5 py-4 rounded-2xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-100 dark:hover:shadow-emerald-900/20 active:scale-[0.98] transition-all cursor-pointer group">
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-xl flex-shrink-0">
-                💚
-              </div>
-              <div class="text-left">
-                <span class="block text-sm font-bold text-slate-900 dark:text-white">GoPay</span>
-                <span class="block text-[11px] text-slate-400 dark:text-slate-500 font-mono tracking-wide">{PAYMENT_NUMBER}</span>
-              </div>
+          <div class="text-center mb-5">
+            <span class="text-4xl block mb-2">🍩</span>
+            <div class="text-2xl font-bold text-slate-950 dark:text-white">
+              Rp5.000 <span class="text-sm font-medium text-slate-400 dark:text-slate-500">/ {isId ? 'donat' : 'donut'}</span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 transition-colors">{isId ? 'Kirim' : 'Send'}</span>
-              <span class="text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 transition-colors">→</span>
-            </div>
-          </button>
-
-          <button data-payment="dana" class="donation-pay-btn w-full flex items-center justify-between px-5 py-4 rounded-2xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-blue-900/20 active:scale-[0.98] transition-all cursor-pointer group">
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-xl flex-shrink-0">
-                💙
-              </div>
-              <div class="text-left">
-                <span class="block text-sm font-bold text-slate-900 dark:text-white">DANA</span>
-                <span class="block text-[11px] text-slate-400 dark:text-slate-500 font-mono tracking-wide">{PAYMENT_NUMBER}</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold text-slate-300 dark:text-slate-600 group-hover:text-blue-500 transition-colors">{isId ? 'Kirim' : 'Send'}</span>
-              <span class="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 transition-colors">→</span>
-            </div>
-          </button>
-        </div>
-
-        <div id="donation-number-display" class="hidden mb-4 p-5 bg-gradient-to-br from-emerald-50 to-emerald-50/50 dark:from-emerald-900/20 dark:to-emerald-900/10 rounded-2xl border-2 border-emerald-200 dark:border-emerald-800/50 text-center">
-          <div class="flex items-center justify-center gap-2 mb-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">{isId ? 'Nomor Tujuan' : 'Destination Number'}</span>
           </div>
-          <p id="donation-number-text" class="text-3xl font-bold text-slate-950 dark:text-white font-mono tracking-widest">{PAYMENT_NUMBER}</p>
-          <p id="donation-method-label" class="text-sm font-medium text-emerald-600 dark:text-emerald-400 mt-1"></p>
-          <div class="flex items-center justify-center gap-3 mt-4">
-            <button id="donation-copy-number" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-slate-700 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 active:scale-95 transition-all cursor-pointer shadow-sm">
-              <span>📋</span>
-              <span>{isId ? 'Salin Nomor' : 'Copy Number'}</span>
+
+          <div class="flex items-center justify-center gap-4 mb-5">
+            <button id="donation-minus" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-lg font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+              -
+            </button>
+            <div class="text-center">
+              <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold">{isId ? 'Jumlah' : 'Qty'}</span>
+              <span id="donation-qty" class="block text-3xl font-bold text-slate-950 dark:text-white w-14 text-center tabular-nums">1</span>
+            </div>
+            <button id="donation-plus" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-lg font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all">
+              +
             </button>
           </div>
-          <p class="mt-3 text-[11px] text-emerald-500 dark:text-emerald-400/70 font-medium">
-            {isId ? '🪄 Transfer sesuai total, lalu konfirmasi di bawah' : '🪄 Transfer the total, then confirm below'}
-          </p>
+
+          <div class="bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-3 mb-5 text-center">
+            <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold">{isId ? 'Total' : 'Total'}</span>
+            <div id="donation-total" class="text-2xl font-bold text-slate-950 dark:text-white">Rp5.000</div>
+          </div>
+
+          <div class="space-y-2.5">
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold text-center">{isId ? 'Metode Pembayaran' : 'Payment Method'}</p>
+
+            <button type="button" onclick="handlePayClick('gopay')" data-payment="gopay" class="donation-pay-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 active:scale-[0.98] transition-all cursor-pointer">
+              <div class="flex items-center gap-3">
+                <span class="text-lg">💚</span>
+                <div class="text-left">
+                  <span class="block text-sm font-bold text-slate-900 dark:text-white">GoPay</span>
+                  <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-mono">{PAYMENT_NUMBER}</span>
+                </div>
+              </div>
+              <span class="text-xs text-slate-300 dark:text-slate-600 font-bold">→</span>
+            </button>
+
+            <button type="button" onclick="handlePayClick('dana')" data-payment="dana" class="donation-pay-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-blue-400 dark:hover:border-blue-500 active:scale-[0.98] transition-all cursor-pointer">
+              <div class="flex items-center gap-3">
+                <span class="text-lg">💙</span>
+                <div class="text-left">
+                  <span class="block text-sm font-bold text-slate-900 dark:text-white">DANA</span>
+                  <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-mono">{PAYMENT_NUMBER}</span>
+                </div>
+              </div>
+              <span class="text-xs text-slate-300 dark:text-slate-600 font-bold">→</span>
+            </button>
+          </div>
+
+          <div id="donation-number-display" class="hidden mt-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800/50 rounded-xl text-center">
+            <p class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase mb-1">{isId ? 'Kirim ke' : 'Send to'}</p>
+            <p id="donation-number-text" class="text-2xl font-bold text-slate-950 dark:text-white font-mono tracking-wider">{PAYMENT_NUMBER}</p>
+            <p id="donation-method-label" class="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5"></p>
+            <div class="flex items-center justify-center gap-2 mt-3">
+              <button id="donation-copy-number" class="px-4 py-2 rounded-lg bg-white dark:bg-slate-700 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 active:scale-95 transition-all cursor-pointer flex items-center gap-1.5">
+                <span>📋</span>
+                <span>{isId ? 'Salin' : 'Copy'}</span>
+              </button>
+              <button id="donation-open-app" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer">
+                <span id="open-app-icon">🚀</span>
+                <span id="open-app-text">{isId ? 'Buka Aplikasi' : 'Open App'}</span>
+              </button>
+            </div>
+            <p class="mt-2 text-[10px] text-emerald-500 dark:text-emerald-400/70">
+              {isId ? 'Nomor sudah disalin. Ketuk "Buka Aplikasi" untuk bayar.' : 'Number copied. Tap "Open App" to pay.'}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="donation-form-section" class="max-w-lg mx-auto mt-6 hidden reveal-up">
-      <div class="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-100 dark:shadow-black/20 backdrop-blur-sm">
-        <div class="flex items-center gap-4 mb-6 pb-5 border-b border-slate-100 dark:border-slate-700">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
-            <span class="text-xl">💬</span>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold text-slate-950 dark:text-white">
-              {isId ? 'Konfirmasi Pembayaran' : 'Payment Confirmation'}
+      <!-- Right: Form + Donor List -->
+      <div class="lg:col-span-2 space-y-4">
+        <div id="donation-form-section" class="hidden reveal-up">
+          <div class="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-5 md:p-6 shadow-sm">
+            <h3 class="text-sm font-bold text-slate-950 dark:text-white mb-4 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-xs">💬</span>
+              {isId ? 'Konfirmasi' : 'Confirmation'}
             </h3>
-            <p class="text-xs text-slate-400 dark:text-slate-500">
+
+            <div class="space-y-3">
+              <input id="donor-name" type="text" maxlength="50" required placeholder={isId ? 'Nama kamu' : 'Your name'} class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
+
+              <input id="donor-message" type="text" maxlength="100" placeholder={isId ? 'Pesan (opsional)' : 'Message (optional)'} class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
+
+              <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl px-4 py-3 text-sm space-y-1">
+                <div class="flex justify-between"><span class="text-slate-400">{isId ? 'Donat' : 'Donuts'}</span><span id="summary-qty" class="font-bold text-slate-900 dark:text-white">1</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">{isId ? 'Metode' : 'Method'}</span><span id="summary-method" class="font-bold text-slate-900 dark:text-white">-</span></div>
+                <div class="flex justify-between pt-2 mt-1 border-t border-slate-200 dark:border-slate-600"><span class="font-bold text-slate-900 dark:text-white">{isId ? 'Total' : 'Total'}</span><span id="summary-total" class="font-bold text-slate-950 dark:text-white">Rp5.000</span></div>
+              </div>
+
+              <button id="donation-submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 text-white text-sm font-bold flex items-center justify-center gap-2">
+                <span>📱</span>
+                <span>{isId ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp'}</span>
+              </button>
+
+              <button id="donation-cancel" class="w-full text-[11px] text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer">
+                ← {isId ? 'Kembali' : 'Back'}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="donation-thankyou" class="hidden reveal-up">
+          <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 rounded-2xl p-6 text-center shadow-sm">
+            <span class="text-3xl block mb-3">🎉</span>
+            <h3 class="text-lg font-bold text-emerald-800 dark:text-emerald-300 mb-1">
+              {isId ? 'Terima Kasih!' : 'Thank You!'}
+            </h3>
+            <p class="text-xs text-emerald-600 dark:text-emerald-400/80">
               {isId
-                ? 'Isi data diri, kamu akan diarahkan ke WhatsApp saya'
-                : 'Fill your details, you will be redirected to my WhatsApp'}
+                ? 'Pesan terkirim ke WhatsApp. Nama akan muncul setelah dikonfirmasi.'
+                : 'Message sent to WhatsApp. Name will appear after confirmation.'}
             </p>
           </div>
         </div>
 
-        <div class="space-y-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5" for="donor-name">
-              {isId ? 'Nama Lengkap' : 'Full Name'} <span class="text-red-400">*</span>
-            </label>
-            <input id="donor-name" type="text" maxlength="50" required placeholder={isId ? 'cth: Budi Santoso' : 'eg: John Doe'} class="w-full px-4 py-3.5 rounded-2xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white focus:ring-0 placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
+        <div id="donation-list-section" class="reveal-up">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xs uppercase font-bold text-slate-400 dark:text-slate-500">
+              🍩 <span id="donation-list-count">0</span> {isId ? 'Pendukung' : 'Supporters'}
+            </h3>
+            <a href="/admin-dashboard" class="text-[10px] text-slate-300 dark:text-slate-600 hover:text-slate-400 transition-colors">🔐</a>
           </div>
 
-          <div>
-            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5" for="donor-message">
-              {isId ? 'Pesan (opsional)' : 'Message (optional)'}
-            </label>
-            <input id="donor-message" type="text" maxlength="100" placeholder={isId ? 'cth: Semangat terus karya karyanya!' : 'eg: Keep up the great work!'} class="w-full px-4 py-3.5 rounded-2xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white focus:ring-0 placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
+          <div id="donation-list-empty" class="text-center py-8 bg-white dark:bg-slate-800/30 border border-dashed border-slate-200 dark:border-slate-700 rounded-2xl">
+            <span class="text-3xl block mb-2">🍩</span>
+            <p class="text-slate-300 dark:text-slate-600 text-xs">{isId ? 'Belum ada pendukung.' : 'No supporters yet.'}</p>
           </div>
 
-          <div class="bg-slate-50 dark:bg-slate-700/50 rounded-2xl p-4 border border-slate-100 dark:border-slate-600/50">
-            <div class="flex justify-between text-sm py-1">
-              <span class="text-slate-500 dark:text-slate-400">{isId ? 'Jumlah Donat' : 'Donuts'}</span>
-              <span id="summary-qty" class="font-bold text-slate-900 dark:text-white">1</span>
-            </div>
-            <div class="flex justify-between text-sm py-1">
-              <span class="text-slate-500 dark:text-slate-400">{isId ? 'Metode' : 'Method'}</span>
-              <span id="summary-method" class="font-bold text-slate-900 dark:text-white">-</span>
-            </div>
-            <div class="flex justify-between text-sm pt-3 mt-2 border-t border-slate-200 dark:border-slate-600">
-              <span class="font-bold text-slate-900 dark:text-white text-base">{isId ? 'Total Dibayar' : 'Total Paid'}</span>
-              <span id="summary-total" class="font-bold text-slate-950 dark:text-white text-base">Rp5.000</span>
-            </div>
-          </div>
-
-          <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-2xl p-4 text-center">
-            <p class="text-xs font-bold text-amber-700 dark:text-amber-400">
-              {isId
-                ? '⏳ Setelah konfirmasi, nama kamu akan muncul setelah Wisnu menyetujui pesananmu'
-                : '⏳ After confirmation, your name will appear once Wisnu approves your order'}
-            </p>
-          </div>
-
-          <button id="donation-submit" class="w-full py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-lg shadow-emerald-200 dark:shadow-emerald-900/30">
-            <span class="text-lg">📱</span>
-            <span class="text-white text-sm font-bold" id="donation-submit-text">
-              {isId ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp'}
-            </span>
-          </button>
-
-          <button id="donation-cancel" class="w-full py-3 text-xs text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer">
-            {isId ? '← Kembali' : '← Back'}
-          </button>
+          <div id="donation-list" class="space-y-2"></div>
         </div>
-      </div>
-    </div>
-
-    <div id="donation-thankyou" class="max-w-lg mx-auto mt-6 hidden reveal-up">
-      <div class="bg-gradient-to-br from-emerald-50 to-emerald-50/50 dark:from-emerald-900/20 dark:to-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 rounded-3xl p-8 md:p-10 text-center shadow-xl shadow-emerald-100 dark:shadow-emerald-900/10">
-        <div class="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mx-auto mb-5">
-          <span class="text-4xl">🎉</span>
-        </div>
-        <h3 class="text-2xl font-bold text-emerald-800 dark:text-emerald-300 mb-3">
-          {isId ? 'Terima Kasih Banyak!' : 'Thank You So Much!'}
-        </h3>
-        <p class="text-emerald-600 dark:text-emerald-400/80 text-sm leading-relaxed max-w-sm mx-auto">
-          {isId
-            ? 'Pesan konfirmasi sudah terkirim ke WhatsApp saya. Nama kamu akan muncul di daftar pendukung setelah saya konfirmasi pesanan kamu. Mohon tunggu sebentar ya!'
-            : 'The confirmation has been sent to my WhatsApp. Your name will appear on the supporter list once I confirm your order. Please wait a moment!'}
-        </p>
-        <div class="mt-6 flex items-center justify-center gap-2 text-emerald-500 dark:text-emerald-400 text-sm font-bold">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-          <span>{isId ? 'Menunggu konfirmasi Wisnu...' : 'Awaiting Wisnu confirmation...'}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center mt-6">
-      <a href="/admin-dashboard" class="inline-flex items-center gap-1.5 text-[10px] text-slate-300 dark:text-slate-600 hover:text-slate-400 dark:hover:text-slate-500 transition-colors font-medium">
-        <span>🔐</span>
-        <span>Admin</span>
-      </a>
-    </div>
-
-    <div id="donation-list-section" class="max-w-lg mx-auto mt-10 reveal-up">
-      <div class="text-center mb-8">
-        <span class="inline-flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-5 py-2 rounded-full">
-          🍩 <span id="donation-list-count">0</span>
-          <span class="text-slate-300 dark:text-slate-600">|</span>
-          <span>{isId ? 'PENDukung Donat' : 'DONUT SUPPORTERS'}</span>
-        </span>
-      </div>
-
-      <div id="donation-list-empty" class="text-center py-16 bg-white dark:bg-slate-800/30 border border-dashed border-slate-200 dark:border-slate-700 rounded-3xl">
-        <span class="text-5xl block mb-4">🍩</span>
-        <p class="text-slate-300 dark:text-slate-600 text-sm font-medium">
-          {isId
-            ? 'Belum ada pendukung. Jadilah yang pertama!'
-            : 'No supporters yet. Be the first one!'}
-        </p>
-      </div>
-
-      <div id="donation-list" class="space-y-3">
       </div>
     </div>
   </div>
 </section>
 
-<script>
-  const PRICE_PER_DONUT = 5000;
-  const WA_NUMBER = '6281394882490';
-  const PAYMENT_NUMBER = '081394882490';
+<script is:inline>
+  var PRICE_PER_DONUT = 5000;
+  var WA_NUMBER = '6281394882490';
+  var PAYMENT_NUMBER = '081394882490';
+  var qty = 1;
+  var selectedMethod = '';
+  var isSubmitting = false;
+  var appUrl = '';
 
-  const qtyEl = document.getElementById('donation-qty');
-  const totalEl = document.getElementById('donation-total');
-  const minusBtn = document.getElementById('donation-minus');
-  const plusBtn = document.getElementById('donation-plus');
-  const numberDisplay = document.getElementById('donation-number-display');
-  const methodLabel = document.getElementById('donation-method-label');
-  const copyBtn = document.getElementById('donation-copy-number');
-  const formSection = document.getElementById('donation-form-section');
-  const thankYouSection = document.getElementById('donation-thankyou');
-  const listEl = document.getElementById('donation-list');
-  const listEmptyEl = document.getElementById('donation-list-empty');
-  const listCountEl = document.getElementById('donation-list-count');
-  const summaryQty = document.getElementById('summary-qty');
-  const summaryMethod = document.getElementById('summary-method');
-  const summaryTotal = document.getElementById('summary-total');
-  const submitBtn = document.getElementById('donation-submit');
-  const cancelBtn = document.getElementById('donation-cancel');
-  const donorName = document.getElementById('donor-name');
-  const donorMessage = document.getElementById('donor-message');
-  const isId = window.location.pathname.startsWith('/id');
+  function formatPrice(amount) {
+    return 'Rp' + amount.toLocaleString('id-ID');
+  }
 
-  let qty = 1;
-  let selectedMethod = '';
-  let isSubmitting = false;
+  function handlePayClick(method) {
+    console.log('handlePayClick called:', method, new Date().toISOString());
+    selectedMethod = method;
+    var isId = window.location.pathname.startsWith('/id');
 
-  const formatPrice = (amount) => 'Rp' + amount.toLocaleString('id-ID');
-
-  const updateDisplay = () => {
-    const total = qty * PRICE_PER_DONUT;
-    qtyEl.textContent = qty;
-    totalEl.textContent = formatPrice(total);
-    minusBtn.disabled = qty <= 1;
-    summaryQty.textContent = `${qty} ${isId ? 'donat' : 'donut'}`;
-    summaryTotal.textContent = formatPrice(total);
-  };
-
-  const renderDonors = async () => {
-    try {
-      const res = await fetch('/api/donations?type=confirmed');
-      const data = await res.json();
-      const donors = data.donations || [];
-
-      listCountEl.textContent = donors.length;
-      if (donors.length === 0) {
-        listEmptyEl.classList.remove('hidden');
-        listEl.innerHTML = '';
-        return;
-      }
-      listEmptyEl.classList.add('hidden');
-      listEl.innerHTML = donors.map((d) => {
-        const date = new Date(d.timestamp);
-        const dateStr = date.toLocaleDateString(isId ? 'id-ID' : 'en-US', {
-          day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
-        });
-        const initial = d.name.charAt(0).toUpperCase();
-        const colors = ['bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400', 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400', 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400', 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400', 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400'];
-        const colorIdx = d.name.length % colors.length;
-        return `
-          <div class="flex items-center gap-4 bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 rounded-2xl p-4 hover:shadow-md hover:shadow-slate-100 dark:hover:shadow-black/20 hover:border-slate-200 dark:hover:border-slate-600 transition-all duration-300 group">
-            <div class="w-11 h-11 rounded-2xl ${colors[colorIdx]} flex items-center justify-center text-base font-bold flex-shrink-0 transition-transform group-hover:scale-110">${initial}</div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-sm font-bold text-slate-900 dark:text-white">${d.name}</span>
-                <span class="inline-flex items-center gap-1 text-[10px] px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 font-bold">🍩 ${d.qty}</span>
-              </div>
-              ${d.message ? `<p class="text-xs text-slate-400 dark:text-slate-500 mt-1 leading-relaxed">"${d.message}"</p>` : ''}
-              <p class="text-[10px] text-slate-300 dark:text-slate-600 mt-1 font-medium">${dateStr} · ${d.method.toUpperCase()}</p>
-            </div>
-            <div class="text-right flex-shrink-0">
-              <span class="text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 rounded-xl">${formatPrice(d.qty * PRICE_PER_DONUT)}</span>
-            </div>
-          </div>
-        `;
-      }).join('');
-    } catch {
-      listEl.innerHTML = '<p class="text-center text-slate-400 text-sm py-8">Failed to load supporters.</p>';
-    }
-  };
-
-  minusBtn.addEventListener('click', () => { if (qty > 1) { qty--; updateDisplay(); } });
-  plusBtn.addEventListener('click', () => { if (qty < 99) { qty++; updateDisplay(); } });
-
-  document.querySelectorAll('.donation-pay-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      selectedMethod = btn.dataset.payment;
-      document.querySelectorAll('.donation-pay-btn').forEach(b => {
-        b.classList.remove('border-slate-900', 'dark:border-white');
-        if (b.dataset.payment === 'gopay') b.classList.remove('border-emerald-400', 'dark:border-emerald-500');
-        if (b.dataset.payment === 'dana') b.classList.remove('border-blue-400', 'dark:border-blue-500');
-      });
-      const colorClass = selectedMethod === 'gopay' ? 'border-emerald-400 dark:border-emerald-500' : 'border-blue-400 dark:border-blue-500';
-      btn.classList.add(colorClass);
-
-      const label = selectedMethod === 'gopay' ? 'GoPay' : 'DANA';
-      methodLabel.textContent = `via ${label}`;
-      summaryMethod.textContent = label;
-
-      numberDisplay.classList.remove('hidden');
-      numberDisplay.classList.add('active');
-      formSection.classList.remove('hidden');
-      formSection.classList.add('active');
-      thankYouSection.classList.add('hidden');
-      submitBtn.disabled = false;
-
-      setTimeout(() => {
-        numberDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        setTimeout(() => { donorName.focus(); }, 400);
-      }, 150);
-    });
-  });
-
-  copyBtn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(PAYMENT_NUMBER);
-      const original = copyBtn.innerHTML;
-      copyBtn.innerHTML = '<span>✅</span><span>Tersalin!</span>';
-      copyBtn.classList.add('bg-emerald-100', 'dark:bg-emerald-900/50');
-      setTimeout(() => {
-        copyBtn.innerHTML = original;
-        copyBtn.classList.remove('bg-emerald-100', 'dark:bg-emerald-900/50');
-      }, 2000);
-    } catch {
-      copyBtn.innerHTML = '<span>❌</span><span>Gagal</span>';
-    }
-  });
-
-  cancelBtn.addEventListener('click', () => {
-    formSection.classList.add('hidden');
-    formSection.classList.remove('active');
-    numberDisplay.classList.add('hidden');
-    numberDisplay.classList.remove('active');
-    selectedMethod = '';
-    document.querySelectorAll('.donation-pay-btn').forEach(b => {
+    var btns = document.querySelectorAll('.donation-pay-btn');
+    for (var i = 0; i < btns.length; i++) {
+      var b = btns[i];
       if (b.dataset.payment === 'gopay') b.classList.remove('border-emerald-400', 'dark:border-emerald-500');
       if (b.dataset.payment === 'dana') b.classList.remove('border-blue-400', 'dark:border-blue-500');
-    });
-    donorName.value = '';
-    donorMessage.value = '';
-  });
-
-  submitBtn.addEventListener('click', async () => {
-    if (isSubmitting) return;
-    const name = donorName.value.trim();
-    if (!name) {
-      donorName.classList.add('border-red-400', 'dark:border-red-500');
-      donorName.focus();
-      return;
     }
-    donorName.classList.remove('border-red-400', 'dark:border-red-500');
+    var payBtn = document.querySelector('.donation-pay-btn[data-payment="' + method + '"]');
+    if (payBtn) {
+      payBtn.classList.add(method === 'gopay' ? 'border-emerald-400 dark:border-emerald-500' : 'border-blue-400 dark:border-blue-500');
+    }
 
-    const total = qty * PRICE_PER_DONUT;
-    const methodLabel = selectedMethod === 'gopay' ? 'GoPay' : 'DANA';
-    const message = donorMessage.value.trim();
-    const totalFormatted = formatPrice(total);
+    var label = method === 'gopay' ? 'GoPay' : 'DANA';
+    document.getElementById('donation-method-label').textContent = 'via ' + label;
+    document.getElementById('summary-method').textContent = label;
+    document.getElementById('open-app-text').textContent = isId ? 'Buka ' + label : 'Open ' + label;
+    document.getElementById('open-app-icon').textContent = method === 'gopay' ? '\uD83D\uDC9A' : '\uD83D\uDC99';
+    appUrl = method === 'gopay' ? 'gopay://' : 'dana://';
 
-    const msgText = isId
-      ? `Assalamualaikum Kak Wisnu 👋%0A%0ASaya *${name}* ingin mengkonfirmasi pembayaran donat saya:%0A%0A🍩 *${qty} Donat*%0A💸 *${totalFormatted}*%0A💳 *${methodLabel}*%0A📱 *${PAYMENT_NUMBER}*${message ? `%0A%0A📝 *Pesan:* ${message}` : ''}%0A%0ASudah saya transfer, mohon dicek ya Kak. Terima kasih banyak! 🙏✨`
-      : `Hello Kak Wisnu 👋%0A%0AMy name is *${name}*, I'd like to confirm my donut payment:%0A%0A🍩 *${qty} Donut(s)*%0A💸 *${totalFormatted}*%0A💳 *${methodLabel}*%0A📱 *${PAYMENT_NUMBER}*${message ? `%0A%0A📝 *Message:* ${message}` : ''}%0A%0AI have made the transfer, please check. Thank you very much! 🙏✨`;
+    navigator.clipboard.writeText(PAYMENT_NUMBER).catch(function() {});
 
-    isSubmitting = true;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span>⏳</span><span>Mengirim...</span>';
+    document.getElementById('donation-number-display').classList.remove('hidden');
+    document.getElementById('donation-form-section').classList.remove('hidden');
+    document.getElementById('donation-thankyou').classList.add('hidden');
+    document.getElementById('donation-submit').disabled = false;
+    document.getElementById('donor-name').focus();
 
-    try {
-      const res = await fetch('/api/donations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, qty, method: selectedMethod, message }),
-      });
+    // Try to open the app directly
+    window.open(appUrl, '_blank');
 
-      if (!res.ok) throw new Error('API Error');
+    setTimeout(function() {
+      document.getElementById('donation-form-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
 
-      formSection.classList.add('hidden');
-      formSection.classList.remove('active');
-      numberDisplay.classList.add('hidden');
-      numberDisplay.classList.remove('active');
-      thankYouSection.classList.remove('hidden');
-      thankYouSection.classList.add('active');
+  function initDonation() {
+    var isId = window.location.pathname.startsWith('/id');
 
-      donorName.value = '';
-      donorMessage.value = '';
-      document.querySelectorAll('.donation-pay-btn').forEach(b => {
+    var minusBtn = document.getElementById('donation-minus');
+    var plusBtn = document.getElementById('donation-plus');
+    var copyBtn = document.getElementById('donation-copy-number');
+    var openAppBtn = document.getElementById('donation-open-app');
+    var cancelBtn = document.getElementById('donation-cancel');
+    var submitBtn = document.getElementById('donation-submit');
+    var donorName = document.getElementById('donor-name');
+    var donorMessage = document.getElementById('donor-message');
+    var listEl = document.getElementById('donation-list');
+    var listEmptyEl = document.getElementById('donation-list-empty');
+    var listCountEl = document.getElementById('donation-list-count');
+    var qtyEl = document.getElementById('donation-qty');
+    var totalEl = document.getElementById('donation-total');
+    var summaryQty = document.getElementById('summary-qty');
+    var summaryTotal = document.getElementById('summary-total');
+
+    if (!donorName) { setTimeout(initDonation, 100); return; }
+
+    function updateDisplay() {
+      var total = qty * PRICE_PER_DONUT;
+      qtyEl.textContent = qty;
+      totalEl.textContent = formatPrice(total);
+      minusBtn.disabled = qty <= 1;
+      summaryQty.textContent = qty + ' ' + (isId ? 'donat' : 'donut');
+      summaryTotal.textContent = formatPrice(total);
+    }
+
+    function renderDonors() {
+      fetch('/api/donations?type=confirmed').then(function(r) { return r.json(); }).then(function(data) {
+        var donors = data.donations || [];
+        listCountEl.textContent = donors.length;
+        if (donors.length === 0) {
+          listEmptyEl.classList.remove('hidden');
+          listEl.innerHTML = '';
+          return;
+        }
+        listEmptyEl.classList.add('hidden');
+        listEl.innerHTML = donors.map(function(d) {
+          var date = new Date(d.timestamp);
+          var dateStr = date.toLocaleDateString(isId ? 'id-ID' : 'en-US', { day: 'numeric', month: 'short' });
+          var colors = ['bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400', 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400', 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'];
+          return '<div class="flex items-center gap-3 bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 rounded-xl p-3"><div class="w-9 h-9 rounded-xl ' + colors[d.name.length % 3] + ' flex items-center justify-center text-sm font-bold flex-shrink-0">' + d.name.charAt(0).toUpperCase() + '</div><div class="flex-1 min-w-0"><div class="flex items-center gap-1.5"><span class="text-sm font-bold text-slate-900 dark:text-white">' + d.name + '</span><span class="text-[9px] px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 font-bold">\uD83C\uDF69' + d.qty + '</span></div><p class="text-[10px] text-slate-300 dark:text-slate-600">' + dateStr + ' \u00B7 ' + d.method.toUpperCase() + '</p></div><span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 px-2 py-1 rounded-lg">' + formatPrice(d.qty * PRICE_PER_DONUT) + '</span></div>';
+        }).join('');
+      }).catch(function() { listEl.innerHTML = ''; });
+    }
+
+    minusBtn.onclick = function() { if (qty > 1) { qty--; updateDisplay(); } };
+    plusBtn.onclick = function() { if (qty < 99) { qty++; updateDisplay(); } };
+
+    openAppBtn.onclick = function() {
+      if (!appUrl) return;
+      navigator.clipboard.writeText(PAYMENT_NUMBER);
+      window.open(appUrl, '_blank');
+    };
+
+    copyBtn.onclick = function() {
+      navigator.clipboard.writeText(PAYMENT_NUMBER).then(function() {
+        copyBtn.innerHTML = '<span>\u2705</span><span>' + (isId ? 'Tersalin!' : 'Copied!') + '</span>';
+        setTimeout(function() { copyBtn.innerHTML = '<span>\uD83D\uDCCB</span><span>' + (isId ? 'Salin' : 'Copy') + '</span>'; }, 2000);
+      }).catch(function() {});
+    };
+
+    cancelBtn.onclick = function() {
+      document.getElementById('donation-form-section').classList.add('hidden');
+      document.getElementById('donation-number-display').classList.add('hidden');
+      selectedMethod = '';
+      appUrl = '';
+      document.getElementById('open-app-text').textContent = isId ? 'Buka Aplikasi' : 'Open App';
+      document.getElementById('open-app-icon').textContent = '\uD83D\uDE80';
+      var btns = document.querySelectorAll('.donation-pay-btn');
+      for (var i = 0; i < btns.length; i++) {
+        var b = btns[i];
         if (b.dataset.payment === 'gopay') b.classList.remove('border-emerald-400', 'dark:border-emerald-500');
         if (b.dataset.payment === 'dana') b.classList.remove('border-blue-400', 'dark:border-blue-500');
+      }
+      donorName.value = '';
+      donorMessage.value = '';
+    };
+
+    submitBtn.onclick = function() {
+      if (isSubmitting) return;
+      var name = donorName.value.trim();
+      if (!name) { donorName.classList.add('border-red-400'); donorName.focus(); return; }
+      donorName.classList.remove('border-red-400');
+
+      var total = qty * PRICE_PER_DONUT;
+      var mLabel = selectedMethod === 'gopay' ? 'GoPay' : 'DANA';
+      var message = donorMessage.value.trim();
+      var totalFmt = formatPrice(total);
+      var msgText = isId
+        ? 'Assalamualaikum Kak Wisnu \uD83D\uDC4B%0A%0ASaya *' + name + '* ingin mengkonfirmasi pembayaran donat:%0A%0A\uD83C\uDF69 *' + qty + ' Donat*%0A\uD83D\uDCB8 *' + totalFmt + '*%0A\uD83D\uDCB3 *' + mLabel + '*%0A\uD83D\uDCF1 *' + PAYMENT_NUMBER + '*' + (message ? '%0A%0A\uD83D\uDCDD *Pesan:* ' + message : '') + '%0A%0ASudah saya transfer, mohon dicek ya Kak. Terima kasih! \uD83D\uDE4F'
+        : 'Hello Kak Wisnu \uD83D\uDC4B%0A%0AMy name is *' + name + '*, I\'d like to confirm my donut payment:%0A%0A\uD83C\uDF69 *' + qty + ' Donut(s)*%0A\uD83D\uDCB8 *' + totalFmt + '*%0A\uD83D\uDCB3 *' + mLabel + '*%0A\uD83D\uDCF1 *' + PAYMENT_NUMBER + '*' + (message ? '%0A%0A\uD83D\uDCDD *Message:* ' + message : '') + '%0A%0AI have made the transfer, please check. Thank you! \uD83D\uDE4F';
+
+      isSubmitting = true;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>\u23F3</span><span>' + (isId ? 'Mengirim...' : 'Sending...') + '</span>';
+
+      fetch('/api/donations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, qty: qty, method: selectedMethod, message: message }),
+      }).then(function(res) {
+        if (!res.ok) throw new Error();
+        document.getElementById('donation-form-section').classList.add('hidden');
+        document.getElementById('donation-number-display').classList.add('hidden');
+        document.getElementById('donation-thankyou').classList.remove('hidden');
+        donorName.value = '';
+        donorMessage.value = '';
+        var btns = document.querySelectorAll('.donation-pay-btn');
+        for (var i = 0; i < btns.length; i++) {
+          var b = btns[i];
+          if (b.dataset.payment === 'gopay') b.classList.remove('border-emerald-400', 'dark:border-emerald-500');
+          if (b.dataset.payment === 'dana') b.classList.remove('border-blue-400', 'dark:border-blue-500');
+        }
+        qty = 1;
+        selectedMethod = '';
+        appUrl = '';
+        updateDisplay();
+        renderDonors();
+        window.open('https://wa.me/' + WA_NUMBER + '?text=' + msgText, '_blank');
+      }).catch(function() {
+        alert(isId ? 'Gagal. Coba lagi.' : 'Failed. Try again.');
+      }).finally(function() {
+        isSubmitting = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>\uD83D\uDCF1</span><span>' + (isId ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp') + '</span>';
       });
+    };
 
-      qty = 1;
-      selectedMethod = '';
-      updateDisplay();
+    donorName.oninput = function() { donorName.classList.remove('border-red-400'); };
+    updateDisplay();
+    renderDonors();
+  }
 
-      renderDonors();
-
-      setTimeout(() => { thankYouSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
-
-      window.open(`https://wa.me/${WA_NUMBER}?text=${msgText}`, '_blank');
-    } catch {
-      alert(isId ? 'Gagal mengirim. Coba lagi.' : 'Failed to submit. Try again.');
-    } finally {
-      isSubmitting = false;
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `<span class="text-lg">📱</span><span class="text-white text-sm font-bold">${isId ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp'}</span>`;
-    }
-  });
-
-  donorName.addEventListener('input', () => {
-    donorName.classList.remove('border-red-400', 'dark:border-red-500');
-  });
-
-  updateDisplay();
-  renderDonors();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDonation);
+  } else {
+    initDonation();
+  }
 </script>

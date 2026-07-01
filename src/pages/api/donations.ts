@@ -3,6 +3,13 @@ import { createDonation, getDonations, getDonationStats } from '../../lib/donati
 
 export const prerender = false;
 
+function verifyToken(request: Request): boolean {
+  const adminToken = import.meta.env.ADMIN_TOKEN;
+  if (!adminToken) return false;
+  const auth = request.headers.get('Authorization');
+  return auth === `Bearer ${adminToken}`;
+}
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
@@ -50,11 +57,9 @@ export const POST: APIRoute = async ({ request }) => {
 
 export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);
-  const token = url.searchParams.get('token');
-  const adminToken = import.meta.env.ADMIN_TOKEN || 'wisnu123';
-
   const type = url.searchParams.get('type') || 'confirmed';
 
+  // Public: return only confirmed donations
   if (type === 'confirmed') {
     const donations = await getDonations(true);
     const stats = await getDonationStats();
@@ -64,7 +69,8 @@ export const GET: APIRoute = async ({ request }) => {
     });
   }
 
-  if (token !== adminToken) {
+  // Admin: requires Authorization header
+  if (!verifyToken(request)) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },
