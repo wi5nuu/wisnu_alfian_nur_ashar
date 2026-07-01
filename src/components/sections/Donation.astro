@@ -16,340 +16,186 @@ const PAYMENT_NUMBER = '081394882490';
         {isId ? 'Beli Saya Donat' : 'Buy Me a Donut'}
       </h2>
       <p class="text-slate-500 dark:text-slate-400 max-w-lg mx-auto text-sm mt-2">
-        {isId
-          ? 'Dukung karya saya dengan membeli donat. Setiap donasi berarti!'
-          : 'Support my work by buying a donut. Every donation matters!'}
+        {isId ? 'Dukung karya saya dengan membeli donat.' : 'Support my work by buying a donut.'}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 max-w-4xl mx-auto">
-      <!-- Left: Payment Card -->
-      <div class="lg:col-span-3 reveal-up">
-        <div class="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-5 md:p-6 shadow-sm">
+    <div class="max-w-md mx-auto">
+      <div class="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-5 md:p-6 shadow-sm">
 
-          <div class="flex items-center justify-between gap-3 mb-5">
-            <div class="flex items-center gap-2">
-              <span class="text-2xl">🍩</span>
-              <div class="text-xl font-bold text-slate-950 dark:text-white">
-                Rp5.000 <span class="text-xs font-medium text-slate-400 dark:text-slate-500">/ {isId ? 'donat' : 'donut'}</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button id="donation-minus" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-base font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed" disabled>-</button>
-              <span id="donation-qty" class="w-10 text-center text-lg font-bold text-slate-950 dark:text-white tabular-nums">1</span>
-              <button id="donation-plus" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-base font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all">+</button>
+        <div class="flex items-center justify-between gap-3 mb-5">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🍩</span>
+            <div class="text-xl font-bold text-slate-950 dark:text-white">
+              Rp5.000 <span class="text-xs font-medium text-slate-400 dark:text-slate-500">/ {isId ? 'donat' : 'donut'}</span>
             </div>
           </div>
-
-          <div class="bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-2 mb-5 text-center">
-            <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold">{isId ? 'Total' : 'Total'}</span>
-            <div id="donation-total" class="text-xl font-bold text-slate-950 dark:text-white">Rp5.000</div>
-          </div>
-
-          <div class="space-y-2.5">
-            <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold text-center">{isId ? 'Metode Pembayaran' : 'Payment Method'}</p>
-
-            <button type="button" onclick="handlePayClick('gopay')" data-payment="gopay" class="donation-pay-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 active:scale-[0.98] transition-all cursor-pointer">
-              <div class="flex items-center gap-3">
-                <span class="text-lg">💚</span>
-                <div class="text-left">
-                  <span class="block text-sm font-bold text-slate-900 dark:text-white">GoPay</span>
-                  <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-mono">{PAYMENT_NUMBER}</span>
-                </div>
-              </div>
-              <span class="text-xs text-slate-300 dark:text-slate-600 font-bold">→</span>
-            </button>
-
-            <button type="button" onclick="handlePayClick('dana')" data-payment="dana" class="donation-pay-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-blue-400 dark:hover:border-blue-500 active:scale-[0.98] transition-all cursor-pointer">
-              <div class="flex items-center gap-3">
-                <span class="text-lg">💙</span>
-                <div class="text-left">
-                  <span class="block text-sm font-bold text-slate-900 dark:text-white">DANA</span>
-                  <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-mono">{PAYMENT_NUMBER}</span>
-                </div>
-              </div>
-              <span class="text-xs text-slate-300 dark:text-slate-600 font-bold">→</span>
-            </button>
-          </div>
-
-          <div id="donation-number-display" class="hidden mt-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800/50 rounded-xl text-center">
-            <p class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase mb-1">{isId ? 'Kirim ke' : 'Send to'}</p>
-            <p id="donation-number-text" class="text-2xl font-bold text-slate-950 dark:text-white font-mono tracking-wider">{PAYMENT_NUMBER}</p>
-            <p id="donation-method-label" class="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5"></p>
-            <div class="flex items-center justify-center gap-2 mt-3">
-              <button id="donation-copy-number" class="px-4 py-2 rounded-lg bg-white dark:bg-slate-700 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 active:scale-95 transition-all cursor-pointer flex items-center gap-1.5">
-                <span>📋</span>
-                <span>{isId ? 'Salin' : 'Copy'}</span>
-              </button>
-              <button id="donation-open-app" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer">
-                <span id="open-app-icon">🚀</span>
-                <span id="open-app-text">{isId ? 'Buka Aplikasi' : 'Open App'}</span>
-              </button>
-            </div>
-            <p class="mt-2 text-[10px] text-emerald-500 dark:text-emerald-400/70">
-              {isId ? 'Nomor sudah disalin. Ketuk "Buka Aplikasi" untuk bayar.' : 'Number copied. Tap "Open App" to pay.'}
-            </p>
+          <div class="flex items-center gap-2">
+            <button id="btn-minus" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-base font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed" disabled>-</button>
+            <span id="qty-display" class="w-10 text-center text-lg font-bold text-slate-950 dark:text-white tabular-nums">1</span>
+            <button id="btn-plus" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 text-base font-bold hover:bg-slate-200 dark:hover:bg-slate-600 active:scale-90 transition-all">+</button>
           </div>
         </div>
-      </div>
 
-      <!-- Right: Form + Donor List -->
-      <div class="lg:col-span-2 space-y-4">
-        <div id="donation-form-section" class="hidden reveal-up">
-          <div class="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-5 md:p-6 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-950 dark:text-white mb-4 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-xs">💬</span>
-              {isId ? 'Konfirmasi' : 'Confirmation'}
-            </h3>
+        <div class="bg-slate-50 dark:bg-slate-800 rounded-xl px-4 py-2 mb-5 text-center">
+          <span class="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold">{isId ? 'Total' : 'Total'}</span>
+          <div id="total-display" class="text-xl font-bold text-slate-950 dark:text-white">Rp5.000</div>
+        </div>
 
-            <div class="space-y-3">
-              <input id="donor-name" type="text" maxlength="50" required placeholder={isId ? 'Nama kamu' : 'Your name'} class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
+        <div class="space-y-2.5">
+          <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase font-bold text-center">{isId ? 'Metode Pembayaran' : 'Payment Method'}</p>
 
-              <input id="donor-message" type="text" maxlength="100" placeholder={isId ? 'Pesan (opsional)' : 'Message (optional)'} class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
-
-              <div class="bg-slate-50 dark:bg-slate-700/50 rounded-xl px-4 py-3 text-sm space-y-1">
-                <div class="flex justify-between"><span class="text-slate-400">{isId ? 'Donat' : 'Donuts'}</span><span id="summary-qty" class="font-bold text-slate-900 dark:text-white">1</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">{isId ? 'Metode' : 'Method'}</span><span id="summary-method" class="font-bold text-slate-900 dark:text-white">-</span></div>
-                <div class="flex justify-between pt-2 mt-1 border-t border-slate-200 dark:border-slate-600"><span class="font-bold text-slate-900 dark:text-white">{isId ? 'Total' : 'Total'}</span><span id="summary-total" class="font-bold text-slate-950 dark:text-white">Rp5.000</span></div>
+          <button id="btn-gopay" class="w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 active:scale-[0.98] transition-all cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">💚</span>
+              <div class="text-left">
+                <span class="block text-sm font-bold text-slate-900 dark:text-white">GoPay</span>
+                <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-mono">{PAYMENT_NUMBER}</span>
               </div>
+            </div>
+            <span class="text-xs text-slate-300 dark:text-slate-600 font-bold">→</span>
+          </button>
 
-              <button id="donation-submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 text-white text-sm font-bold flex items-center justify-center gap-2">
+          <button id="btn-dana" class="w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 hover:border-blue-400 dark:hover:border-blue-500 active:scale-[0.98] transition-all cursor-pointer">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">💙</span>
+              <div class="text-left">
+                <span class="block text-sm font-bold text-slate-900 dark:text-white">DANA</span>
+                <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-mono">{PAYMENT_NUMBER}</span>
+              </div>
+            </div>
+            <span class="text-xs text-slate-300 dark:text-slate-600 font-bold">→</span>
+          </button>
+        </div>
+
+        <div id="panel-number" class="mt-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800/50 rounded-xl text-center" style="display:none">
+          <p class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase mb-1">{isId ? 'Kirim ke' : 'Send to'}</p>
+          <p id="number-text" class="text-2xl font-bold text-slate-950 dark:text-white font-mono tracking-wider">{PAYMENT_NUMBER}</p>
+          <p id="method-label" class="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5"></p>
+          <div class="flex items-center justify-center gap-2 mt-3">
+            <button id="btn-copy" class="px-4 py-2 rounded-lg bg-white dark:bg-slate-700 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 active:scale-95 transition-all cursor-pointer flex items-center gap-1.5">
+              <span>📋</span>
+              <span>{isId ? 'Salin' : 'Copy'}</span>
+            </button>
+            <button id="btn-open-app" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer">
+              <span id="open-icon">🚀</span>
+              <span id="open-text">{isId ? 'Buka Aplikasi' : 'Open App'}</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="panel-form" class="mt-4" style="display:none">
+          <div class="bg-white dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4">
+            <h3 class="text-sm font-bold text-slate-950 dark:text-white mb-3">{isId ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp'}</h3>
+            <div class="space-y-3">
+              <input id="input-name" type="text" maxlength="50" placeholder={isId ? 'Nama kamu' : 'Your name'} class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
+              <input id="input-message" type="text" maxlength="100" placeholder={isId ? 'Pesan (opsional)' : 'Message (optional)'} class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-slate-950 dark:focus:border-white placeholder:text-slate-300 dark:placeholder:text-slate-500 transition-all" />
+              <button id="btn-send" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50 text-white text-sm font-bold flex items-center justify-center gap-2">
                 <span>📱</span>
                 <span>{isId ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp'}</span>
               </button>
-
-              <button id="donation-cancel" class="w-full text-[11px] text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer">
+              <button id="btn-cancel" class="w-full text-xs text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer">
                 ← {isId ? 'Kembali' : 'Back'}
               </button>
             </div>
           </div>
         </div>
 
-        <div id="donation-thankyou" class="hidden reveal-up">
-          <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 rounded-2xl p-6 text-center shadow-sm">
-            <span class="text-3xl block mb-3">🎉</span>
-            <h3 class="text-lg font-bold text-emerald-800 dark:text-emerald-300 mb-1">
-              {isId ? 'Terima Kasih!' : 'Thank You!'}
-            </h3>
-            <p class="text-xs text-emerald-600 dark:text-emerald-400/80">
-              {isId
-                ? 'Pesan terkirim ke WhatsApp. Nama akan muncul setelah dikonfirmasi.'
-                : 'Message sent to WhatsApp. Name will appear after confirmation.'}
-            </p>
-          </div>
-        </div>
-
-        <div id="donation-list-section" class="reveal-up">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="text-xs uppercase font-bold text-slate-400 dark:text-slate-500">
-              🍩 <span id="donation-list-count">0</span> {isId ? 'Pendukung' : 'Supporters'}
-            </h3>
-            <a href="/admin-dashboard" class="text-[10px] text-slate-300 dark:text-slate-600 hover:text-slate-400 transition-colors">🔐</a>
-          </div>
-
-          <div id="donation-list-empty" class="text-center py-8 bg-white dark:bg-slate-800/30 border border-dashed border-slate-200 dark:border-slate-700 rounded-2xl">
-            <span class="text-3xl block mb-2">🍩</span>
-            <p class="text-slate-300 dark:text-slate-600 text-xs">{isId ? 'Belum ada pendukung.' : 'No supporters yet.'}</p>
-          </div>
-
-          <div id="donation-list" class="space-y-2"></div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<script is:inline>
-  var PRICE_PER_DONUT = 5000;
-  var WA_NUMBER = '6281394882490';
-  var PAYMENT_NUMBER = '081394882490';
-  var qty = 1;
-  var selectedMethod = '';
-  var isSubmitting = false;
-  var appUrl = '';
+<script>
+  (function(){
+    var PRICE = 5000;
+    var WA = '6281394882490';
+    var NUMBER = '081394882490';
+    var qty = 1;
+    var selected = '';
+    var appUrl = '';
+    var sending = false;
 
-  function formatPrice(amount) {
-    return 'Rp' + amount.toLocaleString('id-ID');
-  }
+    var $ = function(id) { return document.getElementById(id); };
 
-  function handlePayClick(method) {
-    selectedMethod = method;
-    var isId = window.location.pathname.startsWith('/id');
+    function show(id) { $(id).style.display = ''; }
+    function hide(id) { $(id).style.display = 'none'; }
 
-    var btns = document.querySelectorAll('.donation-pay-btn');
-    for (var i = 0; i < btns.length; i++) {
-      var b = btns[i];
-      if (b.dataset.payment === 'gopay') b.classList.remove('border-emerald-400', 'dark:border-emerald-500');
-      if (b.dataset.payment === 'dana') b.classList.remove('border-blue-400', 'dark:border-blue-500');
-    }
-    var payBtn = document.querySelector('.donation-pay-btn[data-payment="' + method + '"]');
-    if (payBtn) {
-      payBtn.classList.add(method === 'gopay' ? 'border-emerald-400 dark:border-emerald-500' : 'border-blue-400 dark:border-blue-500');
+    function updateTotal() {
+      $('qty-display').textContent = qty;
+      $('total-display').textContent = 'Rp' + (qty * PRICE).toLocaleString('id-ID');
+      $('btn-minus').disabled = qty <= 1;
     }
 
-    var label = method === 'gopay' ? 'GoPay' : 'DANA';
-    document.getElementById('donation-method-label').textContent = 'via ' + label;
-    document.getElementById('summary-method').textContent = label;
-    document.getElementById('open-app-text').textContent = isId ? 'Buka ' + label : 'Open ' + label;
-    document.getElementById('open-app-icon').textContent = method === 'gopay' ? '\uD83D\uDC9A' : '\uD83D\uDC99';
-    appUrl = method === 'gopay' ? 'gopay://' : 'dana://';
+    function selectPay(method) {
+      selected = method;
+      var isId = location.pathname.startsWith('/id');
+      var label = method === 'gopay' ? 'GoPay' : 'DANA';
+      appUrl = method === 'gopay' ? 'gopay://' : 'dana://';
 
-    navigator.clipboard.writeText(PAYMENT_NUMBER).catch(function() {});
+      $('method-label').textContent = 'via ' + label;
+      $('open-text').textContent = isId ? 'Buka ' + label : 'Open ' + label;
+      $('open-icon').textContent = method === 'gopay' ? '\uD83D\uDC9A' : '\uD83D\uDC99';
 
-    document.getElementById('donation-number-display').classList.remove('hidden');
-    document.getElementById('donation-form-section').classList.remove('hidden');
-    document.getElementById('donation-thankyou').classList.add('hidden');
-    document.getElementById('donation-submit').disabled = false;
-    document.getElementById('donor-name').focus();
-
-    // Try to open the app in a new window (doesn't leave the page)
-    window.open(appUrl, '_blank');
-
-    setTimeout(function() {
-      document.getElementById('donation-form-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
-  }
-
-  function initDonation() {
-    var isId = window.location.pathname.startsWith('/id');
-
-    var minusBtn = document.getElementById('donation-minus');
-    var plusBtn = document.getElementById('donation-plus');
-    var copyBtn = document.getElementById('donation-copy-number');
-    var openAppBtn = document.getElementById('donation-open-app');
-    var cancelBtn = document.getElementById('donation-cancel');
-    var submitBtn = document.getElementById('donation-submit');
-    var donorName = document.getElementById('donor-name');
-    var donorMessage = document.getElementById('donor-message');
-    var listEl = document.getElementById('donation-list');
-    var listEmptyEl = document.getElementById('donation-list-empty');
-    var listCountEl = document.getElementById('donation-list-count');
-    var qtyEl = document.getElementById('donation-qty');
-    var totalEl = document.getElementById('donation-total');
-    var summaryQty = document.getElementById('summary-qty');
-    var summaryTotal = document.getElementById('summary-total');
-
-    if (!donorName) { setTimeout(initDonation, 100); return; }
-
-    function updateDisplay() {
-      var total = qty * PRICE_PER_DONUT;
-      qtyEl.textContent = qty;
-      totalEl.textContent = formatPrice(total);
-      minusBtn.disabled = qty <= 1;
-      summaryQty.textContent = qty + ' ' + (isId ? 'donat' : 'donut');
-      summaryTotal.textContent = formatPrice(total);
-    }
-
-    function renderDonors() {
-      fetch('/api/donations?type=confirmed').then(function(r) { return r.json(); }).then(function(data) {
-        var donors = data.donations || [];
-        listCountEl.textContent = donors.length;
-        if (donors.length === 0) {
-          listEmptyEl.classList.remove('hidden');
-          listEl.innerHTML = '';
-          return;
-        }
-        listEmptyEl.classList.add('hidden');
-        listEl.innerHTML = donors.map(function(d) {
-          var date = new Date(d.timestamp);
-          var dateStr = date.toLocaleDateString(isId ? 'id-ID' : 'en-US', { day: 'numeric', month: 'short' });
-          var colors = ['bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400', 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400', 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'];
-          return '<div class="flex items-center gap-3 bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50 rounded-xl p-3"><div class="w-9 h-9 rounded-xl ' + colors[d.name.length % 3] + ' flex items-center justify-center text-sm font-bold flex-shrink-0">' + d.name.charAt(0).toUpperCase() + '</div><div class="flex-1 min-w-0"><div class="flex items-center gap-1.5"><span class="text-sm font-bold text-slate-900 dark:text-white">' + d.name + '</span><span class="text-[9px] px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 font-bold">\uD83C\uDF69' + d.qty + '</span></div><p class="text-[10px] text-slate-300 dark:text-slate-600">' + dateStr + ' \u00B7 ' + d.method.toUpperCase() + '</p></div><span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/50 px-2 py-1 rounded-lg">' + formatPrice(d.qty * PRICE_PER_DONUT) + '</span></div>';
-        }).join('');
-      }).catch(function() { listEl.innerHTML = ''; });
-    }
-
-    minusBtn.onclick = function() { if (qty > 1) { qty--; updateDisplay(); } };
-    plusBtn.onclick = function() { if (qty < 99) { qty++; updateDisplay(); } };
-
-    openAppBtn.onclick = function() {
-      if (!appUrl) return;
-      navigator.clipboard.writeText(PAYMENT_NUMBER);
-      window.open(appUrl, '_blank');
-    };
-
-    copyBtn.onclick = function() {
-      navigator.clipboard.writeText(PAYMENT_NUMBER).then(function() {
-        copyBtn.innerHTML = '<span>\u2705</span><span>' + (isId ? 'Tersalin!' : 'Copied!') + '</span>';
-        setTimeout(function() { copyBtn.innerHTML = '<span>\uD83D\uDCCB</span><span>' + (isId ? 'Salin' : 'Copy') + '</span>'; }, 2000);
-      }).catch(function() {});
-    };
-
-    cancelBtn.onclick = function() {
-      document.getElementById('donation-form-section').classList.add('hidden');
-      document.getElementById('donation-number-display').classList.add('hidden');
-      selectedMethod = '';
-      appUrl = '';
-      document.getElementById('open-app-text').textContent = isId ? 'Buka Aplikasi' : 'Open App';
-      document.getElementById('open-app-icon').textContent = '\uD83D\uDE80';
-      var btns = document.querySelectorAll('.donation-pay-btn');
-      for (var i = 0; i < btns.length; i++) {
-        var b = btns[i];
-        if (b.dataset.payment === 'gopay') b.classList.remove('border-emerald-400', 'dark:border-emerald-500');
-        if (b.dataset.payment === 'dana') b.classList.remove('border-blue-400', 'dark:border-blue-500');
-      }
-      donorName.value = '';
-      donorMessage.value = '';
-    };
-
-    submitBtn.onclick = function() {
-      if (isSubmitting) return;
-      var name = donorName.value.trim();
-      if (!name) { donorName.classList.add('border-red-400'); donorName.focus(); return; }
-      donorName.classList.remove('border-red-400');
-
-      var total = qty * PRICE_PER_DONUT;
-      var mLabel = selectedMethod === 'gopay' ? 'GoPay' : 'DANA';
-      var message = donorMessage.value.trim();
-      var totalFmt = formatPrice(total);
-      var msgText = isId
-        ? 'Assalamualaikum Kak Wisnu \uD83D\uDC4B%0A%0ASaya *' + name + '* ingin mengkonfirmasi pembayaran donat:%0A%0A\uD83C\uDF69 *' + qty + ' Donat*%0A\uD83D\uDCB8 *' + totalFmt + '*%0A\uD83D\uDCB3 *' + mLabel + '*%0A\uD83D\uDCF1 *' + PAYMENT_NUMBER + '*' + (message ? '%0A%0A\uD83D\uDCDD *Pesan:* ' + message : '') + '%0A%0ASudah saya transfer, mohon dicek ya Kak. Terima kasih! \uD83D\uDE4F'
-        : 'Hello Kak Wisnu \uD83D\uDC4B%0A%0AMy name is *' + name + '*, I\'d like to confirm my donut payment:%0A%0A\uD83C\uDF69 *' + qty + ' Donut(s)*%0A\uD83D\uDCB8 *' + totalFmt + '*%0A\uD83D\uDCB3 *' + mLabel + '*%0A\uD83D\uDCF1 *' + PAYMENT_NUMBER + '*' + (message ? '%0A%0A\uD83D\uDCDD *Message:* ' + message : '') + '%0A%0AI have made the transfer, please check. Thank you! \uD83D\uDE4F';
-
-      isSubmitting = true;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>\u23F3</span><span>' + (isId ? 'Mengirim...' : 'Sending...') + '</span>';
-
-      fetch('/api/donations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, qty: qty, method: selectedMethod, message: message }),
-      }).then(function(res) {
-        if (!res.ok) throw new Error();
-        document.getElementById('donation-form-section').classList.add('hidden');
-        document.getElementById('donation-number-display').classList.add('hidden');
-        document.getElementById('donation-thankyou').classList.remove('hidden');
-        donorName.value = '';
-        donorMessage.value = '';
-        var btns = document.querySelectorAll('.donation-pay-btn');
-        for (var i = 0; i < btns.length; i++) {
-          var b = btns[i];
-          if (b.dataset.payment === 'gopay') b.classList.remove('border-emerald-400', 'dark:border-emerald-500');
-          if (b.dataset.payment === 'dana') b.classList.remove('border-blue-400', 'dark:border-blue-500');
-        }
-        qty = 1;
-        selectedMethod = '';
-        appUrl = '';
-        updateDisplay();
-        renderDonors();
-        window.open('https://wa.me/' + WA_NUMBER + '?text=' + msgText, '_blank');
-      }).catch(function() {
-        alert(isId ? 'Gagal. Coba lagi.' : 'Failed. Try again.');
-      }).finally(function() {
-        isSubmitting = false;
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>\uD83D\uDCF1</span><span>' + (isId ? 'Konfirmasi via WhatsApp' : 'Confirm via WhatsApp') + '</span>';
+      ['btn-gopay','btn-dana'].forEach(function(id) {
+        $(id).className = $(id).className.replace(/(border-emerald-400|border-blue-400|dark:border-emerald-500|dark:border-blue-500)/g, '') + (id === 'btn-' + method ? ' ' + (method === 'gopay' ? 'border-emerald-400 dark:border-emerald-500' : 'border-blue-400 dark:border-blue-500') : ' border-slate-200 dark:border-slate-600');
       });
+
+      navigator.clipboard.writeText(NUMBER).catch(function(){});
+
+      show('panel-number');
+      show('panel-form');
+      hide('btn-send');
+      $('input-name').focus();
+    }
+
+    $('btn-minus').onclick = function() { if (qty > 1) { qty--; updateTotal(); } };
+    $('btn-plus').onclick = function() { if (qty < 99) { qty++; updateTotal(); } };
+
+    $('btn-gopay').onclick = function() { selectPay('gopay'); };
+    $('btn-dana').onclick = function() { selectPay('dana'); };
+
+    $('btn-open-app').onclick = function() {
+      if (appUrl) { navigator.clipboard.writeText(NUMBER); window.open(appUrl, '_blank'); }
     };
 
-    donorName.oninput = function() { donorName.classList.remove('border-red-400'); };
-    updateDisplay();
-    renderDonors();
-  }
+    $('btn-copy').onclick = function() {
+      navigator.clipboard.writeText(NUMBER).then(function() {
+        $('btn-copy').innerHTML = '<span>\u2705</span><span>' + (location.pathname.startsWith('/id') ? 'Tersalin!' : 'Copied!') + '</span>';
+        setTimeout(function() { $('btn-copy').innerHTML = '<span>\uD83D\uDCCB</span><span>' + (location.pathname.startsWith('/id') ? 'Salin' : 'Copy') + '</span>'; }, 2000);
+      }).catch(function(){});
+    };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDonation);
-  } else {
-    initDonation();
-  }
+    $('btn-cancel').onclick = function() {
+      hide('panel-number'); hide('panel-form');
+      selected = ''; appUrl = '';
+      $('open-text').textContent = location.pathname.startsWith('/id') ? 'Buka Aplikasi' : 'Open App';
+      $('open-icon').textContent = '\uD83D\uDE80';
+      ['btn-gopay','btn-dana'].forEach(function(id) {
+        $(id).className = $(id).className.replace(/(border-emerald-400|border-blue-400|dark:border-emerald-500|dark:border-blue-500)/g, '');
+      });
+      $('input-name').value = '';
+      $('input-message').value = '';
+      $('btn-send').style.display = '';
+    };
+
+    $('btn-send').onclick = function() {
+      if (sending) return;
+      var name = $('input-name').value.trim();
+      if (!name) { $('input-name').className = $('input-name').className.replace('border-red-400', '') + ' border-red-400'; $('input-name').focus(); return; }
+      $('input-name').className = $('input-name').className.replace('border-red-400', '');
+
+      var msg = location.pathname.startsWith('/id')
+        ? 'Assalamualaikum Kak Wisnu \uD83D\uDC4B%0A%0ASaya *' + name + '* ingin konfirmasi pembayaran donat:%0A%0A\uD83C\uDF69 *' + qty + ' Donat*%0A\uD83D\uDCB8 *Rp' + (qty * PRICE).toLocaleString('id-ID') + '*%0A\uD83D\uDCB3 *' + (selected === 'gopay' ? 'GoPay' : 'DANA') + '*%0A\uD83D\uDCF1 *' + NUMBER + '*%0A%0ASudah saya transfer, mohon dicek Kak. Terima kasih! \uD83D\uDE4F'
+        : 'Hello Kak Wisnu \uD83D\uDC4B%0A%0AMy name is *' + name + '*, I\'d like to confirm my donut payment:%0A%0A\uD83C\uDF69 *' + qty + ' Donut(s)*%0A\uD83D\uDCB8 *Rp' + (qty * PRICE).toLocaleString('id-ID') + '*%0A\uD83D\uDCB3 *' + (selected === 'gopay' ? 'GoPay' : 'DANA') + '*%0A\uD83D\uDCF1 *' + NUMBER + '*%0A%0AI have made the transfer, please check. Thank you! \uD83D\uDE4F';
+
+      window.open('https://wa.me/' + WA + '?text=' + msg, '_blank');
+      hide('panel-number'); hide('panel-form');
+      qty = 1; selected = ''; appUrl = ''; updateTotal();
+      $('input-name').value = ''; $('input-message').value = '';
+    };
+
+    $('input-name').oninput = function() { $('input-name').className = $('input-name').className.replace('border-red-400', ''); };
+    updateTotal();
+  })();
 </script>
