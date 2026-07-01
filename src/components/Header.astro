@@ -79,8 +79,8 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 </div>
 
 <div transition:persist class="md:hidden fixed bottom-4 left-3 right-3 z-[100]">
-  <nav class="mx-auto max-w-lg bg-white dark:bg-slate-900 shadow-[0_10px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] border border-slate-100 dark:border-slate-800 rounded-[2rem] px-1.5 py-2">
-    <div class="flex items-center justify-around">
+  <nav class="mx-auto max-w-[500px] bg-white dark:bg-slate-900 shadow-[0_10px_40px_rgba(0,0,0,0.15)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)] border border-slate-100 dark:border-slate-800 rounded-[2rem] px-2 py-2">
+    <div class="flex items-center justify-between gap-0.5">
       {navLinks.map((link) => {
         const isActive = link.href === pathname || (link.href !== '/' && pathname.startsWith(link.href));
         const LinkIcon = link.icon;
@@ -97,26 +97,26 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 
         if (link.isAI) {
             return (
-                <button id="mobile-ai-trigger" class="flex flex-col items-center py-2 min-w-[44px] transition-transform active:scale-90 cursor-pointer" aria-label="AI Assistant">
+                <button id="mobile-ai-trigger" class="flex flex-col items-center py-2 flex-1 min-w-0 transition-transform active:scale-90 cursor-pointer" aria-label="AI Assistant">
                     <div class="text-blue-500">
-                         {LinkIcon && <LinkIcon size={24} strokeWidth={2.5} />}
+                         {LinkIcon && <LinkIcon size={22} strokeWidth={2.5} />}
                     </div>
-                    <span class="text-[10px] mt-1 font-bold text-blue-600 uppercase tracking-wider">
-                        {link.name}
+                    <span class="text-[9px] mt-1 font-bold text-blue-600 uppercase tracking-wider truncate max-w-full">
+                        AI
                     </span>
                 </button>
             )
         }
 
         return (
-          <a href={getLocalizedUrl(link.href, isId)} class="flex flex-col items-center py-2 min-w-[44px] transition-all active:scale-90 group" aria-label={link.name}>
+          <a href={getLocalizedUrl(link.href, isId)} class="flex flex-col items-center py-2 flex-1 min-w-0 transition-all active:scale-90 group" aria-label={link.name}>
             <div class={`transition-all duration-300 ${isActive ? "text-slate-900 dark:text-white scale-110" : "text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300"}`}>
-              {LinkIcon && <LinkIcon size={22} strokeWidth={isActive ? 2.5 : 2} />}
+              {LinkIcon && <LinkIcon size={link.name === "Open Source" ? 18 : 22} strokeWidth={isActive ? 2.5 : 2} />}
             </div>
-            <span class={`text-[10px] mt-1 font-bold uppercase tracking-widest transition-colors ${isActive ? "text-slate-900 dark:text-white" : "text-slate-400 dark:text-slate-500"}`}>
+            <span class={`text-[9px] mt-1 font-bold uppercase tracking-wider transition-colors truncate max-w-full ${isActive ? "text-slate-900 dark:text-white" : "text-slate-400 dark:text-slate-500"}`}>
               {isId && link.name === "About" ? "Tentang" : 
                isId && link.name === "Projects" ? "Proyek" : 
-               isId && link.name === "Open Source" ? "Open Source" : 
+               isId && link.name === "Open Source" ? "Open Src" : 
                isId && link.name === "Skills" ? "Keahlian" : 
                isId && link.name === "Contact" ? "Kontak" : link.name}
             </span>
@@ -198,7 +198,12 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 <style>
   @media (max-width: 768px) {
     body {
-      padding-bottom: 120px;
+      padding-bottom: 130px;
+    }
+  }
+  @media (max-width: 380px) {
+    body {
+      padding-bottom: 140px;
     }
   }
   a, button {
