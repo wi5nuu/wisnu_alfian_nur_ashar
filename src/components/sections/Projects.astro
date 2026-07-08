@@ -1,11 +1,12 @@
 ---
 import { profile as profileEn } from '../../data/profile';
 import { profile as profileId } from '../../data/profile_id';
+import { getProjectSlug } from '../../utils/slug';
 import { ExternalLink, Github } from 'lucide-astro';
-import ProjectDetailModal from '../ProjectDetailModal.astro';
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
+const basePath = isId ? '/id/projects' : '/projects';
 ---
 
 <section id="projects" class="section">
@@ -22,12 +23,12 @@ const profile = isId ? profileId : profileEn;
 
     <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar scroll-smooth">
       {profile.projects.map((project, index) => {
-        const projectJson = JSON.stringify(project).replace(/'/g, "\\'");
+        const slug = getProjectSlug(project.title);
         return (
-        <article 
+        <a 
+          href={`${basePath}/${slug}`}
           class="group relative bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-transparent overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm md:hover:-translate-y-1 w-[85vw] shrink-0 snap-center md:w-auto md:shrink md:snap-none h-auto md:h-full cursor-pointer reveal-up" 
           style={`transition-delay: ${index * 150}ms`}
-          onclick={`openProjectModal('project-detail-modal', ${projectJson})`}
         >
           <div class="absolute top-8 right-3 z-20">
             <span class="px-2.5 py-0.5 bg-slate-950 text-white text-[9px] font-bold uppercase tracking-widest rounded-full shadow-lg border border-white/10">
@@ -91,7 +92,7 @@ const profile = isId ? profileId : profileEn;
 
             <div class="h-1 bg-gradient-to-r from-slate-200 via-slate-900 to-slate-200 opacity-20 dark:opacity-0"></div>
           </div>
-        </article>
+        </a>
       )})}
     </div>
 
@@ -104,5 +105,3 @@ const profile = isId ? profileId : profileEn;
     </div>
   </div>
 </section>
-
-<ProjectDetailModal id="project-detail-modal" />

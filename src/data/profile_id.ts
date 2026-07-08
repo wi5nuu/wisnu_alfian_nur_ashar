@@ -32,6 +32,15 @@ interface Profile {
         description: string;
         skills: string[];
     }[];
+    organizationalExperience: {
+        role: string;
+        company: string;
+        type: string;
+        duration: string;
+        location: string;
+        description: string;
+        skills: string[];
+    }[];
     projects: {
         title: string;
         role: string;
@@ -86,11 +95,11 @@ export const profile: Profile = {
     personalInfo: {
         name: "Wisnu Alfian Nur Ashar",
         pronouns: "Dia/Nya",
-        role: "Full-Stack Developer & Cyber Security",
-        location: "Bekasi Timur, Kota Bekasi, Jawa Barat",
+        role: "Full-Stack Engineer",
+        location: "Bekasi, West Java, Indonesia",
         tagline: "Membangun Sistem Produksi yang Aman dan Berkinerja Tinggi",
-        summary: "Praktisi Full-Stack Developer & Keamanan Siber dengan pengalaman langsung dalam membangun aplikasi web yang scalable (dapat ditingkatkan skalanya). Terspesialisasi dalam Next.js, React, Supabase, dan desain sistem yang aman. Berhasil memberikan platform yang mendukung lebih dari 15.000 pengguna dengan peningkatan kinerja dan keamanan yang terukur. Berpengalaman memimpin tim lintas divisi untuk memodernisasi infrastruktur digital dan merampingkan operasi bisnis.",
-        email: "wisnualfian117@gmail.com",
+        summary: "Mahasiswa Teknologi Informasi yang berspesialisasi dalam Full-Stack Engineering dengan pengalaman langsung merancang platform ERP/POS enterprise, aplikasi berbasis AI, dan sistem cloud yang scalable menggunakan Laravel, Next.js, PostgreSQL, dan teknologi cloud modern.",
+        email: "wisnualfiannurashar@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
         github: "https://github.com/wi5nuu",
@@ -121,7 +130,11 @@ export const profile: Profile = {
             { name: "Framer Motion", icon: "framer" },
             { name: "shadcn/ui", icon: "shadcnui" },
             { name: "SEO", icon: "google" },
+            { name: "Laravel", icon: "laravel" },
+            { name: "JavaScript", icon: "javascript" },
             { name: "Pengembangan API", icon: "postman" },
+            { name: "SEO Teknis", icon: "google" },
+            { name: "Google Tag Manager", icon: "google" },
         ],
         aiMl: [
             { name: "YOLOv8", icon: "pytorch" },
@@ -132,6 +145,7 @@ export const profile: Profile = {
             { name: "Google Cloud Run", icon: "googlecloud" },
             { name: "HuggingFace", icon: "huggingface" },
             { name: "Google Gemini", icon: "googlegemini" },
+            { name: "Google AI Studio", icon: "googlegemini" },
             { name: "Computer Vision", icon: "pytorch" },
             { name: "Model Fine-Tuning", icon: "huggingface" },
         ],
@@ -142,6 +156,9 @@ export const profile: Profile = {
             { name: "Docker", icon: "docker" },
             { name: "Vercel", icon: "vercel" },
             { name: "Railway", icon: "railway" },
+            { name: "Cloudflare", icon: "cloudflare" },
+            { name: "Firebase", icon: "firebase" },
+            { name: "Zero-Trust Architecture", icon: "amazonwebservices" },
             { name: "HuggingFace", icon: "huggingface" },
         ],
         tools: [
@@ -150,6 +167,10 @@ export const profile: Profile = {
             { name: "Google Sheets", icon: "googlesheets" },
             { name: "Web Development", icon: "html5" },
             { name: "Full-Stack Development", icon: "javascript" },
+            { name: "Burp Suite", icon: "burpsuite" },
+            { name: "Google Analytics", icon: "googleanalytics" },
+            { name: "Jira", icon: "jira" },
+            { name: "Google Colab", icon: "googlecolab" },
         ],
         soft: [
             { name: "Komunikasi" },
@@ -162,52 +183,83 @@ export const profile: Profile = {
     },
     experience: [
         {
-            role: "Web Developer",
-            company: "Syntecxhub",
-            type: "Magang",
-            duration: "Maret 2026 - Sekarang",
-            location: "Remote",
-            description: "Mengembangkan serta memelihara aplikasi web secara remote dengan memanfaatkan kerangka web modern untuk memberikan solusi front-end yang responsif dan terukur.",
-            skills: ["Web Development", "Tim Work"]
-        },
-        {
-            role: "Full-Stack Developer",
+            role: "Full Stack Engineer",
             company: "ASHAR GROSIR PARFUM BEKASI",
             type: "Pekerja Lepas (Wiraswasta)",
             duration: "Desember 2025 - Sekarang",
             location: "Kota Bekasi (Hybrid)",
-            description: "Memimpin transformasi digital sebuah bisnis keluarga yang telah berjalan selama 20 tahun. Menerapkan teknologi web termodern untuk merampingkan alur pekerjaan, mengurangi tingkat kesalahan pendataan produk hingga 70%, serta memperluas jangkauan pasar hingga di atas 15.000 mitra ritel skala besar.",
-            skills: ["Full-Stack Development", "Database"]
+            description: "Merancang dan mengembangkan platform ERP/POS enterprise menggunakan Laravel, Next.js, dan PostgreSQL, mengintegrasikan manajemen inventaris, pembelian, penggajian, absensi, dashboard business intelligence, AI Copilot, dan role-based access control (RBAC) ke dalam sistem manajemen bisnis terpadu yang mendukung 6 administrator, 600+ produk, dan 50+ reseller aktif. Mengoptimalkan kinerja aplikasi melalui Cloudflare CDN, intelligent caching, dan optimasi kueri database, mencapai rata-rata waktu muat halaman 1,34 detik dan 91% Good Largest Contentful Paint (LCP). Mengotomatisasi operasi bisnis end-to-end dengan mengintegrasikan manajemen pesanan grosir, sinkronisasi inventaris, pelacakan pengeluaran, pelaporan keuangan, dan pemantauan stok real-time, mendukung 100+ transaksi harian sambil mengurangi waktu rekonsiliasi keuangan manual hingga 60%.",
+            skills: ["Laravel", "Next.js", "PostgreSQL", "Cloudflare", "ERP/POS", "AI Copilot"]
         },
         {
-            role: "Ketua Divisi Seni & Olahraga",
-            company: "PUFA Computer Science",
-            type: "Kontrak",
-            duration: "September 2025 - Sekarang",
-            location: "Kota Bekasi (On-site)",
-            description: "Mengarahkan acara-acara berskala fakultas serta memelopori inisiatif inovasi digital. Berhasil mengkoordinasikan banyak tim divisi silang demi menghasilkan program yang memberikan kepuasan serta memodernisasi metode komunikasi.",
-            skills: ["Komunikasi", "Manajemen Acara"]
-        },
+            role: "Web Development Intern",
+            company: "GAOTEK INC",
+            type: "Magang",
+            duration: "April 2026 - Sekarang",
+            location: "New York, USA (Remote)",
+            description: "Mengembangkan dan menyesuaikan website WordPress responsif menggunakan PHP, HTML, CSS, JavaScript, Elementor, dan Gutenberg dalam lingkungan pengembangan XAMPP lokal. Memelihara dan memperbarui website WordPress dengan mempublikasikan konten, mengoptimalkan tata letak halaman, memecahkan masalah teknis, dan menerapkan praktik SEO terbaik untuk meningkatkan kegunaan dan visibilitas pencarian. Berkolaborasi dalam lingkungan Agile remote dengan berpartisipasi dalam diskusi teknis mingguan melalui Microsoft Teams dan secara konsisten mengirimkan laporan kemajuan serta menyelesaikan tugas pengembangan tepat waktu.",
+            skills: ["WordPress", "PHP", "JavaScript", "SEO", "Elementor", "Agile"]
+        }
+    ],
+    organizationalExperience: [
         {
-            role: "IT Development & Anggota Divisi Minat dan Bakat",
+            role: "IT Development & Divisi Minat dan Bakat",
             company: "PC FKMA Jakarta As'adiyah",
             type: "Organisasi",
             duration: "Januari 2024 - Sekarang",
             location: "Ciputat Timur, Banten",
-            description: "Merancang sekaligus melaksanakan perilisan website resmi keorganisasian As'adiyah di Jakarta. Berperan langsung di divisi Minat Bakat dengan mengimplementasikan portal integrasi database mandiri, sehingga menaikkan rasio efisiensi sebesar signifikan.",
+            description: "Merancang sekaligus melaksanakan perilisan website resmi keorganisasian As'adiyah di Jakarta. Berperan langsung di divisi Minat Bakat dengan mengimplementasikan portal integrasi database mandiri, sehingga menaikkan rasio efisiensi secara signifikan.",
             skills: ["Web Development", "Manajemen Acara", "Kerja Tim"]
         },
         {
-            role: "Anggota Student Passion and Talents",
-            company: "PUMA Informatic",
-            type: "Kontrak",
-            duration: "Oktober 2024 - September 2025",
-            location: "Kota Bekasi (Hybrid)",
-            description: "Merancang dan membangun solusi chatbot (Bot Interaktif) berbasis AI/Kecerdasan Buatan termutakhir untuk tingkat kepuasan pelanggan terbaik. Menurunkan jeda respon pesan secara masif sampai di bawah 60% waktu awal.",
-            skills: ["Komunikasi", "Kerjasama Tim"]
+            role: "Anggota – Divisi Student Passion & Talents",
+            company: "PUMA Informatics – President University",
+            type: "Organisasi",
+            duration: "September 2024 - Agustus 2025",
+            location: "President University, Bekasi",
+            description: "Menyelenggarakan 3+ acara berbasis teknologi untuk 100+ mahasiswa universitas, mencapai tingkat kehadiran konsisten 95%. Mengkoordinasikan workshop akademik teknis dan kegiatan mahasiswa yang bertujuan mendorong kolaborasi antar mahasiswa. Mendukung logistik divisi dan inisiatif berbagi pengetahuan untuk meningkatkan pengembangan keterampilan IT mahasiswa.",
+            skills: ["Manajemen Acara", "Komunikasi", "Kerja Tim"]
+        },
+        {
+            role: "Wakil Ketua – Divisi Seni dan Olahraga",
+            company: "PUFA Computer Science – President University",
+            type: "Organisasi",
+            duration: "September 2025 - Sekarang",
+            location: "President University, Bekasi (On-site)",
+            description: "Memimpin 5+ kegiatan seni dan olahraga untuk 60+ mahasiswa, menghasilkan peningkatan 40% dalam keterlibatan mahasiswa departemen. Memimpin komite lintas fungsi untuk menyelenggarakan acara kampus yang dihadiri lebih dari 100 mahasiswa sambil mengkoordinasikan relawan, jadwal, dan logistik.",
+            skills: ["Kepemimpinan", "Manajemen Acara", "Komunikasi"]
+        },
+        {
+            role: "Anggota",
+            company: "IBM-SkillsBuild-AI-Builders-Challenge",
+            type: "Organisasi",
+            duration: "2026",
+            location: "Remote",
+            description: "Berpartisipasi dalam AI Builders Challenge dari IBM, berkolaborasi pada solusi berbasis AI dan mendapatkan pengalaman langsung dengan IBM Cloud dan teknologi AI.",
+            skills: ["AI/ML", "IBM Cloud"]
+        },
+        {
+            role: "Anggota",
+            company: "OWASP Foundation",
+            type: "Organisasi",
+            duration: "2026",
+            location: "Remote",
+            description: "Anggota aktif Open Web Application Security Project, berkontribusi pada riset keamanan dan alat keamanan open-source.",
+            skills: ["Keamanan Siber", "Riset Keamanan"]
         }
     ],
     projects: [
+        {
+            title: "Ashar Grosir Parfum",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/ashar-grosir",
+            link: "https://www.ashargrosirparfum.com",
+            description: "E-Commerce komersial ritel online utama bagi perusahaan grosir wangian berumur lebih dari dua dekade. Saat ini memperkuat distribusi lancarnya terhadap lebih dari 15,000 langganan skala besar.",
+            techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
+            image: "/AsharGrosirParfum.png"
+        },
         {
             title: "SENTINEL-X",
             role: "Full-Stack Architect",
@@ -218,6 +270,59 @@ export const profile: Profile = {
             description: "Platform Inteligensi Ancaman & Fusion Multi-Domain. Sistem simulasi terintegrasi untuk kesadaran situasional, korelasi berbasis AI dengan arsitektur Multi-Modal, dan respons insiden otomatis secara real-time dari berbagai sumber domain (Aviation, Maritime, Cyber, Space, Seismic, RF/SIGINT).",
             techStack: ["FastAPI", "React", "PyTorch", "Kafka", "TimescaleDB", "Blockchain", "Docker"],
             image: "/projects/sentinelx.png"
+        },
+        {
+            title: "Shooply",
+            role: "Full-Stack Architect",
+            status: "Production",
+            featured: true,
+            link: "#",
+            description: "Platform E-Commerce berkinerja mutlak lewat pemanfaatan Microservice. Kombinasi bagian utama antarmuka berbasis (Next.js SSR-optimized) dan mesin Server sangat mutakhir melalui (GoFiber Backend). Didukung skema canggih berupa (Redis-RabbitMQ-Prometheus & Zerolog-OpenTelemetry).",
+            techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
+            image: "/shooply.png"
+        },
+        {
+            title: "LexCorpus CMS Platform",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu",
+            link: "https://www.lexcorpuslaw.com",
+            description: "CMS skala industri (khusus bagian hukum riset & Dokumen). Menghadirkan sistem ke-editorial-an ketat berbasis aturan ganda, dengan teks rilis kaya fitur canggih.",
+            techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
+            image: "/Lexcorpus.png"
+        },
+        {
+            title: "Nuxar Perfumery",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: false,
+            link: "https://www.nuxarperfumery.my.id",
+            description: "Website merek Parfum tingkat Tinggi berselimutkan pesona Animasi Cinematik 3 Dimensi, scroll Trigger serta partikel debu menyatu. Engine didorong dengan performa Railway dalam naungan mesin Golang.",
+            techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
+            image: "/NuxarPerfumery.png"
+        },
+        {
+            title: "PC FKMA Jakarta Website",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: false,
+            github: "https://github.com/wi5nuu",
+            link: "https://pcfkmaasadiyahjakarta.vercel.app/",
+            description: "Portal Pusat digital para cendekia dan pelajar Asumsi dari As'adiyah di wilayah DKI Jakarta. Dilengkapi data personal maupun kolom portal berita utama.",
+            techStack: ["Next.js", "Tailwind CSS", "Vercel"],
+            image: "/FKMA_Asadiyah_Jakarta.png"
+        },
+        {
+            title: "Grawizah",
+            role: "Team Leader & Full-Stack Architect",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/grawizah.com",
+            link: "https://grawizah-com.vercel.app/",
+            description: "Platform Intelijen Perdagangan Global berbasis AI yang memberdayakan UMKM Indonesia untuk Go Global. Fitur neural AI matchmaking bertenaga Groq Llama 3.3, klasifikasi HS Code otomatis, pemetaan rantai pasokan real-time, perbandingan harga kompetitor, dan penerjemah perdagangan multibahasa yang mendukung 14 bahasa. Dibangun untuk TechSprint Innovation Cup 2026 dengan Next.js 14 dan backend Go (Golang) — memenangkan kategori Web Developer.",
+            techStack: ["Next.js 14", "TypeScript", "Go (Golang)", "Tailwind CSS", "Supabase", "Groq Llama 3.3", "AI/ML", "JWT"],
+            image: "/projects/grawizah.png"
         },
         {
             title: "TruthLayer",
@@ -240,16 +345,6 @@ export const profile: Profile = {
             description: "Sistem Penghitung Koloni Bakteri Otomatis berbasis AI untuk laboratorium mikrobiologi. Model YOLOv8 yang di-fine-tune mencapai 94.1% mAP@0.5, 94.7% presisi, dan 92.5% recall dari 56.124 anotasi bounding box. Mengubah gambar piring agar menjadi laporan CFU/ml terstandar dalam waktu kurang dari 2 menit — mengurangi variabilitas antar-analisis hingga 92.5%. Dilengkapi CLAHE preprocessing, deteksi pelat Hough Circle, estimasi koloni SA-001, ketidakpastian pengukuran GUM, jejak audit SHA-256 untuk kepatuhan ISO 17025, serta pelaporan PDF/CSV sesuai BPOM & SNI. Dibangun dengan FastAPI, Next.js 14, PostgreSQL, dan di-deploy pada Railway dengan CI/CD pipeline.",
             techStack: ["YOLOv8", "FastAPI", "Next.js 14", "TypeScript", "PostgreSQL", "OpenCV", "AWS S3", "Railway", "Vercel"],
             image: "/projects/ColonyAI.png"
-        },
-        {
-            title: "Shooply",
-            role: "Full-Stack Architect",
-            status: "Production",
-            featured: true,
-            link: "#",
-            description: "Platform E-Commerce berkinerja mutlak lewat pemanfaatan Microservice. Kombinasi bagian utama antarmuka berbasis (Next.js SSR-optimized) dan mesin Server sangat mutakhir melalui (GoFiber Backend). Didukung skema canggih berupa (Redis-RabbitMQ-Prometheus & Zerolog-OpenTelemetry).",
-            techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
-            image: "/shooply.png"
         },
         {
             title: "Fanguard Strategic Hub",
@@ -285,47 +380,15 @@ export const profile: Profile = {
             image: "/humanfirewallintelligenceplatform.png"
         },
         {
-            title: "Ashar Grosir Parfum",
+            title: "HargaKita.id",
             role: "Full-Stack Developer",
             status: "Production",
             featured: true,
-            github: "https://github.com/wi5nuu/ashar-grosir",
-            link: "https://www.ashargrosirparfum.com",
-            description: "E-Commerce komersial ritel online utama bagi perusahaan grosir wangian berumur lebih dari dua dekade. Saat ini memperkuat distribusi lancarnya terhadap lebih dari 15,000 langganan skala besar.",
-            techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
-            image: "/AsharGrosirParfum.png"
-        },
-        {
-            title: "LexCorpus CMS Platform",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: true,
-            github: "https://github.com/wi5nuu",
-            link: "https://www.lexcorpuslaw.com",
-            description: "CMS skala industri (khusus bagian hukum riset & Dokumen). Menghadirkan sistem ke-editorial-an ketat berbasis aturan ganda, dengan teks rilis kaya fitur canggih.",
-            techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
-            image: "/Lexcorpus.png"
-        },
-        {
-            title: "Nuxar Perfumery",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: false,
-            link: "https://www.nuxarperfumery.my.id",
-            description: "Website merek Parfum tingkat Tinggi berselimutkan pesona Animasi Cinematik 3 Dimensi, scroll Trigger serta partikel debu menyatu. Engine didorong dengan performa Railway dalam naungan mesin Golang.",
-            techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
-            image: "/NuxarPerfumery.png"
-        },
-        {
-            title: "PC FKMA Jakarta Website",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: false,
-            github: "https://github.com/wi5nuu",
-            link: "https://pcfkmaasadiyahjakarta.vercel.app/",
-            description: "Portal Pusat digital para cendekia dan pelajar Asumsi dari As'adiyah di wilayah DKI Jakarta. Dilengkapi data personal maupun kolom portal berita utama.",
-            techStack: ["Next.js", "Tailwind CSS", "Vercel"],
-            image: "/FKMA_Asadiyah_Jakarta.png"
+            github: "https://github.com/wi5nuu/hargakita.id",
+            link: "https://hargakita.netlify.app/",
+            description: "Platform pemantau harga bahan pokok Indonesia secara real-time dari ratusan pasar di 34 provinsi. SaaS visual dan ramah pengguna yang melacak harga komoditas esensial (beras, cabai, bawang, telur, minyak goreng) tanpa perlu login. Fitur laporan harga crowdsourced dengan filter validasi cerdas, scraping data harian otomatis dari portal pemerintah, grafik tren interaktif, dan akses gratis untuk seluruh masyarakat Indonesia.",
+            techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Appwrite", "Netlify", "Chart.js", "Crowdsourcing"],
+            image: "/projects/hargakita.png"
         },
         {
             title: "Wiskost Residence",
@@ -342,9 +405,9 @@ export const profile: Profile = {
     education: {
         institution: "President University",
         degree: "Sarjana Teknologi Informasi (S.Kom/B.IT)",
-        duration: "September 2024 - Sekarang",
+        duration: "September 2024 - Desember 2027 (Perkiraan)",
         location: "Bekasi, Indonesia",
-        focus: "Keamanan Siber, Pengembangan Full-Stack, Arsitektur Database"
+        focus: "Keamanan Siber, Pengembangan Full-Stack, Arsitektur Database · IPK: 3.54/4.00"
     },
     educationHistory: [
         "TK EKA DIYASA BANDARA JUWATA TARAKAN",
@@ -357,7 +420,9 @@ export const profile: Profile = {
     organization: [
         "FKMA AS'ADIYAH JAKARTA",
         "PUFA Computer Science",
-        "PUMA Informatic"
+        "PUMA Informatic",
+        "IBM-SkillsBuild-AI-Builders-Challenge",
+        "OWASP"
     ],
     certifications: [
         {

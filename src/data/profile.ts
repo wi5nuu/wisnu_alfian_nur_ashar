@@ -32,6 +32,15 @@ interface Profile {
         description: string;
         skills: string[];
     }[];
+    organizationalExperience: {
+        role: string;
+        company: string;
+        type: string;
+        duration: string;
+        location: string;
+        description: string;
+        skills: string[];
+    }[];
     projects: {
         title: string;
         role: string;
@@ -86,11 +95,11 @@ export const profile: Profile = {
     personalInfo: {
         name: "Wisnu Alfian Nur Ashar",
         pronouns: "He/Him",
-        role: "Software Engineer",
-        location: "Bekasi Timur, Kota Bekasi, Jawa Barat",
+        role: "Full-Stack Engineer",
+        location: "Bekasi, West Java, Indonesia",
         tagline: "Building Secure, High-Performance Production Systems",
-        summary: "Software Engineer with extensive experience in architecting and delivering high-performance software solutions. My expertise encompasses full-cycle development, ranging from web application engineering and robust system design to the implementation of scalable cloud infrastructure. I am dedicated to bridging complex technical challenges with elegant, efficient solutions, fostering a collaborative approach in cross-functional environments. With a strong foundation in modern development practices, I focus on engineering reliable, production-grade systems that streamline business operations and enhance digital architecture.",
-        email: "wisnualfian117@gmail.com",
+        summary: "Information Technology student specializing in Full-Stack Engineering with hands-on experience designing enterprise ERP/POS platforms, AI-powered applications, and scalable cloud-based systems using Laravel, Next.js, PostgreSQL, and modern cloud technologies.",
+        email: "wisnualfiannurashar@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
         github: "https://github.com/wi5nuu",
@@ -121,7 +130,11 @@ export const profile: Profile = {
             { name: "Framer Motion", icon: "framer" },
             { name: "shadcn/ui", icon: "shadcnui" },
             { name: "SEO", icon: "google" },
+            { name: "Laravel", icon: "laravel" },
+            { name: "JavaScript", icon: "javascript" },
             { name: "API Development", icon: "postman" },
+            { name: "Technical SEO", icon: "google" },
+            { name: "Google Tag Manager", icon: "google" },
         ],
         aiMl: [
             { name: "YOLOv8", icon: "pytorch" },
@@ -132,6 +145,7 @@ export const profile: Profile = {
             { name: "Google Cloud Run", icon: "googlecloud" },
             { name: "HuggingFace", icon: "huggingface" },
             { name: "Google Gemini", icon: "googlegemini" },
+            { name: "Google AI Studio", icon: "googlegemini" },
             { name: "Computer Vision", icon: "pytorch" },
             { name: "Model Fine-Tuning", icon: "huggingface" },
         ],
@@ -142,6 +156,9 @@ export const profile: Profile = {
             { name: "Docker", icon: "docker" },
             { name: "Vercel", icon: "vercel" },
             { name: "Railway", icon: "railway" },
+            { name: "Cloudflare", icon: "cloudflare" },
+            { name: "Firebase", icon: "firebase" },
+            { name: "Zero-Trust Architecture", icon: "amazonwebservices" },
             { name: "HuggingFace", icon: "huggingface" },
         ],
         tools: [
@@ -150,6 +167,10 @@ export const profile: Profile = {
             { name: "Google Sheets", icon: "googlesheets" },
             { name: "Web Development", icon: "html5" },
             { name: "Full-Stack Development", icon: "javascript" },
+            { name: "Burp Suite", icon: "burpsuite" },
+            { name: "Google Analytics", icon: "googleanalytics" },
+            { name: "Jira", icon: "jira" },
+            { name: "Google Colab", icon: "googlecolab" },
         ],
         soft: [
             { name: "Communication" },
@@ -162,34 +183,27 @@ export const profile: Profile = {
     },
     experience: [
         {
-            role: "Web Developer",
-            company: "Syntecxhub",
-            type: "Internship",
-            duration: "March 2026 - Present",
-            location: "Remote",
-            description: "Developed and maintained remote web applications, utilizing modern web frameworks to deliver responsive and scalable front-end solutions.",
-            skills: ["Web Development", "Teamwork"]
-        },
-        {
-            role: "Full-Stack Developer",
+            role: "Full Stack Engineer",
             company: "ASHAR GROSIR PARFUM BEKASI",
             type: "Self-employed",
             duration: "December 2025 - Present",
             location: "Kota Bekasi (Hybrid)",
-            description: "Led digital transformation of a 20-year-old family business, implementing modern web technologies to streamline operations, reduce manual errors by 70%, and expand market reach to 15,000+ partners through scalable e-commerce solutions.",
-            skills: ["Full-Stack Development", "Databases"]
+            description: "Architected and developed an enterprise ERP/POS platform using Laravel, Next.js, and PostgreSQL, integrating inventory management, purchasing, payroll, attendance, business intelligence dashboards, AI Copilot, and role-based access control (RBAC) into a unified business management system supporting 6 administrators, 600+ products, and 50+ active resellers. Optimized application performance through Cloudflare CDN, intelligent caching, and database query optimization, achieving a 1.34 second average page load time and 91% Good Largest Contentful Paint (LCP). Automated end-to-end business operations by integrating wholesale order management, inventory synchronization, expense tracking, financial reporting, and real-time stock monitoring, supporting 100+ daily transactions while reducing manual financial reconciliation time by 60%.",
+            skills: ["Laravel", "Next.js", "PostgreSQL", "Cloudflare", "ERP/POS", "AI Copilot"]
         },
         {
-            role: "VoD (Art and Sport Division)",
-            company: "PUFA Computer Science",
-            type: "Contract",
-            duration: "September 2025 - Present",
-            location: "Kota Bekasi (On-site)",
-            description: "Directed major faculty events and spearheaded digital innovation initiatives, coordinating cross-functional teams to deliver high-impact student engagement programs and modernize communication workflows.",
-            skills: ["Communication", "Event Management"]
-        },
+            role: "Web Development Intern",
+            company: "GAOTEK INC",
+            type: "Internship",
+            duration: "April 2026 - Present",
+            location: "New York, USA (Remote)",
+            description: "Developed and customized responsive WordPress websites using PHP, HTML, CSS, JavaScript, Elementor, and Gutenberg within a local XAMPP development environment. Maintained and updated WordPress websites by publishing content, optimizing page layouts, troubleshooting technical issues, and applying SEO best practices to improve usability and search visibility. Collaborated in an Agile remote environment by participating in weekly technical discussions via Microsoft Teams and consistently submitting progress reports throughout the internship while delivering assigned development tasks on schedule.",
+            skills: ["WordPress", "PHP", "JavaScript", "SEO", "Elementor", "Agile"]
+        }
+    ],
+    organizationalExperience: [
         {
-            role: "IT Development & Member of Minat dan Bakat",
+            role: "IT Development & Talent Division",
             company: "PC FKMA Jakarta As'adiyah",
             type: "Organization",
             duration: "January 2024 - Present",
@@ -198,16 +212,54 @@ export const profile: Profile = {
             skills: ["Web Development", "Event Management", "Teamwork"]
         },
         {
-            role: "Member of Student Passion and Talents",
-            company: "PUMA Informatic",
-            type: "Contract",
-            duration: "October 2024 - September 2025",
-            location: "Kota Bekasi (Hybrid)",
-            description: "Engineered intelligent chatbot solutions to enhance customer experience, leveraging modern AI technologies to automate support processes and improve response times by 60%.",
-            skills: ["Communication", "Teamwork"]
+            role: "Member – Students Passion & Talents Division",
+            company: "PUMA Informatics – President University",
+            type: "Organization",
+            duration: "September 2024 - August 2025",
+            location: "President University, Bekasi",
+            description: "Organized 3+ technology-focused events for 100+ university students, achieving a consistent 95% attendance rate. Coordinated technical academic workshops and student activities aimed at fostering peer-to-peer collaboration. Supported divisional logistics and knowledge-sharing initiatives to enhance student skill development in IT.",
+            skills: ["Event Management", "Communication", "Teamwork"]
+        },
+        {
+            role: "Vice – Art and Sport Division",
+            company: "PUFA Computer Science – President University",
+            type: "Organization",
+            duration: "September 2025 - Present",
+            location: "President University, Bekasi (On-site)",
+            description: "Led 5+ art and sports activities for 60+ students, resulting in a 40% increase in departmental student engagement. Led cross-functional committees to organize campus events attended by over 100 students while coordinating volunteers, schedules, and logistics.",
+            skills: ["Leadership", "Event Management", "Communication"]
+        },
+        {
+            role: "Member",
+            company: "IBM-SkillsBuild-AI-Builders-Challenge",
+            type: "Organization",
+            duration: "2026",
+            location: "Remote",
+            description: "Participated in IBM's AI Builders Challenge, collaborating on AI-powered solutions and gaining hands-on experience with IBM Cloud and AI technologies.",
+            skills: ["AI/ML", "IBM Cloud"]
+        },
+        {
+            role: "Member",
+            company: "OWASP Foundation",
+            type: "Organization",
+            duration: "2026",
+            location: "Remote",
+            description: "Active member of the Open Web Application Security Project, contributing to security research and open-source security tools.",
+            skills: ["Cybersecurity", "Security Research"]
         }
     ],
     projects: [
+        {
+            title: "Ashar Grosir Parfum",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/ashar-grosir",
+            link: "https://www.ashargrosirparfum.com",
+            description: "Official E-Commerce platform for a 20-year-old perfume wholesaler serving 15,000+ partners. Optimized for scale with edge delivery and streamlined wholesale distribution.",
+            techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
+            image: "/projects/AsharGrosirParfum.png"
+        },
         {
             title: "SENTINEL-X",
             role: "Full-Stack Architect",
@@ -215,31 +267,9 @@ export const profile: Profile = {
             featured: true,
             github: "https://github.com/wi5nuu/SENTINEL-X-X-Domain-Threat-Fusion-Platform",
             link: "https://github.com/wi5nuu/SENTINEL-X-X-Domain-Threat-Fusion-Platform",
-            description: "Multi-Domain Threat Intelligence & Fusion Platform. An integrated simulation system for situational awareness, AI-based correlation with Multi-Modal architecture, and real-time automated incident response across various domain sources (Aviation, Maritime, Cyber, Space, Seismic, RF/SIGINT).",
+            description: "Multi-Domain Threat Intelligence & Fusion Platform (23+ GitHub stars, 10 forks). An integrated educational proof-of-concept simulating situational awareness, AI-based correlation with Multi-Modal architecture, and real-time incident response across 6 domain sources (Aviation/ADS-B, Maritime/AIS, Cyber, Space, Seismic, RF/SIGINT). Features blockchain audit trail via Ethereum smart contracts, 3D globe visualization, and explainable AI threat classification.",
             techStack: ["FastAPI", "React", "PyTorch", "Kafka", "TimescaleDB", "Blockchain", "Docker"],
             image: "/projects/sentinelx.png"
-        },
-        {
-            title: "TruthLayer",
-            role: "Architect & Full-Stack Developer",
-            status: "Production",
-            featured: true,
-            github: "https://github.com/wi5nuu/Truthlayer",
-            link: "https://truthlayer.io",
-            description: "Chrome Extension + Backend + Web Dashboard that reveals hidden intentions of every website you visit. Provides Trust Score (0-100), detects 10+ dark pattern manipulation tactics (fake urgency, confirmshaming, disguised ads, forced action), audits data collection & third-party trackers, estimates AI-generated content percentage, and enables public report sharing via truthlayer.io/report/domain. Built with Manifest V3 Chrome Extension, Next.js 15 dashboard, Node.js Express backend powered by Claude AI, and Docker deployment on Netlify.",
-            techStack: ["Next.js 15", "TypeScript", "Chrome Extension", "Node.js", "Express.js", "Claude AI", "Docker", "Netlify"],
-            image: "/projects/thrutlayer.png"
-        },
-        {
-            title: "ColonyAI",
-            role: "Product Owner & AI Engineer",
-            status: "Production",
-            featured: true,
-            github: "https://github.com/wi5nuu/colonyai",
-            link: "https://colonyai-eta.vercel.app",
-            description: "AI-powered Automated Plate Count Reader for microbiology laboratories. Fine-tuned YOLOv8 object detection model achieving 94.1% mAP@0.5, 94.7% precision, and 92.5% recall across 56,124 bounding box annotations. Converts agar plate images into standardized CFU/ml reports in under 2 minutes — reducing inter-analyst variability by 92.5%. Features CLAHE preprocessing, Hough Circle plate detection, SA-001 merged colony estimation, GUM measurement uncertainty, SHA-256 chained audit trail for ISO 17025 compliance, and BPOM & SNI compliant PDF/CSV reporting. Built with FastAPI, Next.js 14, PostgreSQL, and deployed on Railway with CI/CD pipelines.",
-            techStack: ["YOLOv8", "FastAPI", "Next.js 14", "TypeScript", "PostgreSQL", "OpenCV", "AWS S3", "Railway", "Vercel"],
-            image: "/projects/ColonyAI.png"
         },
         {
             title: "Shooply",
@@ -250,6 +280,71 @@ export const profile: Profile = {
             description: "High-performance e-commerce platform with a microservices architecture. Features an SSR-optimized Next.js 14 frontend and a super-fast GoFiber backend. Implements advanced caching (Redis), messaging (RabbitMQ), and comprehensive telemetry (OpenTelemetry, Prometheus).",
             techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
             image: "/projects/shooply.png"
+        },
+        {
+            title: "LexCorpus CMS Platform",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu",
+            link: "https://www.lexcorpuslaw.com",
+            description: "Production-ready CMS and legal research platform. Features secure role-based editorial systems, legal document management, and rich text analysis.",
+            techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
+            image: "/projects/Lexcorpus.png"
+        },
+        {
+            title: "Nuxar Perfumery",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: false,
+            link: "https://www.nuxarperfumery.my.id",
+            description: "High-end cinematic perfume website featuring GSAP animations, 3D transforms, particle effects, and dark luxury UI. Backend deployed with Golang and Railway.",
+            techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
+            image: "/projects/NuxarPerfumery.png"
+        },
+        {
+            title: "PC FKMA Jakarta Website",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: false,
+            github: "https://github.com/wi5nuu",
+            link: "https://pcfkmaasadiyahjakarta.vercel.app/",
+            description: "Official digital platform for As'adiyah Alumni in Jakarta. Features profile, news portal, and organizational data.",
+            techStack: ["Next.js", "Tailwind CSS", "Vercel"],
+            image: "/projects/FKMA_Asadiyah_Jakarta.png"
+        },
+        {
+            title: "Grawizah",
+            role: "Team Leader & Full-Stack Architect",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/grawizah.com",
+            link: "https://grawizah-com.vercel.app/",
+            description: "AI-native Global Trade Intelligence Platform empowering Indonesian MSMEs to scale globally. Built by team 'Successful Failures' (Wisnu as Team Leader, with Reza Fahlevi and Praisilia Pandoh from President University). Features neural AI matchmaking powered by Groq Llama 3.3, automated HS Code classification, real-time supply chain network mapping, competitor price benchmarking, and a multilingual trade translator supporting 14 languages. Won Web Developer category at TechSprint Innovation Cup 2026 organized by Codelab Indonesia.",
+            techStack: ["Next.js 14", "TypeScript", "Go (Golang)", "Tailwind CSS", "Supabase", "Groq Llama 3.3", "AI/ML", "JWT"],
+            image: "/projects/grawizah.png"
+        },
+        {
+            title: "TruthLayer",
+            role: "Architect & Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/Truthlayer",
+            link: "https://truthlayer.io",
+            description: "Chrome Extension (Manifest V3) + Node.js Express Backend + Next.js 15 Dashboard that reveals hidden intentions of every website you visit. Powered by Claude AI (Anthropic) for intent classification and dark pattern detection. Provides Trust Score (0-100), detects 10+ dark pattern manipulation tactics (fake urgency, confirmshaming, disguised ads, forced action), audits data collection & third-party trackers, estimates AI-generated content percentage, and enables public report sharing via truthlayer.io/report/domain. Features activeTab permission (privacy-first), local 24h caching, and automated CI/CD pipeline.",
+            techStack: ["Next.js 15", "TypeScript", "Chrome Extension", "Node.js", "Express.js", "Claude AI", "Docker", "Netlify"],
+            image: "/projects/thrutlayer.png"
+        },
+        {
+            title: "ColonyAI",
+            role: "Product Owner & AI Engineer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/colonyai",
+            link: "https://colonyai-eta.vercel.app",
+            description: "AI-powered Automated Plate Count Reader for microbiology laboratories — official entry for AI Open Innovation Challenge 2026 (team of 4 from President University, Wisnu as Product Owner & Software Engineer). Fine-tuned YOLOv8 model achieving 94.1% mAP@0.5, 94.7% precision, 92.5% recall across 56,124 annotations. Converts agar plate images into CFU/ml reports in under 2 minutes — reducing inter-analyst variability by 92.5%. Features CLAHE preprocessing, Hough Circle detection, SA-001 merged colony estimation, GUM uncertainty, SHA-256 audit trail for ISO 17025, BPOM & SNI compliance. Enterprise-grade security: Argon2 hashing, JWT blacklisting, ClamAV scanning, Zero-Trust architecture.",
+            techStack: ["YOLOv8", "FastAPI", "Next.js 14", "TypeScript", "PostgreSQL", "OpenCV", "AWS S3", "Railway", "Vercel"],
+            image: "/projects/ColonyAI.png"
         },
         {
             title: "Fanguard Strategic Hub",
@@ -285,47 +380,15 @@ export const profile: Profile = {
             image: "/projects/humanfirewallintelligenceplatform.png"
         },
         {
-            title: "Ashar Grosir Parfum",
+            title: "HargaKita.id",
             role: "Full-Stack Developer",
             status: "Production",
             featured: true,
-            github: "https://github.com/wi5nuu/ashar-grosir",
-            link: "https://www.ashargrosirparfum.com",
-            description: "Official E-Commerce platform for a 20-year-old perfume wholesaler serving 15,000+ partners. Optimized for scale with edge delivery and streamlined wholesale distribution.",
-            techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
-            image: "/projects/AsharGrosirParfum.png"
-        },
-        {
-            title: "LexCorpus CMS Platform",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: true,
-            github: "https://github.com/wi5nuu",
-            link: "https://www.lexcorpuslaw.com",
-            description: "Production-ready CMS and legal research platform. Features secure role-based editorial systems, legal document management, and rich text analysis.",
-            techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
-            image: "/projects/Lexcorpus.png"
-        },
-        {
-            title: "Nuxar Perfumery",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: false,
-            link: "https://www.nuxarperfumery.my.id",
-            description: "High-end cinematic perfume website featuring GSAP animations, 3D transforms, particle effects, and dark luxury UI. Backend deployed with Golang and Railway.",
-            techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
-            image: "/projects/NuxarPerfumery.png"
-        },
-        {
-            title: "PC FKMA Jakarta Website",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: false,
-            github: "https://github.com/wi5nuu",
-            link: "https://pcfkmaasadiyahjakarta.vercel.app/",
-            description: "Official digital platform for As'adiyah Alumni in Jakarta. Features profile, news portal, and organizational data.",
-            techStack: ["Next.js", "Tailwind CSS", "Vercel"],
-            image: "/projects/FKMA_Asadiyah_Jakarta.png"
+            github: "https://github.com/wi5nuu/hargakita.id",
+            link: "https://hargakita.netlify.app/",
+            description: "Real-time staple goods price monitoring platform for all regions of Indonesia. Visual, user-friendly SaaS that tracks prices of essential commodities (rice, chili, onion, eggs, cooking oil) across hundreds of markets in 34 provinces. Features crowdsourced price reports with intelligent validation filters, automated daily data scraping from government portals, interactive trend charts, and zero login requirement — free and accessible to all Indonesian citizens.",
+            techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Appwrite", "Netlify", "Chart.js", "Crowdsourcing"],
+            image: "/projects/hargakita.png"
         },
         {
             title: "Wiskost Residence",
@@ -342,9 +405,9 @@ export const profile: Profile = {
     education: {
         institution: "President University",
         degree: "Bachelor of Information Technology",
-        duration: "September 2024 - Present",
+        duration: "September 2024 - December 2027 (Expected)",
         location: "Bekasi, Indonesia",
-        focus: "Cyber Security, Full-Stack Development, Database Architecture"
+        focus: "Cyber Security, Full-Stack Development, Database Architecture · GPA: 3.54/4.00"
     },
     educationHistory: [
         "TK EKA DIYASA BANDARA JUWATA TARAKAN",
@@ -357,7 +420,9 @@ export const profile: Profile = {
     organization: [
         "FKMA AS'ADIYAH JAKARTA",
         "PUFA Computer Science",
-        "PUMA Informatic"
+        "PUMA Informatic",
+        "IBM-SkillsBuild-AI-Builders-Challenge",
+        "OWASP"
     ],
     certifications: [
         {

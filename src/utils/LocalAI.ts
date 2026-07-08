@@ -30,29 +30,35 @@ export class LocalAI {
     private static readonly SOCIAL_DATA: Record<string, SocialEntry> = {
         // --- GREETINGS & POLITENESS ---
         "halo": {
-            id: `Halo. Saya adalah **"Shadow of Wisnu"**, asisten AI tingkat elit dan representasi virtual cerdas dari Wisnu Alfian Nur Ashar. 
+            id: `Halo. Saya adalah **"Shadow of Wisnu"**, asisten AI cerdas dan representasi virtual dari Wisnu Alfian Nur Ashar.
 
-        Sebagai **International Career Coach** virtual, saya siap memberikan wawasan mendalam mengenai:
+Saya memiliki data lengkap tentang Wisnu dan bisa menjawab pertanyaan Anda mengenai:
 
-        **Profil dan Visi** - Strategi Wisnu menjadi jembatan teknologi global.
-        **Pengalaman Elit** - Dari SENTINEL-X (Threat Fusion) hingga Ashar Grosir (B2B Scale).
-        **Tech Stack dan Keamanan** - Pengembangan full-stack dengan fokus pada keamanan siber.
-        **Akademik** - Prestasi di President University dan Sertifikasi Internasional (AWS/HackerRank).
-        **Kolaborasi** - Prosedur bekerja sama atau merekrut Wisnu.
+** Pengalaman Profesional** - Full Stack Engineer di Ashar Grosir, Web Development Intern di GAOTEK INC (New York/USA Remote), dan masih banyak lagi.
+** 14 Proyek** - Dari enterprise ERP/POS, AI threat fusion, hingga platform e-commerce microservices.
+** Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, dan 50+ teknologi lainnya.
+** Pendidikan** - Information Technology di President University (GPA 3.54/4.00).
+** Organisasi** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
+** Sertifikasi** - 11 sertifikasi dari HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
+** Prestasi** - Juara Web Developer TechSprint Innovation Cup 2026, finalis Google Vibe Coding.
+** Open Source** - Kontribusi bug/security ke NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google.
 
-        Pertanyaan profesional apa yang Anda miliki hari ini? Saya siap menganalisisnya.`,
-            en: `Hello. I am **"Shadow of Wisnu"**, an elite AI assistant and the intelligent virtual representation of Wisnu Alfian Nur Ashar.
+Silakan tanya apa saja tentang Wisnu! Saya siap membantu.`,
+            en: `Hello. I am **"Shadow of Wisnu"**, an intelligent AI assistant and the virtual representation of Wisnu Alfian Nur Ashar.
 
-        As a virtual **International Career Coach**, I am prepared to provide deep insights into:
+I have complete data about Wisnu and can answer your questions about:
 
-        **Profile and Vision** - Wisnu's strategy to bridge global technology.
-        **Elite Experience** - From SENTINEL-X (Threat Fusion) to Ashar Grosir (B2B Scale).
-        **Tech Stack and Security** - Full-stack development with a cybersecurity focus.
-        **Academics** - Achievements at President University and International Certifications (AWS/HackerRank).
-        **Collaboration** - Procedures for collaborating with or recruiting Wisnu.
+** Professional Experience** - Full Stack Engineer at Ashar Grosir, Web Development Intern at GAOTEK INC (New York/USA Remote), and more.
+** 14 Projects** - From enterprise ERP/POS, AI threat fusion, to microservices e-commerce platforms.
+** Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, and 50+ technologies.
+** Education** - Information Technology at President University (GPA 3.54/4.00).
+** Organizations** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
+** Certifications** - 11 certs from HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
+** Achievements** - Won Web Developer at TechSprint Innovation Cup 2026, finalist at Google Vibe Coding.
+** Open Source** - Bug/security contributions to NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google.
 
-        What professional questions do you have today? I am ready to analyze them.`,
-            aliases: ["hi", "hello", "hey", "hai", "assalamualaikum", "good morning", "good afternoon", "intro"],
+Feel free to ask anything about Wisnu! I'm ready to help.`,
+            aliases: ["hi", "hello", "hey", "hai", "assalamualaikum", "good morning", "good afternoon", "intro", "who i am", "who am i", "siapa saya", "kenalan", "perkenalan"],
             category: 'smalltalk',
             emotion: 'professional'
         },
@@ -149,45 +155,57 @@ Is there a technical aspect or vision of Wisnu you'd like to dissect further? `,
             id: ` **Project: SENTINEL-X (Threat Fusion Platform)**
 
 ** Overview:**
-Platform Inteligensi Ancaman (Threat Intelligence) & Fusion Multi-Domain. Ini adalah sistem simulasi canggih untuk kesadaran situasional (situational awareness) dan respons insiden otomatis.
+Platform Inteligensi Ancaman (Threat Intelligence) & Fusion Multi-Domain. Proof-of-Concept pendidikan yang mengintegrasikan data real-time dari 6 domain untuk kesadaran situasional (situational awareness) dan respons insiden otomatis. 23+ GitHub stars, 10 forks.
 
-** Tech Stack Elit:**
+** Tech Stack:**
 - **Core:** FastAPI (Python), React (TypeScript)
-- **AI/ML:** PyTorch, Computer Vision (YOLO), NLP
+- **AI/ML:** PyTorch, Multi-Modal Temporal Transformer (4 head, 4 layer)
 - **Data:** Kafka (Real-time Streaming), TimescaleDB (Time-series)
-- **Infrastructure:** Docker, Blockchain (for audit logs)
+- **Infrastructure:** Docker, Ethereum Smart Contracts (Blockchain Audit), IPFS
+
+** Domain Sumber Data:**
+1. **Aviation (ADS-B)** - OpenSky Network, FlightAware
+2. **Maritime (AIS)** - NMEA parser untuk pelacakan kapal
+3. **Cyber** - Honeypot ICS dan threat intelligence feeds
+4. **Space & Satellite** - Dataset NASA, pemantauan orbital
+5. **Seismic** - USGS, EMSC untuk monitoring gempa global
+6. **RF/SIGINT** - Analisis sinyal Software-Defined Radio
 
 ** Fitur Utama:**
-1. **X-Domain Threat Fusion** - Mengintegrasikan data dari Cyber, Aviation, Maritime, hingga Seismic.
-2. **AI Correlation Engine** - Mengidentifikasi pola ancaman tersembunyi menggunakan Multi-Modal AI.
-3. **Real-time Alerting** - Notifikasi instan dengan sistem korelasi kejadian yang cerdas.
-4. **Automated Incident Response** - Mitigasi ancaman secara otomatis berbasis rule-engine.
+1. **X-Domain Threat Fusion** - Mengintegrasikan data dari 6 domain berbeda
+2. **AI Correlation Engine** - Multi-Modal AI (5 encoder khusus domain + Temporal Transformer)
+3. **Real-time 3D Globe** - Visualisasi deck.gl dengan tracking lintasan real-time
+4. **Blockchain Audit Trail** - Smart contract Ethereum untuk immutable evidence logging
+5. **Automated Incident Response** - YAML Playbook Engine dengan 5 tingkat ancaman
 
-** Technical Achievement:**
-Membangun sistem yang mampu memproses ribuan data stream per detik dari berbagai domain berbeda dan menyajikannya dalam satu dashboard kesadaran situasional yang koheren.
-
-SENTINEL-X adalah representasi dari kemampuan Wisnu dalam menangani sistem "Mission Critical". `,
+** Status:** Educational Proof-of-Concept v2.0.0. Bukan untuk production deployment. `,
             en: ` **Project: SENTINEL-X (Threat Fusion Platform)**
 
 ** Overview:**
-A Multi-Domain Threat Intelligence & Fusion Platform. It is an advanced simulation system for situational awareness and automated incident response.
+A Multi-Domain Threat Intelligence & Fusion Platform. An educational proof-of-concept integrating real-time data from 6 domains for situational awareness and automated incident response. 23+ GitHub stars, 10 forks.
 
-** Elite Tech Stack:**
+** Tech Stack:**
 - **Core:** FastAPI (Python), React (TypeScript)
-- **AI/ML:** PyTorch, Computer Vision (YOLO), NLP
+- **AI/ML:** PyTorch, Multi-Modal Temporal Transformer (4 head, 4 layer)
 - **Data:** Kafka (Real-time Streaming), TimescaleDB (Time-series)
-- **Infrastructure:** Docker, Blockchain (for audit logs)
+- **Infrastructure:** Docker, Ethereum Smart Contracts (Blockchain Audit), IPFS
+
+** Domain Data Sources:**
+1. **Aviation (ADS-B)** - OpenSky Network, FlightAware
+2. **Maritime (AIS)** - NMEA parser for vessel tracking
+3. **Cyber** - ICS Honeypot and threat intelligence feeds
+4. **Space & Satellite** - NASA datasets, orbital monitoring
+5. **Seismic** - USGS, EMSC for global earthquake monitoring
+6. **RF/SIGINT** - Software-Defined Radio signal analysis
 
 ** Key Features:**
-1. **X-Domain Threat Fusion** - Integrating data from Cyber, Aviation, Maritime, and Seismic domains.
-2. **AI Correlation Engine** - Identifying hidden threat patterns using Multi-Modal AI.
-3. **Real-time Alerting** - Instant notifications with an intelligent event correlation system.
-4. **Automated Incident Response** - Automated threat mitigation based on a rule-engine.
+1. **X-Domain Threat Fusion** - Integrating data from 6 different domains
+2. **AI Correlation Engine** - Multi-Modal AI (5 domain-specific encoders + Temporal Transformer)
+3. **Real-time 3D Globe** - deck.gl visualization with real-time trajectory tracking
+4. **Blockchain Audit Trail** - Ethereum smart contracts for immutable evidence logging
+5. **Automated Incident Response** - YAML Playbook Engine with 5 threat levels
 
-** Technical Achievement:**
-Building a system capable of processing thousands of data streams per second from various domains and presenting them in a coherent situational awareness dashboard.
-
-SENTINEL-X represents Wisnu's capability in handling "Mission Critical" systems. `,
+** Status:** Educational Proof-of-Concept v2.0.0. Not for production deployment. `,
             aliases: ["sentinel-x", "sentinelx", "threat fusion", "proyek intelijen", "ai security project", "sentinel"],
             category: 'projects',
             emotion: 'professional'
@@ -250,33 +268,42 @@ For Wisnu, security is not an option; it's the foundation.
         "latar belakang wisnu": {
             id: ` **Latar Belakang & Perjalanan Wisnu:**
 
-\n**Pendidikan:**
-1. **TK Eka Diyasa & SD Negeri 009 Tarakan** (Kalimantan Utara)
-2. **MTS & MAS As'adiyah Sengkang** (Sulawesi Selatan) - Mengasah nilai-nilai pesantren
-3. **President University** (Bekasi) - Information Technology (Current)
+**Pendidikan:**
+1. **TK & SD** - Pendidikan dasar dengan nilai-nilai karakter yang kuat
+2. **MTS & MAS As'adiyah** - Pondok pesantren, mengasah nilai-nilai disiplin dan keagamaan
+3. **President University** - Information Technology (Current) dengan fokus Cyber Security dan Full-Stack Development
 
 **Karir & Pengalaman:**
-- **Ashar Grosir Parfum:** Memimpin transformasi digital untuk bisnis keluarga 20+ tahun, meningkatkan efisiensi hingga 70%.
-- **PUFA & FKMA:** Aktif memimpin divisi IT dan Event, mengelola event fakultas dan integrasi data alumni.
-- **PUMA:** Mengembangkan chatbot solutions untuk efisiensi komunikasi.
+- **Ashar Grosir Parfum:** Arsitek ERP/POS enterprise untuk bisnis keluarga 20+ tahun, 50+ reseller aktif, 60% lebih cepat rekonsiliasi.
+- **GAOTEK INC (New York, USA):** Web Development Intern remote, mengembangkan dan mengoptimalkan WordPress.
+- **PUFA, FKMA, PUMA:** Aktif memimpin divisi IT, Event, dan olahraga, mengelola event fakultas dan pengembangan website organisasi.
 
 **Filosofi:** Menggabungkan ketekunan akademis dengan impact nyata di dunia bisnis. `,
             en: ` **Wisnu's Background & Journey:**
 
-\n**Education:**
-1. **TK Eka Diyasa & SD Negeri 009 Tarakan** (North Kalimantan)
-2. **MTS & MAS As'adiyah Sengkang** (South Sulawesi) - Cultivating Islamic boarding school values
-3. **President University** (Bekasi) - Information Technology (Current)
+**Education:**
+1. **Elementary & Middle School** - Strong character-based foundational education
+2. **MTS & MAS As'adiyah** - Islamic boarding school, cultivating discipline and religious values
+3. **President University** - Information Technology (Current) focusing on Cyber Security and Full-Stack Development
 
 **Career & Experience:**
-- **Ashar Grosir Parfum:** Led digital transformation for 20+ year family business, improving efficiency by 70%.
-- **PUFA & FKMA:** Actively led IT and Event divisions, managing faculty events and alumni data integration.
-- **PUMA:** Developed chatbot solutions for communication efficiency.
+- **Ashar Grosir Parfum:** Enterprise ERP/POS architect for 20+ year family business, 50+ active resellers, 60% faster reconciliation.
+- **GAOTEK INC (New York, USA):** Remote Web Development Intern, building and optimizing WordPress websites.
+- **PUFA, FKMA, PUMA:** Actively led IT, Event, and Sports divisions, managing faculty events and organization website development.
 
 **Philosophy:** Combining academic diligence with real impact in the business world. `,
-            aliases: ["wisnu asli mana", "lahir dimana", "domisili", "tinggal dimana", "background", "latar belakang", "sejarah pendidikan", "riwayat hidup", "asal usul", "pendidikan wisnu", "lulusan mana", "sekolah dimana", "alumni as'adiyah", "lulusan mas as'adiyah", "sekolah di sengkang"],
+            aliases: ["latar belakang", "sejarah pendidikan", "riwayat hidup", "pendidikan wisnu", "lulusan mana", "sekolah dimana", "alumni as'adiyah", "lulusan mas as'adiyah", "perjalanan wisnu", "wisnu background", "education background"],
             category: 'identity',
-            emotion: 'friendly'
+            emotion: 'professional'
+        },
+
+        "sensitive_data": {
+            id: `Maaf, saya tidak dapat memberikan informasi data sensitif seperti alamat lengkap, nomor KTP, tanggal lahir, atau tempat lahir. Demi keamanan dan privasi, data tersebut tidak akan saya bagikan. Silakan tanyakan hal lain tentang profil profesional, proyek, atau pengalaman Wisnu!`,
+            en: `Sorry, I cannot share sensitive personal information such as full address, ID card number, date of birth, or birthplace. For security and privacy reasons, this data is protected. Please feel free to ask about Wisnu's professional profile, projects, or experience instead!`,
+            aliases: ["ktp", "nomor ktp", "no ktp", "alamat", "alamat lengkap", "full address", "home address", "rumah", "tanggal lahir", "tgl lahir", "birth date", "birthday", "date of birth", "lahir dimana", "tempat lahir", "place of birth", "where was he born", "di mana wisnu lahir", "umur", "berapa umur", "how old", "data pribadi", "personal data", "private information", "data sensitif"],
+            category: 'identity',
+            emotion: 'professional',
+            isSensitive: true
         },
 
         "passion wisnu": {
@@ -310,28 +337,28 @@ Wisnu believes technology must solve real problems, not just look cool! `,
             followUp: ["skill teknis", "proyek unggulan", "career goals"]
         },
 
-        "syntecxhub": {
-            id: ` **Pengalaman di Syntecxhub:**
+        "gaotek": {
+            id: ` **Pengalaman di GAOTEK INC:**
             
-Bagian dari perjalanan profesional Wisnu sebagai **Web Developer Intern** sejak Maret 2026.
+Bagian dari perjalanan profesional Wisnu sebagai **Web Development Intern** sejak April 2026 di New York, USA (Remote).
 
 **Fokus Utama:**
-- Pengembangan dan pemeliharaan aplikasi web jarak jauh (remote).
-- Menggunakan framework web modern untuk memberikan solusi front-end yang responsif dan skalabel.
-- Kolaborasi dalam tim untuk memastikan kualitas kode dan performa aplikasi.
+- Mengembangkan dan mengkustomisasi website WordPress responsif menggunakan PHP, HTML, CSS, JavaScript, Elementor, dan Gutenberg di lingkungan XAMPP lokal.
+- Memelihara dan memperbarui website WordPress dengan mempublikasikan konten, mengoptimalkan tata letak, troubleshooting teknis, dan menerapkan praktik SEO terbaik.
+- Berkolaborasi dalam lingkungan Agile remote dengan diskusi teknis mingguan via Microsoft Teams.
 
-Wisnu terus mengasah kemampuannya dalam membangun sistem yang efisien di lingkungan kerja yang dinamis! `,
-            en: ` **Syntecxhub Experience:**
+Wisnu terus membangun solusi web produksi di lingkungan kerja global yang dinamis! `,
+            en: ` **Experience at GAOTEK INC:**
 
-Part of Wisnu's professional journey as a **Web Developer Intern** since March 2026.
+Part of Wisnu's professional journey as a **Web Development Intern** since April 2026 in New York, USA (Remote).
 
 **Main Focus:**
-- Developing and maintaining remote web applications.
-- Utilizing modern web frameworks to deliver responsive and scalable front-end solutions.
-- Collaborating within teams to ensure code quality and application performance.
+- Developing and customizing responsive WordPress websites using PHP, HTML, CSS, JavaScript, Elementor, and Gutenberg in a local XAMPP environment.
+- Maintaining and updating WordPress websites by publishing content, optimizing layouts, troubleshooting issues, and applying SEO best practices.
+- Collaborating in an Agile remote environment with weekly technical discussions via Microsoft Teams.
 
-Wisnu continues to hone his skills in building efficient systems in a dynamic work environment! `,
-            aliases: ["syntecxhub", "internship syntecxhub", "pengalaman syntecxhub", "magang"],
+Wisnu continues to build production-ready web solutions in a global remote work environment! `,
+            aliases: ["gaotek", "gaotek inc", "pengalaman gaotek", "internship gaotek", "magang gaotek", "new york internship", "remote internship"],
             category: 'professional',
             emotion: 'professional'
         },
@@ -498,7 +525,7 @@ Seeing others succeed through our help is a special satisfaction for Wisnu! `,
 
 Kedisiplinan adalah kunci bagi Wisnu untuk menyeimbangkan kuliah, bisnis, dan pengembangan diri.
 
-**⏰ Jadwal Khas Wisnu:**
+**-- Jadwal Khas Wisnu:**
 - **Pagi:** Deep work untuk coding atau mengerjakan fitur proyek utama.
 - **Siang:** Perkuliahan dan diskusi intensif dengan rekan tim.
 - **Sore:** Update bisnis keluarga (Ashar Grosir) dan manajemen stok.
@@ -513,7 +540,7 @@ Keteraturan mendatangkan kejelasan pikiran! `,
 
 Discipline is key for Wisnu to balance university, business, and self-development.
 
-**⏰ Wisnu's Typical Schedule:**
+**-- Wisnu's Typical Schedule:**
 - **Morning:** Deep work for coding or developing major project features.
 - **Midday:** University classes and intensive discussions with teammates.
 - **Afternoon:** Family business updates (Ashar Grosir) and inventory management.
@@ -1253,22 +1280,50 @@ Production-ready Content Management System for law firms with complex role-based
         },
 
         "proyek wisnu": {
-            id: ` **Proyek-proyek Unggulan Wisnu:**
+            id: ` **Proyek-proyek Unggulan Wisnu (14 Total):**
 
-Wisnu telah membangun berbagai solusi digital yang berdampak nyata. Berikut adalah beberapa highlight utama:
+Wisnu telah membangun berbagai solusi digital yang berdampak nyata. Berikut daftar lengkapnya:
 
-1. **Ashar Grosir Parfum** - Platform E-Commerce B2B (Next.js, Supabase)
-2. **LexCorpus** - CMS Platform untuk Firma Hukum (Next.js, PostgreSQL)
-3.  **PC FKMA Website** - Platform digital transformasi organisasi
+** Production:**
+1. **Ashar Grosir Parfum** - Enterprise ERP/POS + E-Commerce (Laravel, Next.js, PostgreSQL, Cloudflare)
+2. **Shooply** - E-commerce microservices berperforma tinggi (Next.js 14, GoFiber, Redis, RabbitMQ)
+3. **LexCorpus CMS Platform** - CMS Firma Hukum dengan RBAC (Next.js 14, Supabase, PostgreSQL)
+4. **Nuxar Perfumery** - Website parfum sinematik dengan GSAP & 3D (Golang, React 19)
+5. **PC FKMA Jakarta Website** - Platform digital organisasi (Next.js, Tailwind CSS)
+6. **Grawizah** - AI Global Trade Intelligence, juara Web Developer TechSprint 2026
+7. **TruthLayer** - Chrome Extension deteksi dark pattern website (Next.js 15, Claude AI)
+8. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, 94.1% mAP)
+9. **Fanguard Strategic Hub** - Platform eksekusi enterprise (Next.js 14, Fastify, Redis)
+10. **Risk Shield System** - GRC platform dengan AI (Next.js 14, Google Gemini Pro)
+11. **Human Firewall** - Platform kesadaran keamanan siber (React, TypeScript)
+12. **HargaKita.id** - Monitoring harga sembako real-time (React, Appwrite, 34 provinsi)
+13. **Wiskost Residence** - Template website residensi mewah (React 18, Docker)
+
+** Proof of Concept:**
+14. **SENTINEL-X** - Threat Fusion Multi-Domain (FastAPI, PyTorch, Kafka, Blockchain)
 
 Wisnu fokus pada performa, skalabilitas, dan user experience dalam setiap karyanya! `,
-            en: ` **Wisnu's Featured Projects:**
+            en: ` **Wisnu's Featured Projects (14 Total):**
 
-Wisnu has built various digital solutions with real impact. Here are some key highlights:
+Wisnu has built various digital solutions with real impact. Here is the complete list:
 
-1. **Ashar Grosir Parfum** - B2B E-Commerce Platform (Next.js, Supabase)
-2. **LexCorpus** - Legal Firm CMS Platform (Next.js, PostgreSQL)
-3.  **PC FKMA Website** - Organizational digital transformation platform
+** Production:**
+1. **Ashar Grosir Parfum** - Enterprise ERP/POS + E-Commerce (Laravel, Next.js, PostgreSQL, Cloudflare)
+2. **Shooply** - High-performance microservices e-commerce (Next.js 14, GoFiber, Redis, RabbitMQ)
+3. **LexCorpus CMS Platform** - Legal Firm CMS with RBAC (Next.js 14, Supabase, PostgreSQL)
+4. **Nuxar Perfumery** - Cinematic perfume website with GSAP & 3D (Golang, React 19)
+5. **PC FKMA Jakarta Website** - Organization digital platform (Next.js, Tailwind CSS)
+6. **Grawizah** - AI Global Trade Intelligence, won Web Developer at TechSprint 2026
+7. **TruthLayer** - Chrome Extension for dark pattern detection (Next.js 15, Claude AI)
+8. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, 94.1% mAP)
+9. **Fanguard Strategic Hub** - Enterprise execution platform (Next.js 14, Fastify, Redis)
+10. **Risk Shield System** - AI-assisted GRC platform (Next.js 14, Google Gemini Pro)
+11. **Human Firewall** - Cybersecurity awareness platform (React, TypeScript)
+12. **HargaKita.id** - Real-time staple goods price monitoring (React, Appwrite, 34 provinces)
+13. **Wiskost Residence** - Luxury winery residence website template (React 18, Docker)
+
+** Proof of Concept:**
+14. **SENTINEL-X** - Multi-Domain Threat Fusion Platform (FastAPI, PyTorch, Kafka, Blockchain)
 
 Wisnu focuses on performance, scalability, and user experience in every project! `,
             aliases: ["portfolio", "proyek apa saja", "daftar proyek", " Proyek & Portfolio", " Projects & Portfolio", "proyek-proyek unggulan", "tantangan teknis apa yang pernah dihadapi"],
@@ -1278,61 +1333,83 @@ Wisnu focuses on performance, scalability, and user experience in every project!
 
         // --- ORGANIZATIONS ---
         "organisasi wisnu": {
-            id: ` **Organizational Involvement:**
+            id: ` **Organizational Involvement (5 Organizations):**
 
-** 1. PUFA Computer Science**
-   - **Posisi:** VoD (Art and Sport Division)
-   - **Peran:** Memimpin kegiatan seni dan olahraga
-   - **Kontribusi:** Event planning, team coordination
-   - **Impact:** Meningkatkan student engagement 45%
+** 1. PC FKMA Jakarta As'adiyah**
+    - **Posisi:** IT Development & Talent Division (2024-Sekarang)
+    - **Peran:** Mengembangkan website organisasi, mengelola divisi Talent & Interest
+    - **Kontribusi:** Digital transformation platform, integrasi data alumni otomatis
+    - **Website:** https://pcfkmaasadiyahjakarta.vercel.app/
 
-** 2. PC FKMA Jakarta As'adiyah**
-   - **Posisi:** IT Development (2024-2026)
-   - **Peran:** Mengembangkan website organisasi
-   - **Kontribusi:** Digital transformation platform
-   - **Website:** https://pcfkmaasadiyahjakarta.vercel.app/
+** 2. PUFA Computer Science**
+    - **Posisi:** Vice – Art and Sport Division (2025-Sekarang)
+    - **Peran:** Memimpin 5+ kegiatan seni dan olahraga untuk 60+ mahasiswa
+    - **Kontribusi:** Event planning, team coordination, cross-functional committees
+    - **Impact:** Meningkatkan student engagement 40%
 
-** 3. PUMA Informatic**
-   - **Posisi:** Active Member
-   - **Peran:** Academic support dan networking
-   - **Kontribusi:** Tech workshops dan seminars
+** 3. PUMA Informatics**
+    - **Posisi:** Member – Students Passion & Talents Division (2024-2025)
+    - **Peran:** Menyelenggarakan 3+ event teknologi untuk 100+ mahasiswa
+    - **Kontribusi:** Tech workshops, academic seminars, peer-to-peer collaboration
+    - **Achievement:** 95% attendance rate untuk semua event
+
+** 4. IBM-SkillsBuild-AI-Builders-Challenge**
+    - **Posisi:** Member (2026)
+    - **Peran:** Berkolaborasi dalam AI-powered solutions
+    - **Kontribusi:** Hands-on experience dengan IBM Cloud dan AI technologies
+
+** 5. OWASP Foundation**
+    - **Posisi:** Member (2026)
+    - **Peran:** Aktif dalam riset keamanan aplikasi web
+    - **Kontribusi:** Open-source security tools, security research
 
 ** Skills yang Dikembangkan:**
  **Leadership** - Memimpin tim dan proyek
  **Communication** - Public speaking dan coordination
  **Project Management** - Planning dan execution
  **Networking** - Building professional relationships
- **Time Management** - Balance multiple responsibilities
+ **Event Management** - Organizing 100+ participant events
 
 ** Philosophy:** "Soft skills + Technical skills = Complete Professional"`,
-            en: ` **Organizational Involvement:**
+            en: ` **Organizational Involvement (5 Organizations):**
 
-** 1. PUFA Computer Science**
-   - **Position:** VoD (Art and Sport Division)
-   - **Role:** Leading art and sports activities
-   - **Contribution:** Event planning, team coordination
-   - **Impact:** Increased student engagement by 45%
+** 1. PC FKMA Jakarta As'adiyah**
+    - **Position:** IT Development & Talent Division (2024-Present)
+    - **Role:** Developing organization website, managing Talent & Interest division
+    - **Contribution:** Digital transformation platform, automated alumni data integration
+    - **Website:** https://pcfkmaasadiyahjakarta.vercel.app/
 
-** 2. PC FKMA Jakarta As'adiyah**
-   - **Position:** IT Development (2024-2026)
-   - **Role:** Developing organization website
-   - **Contribution:** Digital transformation platform
-   - **Website:** https://pcfkmaasadiyahjakarta.vercel.app/
+** 2. PUFA Computer Science**
+    - **Position:** Vice – Art and Sport Division (2025-Present)
+    - **Role:** Leading 5+ arts and sports activities for 60+ students
+    - **Contribution:** Event planning, team coordination, cross-functional committees
+    - **Impact:** Increased student engagement by 40%
 
-** 3. PUMA Informatic**
-   - **Position:** Active Member
-   - **Role:** Academic support and networking
-   - **Contribution:** Tech workshops and seminars
+** 3. PUMA Informatics**
+    - **Position:** Member – Students Passion & Talents Division (2024-2025)
+    - **Role:** Organizing 3+ tech events for 100+ students
+    - **Contribution:** Tech workshops, academic seminars, peer-to-peer collaboration
+    - **Achievement:** 95% attendance rate for all events
+
+** 4. IBM-SkillsBuild-AI-Builders-Challenge**
+    - **Position:** Member (2026)
+    - **Role:** Collaborating on AI-powered solutions
+    - **Contribution:** Hands-on experience with IBM Cloud and AI technologies
+
+** 5. OWASP Foundation**
+    - **Position:** Member (2026)
+    - **Role:** Active in web application security research
+    - **Contribution:** Open-source security tools, security research
 
 ** Developed Skills:**
  **Leadership** - Leading teams and projects
  **Communication** - Public speaking and coordination
  **Project Management** - Planning and execution
  **Networking** - Building professional relationships
- **Time Management** - Balancing multiple responsibilities
+ **Event Management** - Organizing 100+ participant events
 
 ** Philosophy:** "Soft skills + Technical skills = Complete Professional"`,
-            aliases: ["kegiatan kampus", "pufa", "puma", "fkma", "organisasi apa", "leadership", " Pengalaman Professional", " Professional Experience", " Organisasi & Leadership", " Organizations & Leadership", "pendidikan dan organisasi", "pengalaman organisasi apa yang paling berkesan", "pendidikan prestasi akademik dan organisasi kampus"],
+            aliases: ["kegiatan kampus", "pufa", "puma", "fkma", "organisasi apa", "leadership", " Pengalaman Professional", " Professional Experience", " Organisasi & Leadership", " Organizations & Leadership", "pendidikan dan organisasi", "pengalaman organisasi apa yang paling berkesan", "pendidikan prestasi akademik dan organisasi kampus", "ibm skillsbuild", "owasp", "ibm", "skillsbuild"],
             category: 'professional',
             emotion: 'enthusiastic'
         },
@@ -1662,7 +1739,7 @@ Wisnu isn't just building applications; he's building the future! `,
 
 ** Professional Channels:**
 
- **Email:** wisnualfian117@gmail.com
+ **Email:** wisnualfiannurashar@gmail.com
    - Primary channel untuk professional inquiries
    - Response time: 24-48 jam
    - Cocok untuk: Job opportunities, collaborations, business inquiries
@@ -1693,7 +1770,7 @@ Wisnu isn't just building applications; he's building the future! `,
 3. **Context** - Background dari inquiry
 4. **Professional tone** - Respectful dan clear
 
-**⏰ Availability:**
+**-- Availability:**
 - Currently **OPEN TO OPPORTUNITIES**
 - Flexible untuk interviews
 - Remote/Hybrid/On-site options
@@ -1703,7 +1780,7 @@ Looking forward to connecting! `,
 
 ** Professional Channels:**
 
- **Email:** wisnualfian117@gmail.com
+ **Email:** wisnualfiannurashar@gmail.com
    - Primary channel for professional inquiries
    - Response time: 24-48 hours
    - Suitable for: Job opportunities, collaborations, business inquiries
@@ -1734,7 +1811,7 @@ Looking forward to connecting! `,
 3. **Context** - Background of inquiry
 4. **Professional tone** - Respectful and clear
 
-**⏰ Availability:**
+**-- Availability:**
 - Currently **OPEN TO OPPORTUNITIES**
 - Flexible for interviews
 - Remote/Hybrid/On-site options
@@ -1797,17 +1874,28 @@ Wisnu believes that a "Healthy body leads to a healthy mind"! `,
         "certifications overview": {
             id: ` **Sertifikasi Profesional Wisnu:**
 
-Wisnu telah memperoleh **6 sertifikasi profesional** dari platform terkemuka:
+Wisnu telah memperoleh **11 sertifikasi profesional** dari platform terkemuka:
 
-** Technical Certifications:**
-1. **Golang (Basic)** - HackerRank - Go syntax, data structures, concurrent programming
-2. **Software Engineer Intern** - HackerRank - Problem-solving, algorithms, code quality
-3. **JavaScript (Basic)** - HackerRank - JS fundamentals, DOM, async programming
+** Technical (HackerRank):**
+1. **Golang (Basic)** - Go syntax, data structures, concurrency
+2. **Software Engineer Intern** - Problem-solving, algorithms, code quality
+3. **Software Engineer Certificate** - Core engineering principles, algorithm design
+4. **Frontend Developer (React)** - React, component state, performance-driven UI
 
-** Business & Marketing:**
-4. **Inbound Marketing** - HubSpot Academy
-5. **Social Media Marketing** - HubSpot Academy
-6. **IT Support Professional** - Google (Coursera)
+** Cloud (AWS):**
+5. **AWS Cloud Practitioner Essentials** - Cloud concepts, security, architecture
+6. **AWS Technical Essentials** - AWS compute, database, storage, networking
+
+** Marketing & Analytics (Google):**
+7. **Google Ads Search Certification** - Search campaigns, audience strategies
+8. **Google Analytics Certification** - Data analysis, user insights
+
+** Integration (HubSpot):**
+9. **Data Integrations Certification** - Connecting software systems, automating data flows
+
+** Web Development:**
+10. **Full-Stack Development 101** - Simplilearn - Front-end and back-end integration
+11. **Belajar Dasar Pemrograman Web** - Dicoding - Semantic HTML, CSS, professional standards
 
 ** Value:** Industry-recognized credentials, international competency benchmark, continuous learning commitment! `,
             en: ` **Wisnu's Professional Certifications:**
@@ -2112,61 +2200,89 @@ Wisnu has obtained **6 professional certifications** from leading platforms:
             id: ` **Experience Overview:**
 
 **Professional:**
-1. **Web Developer Intern - Syntecxhub** (Mar 2026-Present) - Remote web apps, modern frameworks, team collaboration
-2. **Digital Transformation Lead - Ashar Grosir** - 15,000+ partner B2B platform, 70% faster processing, Next.js/Supabase/Stripe
+1. **Web Development Intern - GAOTEK INC (New York, USA)** (Apr 2026-Present) - Remote WordPress dev, PHP/JS/SEO, Agile team collaboration
+2. **Full Stack Engineer - Ashar Grosir Parfum** (Dec 2025-Present) - Enterprise ERP/POS, 600+ products, 50+ resellers, 1.34s avg load time
 
-**Academic:** Information Technology at President University (Aug 2024-Present) - Software Engineering, Web Technologies, Cyber Security
+**Academic:** Information Technology at President University (Sep 2024-Present) - Software Engineering, Web Technologies, Cyber Security - GPA: 3.54/4.00
 
-**Leadership:** VoD at PUFA Computer Science (45% engagement increase), IT Development at PC FKMA (2024-2026)
+**Leadership:** VoD at PUFA Computer Science (40% engagement increase), IT Development at PC FKMA (2024-Present), Member at PUMA Informatics (95% event attendance)
 
-**Certifications:** 6 total - HackerRank (Golang, Software Engineer, JavaScript), HubSpot (Inbound, Social Media), Google (IT Support)
+**Organizations:** 5 total - PC FKMA, PUFA, PUMA, IBM-SkillsBuild-AI-Builders-Challenge, OWASP Foundation
 
-**Summary:** 3 production sites, 6 certs, 3 leadership roles, measurable business impact.
+**Certifications:** 11 total - HackerRank (Golang, Software Engineer, Frontend React, Software Engineer Intern), Google (Ads, Analytics), HubSpot (Data Integrations), Simplilearn, Dicoding, AWS (Cloud Practitioner, Technical Essentials)
 
-"Full-Stack Developer with 15,000+ user experience. I combine academic learning with real-world impact." `,
+**Projects:** 14 total (12 production, 2 proof-of-concept) - Ashar Grosir, Shooply, LexCorpus, SENTINEL-X, Grawizah, TruthLayer, ColonyAI, and more.
+
+**Summary:** 14 projects, 5 orgs, 11 certs, measurable business impact across e-commerce, security, AI, legal, and civic tech domains.
+
+"Full-Stack Engineer with enterprise ERP/POS experience and global remote collaboration." `,
             en: ` **Experience Overview:**
 
 **Professional:**
-1. **Web Developer Intern - Syntecxhub** (Mar 2026-Present) - Remote web apps, modern frameworks, team collaboration
-2. **Digital Transformation Lead - Ashar Grosir** - 15,000+ partner B2B platform, 70% faster processing, Next.js/Supabase/Stripe
+1. **Web Development Intern - GAOTEK INC (New York, USA)** (Apr 2026-Present) - Remote WordPress dev, PHP/JS/SEO, Agile team collaboration
+2. **Full Stack Engineer - Ashar Grosir Parfum** (Dec 2025-Present) - Enterprise ERP/POS, 600+ products, 50+ resellers, 1.34s avg load time
 
-**Academic:** Information Technology at President University (Aug 2024-Present) - Software Engineering, Web Technologies, Cyber Security
+**Academic:** Information Technology at President University (Sep 2024-Present) - Software Engineering, Web Technologies, Cyber Security - GPA: 3.54/4.00
 
-**Leadership:** VoD at PUFA Computer Science (45% engagement increase), IT Development at PC FKMA (2024-2026)
+**Leadership:** VoD at PUFA Computer Science (40% engagement increase), IT Development at PC FKMA (2024-Present), Member at PUMA Informatics (95% event attendance)
 
-**Certifications:** 6 total - HackerRank (Golang, Software Engineer, JavaScript), HubSpot (Inbound, Social Media), Google (IT Support)
+**Organizations:** 5 total - PC FKMA, PUFA, PUMA, IBM-SkillsBuild-AI-Builders-Challenge, OWASP Foundation
 
-**Summary:** 3 production sites, 6 certs, 3 leadership roles, measurable business impact.
+**Certifications:** 11 total - HackerRank (Golang, Software Engineer, Frontend React, Software Engineer Intern), Google (Ads, Analytics), HubSpot (Data Integrations), Simplilearn, Dicoding, AWS (Cloud Practitioner, Technical Essentials)
 
-"Full-Stack Developer with 15,000+ user experience. I combine academic learning with real-world impact." `,
+**Projects:** 14 total (12 production, 2 proof-of-concept) - Ashar Grosir, Shooply, LexCorpus, SENTINEL-X, Grawizah, TruthLayer, ColonyAI, and more.
+
+**Summary:** 14 projects, 5 orgs, 11 certs, measurable business impact across e-commerce, security, AI, legal, and civic tech domains.
+
+"Full-Stack Engineer with enterprise ERP/POS experience and global remote collaboration." `,
             aliases: ["tell me about your experience", "ceritakan pengalaman kamu", "work experience", "experience summary"],
             category: 'professional',
             emotion: 'professional'
         },
 
         "what projects have you built": {
-            id: ` **Projects Portfolio:**
+            id: ` **Projects Portfolio (14 Total):**
 
-**1. Ashar Grosir (B2B E-Commerce):** Next.js 14, Supabase, PostgreSQL, Stripe. 15,000+ users, 5,000+ products. 70% faster processing, 85% fewer errors, 300% efficiency increase.
+** Production (12):**
+1. **Ashar Grosir Parfum** - Enterprise ERP/POS + E-Commerce (Laravel, Next.js, PostgreSQL, Cloudflare). 600+ products, 50+ resellers, 1.34s avg load time, 60% faster reconciliation.
+2. **Shooply** - Microservices e-commerce (Next.js 14, GoFiber, PostgreSQL, Redis, RabbitMQ). SSR-optimized, telemetry-driven with OpenTelemetry.
+3. **LexCorpus CMS Platform** - Legal CMS with RBAC (Next.js 14, Supabase, PostgreSQL). 4 user roles, document version control, 60% productivity increase.
+4. **Nuxar Perfumery** - Cinematic perfume website (Golang, React 19, GSAP, 3D transforms, Railway). Dark luxury UI with particle effects.
+5. **PC FKMA Jakarta Website** - Organization digital platform (Next.js, Tailwind CSS, Vercel). Profile, news portal, alumni data.
+6. **Grawizah** - AI Global Trade Intelligence (Next.js 14, Go, Groq Llama 3.3, Supabase). Won Web Developer at TechSprint Innovation Cup 2026. Team "Successful Failures" (3 members, Wisnu as Team Leader).
+7. **TruthLayer** - Chrome Extension + Dashboard (Next.js 15, Node.js, Claude AI, Docker). Trust Score 0-100, detects 10+ dark patterns.
+8. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, Next.js 14, PostgreSQL). 94.1% mAP, ISO 17025 compliant, BPOM & SNI reports. Official entry for AI Open Innovation Challenge 2026 (team of 4).
+9. **Fanguard Strategic Hub** - Enterprise execution platform (Next.js 14, Fastify, PostgreSQL, Redis, Docker). RBAC, real-time analytics.
+10. **Risk Shield System** - AI-assisted GRC platform (Next.js 14, Google Gemini Pro, Supabase). OCTAVE Allegro, automated compliance reporting.
+11. **Human Firewall** - Cybersecurity awareness platform (React, TypeScript, Supabase). Phishing simulations, progress tracking.
+12. **HargaKita.id** - Real-time price monitoring (React, TypeScript, Vite, Appwrite, Chart.js). 34 provinces, crowdsourced reports.
+13. **Wiskost Residence** - Luxury residence website template (React 18, TypeScript, Docker, HuggingFace, Vercel).
 
-**2. LexCorpus (Legal CMS):** Next.js 14, Supabase, PostgreSQL. Document version control, collaborative editing, RBAC (Partners/Associates/Paralegals/Clients), end-to-end encryption. 60% productivity increase.
+** Proof of Concept (2):**
+14. **SENTINEL-X** - Multi-Domain Threat Fusion (FastAPI, React, PyTorch, Kafka, TimescaleDB, Blockchain, Docker). Cyber, Aviation, Maritime, Space, Seismic domains.
 
-**3. PC FKMA Website:** Next.js, Supabase. Organization platform, member management, event coordination. Live: https://pcfkmaasadiyahjakarta.vercel.app/
+**Summary:** 14 projects (12 production, 2 PoC), 15,000+ users impacted across e-commerce, security, AI, legal, and civic tech. Measurable business impact in every project. `,
+            en: ` **Projects Portfolio (14 Total):**
 
-**4. University Projects:** Full-Stack CMS, Database Optimization (15,000+ users), Network Security Lab (OCTAVE Allegro), Mobile App Prototype.
+** Production (12):**
+1. **Ashar Grosir Parfum** - Enterprise ERP/POS + E-Commerce (Laravel, Next.js, PostgreSQL, Cloudflare). 600+ products, 50+ resellers, 1.34s avg load time, 60% faster reconciliation.
+2. **Shooply** - Microservices e-commerce (Next.js 14, GoFiber, PostgreSQL, Redis, RabbitMQ). SSR-optimized, telemetry-driven with OpenTelemetry.
+3. **LexCorpus CMS Platform** - Legal CMS with RBAC (Next.js 14, Supabase, PostgreSQL). 4 user roles, document version control, 60% productivity increase.
+4. **Nuxar Perfumery** - Cinematic perfume website (Golang, React 19, GSAP, 3D transforms, Railway). Dark luxury UI with particle effects.
+5. **PC FKMA Jakarta Website** - Organization digital platform (Next.js, Tailwind CSS, Vercel). Profile, news portal, alumni data.
+6. **Grawizah** - AI Global Trade Intelligence (Next.js 14, Go, Groq Llama 3.3, Supabase). Won Web Developer at TechSprint Innovation Cup 2026. Team "Successful Failures" (3 members, Wisnu as Team Leader).
+7. **TruthLayer** - Chrome Extension + Dashboard (Next.js 15, Node.js, Claude AI, Docker). Trust Score 0-100, detects 10+ dark patterns.
+8. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, Next.js 14, PostgreSQL). 94.1% mAP, ISO 17025 compliant, BPOM & SNI reports. Official entry for AI Open Innovation Challenge 2026 (team of 4).
+9. **Fanguard Strategic Hub** - Enterprise execution platform (Next.js 14, Fastify, PostgreSQL, Redis, Docker). RBAC, real-time analytics.
+10. **Risk Shield System** - AI-assisted GRC platform (Next.js 14, Google Gemini Pro, Supabase). OCTAVE Allegro, automated compliance reporting.
+11. **Human Firewall** - Cybersecurity awareness platform (React, TypeScript, Supabase). Phishing simulations, progress tracking.
+12. **HargaKita.id** - Real-time price monitoring (React, TypeScript, Vite, Appwrite, Chart.js). 34 provinces, crowdsourced reports.
+13. **Wiskost Residence** - Luxury residence website template (React 18, TypeScript, Docker, HuggingFace, Vercel).
 
-**Summary:** 7+ projects (3 production, 4 academic), 15,000+ users impacted, measurable business impact in every project. `,
-            en: ` **Projects Portfolio:**
+** Proof of Concept (2):**
+14. **SENTINEL-X** - Multi-Domain Threat Fusion (FastAPI, React, PyTorch, Kafka, TimescaleDB, Blockchain, Docker). Cyber, Aviation, Maritime, Space, Seismic domains.
 
-**1. Ashar Grosir (B2B E-Commerce):** Next.js 14, Supabase, PostgreSQL, Stripe. 15,000+ users, 5,000+ products. 70% faster processing, 85% fewer errors, 300% efficiency increase.
-
-**2. LexCorpus (Legal CMS):** Next.js 14, Supabase, PostgreSQL. Document version control, collaborative editing, RBAC (Partners/Associates/Paralegals/Clients), end-to-end encryption. 60% productivity increase.
-
-**3. PC FKMA Website:** Next.js, Supabase. Organization platform, member management, event coordination. Live: https://pcfkmaasadiyahjakarta.vercel.app/
-
-**4. University Projects:** Full-Stack CMS, Database Optimization (15,000+ users), Network Security Lab (OCTAVE Allegro), Mobile App Prototype.
-
-**Summary:** 7+ projects (3 production, 4 academic), 15,000+ users impacted, measurable business impact in every project. `,
+**Summary:** 14 projects (12 production, 2 PoC), 15,000+ users impacted across e-commerce, security, AI, legal, and civic tech. Measurable business impact in every project. `,
             aliases: ["what projects have you built", "proyek apa saja yang dibuat", "portfolio projects", "what have you built"],
             category: 'projects',
             emotion: 'professional'
@@ -2175,7 +2291,7 @@ Wisnu has obtained **6 professional certifications** from leading platforms:
         "how to contact wisnu": {
             id: ` **Contact Wisnu:**
 
-** Email:** wisnualfian117@gmail.com (24-48h response, job opportunities)
+** Email:** wisnualfiannurashar@gmail.com (24-48h response, job opportunities)
 ** WhatsApp:** +62 813-9488-2490 (9AM-6PM WIB, urgent matters)
 ** LinkedIn:** Professional networking, recruitment
 ** GitHub:** Code review, open-source
@@ -2186,7 +2302,7 @@ Wisnu has obtained **6 professional certifications** from leading platforms:
 **Status:** OPEN TO OPPORTUNITIES - Remote/Hybrid/On-site. `,
             en: ` **Contact Wisnu:**
 
-** Email:** wisnualfian117@gmail.com (24-48h response, job opportunities)
+** Email:** wisnualfiannurashar@gmail.com (24-48h response, job opportunities)
 ** WhatsApp:** +62 813-9488-2490 (9AM-6PM WIB, urgent matters)
 ** LinkedIn:** Professional networking, recruitment
 ** GitHub:** Code review, open-source
@@ -2203,26 +2319,30 @@ Wisnu has obtained **6 professional certifications** from leading platforms:
         "what is your tech stack": {
             id: ` **Tech Stack:**
 
-**Frontend:** React, Next.js 14+, TypeScript, Tailwind CSS, Shadcn/ui, Zustand/Redux/React Query
-**Backend:** Node.js, Express, Supabase, Serverless Functions, REST APIs
-**Database:** PostgreSQL, Prisma ORM, Redis caching
-**DevOps:** Git, Docker basics, Vercel/Netlify, CI/CD (GitHub Actions)
-**Security:** JWT, RBAC, bcrypt, AES-256, TLS 1.3, OWASP mitigation, Helmet.js, CSP
-**Additional:** Flutter, Python, Golang (HackerRank certified), Linux/Unix
+**Frontend:** React, Next.js 14/15, Astro, TypeScript, JavaScript, Tailwind CSS, Shadcn/ui, Zustand/Redux/React Query, GSAP, Framer Motion
+**Backend:** Node.js, Express, Fastify, Laravel, Golang (GoFiber), Supabase, Serverless Functions, REST APIs
+**Database:** PostgreSQL, Prisma ORM, MySQL, MongoDB, Redis caching
+**AI/ML:** YOLOv8, FastAPI, OpenCV, PyTorch, Google Gemini, Google AI Studio, HuggingFace, Computer Vision, Model Fine-Tuning
+**DevOps:** Git, Docker, Vercel/Netlify/Railway, CI/CD (GitHub Actions), Cloudflare CDN
+**Security:** JWT, RBAC, bcrypt, AES-256, TLS 1.3, OWASP mitigation, Helmet.js, CSP, Zero-Trust Architecture, Burp Suite, Kali Linux
+**Tools:** Jira, Firebase, Google Colab, Google Analytics, Google Tag Manager, Google Sheets, Android Studio
+**SEO:** Technical SEO, Google Search Console, structured data, performance optimization
 
-**Current Focus:** Next.js 15/React 19, AWS/GCP, AI/ML integration, advanced DB optimization.
+**Current Focus:** Next.js 15/React 19, AWS/GCP, AI/ML integration, advanced DB optimization, Zero-Trust security.
 
 "Choose the right tool, not the trendiest one. Focus on solving problems effectively." `,
             en: ` **Tech Stack:**
 
-**Frontend:** React, Next.js 14+, TypeScript, Tailwind CSS, Shadcn/ui, Zustand/Redux/React Query
-**Backend:** Node.js, Express, Supabase, Serverless Functions, REST APIs
-**Database:** PostgreSQL, Prisma ORM, Redis caching
-**DevOps:** Git, Docker basics, Vercel/Netlify, CI/CD (GitHub Actions)
-**Security:** JWT, RBAC, bcrypt, AES-256, TLS 1.3, OWASP mitigation, Helmet.js, CSP
-**Additional:** Flutter, Python, Golang (HackerRank certified), Linux/Unix
+**Frontend:** React, Next.js 14/15, Astro, TypeScript, JavaScript, Tailwind CSS, Shadcn/ui, Zustand/Redux/React Query, GSAP, Framer Motion
+**Backend:** Node.js, Express, Fastify, Laravel, Golang (GoFiber), Supabase, Serverless Functions, REST APIs
+**Database:** PostgreSQL, Prisma ORM, MySQL, MongoDB, Redis caching
+**AI/ML:** YOLOv8, FastAPI, OpenCV, PyTorch, Google Gemini, Google AI Studio, HuggingFace, Computer Vision, Model Fine-Tuning
+**DevOps:** Git, Docker, Vercel/Netlify/Railway, CI/CD (GitHub Actions), Cloudflare CDN
+**Security:** JWT, RBAC, bcrypt, AES-256, TLS 1.3, OWASP mitigation, Helmet.js, CSP, Zero-Trust Architecture, Burp Suite, Kali Linux
+**Tools:** Jira, Firebase, Google Colab, Google Analytics, Google Tag Manager, Google Sheets, Android Studio
+**SEO:** Technical SEO, Google Search Console, structured data, performance optimization
 
-**Current Focus:** Next.js 15/React 19, AWS/GCP, AI/ML integration, advanced DB optimization.
+**Current Focus:** Next.js 15/React 19, AWS/GCP, AI/ML integration, advanced DB optimization, Zero-Trust security.
 
 "Choose the right tool, not the trendiest one. Focus on solving problems effectively." `,
             aliases: ["what is your tech stack", "tech stack", "what technologies", "stack teknologi"],
@@ -2231,39 +2351,91 @@ Wisnu has obtained **6 professional certifications** from leading platforms:
         },
 
         "what certifications do you have": {
-            id: ` **Certifications:**
+            id: ` **Certifications (11 Total):**
 
 **Technical (HackerRank):**
 1. **Golang (Basic)** - Go syntax, data structures, concurrency
 2. **Software Engineer Intern** - Problem-solving, algorithms, code quality
-3. **JavaScript (Basic)** - JS fundamentals, DOM, async
+3. **Software Engineer Certificate** - Core engineering principles, algorithm design
+4. **Frontend Developer (React)** - React, component state, performance-driven UI
 
-**Business (HubSpot):**
-4. **Inbound Marketing** - Content marketing, SEO, lead generation
-5. **Social Media Marketing** - Strategy, analytics, community building
+**Cloud (AWS):**
+5. **AWS Cloud Practitioner Essentials** - Cloud concepts, security, architecture
+6. **AWS Technical Essentials** - AWS compute, database, storage, networking
 
-**IT (Google/Coursera):**
-6. **IT Support Professional** - Infrastructure, networking, security
+**Marketing & Analytics (Google):**
+7. **Google Ads Search Certification** - Search campaigns, audience strategies
+8. **Google Analytics Certification** - Data analysis, user insights
 
-**Summary:** 6 certs across Software Engineering, Web Development, Marketing, IT Infrastructure. Industry-recognized credentials! `,
-            en: ` **Certifications:**
+**Integration (HubSpot):**
+9. **Data Integrations Certification** - Connecting software systems, automating data flows
+
+**Web Development (Simplilearn):**
+10. **Full-Stack Development 101** - Front-end and back-end integration
+
+**Web Fundamentals (Dicoding):**
+11. **Belajar Dasar Pemrograman Web** - Semantic HTML, CSS, professional website standards
+
+**Summary:** 11 certs across Software Engineering, Cloud, Marketing, Web Development, and Data Integration. Industry-recognized credentials! `,
+            en: ` **Certifications (11 Total):**
 
 **Technical (HackerRank):**
 1. **Golang (Basic)** - Go syntax, data structures, concurrency
 2. **Software Engineer Intern** - Problem-solving, algorithms, code quality
-3. **JavaScript (Basic)** - JS fundamentals, DOM, async
+3. **Software Engineer Certificate** - Core engineering principles, algorithm design
+4. **Frontend Developer (React)** - React, component state, performance-driven UI
 
-**Business (HubSpot):**
-4. **Inbound Marketing** - Content marketing, SEO, lead generation
-5. **Social Media Marketing** - Strategy, analytics, community building
+**Cloud (AWS):**
+5. **AWS Cloud Practitioner Essentials** - Cloud concepts, security, architecture
+6. **AWS Technical Essentials** - AWS compute, database, storage, networking
 
-**IT (Google/Coursera):**
-6. **IT Support Professional** - Infrastructure, networking, security
+**Marketing & Analytics (Google):**
+7. **Google Ads Search Certification** - Search campaigns, audience strategies
+8. **Google Analytics Certification** - Data analysis, user insights
 
-**Summary:** 6 certs across Software Engineering, Web Development, Marketing, IT Infrastructure. Industry-recognized credentials! `,
+**Integration (HubSpot):**
+9. **Data Integrations Certification** - Connecting software systems, automating data flows
+
+**Web Development (Simplilearn):**
+10. **Full-Stack Development 101** - Front-end and back-end integration
+
+**Web Fundamentals (Dicoding):**
+11. **Belajar Dasar Pemrograman Web** - Semantic HTML, CSS, professional website standards
+
+**Summary:** 11 certs across Software Engineering, Cloud, Marketing, Web Development, and Data Integration. Industry-recognized credentials! `,
             aliases: ["what certifications do you have", "sertifikasi apa saja", "certifications list"],
             category: 'professional',
             emotion: 'professional'
+        },
+
+        "competitions": {
+            id: ` **Prestasi Kompetisi Wisnu:**
+
+** 1. Juara Vibe Coding - Google (June 2026)**
+   Peserta. Mengikuti kompetisi Vibe Coding Google, menunjukkan rapid prototyping dan creative problem-solving menggunakan AI-assisted development tools.
+
+** 2. Peserta Kategori Web Development - Codelab Indonesia (June 2026)**
+   Berpartisipasi dalam TechSprint Innovation Cup 2026, membangun full-stack application di bawah tekanan waktu. **Memenangkan kategori Web Developer.**
+
+** 3. Participant Data Automation Competition - PUMA Information System (June 2026)**
+   Berpartisipasi dalam Tech Sprint 3in1, fokus pada desain data pipelines dan automated workflows yang efisien.
+
+Wisnu aktif mengikuti kompetisi untuk terus mengasah kemampuan dan membuktikan keahliannya! `,
+            en: ` **Competition Achievements:**
+
+** 1. Google Vibe Coding - Google (June 2026)**
+   Participant. Showcased rapid prototyping and creative problem-solving using AI-assisted development tools.
+
+** 2. Web Development Category - Codelab Indonesia (June 2026)**
+   Participated in TechSprint Innovation Cup 2026, building full-stack applications under time constraints. **Won the Web Developer category.**
+
+** 3. Data Automation Competition - PUMA Information System (June 2026)**
+   Participated in Tech Sprint 3in1, focusing on efficient data pipelines and automated workflow design.
+
+Wisnu actively participates in competitions to sharpen his skills and prove his expertise! `,
+            aliases: ["kompetisi", "competition", "lomba", "prestasi", "juara", "achievements", "techsprint", "vibe coding", "codelab", "perlombaan", "lomba apa saja"],
+            category: 'professional',
+            emotion: 'enthusiastic'
         },
 
         // --- TECHNICAL INTERVIEW QUESTIONS ---
@@ -2417,19 +2589,19 @@ This experience significantly honed Wisnu's problem-solving skills and deep unde
 
         // === DETAILED PERSONAL INFORMATION ===
         "asal wisnu": {
-            id: "Wisnu berasal dari Tarakan, Kalimantan Utara. Lahir di sana dan kemudian pindah ke Sengkang, Sulawesi Selatan untuk pendidikan. Sekarang tinggal di Bekasi untuk kuliah di President University! ",
-            en: "Wisnu is from Tarakan, North Kalimantan. Born there and then moved to Sengkang, South Sulawesi for education. Now living in Bekasi for studies at President University! ",
+            id: "Wisnu adalah seorang profesional IT dengan perjalanan pendidikan yang melintasi berbagai daerah di Indonesia, dari pendidikan dasar, pondok pesantren, hingga kini menempuh pendidikan tinggi di President University. Pengalaman multikultural ini membentuk perspektifnya yang unik dalam menghadapi tantangan teknologi global.",
+            en: "Wisnu is an IT professional with an educational journey across various regions in Indonesia, from elementary education, Islamic boarding school, to now pursuing higher education at President University. This multicultural experience shapes his unique perspective in facing global technology challenges.",
             aliases: ["wisnu dari mana", "asal daerah wisnu", "wisnu orang mana", "hometown", "origin"],
             category: 'personal',
-            emotion: 'friendly'
+            emotion: 'professional'
         },
 
         "perjalanan hidup wisnu": {
-            id: "Perjalanan hidup Wisnu sangat menarik! Lahir di Tarakan (Kalimantan Utara), kemudian pindah ke Sengkang (Sulawesi Selatan) untuk pendidikan di As'adiyah. Sekarang melanjutkan kuliah di President University, Bekasi. Dari Kalimantan → Sulawesi → Jawa, truly Indonesian journey! ",
-            en: "Wisnu's life journey is very interesting! Born in Tarakan (North Kalimantan), then moved to Sengkang (South Sulawesi) for education at As'adiyah. Now continuing studies at President University, Bekasi. From Kalimantan → Sulawesi → Java, truly Indonesian journey! ",
+            id: "Perjalanan Wisnu dimulai dari pendidikan dasar yang kuat, dilanjutkan dengan pendidikan di pondok pesantren As'adiyah yang membentuk karakter disiplin dan nilai-nilai keagamaan, hingga kini menempuh pendidikan tinggi di President University jurusan Information Technology. Perjalanan ini membentuknya menjadi pribadi yang adaptif, multikultural, dan siap bersaing di kancah global.",
+            en: "Wisnu's journey began with a strong foundational education, continued at As'adiyah Islamic boarding school which shaped his discipline and religious values, and now pursuing higher education at President University majoring in Information Technology. This journey has shaped him into an adaptive, multicultural individual ready to compete globally.",
             aliases: ["riwayat hidup", "life journey", "background story", "kisah hidup"],
             category: 'personal',
-            emotion: 'friendly'
+            emotion: 'professional'
         },
 
         "kepribadian wisnu": {
@@ -2521,11 +2693,11 @@ This experience significantly honed Wisnu's problem-solving skills and deep unde
         },
 
         "wisnu fast learner": {
-            id: "Super fast! Sudah handle production projects dan meraih 6 sertifikasi dalam waktu singkat. ",
-            en: "Super fast! Already handling production projects and earning 6 certifications in a short time. ",
+            id: "Sangat cepat! Wisnu sudah menangani production projects dan meraih 11 sertifikasi dalam waktu singkat.",
+            en: "Very fast! Wisnu has already handled production projects and earned 11 certifications in a short time.",
             aliases: ["quick learner", "cepat belajar", "learning speed"],
             category: 'academic',
-            emotion: 'enthusiastic'
+            emotion: 'professional'
         },
 
         "public speaking wisnu bagus": {
@@ -2676,8 +2848,8 @@ This experience significantly honed Wisnu's problem-solving skills and deep unde
         },
 
         "wisnu handle bisnis gimana sambil kuliah": {
-            id: "Time management dan otomasi! Membangun sistem yang mengurangi kerja manual hingga 70%. ⏰",
-            en: "Time management and automation! Building systems that reduce manual work by 70%. ⏰",
+            id: "Time management dan otomasi. Membangun sistem yang mengurangi kerja manual hingga 70%.",
+            en: "Time management and automation. Building systems that reduce manual work by 70%.",
             aliases: ["balance kuliah kerja", "time management", "multitasking"],
             category: 'personal',
             emotion: 'professional'
@@ -2796,10 +2968,10 @@ Wisnu projects himself as a **Technology Leader** or **Founder** making a signif
             emotion: 'professional'
         },
 
-        "recognition apa yang wisnu dapat": {
-            id: "6 sertifikasi profesional global yang membuktikan kompetensinya di bidang IT dan marketing. ",
-            en: "6 global professional certifications proving his competence in IT and marketing. ",
-            aliases: ["awards", "penghargaan", "certifications"],
+        "wisnu_recognition": {
+            id: "11 sertifikasi profesional global yang membuktikan kompetensinya di bidang IT, Cloud, Marketing, dan Data Integration. Tanyakan 'sertifikasi apa saja' untuk detail lengkap!",
+            en: "11 global professional certifications proving his competence in IT, Cloud, Marketing, and Data Integration. Ask 'what certifications' for full details!",
+            aliases: ["penghargaan", "recognition", "awards", "pengakuan"],
             category: 'academic',
             emotion: 'professional'
         },
@@ -2821,11 +2993,11 @@ Wisnu projects himself as a **Technology Leader** or **Founder** making a signif
         },
 
         "portfolio wisnu impressive": {
-            id: "Sangat! 3 website production, leadership di 3 organisasi, dan 6 sertifikasi sebagai mahasiswa baru. ",
-            en: "Very! 3 production websites, leadership in 3 organizations, and 6 certifications as a freshman. ",
+            id: "Sangat impressive! 14 proyek (12 production), leadership di 5 organisasi, 11 sertifikasi, dan kontribusi open source ke NASA, Microsoft, NVIDIA, dan Google.",
+            en: "Very impressive! 14 projects (12 production), leadership in 5 organizations, 11 certifications, and open source contributions to NASA, Microsoft, NVIDIA, and Google.",
             aliases: ["impressive portfolio", "portfolio quality"],
             category: 'projects',
-            emotion: 'enthusiastic'
+            emotion: 'professional'
         },
 
         "impact metric wisnu": {
@@ -3427,19 +3599,19 @@ Wisnu projects himself as a **Technology Leader** or **Founder** making a signif
 
         // === BACKGROUND & FAMILY ===
         "wisnu agama apa": {
-            id: "Wisnu memiliki background pendidikan di As'adiyah (institusi Islam)  Dari Sengkang, Sulawesi. Cultural roots yang kuat!",
-            en: "Wisnu has an educational background at As'adiyah (Islamic institution)  From Sengkang, Sulawesi. Strong cultural roots!",
+            id: "Wisnu memiliki background pendidikan di pondok pesantren As'adiyah yang memberikan fondasi nilai-nilai keagamaan yang kuat dalam pembentukan karakter dan disiplinnya.",
+            en: "Wisnu has an educational background at As'adiyah Islamic boarding school which provides a strong religious values foundation in shaping his character and discipline.",
             aliases: ["religion", "religious background", "islam"],
             category: 'personal',
-            emotion: 'friendly'
+            emotion: 'professional'
         },
 
         "wisnu orang jawa": {
-            id: "Bukan! Wisnu dari Tarakan (Kalimantan Utara), terus pindah ke Sulawesi. Sekarang tinggal di Jawa (Bekasi). Indonesia banget! ",
-            en: "No! Wisnu is from Tarakan (North Kalimantan), then moved to Sulawesi. Now living in Java (Bekasi). Very Indonesian! ",
+            id: "Wisnu adalah seorang profesional Indonesia dengan perjalanan pendidikan dan karir yang melintasi berbagai daerah di Nusantara. Pengalaman multikultural ini menjadi salah satu kekuatan utamanya dalam beradaptasi dan berkolaborasi secara global.",
+            en: "Wisnu is an Indonesian professional with an educational and career journey across various regions of the archipelago. This multicultural experience is one of his main strengths in adapting and collaborating globally.",
             aliases: ["javanese", "suku jawa", "ethnic"],
             category: 'personal',
-            emotion: 'friendly'
+            emotion: 'professional'
         },
 
         "wisnu suku apa": {
@@ -3451,11 +3623,11 @@ Wisnu projects himself as a **Technology Leader** or **Founder** making a signif
         },
 
         "wisnu bisa bahasa daerah": {
-            id: "Kemungkinan bisa beberapa! Dengan background Kalimantan dan Sulawesi, plus network luas, adaptasi bahasa pasti ada.",
-            en: "Probably knows several! With Kalimantan and Sulawesi background, plus wide network, language adaptation is definitely there.",
+            id: "Sebagai profesional yang memiliki pengalaman multikultural, Wisnu memiliki kemampuan adaptasi bahasa yang baik, mendukung komunikasi efektif dalam lingkungan yang beragam.",
+            en: "As a professional with multicultural experience, Wisnu has good language adaptation skills, supporting effective communication in diverse environments.",
             aliases: ["local language", "regional language", "bahasa lokal"],
             category: 'personal',
-            emotion: 'friendly'
+            emotion: 'professional'
         },
 
         "bisnis keluarga wisnu": {
@@ -3891,11 +4063,11 @@ Can I eat/drink/have feelings?
 
         // === ATOMIC: PERSONAL (B) ===
         "pb_who": { id: "Wisnu adalah seorang Full-Stack Developer dan Mahasiswa IT.", en: "Wisnu is a Full-Stack Developer and IT Student.", aliases: ["wisnu itu siapa"], category: 'identity', emotion: 'professional' },
-        "pb_uni": { id: "Wisnu kuliah di President University, Cikarang.", en: "Wisnu studies at President University, Cikarang.", aliases: ["wisnu kuliah di mana"], category: 'academic', emotion: 'neutral' },
-        "pb_major": { id: "Wisnu mengambil jurusan Information Technology (IT).", en: "Wisnu majors in Information Technology (IT).", aliases: ["jurusan wisnu apa"], category: 'academic', emotion: 'neutral' },
-        "pb_batch": { id: "Wisnu adalah angkatan 2022.", en: "Wisnu is batch 2022.", aliases: ["wisnu angkatan berapa"], category: 'academic', emotion: 'neutral' },
-        "pb_live": { id: "Wisnu tinggal di Cikarang, Bekasi.", en: "Wisnu lives in Cikarang, Bekasi.", aliases: ["wisnu tinggal di mana"], category: 'identity', emotion: 'neutral' },
-        "pb_origin": { id: "Wisnu berasal dari Tarakan & Sengkang.", en: "Wisnu is from Tarakan & Sengkang.", aliases: ["wisnu asal mana"], category: 'identity', emotion: 'neutral' },
+        "pb_uni": { id: "Wisnu sedang menempuh pendidikan di President University jurusan Information Technology.", en: "Wisnu is currently pursuing a degree in Information Technology at President University.", aliases: ["wisnu kuliah di mana"], category: 'academic', emotion: 'professional' },
+        "pb_major": { id: "Wisnu mengambil jurusan Information Technology (IT) dengan fokus Cyber Security dan Full-Stack Development.", en: "Wisnu majors in Information Technology (IT) with a focus on Cyber Security and Full-Stack Development.", aliases: ["jurusan wisnu apa"], category: 'academic', emotion: 'professional' },
+        "pb_batch": { id: "Wisnu memulai studi di President University pada tahun 2024.", en: "Wisnu started his studies at President University in 2024.", aliases: ["wisnu angkatan berapa"], category: 'academic', emotion: 'professional' },
+        "pb_live": { id: "Wisnu saat ini berdomisili di area Jabodetabek untuk mendukung kegiatan akademik dan profesionalnya.", en: "Wisnu currently resides in the Greater Jakarta area to support his academic and professional activities.", aliases: ["wisnu tinggal di mana"], category: 'identity', emotion: 'professional' },
+        "pb_origin": { id: "Sebagai profesional IT, fokus utama Wisnu adalah pada pencapaian, keahlian, dan kontribusinya di bidang teknologi, bukan pada latar belakang geografis.", en: "As an IT professional, Wisnu's main focus is on his achievements, expertise, and contributions in technology, not on geographical background.", aliases: ["wisnu asal mana"], category: 'identity', emotion: 'professional' },
         "pb_work": { id: "Wisnu kuliah sambil bekerja (Freelance).", en: "Wisnu studies while working (Freelance).", aliases: ["wisnu kerja atau kuliah"], category: 'career', emotion: 'professional' },
         "pb_skill_top": { id: "Wisnu jago di Web Development (Next.js).", en: "Wisnu is good at Web Development (Next.js).", aliases: ["wisnu jago apa"], category: 'tech', emotion: 'enthusiastic' },
         "pb_skill_main": { id: "Skill utamanya adalah Full-Stack Web Development.", en: "Main skill is Full-Stack Web Development.", aliases: ["skill utama wisnu apa"], category: 'tech', emotion: 'professional' },
@@ -4352,12 +4524,12 @@ Can I eat/drink/have feelings?
                 : [' What are his favorite hobbies?', ' How does Wisnu handle stress?', ' What are his life principles?'],
 
             professional: language === 'id'
-                ? [' Skill teknis apa yang paling dikuasai?', ' Project terbesar yang pernah dikerjakan?', ' Bagaimana cara Wisnu solve technical challenges?']
-                : [' What technical skills does he master most?', ' Biggest project he has worked on?', ' How does Wisnu solve technical challenges?'],
+                ? [' Skill teknis apa yang paling dikuasai?', ' Project terbesar yang pernah dikerjakan?', ' Bagaimana pengalaman di GAOTEK INC?', ' Bagaimana cara Wisnu solve technical challenges?']
+                : [' What technical skills does he master most?', ' Biggest project he has worked on?', ' What was his experience at GAOTEK INC?', ' How does Wisnu solve technical challenges?'],
 
             academic: language === 'id'
-                ? [' Mata kuliah favorit di kampus?', ' Bagaimana prestasi akademiknya?', ' Pengalaman organisasi apa yang paling berkesan?']
-                : [' Favorite courses in university?', ' How is his academic performance?', ' Most memorable organizational experience?'],
+                ? [' Mata kuliah favorit di kampus?', ' Bagaimana prestasi akademiknya? (GPA)', ' Pengalaman organisasi apa yang paling berkesan?', ' Sertifikasi apa saja yang dimiliki?', ' Kompetisi apa yang pernah diikuti?']
+                : [' Favorite courses in university?', ' How is his academic performance? (GPA)', ' Most memorable organizational experience?', ' What certifications does he have?', ' What competitions has he joined?'],
 
             projects: language === 'id'
                 ? [' Bisa cerita lebih detail tentang Ashar Grosir?', ' Bagaimana cara LexCorpus membantu firma hukum?', ' Tantangan teknis apa yang pernah dihadapi?']
@@ -4368,8 +4540,8 @@ Can I eat/drink/have feelings?
                 : [' 5-year career goals?', ' What kind of companies is he looking for?', ' What skills is he currently learning?'],
 
             default: language === 'id'
-                ? [' Profil lengkap Wisnu', ' Pengalaman professional', ' Pendidikan dan organisasi', ' Proyek-proyek unggulan']
-                : [' Complete profile of Wisnu', ' Professional experience', ' Education and organizations', ' Featured projects']
+                ? [' Profil lengkap Wisnu', ' Pengalaman professional (ASHAR & GAOTEK)', ' 14 Proyek unggulan', ' Pendidikan dan organisasi', ' Sertifikasi dan kompetisi', ' Kontribusi open source']
+                : [' Complete profile of Wisnu', ' Professional experience (ASHAR & GAOTEK)', ' 14 Featured projects', ' Education and organizations', ' Certifications and competitions', ' Open source contributions']
         };
 
         const selected = (category in suggestions)
@@ -4390,7 +4562,7 @@ Can I eat/drink/have feelings?
             { keywords: ['skill', 'keahlian', 'teknologi', 'tech', 'tech stack', 'kemampuan', 'ability', 'bisa', 'mampu', 'framework', 'library', 'language', 'bahasa', 'programming', 'coding', 'react', 'next', 'typescript', 'javascript', 'python', 'node', 'tailwind', 'css', 'html', 'database', 'sql', 'nosql', 'supabase', 'docker', 'aws', 'cloud', 'frontend', 'backend', 'fullstack', 'full-stack', 'cyber', 'security', 'keamanan', 'ai', 'machine learning', 'ml', 'yolo', 'opencv'], topic: 'professional' },
 
             // Experience
-            { keywords: ['kerja', 'pengalaman', 'experience', 'work', 'job', 'pekerjaan', 'intern', 'internship', 'magang', 'company', 'perusahaan', 'syntecxhub', 'pufa', 'puma', 'employment', 'role', 'posisi'], topic: 'professional' },
+            { keywords: ['kerja', 'pengalaman', 'experience', 'work', 'job', 'pekerjaan', 'intern', 'internship', 'magang', 'company', 'perusahaan', 'gaotek', 'ashar', 'grosir', 'pufa', 'puma', 'employment', 'role', 'posisi'], topic: 'professional' },
 
             // Academic
             { keywords: ['kuliah', 'kampus', 'pendidikan', 'education', 'university', 'sekolah', 'school', 'jurusan', 'major', 'study', 'degree', 'gpa', 'president', 'as\'adiyah', 'sengkang', 'tarakan', 'akademik', 'academic', 'sertifikasi', 'certification', 'sertifikat', 'certificate', 'course', 'kursus', 'training', 'pelatihan'], topic: 'academic' },
@@ -4405,7 +4577,10 @@ Can I eat/drink/have feelings?
             { keywords: ['kontak', 'contact', 'email', 'hubungi', 'reach', 'phone', 'telepon', 'whatsapp', 'linkedin', 'github', 'social', 'media', 'twitter', 'instagram', 'address', 'alamat', 'connecting', 'network'], topic: 'contact' },
 
             // Organization
-            { keywords: ['organisasi', 'organization', 'community', 'komunitas', 'club', 'volunteer', 'sukarela', 'event', 'acara', 'leadership', 'kepemimpinan', 'committee', 'panitia', 'ormawa', 'ukm', 'bem', 'fakultas'], topic: 'academic' },
+            { keywords: ['organisasi', 'organization', 'community', 'komunitas', 'club', 'volunteer', 'sukarela', 'event', 'acara', 'leadership', 'kepemimpinan', 'committee', 'panitia', 'ormawa', 'ukm', 'bem', 'fakultas', 'ibm', 'skillsbuild', 'owasp'], topic: 'academic' },
+
+            // Competition
+            { keywords: ['kompetisi', 'competition', 'lomba', 'juara', 'prestasi', 'achievement', 'techsprint', 'vibe coding', 'codelab', 'menang', 'won', 'pemenang'], topic: 'academic' },
 
             // Profile
             { keywords: ['siapa', 'who', 'profil', 'profile', 'about', 'tentang', 'introduce', 'nama', 'name', 'identity', 'identitas', 'latar', 'background', 'asal', 'lahir', 'domisili', 'tinggal', 'umur', 'age'], topic: 'personal' },
@@ -4464,6 +4639,28 @@ Can I eat/drink/have feelings?
         // Keep only last 5 conversations
         if (this.conversationHistory.length > 5) {
             this.conversationHistory.shift();
+        }
+
+        // 0. Sensitive data protection — check before any matching
+        const sensitiveKeywords = [
+            'ktp', 'nomor ktp', 'no ktp', 'nik',
+            'alamat lengkap', 'alamat rumah', 'full address', 'home address',
+            'tanggal lahir', 'tgl lahir', 'birth date', 'date of birth', 'birthday',
+            'lahir dimana', 'tempat lahir', 'where was he born', 'di mana wisnu lahir', 'tempat kelahiran',
+            'umur', 'berapa umur', 'how old is',
+            'data pribadi', 'personal data', 'private information', 'data sensitif',
+            'kartu tanda penduduk', 'identity card', 'id card',
+            'wisnu dari mana', 'wisnu asal mana', 'wisnu orang mana', 'hometown', 'asal daerah',
+        ];
+        const normLowerCheck = normalized.toLowerCase();
+        const rawLowerCheck = rawQuery.toLowerCase();
+        for (const keyword of sensitiveKeywords) {
+            if (normLowerCheck.includes(keyword) || rawLowerCheck.includes(keyword)) {
+                const response = isIndo
+                    ? `Maaf, saya tidak dapat memberikan informasi data sensitif seperti alamat lengkap, nomor KTP, tanggal lahir, atau tempat lahir. Demi keamanan dan privasi, data tersebut tidak akan saya bagikan. Silakan tanyakan hal lain tentang profil profesional, proyek, atau pengalaman Wisnu!`
+                    : `Sorry, I cannot share sensitive personal information such as full address, ID card number, date of birth, or birthplace. For security and privacy reasons, this data is protected. Please feel free to ask about Wisnu's professional profile, projects, or experience instead!`;
+                return response;
+            }
         }
 
         // 1. Fuzzy scoring — find best matching entry
@@ -4564,18 +4761,28 @@ Can I eat/drink/have feelings?
         // Get all available topics for comprehensive fallback
         const allTopics = isIndo
             ? [
-                ' **Profil Wisnu** - Latar belakang, kepribadian, passion',
-                ' **Pengalaman Professional** - Proyek nyata dengan business impact',
-                ' **Technical Skills** - Full-stack development hingga cybersecurity',
-                ' **Pendidikan** - Prestasi akademik dan organisasi kampus',
+                ' **Profil Wisnu** - Latar belakang, kepribadian, passion, filosofi',
+                ' **14 Proyek** - Ashar Grosir, SENTINEL-X, Shooply, LexCorpus, Grawizah, TruthLayer, ColonyAI, dan lainnya',
+                ' **Pengalaman Professional** - ASHAR Grosir (Full Stack Engineer), GAOTEK INC (Web Development Intern)',
+                ' **Technical Skills** - Full-stack, AI/ML, Cloud, Cybersecurity, 50+ teknologi',
+                ' **Pendidikan** - President University IT (GPA 3.54/4.00)',
+                ' **Organisasi** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP',
+                ' **Sertifikasi** - 11 sertifikat dari HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding',
+                ' **Kompetisi** - Juara TechSprint 2026, Google Vibe Coding, Data Automation',
+                ' **Open Source** - Kontribusi ke NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google',
                 ' **Visi Karir** - Goals dan career aspirations',
                 ' **Kontak** - Cara terhubung dengan Wisnu'
             ]
             : [
-                ' **Wisnu\'s Profile** - Background, personality, passions',
-                ' **Professional Experience** - Real projects with business impact',
-                ' **Technical Skills** - Full-stack development to cybersecurity',
-                ' **Education** - Academic achievements and campus organizations',
+                ' **Wisnu\'s Profile** - Background, personality, passions, philosophy',
+                ' **14 Projects** - Ashar Grosir, SENTINEL-X, Shooply, LexCorpus, Grawizah, TruthLayer, ColonyAI, and more',
+                ' **Professional Experience** - ASHAR Grosir (Full Stack Engineer), GAOTEK INC (Web Development Intern)',
+                ' **Technical Skills** - Full-stack, AI/ML, Cloud, Cybersecurity, 50+ technologies',
+                ' **Education** - President University IT (GPA 3.54/4.00)',
+                ' **Organizations** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP',
+                ' **Certifications** - 11 certs from HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding',
+                ' **Competitions** - Won TechSprint 2026, Google Vibe Coding, Data Automation',
+                ' **Open Source** - Contributions to NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google',
                 ' **Career Vision** - Goals and career aspirations',
                 ' **Contact** - How to connect with Wisnu'
             ];
@@ -4596,7 +4803,10 @@ ${suggestions}
 Atau coba tanya dengan format yang lebih spesifik, seperti:
 • "Ceritakan tentang project Ashar Grosir"
 • "Apa skill teknis utama Wisnu?"
-• "Bagaimana pengalaman organisasi Wisnu di kampus?"
+• "Bagaimana pengalaman di GAOTEK INC?"
+• "Sertifikasi apa saja yang dimiliki?"
+• "Proyek open source apa yang dikerjakan?"
+• "Prestasi kompetisi apa yang pernah diraih?"
 
 Saya siap membantu Anda mengenal Wisnu lebih baik! `;
         } else {
@@ -4613,7 +4823,10 @@ ${suggestions}
 Or try asking with more specific format like:
 • "Tell me about Ashar Grosir project"
 • "What are Wisnu's main technical skills?"
-• "How is Wisnu's organizational experience in campus?"
+• "What was his experience at GAOTEK INC?"
+• "What certifications does he have?"
+• "What open source projects has he worked on?"
+• "What competition achievements does he have?"
 
 I'm ready to help you get to know Wisnu better! `;
         }
@@ -4658,10 +4871,13 @@ I'm ready to help you get to know Wisnu better! `;
             ? [
                 ' Profil Pribadi',
                 ' Pendidikan & Akademik',
-                ' Pengalaman Professional',
-                ' Technical Skills',
-                ' Proyek & Portfolio',
-                ' Organisasi & Leadership',
+                ' Pengalaman Professional (ASHAR, GAOTEK INC)',
+                ' Technical Skills (50+ teknologi)',
+                ' 14 Proyek & Portfolio',
+                ' 5 Organisasi & Leadership (FKMA, PUFA, PUMA, IBM, OWASP)',
+                ' 11 Sertifikasi (HackerRank, AWS, Google, HubSpot, dll)',
+                ' Kompetisi & Prestasi (TechSprint 2026, Google Vibe Coding)',
+                ' Kontribusi Open Source (NASA, Microsoft, NVIDIA)',
                 ' Visi & Goals Karir',
                 ' Kontak & Ketersediaan',
                 ' Hobi & Minat Pribadi',
@@ -4670,10 +4886,13 @@ I'm ready to help you get to know Wisnu better! `;
             : [
                 ' Personal Profile',
                 ' Education & Academics',
-                ' Professional Experience',
-                ' Technical Skills',
-                ' Projects & Portfolio',
-                ' Organizations & Leadership',
+                ' Professional Experience (ASHAR, GAOTEK INC)',
+                ' Technical Skills (50+ technologies)',
+                ' 14 Projects & Portfolio',
+                ' 5 Organizations & Leadership (FKMA, PUFA, PUMA, IBM, OWASP)',
+                ' 11 Certifications (HackerRank, AWS, Google, HubSpot, etc.)',
+                ' Competitions & Achievements (TechSprint 2026, Google Vibe Coding)',
+                ' Open Source Contributions (NASA, Microsoft, NVIDIA)',
                 ' Career Vision & Goals',
                 ' Contact & Availability',
                 ' Hobbies & Personal Interests',

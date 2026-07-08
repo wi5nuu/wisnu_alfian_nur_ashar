@@ -65,10 +65,10 @@ export class AIService {
       { intent: 'skill', keywords: ['skill', 'keahlian', 'ability', 'bisa', 'kemampuan', 'tech stack', 'teknologi', 'framework', 'library', 'language', 'bahasa', 'programming', 'coding', 'react', 'next', 'typescript', 'javascript', 'python', 'node', 'tailwind', 'css', 'html', 'database', 'sql', 'nosql', 'supabase', 'docker', 'aws', 'cloud', 'frontend', 'backend', 'fullstack', 'full-stack'], weight: 3 },
 
       // Education
-      { intent: 'education', keywords: ['education', 'pendidikan', 'university', 'kampus', 'college', 'school', 'sekolah', 'degree', 'jurusan', 'major', 'gpa', 'study', 'kuliah', 'learned', 'belajar', 'president', 'as\'adiyah', 'sengkang', 'tarakan'], weight: 3 },
+      { intent: 'education', keywords: ['education', 'pendidikan', 'university', 'kampus', 'college', 'school', 'sekolah', 'degree', 'jurusan', 'major', 'gpa', 'study', 'kuliah', 'learned', 'belajar', 'president', 'as\'adiyah'], weight: 3 },
 
       // Experience
-      { intent: 'experience', keywords: ['experience', 'pengalaman', 'work', 'kerja', 'career', 'karir', 'job', 'pekerjaan', 'intern', 'internship', 'magang', 'company', 'perusahaan', 'syntecxhub', 'pufa', 'employment'], weight: 3 },
+      { intent: 'experience', keywords: ['experience', 'pengalaman', 'work', 'kerja', 'career', 'karir', 'job', 'pekerjaan', 'intern', 'internship', 'magang', 'company', 'perusahaan', 'gaotek', 'ashar', 'pufa', 'employment'], weight: 3 },
 
       // Certification
       { intent: 'certification', keywords: ['certification', 'sertifikasi', 'sertifikat', 'certificate', 'certified', 'course', 'kursus', 'training', 'pelatihan', 'exam', 'ujian', 'badge', 'credential'], weight: 3 },
@@ -205,7 +205,7 @@ export class AIService {
 
 Saya sangat menghargai ketertarikan Anda untuk mengenal Wisnu lebih jauh. Semoga Anda merasa nyaman berinteraksi dengan saya di sini. 
 
-Untuk pertanyaan lebih mendalam atau diskusi langsung, silakan hubungi Wisnu melalui email di **wisnualfian117@gmail.com**. Beliau akan dengan senang hati membantu Anda.
+Untuk pertanyaan lebih mendalam atau diskusi langsung, silakan hubungi Wisnu melalui email di **wisnualfiannurashar@gmail.com**. Beliau akan dengan senang hati membantu Anda.
 
 Beberapa hal lain yang bisa saya bantu:
 📂 Proyek & portfolio
@@ -218,7 +218,7 @@ Beberapa hal lain yang bisa saya bantu:
 
 I truly appreciate your interest in learning more about Wisnu. I hope you're having a pleasant experience here. 
 
-For more detailed inquiries or direct discussions, please feel free to connect with Wisnu via email at **wisnualfian117@gmail.com**. He will be more than happy to assist you.
+For more detailed inquiries or direct discussions, please feel free to connect with Wisnu via email at **wisnualfiannurashar@gmail.com**. He will be more than happy to assist you.
 
 Other things I can help with:
 📂 Projects & portfolio
