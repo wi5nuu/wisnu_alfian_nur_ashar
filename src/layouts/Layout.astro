@@ -55,6 +55,9 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    
+    <!-- LCP Image Preload with fetchpriority -->
+    <link rel="preload" as="image" href="/wisnu_alfian_nur_ashar.jpeg" fetchpriority="high" />
 
     <style is:global>
       @font-face {

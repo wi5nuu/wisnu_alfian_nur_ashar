@@ -28,9 +28,9 @@ const contactUrl = isId ? '/id/contact' : '/contact';
       </div>
 
       <h1
-        class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-4 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg min-h-[1.2em]"
+        class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-4 tracking-tight animate-fade-in-up delay-100 drop-shadow-lg"
       >
-        <span id="typewriter-text" style="content-visibility: auto;"></span><span class="animate-blink">|</span>
+        Wisnu Alfian Nur Ashar
       </h1>
 
       <p
@@ -80,13 +80,6 @@ const contactUrl = isId ? '/id/contact' : '/contact';
     </div>
 
   </div>
-
-  <!-- Scroll chevron (hidden)
-  <div
-    class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce hidden md:block"
-  >
-    <ChevronDown class="w-8 h-8" />
-  </div> -->
 </section>
 
 <style>
@@ -106,10 +99,6 @@ const contactUrl = isId ? '/id/contact' : '/contact';
     animation-delay: 0.45s;
   }
 
-  .animate-blink {
-    animation: blink 1s step-end infinite;
-  }
-
   .stat-number {
     font-family: 'Calibri', 'Trebuchet MS', 'Gill Sans', Arial, sans-serif;
   }
@@ -120,54 +109,4 @@ const contactUrl = isId ? '/id/contact' : '/contact';
       transform: translateY(0);
     }
   }
-
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
 </style>
-
-<script>
-  // --- TYPEWRITER LOGIC ---
-  const text = "Wisnu Alfian Nur Ashar";
-  const typeDelay = 100;
-  const eraseDelay = 50;
-  const newTextDelay = 2000;
-
-  const textElement = document.getElementById("typewriter-text");
-
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function type() {
-    if (!textElement) return;
-
-    if (!isDeleting && charIndex < text.length) {
-      const currentText = text.substring(0, charIndex + 1);
-      textElement.textContent = currentText;
-      charIndex++;
-      setTimeout(type, typeDelay);
-    } else if (isDeleting && charIndex > 0) {
-      const currentText = text.substring(0, charIndex - 1);
-      textElement.textContent = currentText;
-      charIndex--;
-      setTimeout(type, eraseDelay);
-    } else {
-      isDeleting = !isDeleting;
-      if (!isDeleting) {
-        setTimeout(type, 500);
-      } else {
-        setTimeout(type, newTextDelay);
-      }
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(type, 500);
-  });
-</script>

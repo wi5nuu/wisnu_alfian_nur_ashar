@@ -75,7 +75,7 @@
   h4 { @apply text-xl sm:text-2xl font-bold text-sage-800; }
 
   p {
-    @apply leading-snug text-charcoal/80 text-[15px] md:text-base;
+    @apply leading-snug text-charcoal/90 text-[15px] md:text-base;
   }
 }
 

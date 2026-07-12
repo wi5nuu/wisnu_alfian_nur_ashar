@@ -1,0 +1,60 @@
+# Wisnu Alfian Nur Ashar - Full-Stack Developer & Cybersecurity Specialist
+
+## About
+
+Full-Stack Developer & Cybersecurity Specialist based in Bekasi, Indonesia. 8+ years of professional experience building production applications with expertise in React, Next.js, TypeScript, Python, Golang, and cloud infrastructure.
+
+## Experience Summary
+
+- **14+ Real-World Projects** in production environments
+- **15,000+ Users Served** across multiple applications
+- **30+ GitHub Repositories** showcasing open-source contributions
+- **Enterprise-Grade Applications** including ERP/POS platforms, AI-powered systems, e-commerce platforms, and cybersecurity tools
+
+## Featured Services
+
+- Full-Stack Web Development (Frontend & Backend)
+- Application Security & Penetration Testing
+- Web Performance Optimization & Core Web Vitals
+- Cloud Infrastructure & DevOps (AWS, Google Cloud, Azure)
+- AI/ML Integration & Computer Vision
+- Career Coaching for Tech Professionals
+
+## Contact & Social
+
+- Website: https://www.wisnualfiannurashar.my.id
+- GitHub: https://github.com/wi5nuu
+- LinkedIn: https://linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310
+- Instagram: https://www.instagram.com/wshnn_
+- Contact Form: https://www.wisnualfiannurashar.my.id/contact
+
+## Main Navigation
+
+- [Home](/)
+- [About](/about)
+- [Projects](/projects)
+- [Open Source](/opensource)
+- [Skills](/skills)
+- [Experience](/experience)
+- [Contact](/contact)
+- [Indonesian](/id/)
+
+## Core Technologies & Skills
+
+**Frontend:** React, Next.js, TypeScript, JavaScript, Astro, Tailwind CSS, HTML5, CSS3
+
+**Backend:** Node.js, Express, Python, Golang, REST APIs, GraphQL
+
+**Databases:** PostgreSQL, MongoDB, Redis, Firebase
+
+**Cloud & DevOps:** AWS, Google Cloud, Azure, Docker, Kubernetes, CI/CD, Linux
+
+**Security:** OWASP, Penetration Testing, Secure Coding, Application Security
+
+**Tools:** Git, GitHub, VS Code, AWS CloudFormation, Terraform
+
+## Resume
+
+- Download CV: [Wisnu_Alfian_Nur_Ashar_CV.pdf](/Wisnu_Alfian_Nur_Ashar_CV.pdf)
+- Education: President University
+- Specializations: Full-Stack Development, Cybersecurity, Web Performance

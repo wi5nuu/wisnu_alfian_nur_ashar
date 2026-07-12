@@ -24,7 +24,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 <header transition:persist class="hidden md:block fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-100 dark:border-transparent">
   <div class="container-custom flex items-center justify-between h-16">
     <a href={getLocalizedUrl("/", isId)} class="flex items-center gap-1.5">
-      <img src="/logo.png" alt="Logo" class="w-6 h-6 object-contain" />
+      <img src="/logo.png" alt="Logo" width="24" height="24" class="w-6 h-6 object-contain" />
       <span class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Wisnu Alfian Nur Ashar<span class="text-slate-400 dark:text-white">.</span></span>
     </a>
 
@@ -63,7 +63,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 
 <div transition:persist class="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl px-5 py-3 flex justify-between items-center shadow-[0_2px_15px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
     <a href={getLocalizedUrl("/", isId)} class="flex items-center gap-2">
-        <img src="/logo.png" alt="Logo" class="w-7 h-7 object-contain rounded-lg shadow-sm" />
+        <img src="/logo.png" alt="Logo" width="28" height="28" class="w-7 h-7 object-contain rounded-lg shadow-sm" />
         <span class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Wisnu Alfian</span>
     </a>
     
@@ -89,7 +89,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
           return (
             <a href={getLocalizedUrl("/", isId)} class="relative -translate-y-5 transition-transform active:scale-90" aria-label="Home">
               <div class="w-11 h-11 bg-white dark:bg-slate-800 rounded-full p-1 shadow-[0_5px_15px_rgba(0,0,0,0.2)] border border-slate-100 dark:border-slate-700 flex items-center justify-center">
-                <img src="/logo.png" alt="Home" class="w-full h-full object-cover rounded-full" />
+                <img src="/logo.png" alt="Home" width="44" height="44" class="w-full h-full object-cover rounded-full" />
               </div>
             </a>
           );

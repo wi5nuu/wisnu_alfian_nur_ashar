@@ -9,34 +9,50 @@ export default defineConfig({
   site: 'https://www.wisnualfiannurashar.my.id',
   output: 'static',
   build: {
-    inlineStylesheets: 'never',
-    format: 'file'
+    inlineStylesheets: 'auto',
+    format: 'file',
+    assets: 'assets'
   },
   compressHTML: true,
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'viewport'
   },
-  integrations: [sitemap(), compress()],
+  integrations: [sitemap(), compress({
+    Image: false,
+    JavaScript: true,
+    CSS: true,
+    HTML: true,
+    SVG: false,
+  })],
   adapter: vercel({
-    webAnalytics: true,
-    // Performance optimizations
-    images: {
-      domains: ['images.unsplash.com'],
+    webAnalytics: {
+      enabled: true,
     },
+    imageService: true,
   }),
   vite: {
     plugins: [tailwindcss()],
-    // Build optimizations
     build: {
       cssCodeSplit: true,
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
+      reportCompressedSize: false,
       rollupOptions: {
         output: {
-          manualChunks: undefined,
+          manualChunks: (id) => {
+            if (id.includes('lucide-astro')) {
+              return 'vendor-lucide';
+            }
+          },
         },
       },
     },
-    // Resolve optimization
     resolve: {
       alias: {
         '~': '/src',
