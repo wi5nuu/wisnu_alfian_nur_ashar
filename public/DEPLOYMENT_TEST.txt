@@ -1,0 +1,17 @@
+VERCEL DEPLOYMENT TEST FILE
+===========================
+
+This file was pushed at July 12, 2026
+
+If you see this file, it means:
+✅ Vercel HAS deployed the latest code from GitHub
+
+Latest Commit: ca1c484 (fix: move test file to public for vercel static serving)
+
+Date Generated: 2026-07-12
+Time: After all security hardening completed
+
+Test URL: https://www.wisnualfiannurashar.my.id/DEPLOYMENT_TEST.txt
+
+If you see this file in your browser, deployment is WORKING.
+If you get 404, Vercel has NOT updated yet.
