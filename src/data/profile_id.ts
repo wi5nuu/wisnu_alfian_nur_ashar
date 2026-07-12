@@ -297,7 +297,7 @@ export const profile: Profile = {
             role: "Full-Stack Developer",
             status: "Production",
             featured: false,
-            link: "https://www.nuxarperfumery.my.id",
+            link: "https://nuxar.vercel.app/",
             description: "Website merek Parfum tingkat Tinggi berselimutkan pesona Animasi Cinematik 3 Dimensi, scroll Trigger serta partikel debu menyatu. Engine didorong dengan performa Railway dalam naungan mesin Golang.",
             techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
             image: "/NuxarPerfumery.png"
