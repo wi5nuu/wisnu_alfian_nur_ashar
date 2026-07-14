@@ -2,7 +2,8 @@
 import "../styles/global.css";
 import AIChatBot from "../components/AIChatBot.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
-import { profile } from "../data/profile";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -12,6 +13,9 @@ interface Props {
   ogType?: "website" | "article";
   noIndex?: boolean;
 }
+
+const isId = Astro.url.pathname.startsWith("/id");
+const profile = isId ? profileId : profileEn;
 
 const {
   title,
@@ -24,7 +28,6 @@ const {
 const siteName = "Wisnu Alfian Nur Ashar | Full-Stack Developer & Cyber Security";
 const siteUrl = "https://www.wisnualfiannurashar.my.id";
 const ogImage = `${siteUrl}/og-image.png`;
-const isId = Astro.url.pathname.startsWith("/id");
 const lang = isId ? "id" : "en";
 
 // Build alternate language URLs
