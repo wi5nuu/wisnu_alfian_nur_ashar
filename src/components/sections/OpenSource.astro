@@ -1,7 +1,7 @@
 ---
 import { profile as profileEn } from "../../data/profile";
 import { profile as profileId } from "../../data/profile_id";
-import { Bug, Shield, GitBranch, FileCode, ExternalLink, Search } from "lucide-astro";
+import { Bug, Shield, GitBranch, FileCode, ExternalLink, Search, Terminal, Cpu } from "lucide-astro";
 import Picture from "../Picture.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
@@ -18,140 +18,202 @@ const logoSrc = (org: string) => {
   if (o.includes("adk")) return "google";
   return null;
 };
+
+const severityForCategory = (cat: string): { level: string; color: string } => {
+  const c = cat.toLowerCase();
+  if (c.includes("vulnerability")) return { level: "CRITICAL", color: "text-rose-400 bg-rose-500/10 border-rose-500/30" };
+  if (c.includes("architecture") || c.includes("contract")) return { level: "HIGH", color: "text-orange-400 bg-orange-500/10 border-orange-500/30" };
+  if (c.includes("memory") || c.includes("leak")) return { level: "HIGH", color: "text-orange-400 bg-orange-500/10 border-orange-500/30" };
+  if (c.includes("silent") || c.includes("type")) return { level: "MEDIUM", color: "text-amber-400 bg-amber-500/10 border-amber-500/30" };
+  if (c.includes("logic")) return { level: "MEDIUM", color: "text-amber-400 bg-amber-500/10 border-amber-500/30" };
+  if (c.includes("configuration")) return { level: "LOW", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" };
+  return { level: "INFO", color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" };
+};
+
+const orgColor = (org: string): string => {
+  const o = org.toLowerCase();
+  if (o.includes("nasa")) return "from-blue-600/20 to-indigo-900/20 border-blue-500/20";
+  if (o.includes("microsoft")) return "from-cyan-600/20 to-blue-900/20 border-cyan-500/20";
+  if (o.includes("nvidia")) return "from-green-600/20 to-emerald-900/20 border-green-500/20";
+  if (o.includes("owasp")) return "from-stone-600/20 to-slate-900/20 border-stone-500/20";
+  if (o.includes("hugging")) return "from-yellow-600/20 to-amber-900/20 border-yellow-500/20";
+  if (o.includes("google")) return "from-blue-500/20 to-violet-900/20 border-blue-400/20";
+  return "from-slate-600/20 to-slate-900/20 border-slate-500/20";
+};
 ---
 
-<section id="opensource" class="section">
-  <div class="container-custom">
+<section id="opensource" class="section relative overflow-hidden">
 
-    <!-- Header -->
-    <div class="text-center mb-12 reveal-up">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mb-6">
-        <Search class="w-3 h-3" />
-        <span>{isId ? 'Laporan Resmi' : 'Official Report'}</span>
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.08),transparent_60%)]"></div>
+    <div class="absolute inset-0" style="background-image:linear-gradient(rgba(6,182,212,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,0.04) 1px,transparent 1px);background-size:60px 60px"></div>
+    <div class="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent"></div>
+    <div class="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent"></div>
+  </div>
+
+  <div class="container-custom relative z-10">
+
+    <div class="text-center mb-16 reveal-up">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-slate-900/80 dark:bg-slate-900/90 border border-cyan-500/30 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-cyan-400 mb-6 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+        <Terminal class="w-3 h-3" />
+        <span class="animate-pulse">$</span>
+        <span>{isId ? './laporan-resmi.sh' : './official-report.sh'}</span>
+        <span class="w-1.5 h-4 bg-cyan-400/70 animate-pulse ml-0.5"></span>
       </div>
-      <h2 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-serif font-bold leading-tight">
-        {isId ? 'Kontribusi Open Source' : 'Open Source Contributions'}
+
+      <h2 class="text-3xl md:text-4xl font-serif font-bold leading-tight relative inline-block">
+        <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-300 bg-clip-text text-transparent">
+          {isId ? 'Kontribusi Open Source' : 'Open Source Contributions'}
+        </span>
+        <span class="absolute -top-3 -right-4 text-[10px] font-mono text-cyan-500/40">_v1.0</span>
       </h2>
+
       <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto mt-3 text-[15px] leading-relaxed">
         {isId ? 'Laporan resmi penelitian bug dan kontribusi keamanan pada proyek open-source kelas dunia. Setiap temuan telah dikonfirmasi oleh maintainer resmi.' : 'Official bug research reports and security contributions to world-class open-source projects. Every finding confirmed by official maintainers.'}
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 mt-5 text-xs text-slate-400 dark:text-slate-500">
-        <span class="font-medium text-slate-500 dark:text-slate-400">{isId ? 'Peneliti' : 'Researcher'}: <strong class="text-slate-700 dark:text-slate-200">Wisnu Alfian Nur Ashar</strong></span>
-        <span class="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
-        <span>GitHub: <strong class="text-slate-700 dark:text-slate-200">wi5nuu</strong></span>
-        <span class="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
-        <span>{isId ? 'Juni 2026' : 'June 2026'}</span>
-        <span class="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
-        <span class="font-semibold text-slate-600 dark:text-slate-300">9 {isId ? 'Kontribusi' : 'Contributions'}</span>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6 text-xs font-mono">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-800/50 border border-slate-700/50 text-slate-300">
+          <Cpu class="w-3 h-3 text-cyan-400" />
+          <span>{isId ? 'Peneliti' : 'Researcher'}: <strong class="text-cyan-300">Wisnu Alfian</strong></span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-800/50 border border-slate-700/50 text-slate-300">
+          <GitBranch class="w-3 h-3 text-emerald-400" />
+          <span>GitHub: <strong class="text-emerald-300">wi5nuu</strong></span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-800/50 border border-slate-700/50 text-slate-300">
+          <Shield class="w-3 h-3 text-rose-400" />
+          <span>{isId ? 'Total Temuan' : 'Findings'}: <strong class="text-rose-300">9</strong></span>
+        </span>
       </div>
     </div>
 
-    <!-- Cards -->
-    <div class="max-w-4xl mx-auto space-y-4">
+    <div class="max-w-4xl mx-auto space-y-6">
       {profile.openSource.map((entry, index) => {
         const logo = logoSrc(entry.organization);
+        const sev = severityForCategory(entry.category);
+        const orgGrad = orgColor(entry.organization);
         return (
         <article
-          class="group relative bg-white dark:bg-slate-800/60 backdrop-blur-sm border border-slate-100 dark:border-slate-700/40 rounded-2xl p-5 md:p-6 hover:shadow-lg hover:border-slate-200 dark:hover:border-slate-600/60 transition-all duration-200 shadow-sm reveal-up"
+          class="group relative bg-slate-900/60 backdrop-blur-sm border border-slate-700/40 rounded-2xl p-5 md:p-6 hover:border-cyan-500/40 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.1)] reveal-up overflow-hidden"
           style={`transition-delay: ${index * 50}ms`}
         >
-          <!-- Top Row: Logo + Org + Category -->
-          <div class="flex items-start gap-4 mb-4">
-            {/* Logo */}
-            <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-white dark:bg-white/10 border border-slate-100 dark:border-slate-600/40 flex items-center justify-center overflow-hidden">
-              {logo ? (
-                <Picture
-                  src={`/logos/${logo}.svg`}
-                  alt={`${entry.organization} logo`}
-                  class="w-6 h-6 object-contain"
-                />
-              ) : (
-                <GitBranch class="w-5 h-5 text-slate-400 dark:text-slate-500" />
-              )}
-            </div>
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 flex-wrap mb-0.5">
-                <span class="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-700/60 px-1.5 py-0.5 rounded">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <h3 class="text-base font-bold text-slate-900 dark:text-white leading-snug">
-                  {entry.organization}
-                </h3>
+          <div class={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-gradient-to-br ${orgGrad} opacity-0 group-hover:opacity-100 blur-3xl transition-all duration-700`}></div>
+
+          <div class="relative z-10">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-slate-900/80 border border-slate-600/40 flex items-center justify-center overflow-hidden shadow-lg transition-all duration-300 group-hover:border-cyan-500/50 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                {logo ? (
+                  <Picture
+                    src={`/logos/${logo}.svg`}
+                    alt={`${entry.organization} logo`}
+                    class="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
+                ) : (
+                  <GitBranch class="w-5 h-5 text-slate-400" />
+                )}
               </div>
-              <p class="text-[13px] text-slate-500 dark:text-slate-400 font-medium leading-snug mt-0.5">
-                {entry.project}
-              </p>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap mb-0.5">
+                  <span class="text-[10px] font-mono font-bold text-slate-500 bg-slate-800/80 px-1.5 py-0.5 rounded border border-slate-700/50">
+                    #{(index + 1).toString().padStart(2, '0')}
+                  </span>
+                  <h3 class="text-base font-bold text-slate-100 leading-snug">
+                    {entry.organization}
+                  </h3>
+                  <span class={`text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${sev.color}`}>
+                    {sev.level}
+                  </span>
+                </div>
+                <p class="text-[13px] text-slate-400 font-medium leading-snug mt-0.5">
+                  {entry.project}
+                </p>
+              </div>
+
+              <span class="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-slate-800/80 text-slate-400 border border-slate-600/40">
+                {entry.category}
+              </span>
             </div>
 
-            <span class="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700/60 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-600/40">
-              {entry.category}
-            </span>
-          </div>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mb-4 ml-14 text-[11px] text-slate-500 font-mono">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-800/50 border border-slate-700/30">
+                <GitBranch class="w-3 h-3 text-cyan-500/70" />
+                {entry.repo}
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-800/50 border border-slate-700/30">
+                <FileCode class="w-3 h-3 text-emerald-500/70" />
+                {entry.language}
+              </span>
+            </div>
 
-          <!-- Meta bar -->
-          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mb-4 ml-14 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
-            <span class="inline-flex items-center gap-1">
-              <GitBranch class="w-3 h-3" />
-              {entry.repo}
-            </span>
-            <span class="inline-flex items-center gap-1">
-              <FileCode class="w-3 h-3" />
-              {entry.language}
-            </span>
-          </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-14 mb-4">
+              <div>
+                <h4 class="flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-cyan-400/70 mb-1.5">
+                  <Bug class="w-3 h-3" />
+                  <span class="text-cyan-400/50">$</span>
+                  {isId ? 'bug_deskripsi' : 'bug_description'}.txt
+                </h4>
+                <p class="text-[13px] text-slate-300 leading-relaxed">
+                  {entry.bugDescription}
+                </p>
+              </div>
+              <div>
+                <h4 class="flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-rose-400/70 mb-1.5">
+                  <Shield class="w-3 h-3" />
+                  <span class="text-rose-400/50">$</span>
+                  {isId ? 'dampak' : 'impact'}.log
+                </h4>
+                <p class="text-[13px] text-slate-400 leading-relaxed">
+                  {entry.impact}
+                </p>
+              </div>
+            </div>
 
-          <!-- Body: Bug + Impact side by side -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-14 mb-4">
-            <div>
-              <h4 class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mb-1.5">
-                <Bug class="w-3 h-3" />
-                {isId ? 'Deskripsi Bug' : 'Bug Description'}
+            {entry.fileLocation && entry.fileLocation !== "N/A" && entry.fileLocation !== "N/A (Security Advisory)" && (
+              <div class="ml-14 mb-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-950/80 rounded-md border border-slate-700/30 shadow-inner">
+                  <span class="text-[10px] font-mono text-emerald-500/70">$</span>
+                  <code class="text-[11px] font-mono text-slate-400 group-hover:text-cyan-300 transition-colors duration-300">
+                    cat {entry.fileLocation}
+                  </code>
+                  <span class="w-1.5 h-3.5 bg-emerald-400/50 animate-pulse"></span>
+                </div>
+              </div>
+            )}
+
+            <div class="ml-14 pt-3 border-t border-slate-700/40">
+              <h4 class="flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-emerald-400/70 mb-1.5">
+                <ExternalLink class="w-3 h-3" />
+                <span class="text-emerald-400/50">$</span>
+                {isId ? 'respons_maintainer' : 'maintainer_response'}.md
               </h4>
-              <p class="text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                {entry.bugDescription}
+              <p class="text-[13px] text-slate-300 leading-relaxed">
+                {entry.maintainerResponse}
               </p>
             </div>
-            <div>
-              <h4 class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mb-1.5">
-                <Shield class="w-3 h-3" />
-                {isId ? 'Dampak' : 'Impact'}
-              </h4>
-              <p class="text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                {entry.impact}
-              </p>
-            </div>
-          </div>
-
-          {/* File Location */}
-          {entry.fileLocation && entry.fileLocation !== "N/A" && entry.fileLocation !== "N/A (Security Advisory)" && (
-            <div class="ml-14 mb-4">
-              <code class="inline-block px-3 py-1.5 bg-slate-50 dark:bg-slate-700/60 rounded-md text-[11px] font-mono text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-slate-600/40">
-                {entry.fileLocation}
-              </code>
-            </div>
-          )}
-
-          {/* Maintainer Response */}
-          <div class="ml-14 pt-3 border-t border-slate-100 dark:border-slate-700/40">
-            <h4 class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mb-1.5">
-              <ExternalLink class="w-3 h-3" />
-              {isId ? 'Respons Maintainer' : 'Maintainer Response'}
-            </h4>
-            <p class="text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed">
-              {entry.maintainerResponse}
-            </p>
           </div>
         </article>
       )})}
     </div>
 
-    <!-- Bottom CTA -->
-    <div class="mt-12 text-center reveal-up">
-      <a href="https://github.com/wi5nuu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full text-sm font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-all shadow-md group">
-        <GitBranch class="w-4 h-4" />
-        <span>{isId ? 'Lihat Profil GitHub' : 'View GitHub Profile'}</span>
-        <ExternalLink class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+    <div class="mt-14 text-center reveal-up">
+      <a
+        href="https://github.com/wi5nuu"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full text-sm font-semibold transition-all overflow-hidden"
+      >
+        <span class="absolute inset-0 bg-slate-900 dark:bg-white rounded-full"></span>
+        <span class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-cyan-500/20 via-emerald-500/20 to-cyan-500/20"></span>
+        <span class="absolute inset-0 rounded-full border border-cyan-500/30 group-hover:border-cyan-400/50 transition-colors duration-300"></span>
+        <span class="relative z-10 inline-flex items-center gap-2 text-white dark:text-slate-900 group-hover:text-cyan-300 dark:group-hover:text-cyan-600 transition-colors duration-300">
+          <GitBranch class="w-4 h-4" />
+          <span>{isId ? 'Lihat Profil GitHub' : 'View GitHub Profile'}</span>
+          <ExternalLink class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+        </span>
       </a>
     </div>
   </div>
