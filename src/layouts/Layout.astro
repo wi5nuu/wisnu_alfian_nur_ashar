@@ -59,11 +59,7 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
     <!-- LCP Image Preload with fetchpriority -->
     <link rel="preload" as="image" href="/wisnu_alfian_nur_ashar.jpeg" fetchpriority="high" />
 
-    <style is:global>
-      @font-face {
-        font-display: swap;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles/tailwind.css" />
     <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
     <meta name="color-scheme" content="light dark" />
     <meta name="generator" content={Astro.generator} />
