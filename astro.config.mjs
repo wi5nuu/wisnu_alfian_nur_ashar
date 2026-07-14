@@ -34,7 +34,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
-      cssCodeSplit: true,
+      cssCodeSplit: false,
       minify: 'terser',
       terserOptions: {
         compress: {
