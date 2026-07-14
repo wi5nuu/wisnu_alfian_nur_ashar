@@ -9,6 +9,7 @@ const { id } = Astro.props;
 <div
   id={id}
   class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden"
+  onclick={`if (event.target === event.currentTarget) closeModal('${id}')`}
 >
   <div class="relative max-w-4xl max-h-full p-4">
     <button
@@ -34,6 +35,7 @@ const { id } = Astro.props;
       img.src = imgSrc;
       img.alt = alt;
       modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
     }
   }
 
@@ -41,10 +43,10 @@ const { id } = Astro.props;
     const modal = document.getElementById(modalId);
     if (modal) {
       modal.classList.add('hidden');
+      document.body.style.overflow = '';
     }
   }
 
-  // Expose functions globally
   (window as any).openModal = openModal;
   (window as any).closeModal = closeModal;
 </script>

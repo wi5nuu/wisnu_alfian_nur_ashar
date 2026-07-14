@@ -3,6 +3,7 @@ import { profile as profileEn } from "../../data/profile";
 import { profile as profileId } from "../../data/profile_id";
 import { Award, CheckCircle } from "lucide-astro";
 import ImageModal from "../ImageModal.astro";
+import Picture from "../Picture.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
@@ -23,7 +24,7 @@ const profile = isId ? profileId : profileEn;
 
         <div class="w-full bg-white dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-5 flex flex-col gap-4 items-center text-center reveal-zoom delay-100">
           <div class="shrink-0 w-16 h-16 bg-white dark:bg-slate-700 rounded-xl shadow-sm border border-cream-200 dark:border-slate-600 overflow-hidden p-1">
-            <img src="/president_university.jpeg" alt="President University" class="w-full h-full object-cover rounded-xl" />
+            <Picture src="/president_university.jpeg" alt="President University" class="w-full h-full object-cover rounded-xl" />
           </div>
 
           <div class="flex-1 space-y-1.5 text-center w-full">
@@ -66,7 +67,7 @@ const profile = isId ? profileId : profileEn;
             >
               <div class="w-full aspect-video overflow-hidden">
                 {cert.image ? (
-                  <img src={cert.image} alt={cert.name} class="w-full h-full object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" loading="lazy" onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`} />
+                  <Picture src={cert.image} alt={cert.name} class="w-full h-full object-cover transition-transform duration-500 hover:scale-110 cursor-pointer" onclick={`openModal('cert-modal', '${cert.image}', '${cert.name}')`} />
                 ) : (
                   <div class="w-full h-full bg-sage-50 dark:bg-sage-900/40 flex items-center justify-center">
                     <Award class="w-10 h-10 text-sage-300 dark:text-sage-400" />

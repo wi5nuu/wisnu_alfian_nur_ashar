@@ -19,6 +19,7 @@ const description = profile.personalInfo.summary;
 
 <Layout title={title} description={description}>
 	<Header />
+
 	<main>
 		<Hero />
 		<About />
@@ -39,16 +40,32 @@ const description = profile.personalInfo.summary;
 		rootMargin: "0px 0px -50px 0px",
 	};
 
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				entry.target.classList.add("active");
-			}
-		});
-	}, observerOptions);
+	let observer = null;
 
-	document.addEventListener("astro:page-load", () => {
-		const revealElements = document.querySelectorAll(".reveal-up");
+	const initObserver = () => {
+		if (!observer) {
+			observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("active");
+					}
+				});
+			}, observerOptions);
+		}
+
+		const revealElements = document.querySelectorAll(
+			".reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom"
+		);
 		revealElements.forEach((el) => observer.observe(el));
+	};
+
+	document.addEventListener("astro:page-load", initObserver);
+
+	document.addEventListener("astro:before-swap", () => {
+		if (observer) {
+			observer.disconnect();
+			observer = null;
+		}
 	});
+
 </script>

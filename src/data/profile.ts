@@ -152,13 +152,13 @@ export const profile: Profile = {
         securityCloud: [
             { name: "Cybersecurity", icon: "hackthebox" },
             { name: "Kali Linux", icon: "kalilinux" },
-            { name: "Cloud Security", icon: "amazonwebservices" },
+            { name: "Cloud Security" },
             { name: "Docker", icon: "docker" },
             { name: "Vercel", icon: "vercel" },
             { name: "Railway", icon: "railway" },
             { name: "Cloudflare", icon: "cloudflare" },
             { name: "Firebase", icon: "firebase" },
-            { name: "Zero-Trust Architecture", icon: "amazonwebservices" },
+            { name: "Zero-Trust Architecture" },
             { name: "HuggingFace", icon: "huggingface" },
         ],
         tools: [

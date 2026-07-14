@@ -3,6 +3,7 @@ import { profile as profileEn } from '../../data/profile';
 import { profile as profileId } from '../../data/profile_id';
 import { getProjectSlug } from '../../utils/slug';
 import { ExternalLink, Github } from 'lucide-astro';
+import Picture from '../../components/Picture.astro';
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
@@ -45,11 +46,9 @@ const basePath = isId ? '/id/projects' : '/projects';
                   <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
                 </div>
                 <div class="relative h-40 md:h-40 flex-shrink-0 overflow-hidden group-hover:opacity-95 transition-opacity bg-slate-50 dark:bg-slate-700">
-                  <img
+                  <Picture
                     src={project.image}
                     alt={project.title}
-                    loading="lazy"
-                    decoding="async"
                     width="400"
                     height="160"
                     class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"

@@ -2,6 +2,7 @@
 import { profile as profileEn } from "../../data/profile";
 import { profile as profileId } from "../../data/profile_id";
 import { Bug, Shield, GitBranch, FileCode, ExternalLink, Search } from "lucide-astro";
+import Picture from "../Picture.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
@@ -59,11 +60,10 @@ const logoSrc = (org: string) => {
             {/* Logo */}
             <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-white dark:bg-white/10 border border-slate-100 dark:border-slate-600/40 flex items-center justify-center overflow-hidden">
               {logo ? (
-                <img
+                <Picture
                   src={`/logos/${logo}.svg`}
                   alt={`${entry.organization} logo`}
                   class="w-6 h-6 object-contain"
-                  loading="lazy"
                 />
               ) : (
                 <GitBranch class="w-5 h-5 text-slate-400 dark:text-slate-500" />

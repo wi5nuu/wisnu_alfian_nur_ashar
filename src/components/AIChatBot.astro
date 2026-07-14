@@ -1,5 +1,6 @@
 ---
 import { X, Send } from "lucide-astro";
+import Picture from "./Picture.astro";
 ---
 
 <div id="ai-chat-widget" class="z-[110] font-sans">
@@ -9,11 +10,9 @@ import { X, Send } from "lucide-astro";
         aria-label="Toggle AI Assistant"
     >
         <div class="relative">
-            <img
+            <Picture
                 src="/logo.png"
                 alt="AI"
-                loading="lazy"
-                decoding="async"
                 class="w-10 h-10 rounded-full object-cover border-2 border-white/20"
             />
             <div
@@ -46,11 +45,9 @@ import { X, Send } from "lucide-astro";
 
             <div class="flex items-center gap-3 relative z-10">
                 <div class="relative">
-                    <img
+                    <Picture
                         src="/logo.png"
                         alt="AI Avatar"
-                        loading="lazy"
-                        decoding="async"
                         class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm"
                     />
                     <div
@@ -83,11 +80,9 @@ import { X, Send } from "lucide-astro";
             class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/30 h-[350px] scroll-smooth text-slate-900"
         >
             <div class="flex gap-3 animate-fade-in">
-                <img
+                <Picture
                     src="/logo.png"
                     alt="AI"
-                    loading="lazy"
-                    decoding="async"
                     class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm"
                 />
                 <div
@@ -208,7 +203,6 @@ import { X, Send } from "lucide-astro";
                 const AIService = await loadAIService();
                 const response = await AIService.getResponse(query);
 
-                // Professional 3-second delay
                 setTimeout(() => {
                     if (typingId) removeTypingIndicator(typingId);
                     addMessage(response, "ai");
