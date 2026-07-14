@@ -258,7 +258,7 @@ export const profile: Profile = {
             link: "https://www.ashargrosirparfum.com",
             description: "E-Commerce komersial ritel online utama bagi perusahaan grosir wangian berumur lebih dari dua dekade. Saat ini memperkuat distribusi lancarnya terhadap lebih dari 15,000 langganan skala besar.",
             techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
-            image: "/AsharGrosirParfum.png"
+            image: "/projects/AsharGrosirParfum.png"
         },
         {
             title: "SENTINEL-X",
@@ -279,7 +279,7 @@ export const profile: Profile = {
             link: "#",
             description: "Platform E-Commerce berkinerja mutlak lewat pemanfaatan Microservice. Kombinasi bagian utama antarmuka berbasis (Next.js SSR-optimized) dan mesin Server sangat mutakhir melalui (GoFiber Backend). Didukung skema canggih berupa (Redis-RabbitMQ-Prometheus & Zerolog-OpenTelemetry).",
             techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
-            image: "/shooply.png"
+            image: "/projects/shooply.png"
         },
         {
             title: "LexCorpus CMS Platform",
@@ -290,7 +290,7 @@ export const profile: Profile = {
             link: "https://www.lexcorpuslaw.com",
             description: "CMS skala industri (khusus bagian hukum riset & Dokumen). Menghadirkan sistem ke-editorial-an ketat berbasis aturan ganda, dengan teks rilis kaya fitur canggih.",
             techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
-            image: "/Lexcorpus.png"
+            image: "/projects/Lexcorpus.png"
         },
         {
             title: "Nuxar Perfumery",
@@ -300,7 +300,7 @@ export const profile: Profile = {
             link: "https://nuxar.vercel.app/",
             description: "Website merek Parfum tingkat Tinggi berselimutkan pesona Animasi Cinematik 3 Dimensi, scroll Trigger serta partikel debu menyatu. Engine didorong dengan performa Railway dalam naungan mesin Golang.",
             techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
-            image: "/NuxarPerfumery.png"
+            image: "/projects/NuxarPerfumery.png"
         },
         {
             title: "PC FKMA Jakarta Website",
@@ -311,7 +311,7 @@ export const profile: Profile = {
             link: "https://pcfkmaasadiyahjakarta.vercel.app/",
             description: "Portal Pusat digital para cendekia dan pelajar Asumsi dari As'adiyah di wilayah DKI Jakarta. Dilengkapi data personal maupun kolom portal berita utama.",
             techStack: ["Next.js", "Tailwind CSS", "Vercel"],
-            image: "/FKMA_Asadiyah_Jakarta.png"
+            image: "/projects/FKMA_Asadiyah_Jakarta.png"
         },
         {
             title: "Grawizah",
@@ -355,7 +355,7 @@ export const profile: Profile = {
             link: "https://vanguard-execution.vercel.app/",
             description: "Pusat dasbor kontrol eksekusi tugas skala berat dan strategi manajerial setaraf Korporasi. Dilengkapi kecepatan brutal lewat Fastify engine dengan Realtime perlindungan berlapis RBAC dan arsitektur Next.js dashboard kompleks.",
             techStack: ["Next.js 14", "Fastify", "PostgreSQL", "Prisma", "Redis", "Docker", "Socket.io", "Radix UI", "shadcn/ui", "Zustand", "Vitest"],
-            image: "/vanguard.png"
+            image: "/projects/vanguard.png"
         },
         {
             title: "Risk Shield System",
@@ -366,7 +366,7 @@ export const profile: Profile = {
             link: "https://riskshield.vercel.app/",
             description: "Sistem pendeteksi Risiko (GRC) tingkat atas dengan tenaga buatan AI yang mampu menganalisis standarisasi secara real-time. Langsung tersambung dengan kemampuan pintar dari sistem canggih milik Google Gemini 1.5, mempercepat laporan kepatuhan yang instan.",
             techStack: ["Next.js 14", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion", "Supabase", "Google Gemini Pro", "jsPDF", "Recharts"],
-            image: "/riskshieldsystem.png"
+            image: "/projects/riskshieldsystem.png"
         },
         {
             title: "Human Firewall",
@@ -377,7 +377,7 @@ export const profile: Profile = {
             link: "https://humanfirewall.vercel.app/",
             description: "Platform latihan berbasis Cyber Security di mana para anggota akan belajar simulasi Phishing interaktif beserta rekaman pergerakan demi ketahanan organasisasi.",
             techStack: ["React", "TypeScript", "Supabase", "Tailwind CSS"],
-            image: "/humanfirewallintelligenceplatform.png"
+            image: "/projects/humanfirewallintelligenceplatform.png"
         },
         {
             title: "HargaKita.id",
@@ -399,7 +399,7 @@ export const profile: Profile = {
             link: "https://wiskost.vercel.app/",
             description: "Website eksklusif perumahan terinspirasi kilapan emas gelap. Didesain kuat dan dioptimasi oleh kemampuan pipeline deployment.",
             techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Docker", "Hugging Face", "Formspree", "Vercel"],
-            image: "/WiskostResidence.png"
+            image: "/projects/WiskostResidence.png"
         }
     ],
     education: {
