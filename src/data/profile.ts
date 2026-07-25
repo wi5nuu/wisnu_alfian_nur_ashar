@@ -118,6 +118,7 @@ export const profile: Profile = {
             { name: "PostgreSQL", icon: "postgresql" },
             { name: "MySQL", icon: "mysql" },
             { name: "MongoDB", icon: "mongodb" },
+            { name: "SQL Server", icon: "microsoftsqlserver" },
         ],
         webTech: [
             { name: "React", icon: "react" },
@@ -131,6 +132,7 @@ export const profile: Profile = {
             { name: "shadcn/ui", icon: "shadcnui" },
             { name: "SEO", icon: "google" },
             { name: "Laravel", icon: "laravel" },
+            { name: "ASP.NET", icon: "dotnet" },
             { name: "JavaScript", icon: "javascript" },
             { name: "API Development", icon: "postman" },
             { name: "Technical SEO", icon: "google" },
