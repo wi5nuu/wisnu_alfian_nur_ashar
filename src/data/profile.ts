@@ -349,13 +349,13 @@ export const profile: Profile = {
             image: "/projects/ColonyAI.png"
         },
         {
-            title: "Fanguard Strategic Hub",
+            title: "Vanguard Strategic Hub",
             role: "Architect & Lead Developer",
             status: "Production",
             featured: true,
-            github: "https://github.com/wi5nuu",
-            link: "https://vanguard-execution.vercel.app/",
-            description: "Enterprise-grade execution hub and strategic management platform. Features a high-performance Fastify backend, real-time RBAC security, and a sophisticated Next.js dashboard.",
+            github: "https://github.com/wi5nuu/Nexus-EMS",
+            link: "https://nexus-ems-flame.vercel.app/",
+            description: "Enterprise-grade all-in-one strategic execution platform (Command Center) unifying technical execution with organizational vision. Features OKR management, SLA/incident severity matrix, real-time RBAC with role & permission matrix, high-performance Fastify backend, and a sophisticated Next.js 14 dashboard. Addresses data silos, context switching, and burnout through a unified command interface.",
             techStack: ["Next.js 14", "Fastify", "PostgreSQL", "Prisma", "Redis", "Docker", "Socket.io", "Radix UI", "shadcn/ui", "Zustand", "Vitest"],
             image: "/projects/vanguard.png"
         },
@@ -402,6 +402,72 @@ export const profile: Profile = {
             description: "Luxury winery-inspired residence website template with gold-accent dark theme, professional management system, and automated deployment pipeline.",
             techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Docker", "Hugging Face", "Formspree", "Vercel"],
             image: "/projects/WiskostResidence.png"
+        },
+        {
+            title: "Pulse",
+            role: "Full-Stack Developer",
+            status: "In Development",
+            featured: true,
+            github: "https://github.com/wi5nuu/pulse",
+            link: "https://github.com/wi5nuu/pulse",
+            description: "Real-time collaborative workspace with rich-text editor, Kanban board, live presence, and version history. Built with CRDT conflict-free replication using Yjs + ProseMirror so multiple users can edit simultaneously with automatic conflict resolution. Features per-user multiplayer undo/redo, drag-and-drop Kanban with fractional indexing, snapshot-based version history, invite system with editor/viewer roles, JWT in-memory auth with rotating refresh tokens and reuse detection.",
+            techStack: ["Go", "Next.js 14", "PostgreSQL", "Redis", "TypeScript", "Tailwind CSS", "Yjs", "ProseMirror", "WebSocket", "Docker", "JWT"],
+            image: "/projects/pulse.png"
+        },
+        {
+            title: "Wanar AI v2.0",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/wanar-ai",
+            link: "https://github.com/wi5nuu/wanar-ai",
+            description: "Enterprise-grade AI Agent platform with multi-provider orchestration supporting OpenAgentic, NVIDIA, and Vector backends. Features unlimited context management via advanced context manager, semantic caching, intelligent routing, distributed architecture, enterprise analytics, enterprise auth with JWT, RAG (Retrieval-Augmented Generation), security scanner, and a dual-mode interface — CLI and Web Server with chatbot UI. Built on Express.js with Redis for session management and SQLite for local persistence.",
+            techStack: ["Node.js", "Express.js", "Redis", "SQLite", "JWT", "RAG", "OpenAI API", "NVIDIA API", "Google Gemini", "Axios", "Helmet", "Rate Limiting"],
+            image: "/projects/wanar-ai.png"
+        },
+        {
+            title: "NusantaraLearn",
+            role: "Mobile Developer",
+            status: "In Development",
+            featured: true,
+            github: "https://github.com/wi5nuu/NusantaraLearn",
+            link: "https://github.com/wi5nuu/NusantaraLearn",
+            description: "Cross-platform mobile learning application built with React Native (Expo) featuring on-device AI inference via WebLLM (@mlc-ai/web-llm), offline-first architecture with encrypted local storage, push notifications, text-to-speech, Lottie animations, and haptic feedback. Targets Indonesian learners with a nusantara-inspired design. Crash reporting via Sentry, state management with Zustand, and secure storage with expo-secure-store.",
+            techStack: ["React Native", "Expo", "TypeScript", "WebLLM", "Zustand", "Crypto-JS", "Sentry", "Lottie", "Expo Router", "Firebase"],
+            image: "/projects/nusantaralearn.png"
+        },
+        {
+            title: "Stokiq",
+            role: "Full-Stack Developer",
+            status: "In Development",
+            featured: false,
+            github: "https://github.com/wi5nuu/stokiq",
+            link: "https://github.com/wi5nuu/stokiq",
+            description: "Comprehensive inventory and stock management system with AI-powered demand forecasting. Modules include stock management, order processing, supplier management, buyer management, marketplace integration, sales analytics, procurement inquiry, and detailed reporting. Built with React + Supabase for real-time data sync, featuring predictive analytics (Prediksi) for stock level recommendations.",
+            techStack: ["React", "TypeScript", "Supabase", "Tailwind CSS", "shadcn/ui", "Recharts", "React Hook Form", "Zod", "Framer Motion", "React Router"],
+            image: "/projects/stokiq.png"
+        },
+        {
+            title: "PresUnivGo",
+            role: "Mobile Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/puconnect",
+            link: "https://puconnect-9e8fb.web.app",
+            description: "Elite cross-platform professional networking platform exclusively for President University. Features AI Career Mentor Suite powered by Gemini (career roadmap, CV analysis, cover letter builder, smart post suggestions, MentorBot), real-time Firestore synchronization, glassmorphism UI with wave design and micro-animations, instant search with 300ms debounce, real-time networking engine, career analytics dashboard, and Zero-Storage Architecture for cost efficiency. Deployed as both Flutter mobile app and Progressive Web App.",
+            techStack: ["Flutter", "Firebase Auth", "Cloud Firestore", "Firebase Messaging", "Riverpod", "go_router", "Gemini AI", "Hive", "flutter_animate", "Google Fonts"],
+            image: "/projects/presunivgo.png"
+        },
+        {
+            title: "E2EE Secure Chat",
+            role: "Systems Developer",
+            status: "Completed",
+            featured: false,
+            github: "https://github.com/wi5nuu/E2EE_WebApp",
+            link: "https://github.com/wi5nuu/E2EE_WebApp",
+            description: "End-to-end encrypted real-time chat application built in C++ using the Crow web framework and ASIO for async networking. Implements symmetric AES encryption before message transmission and asymmetric RSA decryption on the receiver side. Features WebSocket-based real-time messaging, user authentication, TLS/SSL with self-signed certificates, and a multi-threaded architecture with mutex-protected message queues.",
+            techStack: ["C++", "Crow Framework", "ASIO", "WebSocket", "AES Encryption", "RSA", "TLS/SSL", "Makefile"],
+            image: "/projects/e2ee-chat.png"
         }
     ],
     education: {

@@ -331,5 +331,147 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { category: 'Data', items: ['Crowdsourced Reports', 'Government Portal Scraping', 'Smart Threshold Logic'] },
       { category: 'Infrastructure', items: ['Netlify', 'GitHub Actions', 'CDN'] }
     ]
+  },
+  'pulse': {
+    slug: 'pulse',
+    problemStatement: 'Remote and hybrid teams struggle with fragmented tooling — documents in Google Docs, tasks in Trello, communication in Slack — causing context switching, version conflicts, and lost work history. Existing collaborative editors lack true real-time conflict-free editing, and most Kanban tools have no live presence awareness. There is no lightweight, self-hostable workspace that unifies rich-text editing, task management, and live collaboration in a single coherent platform without vendor lock-in.',
+    solution: 'Pulse is a real-time collaborative workspace built with Go and Next.js that unifies a rich-text document editor, Kanban board, and live presence system. The editor uses Yjs CRDT (Conflict-Free Replicated Data Type) with ProseMirror for automatic conflict resolution — multiple users edit simultaneously without overwriting each other. The Kanban board uses fractional indexing with optimistic concurrency control for smooth drag-and-drop. Live presence shows cursors, selections, and online status in real time. JWT in-memory auth with rotating refresh tokens and reuse detection provides secure, stateless authentication.',
+    howToUse: 'Register an account and a default workspace is created automatically. Create documents within a workspace and invite team members via shareable invite links with editor or viewer roles. Open a document to start collaborative editing — presence indicators show other users\' cursors and selections in real time. Use the Kanban board to manage tasks with drag-and-drop across columns. Version history allows snapshot-based restore of any document state. Workspace owners can manage member roles via the members panel.',
+    impact: 'Demonstrates production-grade real-time collaboration using CRDT technology that eliminates merge conflicts entirely. Per-user multiplayer undo/redo ensures individual edits are reversible without affecting teammates\' work. The Go backend with pgx and Redis achieves high concurrency with minimal memory footprint. Docker Compose deployment makes self-hosting straightforward. The rotating refresh token system with reuse detection prevents token theft attacks. WebSocket presence throttling (20 msg/s client, 50ms batch server) keeps real-time sync efficient at scale.',
+    keyFeatures: [
+      { title: 'CRDT Collaborative Editor', description: 'Yjs-powered conflict-free rich-text editing with ProseMirror. Multiple users edit simultaneously with automatic conflict resolution — no manual merging required. Supports headings, lists, bold, italic, code blocks, and more.' },
+      { title: 'Live Presence System', description: 'Real-time cursor tracking, selection highlighting, and online indicators. See exactly who is editing which part of a document with smooth animations. Presence data throttled for performance at scale.' },
+      { title: 'Multiplayer Undo/Redo', description: 'Per-user undo scoping — undoing only removes your own changes, not your teammates\'. Implemented via Yjs UndoManager with per-client tracking.' },
+      { title: 'Kanban Board', description: 'Drag-and-drop task management with fractional indexing for stable ordering and optimistic concurrency control. Real-time board sync via WebSocket so all members see updates instantly.' },
+      { title: 'Snapshot Version History', description: 'Document history with restore capability. Create named snapshots at any point and restore to any previous state without losing the current version.' },
+      { title: 'Secure Auth & RBAC', description: 'JWT access tokens stored in-memory (never localStorage) with rotating httpOnly refresh tokens and reuse detection. Owner, editor, and viewer roles enforced at both API and WebSocket level.' }
+    ],
+    architecture: 'Go 1.25+ backend (chi router, pgx/v5) handles REST API and WebSocket connections. Next.js 14 (App Router) frontend proxies all API calls through rewrites for same-origin requests (no CORS). Yjs CRDT syncs document state via WebSocket at /ws/doc/{id}. Kanban boards sync via /ws/board/{id}. PostgreSQL 16 stores all persistent data with goose migrations. Redis 7 handles presence state and session caching. Docker Compose orchestrates all services.',
+    detailedTechStack: [
+      { category: 'Backend', items: ['Go 1.25+', 'chi router', 'pgx/v5', 'goose migrations', 'golang-jwt'] },
+      { category: 'Frontend', items: ['Next.js 14 (App Router)', 'React 18', 'TypeScript', 'Tailwind CSS'] },
+      { category: 'Real-time', items: ['Yjs CRDT', 'ProseMirror', 'WebSocket', 'go-redis/v9'] },
+      { category: 'Database', items: ['PostgreSQL 16', 'Redis 7'] },
+      { category: 'Auth', items: ['JWT (in-memory)', 'Rotating Refresh Tokens', 'httpOnly Cookie', 'Reuse Detection'] },
+      { category: 'Infrastructure', items: ['Docker', 'Docker Compose'] }
+    ]
+  },
+  'wanar-ai': {
+    slug: 'wanar-ai',
+    problemStatement: 'Developers and teams need a customizable AI agent that can route across multiple AI providers (OpenAI, NVIDIA, Google Gemini) without being locked into a single vendor, while maintaining conversation context across unlimited turns, caching semantically similar queries, and providing enterprise-grade security and analytics. Existing solutions are either single-provider, lack advanced context management, or do not offer a unified CLI + Web interface.',
+    solution: 'Wanar AI v2.0 is an enterprise-grade AI Agent platform built on Node.js/Express with multi-provider orchestration across OpenAgentic, NVIDIA, and Vector backends. It features an intelligent router that selects the optimal provider per query, an advanced context manager for unlimited conversation history, semantic caching with SQLite to avoid redundant API calls, distributed architecture with Redis, enterprise auth with JWT, RAG (Retrieval-Augmented Generation) for document-grounded answers, and a built-in security scanner. Operates in both CLI mode and Web Server mode with a full chatbot UI.',
+    howToUse: 'Install dependencies with npm install. Run in CLI mode with "node src/cli.js" for direct terminal chat. Run in Web Server mode with "node src/server.js" to start the Express server and access the chatbot UI in the browser. Configure provider API keys in .env. Use RAG tools to ingest documents for grounded Q&A. Enterprise auth provides JWT-secured API endpoints for multi-user deployments.',
+    impact: 'Provides a vendor-neutral AI agent foundation that prevents provider lock-in while maximizing response quality through intelligent routing. Semantic caching reduces API costs by avoiding redundant calls for similar queries. The unlimited context manager solves the token limit problem for long conversations. Enterprise analytics provide visibility into usage, latency, and cost across providers. The dual CLI/Web interface makes the agent accessible to both developers (CLI) and end users (Web UI).',
+    keyFeatures: [
+      { title: 'Multi-Provider Orchestration', description: 'Supports OpenAgentic, NVIDIA, and Vector AI backends with intelligent routing. Automatically selects the optimal provider based on query type, latency, cost, and availability.' },
+      { title: 'Unlimited Context Management', description: 'Advanced context manager maintains full conversation history beyond standard token limits using sliding window compression and semantic summarization.' },
+      { title: 'Semantic Caching', description: 'SQLite-backed semantic cache detects similar queries and returns cached responses, significantly reducing API costs and response latency for repeated or similar questions.' },
+      { title: 'RAG (Retrieval-Augmented Generation)', description: 'Built-in RAG pipeline allows ingesting documents and querying them with grounded answers. Combines vector search with LLM generation for accurate, source-cited responses.' },
+      { title: 'Enterprise Auth & Security', description: 'JWT authentication with cookie-parser and Helmet for security headers. Built-in security scanner detects prompt injection, PII leakage, and other AI-specific threats.' },
+      { title: 'Enterprise Analytics', description: 'Real-time analytics dashboard tracking usage per provider, response latency, cache hit rate, token consumption, and cost estimates across all AI providers.' }
+    ],
+    architecture: 'Node.js + Express.js backend with modular provider architecture (src/providers/). Intelligent router (intelligent-router.js) selects providers dynamically. Advanced context manager (advanced-context-manager.js) handles unlimited history. Semantic cache (semantic-cache.js) uses SQLite via better-sqlite3. Redis (ioredis) handles distributed session state. Enterprise auth (enterprise-auth.js) manages JWT tokens. RAG pipeline (src/rag/) handles document ingestion and vector retrieval. Security scanner runs on every request.',
+    detailedTechStack: [
+      { category: 'Runtime', items: ['Node.js 18+', 'Express.js 4', 'TypeScript'] },
+      { category: 'AI Providers', items: ['OpenAgentic', 'NVIDIA NIM API', 'Google Gemini', 'OpenAI-compatible APIs'] },
+      { category: 'Storage', items: ['Redis (ioredis)', 'SQLite (better-sqlite3)'] },
+      { category: 'Auth & Security', items: ['JWT (jsonwebtoken)', 'Helmet', 'express-rate-limit', 'cookie-parser'] },
+      { category: 'AI Features', items: ['RAG Pipeline', 'Semantic Cache', 'Intelligent Router', 'Security Scanner'] },
+      { category: 'Interface', items: ['CLI (Inquirer.js)', 'Web Server (chatbot UI)', 'REST API'] }
+    ]
+  },
+  'nusantaralearn': {
+    slug: 'nusantaralearn',
+    problemStatement: 'Indonesian learners — particularly students in remote areas with limited internet connectivity — lack access to quality educational tools that work offline and respect their data privacy. Existing e-learning apps require constant internet, store sensitive data in the cloud, and are not optimized for the Indonesian educational context. There is also a gap in mobile learning apps that leverage on-device AI for personalized learning without sending user data to external servers.',
+    solution: 'NusantaraLearn is a cross-platform mobile learning application built with React Native (Expo) that features on-device AI inference via WebLLM (@mlc-ai/web-llm), enabling AI-powered learning assistance entirely offline without sending data to any server. The app uses expo-secure-store for encrypted local storage, Zustand for lightweight state management, and crypto-js for client-side data encryption. Push notifications keep learners engaged, expo-speech enables text-to-speech for accessibility, and Lottie animations provide a rich, engaging UI. Crash reporting via Sentry and performance monitoring ensure reliability.',
+    howToUse: 'Install the app on iOS, Android, or access via web. Complete the onboarding flow to set up your learning profile. Browse learning modules organized by subject and difficulty. The on-device AI assistant answers questions and provides explanations without internet — the LLM runs entirely on your device. Use text-to-speech to have content read aloud. Enable push notifications for learning reminders and streaks. All progress is stored encrypted locally for privacy.',
+    impact: 'Brings AI-powered personalized learning to Indonesian students regardless of internet connectivity by running inference on-device via WebLLM. Encrypted local storage ensures student data never leaves the device, addressing privacy concerns. The cross-platform Expo build targets iOS, Android, and Web from a single codebase, maximizing reach. Sentry crash reporting ensures production reliability. The nusantara-inspired design reflects Indonesian cultural identity, increasing engagement among the target demographic.',
+    keyFeatures: [
+      { title: 'On-Device AI (WebLLM)', description: 'AI learning assistant powered by @mlc-ai/web-llm runs entirely on the device — no internet required, no data sent to servers. Students in remote areas get the same AI assistance as urban students.' },
+      { title: 'Offline-First Architecture', description: 'All learning content, progress, and AI capabilities work without internet connectivity. Data is stored locally with expo-secure-store encryption for privacy and security.' },
+      { title: 'Cross-Platform (iOS/Android/Web)', description: 'Single React Native codebase with Expo targets iOS, Android, and web browsers simultaneously, maximizing reach with a single development effort.' },
+      { title: 'Accessibility Features', description: 'Text-to-speech via expo-speech reads content aloud for learners with visual impairments or reading difficulties. Haptic feedback enhances interaction clarity on mobile devices.' },
+      { title: 'Encrypted Local Storage', description: 'All user data stored locally using expo-secure-store and crypto-js encryption. Student learning data, progress, and profiles never leave the device.' },
+      { title: 'Production Monitoring', description: 'Sentry integration (React Native + Web) provides real-time crash reporting, performance monitoring, and error tracking to ensure reliable learning experiences.' }
+    ],
+    architecture: 'React Native 0.83 with Expo SDK 55 provides the cross-platform foundation. Expo Router handles file-based navigation. Zustand manages global state with minimal overhead. @mlc-ai/web-llm handles on-device LLM inference. expo-secure-store + crypto-js provide encrypted local storage. Sentry captures errors and performance data. expo-notifications handles push notification delivery. Lottie React Native renders complex animations efficiently.',
+    detailedTechStack: [
+      { category: 'Framework', items: ['React Native 0.83', 'Expo SDK 55', 'TypeScript', 'Expo Router'] },
+      { category: 'AI/ML', items: ['@mlc-ai/web-llm (On-Device LLM)', 'WebLLM Inference Engine'] },
+      { category: 'State & Storage', items: ['Zustand', 'expo-secure-store', 'crypto-js', 'AsyncStorage'] },
+      { category: 'UI/UX', items: ['Lottie React Native', 'Moti', 'expo-linear-gradient', 'expo-blur', 'React Native Reanimated'] },
+      { category: 'Platform', items: ['expo-speech', 'expo-haptics', 'expo-notifications', 'expo-font'] },
+      { category: 'Monitoring', items: ['Sentry React Native', 'Sentry React', 'Crash Reporting'] }
+    ]
+  },
+  'stokiq': {
+    slug: 'stokiq',
+    problemStatement: 'Small and medium businesses struggle to manage inventory efficiently — tracking stock levels, processing orders, managing suppliers, monitoring buyers, and forecasting demand typically requires expensive ERP systems or multiple disconnected spreadsheets. There is a need for an affordable, modern, web-based inventory management system with built-in analytics and AI-powered demand forecasting that SMBs can use without enterprise-level IT infrastructure.',
+    solution: 'Stokiq is a comprehensive inventory and stock management SaaS built with React and Supabase. It provides real-time stock tracking, order processing, supplier and buyer management, marketplace integration, sales analytics with Recharts visualizations, procurement inquiry management, and AI-powered demand forecasting (Prediksi module). The landing page converts visitors to users, while the authenticated dashboard provides full operational control. Framer Motion animations provide a polished, professional UX.',
+    howToUse: 'Sign up via the landing page. Connect your Supabase credentials in settings. Navigate the dashboard to manage stock items — add products with SKU, quantity, reorder points, and supplier info. Create and track orders through the full order lifecycle. Manage supplier contacts and buyer accounts. Use the Analytics module for sales trends and stock movement charts. The Prediksi (Forecasting) module uses historical data to recommend optimal stock levels. Export reports for accounting and auditing.',
+    impact: 'Provides SMBs with enterprise-level inventory intelligence at a fraction of the cost. Real-time Supabase sync ensures stock data is always current across multiple users. The Prediksi AI forecasting module reduces stockouts and overstock situations by predicting demand based on historical patterns. The marketplace integration module allows listing and syncing stock with e-commerce platforms. Recharts-powered analytics give business owners clear visibility into stock movement, sales trends, and supplier performance.',
+    keyFeatures: [
+      { title: 'Real-Time Stock Management', description: 'Full inventory tracking with SKU, quantity, reorder points, categories, and supplier linkage. Real-time Supabase sync ensures accurate stock levels across all users simultaneously.' },
+      { title: 'Order Processing', description: 'Complete order lifecycle management from creation to fulfillment. Track order status, link to suppliers and buyers, manage quantities and pricing, and maintain a full audit trail.' },
+      { title: 'AI Demand Forecasting (Prediksi)', description: 'Machine learning-powered demand forecasting analyzes historical sales patterns to recommend optimal reorder quantities and timing, reducing stockouts and overstock costs.' },
+      { title: 'Sales Analytics Dashboard', description: 'Recharts-powered analytics visualizing stock movement, sales trends, top products, supplier performance, and revenue metrics with interactive charts and date range filtering.' },
+      { title: 'Supplier & Buyer Management', description: 'Complete CRM for suppliers and buyers. Track contacts, transaction history, performance metrics, and communication logs for all business relationships.' },
+      { title: 'Marketplace Integration', description: 'Sync inventory with external e-commerce marketplaces. Manage listings, sync stock levels to prevent overselling, and track marketplace-specific orders from a unified dashboard.' }
+    ],
+    architecture: 'React 19 + TypeScript frontend with Vite build tooling. Supabase provides PostgreSQL database with real-time subscriptions, authentication, and Row Level Security for multi-tenant data isolation. React Router DOM handles client-side navigation across 10+ module pages. React Hook Form + Zod handle form validation. Recharts renders all analytics visualizations. Framer Motion provides page transitions and component animations. shadcn/ui + Radix UI provide the accessible component foundation.',
+    detailedTechStack: [
+      { category: 'Frontend', items: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'] },
+      { category: 'Backend', items: ['Supabase', 'PostgreSQL', 'Row Level Security', 'Real-time Subscriptions'] },
+      { category: 'UI Components', items: ['shadcn/ui', 'Radix UI', 'Lucide React', 'Recharts'] },
+      { category: 'Forms & Validation', items: ['React Hook Form', 'Zod', 'Hookform Resolvers'] },
+      { category: 'Navigation', items: ['React Router DOM v7'] },
+      { category: 'Auth', items: ['Supabase Auth', 'JWT', 'Role-Based Access Control'] }
+    ]
+  },
+  'presunivgo': {
+    slug: 'presunivgo',
+    problemStatement: 'President University students and alumni lack a dedicated professional networking platform tailored to their campus ecosystem. General platforms like LinkedIn are not optimized for university-specific networking, career guidance for students still in college, or real-time campus activity engagement. Students struggle to find mentors, build professional connections within their own university, get AI-driven career guidance relevant to their specific major, and stay updated on campus activities in a single platform.',
+    solution: 'PresUnivGo is a high-fidelity cross-platform professional networking app exclusively for President University, built with Flutter and Firebase. It features an AI Career Mentor Suite powered by Gemini (career roadmap generation, CV analysis, cover letter builder, smart post suggestions, and MentorBot). The app uses Riverpod for reactive state management, Cloud Firestore for real-time synchronization, and a Zero-Storage Architecture that eliminates paid cloud storage costs. The Radiant Design System features glassmorphism, wave UI with Bezier curves, staggered micro-animations, and premium variable fonts (Outfit & Inter).',
+    howToUse: 'Download the app or access via web at puconnect-9e8fb.web.app. Register with your President University credentials. Complete your profile with academic major, experience, and career goals. The AI Career Roadmap generates a personalized milestone-based career path for your specific major. Use the Main Feed to engage with campus activities via likes and comments. Connect with peers through the Networking Engine — the system suggests relevant connections based on your profile. Use AI CV Analysis to get structural feedback on your resume. The MentorBot answers career and campus queries in real time.',
+    impact: 'Provides President University students with Fortune 500-level career tools at zero cost through smart architectural choices. The Zero-Storage Architecture eliminates paid cloud storage entirely by using efficient data structures and Firestore document storage. Riverpod FutureProvider and StreamProvider families ensure reactive, always-fresh UI state. Firebase Crashlytics provides production crash monitoring. The AI Career Suite bridges the gap between academic study and industry requirements, helping students build career readiness from their first semester. Deployed as both a native Flutter app and Progressive Web App for maximum reach.',
+    keyFeatures: [
+      { title: 'AI Career Mentor Suite', description: 'Five integrated AI tools powered by Google Gemini: milestone-based Career Roadmap tailored to academic major, structural CV Analysis with actionable feedback, professional Cover Letter Builder, Smart Post Suggestions based on academic history, and MentorBot for real-time career guidance.' },
+      { title: 'Real-Time Social Feed', description: 'Main Feed with campus activity posts, likes, and comments — all synchronized in real time via Firestore streams. Instant search with 300ms debounce for finding people and content across the platform.' },
+      { title: 'Professional Networking Engine', description: 'Real-time connection management with instant Firestore synchronization. Algorithm-driven connection suggestions based on major, interests, and activity patterns. Career analytics dashboard with profile strength metrics.' },
+      { title: 'Radiant Design System', description: 'Bespoke "Radiant Magenta & Pristine White" palette with glassmorphism containers (blur 15-20, opacity 0.7-0.8), custom Bezier wave UI for onboarding flows, staggered entrance animations, and micro-interactions via flutter_animate.' },
+      { title: 'Zero-Storage Architecture', description: 'Engineered to eliminate all paid cloud storage dependencies while maintaining full media functionality. Uses efficient Firestore document structures and client-side processing to achieve zero storage costs.' },
+      { title: 'Cross-Platform Deployment', description: 'Single Flutter 3.24 codebase deployed as native iOS app, native Android app, and Progressive Web App. Firebase App Check prevents unauthorized API access across all platforms.' }
+    ],
+    architecture: 'Flutter 3.24 (stable channel) frontend with Dart. Firebase Auth handles RBAC and OAuth2 with App Check for API security. Cloud Firestore provides real-time NoSQL database with stream-based UI synchronization. Firebase Messaging delivers push notifications. Firebase Analytics + Crashlytics provide usage insights and crash monitoring. Firebase Remote Config enables A/B testing and feature flags. Riverpod manages all app state via FutureProvider/StreamProvider families. go_router handles declarative navigation. Hive provides offline caching.',
+    detailedTechStack: [
+      { category: 'Framework', items: ['Flutter 3.24', 'Dart', 'Expo-equivalent cross-platform'] },
+      { category: 'Backend', items: ['Firebase Auth', 'Cloud Firestore', 'Firebase Storage', 'Firebase App Check'] },
+      { category: 'AI', items: ['Google Gemini API', 'AI Career Roadmap', 'CV Analysis', 'MentorBot'] },
+      { category: 'State Management', items: ['flutter_riverpod', 'FutureProvider', 'StreamProvider'] },
+      { category: 'Navigation & UI', items: ['go_router', 'flutter_animate', 'shimmer', 'google_fonts', 'Glassmorphism'] },
+      { category: 'Monitoring', items: ['Firebase Crashlytics', 'Firebase Analytics', 'Firebase Remote Config', 'Firebase Messaging'] }
+    ]
+  },
+  'e2ee-secure-chat': {
+    slug: 'e2ee-secure-chat',
+    problemStatement: 'Real-time chat systems commonly store and transmit messages in plaintext on the server, making them vulnerable to server-side breaches and man-in-the-middle attacks. There is educational value in demonstrating end-to-end encryption concepts through a working implementation — showing how symmetric encryption (AES) on the sender side and asymmetric decryption (RSA) on the receiver side can create a secure communication channel where the server only ever sees ciphertext.',
+    solution: 'A C++ end-to-end encrypted real-time chat application built with the Crow web framework and ASIO for async networking. Messages are encrypted with AES (symmetric) before transmission and decrypted with RSA (asymmetric private key) on the receiver side. The server handles WebSocket connections via Crow, manages a mutex-protected message queue for thread safety, and serves the web UI from templates. TLS/SSL is implemented with self-signed certificates (cert.pem/key.pem). User authentication gates access before any message exchange.',
+    howToUse: 'Compile with the provided Makefile (requires ASIO and Crow headers). Run the compiled executable to start the server. Access the web UI in a browser at the server address. Authenticate with credentials to enter the chat. Messages are encrypted client-side before sending — the server only stores and forwards ciphertext. Multiple concurrent users are supported via WebSocket connections managed with mutex-locked connection pools.',
+    impact: 'Demonstrates end-to-end encryption concepts in a fully working C++ implementation, bridging the gap between cryptography theory and practical application. The mutex-protected message queue and WebSocket connection pool showcase systems programming fundamentals in C++. TLS/SSL implementation adds transport-layer security on top of application-layer E2EE for defense-in-depth. The project serves as a reference implementation for understanding how modern secure messaging applications implement layered encryption.',
+    keyFeatures: [
+      { title: 'End-to-End Encryption', description: 'AES symmetric encryption applied to messages before transmission. RSA asymmetric decryption on the receiver side. Server only ever processes and stores ciphertext — plaintext never touches the server.' },
+      { title: 'WebSocket Real-Time Messaging', description: 'Crow framework WebSocket implementation enables full-duplex real-time message exchange. Mutex-protected connection pool manages concurrent WebSocket connections safely in a multi-threaded environment.' },
+      { title: 'TLS/SSL Transport Security', description: 'Self-signed certificate (cert.pem/key.pem) provides TLS transport encryption on top of application-layer E2EE for defense-in-depth security.' },
+      { title: 'User Authentication', description: 'HTTP POST authentication endpoint validates credentials before granting access to the encrypted chat channel. Stateless auth flow integrated with Crow routing.' },
+      { title: 'Multi-threaded Architecture', description: 'ASIO async I/O with multi-threaded message handling. std::mutex and std::vector<crow::websocket::connection*> manage concurrent connections safely with chronological message ordering.' }
+    ],
+    architecture: 'C++ application using Crow (header-only web framework) with ASIO for async I/O. WebSocket endpoint manages a mutex-protected vector of active connections. Messages stored in a std::vector<Message> with timestamp, user, and content fields. Encryption layer (encryption.h) provides AES XOR cipher and RSA placeholder. HTML/JS UI served from templates/ directory via Crow mustache rendering. TLS configured via ASIO SSL context with self-signed certificates.',
+    detailedTechStack: [
+      { category: 'Language', items: ['C++17', 'Crow Framework', 'ASIO (Async I/O)'] },
+      { category: 'Cryptography', items: ['AES Symmetric Encryption', 'RSA Asymmetric Decryption', 'TLS/SSL (OpenSSL)'] },
+      { category: 'Networking', items: ['WebSocket (Crow)', 'HTTP REST Endpoints', 'Self-Signed TLS Certificates'] },
+      { category: 'Concurrency', items: ['std::mutex', 'Multi-threaded Message Queue', 'ASIO Event Loop'] },
+      { category: 'Build', items: ['Makefile', 'vcpkg (dependency management)'] }
+    ]
   }
 };

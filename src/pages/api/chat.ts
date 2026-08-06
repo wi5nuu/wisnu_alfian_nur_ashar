@@ -27,9 +27,8 @@ export const POST: APIRoute = async ({ request }) => {
       `- **${e.title}** at ${e.company} (${e.period}): ${e.description}`
     ).join('\n');
 
-    const education = profileData.education.map((e: any) =>
-      `- **${e.degree}** — ${e.institution} (${e.period})${e.gpa ? ` | GPA: ${e.gpa}` : ''}`
-    ).join('\n');
+    const edu = profileData.education;
+    const education = `- **${edu.degree}** — ${edu.institution} (${edu.duration})${edu.focus ? ` | ${edu.focus}` : ''}`;
 
     const certifications = profileData.certifications.map((c: any) =>
       `- **${c.name}** — ${c.issuer} (${c.year})`
