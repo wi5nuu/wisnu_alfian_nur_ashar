@@ -260,7 +260,7 @@ export const profile: Profile = {
             link: "https://www.ashargrosirparfum.com",
             description: "E-Commerce komersial ritel online utama bagi perusahaan grosir wangian berumur lebih dari dua dekade. Saat ini memperkuat distribusi lancarnya terhadap lebih dari 15,000 langganan skala besar.",
             techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
-            image: "/projects/AsharGrosirParfum.png"
+            image: "/projects/AsharGrosirParfum.webp"
         },
         {
             title: "SENTINEL-X",
@@ -271,49 +271,51 @@ export const profile: Profile = {
             link: "https://github.com/wi5nuu/SENTINEL-X-X-Domain-Threat-Fusion-Platform",
             description: "Platform Inteligensi Ancaman & Fusion Multi-Domain. Sistem simulasi terintegrasi untuk kesadaran situasional, korelasi berbasis AI dengan arsitektur Multi-Modal, dan respons insiden otomatis secara real-time dari berbagai sumber domain (Aviation, Maritime, Cyber, Space, Seismic, RF/SIGINT).",
             techStack: ["FastAPI", "React", "PyTorch", "Kafka", "TimescaleDB", "Blockchain", "Docker"],
-            image: "/projects/sentinelx.png"
+            image: "/projects/sentinelx.webp"
         },
         {
-            title: "Shooply",
-            role: "Full-Stack Architect",
+            title: "Zentic Enterprise",
+            role: "Backend Developer",
+            status: "Completed",
+            featured: true,
+            github: "https://github.com/wi5nuu/zentic",
+            link: "https://github.com/wi5nuu/zentic",
+            description: "Sistem requisisi pengeluaran tingkat enterprise yang dibangun dengan Clean Architecture pada ASP.NET MVC 10, Entity Framework Core, dan SQL Server. Fitur alur persetujuan multi-tier, deteksi fraud dengan flagging real-time, 3-way matching (PO/Invoice/Goods Receipt), manajemen vendor, audit log yang immutable, dan dashboard keuangan komprehensif dengan pelacakan KPI. Mengimplementasikan password hashing BCrypt, enkripsi AES-256-GCM, dan rate limiting untuk keamanan.",
+            techStack: ["ASP.NET MVC 10", ".NET 10", "C#", "Entity Framework Core", "SQL Server", "Bootstrap 5", "BCrypt.Net", "FluentValidation", "xUnit"],
+            image: "/projects/zentic.webp"
+        },
+        {
+            title: "Finance-Requester",
+            role: "Full-Stack Developer",
+            status: "Completed",
+            featured: true,
+            github: "https://github.com/wi5nuu/Finance-Requester",
+            link: "https://github.com/wi5nuu/Finance-Requester",
+            description: "Sistem Payment Requisition (PRS) tingkat enterprise untuk mengelola requisisi pembayaran dengan persetujuan multi-tier, anggaran, vendor, purchase order, dan penyelesaian cash advance. Dibangun dengan arsitektur terpisah menggunakan Laravel 12 backend API dan Next.js 16 frontend, sepenuhnya diorkestrasi via Docker. Fitur update real-time SSE, 3-way matching, pembayaran batch, RBAC, audit logging, dan penyimpanan MinIO kompatibel S3.",
+            techStack: ["Laravel 12", "PHP 8.2", "Next.js 16", "React 19", "TypeScript", "PostgreSQL 16", "Redis", "MinIO", "Docker", "Tailwind CSS"],
+            image: "/projects/FinanceRequester.webp"
+        },
+        {
+            title: "Pulse",
+            role: "Full-Stack Developer",
+            status: "In Development",
+            featured: true,
+            github: "https://github.com/wi5nuu/pulse",
+            link: "https://github.com/wi5nuu/pulse",
+            description: "Workspace kolaboratif real-time dengan editor teks kaya, papan Kanban, kehadiran langsung, dan riwayat versi. Dibangun dengan replikasi tanpa konflik CRDT menggunakan Yjs + ProseMirror sehingga banyak pengguna dapat mengedit secara bersamaan dengan resolusi konflik otomatis. Fitur undo/redo multiplayer per-pengguna, Kanban drag-and-drop dengan fractional indexing, riwayat versi berbasis snapshot, sistem undangan dengan peran editor/viewer, autentikasi JWT in-memory dengan rotating refresh token dan deteksi reuse.",
+            techStack: ["Go", "Next.js 14", "PostgreSQL", "Redis", "TypeScript", "Tailwind CSS", "Yjs", "ProseMirror", "WebSocket", "Docker", "JWT"],
+            image: "/projects/Pulse.webp"
+        },
+        {
+            title: "PresUnivGo",
+            role: "Mobile Developer",
             status: "Production",
             featured: true,
-            link: "#",
-            description: "Platform E-Commerce berkinerja mutlak lewat pemanfaatan Microservice. Kombinasi bagian utama antarmuka berbasis (Next.js SSR-optimized) dan mesin Server sangat mutakhir melalui (GoFiber Backend). Didukung skema canggih berupa (Redis-RabbitMQ-Prometheus & Zerolog-OpenTelemetry).",
-            techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
-            image: "/projects/shooply.png"
-        },
-        {
-            title: "LexCorpus CMS Platform",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: true,
-            github: "https://github.com/wi5nuu",
-            link: "https://www.lexcorpuslaw.com",
-            description: "CMS skala industri (khusus bagian hukum riset & Dokumen). Menghadirkan sistem ke-editorial-an ketat berbasis aturan ganda, dengan teks rilis kaya fitur canggih.",
-            techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
-            image: "/projects/Lexcorpus.png"
-        },
-        {
-            title: "Nuxar Perfumery",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: false,
-            link: "https://nuxar.vercel.app/",
-            description: "Website merek Parfum tingkat Tinggi berselimutkan pesona Animasi Cinematik 3 Dimensi, scroll Trigger serta partikel debu menyatu. Engine didorong dengan performa Railway dalam naungan mesin Golang.",
-            techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
-            image: "/projects/NuxarPerfumery.png"
-        },
-        {
-            title: "PC FKMA Jakarta Website",
-            role: "Full-Stack Developer",
-            status: "Production",
-            featured: false,
-            github: "https://github.com/wi5nuu",
-            link: "https://pcfkmaasadiyahjakarta.vercel.app/",
-            description: "Portal Pusat digital para cendekia dan pelajar Asumsi dari As'adiyah di wilayah DKI Jakarta. Dilengkapi data personal maupun kolom portal berita utama.",
-            techStack: ["Next.js", "Tailwind CSS", "Vercel"],
-            image: "/projects/FKMA_Asadiyah_Jakarta.png"
+            github: "https://github.com/wi5nuu/puconnect",
+            link: "https://puconnect-9e8fb.web.app",
+            description: "Platform networking profesional cross-platform eksklusif untuk President University. Memiliki AI Career Mentor Suite yang didukung Gemini (roadmap karir, analisis CV, pembuat cover letter, saran postingan cerdas, MentorBot), sinkronisasi Firestore real-time, UI glassmorphism dengan desain gelombang dan animasi mikro, pencarian instan dengan debounce 300ms, mesin networking real-time, dashboard analitik karir, dan Zero-Storage Architecture untuk efisiensi biaya. Di-deploy sebagai aplikasi mobile Flutter dan Progressive Web App.",
+            techStack: ["Flutter", "Firebase Auth", "Cloud Firestore", "Firebase Messaging", "Riverpod", "go_router", "Gemini AI", "Hive", "flutter_animate", "Google Fonts"],
+            image: "/projects/PresUnivGo.webp"
         },
         {
             title: "Grawizah",
@@ -324,18 +326,18 @@ export const profile: Profile = {
             link: "https://grawizah-com.vercel.app/",
             description: "Platform Intelijen Perdagangan Global berbasis AI yang memberdayakan UMKM Indonesia untuk Go Global. Fitur neural AI matchmaking bertenaga Groq Llama 3.3, klasifikasi HS Code otomatis, pemetaan rantai pasokan real-time, perbandingan harga kompetitor, dan penerjemah perdagangan multibahasa yang mendukung 14 bahasa. Dibangun untuk TechSprint Innovation Cup 2026 dengan Next.js 14 dan backend Go (Golang) — memenangkan kategori Web Developer.",
             techStack: ["Next.js 14", "TypeScript", "Go (Golang)", "Tailwind CSS", "Supabase", "Groq Llama 3.3", "AI/ML", "JWT"],
-            image: "/projects/grawizah.png"
+            image: "/projects/grawizah.webp"
         },
         {
-            title: "TruthLayer",
-            role: "Architect & Full-Stack Developer",
-            status: "Production",
-            featured: true,
-            github: "https://github.com/wi5nuu/Truthlayer",
-            link: "https://truthlayer.io",
-            description: "Chrome Extension + Backend + Web Dashboard yang mengungkap niat tersembunyi setiap website yang Anda kunjungi. Menyediakan Trust Score (0-100), mendeteksi 10+ taktik manipulasi dark pattern (fake urgency, confirmshaming, disguised ads, forced action), mengaudit pengumpulan data & pelacak pihak ketiga, mengestimasi persentase konten buatan AI, dan memungkinkan berbagi laporan publik via truthlayer.io/report/domain. Dibangun dengan Manifest V3 Chrome Extension, dashboard Next.js 15, backend Node.js Express didukung Claude AI, dan deployment Docker di Netlify.",
-            techStack: ["Next.js 15", "TypeScript", "Chrome Extension", "Node.js", "Express.js", "Claude AI", "Docker", "Netlify"],
-            image: "/projects/thrutlayer.png"
+            title: "Stokiq",
+            role: "Full-Stack Developer",
+            status: "In Development",
+            featured: false,
+            github: "https://github.com/wi5nuu/stokiq",
+            link: "https://github.com/wi5nuu/stokiq",
+            description: "Sistem manajemen inventori dan stok yang komprehensif dengan peramalan permintaan berbasis AI. Modul mencakup manajemen stok, pemrosesan pesanan, manajemen pemasok, manajemen pembeli, integrasi marketplace, analitik penjualan, inquiry pengadaan, dan pelaporan terperinci. Dibangun dengan React + Supabase untuk sinkronisasi data real-time, menampilkan analitik prediktif (Prediksi) untuk rekomendasi tingkat stok.",
+            techStack: ["React", "TypeScript", "Supabase", "Tailwind CSS", "shadcn/ui", "Recharts", "React Hook Form", "Zod", "Framer Motion", "React Router"],
+            image: "/projects/StokIQ.webp"
         },
         {
             title: "ColonyAI",
@@ -346,29 +348,50 @@ export const profile: Profile = {
             link: "https://colonyai-eta.vercel.app",
             description: "Sistem Penghitung Koloni Bakteri Otomatis berbasis AI untuk laboratorium mikrobiologi. Model YOLOv8 yang di-fine-tune mencapai 94.1% mAP@0.5, 94.7% presisi, dan 92.5% recall dari 56.124 anotasi bounding box. Mengubah gambar piring agar menjadi laporan CFU/ml terstandar dalam waktu kurang dari 2 menit — mengurangi variabilitas antar-analisis hingga 92.5%. Dilengkapi CLAHE preprocessing, deteksi pelat Hough Circle, estimasi koloni SA-001, ketidakpastian pengukuran GUM, jejak audit SHA-256 untuk kepatuhan ISO 17025, serta pelaporan PDF/CSV sesuai BPOM & SNI. Dibangun dengan FastAPI, Next.js 14, PostgreSQL, dan di-deploy pada Railway dengan CI/CD pipeline.",
             techStack: ["YOLOv8", "FastAPI", "Next.js 14", "TypeScript", "PostgreSQL", "OpenCV", "AWS S3", "Railway", "Vercel"],
-            image: "/projects/ColonyAI.png"
+            image: "/projects/ColonyAI.webp"
         },
         {
-            title: "Fanguard Strategic Hub",
-            role: "Architect & Lead Developer",
+            title: "Shooply",
+            role: "Full-Stack Architect",
             status: "Production",
             featured: true,
-            github: "https://github.com/wi5nuu",
-            link: "https://vanguard-execution.vercel.app/",
-            description: "Pusat dasbor kontrol eksekusi tugas skala berat dan strategi manajerial setaraf Korporasi. Dilengkapi kecepatan brutal lewat Fastify engine dengan Realtime perlindungan berlapis RBAC dan arsitektur Next.js dashboard kompleks.",
-            techStack: ["Next.js 14", "Fastify", "PostgreSQL", "Prisma", "Redis", "Docker", "Socket.io", "Radix UI", "shadcn/ui", "Zustand", "Vitest"],
-            image: "/projects/vanguard.png"
+            link: "#",
+            description: "Platform E-Commerce berkinerja mutlak lewat pemanfaatan Microservice. Kombinasi bagian utama antarmuka berbasis (Next.js SSR-optimized) dan mesin Server sangat mutakhir melalui (GoFiber Backend). Didukung skema canggih berupa (Redis-RabbitMQ-Prometheus & Zerolog-OpenTelemetry).",
+            techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
+            image: "/projects/shooply.webp"
         },
         {
-            title: "Risk Shield System",
-            role: "Lead Developer / Cyber Security",
+            title: "TruthLayer",
+            role: "Architect & Full-Stack Developer",
             status: "Production",
             featured: true,
-            github: "https://github.com/wi5nuu/risk-assessment-platform",
-            link: "https://riskshield.vercel.app/",
-            description: "Sistem pendeteksi Risiko (GRC) tingkat atas dengan tenaga buatan AI yang mampu menganalisis standarisasi secara real-time. Langsung tersambung dengan kemampuan pintar dari sistem canggih milik Google Gemini 1.5, mempercepat laporan kepatuhan yang instan.",
-            techStack: ["Next.js 14", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion", "Supabase", "Google Gemini Pro", "jsPDF", "Recharts"],
-            image: "/projects/riskshieldsystem.png"
+            github: "https://github.com/wi5nuu/Truthlayer",
+            link: "https://truthlayer.io",
+            description: "Chrome Extension + Backend + Web Dashboard yang mengungkap niat tersembunyi setiap website yang Anda kunjungi. Menyediakan Trust Score (0-100), mendeteksi 10+ taktik manipulasi dark pattern (fake urgency, confirmshaming, disguised ads, forced action), mengaudit pengumpulan data & pelacak pihak ketiga, mengestimasi persentase konten buatan AI, dan memungkinkan berbagi laporan publik via truthlayer.io/report/domain. Dibangun dengan Manifest V3 Chrome Extension, dashboard Next.js 15, backend Node.js Express didukung Claude AI, dan deployment Docker di Netlify.",
+            techStack: ["Next.js 15", "TypeScript", "Chrome Extension", "Node.js", "Express.js", "Claude AI", "Docker", "Netlify"],
+            image: "/projects/thrutlayer.webp"
+        },
+        {
+            title: "Wanar AI v2.0",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: false,
+            github: "https://github.com/wi5nuu/wanar-ai",
+            link: "https://github.com/wi5nuu/wanar-ai",
+            description: "Platform AI Agent multi-provider tingkat enterprise dengan orkestrasi OpenAgentic, NVIDIA, dan Vector. Fitur intelligent provider router, riwayat konteks tanpa batas, semantic caching via SQLite, arsitektur Redis terdistribusi, autentikasi JWT, RAG untuk jawaban berbasis dokumen, dan security scanner. Mendukung mode CLI dan Web Server dengan UI chatbot lengkap.",
+            techStack: ["Node.js", "Express", "OpenAgentic", "NVIDIA API", "Vector API", "Redis", "SQLite", "JWT", "RAG"],
+            image: "/projects/wanarai.webp"
+        },
+        {
+            title: "NusantaraLearn",
+            role: "Mobile Developer",
+            status: "In Development",
+            featured: true,
+            github: "https://github.com/wi5nuu/NusantaraLearn",
+            link: "https://github.com/wi5nuu/NusantaraLearn",
+            description: "Aplikasi pembelajaran mobile cross-platform yang dibangun dengan React Native (Expo) dengan inferensi AI on-device via WebLLM (@mlc-ai/web-llm), arsitektur offline-first dengan penyimpanan lokal terenkripsi, push notification, text-to-speech, animasi Lottie, dan haptic feedback. Menargetkan pelajar Indonesia dengan desain terinspirasi nusantara. Crash reporting via Sentry, state management dengan Zustand, dan penyimpanan aman dengan expo-secure-store.",
+            techStack: ["React Native", "Expo", "TypeScript", "WebLLM", "Zustand", "Crypto-JS", "Sentry", "Lottie", "Expo Router", "Firebase"],
+            image: "/projects/nusantaralearn.webp"
         },
         {
             title: "Human Firewall",
@@ -379,18 +402,61 @@ export const profile: Profile = {
             link: "https://humanfirewall.vercel.app/",
             description: "Platform latihan berbasis Cyber Security di mana para anggota akan belajar simulasi Phishing interaktif beserta rekaman pergerakan demi ketahanan organasisasi.",
             techStack: ["React", "TypeScript", "Supabase", "Tailwind CSS"],
-            image: "/projects/humanfirewallintelligenceplatform.png"
+            image: "/projects/humanfirewallintelligenceplatform.webp"
         },
         {
-            title: "HargaKita.id",
+            title: "Risk Shield System",
+            role: "Lead Developer / Cyber Security",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/risk-assessment-platform",
+            link: "https://riskshield.vercel.app/",
+            description: "Sistem pendeteksi Risiko (GRC) tingkat atas dengan tenaga buatan AI yang mampu menganalisis standarisasi secara real-time. Langsung tersambung dengan kemampuan pintar dari sistem canggih milik Google Gemini 1.5, mempercepat laporan kepatuhan yang instan.",
+            techStack: ["Next.js 14", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion", "Supabase", "Google Gemini Pro", "jsPDF", "Recharts"],
+            image: "/projects/riskshieldsystem.webp"
+        },
+        {
+            title: "LexCorpus CMS Platform",
             role: "Full-Stack Developer",
             status: "Production",
             featured: true,
-            github: "https://github.com/wi5nuu/hargakita.id",
-            link: "https://hargakita.netlify.app/",
-            description: "Platform pemantau harga bahan pokok Indonesia secara real-time dari ratusan pasar di 34 provinsi. SaaS visual dan ramah pengguna yang melacak harga komoditas esensial (beras, cabai, bawang, telur, minyak goreng) tanpa perlu login. Fitur laporan harga crowdsourced dengan filter validasi cerdas, scraping data harian otomatis dari portal pemerintah, grafik tren interaktif, dan akses gratis untuk seluruh masyarakat Indonesia.",
-            techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Appwrite", "Netlify", "Chart.js", "Crowdsourcing"],
-            image: "/projects/hargakita.png"
+            github: "https://github.com/wi5nuu",
+            link: "https://www.lexcorpuslaw.com",
+            description: "CMS skala industri (khusus bagian hukum riset & Dokumen). Menghadirkan sistem ke-editorial-an ketat berbasis aturan ganda, dengan teks rilis kaya fitur canggih.",
+            techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
+            image: "/projects/Lexcorpus.webp"
+        },
+        {
+            title: "Fanguard Strategic Hub",
+            role: "Architect & Lead Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu",
+            link: "https://vanguard-execution.vercel.app/",
+            description: "Pusat dasbor kontrol eksekusi tugas skala berat dan strategi manajerial setaraf Korporasi. Dilengkapi kecepatan brutal lewat Fastify engine dengan Realtime perlindungan berlapis RBAC dan arsitektur Next.js dashboard kompleks.",
+            techStack: ["Next.js 14", "Fastify", "PostgreSQL", "Prisma", "Redis", "Docker", "Socket.io", "Radix UI", "shadcn/ui", "Zustand", "Vitest"],
+            image: "/projects/vanguard.webp"
+        },
+        {
+            title: "Nuxar Perfumery",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: false,
+            link: "https://nuxar.vercel.app/",
+            description: "Website merek Parfum tingkat Tinggi berselimutkan pesona Animasi Cinematik 3 Dimensi, scroll Trigger serta partikel debu menyatu. Engine didorong dengan performa Railway dalam naungan mesin Golang.",
+            techStack: ["Golang", "React 19", "TypeScript", "Vite", "Tailwind CSS 3", "GSAP (ScrollTrigger)", "Railway"],
+            image: "/projects/NuxarPerfumery.webp"
+        },
+        {
+            title: "PC FKMA Jakarta Website",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: false,
+            github: "https://github.com/wi5nuu",
+            link: "https://pcfkmaasadiyahjakarta.vercel.app/",
+            description: "Portal Pusat digital para cendekia dan pelajar Asumsi dari As'adiyah di wilayah DKI Jakarta. Dilengkapi data personal maupun kolom portal berita utama.",
+            techStack: ["Next.js", "Tailwind CSS", "Vercel"],
+            image: "/projects/FKMA_Asadiyah_Jakarta.webp"
         },
         {
             title: "Wiskost Residence",
@@ -401,8 +467,30 @@ export const profile: Profile = {
             link: "https://wiskost.vercel.app/",
             description: "Website eksklusif perumahan terinspirasi kilapan emas gelap. Didesain kuat dan dioptimasi oleh kemampuan pipeline deployment.",
             techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Docker", "Hugging Face", "Formspree", "Vercel"],
-            image: "/projects/WiskostResidence.png"
-        }
+            image: "/projects/WiskostResidence.webp"
+        },
+        {
+            title: "HargaKita.id",
+            role: "Full-Stack Developer",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/hargakita.id",
+            link: "https://hargakita.netlify.app/",
+            description: "Platform pemantau harga bahan pokok Indonesia secara real-time dari ratusan pasar di 34 provinsi. SaaS visual dan ramah pengguna yang melacak harga komoditas esensial (beras, cabai, bawang, telur, minyak goreng) tanpa perlu login. Fitur laporan harga crowdsourced dengan filter validasi cerdas, scraping data harian otomatis dari portal pemerintah, grafik tren interaktif, dan akses gratis untuk seluruh masyarakat Indonesia.",
+            techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Appwrite", "Netlify", "Chart.js", "Crowdsourcing"],
+            image: "/projects/hargakita.webp"
+        },
+        {
+            title: "Encrypted Messaging App",
+            role: "Systems Developer",
+            status: "Completed",
+            featured: false,
+            github: "https://github.com/wi5nuu/E2EE_WebApp",
+            link: "https://github.com/wi5nuu/E2EE_WebApp",
+            description: "Aplikasi chat real-time terenkripsi end-to-end yang dibangun dengan C++ menggunakan framework Crow dan ASIO untuk jaringan asinkron. Mengimplementasikan enkripsi AES simetris sebelum transmisi pesan dan dekripsi RSA asimetris di sisi penerima. Fitur messaging real-time berbasis WebSocket, autentikasi pengguna, TLS/SSL dengan sertifikat self-signed, dan arsitektur multi-threaded dengan antrian pesan yang dilindungi mutex.",
+            techStack: ["C++", "Crow Framework", "ASIO", "WebSocket", "AES Encryption", "RSA", "TLS/SSL", "Makefile"],
+            image: "/projects/e2eewebapp.webp"
+        },
     ],
     education: {
         institution: "President University",
@@ -433,7 +521,7 @@ export const profile: Profile = {
             date: "Maret 2026",
             id: "10034834",
             description: "Kursus pondasi integrasi penuh bagian antarmuka maupun sistem pusat. Menganalisis skema arsitektur berskala berbasis ekosistem JavaScript.",
-            image: "/certifications/Full-Stack_Development_101.png"
+            image: "/certifications/Full-Stack_Development_101.webp"
         },
         {
             name: "Belajar Dasar Pemrograman Web",
@@ -442,7 +530,7 @@ export const profile: Profile = {
             expiry: "Maret 2029",
             id: "JLX1VWN35Z72",
             description: "Penguasaan dasar semantik blok elemen layar HTML beserta tata desain ciamik CSS dengan standarisasi mutlak.",
-            image: "/certifications/Dicoding_Web_Dasar.png"
+            image: "/certifications/Dicoding_Web_Dasar.webp"
         },
         {
             name: "AWS Cloud Practitioner Essentials \u2013 Training Completion",
@@ -450,7 +538,7 @@ export const profile: Profile = {
             date: "Maret 2026",
             id: "",
             description: "Tinjauan terpadu komputasi jaringan dunia dalam server modern, beserta ketahanan standar sistem Amazon Web Services.",
-            image: "/certifications/aws_cloud_practioner_essentials.png"
+            image: "/certifications/aws_cloud_practioner_essentials.webp"
         },
         {
             name: "AWS Technical Essentials",
@@ -458,7 +546,7 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "",
             description: "Tinjauan spesifik teknis dari struktur layanan jaringan dan pengoperasian Database terpusat Amazon Web Services.",
-            image: "/certifications/aws_technical_essentials.png"
+            image: "/certifications/aws_technical_essentials.webp"
         },
         {
             name: "Google Ads Search Certification",
@@ -467,7 +555,7 @@ export const profile: Profile = {
             expiry: "Februari 2027",
             id: "173326967",
             description: "Penguasaan dominasi tingkat atas dari metode kampanye pencarian produk via Search Google dan analisis pelanggan tajam untuk penjualan optimal.",
-            image: "/certifications/Google_Ads_Search.png"
+            image: "/certifications/Google_Ads_Search.webp"
         },
         {
             name: "Sertifikasi Analytics Google (GA4)",
@@ -476,7 +564,7 @@ export const profile: Profile = {
             expiry: "Februari 2027",
             id: "173326065",
             description: "Pengaturan analisis super canggih untuk membedah data tersembunyi para audiens untuk mendapatkan petunjuk emas bagi arah laju bisnis pasar.",
-            image: "/certifications/Google_Analytics.png"
+            image: "/certifications/Google_Analytics.webp"
         },
         {
             name: "Sertifikasi Integrasi Data Lanjutan",
@@ -485,7 +573,7 @@ export const profile: Profile = {
             expiry: "Maret 2027",
             id: "ab0238d2c3f14a16bfb744c1a9e28356",
             description: "Ahli di dalam penyatuan rantai-rantai lunak antara beberapa perangkat sentral menjadi sebuah pusaran sistem otomatis.",
-            image: "/certifications/Data_Integrations_Certification.png"
+            image: "/certifications/Data_Integrations_Certification.webp"
         },
         {
             name: "Engineer Basis Perangkat Lunak (SEC)",
@@ -493,7 +581,7 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "D73F5CD372E0",
             description: "Validasi paten kelas atas standar dasar-dasar ilmu pengembangan, perancangan algoritma kuat dan strategi proses perbaikan bug menyeluruh.",
-            image: "/certifications/Software_Engineer.png"
+            image: "/certifications/Software_Engineer.webp"
         },
         {
             name: "Frontend Developer Engineer (React)",
@@ -501,7 +589,7 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "84B47591D6EC",
             description: "Validasi kecekatan ahli yang mendalam menggunakan React secara interaktif, efisien serta manipulasi rendering untuk meminimalisasi hambatan memori sistem.",
-            image: "/certifications/Frontend_Developer.png"
+            image: "/certifications/Frontend_Developer.webp"
         },
         {
             name: "Golang (Basic)",
@@ -509,7 +597,7 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "C9F8A2B1E3D4",
             description: "Kemahiran dasar dalam bahasa pemrograman Go, meliputi sintaks, struktur data, pola konkurensi, dan penggunaan pustaka standar.",
-            image: "/certifications/golang.png"
+            image: "/certifications/golang.webp"
         },
         {
             name: "Software Engineer Intern",
@@ -517,7 +605,7 @@ export const profile: Profile = {
             date: "Januari 2026",
             id: "E4D7F2A9C1B5",
             description: "Penilaian komprehensif fundamental rekayasa perangkat lunak termasuk struktur data, algoritma, pemecahan masalah, dan praktik kode bersih.",
-            image: "/certifications/software_engineer_intern.png"
+            image: "/certifications/software_engineer_intern.webp"
         }
     ],
     competitions: [
@@ -527,7 +615,7 @@ export const profile: Profile = {
             date: "Juni 2026",
             category: "participant",
             description: "Berpartisipasi dalam kompetisi Vibe Coding Google, menunjukkan pembuatan prototipe cepat dan pemecahan masalah kreatif menggunakan alat pengembangan berbantuan AI.",
-            image: "/certifications/Juara_Vibe_Coding_Google_Participants.png"
+            image: "/certifications/Juara_Vibe_Coding_Google_Participants.webp"
         },
         {
             name: "Peserta Kategori Web Development",
@@ -535,7 +623,7 @@ export const profile: Profile = {
             date: "Juni 2026",
             category: "participant",
             description: "Berpartisipasi dalam kompetisi TechSprint yang diselenggarakan oleh Codelab Indonesia, bertanding di kategori Web Development untuk membangun aplikasi full-stack dalam batasan waktu.",
-            image: "/certifications/Web_Development_Participants.png"
+            image: "/certifications/Web_Development_Participants.webp"
         },
         {
             name: "Participant Data Automation Competition",
@@ -543,7 +631,7 @@ export const profile: Profile = {
             date: "Juni 2026",
             category: "participant",
             description: "Berpartisipasi dalam kompetisi Tech Sprint 3in1 yang diselenggarakan oleh PUMA Information System President University, berfokus pada perancangan pipeline data yang efisien dan alur kerja otomatis.",
-            image: "/certifications/Data_Automation_Participants.png"
+            image: "/certifications/Data_Automation_Participants.webp"
         }
     ],
     openSource: [

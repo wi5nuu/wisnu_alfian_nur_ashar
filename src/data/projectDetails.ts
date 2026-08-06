@@ -452,8 +452,8 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { category: 'Monitoring', items: ['Firebase Crashlytics', 'Firebase Analytics', 'Firebase Remote Config', 'Firebase Messaging'] }
     ]
   },
-  'e2ee-secure-chat': {
-    slug: 'e2ee-secure-chat',
+  'encrypted-messaging-app': {
+    slug: 'encrypted-messaging-app',
     problemStatement: 'Real-time chat systems commonly store and transmit messages in plaintext on the server, making them vulnerable to server-side breaches and man-in-the-middle attacks. There is educational value in demonstrating end-to-end encryption concepts through a working implementation — showing how symmetric encryption (AES) on the sender side and asymmetric decryption (RSA) on the receiver side can create a secure communication channel where the server only ever sees ciphertext.',
     solution: 'A C++ end-to-end encrypted real-time chat application built with the Crow web framework and ASIO for async networking. Messages are encrypted with AES (symmetric) before transmission and decrypted with RSA (asymmetric private key) on the receiver side. The server handles WebSocket connections via Crow, manages a mutex-protected message queue for thread safety, and serves the web UI from templates. TLS/SSL is implemented with self-signed certificates (cert.pem/key.pem). User authentication gates access before any message exchange.',
     howToUse: 'Compile with the provided Makefile (requires ASIO and Crow headers). Run the compiled executable to start the server. Access the web UI in a browser at the server address. Authenticate with credentials to enter the chat. Messages are encrypted client-side before sending — the server only stores and forwards ciphertext. Multiple concurrent users are supported via WebSocket connections managed with mutex-locked connection pools.',
@@ -461,9 +461,9 @@ export const projectDetails: Record<string, ProjectDetail> = {
     keyFeatures: [
       { title: 'End-to-End Encryption', description: 'AES symmetric encryption applied to messages before transmission. RSA asymmetric decryption on the receiver side. Server only ever processes and stores ciphertext — plaintext never touches the server.' },
       { title: 'WebSocket Real-Time Messaging', description: 'Crow framework WebSocket implementation enables full-duplex real-time message exchange. Mutex-protected connection pool manages concurrent WebSocket connections safely in a multi-threaded environment.' },
-      { title: 'TLS/SSL Transport Security', description: 'Self-signed certificate (cert.pem/key.pem) provides TLS transport encryption on top of application-layer E2EE for defense-in-depth security.' },
-      { title: 'User Authentication', description: 'HTTP POST authentication endpoint validates credentials before granting access to the encrypted chat channel. Stateless auth flow integrated with Crow routing.' },
-      { title: 'Multi-threaded Architecture', description: 'ASIO async I/O with multi-threaded message handling. std::mutex and std::vector<crow::websocket::connection*> manage concurrent connections safely with chronological message ordering.' }
+      { title: 'TLS/SSL Transport Security', description: 'Self-signed certificate (cert.pem/key.pem) provides transport-layer encryption via OpenSSL. All communication between client and server is encrypted at both application and transport layers.' },
+      { title: 'Multi-threaded Architecture', description: 'ASIO event loop with std::mutex for thread-safe message queue access. Handles concurrent WebSocket connections and message delivery without race conditions.' },
+      { title: 'User Authentication', description: 'Login system gates access to the chat before any encrypted messaging. Session management prevents unauthorized message access.' }
     ],
     architecture: 'C++ application using Crow (header-only web framework) with ASIO for async I/O. WebSocket endpoint manages a mutex-protected vector of active connections. Messages stored in a std::vector<Message> with timestamp, user, and content fields. Encryption layer (encryption.h) provides AES XOR cipher and RSA placeholder. HTML/JS UI served from templates/ directory via Crow mustache rendering. TLS configured via ASIO SSL context with self-signed certificates.',
     detailedTechStack: [
@@ -472,6 +472,52 @@ export const projectDetails: Record<string, ProjectDetail> = {
       { category: 'Networking', items: ['WebSocket (Crow)', 'HTTP REST Endpoints', 'Self-Signed TLS Certificates'] },
       { category: 'Concurrency', items: ['std::mutex', 'Multi-threaded Message Queue', 'ASIO Event Loop'] },
       { category: 'Build', items: ['Makefile', 'vcpkg (dependency management)'] }
+    ]
+  },
+  'finance-requester': {
+    slug: 'finance-requester',
+    problemStatement: 'Organizations struggle with fragmented payment requisition processes across spreadsheets, emails, and manual approvals — leading to delayed payments, budget overruns, fraud risks, and poor audit trails. Finance teams lack real-time visibility into pending requisitions, budget utilization, and vendor performance. There is no unified system that integrates requisition creation, multi-tier approvals, budget tracking, vendor management, and 3-way matching in a single platform with proper RBAC and compliance logging.',
+    solution: 'Finance-Requester is an enterprise-grade Payment Requisition System built with Laravel 12 backend API and Next.js 16 frontend, fully orchestrated via Docker. It provides end-to-end requisition management with configurable multi-tier approval workflows (L1, L2, L3), real-time budget tracking per department, vendor registry with bank account management, purchase order creation with 3-way matching (PO/Invoice/Receipt), batch payment processing, and immutable audit logging. Real-time updates via Server-Sent Events keep all stakeholders synchronized.',
+    howToUse: 'Clone the repository and set up environment variables (.env files for root, backend, frontend). Run docker-compose up -d --build to start all services (Laravel API, Next.js frontend, PostgreSQL, Redis, MinIO, MailHog, NGINX). Initialize the backend with composer install, php artisan key:generate, and php artisan migrate --seed. Access the frontend at localhost:3001, API at localhost/api/v1, MinIO console at localhost:9001, and MailHog at localhost:8026 for email testing.',
+    impact: 'Provides organizations with Fortune 500-level payment requisition capabilities at zero licensing cost through open-source architecture. Docker orchestration ensures consistent deployment across development, staging, and production environments. The SSE real-time update system eliminates the need for constant page refreshes, improving user experience. 3-way matching prevents duplicate payments and fraud. MinIO S3-compatible storage keeps document storage costs minimal while maintaining AWS S3 compatibility for future migration. Comprehensive audit trails ensure compliance with financial regulations.',
+    keyFeatures: [
+      { title: 'Multi-tier Approval Workflows', description: 'Configurable approval thresholds (L1 Manager, L2 Senior Manager, L3 Finance Director) with automatic routing based on requisition amount. Each approval tier has role-based permissions and can approve, reject, or request revisions.' },
+      { title: 'Real-time Server-Sent Events', description: 'Custom SSE pool implementation provides live status updates across all connected clients. Requisition status changes, approval actions, and budget updates propagate instantly without polling.' },
+      { title: 'Budget Tracking & Monitoring', description: 'Department-level budget allocation and real-time utilization tracking. Dashboard shows budget consumption, pending commitments, and overspending alerts. Monthly/quarterly budget reports with drill-down capability.' },
+      { title: 'Vendor & Purchase Order Management', description: 'Complete vendor lifecycle management with bank account validation and conflict of interest declarations. PO creation with 3-way matching (Purchase Order ↔ Invoice ↔ Goods Receipt) before final payment approval.' },
+      { title: 'Batch Payment Processing', description: 'Group approved requisitions into payment batches for bank transfer optimization. Export batch files in standard formats (NACHA, SEPA, CSV) for direct bank upload.' },
+      { title: 'Audit Trail & Compliance', description: 'Immutable append-only audit logs with cryptographic integrity verification. Every action traced to user, timestamp, and IP address. Export audit reports for compliance reviews and external audits.' }
+    ],
+    architecture: 'Backend: Laravel 12 with Sanctum token-based authentication, custom SSE pool for real-time updates, Redis for caching and queue management, PostgreSQL 16 for relational data. Frontend: Next.js 16 App Router with React 19, Zustand for state management, TanStack React Query for server state, Tailwind CSS v4 with Radix UI primitives. Infrastructure: Docker Compose orchestration with NGINX reverse proxy, MinIO for S3-compatible object storage, MailHog for email testing. All services communicate via internal Docker network.',
+    detailedTechStack: [
+      { category: 'Backend', items: ['Laravel 12', 'PHP 8.2', 'Laravel Sanctum', 'Custom SSE Pool', 'Reverb'] },
+      { category: 'Frontend', items: ['Next.js 16 (App Router)', 'React 19', 'TypeScript', 'Zustand', 'TanStack Query'] },
+      { category: 'Styling', items: ['Tailwind CSS v4', 'Radix UI Primitives', 'Axios'] },
+      { category: 'Database & Cache', items: ['PostgreSQL 16', 'Redis 7.2'] },
+      { category: 'Infrastructure', items: ['Docker', 'Docker Compose', 'NGINX', 'MinIO (S3)', 'MailHog'] }
+    ]
+  },
+  'zentic-enterprise': {
+    slug: 'zentic-enterprise',
+    problemStatement: 'Finance departments in mid-to-large organizations struggle with manual expense requisition processes prone to fraud, duplicate submissions, policy violations, and poor audit trails. Existing systems lack real-time fraud detection, 3-way matching for invoice verification, and comprehensive approval workflows. There is no affordable enterprise solution that combines expense tracking, multi-tier approvals, vendor management, fraud detection, and immutable audit logging in a Clean Architecture pattern suitable for long-term maintenance.',
+    solution: 'Zentic is an enterprise-grade expense requisition system built with Clean Architecture on ASP.NET MVC 10, Entity Framework Core, and SQL Server. It provides structured requisition workflows (Draft → Submitted → L1 Manager → Finance Review → Approved/Rejected) with real-time fraud detection flagging suspicious patterns (duplicate invoices, amount anomalies, velocity checks). The system implements 3-way matching (PO ↔ Invoice ↔ Goods Receipt) before payment approval, vendor lifecycle management with bank account validation, hierarchical department approval thresholds, and immutable audit logs for compliance. Security features include BCrypt password hashing, AES-256-GCM encryption for sensitive data, and rate limiting on authentication.',
+    howToUse: 'Prerequisites: .NET 10 SDK and SQL Server LocalDB/Express. Clone the repository, run dotnet restore to install dependencies, then dotnet build. Launch with dotnet run --project Zentic.Web (auto-migrates database on first startup). Access at https://localhost:7081. Default seeded accounts provide Admin, Finance, Manager, Staff, and Auditor roles for testing. Create requisitions as Staff, submit for approval, review as Manager/Finance, and audit via immutable logs.',
+    impact: 'Demonstrates production-grade Clean Architecture implementation in .NET 10 with clear separation between Domain, Application, Infrastructure, and Presentation layers. The fraud detection engine reduces financial losses by flagging suspicious patterns before approval. 3-way matching prevents duplicate payments and invoice fraud. Immutable audit logs ensure compliance with SOX, GDPR, and financial regulations. The hierarchical approval system with configurable thresholds adapts to organizational structures without code changes. BCrypt + AES-256-GCM security model meets enterprise security standards.',
+    keyFeatures: [
+      { title: 'Clean Architecture Design', description: 'Strict separation of concerns across Domain (entities, value objects), Application (use cases, DTOs), Infrastructure (EF Core, repositories), and Web (MVC controllers, views). Dependency Inversion ensures testability and maintainability.' },
+      { title: 'Real-time Fraud Detection', description: 'Automated flagging of suspicious patterns: duplicate invoice numbers, amount anomalies (>3σ from department average), velocity checks (multiple submissions in short time), and off-hours submissions. Finance team receives instant alerts for flagged items.' },
+      { title: '3-Way Matching Verification', description: 'Purchase Order, Invoice, and Goods Receipt verification before payment approval. System cross-validates quantities, amounts, and vendor details across all three documents to prevent fraud and errors.' },
+      { title: 'Multi-tier Approval Pipeline', description: 'Configurable approval workflows: Draft → Submitted → L1 Manager Approval → Finance Review → Final Approval/Rejection. Each tier has role-based access control and approval thresholds based on requisition amount.' },
+      { title: 'Vendor & Department Management', description: 'Complete vendor lifecycle management (registration → verification → active/inactive status) with multi-account bank validation. Hierarchical department tree with configurable approval thresholds and conflict of interest tracking.' },
+      { title: 'Immutable Audit Logs & Compliance', description: 'Append-only audit trail with tamper-evident design. Every status change, approval, rejection, and data modification logged with user, timestamp, and IP address. Export capabilities for compliance audits and regulatory reporting.' }
+    ],
+    architecture: 'ASP.NET MVC 10 with Clean Architecture: Domain layer (Entities, Value Objects, Domain Events), Application layer (Use Cases, DTOs, Interfaces), Infrastructure layer (EF Core, SQL Server repositories, BCrypt service, AES encryption service), Web layer (MVC Controllers, Razor Views, Bootstrap 5 UI). Authentication via ASP.NET Core Identity with cookie-based sessions and sliding expiration. Rate limiting middleware protects login endpoints (10 attempts per 15-minute window). FluentValidation for input validation across all layers.',
+    detailedTechStack: [
+      { category: 'Framework', items: ['ASP.NET MVC 10', '.NET 10', 'C#', 'Entity Framework Core 10'] },
+      { category: 'Database', items: ['SQL Server', 'EF Core Migrations', 'LINQ Queries'] },
+      { category: 'Security', items: ['ASP.NET Core Identity', 'BCrypt.Net', 'AES-256-GCM', 'Rate Limiting'] },
+      { category: 'Frontend', items: ['Razor Views', 'Bootstrap 5', 'Bootstrap Icons', 'jQuery'] },
+      { category: 'Validation & Testing', items: ['FluentValidation', 'xUnit', 'Moq'] }
     ]
   }
 };
