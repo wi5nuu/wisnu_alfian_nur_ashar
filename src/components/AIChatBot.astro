@@ -1,6 +1,5 @@
 ---
 import { X, Send } from "lucide-astro";
-import Picture from "./Picture.astro";
 ---
 
 <div id="ai-chat-widget" class="z-[110] font-sans">
@@ -10,13 +9,17 @@ import Picture from "./Picture.astro";
         aria-label="Toggle AI Assistant"
     >
         <div class="relative">
-            <Picture
-                src="/logo.png"
+            <img
+                src="/wisnu-alfian.webp"
                 alt="AI"
+                width="40"
+                height="40"
                 class="w-10 h-10 rounded-full object-cover border-2 border-white/20"
+                loading="lazy"
+                decoding="async"
             />
             <div
-                class="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full animate-pulse border-2 border-slate-900"
+                class="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full ai-status-dot border-2 border-slate-900"
             >
             </div>
         </div>
@@ -44,14 +47,18 @@ import Picture from "./Picture.astro";
             </div>
 
             <div class="flex items-center gap-3 relative z-10">
-                <div class="relative">
-                    <Picture
-                        src="/logo.png"
+                    <div class="relative">
+                    <img
+                        src="/wisnu-alfian.webp"
                         alt="AI Avatar"
+                        width="40"
+                        height="40"
                         class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm"
+                        loading="lazy"
+                        decoding="async"
                     />
                     <div
-                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900 animate-pulse"
+                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900 ai-status-dot"
                     >
                     </div>
                 </div>
@@ -80,9 +87,13 @@ import Picture from "./Picture.astro";
             class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/30 h-[350px] scroll-smooth text-slate-900"
         >
             <div class="flex gap-3 animate-fade-in">
-                <Picture
-                    src="/logo.png"
+                <img
+                    src="/wisnu-alfian.webp"
                     alt="AI"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                     class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm"
                 />
                 <div
@@ -244,7 +255,7 @@ import Picture from "./Picture.astro";
 
             // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
             const iconHtml = isAi
-                ? `<img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />`
+                ? `<img src="/wisnu-alfian.webp" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />`
                 : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">You</div>`;
 
             const bubbleClass = isAi
@@ -310,7 +321,7 @@ import Picture from "./Picture.astro";
             div.className = "flex gap-3";
             // Menggunakan IMG tag untuk indikator typing juga
             div.innerHTML = `
-                 <img src="/logo.png" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />
+                 <img src="/wisnu-alfian.webp" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />
                  <div class="bg-white p-3 rounded-2xl flex gap-1 items-center h-10 border border-slate-100 shadow-sm">
                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-75"></span>
@@ -330,3 +341,15 @@ import Picture from "./Picture.astro";
     initChatBot();
     document.addEventListener("astro:page-load", initChatBot);
 </script>
+
+<style>
+  /* Composited animation — hanya pakai opacity & transform agar tidak trigger reflow */
+  .ai-status-dot {
+    animation: ai-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes ai-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+</style>
