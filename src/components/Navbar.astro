@@ -19,9 +19,9 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 };
 ---
 
-<nav class="absolute top-0 w-full z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-transparent">
+<nav aria-label={isId ? "Navigasi utama" : "Main navigation"} class="absolute top-0 w-full z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-transparent">
   <!-- LEFT: LOGO -->
-  <a href={getLocalizedUrl("/", isId)} class="text-white text-[20px] font-bold uppercase no-underline tracking-tight z-50">
+  <a href={getLocalizedUrl("/", isId)} aria-label="Home - Wisnu Alfian" class="text-white text-[20px] font-bold uppercase no-underline tracking-tight z-50">
     WISNU ALFIAN
   </a>
 

@@ -21,11 +21,11 @@ const navLinks = [
   <div class="footer-container">
     <!-- TOP ROW: Logo + Nav Links -->
     <div class="footer-top">
-      <a href={isId ? "/id/" : "/"} class="footer-logo">
+      <a href={isId ? "/id/" : "/"} aria-label="Home - Wisnu Alfian" class="footer-logo">
         WISNU ALFIAN
       </a>
 
-      <nav class="footer-nav">
+      <nav aria-label={isId ? "Navigasi footer" : "Footer navigation"} class="footer-nav">
         {navLinks.map((link) => (
           <a href={link.href} class="footer-nav-link">{link.name}</a>
         ))}

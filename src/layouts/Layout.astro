@@ -27,7 +27,7 @@ const {
 
 const siteName = "Wisnu Alfian Nur Ashar | Full-Stack Developer, Intern & Cyber Security";
 const siteUrl = "https://www.wisnualfiannurashar.my.id";
-const ogImage = `${siteUrl}/og-image.png`;
+const ogImage = `${siteUrl}/og-image.webp`;
 const lang = isId ? "id" : "en";
 
 // Build alternate language URLs
@@ -57,7 +57,7 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
     <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     
     <!-- LCP Image Preload with fetchpriority -->
-    <link rel="preload" as="image" href="/wisnu_alfian_nur_ashar.jpeg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/wisnu-alfian.webp" fetchpriority="high" type="image/webp" />
 
     <link rel="stylesheet" href="/styles/tailwind.css" />
     <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
@@ -106,11 +106,11 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
     <meta name="twitter:image:alt" content={`${profile.personalInfo.name} — ${profile.personalInfo.role}`} />
 
     <!-- ================= FAVICON & PWA ================= -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
+    <link rel="icon" type="image/webp" sizes="32x32" href="/favicon-32x32.webp" />
+    <link rel="icon" type="image/webp" sizes="16x16" href="/favicon-16x16.webp" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/android-chrome-192x192.png" color="#2a3b3e" />
+    <link rel="mask-icon" href="/android-chrome-192x192.webp" color="#2a3b3e" />
 
     <!-- ================= SCHEMA.ORG: PERSON ================= -->
     <script type="application/ld+json" is:inline define:vars={{ profile, siteUrl, ogImage }}>

@@ -20,11 +20,14 @@ const isId = Astro.url.pathname.startsWith('/id');
 
   <!-- C) MY PHOTO -->
   <div class="photo-wrapper">
-    <!-- TODO: Swap this with a transparent PNG cutout of the user -->
     <img 
-      src="/Wisnu Alfian Nur Ashar.png" 
-      alt="Wisnu Alfian Nur Ashar" 
+      src="/wisnu-alfian.webp" 
+      alt="Wisnu Alfian Nur Ashar"
+      width="2080"
+      height="2084"
       class="hero-photo"
+      fetchpriority="high"
+      decoding="async"
     />
   </div>
 

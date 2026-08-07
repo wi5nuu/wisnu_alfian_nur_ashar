@@ -1,5 +1,5 @@
 ---
-import { Github, Dribbble, Linkedin, Instagram } from "lucide-astro";
+import { Github, Linkedin, Instagram } from "lucide-astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
 
@@ -11,7 +11,7 @@ const profile = isId ? profileId : profileEn;
   <div class="container">
     <!-- LEFT: PHOTO CARD -->
     <div class="photo-card">
-      <img src="/Wisnu Alfian Nur Ashar.png" alt={profile.personalInfo.name} class="about-photo" />
+      <img src="/wisnu-alfian.webp" alt={profile.personalInfo.name} width="330" height="400" class="about-photo" loading="lazy" decoding="async" />
     </div>
 
     <!-- RIGHT: TEXT -->
@@ -31,17 +31,14 @@ const profile = isId ? profileId : profileEn;
       </p>
 
       <div class="social-row">
-        <a href={profile.personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" class="social-circle">
-          <Github class="social-icon" />
+        <a href={profile.personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" class="social-circle">
+          <Github class="social-icon" aria-hidden="true" />
         </a>
-        <a href="#" class="social-circle">
-          <Dribbble class="social-icon" />
+        <a href={profile.personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" class="social-circle">
+          <Linkedin class="social-icon" aria-hidden="true" />
         </a>
-        <a href={profile.personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" class="social-circle">
-          <Linkedin class="social-icon" />
-        </a>
-        <a href={profile.personalInfo.instagram || '#'} target="_blank" rel="noopener noreferrer" class="social-circle">
-          <Instagram class="social-icon" />
+        <a href={profile.personalInfo.instagram || '#'} target="_blank" rel="noopener noreferrer" aria-label="Instagram profile" class="social-circle">
+          <Instagram class="social-icon" aria-hidden="true" />
         </a>
       </div>
     </div>
