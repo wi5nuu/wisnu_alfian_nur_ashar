@@ -1,0 +1,328 @@
+---
+import { Briefcase, Building } from "lucide-astro";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+
+const combinedExperience = [
+  ...profile.experience.map(exp => ({ ...exp, category: 'work' })),
+  ...(profile.organizationalExperience || []).map(org => ({ ...org, category: 'org' }))
+];
+---
+
+<section class="exp-section">
+  <div class="exp-header">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'PENGALAMAN' : 'EXPERIENCE'}</span>
+    </div>
+    <h2 class="heading">
+      {isId ? 'Pengalaman' : 'Work'}<br />
+      {isId ? 'Kerja' : 'Experience'}
+    </h2>
+  </div>
+
+  <div class="tl-root">
+    {combinedExperience.map((item, index) => {
+      const isLeft = index % 2 === 0;
+      return (
+        <div class={`tl-row ${isLeft ? '' : 'tl-reversed'}`}>
+
+          <div class="tl-half">
+            <div class="tl-card">
+              <div class="card-top">
+                <h3 class="role">{item.role}</h3>
+                <span class="dur">{item.duration}</span>
+              </div>
+              <div class="co-row">
+                {item.category === 'work' ? <Briefcase class="ico" /> : <Building class="ico" />}
+                <span class="co">{item.company}</span>
+                {item.type && <><span class="bul">•</span><span class="tp">{item.type}</span></>}
+              </div>
+              <p class="desc">{item.description}</p>
+              {item.skills?.length > 0 && (
+                <div class="sk-row">
+                  {item.skills.map(s => <span class="sk">{s}</span>)}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div class="tl-center">
+            <div class="dot"></div>
+          </div>
+
+          <div class="tl-half tl-spacer"></div>
+
+        </div>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .exp-section {
+    background: #0A0A0A;
+    color: #fff;
+    padding: 120px clamp(24px, 2.5vw, 40px);
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* HEADER */
+  .exp-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+  .badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #84E10C;
+  }
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .heading {
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    color: #fff;
+  }
+
+  /* =============================================
+     TREE / ROOT TIMELINE
+     - .tl-root: position relative, center trunk
+     - .tl-row: flex row, card | dot | spacer
+     - .tl-reversed: flex-direction reversed → 
+       spacer | dot | card (card on right)
+  ============================================= */
+
+  .tl-root {
+    position: relative;
+    max-width: 960px;
+    margin: 64px auto 0;
+  }
+
+  /* The center vertical trunk */
+  .tl-root::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255,255,255,0.15) 5%,
+      rgba(255,255,255,0.15) 95%,
+      transparent 100%
+    );
+  }
+
+  /* Each row = flex container: card (1fr) | dot (48px) | spacer (1fr) */
+  .tl-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    gap: 0;
+  }
+
+  .tl-row:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Reversed row: card will appear on the RIGHT */
+  .tl-reversed {
+    flex-direction: row-reverse;
+  }
+
+  /* Each half takes equal space */
+  .tl-half {
+    flex: 1;
+  }
+
+  /* Card side has padding toward center */
+  .tl-row:not(.tl-reversed) .tl-half:first-child {
+    padding-right: 28px;
+  }
+
+  .tl-reversed .tl-half:first-child {
+    padding-left: 28px;
+  }
+
+  /* Empty spacer side */
+  .tl-spacer {
+    /* Just space */
+  }
+
+  /* CENTER COLUMN: fixed 48px wide, holds dot */
+  .tl-center {
+    flex-shrink: 0;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* The glowing dot node */
+  .dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #84E10C;
+    box-shadow:
+      0 0 0 4px #0A0A0A,
+      0 0 0 7px rgba(132,225,12,0.2),
+      0 0 16px rgba(132,225,12,0.15);
+  }
+
+  /* THE CARD */
+  .tl-card {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .tl-card:hover {
+    border-color: rgba(132,225,12,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  /* Left card: accent border on right edge (closest to center) */
+  .tl-row:not(.tl-reversed) .tl-card {
+    border-right-color: rgba(132,225,12,0.2);
+  }
+
+  /* Right card: accent border on left edge (closest to center) */
+  .tl-reversed .tl-card {
+    border-left-color: rgba(132,225,12,0.2);
+  }
+
+  /* Card internals */
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .role {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: #fff;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dur {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.06);
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .co-row {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .ico { width: 13px; height: 13px; color: #84E10C; flex-shrink: 0; }
+  .bul { color: rgba(255,255,255,0.2); }
+  .tp { color: rgba(255,255,255,0.5); }
+
+  .desc {
+    margin-top: 12px;
+    font-size: 11.5px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .sk-row {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .sk {
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(132,225,12,0.08);
+    color: #84E10C;
+    border: 1px solid rgba(132,225,12,0.18);
+  }
+
+  /* MOBILE */
+  @media (max-width: 700px) {
+    .exp-section { padding: 72px clamp(20px, 4vw, 24px); }
+    .heading { font-size: 40px; }
+
+    .tl-root::before { left: 20px; transform: none; }
+
+    .tl-row,
+    .tl-reversed {
+      flex-direction: column;
+      padding-left: 44px;
+    }
+
+    .tl-center {
+      position: absolute;
+      left: 20px;
+      transform: translateX(-50%);
+      width: auto;
+      padding-top: 0;
+    }
+
+    .tl-spacer { display: none; }
+
+    .tl-row:not(.tl-reversed) .tl-half:first-child,
+    .tl-reversed .tl-half:first-child {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .tl-row {
+      position: relative;
+    }
+  }
+</style>

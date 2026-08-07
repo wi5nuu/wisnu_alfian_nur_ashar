@@ -1,0 +1,112 @@
+---
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+
+const skillCategories = [
+  { title: isId ? 'Pemrograman & Basis Data' : 'Programming & Databases', skills: profile.skills.programming },
+  { title: isId ? 'Teknologi Web' : 'Web Technologies', skills: profile.skills.webTech },
+  { title: isId ? 'AI & Machine Learning' : 'AI & Machine Learning', skills: profile.skills.aiMl },
+  { title: isId ? 'Keamanan & Infrastruktur' : 'Security & Infrastructure', skills: profile.skills.securityCloud },
+  { title: isId ? 'Alat Khusus' : 'Specialized Tools', skills: profile.skills.tools },
+  { title: isId ? 'Keterampilan Non-Teknis' : 'Soft Skills', skills: profile.skills.soft },
+];
+---
+
+<section id="skills" class="section bg-white" style="padding-top: 120px; padding-bottom: 120px;">
+  <div class="container-custom">
+    <div class="max-w-6xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 border border-black/20 rounded-full px-4 py-1.5 mb-3">
+        <div class="w-2 h-2 rounded-full bg-[#84E10C]"></div>
+        <span class="text-xs font-semibold tracking-wider text-slate-900 uppercase">{isId ? "KEAHLIAN" : "EXPERTISE"}</span>
+      </div>
+      <h2 class="text-slate-900 font-medium leading-[1.05] tracking-tight" style="font-size: clamp(36px, 6vw, 76px);">
+        {isId ? "Keahlian &" : "Skills &"}<br />
+        {isId ? "Kemampuan" : "Expertise"}
+      </h2>
+    </div>
+
+    <!-- ========== UNIFIED RESPONSIVE LAYOUT ========== -->
+    <div class="max-w-6xl mx-auto">
+
+      <!-- 5 Technical Categories -->
+      <div class="space-y-6 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-6 md:space-y-0 mb-10">
+        {skillCategories.slice(0, 5).map((category, index) => (
+          <div class="reveal-up" style={`transition-delay: ${(index + 1) * 100}ms`}>
+            <h3 class="text-xs font-bold text-sage-900 uppercase tracking-widest border-b border-sage-100 pb-2.5 mb-3">
+              {category.title}
+            </h3>
+            <div class="grid grid-cols-2 gap-x-3 md:block md:space-y-1.5">
+              {category.skills.map((skill) => (
+                <span class="text-[13px] md:text-[12px] text-charcoal/80 font-medium flex items-center gap-2 hover:text-sage-700 transition-colors cursor-default">
+                  {skill.icon ? (
+                    <img
+                      src={`/icons/${skill.icon}.svg`}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      class="w-4 h-4 md:w-3.5 md:h-3.5 shrink-0"
+                      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+                    />
+                  ) : null}
+                  <span class="w-1.5 h-1.5 md:w-1 md:h-1 bg-sage-400 rounded-full shrink-0" style={skill.icon ? 'display:none' : ''} />
+                  {skill.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="pt-6 border-t border-cream-200 reveal-up delay-200">
+        <h3 class="text-xs font-bold text-sage-900 uppercase tracking-widest text-center mb-4">
+          {isId ? 'Keterampilan Non-Teknis' : 'Soft Skills'}
+        </h3>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          {profile.skills.soft.map((skill) => (
+            <span class="text-[12px] text-charcoal/80 font-medium hover:text-sage-700 transition-colors cursor-default flex items-center gap-2">
+              <span class="w-1 h-1 bg-sage-400 rounded-full shrink-0" />
+              {skill.name}
+            </span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function() {
+    const section = document.getElementById("skills");
+    if (!section || window.innerWidth >= 768) return;
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let isSwiping = false;
+    section.addEventListener("touchstart", function(e) {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      isSwiping = true;
+    }, { passive: true });
+    section.addEventListener("touchend", function(e) {
+      if (!isSwiping) return;
+      isSwiping = false;
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaY = touchStartY - touchEndY;
+      const deltaX = Math.abs(touchStartX - touchEndX);
+      if (Math.abs(deltaY) > 80 && Math.abs(deltaY) > deltaX) {
+        if (deltaY > 0) {
+          const nextSection = section.nextElementSibling;
+          if (nextSection) nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (deltaY < 0) {
+          const prevSection = section.previousElementSibling;
+          if (prevSection) prevSection.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+    }, { passive: true });
+  })();
+</script>

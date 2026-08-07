@@ -98,7 +98,7 @@ export const profile: Profile = {
         role: "Full-Stack Engineer",
         location: "Bekasi, West Java, Indonesia",
         tagline: "Building Secure, High-Performance Production Systems",
-        summary: "Information Technology student specializing in Full-Stack Engineering with hands-on experience designing enterprise ERP/POS platforms, AI-powered applications, and scalable cloud-based systems using Laravel, Next.js, PostgreSQL, and modern cloud technologies.",
+        summary: "Information Technology student at President University specializing in Full-Stack Engineering with 1,500+ GitHub contributions across 90+ repositories. Experienced building production-ready enterprise systems — including an ERP/POS platform serving 15,000+ users — using Laravel, Next.js, PostgreSQL, Go, and modern cloud technologies. Active contributor to open-source projects (NASA, Microsoft), OWASP Foundation member, and IBM SkillsBuild AI Builders Challenge participant.",
         email: "wisnualfiannurashar@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
@@ -190,7 +190,7 @@ export const profile: Profile = {
             type: "Self-employed",
             duration: "December 2025 - Present",
             location: "Kota Bekasi (Hybrid)",
-            description: "Architected and developed an enterprise ERP/POS platform using Laravel, Next.js, and PostgreSQL, integrating inventory management, purchasing, payroll, attendance, business intelligence dashboards, AI Copilot, and role-based access control (RBAC) into a unified business management system supporting 6 administrators, 600+ products, and 50+ active resellers. Optimized application performance through Cloudflare CDN, intelligent caching, and database query optimization, achieving a 1.34 second average page load time and 91% Good Largest Contentful Paint (LCP). Automated end-to-end business operations by integrating wholesale order management, inventory synchronization, expense tracking, financial reporting, and real-time stock monitoring, supporting 100+ daily transactions while reducing manual financial reconciliation time by 60%.",
+            description: "Built an enterprise ERP/POS platform (Laravel, Next.js, PostgreSQL) with inventory, payroll, BI dashboards, AI Copilot, and RBAC — serving 6 admins, 600+ products, 50+ resellers. Achieved 1.34s load time and 91% Good LCP via Cloudflare CDN. Automated wholesale ops supporting 100+ daily transactions, cutting financial reconciliation time by 60%.",
             skills: ["Laravel", "Next.js", "PostgreSQL", "Cloudflare", "ERP/POS", "AI Copilot"]
         },
         {
@@ -199,7 +199,7 @@ export const profile: Profile = {
             type: "Internship",
             duration: "April 2026 - Present",
             location: "New York, USA (Remote)",
-            description: "Developed and customized responsive WordPress websites using PHP, HTML, CSS, JavaScript, Elementor, and Gutenberg within a local XAMPP development environment. Maintained and updated WordPress websites by publishing content, optimizing page layouts, troubleshooting technical issues, and applying SEO best practices to improve usability and search visibility. Collaborated in an Agile remote environment by participating in weekly technical discussions via Microsoft Teams and consistently submitting progress reports throughout the internship while delivering assigned development tasks on schedule.",
+            description: "Built and maintained responsive WordPress websites using PHP, HTML, CSS, JavaScript, Elementor, and Gutenberg. Applied SEO best practices to improve usability and search visibility. Collaborated in an Agile remote environment via Microsoft Teams.",
             skills: ["WordPress", "PHP", "JavaScript", "SEO", "Elementor", "Agile"]
         }
     ],
@@ -210,7 +210,7 @@ export const profile: Profile = {
             type: "Organization",
             duration: "January 2024 - Present",
             location: "Ciputat Timur, Banten",
-            description: "Architected and deployed the official organization website, managed the Talent & Interest division, and implemented automated alumni data integration systems, resulting in improved member engagement and operational efficiency.",
+            description: "Architected and deployed the official organization website, managed the Talent & Interest division, and implemented automated alumni data integration systems.",
             skills: ["Web Development", "Event Management", "Teamwork"]
         },
         {
@@ -219,7 +219,7 @@ export const profile: Profile = {
             type: "Organization",
             duration: "September 2024 - August 2025",
             location: "President University, Bekasi",
-            description: "Organized 3+ technology-focused events for 100+ university students, achieving a consistent 95% attendance rate. Coordinated technical academic workshops and student activities aimed at fostering peer-to-peer collaboration. Supported divisional logistics and knowledge-sharing initiatives to enhance student skill development in IT.",
+            description: "Organized 3+ tech events for 100+ students with 95% attendance rate. Coordinated academic workshops and supported knowledge-sharing initiatives to enhance student IT skills.",
             skills: ["Event Management", "Communication", "Teamwork"]
         },
         {
@@ -228,7 +228,7 @@ export const profile: Profile = {
             type: "Organization",
             duration: "September 2025 - Present",
             location: "President University, Bekasi (On-site)",
-            description: "Led 5+ art and sports activities for 60+ students, resulting in a 40% increase in departmental student engagement. Led cross-functional committees to organize campus events attended by over 100 students while coordinating volunteers, schedules, and logistics.",
+            description: "Led 5+ art and sports activities for 60+ students, achieving a 40% increase in departmental engagement. Organized campus events for 100+ students while coordinating volunteers and logistics.",
             skills: ["Leadership", "Event Management", "Communication"]
         },
         {
@@ -237,7 +237,7 @@ export const profile: Profile = {
             type: "Organization",
             duration: "2026",
             location: "Remote",
-            description: "Participated in IBM's AI Builders Challenge, collaborating on AI-powered solutions and gaining hands-on experience with IBM Cloud and AI technologies.",
+            description: "Collaborated on AI-powered solutions and gained hands-on experience with IBM Cloud and AI technologies.",
             skills: ["AI/ML", "IBM Cloud"]
         },
         {
@@ -246,7 +246,7 @@ export const profile: Profile = {
             type: "Organization",
             duration: "2026",
             location: "Remote",
-            description: "Active member of the Open Web Application Security Project, contributing to security research and open-source security tools.",
+            description: "Active member contributing to security research and open-source security tools.",
             skills: ["Cybersecurity", "Security Research"]
         }
     ],
@@ -632,6 +632,14 @@ export const profile: Profile = {
             category: "participant",
             description: "Participated in the Tech Sprint 3in1 competition organized by PUMA Information System President University, focusing on designing efficient data pipelines and automated workflows.",
             image: "/certifications/Data_Automation_Participants.webp"
+        },
+        {
+            name: "Alternative Finalist — AI Open Innovation Challenge 2026",
+            issuer: "President University",
+            date: "2026",
+            category: "finalist",
+            description: "Selected as an alternative finalist in the AI Open Innovation Challenge 2026, a national platform organized by President University for collaboration between academia, industry, and professionals to address business challenges using AI-driven solutions.",
+            image: "/certifications/aiopen.png"
         }
     ],
     openSource: [

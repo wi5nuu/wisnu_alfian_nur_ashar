@@ -1,17 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
+import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
-import SkillsSection from "../../components/sections/Skills.astro";
+import Skills from "../../components/Skills.astro";
 
-const title = "Keahlian | Wisnu Alfian Nur Ashar";
-const description = "Tumpukan teknis dan kemampuan profesional saya.";
+const title = "Keahlian & Teknologi | Wisnu Alfian Nur Ashar";
+const description = "Stack teknologi Wisnu Alfian Nur Ashar — React, Next.js, Laravel, TypeScript, PostgreSQL, Docker, dan keamanan siber. Keahlian full-stack untuk magang dan pekerjaan profesional.";
 ---
 
 <Layout title={title} description={description}>
-    <Header />
-    <main class="pt-20">
-        <SkillsSection />
-    </main>
-    <Footer />
+  <Navbar />
+  <main>
+    <Skills />
+  </main>
+  <Footer />
 </Layout>

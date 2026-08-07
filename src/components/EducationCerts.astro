@@ -1,0 +1,359 @@
+---
+import { GraduationCap, Award, ExternalLink, ZoomIn } from "lucide-astro";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+import ImageModal from "./ImageModal.astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+---
+
+<section class="education-section">
+  <div class="container">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'PENDIDIKAN & SERTIFIKASI' : 'EDUCATION & CERTS'}</span>
+    </div>
+
+    <h2 class="heading">
+      {isId ? 'Pendidikan &' : 'Education &'}<br />
+      {isId ? 'Sertifikasi' : 'Certifications'}
+    </h2>
+
+    <!-- Education Block -->
+    <div class="edu-block">
+      <div class="edu-icon-wrap">
+        <GraduationCap class="edu-icon" />
+      </div>
+      <div class="edu-content">
+        <h3 class="edu-degree">{profile.education.degree}</h3>
+        <div class="edu-meta">
+          <span class="edu-school">{profile.education.institution}</span>
+          <span class="dot-sep">•</span>
+          <span class="edu-date">{profile.education.duration}</span>
+        </div>
+        {profile.education.focus && (
+          <p class="edu-desc">{profile.education.focus}</p>
+        )}
+      </div>
+    </div>
+
+    <!-- Certifications Grid -->
+    <h3 class="certs-heading">{isId ? 'Sertifikasi Profesional' : 'Professional Certifications'}</h3>
+    
+    <div class="certs-grid">
+      {profile.certifications.map((cert, index) => (
+        <div class="cert-card">
+          {cert.image && (
+            <button
+              class="cert-img-wrap"
+              onclick={`openModal('cert-modal', '${cert.image}', '${cert.name.replace(/'/g, "\\'")}')`}
+              aria-label={`View certificate: ${cert.name}`}
+            >
+              <img
+                src={cert.image}
+                alt={cert.name}
+                class="cert-img"
+                loading="lazy"
+              />
+              <div class="cert-img-overlay">
+                <ZoomIn class="zoom-icon" />
+              </div>
+            </button>
+          )}
+          <div class="cert-body">
+            <div class="cert-top">
+              <Award class="cert-icon" />
+            </div>
+            <h4 class="cert-title">{cert.name}</h4>
+            <span class="cert-issuer">{cert.issuer}</span>
+            <div class="cert-meta">
+              <span class="cert-date">{cert.date}</span>
+              {cert.id && <span class="cert-id">ID: {cert.id}</span>}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<ImageModal id="cert-modal" />
+
+<style>
+  .education-section {
+    background-color: var(--bg);
+    color: #ffffff;
+    padding-block: 120px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 2.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .heading {
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .edu-block {
+    margin-top: 64px;
+    width: 100%;
+    background-color: #151515;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .edu-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(132, 225, 12, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .edu-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+  }
+
+  .edu-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edu-degree {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .edu-meta {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    flex-wrap: wrap;
+  }
+
+  .edu-school {
+    color: var(--accent);
+  }
+
+  .dot-sep {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .edu-desc {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .certs-heading {
+    margin-top: 80px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 24px;
+  }
+
+  .certs-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cert-card {
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+
+  .cert-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: #151515;
+    transform: translateY(-2px);
+  }
+
+  /* Certificate image thumbnail */
+  .cert-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: #0a0a0a;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: block;
+  }
+
+  .cert-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .cert-card:hover .cert-img {
+    transform: scale(1.04);
+  }
+
+  .cert-img-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cert-card:hover .cert-img-overlay {
+    opacity: 1;
+  }
+
+  .zoom-icon {
+    width: 28px;
+    height: 28px;
+    color: #ffffff;
+  }
+
+  /* Card body below image */
+  .cert-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .cert-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cert-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+  }
+
+  .cert-title {
+    margin-top: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  .cert-issuer {
+    margin-top: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .cert-meta {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Ensure heading + edu-block + grid all stretch full width but stay centered */
+  .heading,
+  .certs-heading,
+  .edu-block,
+  .certs-grid {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .certs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .certs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .education-section {
+      padding-block: 72px;
+    }
+
+    .heading {
+      font-size: 40px;
+    }
+
+    .edu-block {
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+    }
+  }
+</style>

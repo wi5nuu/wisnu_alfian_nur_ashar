@@ -1,0 +1,311 @@
+---
+import { CornerDownRight, Orbit, Sparkles, AudioLines } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+---
+
+<section class="services-section">
+  <div class="container">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'APA YANG SAYA TAWARKAN' : 'WHAT I OFFER'}</span>
+    </div>
+
+    <h2 class="heading">
+      {isId ? 'Membangun Solusi' : 'Building Solutions'}<br />
+      {isId ? 'Melalui Rekayasa' : 'Through Engineering'}
+    </h2>
+
+    <div class="services-grid">
+      <!-- CARD 1: Frontend Development (Lime) -->
+      <div class="service-card card-lime">
+        <div class="icon-wrapper">
+          <Orbit class="icon-svg" />
+        </div>
+        <h3 class="card-title">{isId ? 'Frontend Development' : 'Frontend Development'}</h3>
+        <p class="card-desc">
+          {isId 
+            ? 'Membangun antarmuka web yang responsif dan performant menggunakan React, Next.js, dan Astro dengan TypeScript.' 
+            : 'Building responsive and performant web interfaces using React, Next.js, and Astro with TypeScript.'}
+        </p>
+        <ul class="feature-list">
+          <li class="feature-item">{isId ? 'React, Next.js & Astro' : 'React, Next.js & Astro'}</li>
+          <li class="feature-item">{isId ? 'TypeScript & Tailwind CSS' : 'TypeScript & Tailwind CSS'}</li>
+          <li class="feature-item border-transparent">{isId ? 'Optimasi Performa & SEO' : 'Performance & SEO Optimization'}</li>
+        </ul>
+        <a href={isId ? '/id/contact' : '/contact'} class="card-btn">
+          <CornerDownRight class="btn-icon" />
+          <span>{isId ? 'Jadwalkan konsultasi' : 'Schedule a consultation'}</span>
+        </a>
+      </div>
+
+      <!-- CARD 2: Full-Stack Development (Dark) -->
+      <div class="service-card card-dark">
+        <div class="icon-wrapper icon-dark">
+          <Sparkles class="icon-svg" />
+        </div>
+        <h3 class="card-title">{isId ? 'Full-Stack Development' : 'Full-Stack Development'}</h3>
+        <p class="card-desc">
+          {isId 
+            ? 'Membangun aplikasi full-stack end-to-end dengan Laravel, Next.js, dan PostgreSQL — dari API hingga production deployment.' 
+            : 'Building end-to-end full-stack applications with Laravel, Next.js, and PostgreSQL — from API to production deployment.'}
+        </p>
+        <ul class="feature-list">
+          <li class="feature-item">{isId ? 'Laravel & Next.js' : 'Laravel & Next.js'}</li>
+          <li class="feature-item">{isId ? 'PostgreSQL & REST API' : 'PostgreSQL & REST API'}</li>
+          <li class="feature-item border-transparent">{isId ? 'Docker & Cloud Deploy' : 'Docker & Cloud Deploy'}</li>
+        </ul>
+        <a href={isId ? '/id/contact' : '/contact'} class="card-btn">
+          <CornerDownRight class="btn-icon" />
+          <span>{isId ? 'Jadwalkan konsultasi' : 'Schedule a consultation'}</span>
+        </a>
+      </div>
+
+      <!-- CARD 3: System Architecture (Light) -->
+      <div class="service-card card-light">
+        <div class="icon-wrapper icon-light">
+          <AudioLines class="icon-svg" />
+        </div>
+        <h3 class="card-title">{isId ? 'Arsitektur Sistem' : 'System Architecture'}</h3>
+        <p class="card-desc">
+          {isId 
+            ? 'Merancang arsitektur sistem yang scalable, maintainable, dan robust untuk mendukung pertumbuhan bisnis jangka panjang.' 
+            : 'Designing scalable, maintainable, and robust system architectures to support long-term business growth.'}
+        </p>
+        <ul class="feature-list">
+          <li class="feature-item">{isId ? 'Microservices & APIs' : 'Microservices & APIs'}</li>
+          <li class="feature-item">{isId ? 'Database Design' : 'Database Design'}</li>
+          <li class="feature-item border-transparent">{isId ? 'Cloud Infrastructure' : 'Cloud Infrastructure'}</li>
+        </ul>
+        <a href={isId ? '/id/contact' : '/contact'} class="card-btn">
+          <CornerDownRight class="btn-icon" />
+          <span>{isId ? 'Jadwalkan konsultasi' : 'Schedule a consultation'}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    background-color: var(--bg);
+    color: #ffffff;
+    padding-block: 120px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 2.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .heading {
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .services-grid {
+    margin-top: 75px;
+    width: 100%;
+    max-width: 980px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .service-card {
+    border-radius: 16px;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff; /* Gradient-like fill handled simply via icon color */
+  }
+
+  .icon-svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5;
+  }
+
+  .card-title {
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .card-desc {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-item {
+    font-size: 13px;
+    padding-block: 10px;
+  }
+
+  .feature-item.border-transparent {
+    border-bottom: none !important;
+  }
+
+  .card-btn {
+    margin-top: auto; /* Pins to bottom */
+    background-color: #C9F170;
+    color: #0A0A0A;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: filter 0.3s ease;
+  }
+
+  .card-btn:hover {
+    filter: brightness(1.05);
+  }
+
+  .btn-icon {
+    width: 16px;
+    height: 16px;
+    color: #0A0A0A;
+  }
+
+  /* COLOR VARIANTS */
+  
+  /* Lime Card */
+  .card-lime {
+    background-color: var(--accent);
+  }
+  .card-lime .card-title,
+  .card-lime .card-desc,
+  .card-lime .feature-item {
+    color: #0A0A0A;
+  }
+  .card-lime .feature-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  .card-lime .icon-wrapper {
+    color: #ffffff; 
+  }
+
+  /* Dark Card */
+  .card-dark {
+    background-color: #191919;
+  }
+  .card-dark .card-title {
+    color: #ffffff;
+  }
+  .card-dark .card-desc,
+  .card-dark .feature-item {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .card-dark .feature-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  .card-dark .icon-wrapper {
+    color: #d1d5db; /* metallic gray approx */
+  }
+
+  /* Light Card */
+  .card-light {
+    background-color: #F2F2F2;
+  }
+  .card-light .card-title {
+    color: #0A0A0A;
+  }
+  .card-light .card-desc,
+  .card-light .feature-item {
+    color: #3F3F3F;
+  }
+  .card-light .feature-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+  .card-light .icon-wrapper {
+    color: #9ca3af; /* gray approx */
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .services-grid {
+      gap: 14px;
+    }
+    .service-card {
+      padding: 26px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-section {
+      padding-block: 72px;
+    }
+    .heading {
+      font-size: 40px;
+    }
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,17 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import SkillsSection from "../components/sections/Skills.astro";
+import Skills from "../components/Skills.astro";
 
-const title = "Skills | Wisnu Alfian Nur Ashar";
-const description = "My technical stack and professional capabilities.";
+const title = "Skills & Expertise | Wisnu Alfian Nur Ashar";
+const description = "Technical stack of Wisnu Alfian Nur Ashar — React, Next.js, Laravel, TypeScript, PostgreSQL, Docker, and cybersecurity. Full-stack engineering skills for internship and work.";
 ---
 
 <Layout title={title} description={description}>
-    <Header />
-    <main class="pt-20">
-        <SkillsSection />
-    </main>
-    <Footer />
+  <Navbar />
+  <main>
+    <Skills />
+  </main>
+  <Footer />
 </Layout>

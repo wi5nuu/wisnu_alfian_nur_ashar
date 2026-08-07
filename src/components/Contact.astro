@@ -1,0 +1,327 @@
+---
+import { Mail, MapPin, Send } from "lucide-astro";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+---
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- LEFT: HEADER + INFO -->
+      <div class="contact-left">
+        <div class="contact-header">
+          <div class="badge">
+            <div class="badge-dot"></div>
+            <span class="badge-text">{isId ? 'MARI TERHUBUNG' : 'LET\'S CONNECT'}</span>
+          </div>
+
+      <h2 class="heading">
+        {isId ? "Mari Terhubung" : "Let's Connect"}
+      </h2>
+          <p class="subtitle">
+            {isId 
+              ? 'Jangan ragu untuk menghubungi saya untuk kolaborasi atau sekadar menyapa.' 
+              : 'Feel free to reach out for collaborations or just a friendly hello.'}
+          </p>
+        </div>
+
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon-wrap">
+              <Mail class="info-icon" />
+            </div>
+            <div class="info-content">
+              <h3 class="info-label">Email</h3>
+              <a href={`mailto:${profile.personalInfo.email}`} class="info-value link-hover">
+                {profile.personalInfo.email}
+              </a>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon-wrap">
+              <MapPin class="info-icon" />
+            </div>
+            <div class="info-content">
+              <h3 class="info-label">{isId ? 'Lokasi' : 'Location'}</h3>
+              <span class="info-value">{profile.personalInfo.location}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="contact-form-wrapper">
+        <form class="contact-form" action="https://formspree.io/f/xbjnrvvj" method="POST">
+          <div class="form-group">
+            <label for="name" class="form-label">{isId ? 'Nama Lengkap' : 'Full Name'}</label>
+            <input type="text" id="name" name="name" class="form-input" required placeholder={isId ? 'Masukkan nama Anda' : 'Enter your name'} />
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" required placeholder={isId ? 'Masukkan email Anda' : 'Enter your email'} />
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="form-label">{isId ? 'Pesan' : 'Message'}</label>
+            <textarea id="message" name="message" class="form-textarea" required placeholder={isId ? 'Bagaimana saya bisa membantu?' : 'How can I help you?'} rows="4"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn group">
+            <span>{isId ? 'Kirim Pesan' : 'Send Message'}</span>
+            <Send class="btn-icon" />
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    background-color: var(--bg);
+    color: #ffffff;
+    padding-block: 64px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .container {
+    width: 100%;
+    padding-inline: clamp(24px, 2.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .heading {
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    margin-top: 16px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 560px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* LEFT: INFO */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .info-card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .info-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .info-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+  }
+
+  .info-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-label {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .info-value {
+    font-size: 18px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .link-hover {
+    transition: color 0.3s ease;
+  }
+
+  .link-hover:hover {
+    color: var(--accent);
+  }
+
+  /* RIGHT: FORM */
+  .contact-form-wrapper {
+    background-color: #111111;
+    border-radius: 24px;
+    padding: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .submit-btn {
+    margin-top: 16px;
+    background-color: var(--accent);
+    color: #0A0A0A;
+    border: none;
+    border-radius: 999px;
+    padding: 16px 32px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: filter 0.3s ease;
+    align-self: flex-start;
+  }
+
+  .submit-btn:hover {
+    filter: brightness(1.1);
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-section {
+      padding-block: 72px;
+    }
+    
+    .contact-form-wrapper {
+      padding: 32px 24px;
+    }
+    
+    .heading {
+      font-size: 40px;
+    }
+  }
+</style>

@@ -1,0 +1,163 @@
+---
+import { LayoutGrid, Network, Asterisk } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+---
+
+<section class="why-work-with-me">
+  <div class="header-block">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'MENGAPA MEMILIH SAYA' : 'WHY CHOOSE ME'}</span>
+    </div>
+
+    <h2 class="heading">
+      {isId ? 'Mengapa Bekerja Sama Dengan Saya' : 'Why Work with Me'}
+    </h2>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="icon-wrapper">
+        <LayoutGrid class="icon" />
+      </div>
+      <h3 class="card-title">{isId ? 'Kode yang Bersih' : 'Clean Code'}</h3>
+      <p class="card-text">{isId ? 'Saya percaya bahwa setiap proyek berhak atas kode yang maintainable, well-documented, dan mengikuti best practices.' : 'I believe that every project deserves maintainable, well-documented code that follows best practices.'}</p>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrapper">
+        <Network class="icon" />
+      </div>
+      <h3 class="card-title">{isId ? 'Pendekatan Berpusat pada Pengguna' : 'User-Centric Approach'}</h3>
+      <p class="card-text">{isId ? 'Dengan fokus kuat pada pengalaman pengguna, saya membangun aplikasi yang intuitif dan mudah digunakan.' : 'With a strong focus on user experience, I build applications that are intuitive and easy to use.'}</p>
+    </div>
+
+    <div class="card">
+      <div class="icon-wrapper">
+        <Asterisk class="icon" />
+      </div>
+      <h3 class="card-title">{isId ? 'Teknologi Modern' : 'Modern Technologies'}</h3>
+      <p class="card-text">{isId ? 'Saya mengikuti perkembangan teknologi dan best practices terkini untuk menawarkan solusi paling efektif kepada Anda.' : 'I stay at the forefront of technology and best practices to offer you the most effective solutions.'}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-work-with-me {
+    background-color: #F2F2F2;
+    color: #0A0A0A;
+    height: auto;
+    padding-block: 90px 96px;
+    padding-inline: clamp(24px, 6.9vw, 88px);
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #9A9A9A;
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    color: #0A0A0A;
+  }
+
+  .header-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .heading {
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: #0A0A0A;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  .cards-grid {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    background-color: #FAFAFA;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  }
+
+  .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #0A0A0A;
+    display: grid;
+    place-items: center;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+  }
+
+  .card-title {
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-size: 22px;
+    font-weight: 500;
+    color: #0A0A0A;
+  }
+
+  .card-text {
+    margin-top: 12px;
+    margin-bottom: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #3F3F3F;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .cards-grid {
+      gap: 16px;
+    }
+    .card {
+      padding: 28px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .why-work-with-me {
+      padding-block: 64px;
+    }
+    .heading {
+      font-size: 40px;
+    }
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

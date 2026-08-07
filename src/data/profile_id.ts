@@ -98,7 +98,7 @@ export const profile: Profile = {
         role: "Full-Stack Engineer",
         location: "Bekasi, West Java, Indonesia",
         tagline: "Membangun Sistem Produksi yang Aman dan Berkinerja Tinggi",
-        summary: "Mahasiswa Teknologi Informasi yang berspesialisasi dalam Full-Stack Engineering dengan pengalaman langsung merancang platform ERP/POS enterprise, aplikasi berbasis AI, dan sistem cloud yang scalable menggunakan Laravel, Next.js, PostgreSQL, dan teknologi cloud modern.",
+        summary: "Mahasiswa Teknologi Informasi di President University yang berspesialisasi dalam Full-Stack Engineering dengan 1.500+ kontribusi GitHub di 90+ repositori. Berpengalaman membangun sistem enterprise siap produksi — termasuk platform ERP/POS yang melayani 15.000+ pengguna — menggunakan Laravel, Next.js, PostgreSQL, Go, dan teknologi cloud modern. Kontributor open-source aktif (NASA, Microsoft), anggota OWASP Foundation, dan peserta IBM SkillsBuild AI Builders Challenge.",
         email: "wisnualfiannurashar@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
@@ -190,7 +190,7 @@ export const profile: Profile = {
             type: "Pekerja Lepas (Wiraswasta)",
             duration: "Desember 2025 - Sekarang",
             location: "Kota Bekasi (Hybrid)",
-            description: "Merancang dan mengembangkan platform ERP/POS enterprise menggunakan Laravel, Next.js, dan PostgreSQL, mengintegrasikan manajemen inventaris, pembelian, penggajian, absensi, dashboard business intelligence, AI Copilot, dan role-based access control (RBAC) ke dalam sistem manajemen bisnis terpadu yang mendukung 6 administrator, 600+ produk, dan 50+ reseller aktif. Mengoptimalkan kinerja aplikasi melalui Cloudflare CDN, intelligent caching, dan optimasi kueri database, mencapai rata-rata waktu muat halaman 1,34 detik dan 91% Good Largest Contentful Paint (LCP). Mengotomatisasi operasi bisnis end-to-end dengan mengintegrasikan manajemen pesanan grosir, sinkronisasi inventaris, pelacakan pengeluaran, pelaporan keuangan, dan pemantauan stok real-time, mendukung 100+ transaksi harian sambil mengurangi waktu rekonsiliasi keuangan manual hingga 60%.",
+            description: "Membangun platform ERP/POS enterprise (Laravel, Next.js, PostgreSQL) dengan inventaris, penggajian, BI dashboard, AI Copilot, dan RBAC — melayani 6 admin, 600+ produk, 50+ reseller. Mencapai load time 1,34 detik dan 91% Good LCP via Cloudflare CDN. Mengotomatisasi operasi grosir yang mendukung 100+ transaksi harian, memangkas waktu rekonsiliasi keuangan 60%.",
             skills: ["Laravel", "Next.js", "PostgreSQL", "Cloudflare", "ERP/POS", "AI Copilot"]
         },
         {
@@ -199,7 +199,7 @@ export const profile: Profile = {
             type: "Magang",
             duration: "April 2026 - Sekarang",
             location: "New York, USA (Remote)",
-            description: "Mengembangkan dan menyesuaikan website WordPress responsif menggunakan PHP, HTML, CSS, JavaScript, Elementor, dan Gutenberg dalam lingkungan pengembangan XAMPP lokal. Memelihara dan memperbarui website WordPress dengan mempublikasikan konten, mengoptimalkan tata letak halaman, memecahkan masalah teknis, dan menerapkan praktik SEO terbaik untuk meningkatkan kegunaan dan visibilitas pencarian. Berkolaborasi dalam lingkungan Agile remote dengan berpartisipasi dalam diskusi teknis mingguan melalui Microsoft Teams dan secara konsisten mengirimkan laporan kemajuan serta menyelesaikan tugas pengembangan tepat waktu.",
+            description: "Membangun dan menyesuaikan website WordPress responsif menggunakan PHP, HTML, CSS, JavaScript, Elementor, dan Gutenberg. Menerapkan praktik SEO terbaik untuk meningkatkan kegunaan dan visibilitas pencarian. Berkolaborasi dalam lingkungan Agile remote via Microsoft Teams.",
             skills: ["WordPress", "PHP", "JavaScript", "SEO", "Elementor", "Agile"]
         }
     ],
@@ -219,7 +219,7 @@ export const profile: Profile = {
             type: "Organisasi",
             duration: "September 2024 - Agustus 2025",
             location: "President University, Bekasi",
-            description: "Menyelenggarakan 3+ acara berbasis teknologi untuk 100+ mahasiswa universitas, mencapai tingkat kehadiran konsisten 95%. Mengkoordinasikan workshop akademik teknis dan kegiatan mahasiswa yang bertujuan mendorong kolaborasi antar mahasiswa. Mendukung logistik divisi dan inisiatif berbagi pengetahuan untuk meningkatkan pengembangan keterampilan IT mahasiswa.",
+            description: "Menyelenggarakan 3+ acara teknologi untuk 100+ mahasiswa dengan tingkat kehadiran 95%. Mengkoordinasikan workshop akademik dan inisiatif berbagi pengetahuan untuk meningkatkan keterampilan IT mahasiswa.",
             skills: ["Manajemen Acara", "Komunikasi", "Kerja Tim"]
         },
         {
@@ -228,7 +228,7 @@ export const profile: Profile = {
             type: "Organisasi",
             duration: "September 2025 - Sekarang",
             location: "President University, Bekasi (On-site)",
-            description: "Memimpin 5+ kegiatan seni dan olahraga untuk 60+ mahasiswa, menghasilkan peningkatan 40% dalam keterlibatan mahasiswa departemen. Memimpin komite lintas fungsi untuk menyelenggarakan acara kampus yang dihadiri lebih dari 100 mahasiswa sambil mengkoordinasikan relawan, jadwal, dan logistik.",
+            description: "Memimpin 5+ kegiatan seni dan olahraga untuk 60+ mahasiswa, meningkatkan keterlibatan 40%. Menyelenggarakan acara kampus untuk 100+ mahasiswa sambil mengkoordinasikan relawan dan logistik.",
             skills: ["Kepemimpinan", "Manajemen Acara", "Komunikasi"]
         },
         {
@@ -632,6 +632,14 @@ export const profile: Profile = {
             category: "participant",
             description: "Berpartisipasi dalam kompetisi Tech Sprint 3in1 yang diselenggarakan oleh PUMA Information System President University, berfokus pada perancangan pipeline data yang efisien dan alur kerja otomatis.",
             image: "/certifications/Data_Automation_Participants.webp"
+        },
+        {
+            name: "Alternatif Finalis — AI Open Innovation Challenge 2026",
+            issuer: "President University",
+            date: "2026",
+            category: "finalist",
+            description: "Terpilih sebagai alternatif finalis dalam AI Open Innovation Challenge 2026, platform nasional yang diselenggarakan oleh President University untuk kolaborasi antara akademisi, industri, dan profesional dalam menjawab tantangan bisnis menggunakan solusi berbasis AI.",
+            image: "/certifications/aiopen.png"
         }
     ],
     openSource: [

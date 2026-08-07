@@ -5,3 +5,20 @@
 @import "@fontsource/cormorant-garamond/400.css";
 @import "@fontsource/cormorant-garamond/600.css";
 @import "@fontsource/cormorant-garamond/700.css";
+
+:root {
+  --bg: #0A0A0A;
+  --text: #FFFFFF;
+  --accent: #84E10C;
+  --border: rgba(255, 255, 255, 0.25);
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}

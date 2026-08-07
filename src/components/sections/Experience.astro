@@ -1,36 +1,365 @@
 ---
 import { profile as profileEn } from "../../data/profile";
 import { profile as profileId } from "../../data/profile_id";
-import Timeline from "../Timeline.astro";
+import { Briefcase, Building2, CalendarDays, MapPin } from "lucide-astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
-<section id="experience" class="section">
-  <div class="container-custom">
-
-    <!-- ===== WORK EXPERIENCE ===== -->
-    <div class="text-center mb-12 md:mb-16 reveal-up">
-      <h2 class="inline-block relative text-sage-900 dark:text-white text-2xl md:text-3xl font-serif font-bold">
-        {isId ? 'Pengalaman Kerja' : 'Work Experience'}
-        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-500/50 rounded-full"></span>
-      </h2>
+<section class="experience-section">
+  <div class="container">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'PENGALAMAN' : 'EXPERIENCE'}</span>
     </div>
 
-    <Timeline items={profile.experience} />
+    <h2 class="heading">
+      {isId ? 'Perjalanan' : 'Career'}<br />
+      {isId ? 'Karir' : 'Journey'}
+    </h2>
 
-    <!-- ===== ORGANIZATIONAL EXPERIENCE ===== -->
-    <div class="mt-16 md:mt-24">
-      <div class="text-center mb-12 md:mb-16 reveal-up">
-        <h2 class="inline-block relative text-sage-900 dark:text-white text-2xl md:text-3xl font-serif font-bold">
-          {isId ? 'Pengalaman Organisasi' : 'Organizational Experience'}
-          <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-500/50 rounded-full"></span>
-        </h2>
-      </div>
-
-      <Timeline items={profile.organizationalExperience} />
+    <!-- Work Experience -->
+    <div class="block-heading">
+      <Briefcase class="block-icon" />
+      <h3 class="block-title">{isId ? 'Pengalaman Kerja' : 'Work Experience'}</h3>
     </div>
 
+    <div class="timeline">
+      {profile.experience.map((item, index) => (
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          {index < profile.experience.length - 1 && <div class="timeline-line"></div>}
+          <div class="timeline-card">
+            <div class="card-header">
+              <div class="card-left">
+                <h4 class="item-role">{item.role}</h4>
+                <div class="item-meta">
+                  <span class="item-company">
+                    <Building2 class="meta-icon" />
+                    {item.company}
+                  </span>
+                  <span class="item-type">{item.type}</span>
+                </div>
+              </div>
+              <div class="card-right">
+                <span class="item-date">
+                  <CalendarDays class="meta-icon" />
+                  {item.duration}
+                </span>
+                <span class="item-location">
+                  <MapPin class="meta-icon" />
+                  {item.location}
+                </span>
+              </div>
+            </div>
+            <p class="item-desc">{item.description}</p>
+            {item.skills && item.skills.length > 0 && (
+              <div class="skill-row">
+                {item.skills.map((skill) => (
+                  <span class="skill-tag">{skill}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Organizational Experience -->
+    <div class="block-heading" style="margin-top: 80px;">
+      <Building2 class="block-icon" />
+      <h3 class="block-title">{isId ? 'Pengalaman Organisasi' : 'Organizational Experience'}</h3>
+    </div>
+
+    <div class="timeline">
+      {profile.organizationalExperience.map((item, index) => (
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          {index < profile.organizationalExperience.length - 1 && <div class="timeline-line"></div>}
+          <div class="timeline-card">
+            <div class="card-header">
+              <div class="card-left">
+                <h4 class="item-role">{item.role}</h4>
+                <div class="item-meta">
+                  <span class="item-company">
+                    <Building2 class="meta-icon" />
+                    {item.company}
+                  </span>
+                  <span class="item-type">{item.type}</span>
+                </div>
+              </div>
+              <div class="card-right">
+                <span class="item-date">
+                  <CalendarDays class="meta-icon" />
+                  {item.duration}
+                </span>
+                <span class="item-location">
+                  <MapPin class="meta-icon" />
+                  {item.location}
+                </span>
+              </div>
+            </div>
+            <p class="item-desc">{item.description}</p>
+            {item.skills && item.skills.length > 0 && (
+              <div class="skill-row">
+                {item.skills.map((skill) => (
+                  <span class="skill-tag">{skill}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
+
+<style>
+  .experience-section {
+    background-color: var(--bg);
+    color: #ffffff;
+    padding-block: 120px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 2.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .heading {
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .block-heading {
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .block-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .block-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  /* Timeline */
+  .timeline {
+    width: 100%;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    border: 2px solid var(--bg);
+    flex-shrink: 0;
+    margin-top: 22px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 5px;
+    top: 34px;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .timeline-card {
+    flex: 1;
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  .timeline-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .card-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .item-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .item-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .item-company {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .item-type {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+
+  .item-date,
+  .item-location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .meta-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  .item-desc {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .skill-row {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .experience-section {
+      padding-block: 80px;
+    }
+    .card-header {
+      flex-direction: column;
+    }
+    .card-right {
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .timeline-item {
+      gap: 12px;
+    }
+    .timeline-card {
+      padding: 16px;
+    }
+  }
+</style>

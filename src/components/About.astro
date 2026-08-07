@@ -1,0 +1,183 @@
+---
+import { Github, Dribbble, Linkedin, Instagram } from "lucide-astro";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+---
+
+<section class="about-section">
+  <div class="container">
+    <!-- LEFT: PHOTO CARD -->
+    <div class="photo-card">
+      <img src="/Wisnu Alfian Nur Ashar.png" alt={profile.personalInfo.name} class="about-photo" />
+    </div>
+
+    <!-- RIGHT: TEXT -->
+    <div class="text-content">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <span class="badge-text">{isId ? 'TENTANG SAYA' : 'ABOUT ME'}</span>
+      </div>
+
+      <h2 class="heading">
+        {isId ? 'Temukan Perjalanan' : 'Discover My'}<br />
+        {isId ? 'Engineering Saya' : 'Engineering Journey'}
+      </h2>
+
+      <p class="bio">
+        {profile.personalInfo.summary || "Hello! I'm Wisnu, a passionate Full-Stack Engineer with experience in creating visually appealing and high-performing applications. My mission is to bring your brand to life through innovative solutions tailored to your unique needs."}
+      </p>
+
+      <div class="social-row">
+        <a href={profile.personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" class="social-circle">
+          <Github class="social-icon" />
+        </a>
+        <a href="#" class="social-circle">
+          <Dribbble class="social-icon" />
+        </a>
+        <a href={profile.personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" class="social-circle">
+          <Linkedin class="social-icon" />
+        </a>
+        <a href={profile.personalInfo.instagram || '#'} target="_blank" rel="noopener noreferrer" class="social-circle">
+          <Instagram class="social-icon" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    background-color: #F2F2F2;
+    padding-block: 110px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 900px;
+    margin-inline: auto;
+    padding-inline: 24px;
+    display: grid;
+    grid-template-columns: 330px 1fr;
+    gap: clamp(40px, 8vw, 115px);
+    align-items: center;
+  }
+
+  .photo-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+  }
+
+  .about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* RIGHT: TEXT */
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #9A9A9A;
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #0A0A0A;
+  }
+
+  .heading {
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    color: #0A0A0A;
+  }
+
+  .bio {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #3F3F3F;
+    max-width: 440px;
+  }
+
+  .social-row {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .social-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .social-icon {
+    width: 18px;
+    height: 18px;
+    color: #ffffff;
+    transition: color 0.3s ease;
+  }
+
+  .social-circle:hover {
+    background-color: var(--accent);
+  }
+
+  .social-circle:hover .social-icon {
+    color: #0A0A0A;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-section {
+      padding-block: 72px;
+    }
+    
+    .container {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-card {
+      height: 360px;
+      order: -1; /* Puts photo first on mobile */
+    }
+  }
+</style>

@@ -1,0 +1,266 @@
+---
+import { profile } from "../data/profile";
+import { CornerDownRight } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+---
+
+<section class="hero-container">
+  <!-- A) TOP BADGE -->
+  <div class="top-badge">
+    <div class="badge-dot"></div>
+    <span class="badge-text">{isId ? 'TERSEDIA UNTUK MAGANG & KERJA' : 'AVAILABLE FOR INTERN & WORK'}</span>
+  </div>
+
+  <!-- B) GIANT HEADLINE -->
+  <h1 class="giant-headline">
+    <span class="block text-center">WISNU ALFIAN</span>
+    <span class="block text-center">NUR ASHAR</span>
+  </h1>
+
+  <!-- C) MY PHOTO -->
+  <div class="photo-wrapper">
+    <!-- TODO: Swap this with a transparent PNG cutout of the user -->
+    <img 
+      src="/Wisnu Alfian Nur Ashar.png" 
+      alt="Wisnu Alfian Nur Ashar" 
+      class="hero-photo"
+    />
+  </div>
+
+  <!-- D) LEFT COPY BLOCK -->
+  <div class="left-copy">
+    <p class="tagline">
+      {profile.personalInfo.tagline || "I blend artistry with cutting-edge technology to deliver websites that not only look stunning but also drive results."}
+    </p>
+    <a href={isId ? '/id/contact' : '/contact'} class="cta-button group">
+      <CornerDownRight class="w-5 h-5 text-[#0A0A0A]" />
+      <span>{isId ? 'Jadwalkan konsultasi' : 'Schedule a consultation'}</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg);
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* TOP BADGE */
+  .top-badge {
+    margin-top: 150px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    z-index: 3; /* Above everything except maybe nav */
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(132, 225, 12, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(132, 225, 12, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(132, 225, 12, 0);
+    }
+  }
+
+  .badge-text {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+  }
+
+  /* GIANT HEADLINE */
+  .giant-headline {
+    position: relative;
+    margin-top: 4vh;
+    z-index: 1;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    font-size: clamp(28px, 7.5vw, 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin-inline: auto;
+    overflow: hidden;
+  }
+
+  .giant-headline span {
+    display: block;
+  }
+
+  /* MY PHOTO */
+  .photo-wrapper {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60vh;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-photo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: bottom;
+    /* Soften edges since it might not be a transparent PNG yet */
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+  }
+
+  /* LEFT COPY BLOCK */
+  .left-copy {
+    position: absolute;
+    left: 40px;
+    top: 64%;
+    max-width: 440px;
+    z-index: 3;
+  }
+
+  .tagline {
+    font-size: 16px;
+    line-height: 1.55;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .cta-button {
+    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--accent);
+    color: #0A0A0A;
+    border-radius: 999px;
+    padding: 14px 26px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: filter 0.3s ease;
+  }
+
+  .cta-button:hover {
+    filter: brightness(1.1);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .left-copy {
+      max-width: 360px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Switch container ke flex column normal flow */
+    .hero-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 48px;
+    }
+
+    .top-badge {
+      margin-top: 100px;
+      order: 0;
+    }
+
+    .giant-headline {
+      font-size: 13vw;
+      margin-top: 6vh;
+      order: 1;
+    }
+
+    /* Foto keluar dari absolute, masuk flow normal — di bawah nama, di atas tagline */
+    .photo-wrapper {
+      position: static;
+      transform: none;
+      height: 38vh;
+      width: auto;
+      max-width: 280px;
+      order: 2;
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .hero-photo {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      object-position: bottom;
+      mask-image: linear-gradient(to top, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    }
+
+    .left-copy {
+      position: static;
+      order: 3;
+      margin-top: 24px;
+      margin-bottom: 0;
+      padding: 0 20px;
+      max-width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .tagline {
+      font-size: 14px;
+    }
+
+    .cta-button {
+      margin-top: 20px;
+      padding: 12px 22px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .giant-headline {
+      font-size: 12vw;
+    }
+
+    .photo-wrapper {
+      height: 32vh;
+      max-width: 220px;
+    }
+  }
+</style>

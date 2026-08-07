@@ -8,20 +8,38 @@ const profile = isId ? profileId : profileEn;
 import { Github, Linkedin, Mail, Instagram, MessageCircle } from "lucide-astro";
 
 const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { name: isId ? "Beranda" : "Home", href: isId ? "/id/" : "/" },
+  { name: isId ? "Tentang" : "About", href: isId ? "/id/about" : "/about" },
+  { name: isId ? "Proyek" : "Projects", href: isId ? "/id/projects" : "/projects" },
+  { name: isId ? "Kontak" : "Contact", href: isId ? "/id/contact" : "/contact" },
+];
 ---
 
-<footer class="bg-white dark:bg-slate-900/95 border-t border-slate-100 dark:border-slate-700/50 py-10">
-  <div class="container-custom">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-      <div class="text-center md:text-left">
-        <h2 class="text-lg font-serif font-bold text-slate-950 dark:text-white">
-          Wisnu Alfian Nur Ashar
-        </h2>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-          {profile.personalInfo.tagline}
-        </p>
-      </div>
-      <div class="flex items-center gap-3">
+<footer class="footer">
+  <div class="footer-container">
+    <!-- TOP ROW: Logo + Nav Links -->
+    <div class="footer-top">
+      <a href={isId ? "/id/" : "/"} class="footer-logo">
+        WISNU ALFIAN
+      </a>
+
+      <nav class="footer-nav">
+        {navLinks.map((link) => (
+          <a href={link.href} class="footer-nav-link">{link.name}</a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="footer-divider"></div>
+
+    <!-- BOTTOM ROW: Copyright + Socials + Location -->
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; {currentYear} Wisnu Alfian Nur Ashar</p>
+
+      <div class="footer-socials">
         {[
           { icon: Github, href: profile.personalInfo.github, label: "GitHub" },
           { icon: Linkedin, href: profile.personalInfo.linkedin, label: "LinkedIn" },
@@ -29,16 +47,148 @@ const currentYear = new Date().getFullYear();
           { icon: MessageCircle, href: profile.personalInfo.line, label: "Line" },
           { icon: Mail, href: `mailto:${profile.personalInfo.email}`, label: "Email" },
         ].map((s) => (
-          <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-            class="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
-            <s.icon class="w-4 h-4" />
+          <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} class="footer-social-link">
+            <s.icon class="social-icon" />
           </a>
         ))}
       </div>
-    </div>
-    <div class="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400 dark:text-slate-500">
-      <p>&copy; {currentYear} Wisnu Alfian Nur Ashar</p>
-      <p>{profile.personalInfo.location}</p>
+
+      <p class="footer-location">{profile.personalInfo.location}</p>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer {
+    background-color: var(--bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-block: 40px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .footer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 2.5vw, 40px);
+  }
+
+  /* TOP ROW */
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    text-decoration: none;
+    tracking-tight: true;
+  }
+
+  .footer-logo sup {
+    font-size: 11px;
+    vertical-align: super;
+  }
+
+  .footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav-link {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-nav-link:hover {
+    color: var(--accent);
+  }
+
+  /* DIVIDER */
+  .footer-divider {
+    margin-block: 28px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* BOTTOM ROW */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+  }
+
+  .footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .footer-social-link {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .footer-social-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: rgba(132, 225, 12, 0.08);
+  }
+
+  .social-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .footer-location {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .footer-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .footer-nav {
+      gap: 20px;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+</style>

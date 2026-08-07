@@ -2,103 +2,83 @@
 import { profile as profileEn } from "../../data/profile";
 import { profile as profileId } from "../../data/profile_id";
 import Picture from "../Picture.astro";
+import { MapPin, Github, Linkedin, ExternalLink } from "lucide-astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
-<section id="about" class="section relative overflow-hidden z-20">
-  <div class="container-custom pt-8 md:pt-4">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-10 reveal-up">
-        <h2 class="inline-block relative text-sage-900 dark:text-white">
-          {isId ? 'Tentang Saya' : 'About Me'}
-          <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200/60 dark:bg-sage-500/50 rounded-full"></span>
-        </h2>
-      </div>
+<section class="about-section">
+  <div class="container">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'TENTANG SAYA' : 'ABOUT ME'}</span>
+    </div>
 
-      <!-- Mobile only: Static photo below heading -->
-      <div class="md:hidden flex justify-center mb-8 reveal-zoom delay-100">
-        <div class="w-[200px] h-[250px] rounded-3xl overflow-hidden shadow-xl ring-1 ring-slate-200/60 dark:ring-transparent">
+    <h2 class="heading">
+      {isId ? 'Siapa Saya?' : 'Who Am I?'}
+    </h2>
+
+    <div class="about-grid">
+      <!-- Photo -->
+      <div class="photo-col">
+        <div class="photo-wrap">
           <Picture
-            src="/wisnu_alfian_nur_ashar.jpeg"
+            src="/Wisnu Alfian Nur Ashar.png"
             alt={profile.personalInfo.name}
-            width="200"
-            height="250"
-            class="w-full h-full object-cover"
+            width="400"
+            height="500"
+            class="photo"
           />
+          <div class="photo-badge">
+            <span class="available-dot"></span>
+            <span>{isId ? 'Tersedia untuk hire' : 'Available for hire'}</span>
+          </div>
         </div>
       </div>
 
-      <div class="flex flex-col md:grid md:grid-cols-12 gap-8 items-start">
-        <!-- Desktop: Photo (sticky) -->
-        <div class="md:col-span-4 relative hidden md:block reveal-zoom delay-100">
-          <div class="sticky top-24">
-            <div class="relative group">
-              <!-- Decorative behind -->
-              <div class="absolute -bottom-3 -right-3 w-full h-full bg-sage-200/60 dark:bg-sage-800/40 rounded-2xl"></div>
-              <div class="absolute -top-3 -left-3 w-16 h-16 border-2 border-sage-200/60 dark:border-transparent rounded-xl"></div>
-              <!-- Photo card -->
-              <div class="relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl ring-1 ring-slate-200/60 dark:ring-transparent aspect-[3/4]">
-                <Picture
-                  src="/wisnu_alfian_nur_ashar.jpeg"
-                  alt={profile.personalInfo.name}
-                  width="300"
-                  height="400"
-                  class="w-full h-full object-cover"
-                />
-                <!-- Subtle overlay gradient at bottom -->
-                <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
-              </div>
-            </div>
+      <!-- Content -->
+      <div class="content-col">
+        <h3 class="name">{profile.personalInfo.name}</h3>
+        <p class="role">{profile.personalInfo.role}</p>
+
+        <div class="meta-row">
+          <span class="meta-item">
+            <MapPin class="meta-icon" />
+            {profile.personalInfo.location}
+          </span>
+        </div>
+
+        <p class="bio">{profile.personalInfo.summary}</p>
+
+        <div class="stats-row">
+          <div class="stat">
+            <span class="stat-num">15K+</span>
+            <span class="stat-label">{isId ? 'Pengguna Dilayani' : 'Users Served'}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">92+</span>
+            <span class="stat-label">{isId ? 'Repositori GitHub' : 'GitHub Repos'}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">{isId ? 'Sertifikasi' : 'Certifications'}</span>
           </div>
         </div>
 
-        <!-- Content -->
-        <div class="md:col-span-8 space-y-5 reveal-left delay-200">
-          <h3 class="text-lg md:text-2xl font-bold text-sage-900 dark:text-sage-300 text-center md:text-left">
-            {profile.personalInfo.role}
-          </h3>
-
-          <div class="space-y-3 text-[15px] md:text-base leading-relaxed">
-            <p class="text-charcoal/90 dark:text-slate-200 font-medium text-center md:text-left">
-              {profile.personalInfo.summary}
-            </p>
-
-            <p class="text-charcoal/80 dark:text-slate-300 text-center md:text-left">
-              {isId
-                ? 'Telah mengerjakan 14+ proyek nyata, termasuk platform ERP/POS enterprise, aplikasi berbasis AI, platform e-commerce, sistem CMS, dan alat keamanan siber — digunakan oleh pengguna sungguhan di lingkungan produksi.'
-                : 'Built 14+ real-world projects, including enterprise ERP/POS platforms, AI-powered applications, e-commerce platforms, CMS systems, and cybersecurity tools — used by real users in production environments.'}
-            </p>
-
-            <p class="text-sage-700 dark:text-sage-400 font-semibold underline decoration-sage-300/60 dark:decoration-sage-600 underline-offset-4 text-center md:text-left">
-              {isId
-                ? 'Fokus pada pengembangan full-stack, keamanan aplikasi, optimalisasi performa web, dan infrastruktur cloud modern.'
-                : 'Focused on full-stack development, application security, web performance optimization, and modern cloud infrastructure.'}
-            </p>
-          </div>
-
-          <!-- Stats Row -->
-          <div class="grid grid-cols-3 gap-3 md:gap-4 pt-4 reveal-up delay-300">
-            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center shadow-sm">
-              <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">14</div>
-              <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
-                {isId ? 'Proyek Nyata' : 'Real Projects'}
-              </div>
-            </div>
-            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center shadow-sm">
-              <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">15K+</div>
-              <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
-                {isId ? 'Pengguna Dilayani' : 'Users Served'}
-              </div>
-            </div>
-            <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-transparent rounded-2xl p-3 md:p-4 text-center shadow-sm">
-              <div class="text-xl md:text-2xl font-bold text-sage-700 dark:text-sage-400 stat-number">80+</div>
-              <div class="text-[9px] md:text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold mt-1">
-                {isId ? 'Repositori GitHub' : 'GitHub Repos'}
-              </div>
-            </div>
-          </div>
+        <div class="cta-row">
+          <a href={profile.personalInfo.github} target="_blank" rel="noopener noreferrer" class="cta-primary">
+            <Github class="cta-icon" />
+            GitHub
+          </a>
+          <a href={profile.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" class="cta-secondary">
+            <Linkedin class="cta-icon" />
+            LinkedIn
+          </a>
+          <a href="/Wisnu_Alfian_Nur_Ashar_CV.pdf" target="_blank" rel="noopener noreferrer" class="cta-secondary">
+            <ExternalLink class="cta-icon" />
+            {isId ? 'Unduh CV' : 'Download CV'}
+          </a>
         </div>
       </div>
     </div>
@@ -106,7 +86,310 @@ const profile = isId ? profileId : profileEn;
 </section>
 
 <style>
-  .stat-number {
-    font-family: 'Calibri', 'Trebuchet MS', 'Gill Sans', Arial, sans-serif;
+  .about-section {
+    background-color: var(--bg);
+    color: #ffffff;
+    padding-block: 120px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 2.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .heading {
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .about-grid {
+    margin-top: 64px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Photo */
+  .photo-col {
+    position: sticky;
+    top: 100px;
+  }
+
+  .photo-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+
+  .available-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Content */
+  .content-col {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+  }
+
+  .name {
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .role {
+    margin-top: 8px;
+    font-size: 15px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .meta-row {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .meta-icon {
+    width: 14px;
+    height: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    flex-shrink: 0;
+  }
+
+  .bio {
+    margin-top: 28px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.65);
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+  }
+
+  /* Stats */
+  .stats-row {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .stat {
+    background-color: #111111;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .cta-row {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    color: #0a0a0a;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .cta-primary:hover {
+    background-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .cta-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .cta-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .about-grid {
+      grid-template-columns: 300px 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-section {
+      padding-block: 80px;
+    }
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .photo-col {
+      position: static;
+      max-width: 320px;
+      margin-inline: auto;
+      width: 100%;
+    }
+    .stats-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .name {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-row {
+      grid-template-columns: 1fr;
+    }
+    .cta-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .cta-primary,
+    .cta-secondary {
+      justify-content: center;
+    }
   }
 </style>

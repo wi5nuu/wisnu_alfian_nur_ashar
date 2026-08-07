@@ -1,0 +1,203 @@
+---
+import { CornerDownRight } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+---
+
+<section class="process-section">
+  <div class="process-grid">
+    <!-- LEFT COLUMN -->
+    <div class="left-col">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <span class="badge-text">{isId ? 'PROSES SAYA' : 'MY PROCESS'}</span>
+      </div>
+
+      <h2 class="heading">
+        {isId ? 'Alur Kerja' : 'My Creative'}<br />
+        {isId ? 'Kreatif' : 'Workflow'}
+      </h2>
+
+      <a href={isId ? '/id/contact' : '/contact'} class="cta-button group">
+        <CornerDownRight class="icon-cta" />
+        <span>{isId ? 'Jadwalkan konsultasi' : 'Schedule a consultation'}</span>
+      </a>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-col">
+      <div class="process-item">
+        <h3 class="item-title">{isId ? '1. Penemuan' : '1. Discovery'}</h3>
+        <p class="item-text">
+          {isId 
+            ? 'Saya mendalami pemahaman tentang kebutuhan bisnis, tujuan teknis, dan target pengguna Anda. Melalui konsultasi dan riset terperinci, saya mengumpulkan wawasan penting yang menginformasikan seluruh proses pengembangan.' 
+            : 'I dive deep into understanding your business needs, technical goals, and target users. Through detailed consultations and research, I gather essential insights that inform the entire development process.'}
+        </p>
+      </div>
+
+      <div class="process-item">
+        <h3 class="item-title">{isId ? '2. Arsitektur' : '2. Architecture'}</h3>
+        <p class="item-text">
+          {isId 
+            ? 'Saya merancang arsitektur sistem yang scalable dan maintainable. Langkah ini berfokus pada pemilihan teknologi yang tepat dan pola desain yang selaras dengan kebutuhan proyek Anda.' 
+            : 'I design scalable and maintainable system architecture. This step focuses on selecting the right technology stack and design patterns that align with your project needs.'}
+        </p>
+      </div>
+
+      <div class="process-item">
+        <h3 class="item-title">{isId ? '3. Pengembangan' : '3. Development'}</h3>
+        <p class="item-text">
+          {isId 
+            ? 'Saya mengubah arsitektur menjadi aplikasi yang berfungsi penuh. Fase ini melibatkan pengkodean yang cermat dan integrasi untuk memastikan sistem Anda responsif dan berjalan lancar di berbagai environment.' 
+            : 'I transform the architecture into a fully functional application. This phase involves meticulous coding and integration to ensure your system is responsive and performs seamlessly across environments.'}
+        </p>
+      </div>
+
+      <div class="process-item">
+        <h3 class="item-title">{isId ? '4. Peluncuran' : '4. Launch'}</h3>
+        <p class="item-text">
+          {isId 
+            ? 'Saya menguji situs web secara ketat untuk memastikan semuanya berfungsi tanpa celah sebelum tayang. Pasca-peluncuran, saya memberikan dukungan dan panduan untuk membantu Anda memaksimalkan kehadiran online baru Anda.' 
+            : 'I rigorously test the website to ensure everything functions flawlessly before going live. Post-launch, I provide support and guidance to help you maximize your new online presence.'}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-section {
+    background-color: #F2F2F2;
+    color: #0A0A0A;
+    height: auto;
+    padding-inline: clamp(24px, 7.8vw, 100px);
+    padding-block: 96px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 7vw, 90px);
+    align-items: start;
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+
+  /* LEFT COLUMN */
+  .left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #9A9A9A;
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #0A0A0A;
+  }
+
+  .heading {
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #0A0A0A;
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .cta-button {
+    margin-top: 48px;
+    background-color: var(--accent);
+    color: #0A0A0A;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: filter 0.3s ease;
+  }
+
+  .cta-button:hover {
+    filter: brightness(1.1);
+  }
+
+  .icon-cta {
+    width: 16px;
+    height: 16px;
+    color: #0A0A0A;
+  }
+
+  /* RIGHT COLUMN */
+  .right-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .process-item {
+    padding-block: 24px;
+    border-bottom: 1px solid #0A0A0A;
+  }
+
+  /* The first item doesn't need top padding since the border is bottom */
+  .process-item:first-child {
+    padding-top: 0;
+  }
+
+  .item-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #0A0A0A;
+    margin: 0;
+  }
+
+  .item-text {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #3F3F3F;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .process-section {
+      padding-block: 64px;
+    }
+    
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .heading {
+      font-size: 40px;
+    }
+    
+    .cta-button {
+      margin-bottom: 32px;
+    }
+  }
+</style>

@@ -1,17 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ExperienceSection from "../components/sections/Experience.astro";
 
 const title = "Experience | Wisnu Alfian Nur Ashar";
-const description = "My professional experience and career timeline.";
+const description = "Career timeline of Wisnu Alfian Nur Ashar — Full-Stack Engineer intern & freelance projects in web development, cybersecurity research, and open-source contributions.";
 ---
 
 <Layout title={title} description={description}>
-    <Header />
-    <main class="pt-20">
-        <ExperienceSection />
-    </main>
-    <Footer />
+  <Navbar />
+  <main>
+    <ExperienceSection />
+  </main>
+  <Footer />
 </Layout>

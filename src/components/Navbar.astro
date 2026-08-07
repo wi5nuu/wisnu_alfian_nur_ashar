@@ -1,0 +1,57 @@
+---
+import { profile } from "../data/profile";
+import { Mail } from "lucide-astro";
+
+const pathname = new URL(Astro.request.url).pathname;
+const isId = pathname.startsWith('/id');
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
+  { name: "Contact", href: "/contact" },
+];
+
+const getLocalizedUrl = (path: string, toId: boolean) => {
+  const base = toId ? '/id' : '';
+  const cleanPath = path.startsWith('/id') ? path.substring(3) : path;
+  return `${base}${cleanPath === '' || cleanPath === '/' ? '/' : cleanPath}`;
+};
+---
+
+<nav class="absolute top-0 w-full z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-transparent">
+  <!-- LEFT: LOGO -->
+  <a href={getLocalizedUrl("/", isId)} class="text-white text-[20px] font-bold uppercase no-underline tracking-tight z-50">
+    WISNU ALFIAN
+  </a>
+
+  <!-- RIGHT: NAV LINKS (Hidden on mobile) -->
+  <div class="hidden md:flex items-center gap-10 z-50">
+    {navLinks.map((link) => {
+      const localizedHref = getLocalizedUrl(link.href, isId);
+      const isActive = pathname === localizedHref;
+      return (
+        <a 
+          href={localizedHref} 
+          class={`text-[15px] transition-colors ${isActive ? 'text-[var(--accent)] font-medium' : 'text-white hover:text-[var(--accent)]'}`}
+        >
+          {link.name}
+        </a>
+      );
+    })}
+  </div>
+
+  <!-- FAR RIGHT: CONTACT BUTTON -->
+  <a 
+    href={getLocalizedUrl("/contact", isId)} 
+    class="z-50 border border-white rounded-full px-6 py-2.5 text-white text-[15px] bg-transparent hover:bg-white hover:text-[#0A0A0A] transition-colors"
+  >
+    Contact Me
+  </a>
+</nav>
+
+<style>
+  nav {
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+</style>

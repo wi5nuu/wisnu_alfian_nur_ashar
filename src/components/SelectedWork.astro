@@ -1,0 +1,234 @@
+---
+import { CornerDownRight } from "lucide-astro";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+import ProjectDetailModal from "./ProjectDetailModal.astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+
+// Get first 5 projects
+const selectedProjects = profile.projects.slice(0, 5);
+---
+
+<section class="selected-work">
+  <div class="header-block">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'KARYA PILIHAN 2024–2026' : 'SELECTED WORK 2024–2026'}</span>
+    </div>
+
+    <h2 class="heading">
+      {isId ? 'Membangun Solusi' : 'Building Solutions'}<br />
+      {isId ? 'dengan Rekayasa Terbaik' : 'with Engineering Excellence'}
+    </h2>
+  </div>
+
+  <div class="project-grid">
+    {selectedProjects.map((project, index) => (
+      <button
+        class="project-card group"
+        onclick={`openProjectModal('project-detail-modal', ${JSON.stringify({
+          title: project.title,
+          role: project.role,
+          description: project.description,
+          techStack: project.techStack,
+          image: project.image || '/projects/placeholder.webp',
+          link: project.link,
+          github: project.github || '',
+        })})`}
+      >
+        <div class="card-header">
+          <div class="card-left">
+            <CornerDownRight class="icon" />
+            <span class="project-title">{project.title}</span>
+          </div>
+          <span class="project-year">{project.status}</span>
+        </div>
+        <img src={project.image || "/projects/placeholder.webp"} alt={project.title} class="project-image" />
+      </button>
+    ))}
+  </div>
+
+  <div class="bottom-cta">
+    <a href={isId ? '/id/projects' : '/projects'} class="cta-button group">
+      <CornerDownRight class="icon-cta" />
+      <span>{isId ? 'Lihat semua karya' : 'Browse all work'}</span>
+    </a>
+  </div>
+</section>
+
+<ProjectDetailModal id="project-detail-modal" />
+
+<style>
+  .selected-work {
+    background-color: var(--bg);
+    color: #ffffff;
+    height: auto;
+    padding-inline: clamp(20px, 3vw, 40px);
+    padding-block: 80px 100px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    font-weight: 400;
+  }
+
+  .header-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .heading {
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+
+  .project-grid {
+    margin-top: 72px;
+    display: grid;
+    /* Ubah ke 5 kolom di desktop */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    /* Lebarkan sedikit grid agar 5 card muat dengan nyaman */
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+
+  .project-card {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    background-color: #101010;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+  }
+  
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Kurangi padding sedikit agar muat di card yang lebih kecil */
+    padding: 16px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .card-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .project-title {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .project-year {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .project-image {
+    width: 100%;
+    aspect-ratio: 1.36;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover .project-image {
+    transform: scale(1.03);
+  }
+
+  .bottom-cta {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-button {
+    background-color: var(--accent);
+    color: #0A0A0A;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: filter 0.3s ease;
+  }
+
+  .cta-button:hover {
+    filter: brightness(1.1);
+  }
+
+  .icon-cta {
+    width: 16px;
+    height: 16px;
+    color: #0A0A0A;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .heading {
+      font-size: 36px;
+    }
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+    .card-header {
+      padding: 14px 16px;
+    }
+  }
+</style>

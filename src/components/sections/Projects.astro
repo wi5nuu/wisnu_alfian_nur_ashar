@@ -2,106 +2,381 @@
 import { profile as profileEn } from '../../data/profile';
 import { profile as profileId } from '../../data/profile_id';
 import { getProjectSlug } from '../../utils/slug';
-import { ExternalLink, Github } from 'lucide-astro';
-import Picture from '../../components/Picture.astro';
+import { ExternalLink, Github, ArrowUpRight } from 'lucide-astro';
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 const basePath = isId ? '/id/projects' : '/projects';
 ---
 
-<section id="projects" class="section">
-  <div class="container-custom">
-    <div class="text-center mb-10 reveal-up">
-      <h2 class="inline-block relative text-sage-900 dark:text-white">
-        {isId ? 'Proyek Unggulan' : 'Featured Projects'}
-        <span class="absolute -bottom-1.5 left-0 w-full h-1 bg-sage-200 dark:bg-sage-500/50 rounded-full"></span>
-      </h2>
-      <p class="text-charcoal/70 dark:text-slate-400 max-w-2xl mx-auto mt-2 text-sm">
-        {isId ? 'Aplikasi dunia nyata yang memberikan nilai nyata kepada pengguna dalam lingkungan produksi.' : 'Real-world applications delivering value to users in production environments.'}
-      </p>
+<section class="projects-section">
+  <div class="container">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">{isId ? 'SEMUA PROYEK' : 'ALL PROJECTS'}</span>
     </div>
 
-    <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar scroll-smooth">
+    <h2 class="heading">
+      {isId ? 'Proyek &' : 'Featured'}<br />
+      {isId ? 'Portofolio' : 'Projects'}
+    </h2>
+
+    <p class="subheading">
+      {isId
+        ? 'Aplikasi dunia nyata yang memberikan nilai nyata kepada pengguna dalam lingkungan produksi.'
+        : 'Real-world applications delivering value to users in production environments.'}
+    </p>
+
+    <div class="projects-grid">
       {profile.projects.map((project, index) => {
         const slug = getProjectSlug(project.title);
         return (
-        <a 
-          href={`${basePath}/${slug}`}
-          class="group relative bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-100 dark:border-transparent overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm md:hover:-translate-y-1 w-[85vw] shrink-0 snap-center md:w-auto md:shrink md:snap-none h-auto md:h-full cursor-pointer" 
-        >
-          <div class="absolute top-8 right-3 z-20">
-            <span class="px-2.5 py-0.5 bg-slate-950 text-white text-[9px] font-bold uppercase tracking-widest rounded-full shadow-lg border border-white/10">
-              {project.status || 'Verified'}
-            </span>
-          </div>
-
-          <div class="h-full flex flex-col">
+          <a
+            href={`${basePath}/${slug}`}
+            class="project-card"
+            style={`animation-delay: ${index * 60}ms`}
+          >
             {project.image && (
-              <div class="relative w-full">
-                <div class="w-full h-5 bg-slate-100 dark:bg-slate-700 border-b border-slate-200 dark:border-transparent flex items-center gap-1 px-3">
-                  <div class="w-1.5 h-1.5 rounded-full bg-red-400"></div>
-                  <div class="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
-                  <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+              <div class="card-img-wrap">
+                <div class="browser-bar">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
                 </div>
-                <div class="relative h-40 md:h-40 flex-shrink-0 overflow-hidden group-hover:opacity-95 transition-opacity bg-slate-50 dark:bg-slate-700">
-                  <Picture
-                    src={project.image}
-                    alt={project.title}
-                    width="400"
-                    height="160"
-                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  class="card-img"
+                  loading="lazy"
+                />
+                <div class="card-overlay">
+                  <ArrowUpRight class="overlay-icon" />
                 </div>
               </div>
             )}
-
-            <div class="bg-white dark:bg-slate-800/60 border-x border-b border-slate-100 dark:border-transparent rounded-b-xl p-4 md:p-5 flex-1 flex flex-col items-start min-h-[max-content] pb-6">
-              <div class="flex flex-wrap items-center gap-2 mb-2 w-full">
-                <span class={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full ${project.status === "Production" ? "bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-900/40 dark:text-emerald-400 dark:border-transparent" : "bg-sage-50 text-sage-600 border border-sage-100 dark:bg-sage-900/40 dark:text-sage-300 dark:border-transparent"}`}>
-                  {project.status === "Production" && isId ? "Produksi" : project.status}
-                </span>
-                {project.featured && (
-                  <span class="text-[10px] uppercase tracking-widest font-bold bg-amber-50 text-amber-600 border border-amber-100 dark:bg-amber-900/40 dark:text-emerald-400 dark:border-transparent px-2 py-0.5 rounded-full">
-                    {isId ? 'Andalan' : 'Featured'}
-                  </span>
+            <div class="card-body">
+              <div class="card-top">
+                <span class="status-badge">{project.status || 'Production'}</span>
+                <ArrowUpRight class="arrow-icon" />
+              </div>
+              <h3 class="card-title">{project.title}</h3>
+              <p class="card-role">{project.role}</p>
+              <p class="card-desc">{project.description}</p>
+              <div class="tag-row">
+                {project.techStack.slice(0, 4).map((tech) => (
+                  <span class="tag">{tech}</span>
+                ))}
+                {project.techStack.length > 4 && (
+                  <span class="tag">+{project.techStack.length - 4}</span>
                 )}
               </div>
-
-              <h3 class="text-lg md:text-xl font-bold text-slate-800 dark:text-white mb-1 leading-tight group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
-                {project.title}
-              </h3>
-
-              <div class="text-xs font-semibold text-sage-600 dark:text-sage-300 mb-2">{project.role}</div>
-
-              <p class="text-charcoal/70 dark:text-slate-300 text-[13px] leading-relaxed mb-4 flex-1 line-clamp-3">
-                {project.description}
-              </p>
-
-              <div class="space-y-4 mt-auto w-full">
-                <div class="flex flex-wrap gap-1.5 w-full">
-                  {project.techStack.map((tech) => (
-                    <span class="px-2 py-1 bg-slate-50 dark:bg-slate-700/60 text-slate-600 dark:text-slate-300 text-[10px] font-medium border border-slate-100 dark:border-transparent rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
-
-            <div class="h-1 bg-gradient-to-r from-slate-200 via-slate-900 to-slate-200 opacity-20 dark:opacity-0"></div>
-          </div>
-        </a>
-      )})}
+          </a>
+        );
+      })}
     </div>
 
-    <div class="mt-8 md:mt-12 text-center relative z-20">
-      <a href={profile.personalInfo.github} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 dark:bg-slate-700 text-white rounded-full text-sm font-medium hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-md group border border-transparent dark:border-slate-600">
-        <Github class="w-4 h-4" />
-        <span>{isId ? 'Lihat Semua Proyek di GitHub' : 'View all projects on GitHub'}</span>
-        <ExternalLink class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+    <div class="bottom-cta">
+      <a
+        href={profile.personalInfo.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-btn"
+      >
+        <Github class="cta-icon" />
+        <span>{isId ? 'Lihat Semua di GitHub' : 'View all on GitHub'}</span>
+        <ExternalLink class="cta-ext" />
       </a>
     </div>
   </div>
 </section>
+
+<style>
+  .projects-section {
+    background-color: var(--bg);
+    color: #ffffff;
+    padding-block: 120px;
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(24px, 2.5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .badge-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .heading {
+    color: #ffffff;
+    font-size: clamp(36px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .subheading {
+    margin-top: 20px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 540px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .projects-grid {
+    margin-top: 64px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .project-card {
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-4px);
+  }
+
+  /* Browser chrome bar */
+  .card-img-wrap {
+    position: relative;
+    width: 100%;
+    background-color: #0a0a0a;
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot.red    { background-color: #ff5f57; }
+  .dot.yellow { background-color: #febc2e; }
+  .dot.green  { background-color: #28c840; }
+
+  .card-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .card-img {
+    transform: scale(1.04);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    top: 28px; /* below browser bar */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .overlay-icon {
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
+  }
+
+  /* Card body */
+  .card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background-color: rgba(132, 225, 12, 0.1);
+    border: 1px solid rgba(132, 225, 12, 0.25);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+
+  .arrow-icon {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .project-card:hover .arrow-icon {
+    color: #ffffff;
+    transform: translate(2px, -2px);
+  }
+
+  .card-title {
+    margin-top: 16px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .card-role {
+    margin-top: 4px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-desc {
+    margin-top: 12px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .tag-row {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+
+  /* Bottom CTA */
+  .bottom-cta {
+    margin-top: 56px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    color: #0a0a0a;
+    border-radius: 999px;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .cta-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cta-ext {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects-section {
+      padding-block: 80px;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .heading {
+      font-size: 40px;
+    }
+  }
+</style>
