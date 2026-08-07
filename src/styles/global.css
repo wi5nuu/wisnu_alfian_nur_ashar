@@ -1,9 +1,10 @@
+/* 
+  Font loading strategy: hanya load weight yang benar-benar dipakai
+  font-display: swap mencegah render-blocking 
+*/
 @import "@fontsource/outfit/400.css";
-@import "@fontsource/outfit/500.css";
 @import "@fontsource/outfit/600.css";
 @import "@fontsource/outfit/700.css";
-@import "@fontsource/cormorant-garamond/400.css";
-@import "@fontsource/cormorant-garamond/600.css";
 @import "@fontsource/cormorant-garamond/700.css";
 
 :root {
@@ -11,14 +12,28 @@
   --text: #FFFFFF;
   --accent: #84E10C;
   --border: rgba(255, 255, 255, 0.25);
+  --font-sans: Outfit, Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
 }
 
 html, body {
   background-color: var(--bg);
   color: var(--text);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Prevent layout shift from images without explicit dimensions */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Non-composited animation fix — gunakan transform/opacity saja */
+* {
+  will-change: auto;
 }

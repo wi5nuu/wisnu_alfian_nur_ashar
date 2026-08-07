@@ -1,15 +1,12 @@
 ---
-import { profile } from "../data/profile";
-import { Mail } from "lucide-astro";
-
 const pathname = new URL(Astro.request.url).pathname;
 const isId = pathname.startsWith('/id');
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Projects", href: "/projects" },
-  { name: "Contact", href: "/contact" },
+  { name: isId ? "Beranda" : "Home", href: "/" },
+  { name: isId ? "Tentang" : "About", href: "/about" },
+  { name: isId ? "Proyek" : "Projects", href: "/projects" },
+  { name: isId ? "Kontak" : "Contact", href: "/contact" },
 ];
 
 const getLocalizedUrl = (path: string, toId: boolean) => {
@@ -19,21 +16,21 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 };
 ---
 
-<nav aria-label={isId ? "Navigasi utama" : "Main navigation"} class="absolute top-0 w-full z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-transparent">
+<nav aria-label={isId ? "Navigasi utama" : "Main navigation"} class="nav-root">
   <!-- LEFT: LOGO -->
-  <a href={getLocalizedUrl("/", isId)} aria-label="Home - Wisnu Alfian" class="text-white text-[20px] font-bold uppercase no-underline tracking-tight z-50">
+  <a href={getLocalizedUrl("/", isId)} aria-label="Home - Wisnu Alfian" class="nav-logo">
     WISNU ALFIAN
   </a>
 
-  <!-- RIGHT: NAV LINKS (Hidden on mobile) -->
-  <div class="hidden md:flex items-center gap-10 z-50">
+  <!-- CENTER/RIGHT: NAV LINKS (Desktop only) -->
+  <div class="nav-desktop">
     {navLinks.map((link) => {
       const localizedHref = getLocalizedUrl(link.href, isId);
-      const isActive = pathname === localizedHref;
+      const isActive = pathname === localizedHref || (pathname === '/id/' && localizedHref === '/id/');
       return (
-        <a 
-          href={localizedHref} 
-          class={`text-[15px] transition-colors ${isActive ? 'text-[var(--accent)] font-medium' : 'text-white hover:text-[var(--accent)]'}`}
+        <a
+          href={localizedHref}
+          class={`nav-link ${isActive ? 'nav-link--active' : ''}`}
         >
           {link.name}
         </a>
@@ -41,17 +38,380 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     })}
   </div>
 
-  <!-- FAR RIGHT: CONTACT BUTTON -->
-  <a 
-    href={getLocalizedUrl("/contact", isId)} 
-    class="z-50 border border-white rounded-full px-6 py-2.5 text-white text-[15px] bg-transparent hover:bg-white hover:text-[#0A0A0A] transition-colors"
-  >
-    Contact Me
-  </a>
+  <!-- RIGHT: Contact (Desktop) + Hamburger (Mobile) -->
+  <div class="nav-right">
+    <a href={getLocalizedUrl("/contact", isId)} class="nav-cta">
+      {isId ? 'Kontak' : 'Contact Me'}
+    </a>
+
+    <!-- HAMBURGER BUTTON (Mobile only) -->
+    <button
+      id="hamburger-btn"
+      aria-label={isId ? "Buka menu navigasi" : "Open navigation menu"}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="hamburger-btn"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
 </nav>
 
+<!-- MOBILE DRAWER OVERLAY -->
+<div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-menu" role="dialog" aria-modal="true" aria-label={isId ? "Menu navigasi" : "Navigation menu"} class="mobile-drawer">
+  <!-- Drawer Header -->
+  <div class="drawer-header">
+    <span class="drawer-logo">WISNU ALFIAN</span>
+    <button
+      id="close-btn"
+      aria-label={isId ? "Tutup menu" : "Close menu"}
+      class="close-btn"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Drawer Nav Links -->
+  <nav aria-label={isId ? "Navigasi mobile" : "Mobile navigation"} class="drawer-nav">
+    {navLinks.map((link) => {
+      const localizedHref = getLocalizedUrl(link.href, isId);
+      const isActive = pathname === localizedHref;
+      return (
+        <a
+          href={localizedHref}
+          class={`drawer-link ${isActive ? 'drawer-link--active' : ''}`}
+        >
+          {link.name}
+        </a>
+      );
+    })}
+  </nav>
+
+  <!-- Drawer CTA -->
+  <div class="drawer-footer">
+    <a href={getLocalizedUrl("/contact", isId)} class="drawer-cta">
+      {isId ? 'Hubungi Saya' : 'Contact Me'}
+    </a>
+  </div>
+</div>
+
 <style>
-  nav {
+  /* ===== NAV ROOT ===== */
+  .nav-root {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 40px;
+    background: transparent;
     font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   }
+
+  .nav-logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    z-index: 50;
+  }
+
+  /* ===== DESKTOP LINKS ===== */
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .nav-link {
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover,
+  .nav-link--active {
+    color: var(--accent);
+  }
+
+  .nav-link--active {
+    font-weight: 500;
+  }
+
+  /* ===== RIGHT SIDE ===== */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-cta {
+    border: 1px solid #fff;
+    border-radius: 999px;
+    padding: 10px 24px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover {
+    background: #fff;
+    color: #0A0A0A;
+  }
+
+  /* ===== HAMBURGER ===== */
+  .hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 50;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  /* Hamburger → X when open */
+  .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ===== MOBILE OVERLAY ===== */
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 98;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ===== MOBILE DRAWER ===== */
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 85vw);
+    height: 100dvh;
+    background: #0A0A0A;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .mobile-drawer.is-open {
+    transform: translateX(0);
+  }
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .drawer-logo {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .close-btn:hover {
+    border-color: var(--accent);
+    background: rgba(132,225,12,0.08);
+  }
+
+  /* ===== DRAWER NAV LINKS ===== */
+  .drawer-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    color: rgba(255,255,255,0.7);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .drawer-link:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .drawer-link--active {
+    color: var(--accent);
+    background: rgba(132,225,12,0.08);
+    border-color: rgba(132,225,12,0.2);
+    font-weight: 600;
+  }
+
+  /* ===== DRAWER FOOTER ===== */
+  .drawer-footer {
+    padding: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .drawer-cta {
+    display: block;
+    width: 100%;
+    padding: 14px 24px;
+    background: var(--accent);
+    color: #0A0A0A;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: opacity 0.2s;
+  }
+
+  .drawer-cta:hover {
+    opacity: 0.85;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 767px) {
+    .nav-root {
+      padding: 20px 24px;
+    }
+
+    .nav-desktop {
+      display: none;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    .hamburger-btn {
+      display: flex;
+    }
+  }
 </style>
+
+<script>
+  function initNavbar() {
+    const btn = document.getElementById('hamburger-btn');
+    const drawer = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-overlay');
+    const closeBtn = document.getElementById('close-btn');
+
+    if (!btn || !drawer || !overlay || !closeBtn) return;
+
+    const open = () => {
+      drawer.classList.add('is-open');
+      overlay.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      // Focus first link in drawer for accessibility
+      const firstLink = drawer.querySelector<HTMLAnchorElement>('.drawer-link');
+      firstLink?.focus();
+    };
+
+    const close = () => {
+      drawer.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      btn.focus();
+    };
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      isOpen ? close() : open();
+    });
+
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        close();
+      }
+    });
+
+    // Close drawer on navigation (Astro view transitions)
+    document.addEventListener('astro:before-swap', close);
+  }
+
+  document.addEventListener('astro:page-load', initNavbar);
+</script>
