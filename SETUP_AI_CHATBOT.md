@@ -1,29 +1,31 @@
-# Setup AI Chatbot (Gratis!)
+# Setup AI Chatbot
 
-AI Chatbot di portfolio ini menggunakan **Hugging Face Inference API** yang 100% GRATIS!
+AI Chatbot di portfolio ini menggunakan **OpenRouter API** yang memberikan akses ke berbagai model AI.
 
 ## Model yang Digunakan
-- **Qwen/Qwen2.5-72B-Instruct** - Model open-source terbaru yang powerful untuk conversation
-- Gratis tanpa batas (rate limit dari Hugging Face berlaku)
-- Performa setara dengan model komersial
+- **Llama 3.1 8B Instruct (Free)** - Model open-source dari Meta yang powerful
+- Gratis untuk model dengan tag `:free`
+- Akses ke 100+ model AI (GPT-4, Claude, Gemini, dll) dengan upgrade
 
 ## Cara Setup
 
-### 1. Buat Akun Hugging Face (Gratis)
-1. Kunjungi: https://huggingface.co/join
-2. Daftar dengan email atau GitHub
-3. Verifikasi email Anda
+### 1. Buat Akun OpenRouter
+1. Kunjungi: https://openrouter.ai
+2. Klik **"Sign In"** atau **"Get Started"**
+3. Login dengan Google, GitHub, atau email
 
-### 2. Dapatkan API Key (Gratis)
-1. Login ke Hugging Face
-2. Pergi ke: https://huggingface.co/settings/tokens
-3. Klik **"New token"**
-4. Beri nama token (misal: "Portfolio AI Chatbot")
-5. Pilih **"Read"** access (cukup untuk inference)
-6. Klik **"Generate token"**
-7. Copy token yang dimulai dengan `hf_...`
+### 2. Dapatkan API Key
+1. Login ke OpenRouter
+2. Pergi ke: https://openrouter.ai/settings/keys
+3. Klik **"Create Key"**
+4. Beri nama key (misal: "Portfolio AI Chatbot")
+5. Copy API key yang dimulai dengan `sk-or-v1-...`
 
-### 3. Setup Environment Variables
+### 3. (Opsional) Top Up Credits
+- Model dengan tag `:free` tidak memerlukan credits
+- Untuk model premium (GPT-4, Claude), top up di: https://openrouter.ai/credits
+
+### 4. Setup Environment Variables
 
 #### Untuk Development (Local)
 1. Copy file `.env.example` menjadi `.env`:
@@ -33,8 +35,10 @@ AI Chatbot di portfolio ini menggunakan **Hugging Face Inference API** yang 100%
 
 2. Edit file `.env` dan isi dengan API key Anda:
    ```env
-   HF_API_KEY=hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   ADMIN_TOKEN=your_secure_admin_token_here
+   OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   OPENROUTER_MODEL=meta-llama/llama-3.1-8b-instruct:free
+   OPENROUTER_REFERER=https://wisnualfian.vercel.app
+   OPENROUTER_TITLE=Wisnu Portfolio AI
    ```
 
 3. **JANGAN commit file `.env` ke git!** (sudah ada di `.gitignore`)
@@ -42,36 +46,53 @@ AI Chatbot di portfolio ini menggunakan **Hugging Face Inference API** yang 100%
 #### Untuk Production (Vercel)
 1. Pergi ke Dashboard Vercel project Anda
 2. Settings → Environment Variables
-3. Tambahkan variabel baru:
-   - **Name**: `HF_API_KEY`
-   - **Value**: `hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` (API key Anda)
-   - Environment: Production, Preview, Development (pilih semua)
+3. Tambahkan variabel berikut:
+   - **OPENROUTER_API_KEY**: `sk-or-v1-...` (API key Anda)
+   - **OPENROUTER_MODEL**: `meta-llama/llama-3.1-8b-instruct:free`
+   - **OPENROUTER_REFERER**: `https://wisnualfian.vercel.app`
+   - **OPENROUTER_TITLE**: `Wisnu Portfolio AI`
 4. Klik **Save**
 5. Redeploy project Anda
 
-### 4. Test AI Chatbot
+### 5. Test AI Chatbot
 1. Jalankan development server:
    ```bash
    npm run dev
    ```
 
-2. Buka browser dan chat dengan AI di portfolio Anda
-3. Jika pertama kali, model mungkin perlu 20-30 detik untuk "warm up"
+2. Buka browser di `http://localhost:4321`
+3. Klik tombol AI Chat dan kirim pesan
 
 ## Troubleshooting
 
 ### Error: "AI service tidak tersedia"
-- Pastikan `HF_API_KEY` sudah diset di environment variables
-- Cek apakah API key benar dan valid
+- Pastikan `OPENROUTER_API_KEY` sudah diset di environment variables
+- Cek apakah API key valid di https://openrouter.ai/settings/keys
 
-### Error: "AI sedang warming up"
-- Ini normal untuk model gratis di Hugging Face
-- Tunggu 20-30 detik dan coba lagi
-- Setelah warm up, response akan cepat
+### Error: "Insufficient credits"
+- Model `:free` tidak memerlukan credits
+- Jika menggunakan model premium, top up di https://openrouter.ai/credits
 
 ### Model tidak merespons dengan baik
 - Pastikan data di `src/data/profile.ts` dan `src/data/profile_id.ts` sudah lengkap
 - AI mengambil semua data dari file-file tersebut
+- Coba ganti model di `OPENROUTER_MODEL` (lihat daftar model di OpenRouter)
+
+## Pilihan Model
+
+OpenRouter menyediakan banyak pilihan model:
+
+### Model Gratis (Recommended)
+- `meta-llama/llama-3.1-8b-instruct:free` - Default, bagus untuk conversation
+- `google/gemma-2-9b-it:free` - Google Gemma 2
+- `mistralai/mistral-7b-instruct:free` - Mistral 7B
+
+### Model Premium (Perlu Credits)
+- `anthropic/claude-3.5-sonnet` - Claude 3.5 Sonnet (paling bagus)
+- `openai/gpt-4o` - GPT-4 Omni
+- `google/gemini-pro-1.5` - Gemini Pro 1.5
+
+Lihat daftar lengkap: https://openrouter.ai/models
 
 ## Fitur AI Chatbot
 
@@ -85,10 +106,10 @@ AI Chatbot di portfolio ini menggunakan **Hugging Face Inference API** yang 100%
 - Input validation (max 500 karakter)
 - No hardcoded API keys
 
-✅ **Gratis Selamanya**
-- Menggunakan Hugging Face Inference API
-- Tidak ada biaya bulanan
-- Tidak perlu kartu kredit
+✅ **Fleksibilitas Model**
+- Gunakan model gratis atau premium
+- Mudah ganti model via environment variable
+- Akses ke 100+ model AI
 
 ## File yang Relevan
 - `src/pages/api/chat.ts` - API endpoint untuk chatbot

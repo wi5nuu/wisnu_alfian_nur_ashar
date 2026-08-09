@@ -57,19 +57,23 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
-    // Get API credentials from environment (Hugging Face API - GRATIS!)
-    const apiKey = import.meta.env.HF_API_KEY || process.env.HF_API_KEY;
+    // Get API credentials from environment
+    const apiKey = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
+    const model = import.meta.env.OPENROUTER_MODEL || process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.1-8b-instruct:free';
+    const referer = import.meta.env.OPENROUTER_REFERER || process.env.OPENROUTER_REFERER || 'https://wisnualfian.vercel.app';
+    const title = import.meta.env.OPENROUTER_TITLE || process.env.OPENROUTER_TITLE || 'Wisnu Portfolio AI';
     
     if (!apiKey) {
       return new Response(
         JSON.stringify({ 
-          error: 'AI service tidak tersedia. Harap konfigurasi HF_API_KEY.' 
+          error: 'AI service tidak tersedia. Harap konfigurasi OPENROUTER_API_KEY.' 
         }),
         { status: 503, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
     console.log('🔑 API Key check:', apiKey ? `Found (length: ${apiKey.length})` : 'NOT FOUND');
+    console.log('📦 Model:', model);
 
     const isId = lang === 'id';
     const profileData = isId ? profileId : profile;
@@ -226,58 +230,35 @@ RULES:
 - Focus on portfolio & professional experience
 - If asked off-topic, redirect to portfolio`;
 
-    // Build conversation context for Hugging Face
-    let conversationContext = systemPrompt + '\n\n';
-    
-    // Add recent history (last 5 exchanges for context)
-    const recentHistory = history.slice(-10);
-    for (const msg of recentHistory) {
-      if (msg.role === 'user') {
-        conversationContext += `User: ${msg.content}\n`;
-      } else if (msg.role === 'assistant') {
-        conversationContext += `Assistant: ${msg.content}\n`;
-      }
-    }
-    
-    conversationContext += `User: ${message}\nAssistant:`;
+    // Build messages array with history
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      ...history.slice(-10), // Keep last 10 messages for context
+      { role: 'user', content: message }
+    ];
 
-    // Call Hugging Face Inference API (GRATIS!)
-    // Model: Qwen/Qwen2.5-Coder-32B-Instruct (free & powerful for conversation)
-    const response = await fetch('https://api-inference.huggingface.co/models/Qwen/Qwen2.5-72B-Instruct/v1/chat/completions', {
+    // Call OpenRouter API
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'HTTP-Referer': referer,
+        'X-Title': title
       },
       body: JSON.stringify({
-        model: 'Qwen/Qwen2.5-72B-Instruct',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...recentHistory.slice(-10),
-          { role: 'user', content: message }
-        ],
+        model: model,
+        messages: messages,
         max_tokens: 500,
         temperature: 0.7,
-        top_p: 0.9,
-        stream: false
+        top_p: 0.9
       })
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-      console.error('Hugging Face API Error:', errorData);
-      
-      // Fallback jika model lagi loading
-      if (response.status === 503) {
-        return new Response(
-          JSON.stringify({ 
-            error: 'AI sedang warming up. Tunggu 20-30 detik dan coba lagi ya!' 
-          }),
-          { status: 503, headers: { 'Content-Type': 'application/json' } }
-        );
-      }
-      
-      throw new Error(`Hugging Face API error: ${response.status}`);
+      console.error('OpenRouter API Error:', errorData);
+      throw new Error(`OpenRouter API error: ${response.status}`);
     }
 
     const data = await response.json();
@@ -286,7 +267,7 @@ RULES:
     return new Response(
       JSON.stringify({ 
         response: aiResponse,
-        model: 'Qwen/Qwen2.5-72B-Instruct'
+        model: model
       }),
       {
         status: 200,
