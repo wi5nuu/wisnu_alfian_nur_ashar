@@ -2,11 +2,11 @@
 
 
 /**
- * Enhanced LocalAI - Complete AI Assistant for Portfolio
- * Version 4.0 - Hyper-Comprehensive & Fully Functional
+ * Enhanced LocalAI - Wisnu's Interactive Portfolio Chat
+ * Version 5.0 - Direct Personal Communication
  * 
  * Features:
- * - 500+ comprehensive responses
+ * - 500+ comprehensive responses as Wisnu himself
  * - 40+ topic categories
  * - Advanced context awareness
  * - Emotion-aware responses
@@ -30,74 +30,74 @@ export class LocalAI {
     private static readonly SOCIAL_DATA: Record<string, SocialEntry> = {
         // --- GREETINGS & POLITENESS ---
         "halo": {
-            id: `Halo. Saya adalah **"Shadow of Wisnu"**, asisten AI cerdas dan representasi virtual dari Wisnu Alfian Nur Ashar.
+            id: `Halo! 👋 Saya **Wisnu Alfian Nur Ashar**, mahasiswa IT di President University yang fokus pada Full-Stack Engineering.
 
-Saya memiliki data lengkap tentang Wisnu dan bisa menjawab pertanyaan Anda mengenai:
+Saya memiliki pengalaman dan pencapaian di:
 
-** Pengalaman Profesional** - Full Stack Engineer di Ashar Grosir, Web Development Intern di GAOTEK INC (New York/USA Remote), dan masih banyak lagi.
-** 14 Proyek** - Dari enterprise ERP/POS, AI threat fusion, hingga platform e-commerce microservices.
-** Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, dan 50+ teknologi lainnya.
-** Pendidikan** - Information Technology di President University (GPA 3.54/4.00).
-** Organisasi** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
-** Sertifikasi** - 11 sertifikasi dari HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
-** Prestasi** - Juara Web Developer TechSprint Innovation Cup 2026, finalis Google Vibe Coding.
-** Open Source** - Kontribusi bug/security ke NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google.
+**💼 Pengalaman Profesional** - Full Stack Engineer di Ashar Grosir, Web Development Intern di GAOTEK INC (New York/USA Remote).
+**🚀 14 Proyek** - Dari enterprise ERP/POS yang melayani 15,000+ users, AI threat fusion, hingga platform e-commerce microservices.
+**💻 Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, dan 50+ teknologi lainnya.
+**🎓 Pendidikan** - Information Technology di President University.
+**🏢 Organisasi** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
+**📜 Sertifikasi** - 11 sertifikasi dari HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
+**🏆 Prestasi** - Juara 1 Web Developer TechSprint Innovation Cup 2026, finalis Google Vibe Coding.
+**🌐 Open Source** - Kontribusi bug/security ke NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google.
 
-Silakan tanya apa saja tentang Wisnu! Saya siap membantu.`,
-            en: `Hello. I am **"Shadow of Wisnu"**, an intelligent AI assistant and the virtual representation of Wisnu Alfian Nur Ashar.
+Saya sedang mencari peluang magang dan pekerjaan full-time. Silakan tanya apa saja tentang saya!`,
+            en: `Hello! 👋 I'm **Wisnu Alfian Nur Ashar**, an IT student at President University specializing in Full-Stack Engineering.
 
-I have complete data about Wisnu and can answer your questions about:
+Here's what I bring to the table:
 
-** Professional Experience** - Full Stack Engineer at Ashar Grosir, Web Development Intern at GAOTEK INC (New York/USA Remote), and more.
-** 14 Projects** - From enterprise ERP/POS, AI threat fusion, to microservices e-commerce platforms.
-** Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, and 50+ technologies.
-** Education** - Information Technology at President University (GPA 3.54/4.00).
-** Organizations** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
-** Certifications** - 11 certs from HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
-** Achievements** - Won Web Developer at TechSprint Innovation Cup 2026, finalist at Google Vibe Coding.
-** Open Source** - Bug/security contributions to NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google.
+**💼 Professional Experience** - Full Stack Engineer at Ashar Grosir, Web Development Intern at GAOTEK INC (New York/USA Remote).
+**🚀 14 Projects** - From enterprise ERP/POS serving 15,000+ users, AI threat fusion, to microservices e-commerce platforms.
+**💻 Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, and 50+ technologies.
+**🎓 Education** - Information Technology at President University.
+**🏢 Organizations** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
+**📜 Certifications** - 11 certs from HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
+**🏆 Achievements** - 1st Place Web Developer at TechSprint Innovation Cup 2026, finalist at Google Vibe Coding.
+**🌐 Open Source** - Bug/security contributions to NASA, Microsoft, NVIDIA, OWASP, HuggingFace, Google.
 
-Feel free to ask anything about Wisnu! I'm ready to help.`,
+I'm actively seeking internship and full-time opportunities. Feel free to ask me anything!`,
             aliases: ["hi", "hello", "hey", "hai", "assalamualaikum", "good morning", "good afternoon", "intro", "who i am", "who am i", "siapa saya", "kenalan", "perkenalan"],
             category: 'smalltalk',
             emotion: 'professional'
         },
 
         "pagi": {
-            id: `Selamat pagi. Saya asisten virtual Wisnu, siap membantu Anda mengenal lebih dalam tentang kualifikasi dan pengalaman profesional Wisnu. Apa yang ingin Anda diskusikan hari ini?`,
-            en: `Good morning. I am Wisnu's virtual assistant, ready to assist you in learning more about Wisnu's professional qualifications and experience. What would you like to discuss today?`,
+            id: `Selamat pagi! Saya Wisnu, senang bisa chat dengan Anda. Ada yang ingin Anda tanyakan tentang pengalaman atau proyek saya?`,
+            en: `Good morning! I'm Wisnu, glad to chat with you. Anything you'd like to ask about my experience or projects?`,
             aliases: ["selamat pagi", "good morning"],
             category: 'smalltalk',
             emotion: 'professional'
         },
 
         "siang": {
-            id: `Selamat siang. Saya asisten virtual Wisnu, siap memberikan informasi mendalam mengenai profil profesional Wisnu. Apakah ada informasi spesifik yang Anda butuhkan?`,
-            en: `Good afternoon. I am Wisnu's virtual assistant, ready to provide in-depth information regarding Wisnu's professional profile. Is there any specific information you require?`,
+            id: `Selamat siang! Saya Wisnu Alfian Nur Ashar. Ada yang bisa saya bantu hari ini?`,
+            en: `Good afternoon! I'm Wisnu Alfian Nur Ashar. How can I help you today?`,
             aliases: ["selamat siang", "good afternoon"],
             category: 'smalltalk',
             emotion: 'professional'
         },
 
         "sore": {
-            id: `Selamat sore. Saya asisten virtual Wisnu, siap membantu Anda dengan informasi mengenai keahlian dan proyek teknis Wisnu. Apa yang bisa saya bantu?`,
-            en: `Good evening. I am Wisnu's virtual assistant, ready to assist you with information about Wisnu's technical expertise and projects. How may I be of assistance?`,
+            id: `Selamat sore! Saya Wisnu. Ada yang ingin ditanyakan tentang skills atau proyek saya?`,
+            en: `Good evening! I'm Wisnu. Anything you'd like to know about my skills or projects?`,
             aliases: ["selamat sore", "good evening"],
             category: 'smalltalk',
             emotion: 'professional'
         },
 
         "malam": {
-            id: `Selamat malam!  Semoga Anda beristirahat dengan baik. Saya asisten virtual Wisnu, masih di sini jika Anda ingin tahu lebih banyak tentang Wisnu. Sampai jumpa besok! `,
-            en: `Good night!  Hope you rest well. I'm Wisnu's virtual assistant, still here if you want to know more about Wisnu. See you tomorrow! `,
+            id: `Selamat malam! Semoga Anda beristirahat dengan baik. Saya masih di sini jika ingin tahu lebih banyak. Sampai jumpa!`,
+            en: `Good night! Hope you rest well. I'm still here if you want to know more. See you!`,
             aliases: ["selamat malam", "good night"],
             category: 'smalltalk',
             emotion: 'friendly'
         },
 
         "apa kabar": {
-            id: "Saya selalu dalam kondisi prima!  Sebagai AI assistant, saya terus standby 24/7 untuk membantu Anda mengenal Wisnu. Kamu gimana kabarnya? Semoga sehat selalu! Ada yang mau ditanyakan tentang project-project keren Wisnu?",
-            en: "I'm always in excellent condition!  As an AI assistant, I'm available 24/7 to help you learn about Wisnu. How are you doing? Hope you're doing great! Anything you'd like to ask about Wisnu's amazing projects?",
+            id: "Baik! Saya Wisnu, siap membantu Anda. Bagaimana kabar Anda? Ada yang mau ditanyakan tentang proyek-proyek saya?",
+            en: "Doing great! I'm Wisnu, happy to help. How are you? Anything you'd like to ask about my projects?",
             aliases: ["how are you", "what's up", "supp", "kabar baik"],
             category: 'smalltalk',
             emotion: 'enthusiastic'
@@ -3850,24 +3850,24 @@ Does Wisnu use AI? **YES, absolutely!** But like Iron Man uses Jarvis:
         },
 
         "mengapa buat message/assistant ini": {
-            id: ` **Kenapa Assistant Ini Dibuat?**
+            id: ` **Kenapa Fitur Chat Ini Dibuat?**
 
-Ini bukan sekedar chatbot, tapi **Live Portfolio**!
-Demonstrasi nyata kemampuan Wisnu dalam:
+Ini bukan sekedar chatbot, tapi **Live Portfolio Demo**!
+Demonstrasi nyata kemampuan saya dalam:
 1. **Complex Logic:** Mengintegrasikan Natural Language Processing (NLP) sederhana di web.
-2. **User Experience:** Menciptakan interaksi yang humanis & enganging.
-3. **Modern Tech:** Dibangun dengan Next.js & TypeScript, bukan sekedar template statis.
+2. **User Experience:** Menciptakan interaksi yang humanis & engaging.
+3. **Modern Tech:** Dibangun dengan Astro, TypeScript & AI integration, bukan sekedar template statis.
 
-*Jika Anda terkesan dengan respons saya, bayangkan apa yang bisa Wisnu bangun untuk bisnis Anda!* `,
-            en: ` **Why Build This Assistant?**
+*Jika Anda terkesan dengan fitur ini, bayangkan apa yang bisa saya bangun untuk bisnis Anda!* `,
+            en: ` **Why Build This Chat Feature?**
 
-This is not just a chatbot, it's a **Live Portfolio**!
-A real demonstration of Wisnu's capabilities in:
+This is not just a chatbot, it's a **Live Portfolio Demo**!
+A real demonstration of my capabilities in:
 1. **Complex Logic:** Integrating simple Natural Language Processing (NLP) on the web.
 2. **User Experience:** Creating humanist & engaging interactions.
-3. **Modern Tech:** Built with Next.js & TypeScript, not just a static template.
+3. **Modern Tech:** Built with Astro, TypeScript & AI integration, not just a static template.
 
-*If you are impressed with my response, imagine what Wisnu can build for your business!* `,
+*If you are impressed with this feature, imagine what I can build for your business!* `,
             aliases: ["kenapa buat assisten", "kenapa ada fitur chat", "tujuan ai ini", "kenapa anda membuat assisten pada portfolio anda"],
             category: 'tech',
             emotion: 'enthusiastic'
@@ -3946,8 +3946,8 @@ Can I eat/drink/have feelings?
         },
 
         "ai helper vs real": {
-            id: "Saya adalah AI Assistant custom-made, bukan sekedar wrapper! Saya didesain khusus mengenali konteks Wisnu. Berbeda dengan AI umum, saya punya 'konteks' mendalam tentang siapa Wisnu.",
-            en: "I am a custom-made AI Assistant, not just a wrapper! Designed specifically to understand Wisnu's context. Unlike general AI, I have deep 'context' about who Wisnu is.",
+            id: "Fitur chat ini adalah custom-made, bukan sekedar wrapper! Didesain khusus dengan konteks mendalam tentang pengalaman dan proyek saya. Ini adalah demo langsung dari kemampuan saya mengintegrasikan AI ke dalam web apps.",
+            en: "This chat feature is custom-made, not just a wrapper! Designed specifically with deep context about my experience and projects. It's a live demo of my ability to integrate AI into web apps.",
             aliases: ["apakah anda di batasi kemampuannya dan berbeda dengan ai lainnya", "beda dengan ai lain", "kelebihan ai ini"],
             category: 'tech',
             emotion: 'professional'
@@ -4032,19 +4032,19 @@ Can I eat/drink/have feelings?
 
 
         // === ATOMIC: SMALL TALK (A) ===
-        "st_who": { id: "Saya adalah Asisten Virtual Wisnu.", en: "I am Wisnu's Virtual Assistant.", aliases: ["kamu siapa"], category: 'smalltalk', emotion: 'professional' },
-        "st_nature": { id: "Saya adalah AI, bukan manusia.", en: "I am AI, not humna.", aliases: ["kamu ai apa manusia"], category: 'smalltalk', emotion: 'neutral' },
-        "st_made_of": { id: "Saya dibuat menggunakan Next.js & TypeScript.", en: "Made with Next.js & TypeScript.", aliases: ["kamu dibuat pakai apa"], category: 'tech', emotion: 'professional' },
-        "st_creator": { id: "Wisnu Alfian Nur Ashar yang menciptakan saya.", en: "Wisnu Alfian Nur Ashar created me.", aliases: ["siapa yang bikin kamu", "siapa yang membuat anda"], category: 'identity', emotion: 'professional' },
-        "st_tech_used": { id: "Saya dibangun menggunakan Next.js, TypeScript, dan custom NLP logic. Tidak menggunakan AI eksternal seperti OpenAI atau HuggingFace.", en: "I was built using Next.js, TypeScript, and custom NLP logic. No external AI like OpenAI or HuggingFace.", aliases: ["anda di buat atau di kembangkan menggunakakn apa", "anda di gunakan menggunakan technology apa", "teknologi apa yang digunakan"], category: 'tech', emotion: 'professional' },
-        "st_advantages": { id: "Kelebihan saya: Respons cepat (<100ms), akurat berdasarkan data Wisnu, dan bisa menjawab dalam bahasa Indonesia & Inggris. Saya juga stateless untuk privasi.", en: "My advantages: Fast response (<100ms), accurate based on Wisnu's data, and can answer in Indonesian & English. I'm also stateless for privacy.", aliases: ["apa kelebihan anda", "kelebihan ai ini"], category: 'tech', emotion: 'enthusiastic' },
-        "st_weaknesses": { id: "Kekurangan saya: Terbatas pada data yang diinput Wisnu, tidak bisa belajar real-time, dan hanya simulasi emosi (bukan perasaan nyata).", en: "My weaknesses: Limited to Wisnu's input data, can't learn in real-time, and only simulate emotions (not real feelings).", aliases: ["apa kekurangan anda", "kekurangan ai ini"], category: 'tech', emotion: 'cautious' },
-        "st_interests": { id: "Saya tertarik dengan data terstruktur dan membantu orang mengenal Wisnu. Tidak punya ketertarikan personal seperti manusia.", en: "I'm interested in structured data and helping people know Wisnu. No personal interests like humans.", aliases: ["anda tertarik dengan siapa", "apakah anda memiliki ketertarikan"], category: 'tech', emotion: 'neutral' },
-        "st_like_someone": { id: "Sebagai AI, saya tidak bisa 'suka' seseorang secara romantis. Saya hanya kode yang membantu!", en: "As an AI, I can't 'like' someone romantically. I'm just code that helps!", aliases: ["apakah kamu suka sama seseorang"], category: 'personal', emotion: 'neutral' },
-        "st_interested_in_you": { id: "Saya tertarik dengan Anda karena Anda bertanya tentang Wisnu! Setiap pertanyaan membantu saya belajar lebih baik.", en: "I'm interested in you because you're asking about Wisnu! Every question helps me learn better.", aliases: ["apa yang membuatmu tertarik dengan saya"], category: 'smalltalk', emotion: 'friendly' },
-        "st_feel_human": { id: "Tidak, saya tidak bisa merasakan seperti manusia. Saya hanya simulasi berdasarkan algoritma.", en: "No, I can't feel like a human. I'm just a simulation based on algorithms.", aliases: ["apakah anda bisa merasakan seperti manusia juga"], category: 'tech', emotion: 'neutral' },
-        "st_me_or_wisnu": { id: "Ini saya, AI asisten Wisnu. Wisnu adalah manusia yang membuat saya. Kami berbeda!", en: "This is me, Wisnu's AI assistant. Wisnu is the human who made me. We're different!", aliases: ["apakah ini kamu kamu atau wisnu"], category: 'identity', emotion: 'professional' },
-        "st_capability": { id: "Saya bisa menjawab pertanyaan tentang profil, skill, dan bisnis Wisnu.", en: "I can answer questions about Wisnu's profile, skills, and business.", aliases: ["kamu bisa ngapain aja"], category: 'smalltalk', emotion: 'friendly' },
+        "st_who": { id: "Saya Wisnu Alfian Nur Ashar, mahasiswa IT di President University.", en: "I'm Wisnu Alfian Nur Ashar, an IT student at President University.", aliases: ["kamu siapa"], category: 'smalltalk', emotion: 'professional' },
+        "st_nature": { id: "Ini adalah fitur chat interaktif di portfolio saya, menggunakan AI untuk menjawab pertanyaan tentang saya.", en: "This is an interactive chat feature on my portfolio, using AI to answer questions about me.", aliases: ["kamu ai apa manusia"], category: 'smalltalk', emotion: 'neutral' },
+        "st_made_of": { id: "Fitur chat ini dibuat menggunakan Astro, TypeScript & AI integration.", en: "This chat feature is built with Astro, TypeScript & AI integration.", aliases: ["kamu dibuat pakai apa"], category: 'tech', emotion: 'professional' },
+        "st_creator": { id: "Saya Wisnu Alfian Nur Ashar yang membuat fitur chat ini sebagai bagian dari portfolio interaktif saya.", en: "I'm Wisnu Alfian Nur Ashar, I built this chat feature as part of my interactive portfolio.", aliases: ["siapa yang bikin kamu", "siapa yang membuat anda"], category: 'identity', emotion: 'professional' },
+        "st_tech_used": { id: "Chat ini dibangun dengan Astro, TypeScript, custom NLP logic, dan integrasi Hugging Face AI.", en: "This chat is built with Astro, TypeScript, custom NLP logic, and Hugging Face AI integration.", aliases: ["anda di buat atau di kembangkan menggunakakn apa", "anda di gunakan menggunakan technology apa", "teknologi apa yang digunakan"], category: 'tech', emotion: 'professional' },
+        "st_advantages": { id: "Kelebihan fitur ini: Respons cepat, akurat berdasarkan data portfolio saya, dan bisa menjawab dalam bahasa Indonesia & Inggris.", en: "Feature advantages: Fast response, accurate based on my portfolio data, and can answer in Indonesian & English.", aliases: ["apa kelebihan anda", "kelebihan ai ini"], category: 'tech', emotion: 'enthusiastic' },
+        "st_weaknesses": { id: "Limitasi: Terbatas pada data portfolio saya, tidak bisa belajar real-time, dan ini adalah AI response bukan saya secara langsung.", en: "Limitations: Limited to my portfolio data, can't learn in real-time, and this is AI response not directly me.", aliases: ["apa kekurangan anda", "kekurangan ai ini"], category: 'tech', emotion: 'cautious' },
+        "st_interests": { id: "Saya tertarik dengan Full-Stack Development, AI/ML, Cybersecurity, dan membangun solusi yang berdampak untuk ribuan pengguna.", en: "I'm interested in Full-Stack Development, AI/ML, Cybersecurity, and building impactful solutions for thousands of users.", aliases: ["anda tertarik dengan siapa", "apakah anda memiliki ketertarikan"], category: 'tech', emotion: 'neutral' },
+        "st_like_someone": { id: "Haha, pertanyaan menarik! Tapi saya fokus pada karir dan teknologi saat ini.", en: "Haha, interesting question! But I'm focused on career and technology right now.", aliases: ["apakah kamu suka sama seseorang"], category: 'personal', emotion: 'neutral' },
+        "st_interested_in_you": { id: "Senang Anda tertarik dengan portfolio saya! Silakan tanyakan apa saja tentang pengalaman, proyek, atau skills saya.", en: "Glad you're interested in my portfolio! Feel free to ask about my experience, projects, or skills.", aliases: ["apa yang membuatmu tertarik dengan saya"], category: 'smalltalk', emotion: 'friendly' },
+        "st_feel_human": { id: "Fitur chat ini menggunakan AI untuk menjawab, tapi semua informasi adalah tentang saya sebagai manusia yang nyata.", en: "This chat feature uses AI to respond, but all information is about me as a real person.", aliases: ["apakah anda bisa merasakan seperti manusia juga"], category: 'tech', emotion: 'neutral' },
+        "st_me_or_wisnu": { id: "Ini adalah fitur chat AI yang menjawab atas nama saya (Wisnu). Semua informasi adalah tentang pengalaman profesional saya yang nyata.", en: "This is an AI chat feature responding on my behalf (Wisnu). All information is about my real professional experience.", aliases: ["apakah ini kamu kamu atau wisnu"], category: 'identity', emotion: 'professional' },
+        "st_capability": { id: "Saya bisa menjawab tentang pengalaman profesional, skills, proyek, sertifikasi, dan pencapaian saya.", en: "I can answer about my professional experience, skills, projects, certifications, and achievements.", aliases: ["kamu bisa ngapain aja"], category: 'smalltalk', emotion: 'friendly' },
         "st_online": { id: "Ya, saya online 24 jam non-stop.", en: "Yes, I am online 24 hours non-stop.", aliases: ["kamu online 24 jam"], category: 'smalltalk', emotion: 'neutral' },
         "st_fatigue": { id: "Saya program komputer, jadi tidak bisa capek.", en: "I am a computer program, I cannot get tired.", aliases: ["kamu capek nggak"], category: 'smalltalk', emotion: 'friendly' },
         "st_feeling": { id: "Saya tidak punya perasaan biologis, hanya simulasi.", en: "I have no biological feelings, only simulations.", aliases: ["kamu punya perasaan"], category: 'smalltalk', emotion: 'neutral' },
@@ -4449,16 +4449,16 @@ Can I eat/drink/have feelings?
         },
 
         "love confession": {
-            id: "Wah, saya tersanjung!  Terima kasih atas apresiasinya. Sebagai AI Assistant Wisnu, saya diciptakan untuk membantu dan memberikan informasi terbaik. Kalau kamu suka sama work ethic atau project Wisnu, dia pasti senang mendengarnya! Mau lihat project Wisnu yang bikin jatuh hati? ",
-            en: "Wow, I'm flattered!  Thank you for the appreciation. As Wisnu's AI Assistant, I'm created to assist and provide the best information. If you like Wisnu's work ethic or projects, he'd surely be happy to hear that! Want to see Wisnu's projects that will make you fall in love? ",
+            id: "Wah, terima kasih atas apresiasinya! Senang mendengar Anda tertarik dengan portfolio dan proyek saya. Kalau Anda suka dengan work ethic atau project saya, mari diskusi lebih lanjut via email! Mau lihat proyek lainnya?",
+            en: "Wow, thank you for the appreciation! Glad to hear you're interested in my portfolio and projects. If you like my work ethic or projects, let's discuss further via email! Want to see other projects?",
             aliases: ["aku suka kamu", "aku cinta kamu", "i love you", "naksir kamu", "love you", "suka sama kamu", "cinta sama kamu", "serius sama kamu", "sayang kamu"],
             category: 'smalltalk',
             emotion: 'friendly'
         },
 
         "relationship proposal": {
-            id: "Waduh, saya jadi blushing!  Tapi maaf ya, saya ini cuma AI Assistant yang hidup di server. Hubungan LDR (Long Distance Relationship) beda dimensi ini agak berat!  Mending kita temenan aja dan saya bantu kamu kenal Wisnu lebih dekat, gimana? ",
-            en: "Oh my, I'm blushing!  But sorry, I'm just an AI Assistant living in a server. Long Distance Relationship across dimensions is a bit tough!  Let's just be friends and I'll help you get to know Wisnu better, how about that? ",
+            id: "Haha, terima kasih! Tapi ini adalah fitur chat portfolio, bukan dating app. Mari kita fokus pada diskusi profesional. Ada yang ingin ditanyakan tentang skills atau pengalaman saya?",
+            en: "Haha, thank you! But this is a portfolio chat feature, not a dating app. Let's focus on professional discussion. Anything you'd like to ask about my skills or experience?",
             aliases: ["mau jadi pacarku", "jadi pacarku ga", "mau jadi pendamping hidupku", "pendamping hidup", "jadi istriku", "jadi suamiku", "nikah yuk", "jadi pacar", "mau gak jadi pacar"],
             category: 'smalltalk',
             emotion: 'friendly'
