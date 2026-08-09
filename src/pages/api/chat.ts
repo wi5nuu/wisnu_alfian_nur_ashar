@@ -59,7 +59,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // Get API credentials from environment
     const apiKey = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
-    const model = import.meta.env.OPENROUTER_MODEL || process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.1-8b-instruct:free';
+    const model = import.meta.env.OPENROUTER_MODEL || process.env.OPENROUTER_MODEL || 'inclusionai/ling-3.0-tiny:free';
     const referer = import.meta.env.OPENROUTER_REFERER || process.env.OPENROUTER_REFERER || 'https://wisnualfian.vercel.app';
     const title = import.meta.env.OPENROUTER_TITLE || process.env.OPENROUTER_TITLE || 'Wisnu Portfolio AI';
     
@@ -262,37 +262,56 @@ COMMUNICATION STYLE:
       { role: 'user', content: message }
     ];
 
-    // Call OpenRouter API
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': referer,
-        'X-Title': title
-      },
-      body: JSON.stringify({
-        model: model,
-        messages: messages,
-        max_tokens: 500,
-        temperature: 0.7,
-        top_p: 0.9
-      })
-    });
+    // Call OpenRouter API with free model fallback
+    // Daftar model GRATIS (100% $0) - akan auto-fallback jika rate limited
+    const freeModelFallbacks = [
+      model,
+      'google/gemma-4-26b-a4b-it:free',
+      'nvidia/nemotron-3-nano-30b-a3b:free',
+      'inclusionai/ling-3.0-tiny:free'
+    ].filter((m, i, arr) => m && arr.indexOf(m) === i); // remove duplicates
 
-    if (!response.ok) {
+    let response: Response | null = null;
+    let aiResponse = 'Maaf, ada error. Coba lagi ya!';
+    let usedModel = model;
+
+    for (const candidate of freeModelFallbacks) {
+      response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': referer,
+          'X-Title': title
+        },
+        body: JSON.stringify({
+          model: candidate,
+          messages: messages,
+          max_tokens: 500,
+          temperature: 0.7,
+          top_p: 0.9
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        aiResponse = data.choices?.[0]?.message?.content || aiResponse;
+        usedModel = candidate;
+        break;
+      }
+
       const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-      console.error('OpenRouter API Error:', errorData);
-      throw new Error(`OpenRouter API error: ${response.status}`);
+      console.warn(`⚠️ Model ${candidate} gagal (${response.status}), coba fallback berikutnya.`, errorData.error?.message?.substring(0, 100) || '');
     }
 
-    const data = await response.json();
-    const aiResponse = data.choices?.[0]?.message?.content || 'Maaf, ada error. Coba lagi ya!';
+    if (!response?.ok) {
+      throw new Error('Semua model AI gratis sedang rate limited. Coba lagi nanti.');
+    }
 
     return new Response(
       JSON.stringify({ 
         response: aiResponse,
-        model: model
+        model: usedModel
       }),
       {
         status: 200,
