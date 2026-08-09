@@ -38,70 +38,47 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     })}
   </div>
 
-  <!-- RIGHT: Contact (Desktop) + Hamburger (Mobile) -->
+  <!-- RIGHT: Contact (Desktop only) -->
   <div class="nav-right">
     <a href={getLocalizedUrl("/contact", isId)} class="nav-cta">
       {isId ? 'Kontak' : 'Contact Me'}
     </a>
-
-    <!-- HAMBURGER BUTTON (Mobile only) -->
-    <button
-      id="hamburger-btn"
-      aria-label={isId ? "Buka menu navigasi" : "Open navigation menu"}
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      class="hamburger-btn"
-    >
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
   </div>
 </nav>
 
-<!-- MOBILE DRAWER OVERLAY -->
-<div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
-
-<!-- MOBILE DRAWER -->
-<div id="mobile-menu" role="dialog" aria-modal="true" aria-label={isId ? "Menu navigasi" : "Navigation menu"} class="mobile-drawer">
-  <!-- Drawer Header -->
-  <div class="drawer-header">
-    <span class="drawer-logo">WISNU ALFIAN</span>
-    <button
-      id="close-btn"
-      aria-label={isId ? "Tutup menu" : "Close menu"}
-      class="close-btn"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Drawer Nav Links -->
-  <nav aria-label={isId ? "Navigasi mobile" : "Mobile navigation"} class="drawer-nav">
-    {navLinks.map((link) => {
-      const localizedHref = getLocalizedUrl(link.href, isId);
-      const isActive = pathname === localizedHref;
-      return (
-        <a
-          href={localizedHref}
-          class={`drawer-link ${isActive ? 'drawer-link--active' : ''}`}
-        >
-          {link.name}
-        </a>
-      );
-    })}
-  </nav>
-
-  <!-- Drawer CTA -->
-  <div class="drawer-footer">
-    <a href={getLocalizedUrl("/contact", isId)} class="drawer-cta">
-      {isId ? 'Hubungi Saya' : 'Contact Me'}
-    </a>
-  </div>
-</div>
+<!-- BOTTOM NAVIGATION BAR (Mobile Android Style) -->
+<nav aria-label={isId ? "Navigasi mobile" : "Mobile navigation"} class="bottom-nav" transition:persist>
+  {navLinks.map((link) => {
+    const localizedHref = getLocalizedUrl(link.href, isId);
+    const isActive = pathname === localizedHref || (pathname === '/id/' && localizedHref === '/id/');
+    
+    // Icon untuk setiap menu
+    let iconPath = '';
+    if (link.href === '/') {
+      iconPath = 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6';
+    } else if (link.href === '/about') {
+      iconPath = 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z';
+    } else if (link.href === '/projects') {
+      iconPath = 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10';
+    } else if (link.href === '/contact') {
+      iconPath = 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z';
+    }
+    
+    return (
+      <a
+        href={localizedHref}
+        class={`bottom-nav-item ${isActive ? 'bottom-nav-item--active' : ''}`}
+        aria-current={isActive ? 'page' : undefined}
+        transition:name={`nav-${link.href}`}
+      >
+        <svg class="bottom-nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" transition:animate="none">
+          <path d={iconPath}></path>
+        </svg>
+        <span class="bottom-nav-label" transition:animate="none">{link.name}</span>
+      </a>
+    );
+  })}
+</nav>
 
 <style>
   /* ===== NAV ROOT ===== */
@@ -175,176 +152,58 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     color: #0A0A0A;
   }
 
-  /* ===== HAMBURGER ===== */
+  /* ===== HAMBURGER (Hidden - not used in Android style) ===== */
   .hamburger-btn {
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 0;
-    z-index: 50;
   }
 
-  .hamburger-line {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform-origin: center;
-  }
-
-  /* Hamburger → X when open */
-  .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  /* ===== MOBILE OVERLAY ===== */
-  .mobile-overlay {
+  /* ===== BOTTOM NAVIGATION BAR (Android/Material Style) ===== */
+  .bottom-nav {
+    display: none; /* Hidden on desktop */
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(4px);
-    z-index: 98;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .mobile-overlay.is-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* ===== MOBILE DRAWER ===== */
-  .mobile-drawer {
-    position: fixed;
-    top: 0;
+    bottom: 0;
+    left: 0;
     right: 0;
-    width: min(320px, 85vw);
-    height: 100dvh;
-    background: #0A0A0A;
-    border-left: 1px solid rgba(255,255,255,0.1);
-    z-index: 99;
+    height: 64px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    padding: 0 8px 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .bottom-nav-item {
     display: flex;
     flex-direction: column;
-    transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
-  }
-
-  .mobile-drawer.is-open {
-    transform: translateX(0);
-  }
-
-  .drawer-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .drawer-logo {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-  }
-
-  .close-btn {
-    display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
-    color: #fff;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .close-btn:hover {
-    border-color: var(--accent);
-    background: rgba(132,225,12,0.08);
-  }
-
-  /* ===== DRAWER NAV LINKS ===== */
-  .drawer-nav {
-    display: flex;
-    flex-direction: column;
-    padding: 32px 24px;
-    gap: 8px;
     flex: 1;
+    gap: 4px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 8px 4px;
+    position: relative;
   }
 
-  .drawer-link {
-    display: flex;
-    align-items: center;
-    padding: 14px 16px;
-    color: rgba(255,255,255,0.7);
-    font-size: 16px;
+  .bottom-nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .bottom-nav-label {
+    font-size: 11px;
     font-weight: 500;
-    text-decoration: none;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    transition: color 0.2s, background 0.2s, border-color 0.2s;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
   }
 
-  .drawer-link:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.1);
-  }
-
-  .drawer-link--active {
+  /* Active state - hanya ubah warna jadi hijau */
+  .bottom-nav-item--active {
     color: var(--accent);
-    background: rgba(132,225,12,0.08);
-    border-color: rgba(132,225,12,0.2);
+  }
+
+  .bottom-nav-item--active .bottom-nav-label {
     font-weight: 600;
-  }
-
-  /* ===== DRAWER FOOTER ===== */
-  .drawer-footer {
-    padding: 24px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .drawer-cta {
-    display: block;
-    width: 100%;
-    padding: 14px 24px;
-    background: var(--accent);
-    color: #0A0A0A;
-    font-size: 15px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 999px;
-    transition: opacity 0.2s;
-  }
-
-  .drawer-cta:hover {
-    opacity: 0.85;
   }
 
   /* ===== RESPONSIVE ===== */
@@ -357,61 +216,30 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
       display: none;
     }
 
-    .nav-cta {
+    .nav-right {
       display: none;
     }
 
-    .hamburger-btn {
+    /* Show bottom navigation on mobile */
+    .bottom-nav {
       display: flex;
     }
   }
-</style>
 
-<script>
-  function initNavbar() {
-    const btn = document.getElementById('hamburger-btn');
-    const drawer = document.getElementById('mobile-menu');
-    const overlay = document.getElementById('mobile-overlay');
-    const closeBtn = document.getElementById('close-btn');
+  /* Small phones */
+  @media (max-width: 380px) {
+    .bottom-nav {
+      height: 60px;
+      padding: 0 4px;
+    }
 
-    if (!btn || !drawer || !overlay || !closeBtn) return;
+    .bottom-nav-label {
+      font-size: 10px;
+    }
 
-    const open = () => {
-      drawer.classList.add('is-open');
-      overlay.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-      // Focus first link in drawer for accessibility
-      const firstLink = drawer.querySelector<HTMLAnchorElement>('.drawer-link');
-      firstLink?.focus();
-    };
-
-    const close = () => {
-      drawer.classList.remove('is-open');
-      overlay.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-      btn.focus();
-    };
-
-    btn.addEventListener('click', () => {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      isOpen ? close() : open();
-    });
-
-    closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', close);
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
-        close();
-      }
-    });
-
-    // Close drawer on navigation (Astro view transitions)
-    document.addEventListener('astro:before-swap', close);
+    .bottom-nav-icon {
+      width: 22px;
+      height: 22px;
+    }
   }
-
-  document.addEventListener('astro:page-load', initNavbar);
-</script>
+</style>

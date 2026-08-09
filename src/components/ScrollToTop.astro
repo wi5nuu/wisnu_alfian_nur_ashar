@@ -1,60 +1,113 @@
 ---
-import { ArrowUp } from "lucide-astro";
+// Scroll to Top Button Component
 ---
 
 <button
   id="scroll-to-top"
-  class="fixed bottom-6 left-6 z-[100] p-3 bg-slate-900/80 backdrop-blur-md text-white rounded-full shadow-lg border border-white/10 opacity-0 translate-y-10 pointer-events-none transition-all duration-500 hover:bg-slate-800 hover:scale-110 active:scale-90 group"
   aria-label="Scroll to top"
+  class="scroll-to-top"
+  title="Kembali ke atas"
 >
-  <ArrowUp class="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1" />
+  <svg 
+    width="24" 
+    height="24" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2.5" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  >
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
 </button>
 
+<style>
+  .scroll-to-top {
+    position: fixed;
+    bottom: 80px; /* Di atas bottom navigation (64px + 16px spacing) */
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 90;
+    padding: 0;
+  }
+
+  .scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .scroll-to-top svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Desktop - hide scroll to top button */
+  @media (min-width: 769px) {
+    .scroll-to-top {
+      display: none;
+    }
+  }
+
+  /* Small phones - adjust position */
+  @media (max-width: 380px) {
+    .scroll-to-top {
+      bottom: 72px;
+      right: 16px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .scroll-to-top svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>
+
 <script>
-  let _scrollCleanup: (() => void) | null = null;
+  function initScrollToTop() {
+    const button = document.getElementById('scroll-to-top');
+    if (!button) return;
 
-  const initScrollToTop = () => {
-    // Cleanup previous listener for BFCache
-    if (_scrollCleanup) _scrollCleanup();
-
-    const scrollBtn = document.getElementById("scroll-to-top");
-    if (!scrollBtn) return;
-
-    let ticking = false;
-    const toggleScrollBtn = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          if (window.scrollY > 300) {
-            scrollBtn.classList.remove("opacity-0", "translate-y-10", "pointer-events-none");
-            scrollBtn.classList.add("opacity-100", "translate-y-0", "pointer-events-auto");
-          } else {
-            scrollBtn.classList.add("opacity-0", "translate-y-10", "pointer-events-none");
-            scrollBtn.classList.remove("opacity-100", "translate-y-0", "pointer-events-auto");
-          }
-          ticking = false;
-        });
-        ticking = true;
+    // Show/hide button based on scroll position
+    const toggleButton = () => {
+      if (window.scrollY > 300) {
+        button.classList.add('visible');
+      } else {
+        button.classList.remove('visible');
       }
     };
 
-    window.addEventListener("scroll", toggleScrollBtn, { passive: true });
-    
-    _scrollCleanup = () => {
-      window.removeEventListener("scroll", toggleScrollBtn);
-    };
-    
-    scrollBtn.onclick = () => {
+    // Smooth scroll to top
+    const scrollToTop = () => {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: 'smooth'
       });
     };
-  };
 
-  // Initialize on first load and subsequent view transition page loads
-  initScrollToTop();
-  document.addEventListener("astro:page-load", initScrollToTop);
-  
-  // BFCache safe — clean up on page hide
-  window.addEventListener("pagehide", () => { if (_scrollCleanup) _scrollCleanup(); });
+    // Event listeners
+    window.addEventListener('scroll', toggleButton, { passive: true });
+    button.addEventListener('click', scrollToTop);
+
+    // Initial check
+    toggleButton();
+  }
+
+  // Initialize on page load
+  document.addEventListener('astro:page-load', initScrollToTop);
 </script>

@@ -1,8 +1,9 @@
 ---
-import { X, Send } from "lucide-astro";
+import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
 ---
 
 <div id="ai-chat-widget" class="z-[110] font-sans">
+    <!-- Desktop Toggle Button -->
     <button
         id="chat-toggle-desktop"
         class="hidden md:flex fixed bottom-6 right-6 group bg-slate-900 hover:bg-slate-800 text-white p-2 pr-4 pl-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 z-50 items-center gap-3 border border-slate-700/50"
@@ -14,7 +15,7 @@ import { X, Send } from "lucide-astro";
                 alt="AI"
                 width="40"
                 height="40"
-                class="w-10 h-10 rounded-full object-cover border-2 border-white/20"
+                class="w-10 h-10 rounded-full object-cover border-2 border-white/20 aspect-square"
                 loading="lazy"
                 decoding="async"
             />
@@ -31,6 +32,29 @@ import { X, Send } from "lucide-astro";
             <span class="text-[10px] text-slate-400 font-medium"
                 >Chat with me</span
             >
+        </div>
+    </button>
+
+    <!-- Mobile Toggle Button (Android/iOS Style) -->
+    <button
+        id="chat-toggle-mobile"
+        class="md:hidden fixed bottom-24 right-5 bg-slate-900 text-white p-3 rounded-full shadow-2xl z-[200] flex items-center justify-center border-2 border-slate-700/50 hover:scale-110 active:scale-95 transition-transform duration-200"
+        aria-label="Toggle AI Assistant"
+    >
+        <div class="relative">
+            <img
+                src="/wisnu-alfian.webp"
+                alt="AI"
+                width="56"
+                height="56"
+                class="w-14 h-14 rounded-full object-cover aspect-square"
+                loading="lazy"
+                decoding="async"
+            />
+            <div
+                class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full ai-status-dot border-2 border-slate-900"
+            >
+            </div>
         </div>
     </button>
 
@@ -53,7 +77,7 @@ import { X, Send } from "lucide-astro";
                         alt="AI Avatar"
                         width="40"
                         height="40"
-                        class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm"
+                        class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm aspect-square"
                         loading="lazy"
                         decoding="async"
                     />
@@ -64,7 +88,7 @@ import { X, Send } from "lucide-astro";
                 </div>
                 <div>
                     <h3 class="font-bold text-sm text-white">
-                        Wisnu's Career Coach
+                        Wisnu Alfian
                     </h3>
                     <p
                         class="text-[10px] text-blue-300 uppercase tracking-wider font-semibold"
@@ -73,20 +97,31 @@ import { X, Send } from "lucide-astro";
                     </p>
                 </div>
             </div>
-            <button
-                id="chat-close"
-                class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 relative z-10 text-white/80 hover:text-white hover:rotate-90"
-                aria-label="Close chat"
-            >
-                <X class="w-5 h-5" />
-            </button>
+            <div class="flex items-center gap-2 relative z-10">
+                <button
+                    id="chat-fullscreen-toggle"
+                    class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-white/80 hover:text-white"
+                    aria-label="Toggle fullscreen"
+                    title="Toggle fullscreen"
+                >
+                    <Maximize2 class="w-5 h-5 fullscreen-icon-expand" />
+                    <Minimize2 class="w-5 h-5 fullscreen-icon-collapse hidden" />
+                </button>
+                <button
+                    id="chat-close"
+                    class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-white/80 hover:text-white hover:rotate-90"
+                    aria-label="Close chat"
+                >
+                    <X class="w-5 h-5" />
+                </button>
+            </div>
         </div>
 
         <div
             id="chat-messages"
             class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/30 h-[350px] scroll-smooth text-slate-900"
         >
-            <div class="flex gap-3 animate-fade-in">
+            <div class="flex gap-3 items-start animate-fade-in">
                 <img
                     src="/wisnu-alfian.webp"
                     alt="AI"
@@ -94,15 +129,19 @@ import { X, Send } from "lucide-astro";
                     height="32"
                     loading="lazy"
                     decoding="async"
-                    class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm"
+                    class="w-8 h-8 min-w-[2rem] min-h-[2rem] max-w-[2rem] max-h-[2rem] rounded-full object-cover border border-slate-200 shrink-0 shadow-sm aspect-square self-start"
                 />
                 <div
                     class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-slate-100 text-sm text-slate-800 leading-relaxed"
                 >
-                    Hi! I'm Wisnu's <strong>International Career Coach</strong>.
-                    Ask me about his <strong>skills</strong>, <strong
-                        >projects</strong
-                    >, or how he's prepared for <strong>overseas work</strong>!
+                    Hi! 👋 I'm <strong>Wisnu Alfian Nur Ashar</strong>, an <strong>IT student at President University</strong> specializing in <strong>Full-Stack Engineering</strong> with <strong>1,500+ GitHub contributions</strong> across 90+ repositories.<br><br>
+                    
+                    I've built production systems serving <strong>15,000+ users</strong> including an ERP/POS platform, and contributed to open-source projects at <strong>NASA, Microsoft, Google, and NVIDIA</strong>. Currently a <strong>Web Development Intern at GAOTEK INC (New York)</strong> and actively seeking <strong>full-time opportunities</strong>.<br><br>
+                    
+                    💻 <strong>Tech Stack:</strong> Laravel, Next.js, React, TypeScript, PostgreSQL, Go, Python, AWS<br>
+                    🏆 <strong>Recent Win:</strong> 1st Place Web Developer - TechSprint Innovation Cup 2026<br><br>
+                    
+                    Ask me anything about my projects, experience, or technical skills!
                 </div>
             </div>
         </div>
@@ -114,34 +153,32 @@ import { X, Send } from "lucide-astro";
             <input
                 type="text"
                 id="chat-input"
-                placeholder="Ask about careers, projects..."
+                placeholder="Ask me anything about my experience, skills, or projects..."
                 class="flex-1 bg-slate-100 border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:ring-2 focus:ring-slate-900/5 focus:outline-none placeholder:text-slate-500 transition-all"
                 autocomplete="off"
             />
             <button
                 type="submit"
-                class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 disabled:opacity-50 active:scale-90 shadow-lg shadow-slate-900/10"
+                id="send-button"
+                class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-90 shadow-lg shadow-slate-900/10 relative"
                 aria-label="Send message"
             >
-                <Send class="w-4 h-4" />
+                <Send class="w-4 h-4 send-icon" />
+                <svg class="w-4 h-4 send-loading hidden animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
             </button>
         </form>
     </div>
 </div>
 
 <script>
-    // Dynamic import — AI modules load only when user opens chat, saving ~950KB on initial load
-    let AIServiceModule: typeof import("../utils/AIService") | null = null;
-    const loadAIService = async () => {
-        if (!AIServiceModule) {
-            AIServiceModule = await import("../utils/AIService");
-        }
-        return AIServiceModule.AIService;
-    };
-
     const initChatBot = () => {
         const desktopToggle = document.getElementById("chat-toggle-desktop");
+        const mobileToggle = document.getElementById("chat-toggle-mobile");
         const closeBtn = document.getElementById("chat-close");
+        const fullscreenToggle = document.getElementById("chat-fullscreen-toggle");
         const windowEl = document.getElementById("chat-window");
         const form = document.getElementById("chat-form") as HTMLFormElement;
         const input = document.getElementById("chat-input") as HTMLInputElement;
@@ -164,6 +201,7 @@ import { X, Send } from "lucide-astro";
         window.addEventListener("pagehide", cleanup, { once: true });
 
         let isOpen = false;
+        let isFullscreen = false;
 
         function toggleChat() {
             isOpen = !isOpen;
@@ -178,6 +216,14 @@ import { X, Send } from "lucide-astro";
                     "opacity-100",
                     "pointer-events-auto",
                 );
+                
+                // Auto-fullscreen on mobile devices
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        toggleFullscreen();
+                    }, 300);
+                }
+                
                 setTimeout(() => input?.focus(), 300);
             } else {
                 windowEl?.classList.add(
@@ -190,6 +236,28 @@ import { X, Send } from "lucide-astro";
                     "opacity-100",
                     "pointer-events-auto",
                 );
+                // Exit fullscreen when closing chat
+                if (isFullscreen) {
+                    toggleFullscreen();
+                }
+            }
+        }
+
+        function toggleFullscreen() {
+            isFullscreen = !isFullscreen;
+            const expandIcon = document.querySelector('.fullscreen-icon-expand');
+            const collapseIcon = document.querySelector('.fullscreen-icon-collapse');
+            
+            if (isFullscreen) {
+                // Enter fullscreen mode
+                windowEl?.classList.add('chat-fullscreen');
+                expandIcon?.classList.add('hidden');
+                collapseIcon?.classList.remove('hidden');
+            } else {
+                // Exit fullscreen mode
+                windowEl?.classList.remove('chat-fullscreen');
+                expandIcon?.classList.remove('hidden');
+                collapseIcon?.classList.add('hidden');
             }
         }
 
@@ -197,12 +265,32 @@ import { X, Send } from "lucide-astro";
             desktopToggle.onclick = toggleChat;
         }
 
+        if (mobileToggle) {
+            mobileToggle.onclick = toggleChat;
+        }
+
         if (closeBtn) {
             closeBtn.onclick = toggleChat;
         }
 
+        if (fullscreenToggle) {
+            fullscreenToggle.onclick = toggleFullscreen;
+        }
+
+        // Conversation history (keep last 10 messages for context)
+        let conversationHistory: Array<{ role: string; content: string }> = [];
+
         const handleQuerySubmit = async (query: string) => {
             if (!query || !input || !messagesContainer) return;
+
+            const sendButton = document.getElementById("send-button");
+            const sendIcon = sendButton?.querySelector(".send-icon");
+            const sendLoading = sendButton?.querySelector(".send-loading");
+
+            // Show loading state
+            if (sendButton) sendButton.disabled = true;
+            if (sendIcon) sendIcon.classList.add("hidden");
+            if (sendLoading) sendLoading.classList.remove("hidden");
 
             addMessage(query, "user");
             input.value = "";
@@ -210,23 +298,66 @@ import { X, Send } from "lucide-astro";
             input.disabled = true;
 
             try {
-                // Load AI module on-demand (code-split from main bundle)
-                const AIService = await loadAIService();
-                const response = await AIService.getResponse(query);
+                // Detect language (simple check: if contains Indonesian words, use 'id')
+                const hasIndonesian = /\b(apa|siapa|dimana|kenapa|bagaimana|saya|kamu|anda|gue|lo)\b/i.test(query);
+                const lang = hasIndonesian ? 'id' : 'en';
 
+                // Call new OpenRouter-based API endpoint
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: query,
+                        history: conversationHistory,
+                        lang: lang
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+                    throw new Error(errorData.error || 'API request failed');
+                }
+
+                const data = await response.json();
+                const aiResponse = data.response || 'Maaf, ada error. Coba lagi ya!';
+
+                // Add to conversation history
+                conversationHistory.push(
+                    { role: 'user', content: query },
+                    { role: 'assistant', content: aiResponse }
+                );
+
+                // Keep only last 10 messages (5 exchanges)
+                if (conversationHistory.length > 10) {
+                    conversationHistory = conversationHistory.slice(-10);
+                }
+
+                // Calculate typing delay based on response length (2-4 seconds)
+                const typingDelay = Math.min(Math.max(2000, aiResponse.length * 15), 4000);
+                
                 setTimeout(() => {
                     if (typingId) removeTypingIndicator(typingId);
-                    addMessage(response, "ai");
+                    addMessage(aiResponse, "ai");
                     if (input) {
                         input.disabled = false;
                         input.focus();
                     }
-                }, 3000);
-            } catch (error) {
+                    // Hide loading state
+                    if (sendButton) sendButton.disabled = false;
+                    if (sendIcon) sendIcon.classList.remove("hidden");
+                    if (sendLoading) sendLoading.classList.add("hidden");
+                }, typingDelay);
+            } catch (error: any) {
                 console.error("AI Error:", error);
                 if (typingId) removeTypingIndicator(typingId);
-                addMessage("Maaf, terjadi kesalahan. Coba lagi nanti.", "ai");
+                addMessage(error.message || "Maaf, terjadi kesalahan. Coba lagi nanti.", "ai");
                 if (input) input.disabled = false;
+                // Hide loading state on error
+                if (sendButton) sendButton.disabled = false;
+                if (sendIcon) sendIcon.classList.remove("hidden");
+                if (sendLoading) sendLoading.classList.add("hidden");
             }
         };
 
@@ -251,7 +382,7 @@ import { X, Send } from "lucide-astro";
 
             const div = document.createElement("div");
             const isAi = sender === "ai";
-            div.className = `flex gap-3 ${isAi ? "animate-reveal-up" : "flex-row-reverse"}`;
+            div.className = `flex gap-3 items-start ${isAi ? "animate-reveal-up" : "flex-row-reverse"}`;
 
             // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
             const iconHtml = isAi
@@ -318,15 +449,50 @@ import { X, Send } from "lucide-astro";
             const id = "typing-" + Date.now();
             const div = document.createElement("div");
             div.id = id;
-            div.className = "flex gap-3";
-            // Menggunakan IMG tag untuk indikator typing juga
+            div.className = "flex gap-3 items-start";
+            
+            // Create typing text with wave animation using DOM
+            const text = "sedang mengetik";
+            const typingWrapper = document.createElement('span');
+            typingWrapper.className = 'text-xs text-slate-500 italic typing-text-wrapper';
+            
+            // Add each character as a span with animation
+            text.split('').forEach((char, index) => {
+                const charSpan = document.createElement('span');
+                if (char === ' ') {
+                    charSpan.innerHTML = '&nbsp;';
+                    charSpan.style.display = 'inline-block';
+                } else {
+                    charSpan.textContent = char;
+                    charSpan.className = 'typing-char';
+                    charSpan.style.animationDelay = `${index * 0.15}s`;
+                }
+                typingWrapper.appendChild(charSpan);
+            });
+            
+            // Add ellipsis
+            const ellipsis = document.createElement('span');
+            ellipsis.className = 'typing-ellipsis';
+            typingWrapper.appendChild(ellipsis);
+            
+            // Build the complete structure
             div.innerHTML = `
-                 <img src="/wisnu-alfian.webp" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />
-                 <div class="bg-white p-3 rounded-2xl flex gap-1 items-center h-10 border border-slate-100 shadow-sm">
-                   <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
-                   <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-75"></span>
-                   <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-150"></span>
+                 <img src="/wisnu-alfian.webp" alt="AI" class="w-8 h-8 min-w-[2rem] min-h-[2rem] max-w-[2rem] max-h-[2rem] rounded-full object-cover border border-slate-200 shrink-0 shadow-sm aspect-square self-start" />
+                 <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-sm border border-slate-100 shadow-sm flex flex-col gap-2">
+                   <div class="typing-text-container"></div>
+                   <div class="flex gap-1 items-center">
+                     <span class="typing-dot"></span>
+                     <span class="typing-dot"></span>
+                     <span class="typing-dot"></span>
+                   </div>
                  </div>`;
+            
+            // Append typing wrapper to container
+            const container = div.querySelector('.typing-text-container');
+            if (container) {
+                container.appendChild(typingWrapper);
+            }
+            
             messagesContainer.appendChild(div);
             if (messagesContainer)
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -351,5 +517,107 @@ import { X, Send } from "lucide-astro";
   @keyframes ai-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  /* Typing text animation container */
+  .typing-text-wrapper {
+    display: inline-flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  /* Wave animation for each character - MORE VISIBLE */
+  .typing-char {
+    display: inline-block !important;
+    animation: typing-wave 0.8s ease-in-out infinite !important;
+    transform-origin: center bottom;
+    will-change: transform;
+    font-style: italic;
+  }
+
+  @keyframes typing-wave {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  /* Animated ellipsis for "typing..." effect */
+  .typing-ellipsis::after {
+    content: '';
+    animation: typing-ellipsis-animation 1.5s infinite;
+  }
+
+  @keyframes typing-ellipsis-animation {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100% { content: ''; }
+  }
+
+  /* WhatsApp-style typing indicator animation */
+  .typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #94a3b8;
+    border-radius: 50%;
+    display: inline-block;
+    animation: typing-bounce 1.4s infinite ease-in-out;
+  }
+
+  .typing-dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes typing-bounce {
+    0%, 60%, 100% {
+      transform: translateY(0);
+      opacity: 0.7;
+    }
+    30% {
+      transform: translateY(-10px);
+      opacity: 1;
+    }
+  }
+
+  /* Fullscreen mode styling */
+  .chat-fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    transform: scale(1) !important;
+    z-index: 9999 !important;
+  }
+
+  .chat-fullscreen #chat-messages {
+    height: calc(100vh - 140px) !important;
+    max-height: calc(100vh - 140px) !important;
+  }
+
+  /* Hide scroll to top button when chat is fullscreen */
+  .chat-fullscreen ~ #scroll-to-top {
+    display: none;
   }
 </style>

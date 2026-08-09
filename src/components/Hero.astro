@@ -38,7 +38,7 @@ const isId = Astro.url.pathname.startsWith('/id');
     </p>
     <a href={isId ? '/id/contact' : '/contact'} class="cta-button group">
       <CornerDownRight class="w-5 h-5 text-[#0A0A0A]" />
-      <span>{isId ? 'Jadwalkan konsultasi' : 'Schedule a consultation'}</span>
+      <span>{isId ? 'Hubungi Saya' : 'Get in Touch'}</span>
     </a>
   </div>
 </section>
@@ -127,9 +127,9 @@ const isId = Astro.url.pathname.startsWith('/id');
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: 60vh;
+    height: 70vh;
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     display: flex;
     justify-content: center;
     pointer-events: none;
