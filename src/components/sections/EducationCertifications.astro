@@ -39,7 +39,7 @@ const profile = isId ? profileId : profileEn;
             </div>
             <div class="pt-3 mt-2 border-t border-slate-100 dark:border-transparent">
               <p class="text-xs text-slate-500 dark:text-slate-300 leading-relaxed">
-                <span class="font-bold text-sage-700 dark:text-sage-400">Fokus: </span>
+                <span class="font-bold text-sage-700 dark:text-sage-400">{isId ? 'Fokus: ' : 'Focus: '}</span>
                 {profile.education.focus}
               </p>
             </div>
@@ -82,7 +82,7 @@ const profile = isId ? profileId : profileEn;
 
                 <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 dark:border-transparent mt-2">
                   <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">{cert.date}</p>
-                  {cert.expiry && <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">Exp: {cert.expiry}</p>}
+                  {cert.expiry && <p class="text-[9px] font-medium text-slate-400 uppercase tracking-wider">{isId ? `Berakhir: ${cert.expiry}` : `Exp: ${cert.expiry}`}</p>}
                 </div>
 
                 {cert.id && (

@@ -48,7 +48,7 @@ const profile = isId ? profileId : profileEn;
             <button
               class="cert-img-wrap"
               onclick={`openModal('cert-modal', '${cert.image}', '${cert.name.replace(/'/g, "\\'")}')`}
-              aria-label={`View certificate: ${cert.name}`}
+              aria-label={isId ? `Lihat sertifikat: ${cert.name}` : `View certificate: ${cert.name}`}
             >
               <img
                 src={cert.image}
@@ -125,7 +125,7 @@ const profile = isId ? profileId : profileEn;
 
   .heading {
     color: #ffffff;
-    font-size: clamp(36px, 6vw, 76px);
+    font-size: clamp(28px, 3.2vw, 52px);
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1.1;
@@ -337,7 +337,27 @@ const profile = isId ? profileId : profileEn;
 
   @media (max-width: 640px) {
     .certs-grid {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 14px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 4px;
+    }
+
+    .certs-grid::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    .cert-card {
+      flex: 0 0 78%;
+      max-width: 300px;
+      scroll-snap-align: start;
     }
   }
 
@@ -347,7 +367,7 @@ const profile = isId ? profileId : profileEn;
     }
 
     .heading {
-      font-size: 40px;
+      font-size: 28px;
     }
 
     .edu-block {

@@ -41,8 +41,8 @@ const profile = isId ? profileId : profileEn;
 
 <style>
   .achievements-section {
-    background-color: #F2F2F2;
-    color: #0A0A0A;
+    background-color: var(--bg);
+    color: #ffffff;
     padding-block: 120px;
     font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   }
@@ -61,8 +61,8 @@ const profile = isId ? profileId : profileEn;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: #FFFFFF;
-    border: 1px solid #9A9A9A;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 999px;
     padding: 6px 16px;
   }
@@ -79,12 +79,12 @@ const profile = isId ? profileId : profileEn;
     font-size: 12px;
     letter-spacing: 0.06em;
     font-weight: 500;
-    color: #0A0A0A;
+    color: #ffffff;
   }
 
   .heading {
-    color: #0A0A0A;
-    font-size: clamp(36px, 6vw, 76px);
+    color: #ffffff;
+    font-size: clamp(28px, 3.2vw, 52px);
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1.1;
@@ -101,22 +101,27 @@ const profile = isId ? profileId : profileEn;
   }
 
   .achievement-item {
-    background-color: #FFFFFF;
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
     padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
     display: flex;
     flex-direction: column;
     gap: 12px;
     min-width: 0;
+    transition: border-color 0.3s ease;
+  }
+
+  .achievement-item:hover {
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .ach-icon-wrap {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: #0A0A0A;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -138,7 +143,7 @@ const profile = isId ? profileId : profileEn;
     font-size: 20px;
     font-weight: 500;
     margin: 0;
-    color: #0A0A0A;
+    color: #ffffff;
   }
 
   .ach-meta {
@@ -147,19 +152,20 @@ const profile = isId ? profileId : profileEn;
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: #3F3F3F;
+    color: rgba(255, 255, 255, 0.4);
   }
 
   .ach-issuer {
     font-weight: 500;
+    color: var(--accent);
   }
 
   .dot-sep {
-    color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.2);
   }
 
   .ach-date {
-    color: rgba(0, 0, 0, 0.65);
+    color: rgba(255, 255, 255, 0.4);
   }
 
   .ach-desc {
@@ -167,7 +173,7 @@ const profile = isId ? profileId : profileEn;
     margin-bottom: 0;
     font-size: 14px;
     line-height: 1.6;
-    color: #3F3F3F;
+    color: rgba(255, 255, 255, 0.55);
   }
 
   /* RESPONSIVE */
@@ -182,15 +188,37 @@ const profile = isId ? profileId : profileEn;
       padding-block: 72px;
     }
     .heading {
-      font-size: 40px;
+      font-size: 28px;
     }
     .achievements-list {
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
     .achievement-item {
-      padding: 16px;
+      padding: 12px;
+      gap: 8px;
+      border-radius: 12px;
     }
-  }
+    .ach-icon-wrap {
+      width: 36px;
+      height: 36px;
+    }
+    .ach-icon {
+      width: 15px;
+      height: 15px;
+    }
+    .ach-title {
+      font-size: 15px;
+    }
+    .ach-meta {
+      margin-top: 4px;
+      font-size: 11px;
+      gap: 5px;
+    }
+    .ach-desc {
+      margin-top: 6px;
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
   }
 </style>

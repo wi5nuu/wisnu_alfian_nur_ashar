@@ -1,16 +1,19 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
+import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
-import Hero from "../../components/sections/Hero.astro";
-import About from "../../components/sections/About.astro";
-import Experience from "../../components/sections/Experience.astro";
-import Projects from "../../components/sections/Projects.astro";
-import Skills from "../../components/sections/Skills.astro";
-import EducationCertifications from "../../components/sections/EducationCertifications.astro";
-import Achievements from "../../components/sections/Achievements.astro";
-import Contact from "../../components/sections/Contact.astro";
-import Donation from "../../components/sections/Donation.astro";
+import Hero from "../../components/Hero.astro";
+import WhyWorkWithMe from "../../components/WhyWorkWithMe.astro";
+import SelectedWork from "../../components/SelectedWork.astro";
+import Process from "../../components/Process.astro";
+import Services from "../../components/Services.astro";
+import AboutMe from "../../components/About.astro";
+import Stats from "../../components/Stats.astro";
+import Experience from "../../components/Experience.astro";
+import Skills from "../../components/Skills.astro";
+import EducationCerts from "../../components/EducationCerts.astro";
+import Achievements from "../../components/Achievements.astro";
+import Contact from "../../components/Contact.astro";
 import { profile } from "../../data/profile_id";
 
 const title = `${profile.personalInfo.name} | ${profile.personalInfo.role}`;
@@ -18,18 +21,21 @@ const description = profile.personalInfo.summary;
 ---
 
 <Layout title={title} description={description}>
-	<Header />
+	<Navbar />
 
 	<main>
 		<Hero />
-		<About />
+		<AboutMe />
+		<SelectedWork />
+		<Process />
+		<Services />
+		<WhyWorkWithMe />
+		<Stats />
 		<Experience />
-		<Projects />
 		<Skills />
-		<EducationCertifications />
+		<EducationCerts />
 		<Achievements />
 		<Contact />
-		<Donation />
 	</main>
 	<Footer />
 </Layout>

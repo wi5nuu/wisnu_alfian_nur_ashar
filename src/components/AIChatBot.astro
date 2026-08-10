@@ -1,5 +1,7 @@
 ---
 import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
+
+const isId = Astro.url.pathname.startsWith('/id');
 ---
 
 <div id="ai-chat-widget" class="z-[110] font-sans">
@@ -7,7 +9,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
     <button
         id="chat-toggle-desktop"
         class="hidden md:flex fixed bottom-6 right-6 group bg-slate-900 hover:bg-slate-800 text-white p-2 pr-4 pl-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 z-50 items-center gap-3 border border-slate-700/50"
-        aria-label="Toggle AI Assistant"
+        aria-label={isId ? 'Buka Asisten AI' : 'Toggle AI Assistant'}
     >
         <div class="relative">
             <img
@@ -27,40 +29,19 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
 
         <div class="flex flex-col items-start">
             <span class="text-sm font-bold text-white leading-tight"
-                >Wisnu's AI</span
+                >{isId ? 'AI Wisnu' : "Wisnu's AI"}</span
             >
             <span class="text-[10px] text-slate-400 font-medium"
-                >Chat with me</span
+                >{isId ? 'Ngobrol dengan saya' : 'Chat with me'}</span
             >
         </div>
     </button>
 
-    <!-- Mobile Toggle Button (Android/iOS Style) -->
-    <button
-        id="chat-toggle-mobile"
-        class="md:hidden fixed bottom-24 right-5 bg-slate-900 text-white p-3 rounded-full shadow-2xl z-[200] flex items-center justify-center border-2 border-slate-700/50 hover:scale-110 active:scale-95 transition-transform duration-200"
-        aria-label="Toggle AI Assistant"
-    >
-        <div class="relative">
-            <img
-                src="/wisnu-alfian.webp"
-                alt="AI"
-                width="56"
-                height="56"
-                class="w-14 h-14 rounded-full object-cover aspect-square"
-                loading="lazy"
-                decoding="async"
-            />
-            <div
-                class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full ai-status-dot border-2 border-slate-900"
-            >
-            </div>
-        </div>
-    </button>
+    <!-- Mobile toggle dihapus — AI diakses lewat ikon di bottom-nav (Navbar) -->
 
     <div
         id="chat-window"
-        class="fixed bottom-28 md:bottom-24 right-4 left-4 md:left-auto md:right-6 w-auto md:w-[380px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20 transform scale-95 opacity-0 pointer-events-none transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) origin-bottom-right overflow-hidden flex flex-col max-h-[60vh] md:max-h-[500px] z-[120]"
+        class="fixed bottom-24 md:bottom-24 right-4 left-4 md:left-auto md:right-6 w-auto md:w-[380px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20 transform scale-95 opacity-0 pointer-events-none transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) origin-bottom-right overflow-hidden flex flex-col max-h-[60vh] md:max-h-[500px] z-[120]"
     >
         <div
             class="bg-slate-900/90 backdrop-blur-md p-4 flex items-center justify-between text-white shrink-0 relative overflow-hidden"
@@ -74,7 +55,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
                     <div class="relative">
                     <img
                         src="/wisnu-alfian.webp"
-                        alt="AI Avatar"
+                        alt={isId ? 'Avatar Asisten AI' : 'AI Avatar'}
                         width="40"
                         height="40"
                         class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm aspect-square"
@@ -101,8 +82,8 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
                 <button
                     id="chat-fullscreen-toggle"
                     class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-white/80 hover:text-white"
-                    aria-label="Toggle fullscreen"
-                    title="Toggle fullscreen"
+                    aria-label={isId ? 'Layar penuh' : 'Toggle fullscreen'}
+                    title={isId ? 'Layar penuh' : 'Toggle fullscreen'}
                 >
                     <Maximize2 class="w-5 h-5 fullscreen-icon-expand" />
                     <Minimize2 class="w-5 h-5 fullscreen-icon-collapse hidden" />
@@ -110,7 +91,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
                 <button
                     id="chat-close"
                     class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-white/80 hover:text-white hover:rotate-90"
-                    aria-label="Close chat"
+                    aria-label={isId ? 'Tutup chat' : 'Close chat'}
                 >
                     <X class="w-5 h-5" />
                 </button>
@@ -134,14 +115,29 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
                 <div
                     class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-slate-100 text-sm text-slate-800 leading-relaxed"
                 >
-                    Hi! 👋 I'm <strong>Wisnu Alfian Nur Ashar</strong>, an <strong>IT student at President University</strong> specializing in <strong>Full-Stack Engineering</strong> with <strong>1,500+ GitHub contributions</strong> across 90+ repositories.<br><br>
-                    
-                    I've built production systems serving <strong>15,000+ users</strong> including an ERP/POS platform, and contributed to open-source projects at <strong>NASA, Microsoft, Google, and NVIDIA</strong>. Currently a <strong>Web Development Intern at GAOTEK INC (New York)</strong> and actively seeking <strong>full-time opportunities</strong>.<br><br>
-                    
-                    💻 <strong>Tech Stack:</strong> Laravel, Next.js, React, TypeScript, PostgreSQL, Go, Python, AWS<br>
-                    🏆 <strong>Recent Win:</strong> 1st Place Web Developer - TechSprint Innovation Cup 2026<br><br>
-                    
-                    Ask me anything about my projects, experience, or technical skills!
+                    {isId ? (
+                        <>
+                            Halo! 👋 Saya <strong>Wisnu Alfian Nur Ashar</strong>, seorang <strong>mahasiswa IT di President University</strong> dengan spesialisasi <strong>Full-Stack Engineering</strong> dan <strong>1.500+ kontribusi GitHub</strong> di 90+ repositori.<br><br>
+
+                            Saya telah membangun sistem production yang melayani <strong>15.000+ pengguna</strong>, termasuk platform ERP/POS, serta berkontribusi ke proyek open-source di <strong>NASA, Microsoft, Google, dan NVIDIA</strong>. Saat ini <strong>Web Development Intern di GAOTEK INC (New York)</strong> dan sedang aktif mencari <strong>peluang full-time</strong>.<br><br>
+
+                            💻 <strong>Tech Stack:</strong> Laravel, Next.js, React, TypeScript, PostgreSQL, Go, Python, AWS<br>
+                            🏆 <strong>Prestasi Terbaru:</strong> Juara 1 Web Developer - TechSprint Innovation Cup 2026<br><br>
+
+                            Tanyakan apa saja tentang proyek, pengalaman, atau keahlian teknis saya!
+                        </>
+                    ) : (
+                        <>
+                            Hi! 👋 I'm <strong>Wisnu Alfian Nur Ashar</strong>, an <strong>IT student at President University</strong> specializing in <strong>Full-Stack Engineering</strong> with <strong>1,500+ GitHub contributions</strong> across 90+ repositories.<br><br>
+
+                            I've built production systems serving <strong>15,000+ users</strong> including an ERP/POS platform, and contributed to open-source projects at <strong>NASA, Microsoft, Google, and NVIDIA</strong>. Currently a <strong>Web Development Intern at GAOTEK INC (New York)</strong> and actively seeking <strong>full-time opportunities</strong>.<br><br>
+
+                            💻 <strong>Tech Stack:</strong> Laravel, Next.js, React, TypeScript, PostgreSQL, Go, Python, AWS<br>
+                            🏆 <strong>Recent Win:</strong> 1st Place Web Developer - TechSprint Innovation Cup 2026<br><br>
+
+                            Ask me anything about my projects, experience, or technical skills!
+                        </>
+                    )}
                 </div>
             </div>
         </div>
@@ -153,7 +149,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
             <input
                 type="text"
                 id="chat-input"
-                placeholder="Ask me anything about my experience, skills, or projects..."
+                placeholder={isId ? 'Tanyakan apa saja tentang pengalaman, keahlian, atau proyek saya...' : 'Ask me anything about my experience, skills, or projects...'}
                 class="flex-1 bg-slate-100 border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:ring-2 focus:ring-slate-900/5 focus:outline-none placeholder:text-slate-500 transition-all"
                 autocomplete="off"
             />
@@ -161,7 +157,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
                 type="submit"
                 id="send-button"
                 class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-90 shadow-lg shadow-slate-900/10 relative"
-                aria-label="Send message"
+                aria-label={isId ? 'Kirim pesan' : 'Send message'}
             >
                 <Send class="w-4 h-4 send-icon" />
                 <svg class="w-4 h-4 send-loading hidden animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -174,9 +170,10 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
 </div>
 
 <script>
+    const isId = window.location.pathname.startsWith('/id');
+
     const initChatBot = () => {
         const desktopToggle = document.getElementById("chat-toggle-desktop");
-        const mobileToggle = document.getElementById("chat-toggle-mobile");
         const closeBtn = document.getElementById("chat-close");
         const fullscreenToggle = document.getElementById("chat-fullscreen-toggle");
         const windowEl = document.getElementById("chat-window");
@@ -265,10 +262,6 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
             desktopToggle.onclick = toggleChat;
         }
 
-        if (mobileToggle) {
-            mobileToggle.onclick = toggleChat;
-        }
-
         if (closeBtn) {
             closeBtn.onclick = toggleChat;
         }
@@ -321,7 +314,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
                 }
 
                 const data = await response.json();
-                const aiResponse = data.response || 'Maaf, ada error. Coba lagi ya!';
+                const aiResponse = data.response || (isId ? 'Maaf, ada error. Coba lagi ya!' : 'Sorry, an error occurred. Please try again!');
 
                 // Add to conversation history
                 conversationHistory.push(
@@ -352,7 +345,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
             } catch (error: any) {
                 console.error("AI Error:", error);
                 if (typingId) removeTypingIndicator(typingId);
-                addMessage(error.message || "Maaf, terjadi kesalahan. Coba lagi nanti.", "ai");
+                addMessage(error.message || (isId ? "Maaf, terjadi kesalahan. Coba lagi nanti." : "Sorry, something went wrong. Please try again later."), "ai");
                 if (input) input.disabled = false;
                 // Hide loading state on error
                 if (sendButton) sendButton.disabled = false;
@@ -387,7 +380,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
             // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
             const iconHtml = isAi
                 ? `<img src="/wisnu-alfian.webp" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />`
-                : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">You</div>`;
+                : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">${isId ? 'Anda' : 'You'}</div>`;
 
             const bubbleClass = isAi
                 ? "bg-white border border-slate-100 text-slate-800 rounded-tl-sm"
@@ -452,7 +445,7 @@ import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
             div.className = "flex gap-3 items-start";
             
             // Create typing text with wave animation using DOM
-            const text = "sedang mengetik";
+            const text = isId ? "sedang mengetik" : "typing";
             const typingWrapper = document.createElement('span');
             typingWrapper.className = 'text-xs text-slate-500 italic typing-text-wrapper';
             

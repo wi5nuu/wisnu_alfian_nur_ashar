@@ -55,6 +55,6 @@ Full-Stack Developer & Cybersecurity Specialist based in Bekasi, Indonesia. 8+ y
 
 ## Resume
 
-- Download CV: [Wisnu_Alfian_Nur_Ashar_CV.pdf](/Wisnu_Alfian_Nur_Ashar_CV.pdf)
+- Download CV: [CV_Wisnu_Alfian_Nur_Ashar.pdf](/CV_Wisnu_Alfian_Nur_Ashar.pdf)
 - Education: President University
 - Specializations: Full-Stack Development, Cybersecurity, Web Performance

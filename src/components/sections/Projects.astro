@@ -56,7 +56,7 @@ const basePath = isId ? '/id/projects' : '/projects';
             )}
             <div class="card-body">
               <div class="card-top">
-                <span class="status-badge">{project.status || 'Production'}</span>
+                <span class="status-badge">{project.status || (isId ? 'Produksi' : 'Production')}</span>
                 <ArrowUpRight class="arrow-icon" />
               </div>
               <h3 class="card-title">{project.title}</h3>
@@ -138,7 +138,7 @@ const basePath = isId ? '/id/projects' : '/projects';
 
   .heading {
     color: #ffffff;
-    font-size: clamp(36px, 6vw, 76px);
+    font-size: clamp(28px, 3.2vw, 52px);
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1.1;
@@ -160,9 +160,21 @@ const basePath = isId ? '/id/projects' : '/projects';
   .projects-grid {
     margin-top: 64px;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 24px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 8px;
+  }
+
+  .projects-grid::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .project-card {
@@ -174,6 +186,9 @@ const basePath = isId ? '/id/projects' : '/projects';
     flex-direction: column;
     text-decoration: none;
     transition: border-color 0.3s ease, transform 0.3s ease;
+    flex: 0 0 calc(25% - 18px);
+    min-width: 0;
+    scroll-snap-align: start;
   }
 
   .project-card:hover {
@@ -363,8 +378,14 @@ const basePath = isId ? '/id/projects' : '/projects';
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .project-card {
+      flex: 0 0 calc(33.333% - 16px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .project-card {
+      flex: 0 0 calc(50% - 12px);
     }
   }
 
@@ -372,11 +393,15 @@ const basePath = isId ? '/id/projects' : '/projects';
     .projects-section {
       padding-block: 80px;
     }
-    .projects-grid {
-      grid-template-columns: 1fr;
-    }
     .heading {
-      font-size: 40px;
+      font-size: 28px;
+    }
+    .projects-grid {
+      gap: 14px;
+    }
+    .project-card {
+      flex: 0 0 85%;
+      max-width: 320px;
     }
   }
 </style>

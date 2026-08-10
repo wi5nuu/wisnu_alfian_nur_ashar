@@ -18,7 +18,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 
 <nav aria-label={isId ? "Navigasi utama" : "Main navigation"} class="nav-root">
   <!-- LEFT: LOGO -->
-  <a href={getLocalizedUrl("/", isId)} aria-label="Home - Wisnu Alfian" class="nav-logo">
+  <a href={getLocalizedUrl("/", isId)} aria-label={isId ? "Beranda - Wisnu Alfian" : "Home - Wisnu Alfian"} class="nav-logo">
     WISNU ALFIAN
   </a>
 
@@ -40,6 +40,9 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 
   <!-- RIGHT: Contact (Desktop only) -->
   <div class="nav-right">
+    <button id="lang-toggle-desktop" class="lang-btn" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'}>
+      {isId ? 'ID' : 'EN'}
+    </button>
     <a href={getLocalizedUrl("/contact", isId)} class="nav-cta">
       {isId ? 'Kontak' : 'Contact Me'}
     </a>
@@ -64,21 +67,64 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
       iconPath = 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z';
     }
     
-    return (
-      <a
-        href={localizedHref}
-        class={`bottom-nav-item ${isActive ? 'bottom-nav-item--active' : ''}`}
-        aria-current={isActive ? 'page' : undefined}
-        transition:name={`nav-${link.href}`}
-      >
+        return (
+          <a
+            href={localizedHref}
+            class={`bottom-nav-item ${isActive ? 'bottom-nav-item--active' : ''}`}
+            aria-current={isActive ? 'page' : undefined}
+            transition:name={`nav-${link.href}`}
+          >
+            <svg class="bottom-nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" transition:animate="none">
+              <path d={iconPath}></path>
+            </svg>
+            <span class="bottom-nav-label" transition:animate="none">{link.name}</span>
+          </a>
+        );
+      })}
+
+      <!-- AI TRIGGER (Mobile) -->
+      <button id="mobile-ai-trigger" class="bottom-nav-item bottom-nav-item--ai" aria-label={isId ? 'Asisten AI' : 'AI Assistant'}>
         <svg class="bottom-nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" transition:animate="none">
-          <path d={iconPath}></path>
+          <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
         </svg>
-        <span class="bottom-nav-label" transition:animate="none">{link.name}</span>
-      </a>
-    );
-  })}
+        <span class="bottom-nav-label" transition:animate="none">AI</span>
+      </button>
 </nav>
+
+<!-- LANGUAGE TOGGLE (Mobile - top right corner) -->
+<button id="lang-toggle-mobile" class="lang-btn-mobile" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'} transition:persist>
+  {isId ? 'ID' : 'EN'}
+</button>
+
+<script>
+  const setupLang = () => {
+    const langBtnDesktop = document.getElementById('lang-toggle-desktop');
+    const langBtnMobile = document.getElementById('lang-toggle-mobile');
+
+    const toggleLang = () => {
+      const isId = window.location.pathname.startsWith('/id');
+      const currentPath = window.location.pathname;
+      let newPath = '';
+
+      if (isId) {
+        newPath = currentPath.substring(3);
+        if (newPath === '') newPath = '/';
+      } else {
+        newPath = '/id' + (currentPath === '/' ? '' : currentPath);
+      }
+
+      window.location.href = newPath;
+    };
+
+    // Remove old listeners before adding new ones (prevents double-toggle on SPA nav)
+    langBtnDesktop?.removeEventListener('click', toggleLang);
+    langBtnMobile?.removeEventListener('click', toggleLang);
+    langBtnDesktop?.addEventListener('click', toggleLang);
+    langBtnMobile?.addEventListener('click', toggleLang);
+  };
+
+  document.addEventListener('astro:page-load', setupLang);
+</script>
 
 <style>
   /* ===== NAV ROOT ===== */
@@ -152,6 +198,52 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     color: #0A0A0A;
   }
 
+  /* ===== LANGUAGE TOGGLE (Desktop) ===== */
+  .lang-btn {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 8px 16px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ===== LANGUAGE TOGGLE (Mobile - top right corner) ===== */
+  .lang-btn-mobile {
+    display: none;
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 60;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    padding: 8px 16px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .lang-btn-mobile:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
   /* ===== HAMBURGER (Hidden - not used in Android style) ===== */
   .hamburger-btn {
     display: none;
@@ -206,6 +298,18 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     font-weight: 600;
   }
 
+  /* AI trigger khusus di mobile - selalu hijau agar menonjol */
+  .bottom-nav-item--ai {
+    color: var(--accent);
+    border: none;
+    background: none;
+    font-family: inherit;
+  }
+
+  .bottom-nav-item--ai .bottom-nav-label {
+    font-weight: 600;
+  }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 767px) {
     .nav-root {
@@ -223,6 +327,13 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     /* Show bottom navigation on mobile */
     .bottom-nav {
       display: flex;
+    }
+
+    /* Show language toggle in top-right corner on mobile */
+    .lang-btn-mobile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

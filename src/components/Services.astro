@@ -47,11 +47,12 @@ const isId = Astro.url.pathname.startsWith('/id');
         <h3 class="card-title">{isId ? 'Full-Stack Development' : 'Full-Stack Development'}</h3>
         <p class="card-desc">
           {isId 
-            ? 'Membangun aplikasi full-stack end-to-end dengan Laravel, Next.js, dan PostgreSQL — dari API hingga production deployment.' 
-            : 'Building end-to-end full-stack applications with Laravel, Next.js, and PostgreSQL — from API to production deployment.'}
+            ? 'Membangun aplikasi full-stack end-to-end dengan Laravel, Next.js, ASP.NET, dan PostgreSQL — dari API hingga production deployment.' 
+            : 'Building end-to-end full-stack applications with Laravel, Next.js, ASP.NET, and PostgreSQL — from API to production deployment.'}
         </p>
         <ul class="feature-list">
           <li class="feature-item">{isId ? 'Laravel & Next.js' : 'Laravel & Next.js'}</li>
+          <li class="feature-item">{isId ? 'ASP.NET & C#' : 'ASP.NET & C#'}</li>
           <li class="feature-item">{isId ? 'PostgreSQL & REST API' : 'PostgreSQL & REST API'}</li>
           <li class="feature-item border-transparent">{isId ? 'Docker & Cloud Deploy' : 'Docker & Cloud Deploy'}</li>
         </ul>
@@ -131,7 +132,7 @@ const isId = Astro.url.pathname.startsWith('/id');
 
   .heading {
     color: #ffffff;
-    font-size: clamp(36px, 6vw, 76px);
+    font-size: clamp(28px, 3.2vw, 52px);
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1.1;
@@ -302,7 +303,7 @@ const isId = Astro.url.pathname.startsWith('/id');
       padding-block: 72px;
     }
     .heading {
-      font-size: 40px;
+      font-size: 28px;
     }
     .services-grid {
       grid-template-columns: 1fr;

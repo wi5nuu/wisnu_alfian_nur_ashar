@@ -9,13 +9,8 @@ const profile = isId ? profileId : profileEn;
 
 <section class="about-section">
   <div class="container">
-    <!-- LEFT: PHOTO CARD -->
-    <div class="photo-card">
-      <img src="/wisnu-alfian.webp" alt={profile.personalInfo.name} width="330" height="400" class="about-photo" loading="lazy" decoding="async" />
-    </div>
-
-    <!-- RIGHT: TEXT -->
-    <div class="text-content">
+    <!-- LEFT: HEADING -->
+    <div class="heading-col">
       <div class="badge">
         <div class="badge-dot"></div>
         <span class="badge-text">{isId ? 'TENTANG SAYA' : 'ABOUT ME'}</span>
@@ -23,63 +18,58 @@ const profile = isId ? profileId : profileEn;
 
       <h2 class="heading">
         {isId ? 'Temukan Perjalanan' : 'Discover My'}<br />
-        {isId ? 'Engineering Saya' : 'Engineering Journey'}
+        Engineering<br />
+        {isId ? 'Saya' : 'Journey'}
       </h2>
+    </div>
 
+    <!-- CENTER: BIO -->
+    <div class="bio-col">
+      <h3 class="name">{profile.personalInfo.name}</h3>
       <p class="bio">
-        {profile.personalInfo.summary || "Hello! I'm Wisnu, a passionate Full-Stack Engineer with experience in creating visually appealing and high-performing applications. My mission is to bring your brand to life through innovative solutions tailored to your unique needs."}
+        {profile.personalInfo.summary || (isId ? "Halo! Saya Wisnu, seorang Full-Stack Engineer yang antusias dengan pengalaman menciptakan aplikasi yang menarik secara visual dan berkinerja tinggi. Misi saya adalah menghidupkan brand Anda melalui solusi inovatif yang disesuaikan dengan kebutuhan unik Anda." : "Hello! I'm Wisnu, a passionate Full-Stack Engineer with experience in creating visually appealing and high-performing applications. My mission is to bring your brand to life through innovative solutions tailored to your unique needs.")}
       </p>
 
       <div class="social-row">
-        <a href={profile.personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" class="social-circle">
+        <a href={profile.personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" aria-label={isId ? "Profil GitHub" : "GitHub profile"} class="social-circle">
           <Github class="social-icon" aria-hidden="true" />
         </a>
-        <a href={profile.personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" class="social-circle">
+        <a href={profile.personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" aria-label={isId ? "Profil LinkedIn" : "LinkedIn profile"} class="social-circle">
           <Linkedin class="social-icon" aria-hidden="true" />
         </a>
-        <a href={profile.personalInfo.instagram || '#'} target="_blank" rel="noopener noreferrer" aria-label="Instagram profile" class="social-circle">
+        <a href={profile.personalInfo.instagram || '#'} target="_blank" rel="noopener noreferrer" aria-label={isId ? "Profil Instagram" : "Instagram profile"} class="social-circle">
           <Instagram class="social-icon" aria-hidden="true" />
         </a>
       </div>
+    </div>
+
+    <!-- RIGHT: PHOTO -->
+    <div class="photo-wrap">
+      <img src="/wisnu-alfian.webp" alt={profile.personalInfo.name} width="330" height="400" class="about-photo" loading="lazy" decoding="async" />
     </div>
   </div>
 </section>
 
 <style>
   .about-section {
-    background-color: #F2F2F2;
-    padding-block: 110px;
+    background-color: #ffffff;
+    color: #0A0A0A;
+    padding-block: 88px;
     font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   }
 
   .container {
-    max-width: 900px;
+    max-width: 1400px;
     margin-inline: auto;
-    padding-inline: 24px;
+    padding-inline: clamp(24px, 2.5vw, 40px);
     display: grid;
-    grid-template-columns: 330px 1fr;
-    gap: clamp(40px, 8vw, 115px);
+    grid-template-columns: 1fr 1.4fr auto;
+    gap: clamp(28px, 4vw, 56px);
     align-items: center;
   }
 
-  .photo-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-  }
-
-  .about-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* RIGHT: TEXT */
-  .text-content {
+  /* LEFT: HEADING */
+  .heading-col {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -89,7 +79,7 @@ const profile = isId ? profileId : profileEn;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border: 1px solid #9A9A9A;
     border-radius: 999px;
     padding: 6px 16px;
@@ -111,33 +101,60 @@ const profile = isId ? profileId : profileEn;
   }
 
   .heading {
-    font-size: clamp(36px, 6vw, 76px);
+    font-size: clamp(28px, 3.2vw, 52px);
     font-weight: 500;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     line-height: 1.1;
     margin-top: 12px;
     margin-bottom: 0;
     color: #0A0A0A;
   }
 
+  /* CENTER: PHOTO */
+  .photo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-photo {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* RIGHT: BIO */
+  .bio-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .name {
+    font-size: 32px;
+    font-weight: 600;
+    color: #0A0A0A;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
   .bio {
-    margin-top: 20px;
-    margin-bottom: 0;
-    font-size: 13px;
-    line-height: 1.6;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
     color: #3F3F3F;
-    max-width: 440px;
   }
 
   .social-row {
-    margin-top: 32px;
+    margin-top: 28px;
     display: flex;
-    gap: 16px;
+    gap: 14px;
   }
 
   .social-circle {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background-color: #0A0A0A;
     display: flex;
@@ -164,17 +181,38 @@ const profile = isId ? profileId : profileEn;
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    .about-section {
-      padding-block: 72px;
-    }
-    
     .container {
       grid-template-columns: 1fr;
+      gap: 28px;
     }
 
-    .photo-card {
-      height: 360px;
-      order: -1; /* Puts photo first on mobile */
+    .heading-col {
+      order: 2;
+      align-items: flex-start;
+    }
+
+    .photo-wrap {
+      order: 1;
+      justify-content: center;
+    }
+
+    .bio-col {
+      order: 3;
+      align-items: flex-start;
+    }
+
+    .about-photo {
+      max-width: 240px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-section {
+      padding-block: 48px;
+    }
+
+    .heading {
+      font-size: 36px;
     }
   }
 </style>
