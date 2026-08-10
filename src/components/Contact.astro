@@ -2,12 +2,17 @@
 import { Mail, MapPin, Send } from "lucide-astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
+import VideoBackground from "./VideoBackground.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
 <section class="contact-section">
+  <!-- Video Background -->
+  <VideoBackground src="https://cdn.pixabay.com/video/2023/11/11/188743-883619745_large.mp4" />
+  <div class="contact-overlay"></div>
+
   <div class="container">
     <div class="contact-grid">
       <!-- LEFT: HEADER + INFO -->
@@ -83,14 +88,41 @@ const profile = isId ? profileId : profileEn;
 
 <style>
   .contact-section {
+    position: relative;
     background-color: var(--bg);
     color: #ffffff;
-    padding-block: 64px;
+    padding-block: 88px;
     font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  /* Video Background */
+  .video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .contact-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.75);
+    z-index: 1;
   }
 
   .container {
+    position: relative;
+    z-index: 10;
     width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
     padding-inline: clamp(24px, 2.5vw, 40px);
     display: flex;
     flex-direction: column;
@@ -141,13 +173,13 @@ const profile = isId ? profileId : profileEn;
   .subtitle {
     margin-top: 16px;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.75);
     max-width: 560px;
   }
 
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 0.8fr 1.2fr;
     gap: 64px;
     align-items: start;
   }
@@ -206,7 +238,7 @@ const profile = isId ? profileId : profileEn;
     margin: 0 0 6px 0;
     font-size: 14px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .info-value {
@@ -226,21 +258,21 @@ const profile = isId ? profileId : profileEn;
   /* RIGHT: FORM */
   .contact-form-wrapper {
     background-color: #111111;
-    border-radius: 24px;
-    padding: 48px;
+    border-radius: 20px;
+    padding: 40px;
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 28px;
   }
 
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   .form-label {
@@ -256,7 +288,7 @@ const profile = isId ? profileId : profileEn;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 12px 0;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 15px;
     font-family: inherit;
     transition: border-color 0.3s ease;
   }
@@ -276,12 +308,12 @@ const profile = isId ? profileId : profileEn;
   }
 
   .submit-btn {
-    margin-top: 16px;
+    margin-top: 12px;
     background-color: var(--accent);
     color: #0A0A0A;
     border: none;
     border-radius: 999px;
-    padding: 16px 32px;
+    padding: 15px 30px;
     font-size: 15px;
     font-weight: 500;
     font-family: inherit;
@@ -289,7 +321,7 @@ const profile = isId ? profileId : profileEn;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     transition: filter 0.3s ease;
     align-self: flex-start;
   }

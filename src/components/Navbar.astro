@@ -123,7 +123,31 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     langBtnMobile?.addEventListener('click', toggleLang);
   };
 
+  // Sync active state for persisted bottom-nav across page transitions
+  const syncActiveNav = () => {
+    const currentPath = window.location.pathname;
+    const isId = currentPath.startsWith('/id');
+    const cleanPath = isId ? currentPath.substring(3) : currentPath;
+
+    document.querySelectorAll('.bottom-nav-item').forEach((item) => {
+      if (item.classList.contains('bottom-nav-item--ai')) return;
+      const href = item.getAttribute('href') || '';
+      const cleanHref = href.startsWith('/id') ? href.substring(3) : href;
+      const isActive =
+        cleanPath === cleanHref ||
+        (cleanHref === '/' && (cleanPath === '/' || cleanPath === ''));
+
+      item.classList.toggle('bottom-nav-item--active', isActive);
+      if (isActive) {
+        item.setAttribute('aria-current', 'page');
+      } else {
+        item.removeAttribute('aria-current');
+      }
+    });
+  };
+
   document.addEventListener('astro:page-load', setupLang);
+  document.addEventListener('astro:page-load', syncActiveNav);
 </script>
 
 <style>
@@ -273,7 +297,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     flex: 1;
     gap: 4px;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
     padding: 8px 4px;
     position: relative;
   }
@@ -298,12 +322,16 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     font-weight: 600;
   }
 
-  /* AI trigger khusus di mobile - selalu hijau agar menonjol */
+  /* AI trigger khusus di mobile - putih default, hijau saat chat aktif */
   .bottom-nav-item--ai {
-    color: var(--accent);
+    color: #ffffff;
     border: none;
     background: none;
     font-family: inherit;
+  }
+
+  .bottom-nav-item--ai.bottom-nav-item--active {
+    color: var(--accent);
   }
 
   .bottom-nav-item--ai .bottom-nav-label {

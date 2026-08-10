@@ -202,6 +202,7 @@ const isId = Astro.url.pathname.startsWith('/id');
 
         function toggleChat() {
             isOpen = !isOpen;
+            const aiTrigger = document.getElementById("mobile-ai-trigger");
             if (isOpen) {
                 windowEl?.classList.remove(
                     "scale-95",
@@ -213,12 +214,11 @@ const isId = Astro.url.pathname.startsWith('/id');
                     "opacity-100",
                     "pointer-events-auto",
                 );
+                aiTrigger?.classList.add("bottom-nav-item--active");
                 
-                // Auto-fullscreen on mobile devices
-                if (window.innerWidth <= 768) {
-                    setTimeout(() => {
-                        toggleFullscreen();
-                    }, 300);
+                // Fullscreen langsung di mobile (tanpa timeout)
+                if (window.innerWidth <= 768 && !isFullscreen) {
+                    setFullscreen(true);
                 }
                 
                 setTimeout(() => input?.focus(), 300);
@@ -233,30 +233,50 @@ const isId = Astro.url.pathname.startsWith('/id');
                     "opacity-100",
                     "pointer-events-auto",
                 );
+                aiTrigger?.classList.remove("bottom-nav-item--active");
                 // Exit fullscreen when closing chat
                 if (isFullscreen) {
-                    toggleFullscreen();
+                    setFullscreen(false);
                 }
             }
         }
 
-        function toggleFullscreen() {
-            isFullscreen = !isFullscreen;
+        function setFullscreen(on: boolean) {
+            isFullscreen = on;
             const expandIcon = document.querySelector('.fullscreen-icon-expand');
             const collapseIcon = document.querySelector('.fullscreen-icon-collapse');
             
-            if (isFullscreen) {
-                // Enter fullscreen mode
+            if (on) {
                 windowEl?.classList.add('chat-fullscreen');
                 expandIcon?.classList.add('hidden');
                 collapseIcon?.classList.remove('hidden');
             } else {
-                // Exit fullscreen mode
                 windowEl?.classList.remove('chat-fullscreen');
                 expandIcon?.classList.remove('hidden');
                 collapseIcon?.classList.add('hidden');
+                if (windowEl) {
+                    windowEl.style.height = "";
+                    windowEl.style.top = "";
+                }
             }
+            onViewportResize();
         }
+
+        function toggleFullscreen() {
+            setFullscreen(!isFullscreen);
+        }
+
+        // Jaga chat tetap di atas keyboard saat mobile
+        const viewport = window.visualViewport;
+        const onViewportResize = () => {
+            if (!windowEl || !viewport) return;
+            if (isFullscreen) {
+                windowEl.style.height = viewport.height + "px";
+                windowEl.style.top = viewport.offsetTop + "px";
+            }
+        };
+        viewport?.addEventListener("resize", onViewportResize);
+        viewport?.addEventListener("scroll", onViewportResize);
 
         if (desktopToggle) {
             desktopToggle.onclick = toggleChat;
@@ -598,15 +618,22 @@ const isId = Astro.url.pathname.startsWith('/id');
     width: 100vw !important;
     max-width: 100vw !important;
     height: 100vh !important;
+    height: 100dvh !important;
     max-height: 100vh !important;
+    max-height: 100dvh !important;
     border-radius: 0 !important;
     transform: scale(1) !important;
     z-index: 9999 !important;
   }
 
   .chat-fullscreen #chat-messages {
-    height: calc(100vh - 140px) !important;
-    max-height: calc(100vh - 140px) !important;
+    height: auto !important;
+    max-height: none !important;
+    flex: 1 1 auto;
+  }
+
+  .chat-fullscreen #chat-form {
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
   }
 
   /* Hide scroll to top button when chat is fullscreen */

@@ -41,7 +41,7 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
   <head>
     <!-- ================= BASIC ================= -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
     <title>{title} | {profile.personalInfo.name}</title>
     <meta name="description" content={description} />
     <meta name="author" content={profile.personalInfo.name} />
@@ -221,6 +221,45 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
         t === "dark" ? c.add("dark") : c.remove("dark");
         document.documentElement.style.colorScheme = t;
       });
+    </script>
+
+    <!-- ================= VIDEO BACKGROUND LAZY LOADING ================= -->
+    <script is:inline>
+      (function () {
+        function initVideos() {
+          var videos = document.querySelectorAll("video.video-bg");
+          if (!videos.length) return;
+          if (!("IntersectionObserver" in window)) {
+            videos.forEach(function (v) { v.src = v.dataset.src; v.load(); });
+            return;
+          }
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              var v = entry.target;
+              io.unobserve(v);
+              var delay = parseInt(v.dataset.loadDelay || "0", 10) || 0;
+              if (delay <= 0) { startVideo(v); }
+              else { setTimeout(function () { startVideo(v); }, delay); }
+            });
+          }, { rootMargin: "300px 0px" });
+          videos.forEach(function (v) { io.observe(v); });
+        }
+        function startVideo(v) {
+          if (v.dataset.started) return;
+          v.dataset.started = "1";
+          var src = v.dataset.src;
+          if (src) {
+            var source = v.querySelector("source");
+            if (source) { source.src = src; }
+            else { v.src = src; }
+            v.load();
+          }
+          var p = v.play();
+          if (p) p.catch(function () {});
+        }
+        document.addEventListener("astro:page-load", initVideos);
+      })();
     </script>
   </head>
 

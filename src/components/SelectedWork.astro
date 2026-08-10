@@ -40,7 +40,7 @@ const selectedProjects = profile.projects.slice(0, 5);
         })})`}
       >
         <div class="project-image-wrap">
-          <img src={project.image || "/projects/placeholder.webp"} alt={project.title} class="project-image" loading="lazy" />
+          <img src={project.image || "/projects/placeholder.webp"} alt={project.title} class="project-image" width="640" height="360" loading="lazy" decoding="async" />
         </div>
         <div class="project-content">
           <h3 class="project-title">{project.title}</h3>
@@ -194,7 +194,7 @@ const selectedProjects = profile.projects.slice(0, 5);
 
   .project-desc {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.5;
     margin: 0;
     display: -webkit-box;

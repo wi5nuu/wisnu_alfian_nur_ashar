@@ -2,12 +2,17 @@
 import { Trophy } from "lucide-astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
+import VideoBackground from "./VideoBackground.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
 <section class="achievements-section">
+  <!-- Video Background -->
+  <VideoBackground src="https://cdn.pixabay.com/video/2022/09/20/131975-751915253_large.mp4" />
+  <div class="achievements-overlay"></div>
+
   <div class="container">
     <div class="badge">
       <div class="badge-dot"></div>
@@ -41,13 +46,38 @@ const profile = isId ? profileId : profileEn;
 
 <style>
   .achievements-section {
-    background-color: var(--bg);
-    color: #ffffff;
+    position: relative;
+    background-color: #ffffff;
+    color: #0A0A0A;
     padding-block: 120px;
     font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  /* Video Background */
+  .video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .achievements-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.88);
+    z-index: 1;
   }
 
   .container {
+    position: relative;
+    z-index: 10;
     width: 100%;
     max-width: 1200px;
     margin-inline: auto;
@@ -62,7 +92,7 @@ const profile = isId ? profileId : profileEn;
     align-items: center;
     gap: 8px;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid #9A9A9A;
     border-radius: 999px;
     padding: 6px 16px;
   }
@@ -79,11 +109,11 @@ const profile = isId ? profileId : profileEn;
     font-size: 12px;
     letter-spacing: 0.06em;
     font-weight: 500;
-    color: #ffffff;
+    color: #0A0A0A;
   }
 
   .heading {
-    color: #ffffff;
+    color: #0A0A0A;
     font-size: clamp(28px, 3.2vw, 52px);
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -101,8 +131,8 @@ const profile = isId ? profileId : profileEn;
   }
 
   .achievement-item {
-    background-color: #111111;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #FAFAFA;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 14px;
     padding: 20px;
     display: flex;
@@ -113,15 +143,15 @@ const profile = isId ? profileId : profileEn;
   }
 
   .achievement-item:hover {
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
   }
 
   .ach-icon-wrap {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(132, 225, 12, 0.1);
+    border: 1px solid rgba(132, 225, 12, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,7 +173,7 @@ const profile = isId ? profileId : profileEn;
     font-size: 20px;
     font-weight: 500;
     margin: 0;
-    color: #ffffff;
+    color: #0A0A0A;
   }
 
   .ach-meta {
@@ -152,7 +182,7 @@ const profile = isId ? profileId : profileEn;
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .ach-issuer {
@@ -161,11 +191,11 @@ const profile = isId ? profileId : profileEn;
   }
 
   .dot-sep {
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(0, 0, 0, 0.3);
   }
 
   .ach-date {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .ach-desc {
@@ -173,7 +203,7 @@ const profile = isId ? profileId : profileEn;
     margin-bottom: 0;
     font-size: 14px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(0, 0, 0, 0.65);
   }
 
   /* RESPONSIVE */

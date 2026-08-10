@@ -1,5 +1,5 @@
 ---
-import { CornerDownRight, Orbit, Sparkles, AudioLines } from "lucide-astro";
+import { Orbit, Sparkles, AudioLines } from "lucide-astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 ---
@@ -33,10 +33,6 @@ const isId = Astro.url.pathname.startsWith('/id');
           <li class="feature-item">{isId ? 'TypeScript & Tailwind CSS' : 'TypeScript & Tailwind CSS'}</li>
           <li class="feature-item border-transparent">{isId ? 'Optimasi Performa & SEO' : 'Performance & SEO Optimization'}</li>
         </ul>
-        <a href={isId ? '/id/contact' : '/contact'} class="card-btn">
-          <CornerDownRight class="btn-icon" />
-          <span>{isId ? 'Hubungi Saya' : 'Get in Touch'}</span>
-        </a>
       </div>
 
       <!-- CARD 2: Full-Stack Development (Dark) -->
@@ -56,10 +52,6 @@ const isId = Astro.url.pathname.startsWith('/id');
           <li class="feature-item">{isId ? 'PostgreSQL & REST API' : 'PostgreSQL & REST API'}</li>
           <li class="feature-item border-transparent">{isId ? 'Docker & Cloud Deploy' : 'Docker & Cloud Deploy'}</li>
         </ul>
-        <a href={isId ? '/id/contact' : '/contact'} class="card-btn">
-          <CornerDownRight class="btn-icon" />
-          <span>{isId ? 'Hubungi Saya' : 'Get in Touch'}</span>
-        </a>
       </div>
 
       <!-- CARD 3: System Architecture (Light) -->
@@ -78,10 +70,6 @@ const isId = Astro.url.pathname.startsWith('/id');
           <li class="feature-item">{isId ? 'Database Design' : 'Database Design'}</li>
           <li class="feature-item border-transparent">{isId ? 'Cloud Infrastructure' : 'Cloud Infrastructure'}</li>
         </ul>
-        <a href={isId ? '/id/contact' : '/contact'} class="card-btn">
-          <CornerDownRight class="btn-icon" />
-          <span>{isId ? 'Hubungi Saya' : 'Get in Touch'}</span>
-        </a>
       </div>
     </div>
   </div>
@@ -154,7 +142,7 @@ const isId = Astro.url.pathname.startsWith('/id');
 
   .service-card {
     border-radius: 16px;
-    padding: 36px;
+    padding: 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -167,7 +155,7 @@ const isId = Astro.url.pathname.startsWith('/id');
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff; /* Gradient-like fill handled simply via icon color */
+    color: #ffffff;
   }
 
   .icon-svg {
@@ -177,9 +165,9 @@ const isId = Astro.url.pathname.startsWith('/id');
   }
 
   .card-title {
-    margin-top: 24px;
+    margin-top: 20px;
     margin-bottom: 0;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
   }
 
@@ -193,45 +181,21 @@ const isId = Astro.url.pathname.startsWith('/id');
   .feature-list {
     list-style: none;
     padding: 0;
-    margin: 24px 0 0 0;
+    margin: 20px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .feature-item {
     font-size: 13px;
     padding-block: 10px;
+    width: 100%;
   }
 
   .feature-item.border-transparent {
     border-bottom: none !important;
-  }
-
-  .card-btn {
-    margin-top: auto; /* Pins to bottom */
-    background-color: #C9F170;
-    color: #0A0A0A;
-    border-radius: 999px;
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: filter 0.3s ease;
-  }
-
-  .card-btn:hover {
-    filter: brightness(1.05);
-  }
-
-  .btn-icon {
-    width: 16px;
-    height: 16px;
-    color: #0A0A0A;
   }
 
   /* COLOR VARIANTS */
