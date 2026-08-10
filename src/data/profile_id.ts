@@ -626,7 +626,7 @@ export const profile: Profile = {
             image: "/certifications/Web_Development_Participants.webp"
         },
         {
-            name: "Participant Data Automation Competition",
+            name: "Peserta Kompetisi Otomasi Data",
             issuer: "PUMA Information System President University",
             date: "Juni 2026",
             category: "participant",

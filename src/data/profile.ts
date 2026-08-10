@@ -524,7 +524,7 @@ export const profile: Profile = {
             image: "/certifications/Full-Stack_Development_101.webp"
         },
         {
-            name: "Belajar Dasar Pemrograman Web",
+            name: "Learn Web Programming Basics",
             issuer: "Dicoding Indonesia",
             date: "March 2026",
             expiry: "March 2029",
@@ -610,7 +610,7 @@ export const profile: Profile = {
     ],
     competitions: [
         {
-            name: "Juara Vibe Coding",
+            name: "Vibe Coding Winner",
             issuer: "Google",
             date: "June 2026",
             category: "participant",
@@ -618,7 +618,7 @@ export const profile: Profile = {
             image: "/certifications/Juara_Vibe_Coding_Google_Participants.webp"
         },
         {
-            name: "Peserta Kategori Web Development",
+            name: "Web Development Category Participant",
             issuer: "Codelab Indonesia",
             date: "June 2026",
             category: "participant",

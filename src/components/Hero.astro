@@ -1,8 +1,10 @@
 ---
-import { profile } from "../data/profile";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
 import { CornerDownRight, Download } from "lucide-astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
 ---
 
 <section class="hero-container">
