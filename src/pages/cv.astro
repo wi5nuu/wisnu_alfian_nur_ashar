@@ -231,10 +231,76 @@ const curatedProjects = profile.projects.slice(0, 4);
                 font-weight: bold;
                 text-transform: uppercase;
             }
+
+            /* ── Download Bar ── */
+            .dl-bar {
+                position: fixed;
+                top: 12px;
+                right: 12px;
+                display: flex;
+                gap: 8px;
+                z-index: 100;
+            }
+            .dl-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: #0a0a0a;
+                color: #fff;
+                border: 1px solid #333;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-family: Arial, sans-serif;
+                font-size: 11px;
+                font-weight: 600;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background 0.2s ease;
+            }
+            .dl-btn:hover {
+                background: #84E10C;
+                color: #0a0a0a;
+                border-color: #84E10C;
+            }
         </style>
     </head>
     <body>
-        <a href="/CV_Wisnu_Alfian_Nur_Ashar.pdf" download class="dl-btn no-print" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">⬇ Download PDF</a>
+        <script>
+            function downloadJSON() {
+                const data = {
+                    name: "Wisnu Alfian Nur Ashar",
+                    title: "Full-Stack Developer & Cyber Security Practitioner",
+                    contact: {
+                        location: "Bekasi, Indonesia",
+                        email: "wisnualfian117@gmail.com",
+                        linkedin: "https://www.linkedin.com/in/wisnu-alfian-nur-ashar",
+                        github: "https://github.com/wi5nuu",
+                        website: "https://wisnualfiannurashar.vercel.app"
+                    },
+                    skills: [
+                        "Python", "Java", "PHP", "JavaScript (ES2024)", "TypeScript", "Astro",
+                        "React 19", "Next.js 16", "Tailwind CSS", "shadcn/ui", "Framer Motion", "GSAP",
+                        "Node.js", "Supabase", "PostgreSQL", "MySQL", "MongoDB", "Redis", "RESTful APIs",
+                        "Vercel", "Kali Linux", "Android Studio", "Git", "JWT", "TLS 1.3", "ISO 27001"
+                    ],
+                    summary: "Full-Stack Developer & Cyber Security practitioner with production experience building scalable web applications. Specialized in Next.js, React, Supabase, and secure system design."
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "CV_Wisnu_Alfian_Nur_Ashar.json";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        </script>
+        <div class="dl-bar no-print">
+            <a href="/CV_Wisnu_Alfian_Nur_Ashar.pdf" download class="dl-btn">⬇ PDF</a>
+            <button onclick="window.print()" class="dl-btn">🖨 Print / Save</button>
+            <button onclick="downloadJSON()" class="dl-btn">⬇ JSON</button>
+        </div>
 
         <div class="page" style="position: relative;">
             <!-- ── HEADER ── -->
