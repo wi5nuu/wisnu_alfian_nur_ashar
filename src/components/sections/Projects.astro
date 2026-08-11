@@ -27,13 +27,40 @@ const basePath = isId ? '/id/projects' : '/projects';
         : 'Real-world applications delivering value to users in production environments.'}
     </p>
 
+    <div class="filter-bar">
+      <div class="filter-chips" role="group" aria-label={isId ? 'Filter proyek' : 'Filter projects'}>
+        <button class="filter-chip is-active" data-filter="all">{isId ? 'Semua' : 'All'}</button>
+        <button class="filter-chip" data-filter="web">{isId ? 'Web' : 'Web'}</button>
+        <button class="filter-chip" data-filter="mobile">{isId ? 'Mobile' : 'Mobile'}</button>
+        <button class="filter-chip" data-filter="ai">{isId ? 'AI/ML' : 'AI/ML'}</button>
+        <button class="filter-chip" data-filter="security">{isId ? 'Keamanan' : 'Security'}</button>
+      </div>
+      <div class="sort-wrap">
+        <label class="sort-label" for="sort-select">{isId ? 'Urutkan' : 'Sort'}</label>
+        <select id="sort-select" class="sort-select">
+          <option value="default">{isId ? 'Default' : 'Default'}</option>
+          <option value="az">A-Z</option>
+          <option value="za">Z-A</option>
+        </select>
+      </div>
+    </div>
+
     <div class="projects-grid">
       {profile.projects.map((project, index) => {
         const slug = getProjectSlug(project.title);
+        const techJoined = project.techStack.join(' ').toLowerCase();
+        const cats: string[] = [];
+        if (/react|next|laravel|asp\.net|vue|astro|web|tailwind|bootstrap/i.test(techJoined)) cats.push('web');
+        if (/flutter|android|ios|react native|mobile/i.test(techJoined)) cats.push('mobile');
+        if (/ai|ml|pytorch|tensorflow|gemini|llm|langchain|numpy|pandas/i.test(techJoined)) cats.push('ai');
+        if (/security|blockchain|owasp|encrypt|cyber|threat|firewall|hashing/i.test(techJoined)) cats.push('security');
+        if (cats.length === 0) cats.push('web');
         return (
           <a
             href={`${basePath}/${slug}`}
             class="project-card"
+            data-title={project.title.toLowerCase()}
+            data-cats={cats.join(' ')}
             style={`animation-delay: ${index * 60}ms`}
           >
             {project.image && (
@@ -76,6 +103,10 @@ const basePath = isId ? '/id/projects' : '/projects';
       })}
     </div>
 
+    <p class="no-results hidden" id="no-results">
+      {isId ? 'Tidak ada proyek yang cocok.' : 'No projects match your filters.'}
+    </p>
+
     <div class="bottom-cta">
       <a
         href={profile.personalInfo.github}
@@ -90,6 +121,58 @@ const basePath = isId ? '/id/projects' : '/projects';
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const grid = document.querySelector('.projects-grid');
+    if (!grid) return;
+
+    const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-chip'));
+    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const noResults = document.getElementById('no-results');
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.project-card'));
+
+    const applyFilters = () => {
+      const activeChip = chips.find((c) => c.classList.contains('is-active'));
+      const filter = activeChip?.dataset.filter || 'all';
+
+      let visible = cards.filter((card) => {
+        if (filter === 'all') return true;
+        const cats = (card.dataset.cats || '').split(' ');
+        return cats.includes(filter);
+      });
+
+      const sortMode = sortSelect?.value || 'default';
+      if (sortMode === 'az') {
+        visible.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
+      } else if (sortMode === 'za') {
+        visible.sort((a, b) => (b.dataset.title || '').localeCompare(a.dataset.title || ''));
+      }
+
+      cards.forEach((card) => card.classList.add('is-hidden'));
+      visible.forEach((card) => {
+        card.classList.remove('is-hidden');
+        card.style.animation = 'none';
+        void card.offsetWidth;
+        card.style.animation = '';
+      });
+
+      if (noResults) {
+        noResults.classList.toggle('hidden', visible.length > 0);
+      }
+    };
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.remove('is-active'));
+        chip.classList.add('is-active');
+        applyFilters();
+      });
+    });
+
+    sortSelect?.addEventListener('change', applyFilters);
+  });
+</script>
 
 <style>
   .projects-section {
@@ -337,6 +420,100 @@ const basePath = isId ? '/id/projects' : '/projects';
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 999px;
     padding: 3px 10px;
+  }
+
+  /* ===== FILTER BAR ===== */
+  .filter-bar {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-chip {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .filter-chip:hover {
+    color: #ffffff;
+    border-color: rgba(132, 225, 12, 0.5);
+  }
+
+  .filter-chip.is-active {
+    color: #0a0a0a;
+    background-color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .sort-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sort-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .sort-select {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .sort-select:focus {
+    border-color: var(--accent);
+  }
+
+  .sort-select option {
+    background-color: #111111;
+    color: #ffffff;
+  }
+
+  .project-card.is-hidden {
+    display: none;
+  }
+
+  .no-results {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .no-results.hidden {
+    display: none;
   }
 
   /* Bottom CTA */
