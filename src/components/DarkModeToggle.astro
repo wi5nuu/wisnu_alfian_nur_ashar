@@ -42,14 +42,14 @@ const isId = Astro.url.pathname.startsWith('/id');
       const sunIcon = themeToggle.querySelector('.sun-icon') as HTMLElement;
       const moonIcon = themeToggle.querySelector('.moon-icon') as HTMLElement;
 
-      if (theme === 'dark') {
-        html.classList.add('dark');
-        if (sunIcon) sunIcon.style.display = 'none';
-        if (moonIcon) moonIcon.style.display = 'block';
-      } else {
+      if (theme === 'light') {
         html.classList.remove('dark');
         if (sunIcon) sunIcon.style.display = 'block';
         if (moonIcon) moonIcon.style.display = 'none';
+      } else {
+        html.classList.add('dark');
+        if (sunIcon) sunIcon.style.display = 'none';
+        if (moonIcon) moonIcon.style.display = 'block';
       }
 
       html.style.colorScheme = theme;
@@ -61,7 +61,7 @@ const isId = Astro.url.pathname.startsWith('/id');
 
     const toggleTheme = () => {
       const currentTheme = getTheme();
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
       setTheme(newTheme);
     };
 
@@ -107,14 +107,14 @@ const isId = Astro.url.pathname.startsWith('/id');
   }
 
   .moon-icon {
-    display: none;
-  }
-
-  :global(.dark) .theme-toggle-btn .sun-icon {
-    display: none;
-  }
-
-  :global(.dark) .theme-toggle-btn .moon-icon {
     display: block;
+  }
+
+  :global(html:not(.dark)) .theme-toggle-btn .sun-icon {
+    display: block;
+  }
+
+  :global(html:not(.dark)) .theme-toggle-btn .moon-icon {
+    display: none;
   }
 </style>

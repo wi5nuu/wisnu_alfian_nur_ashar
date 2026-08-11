@@ -11,17 +11,7 @@
   --font-sans: Outfit, Inter, "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   
-  /* Light mode (default) */
-  --bg: #FFFFFF;
-  --bg-secondary: #FAFAFA;
-  --text: #0A0A0A;
-  --text-secondary: #666666;
-  --accent: #84E10C;
-  --border: rgba(0, 0, 0, 0.1);
-  --border-light: rgba(0, 0, 0, 0.05);
-}
-
-html.dark {
+  /* Dark mode (default) - sesuai desain original */
   --bg: #0A0A0A;
   --bg-secondary: #1a1a1a;
   --text: #FFFFFF;
@@ -29,6 +19,17 @@ html.dark {
   --accent: #84E10C;
   --border: rgba(255, 255, 255, 0.15);
   --border-light: rgba(255, 255, 255, 0.08);
+}
+
+html:not(.dark) {
+  /* Light mode - untuk user yang prefer terang */
+  --bg: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --text: #0A0A0A;
+  --text-secondary: #666666;
+  --accent: #84E10C;
+  --border: rgba(0, 0, 0, 0.1);
+  --border-light: rgba(0, 0, 0, 0.05);
 }
 
 html, body {
