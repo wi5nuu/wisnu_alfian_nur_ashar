@@ -1,0 +1,502 @@
+---
+const isId = Astro.url.pathname.startsWith('/id');
+---
+
+<!-- Search Modal Backdrop -->
+<div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+  <div class="search-backdrop" id="search-backdrop"></div>
+  
+  <div class="search-container">
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder={isId ? 'Cari skills, projects, experience...' : 'Search skills, projects, experience...'}
+          autocomplete="off"
+          aria-label={isId ? 'Pencarian' : 'Search'}
+        />
+        <button id="search-close" class="search-close" aria-label={isId ? 'Tutup' : 'Close'}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="search-results" id="search-results">
+      <div class="search-empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <p>{isId ? 'Ketik untuk mencari...' : 'Type to search...'}</p>
+      </div>
+    </div>
+
+    <div class="search-footer">
+      <div class="search-shortcuts">
+        <kbd>↑↓</kbd> {isId ? 'Navigasi' : 'Navigate'}
+        <kbd>↵</kbd> {isId ? 'Buka' : 'Open'}
+        <kbd>Esc</kbd> {isId ? 'Tutup' : 'Close'}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { profile as profileEn } from '../data/profile';
+  import { profile as profileId } from '../data/profile_id';
+
+  const setupSearch = () => {
+    const modal = document.getElementById('search-modal');
+    const backdrop = document.getElementById('search-backdrop');
+    const closeBtn = document.getElementById('search-close');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const resultsContainer = document.getElementById('search-results');
+    const searchBtnDesktop = document.getElementById('search-btn-desktop');
+    const searchBtnMobile = document.getElementById('search-btn-mobile');
+
+    if (!modal || !searchInput || !resultsContainer) return;
+
+    const isId = window.location.pathname.startsWith('/id');
+    const profile = isId ? profileId : profileEn;
+    let selectedIndex = -1;
+
+    // Build searchable index
+    const buildSearchIndex = () => {
+      const index: Array<{
+        type: string;
+        title: string;
+        subtitle?: string;
+        description: string;
+        url: string;
+        tags: string[];
+      }> = [];
+
+      // Skills
+      Object.entries(profile.skills).forEach(([category, items]) => {
+        items.forEach((item: any) => {
+          index.push({
+            type: isId ? 'Skill' : 'Skill',
+            title: item.name,
+            subtitle: category,
+            description: `${category} skill`,
+            url: isId ? '/id/#skills' : '/#skills',
+            tags: [item.name.toLowerCase(), category.toLowerCase()]
+          });
+        });
+      });
+
+      // Projects
+      profile.projects.forEach((project: any) => {
+        index.push({
+          type: isId ? 'Proyek' : 'Project',
+          title: project.title,
+          subtitle: project.role,
+          description: project.description,
+          url: project.link || (isId ? '/id/projects' : '/projects'),
+          tags: [
+            project.title.toLowerCase(),
+            project.role.toLowerCase(),
+            ...project.techStack.map((t: string) => t.toLowerCase()),
+            project.description.toLowerCase()
+          ]
+        });
+      });
+
+      // Experience
+      profile.experience.forEach((exp: any) => {
+        index.push({
+          type: isId ? 'Pengalaman' : 'Experience',
+          title: exp.role,
+          subtitle: exp.company,
+          description: exp.description,
+          url: isId ? '/id/#experience' : '/#experience',
+          tags: [
+            exp.role.toLowerCase(),
+            exp.company.toLowerCase(),
+            ...exp.skills.map((s: string) => s.toLowerCase()),
+            exp.description.toLowerCase()
+          ]
+        });
+      });
+
+      // Certifications
+      profile.certifications.forEach((cert: any) => {
+        index.push({
+          type: isId ? 'Sertifikat' : 'Certification',
+          title: cert.name,
+          subtitle: cert.issuer,
+          description: cert.description,
+          url: isId ? '/id/#certifications' : '/#certifications',
+          tags: [
+            cert.name.toLowerCase(),
+            cert.issuer.toLowerCase(),
+            cert.description.toLowerCase()
+          ]
+        });
+      });
+
+      // Competitions
+      profile.competitions.forEach((comp: any) => {
+        index.push({
+          type: isId ? 'Penghargaan' : 'Achievement',
+          title: comp.name,
+          subtitle: comp.issuer,
+          description: comp.description,
+          url: isId ? '/id/#achievements' : '/#achievements',
+          tags: [
+            comp.name.toLowerCase(),
+            comp.issuer.toLowerCase(),
+            comp.description.toLowerCase()
+          ]
+        });
+      });
+
+      return index;
+    };
+
+    const searchIndex = buildSearchIndex();
+
+    const openModal = () => {
+      modal?.classList.add('search-modal--open');
+      modal?.setAttribute('aria-hidden', 'false');
+      searchInput?.focus();
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      modal?.classList.remove('search-modal--open');
+      modal?.setAttribute('aria-hidden', 'true');
+      searchInput.value = '';
+      if (resultsContainer) {
+        resultsContainer.innerHTML = `
+          <div class="search-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <p>${isId ? 'Ketik untuk mencari...' : 'Type to search...'}</p>
+          </div>
+        `;
+      }
+      document.body.style.overflow = '';
+      selectedIndex = -1;
+    };
+
+    const performSearch = (query: string) => {
+      if (!query.trim()) {
+        resultsContainer!.innerHTML = `
+          <div class="search-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <p>${isId ? 'Ketik untuk mencari...' : 'Type to search...'}</p>
+          </div>
+        `;
+        return;
+      }
+
+      const searchTerms = query.toLowerCase().split(' ').filter(t => t.length > 0);
+      const results = searchIndex.filter(item => {
+        return searchTerms.some(term => 
+          item.tags.some(tag => tag.includes(term))
+        );
+      }).slice(0, 10);
+
+      if (results.length === 0) {
+        resultsContainer!.innerHTML = `
+          <div class="search-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <p>${isId ? 'Tidak ada hasil ditemukan' : 'No results found'}</p>
+          </div>
+        `;
+        return;
+      }
+
+      resultsContainer!.innerHTML = results.map((result, index) => `
+        <a href="${result.url}" class="search-result-item ${index === selectedIndex ? 'search-result-item--selected' : ''}" data-index="${index}">
+          <div class="search-result-main">
+            <div class="search-result-title">${highlightMatch(result.title, query)}</div>
+            ${result.subtitle ? `<div class="search-result-subtitle">${result.subtitle}</div>` : ''}
+          </div>
+          <div class="search-result-type">${result.type}</div>
+        </a>
+      `).join('');
+
+      selectedIndex = -1;
+    };
+
+    const highlightMatch = (text: string, query: string) => {
+      const regex = new RegExp(`(${query.split(' ').filter(t => t).join('|')})`, 'gi');
+      return text.replace(regex, '<mark>$1</mark>');
+    };
+
+    const updateSelection = (newIndex: number) => {
+      const items = resultsContainer?.querySelectorAll('.search-result-item');
+      if (!items || items.length === 0) return;
+
+      items.forEach((item, i) => {
+        item.classList.toggle('search-result-item--selected', i === newIndex);
+      });
+
+      if (newIndex >= 0 && items[newIndex]) {
+        items[newIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    };
+
+    // Event listeners
+    searchBtnDesktop?.addEventListener('click', openModal);
+    searchBtnMobile?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+
+    searchInput?.addEventListener('input', (e) => {
+      performSearch((e.target as HTMLInputElement).value);
+    });
+
+    searchInput?.addEventListener('keydown', (e) => {
+      const items = resultsContainer?.querySelectorAll('.search-result-item');
+      if (!items) return;
+
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+          updateSelection(selectedIndex);
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          selectedIndex = Math.max(selectedIndex - 1, -1);
+          updateSelection(selectedIndex);
+          break;
+        case 'Enter':
+          e.preventDefault();
+          if (selectedIndex >= 0 && items[selectedIndex]) {
+            (items[selectedIndex] as HTMLAnchorElement).click();
+          }
+          break;
+        case 'Escape':
+          e.preventDefault();
+          closeModal();
+          break;
+      }
+    });
+
+    // Keyboard shortcut (Ctrl+K or Cmd+K)
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        openModal();
+      }
+    });
+  };
+
+  document.addEventListener('astro:page-load', setupSearch);
+</script>
+
+<style>
+  .search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+  }
+
+  .search-modal--open {
+    display: flex;
+  }
+
+  .search-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+  }
+
+  .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 24px;
+    background: #0A0A0A;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+    overflow: hidden;
+  }
+
+  .search-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .search-icon {
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+  }
+
+  .search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    font-family: inherit;
+  }
+
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .search-close {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-close:hover {
+    color: #fff;
+  }
+
+  .search-results {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+    min-height: 200px;
+  }
+
+  .search-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    min-height: 200px;
+  }
+
+  .search-empty svg {
+    margin-bottom: 16px;
+    opacity: 0.3;
+  }
+
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s;
+    margin-bottom: 4px;
+  }
+
+  .search-result-item:hover,
+  .search-result-item--selected {
+    background: rgba(132, 225, 12, 0.1);
+  }
+
+  .search-result-main {
+    flex: 1;
+  }
+
+  .search-result-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .search-result-title :global(mark) {
+    background: var(--accent);
+    color: #0A0A0A;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  .search-result-subtitle {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .search-result-type {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .search-footer {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .search-shortcuts {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .search-shortcuts kbd {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 11px;
+    margin-right: 4px;
+  }
+
+  @media (max-width: 767px) {
+    .search-modal {
+      padding-top: 5vh;
+    }
+
+    .search-container {
+      max-height: 80vh;
+      margin: 0 16px;
+    }
+  }
+</style>

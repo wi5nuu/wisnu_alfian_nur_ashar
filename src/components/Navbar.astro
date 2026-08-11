@@ -40,6 +40,12 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 
   <!-- RIGHT: Contact (Desktop only) -->
   <div class="nav-right">
+    <button id="search-btn-desktop" class="search-btn" aria-label={isId ? 'Cari' : 'Search'} title={isId ? 'Cari (Ctrl+K)' : 'Search (Ctrl+K)'}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+    </button>
     <button id="lang-toggle-desktop" class="lang-btn" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'}>
       {isId ? 'ID' : 'EN'}
     </button>
@@ -48,6 +54,19 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     </a>
   </div>
 </nav>
+
+<!-- Mobile Search & Language Toggle (Top Right) -->
+<div class="mobile-actions">
+  <button id="search-btn-mobile" class="search-btn-mobile" aria-label={isId ? 'Cari' : 'Search'}>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+  </button>
+  <button id="lang-toggle-mobile" class="lang-btn-mobile" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'}>
+    {isId ? 'ID' : 'EN'}
+  </button>
+</div>
 
 <!-- BOTTOM NAVIGATION BAR (Mobile Android Style) -->
 <nav aria-label={isId ? "Navigasi mobile" : "Mobile navigation"} class="bottom-nav" transition:persist>
@@ -90,11 +109,6 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
         <span class="bottom-nav-label" transition:animate="none">AI</span>
       </button>
 </nav>
-
-<!-- LANGUAGE TOGGLE (Mobile - top right corner) -->
-<button id="lang-toggle-mobile" class="lang-btn-mobile" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'} transition:persist>
-  {isId ? 'ID' : 'EN'}
-</button>
 
 <script>
   const setupLang = () => {
@@ -243,29 +257,62 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     border-color: rgba(255, 255, 255, 0.5);
   }
 
+  /* ===== SEARCH BUTTON ===== */
+  .search-btn,
+  .search-btn-mobile {
+    padding: 8px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-btn:hover,
+  .search-btn-mobile:hover {
+    background-color: rgba(132, 225, 12, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .search-btn-mobile {
+    backdrop-filter: blur(10px);
+    background-color: rgba(10, 10, 10, 0.9);
+  }
+
+  /* ===== MOBILE ACTIONS (Search + Language) ===== */
+  .mobile-actions {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 1001;
+    display: none;
+    gap: 8px;
+    align-items: center;
+  }
+
   /* ===== LANGUAGE TOGGLE (Mobile - top right corner) ===== */
   .lang-btn-mobile {
-    display: none;
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    z-index: 60;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 14px;
+    background-color: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 999px;
-    padding: 8px 16px;
-    color: #fff;
+    color: #ffffff;
     font-size: 13px;
     font-weight: 600;
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(8px);
     cursor: pointer;
-    font-family: inherit;
-    transition: background 0.2s, border-color 0.2s;
+    transition: all 0.3s ease;
   }
 
   .lang-btn-mobile:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(132, 225, 12, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   /* ===== HAMBURGER (Hidden - not used in Android style) ===== */
@@ -357,11 +404,9 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
       display: flex;
     }
 
-    /* Show language toggle in top-right corner on mobile */
-    .lang-btn-mobile {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    /* Show mobile actions in top-right corner on mobile */
+    .mobile-actions {
+      display: flex;
     }
   }
 
