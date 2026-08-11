@@ -8,28 +8,10 @@
 @import "@fontsource/cormorant-garamond/700.css";
 
 :root {
-  --bg: #0A0A0A;
-  --bg-secondary: #FFFFFF;
-  --text: #FFFFFF;
-  --text-secondary: #0A0A0A;
-  --accent: #84E10C;
-  --border: rgba(255, 255, 255, 0.25);
-  --border-light: rgba(0, 0, 0, 0.1);
   --font-sans: Outfit, Inter, "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
-}
-
-:root.dark {
-  --bg: #0A0A0A;
-  --bg-secondary: #1a1a1a;
-  --text: #FFFFFF;
-  --text-secondary: #a0a0a0;
-  --accent: #84E10C;
-  --border: rgba(255, 255, 255, 0.15);
-  --border-light: rgba(255, 255, 255, 0.08);
-}
-
-:root:not(.dark) {
+  
+  /* Light mode (default) */
   --bg: #FFFFFF;
   --bg-secondary: #FAFAFA;
   --text: #0A0A0A;
@@ -37,6 +19,16 @@
   --accent: #84E10C;
   --border: rgba(0, 0, 0, 0.1);
   --border-light: rgba(0, 0, 0, 0.05);
+}
+
+html.dark {
+  --bg: #0A0A0A;
+  --bg-secondary: #1a1a1a;
+  --text: #FFFFFF;
+  --text-secondary: #a0a0a0;
+  --accent: #84E10C;
+  --border: rgba(255, 255, 255, 0.15);
+  --border-light: rgba(255, 255, 255, 0.08);
 }
 
 html, body {
@@ -48,6 +40,7 @@ html, body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Prevent layout shift from images without explicit dimensions */

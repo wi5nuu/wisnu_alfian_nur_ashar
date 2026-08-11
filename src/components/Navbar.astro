@@ -184,13 +184,14 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
   }
 
   .nav-logo {
-    color: #fff;
+    color: var(--text);
     font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
     letter-spacing: -0.02em;
     z-index: 50;
+    transition: color 0.3s ease;
   }
 
   /* ===== DESKTOP LINKS ===== */
@@ -201,7 +202,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
   }
 
   .nav-link {
-    color: #fff;
+    color: var(--text);
     font-size: 15px;
     text-decoration: none;
     transition: color 0.2s;
@@ -224,28 +225,28 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
   }
 
   .nav-cta {
-    border: 1px solid #fff;
+    border: 1px solid var(--text);
     border-radius: 999px;
     padding: 10px 24px;
-    color: #fff;
+    color: var(--text);
     font-size: 15px;
     text-decoration: none;
     background: transparent;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     white-space: nowrap;
   }
 
   .nav-cta:hover {
-    background: #fff;
-    color: #0A0A0A;
+    background: var(--text);
+    color: var(--bg);
   }
 
   /* ===== LANGUAGE TOGGLE (Desktop) ===== */
   .lang-btn {
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--border);
     border-radius: 999px;
     padding: 8px 16px;
-    color: #fff;
+    color: var(--text);
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
@@ -257,8 +258,8 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
   }
 
   .lang-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: var(--border-light);
+    border-color: var(--border);
   }
 
   /* ===== SEARCH BUTTON ===== */
@@ -266,9 +267,9 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
   .search-btn-mobile {
     padding: 8px;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    color: #ffffff;
+    color: var(--text);
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
@@ -285,7 +286,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
 
   .search-btn-mobile {
     backdrop-filter: blur(10px);
-    background-color: rgba(10, 10, 10, 0.9);
+    background-color: var(--bg-secondary);
   }
 
   /* ===== MOBILE ACTIONS (Search + Language) ===== */
@@ -302,11 +303,11 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
   /* ===== LANGUAGE TOGGLE (Mobile - top right corner) ===== */
   .lang-btn-mobile {
     padding: 8px 14px;
-    background-color: rgba(10, 10, 10, 0.9);
+    background-color: var(--bg-secondary);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border);
     border-radius: 999px;
-    color: #ffffff;
+    color: var(--text);
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -332,12 +333,13 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     left: 0;
     right: 0;
     height: 64px;
-    background: rgba(10, 10, 10, 0.95);
+    background: var(--bg-secondary);
     backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border);
     z-index: 100;
     padding: 0 8px 0;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
   .bottom-nav-item {
@@ -348,9 +350,10 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     flex: 1;
     gap: 4px;
     text-decoration: none;
-    color: #ffffff;
+    color: var(--text);
     padding: 8px 4px;
     position: relative;
+    transition: color 0.3s ease;
   }
 
   .bottom-nav-icon {
@@ -373,9 +376,9 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
     font-weight: 600;
   }
 
-  /* AI trigger khusus di mobile - putih default, hijau saat chat aktif */
+  /* AI trigger khusus di mobile - warna default, hijau saat chat aktif */
   .bottom-nav-item--ai {
-    color: #ffffff;
+    color: var(--text);
     border: none;
     background: none;
     font-family: inherit;
