@@ -1,14 +1,10 @@
 ---
 import { CornerDownRight } from "lucide-astro";
-import VideoBackground from "./VideoBackground.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 ---
 
 <section class="process-section">
-  <!-- Video Background -->
-  <VideoBackground src="https://cdn.pixabay.com/video/2022/09/20/131975-751915253_large.mp4" />
-  <div class="process-overlay"></div>
 
   <div class="process-grid">
     <!-- LEFT COLUMN -->
@@ -82,30 +78,8 @@ const isId = Astro.url.pathname.startsWith('/id');
     overflow: hidden;
   }
 
-  /* Video Background */
-  .video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .process-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.88);
-    z-index: 1;
-  }
-
   .process-grid {
     position: relative;
-    z-index: 10;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(40px, 7vw, 90px);

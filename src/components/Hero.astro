@@ -2,16 +2,12 @@
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
 import { CornerDownRight, Download } from "lucide-astro";
-import VideoBackground from "./VideoBackground.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
 <section class="hero-container">
-  <!-- Video Background -->
-  <VideoBackground src="https://cdn.pixabay.com/video/2019/10/09/27669-365224683_large.mp4" loadDelay={2500} />
-  <div class="hero-overlay"></div>
 
   <!-- A) TOP BADGE -->
   <div class="top-badge">
@@ -52,29 +48,8 @@ const profile = isId ? profileId : profileEn;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--bg);
+    background-color: #0A0A0A;
     font-family: Inter, "Helvetica Neue", Arial, sans-serif;
-  }
-
-  /* Video Background */
-  .video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 10, 0.75);
-    z-index: 1;
   }
 
   /* TOP BADGE */

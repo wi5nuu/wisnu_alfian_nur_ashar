@@ -1,14 +1,10 @@
 ---
 import { LayoutGrid, Network, Asterisk } from "lucide-astro";
-import VideoBackground from "./VideoBackground.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 ---
 
 <section class="why-work-with-me">
-  <!-- Video Background -->
-  <VideoBackground src="https://cdn.pixabay.com/video/2022/09/20/131975-751915253_large.mp4" />
-  <div class="why-overlay"></div>
 
   <div class="header-block">
     <div class="badge">
@@ -60,30 +56,8 @@ const isId = Astro.url.pathname.startsWith('/id');
     overflow: hidden;
   }
 
-  /* Video Background */
-  .video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .why-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.88);
-    z-index: 1;
-  }
-
   .header-block {
     position: relative;
-    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -129,7 +103,6 @@ const isId = Astro.url.pathname.startsWith('/id');
 
   .cards-grid {
     position: relative;
-    z-index: 10;
     margin-top: 80px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -2,16 +2,12 @@
 import { Trophy } from "lucide-astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
-import VideoBackground from "./VideoBackground.astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
 <section class="achievements-section">
-  <!-- Video Background -->
-  <VideoBackground src="https://cdn.pixabay.com/video/2022/09/20/131975-751915253_large.mp4" />
-  <div class="achievements-overlay"></div>
 
   <div class="container">
     <div class="badge">
@@ -54,30 +50,8 @@ const profile = isId ? profileId : profileEn;
     overflow: hidden;
   }
 
-  /* Video Background */
-  .video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .achievements-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.88);
-    z-index: 1;
-  }
-
   .container {
     position: relative;
-    z-index: 10;
     width: 100%;
     max-width: 1200px;
     margin-inline: auto;
