@@ -22,6 +22,15 @@ export async function getStaticPaths() {
 const { project, detail } = Astro.props;
 const title = `${project.title} | Wisnu Alfian Nur Ashar`;
 const description = project.description;
+
+const projectIndex = profile.projects.findIndex((p) => getProjectSlug(p.title) === getProjectSlug(project.title));
+const prevProject = projectIndex > 0 ? profile.projects[projectIndex - 1] : null;
+const nextProject = projectIndex < profile.projects.length - 1 ? profile.projects[projectIndex + 1] : null;
+
+const relatedProjects = profile.projects
+  .filter((p) => getProjectSlug(p.title) !== getProjectSlug(project.title))
+  .filter((p) => p.techStack.some((tech) => project.techStack.includes(tech)))
+  .slice(0, 3);
 ---
 
 <Layout title={project.title} description={description} ogType="article">
@@ -162,6 +171,54 @@ const description = project.description;
           )}
         </div>
       </div>
+
+      {relatedProjects.length > 0 && (
+        <section class="related-section reveal-up">
+          <h2 class="related-title">Related Projects</h2>
+          <div class="related-grid">
+            {relatedProjects.map((rp) => {
+              const rpSlug = getProjectSlug(rp.title);
+              return (
+                <a href={`/projects/${rpSlug}`} class="related-card">
+                  {rp.image && (
+                    <div class="related-img-wrap">
+                      <img src={rp.image} alt={rp.title} class="related-img" loading="lazy" />
+                    </div>
+                  )}
+                  <div class="related-body">
+                    <span class="related-status">{rp.status}</span>
+                    <h3 class="related-name">{rp.title}</h3>
+                    <p class="related-role">{rp.role}</p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {(prevProject || nextProject) && (
+        <nav class="pagination-nav reveal-up" aria-label="Project navigation">
+          {prevProject ? (
+            <a href={`/projects/${getProjectSlug(prevProject.title)}`} class="pagination-link prev">
+              <ArrowLeft class="pagination-icon" />
+              <div>
+                <span class="pagination-label">Previous</span>
+                <span class="pagination-name">{prevProject.title}</span>
+              </div>
+            </a>
+          ) : <div></div>}
+          {nextProject ? (
+            <a href={`/projects/${getProjectSlug(nextProject.title)}`} class="pagination-link next">
+              <div>
+                <span class="pagination-label">Next</span>
+                <span class="pagination-name">{nextProject.title}</span>
+              </div>
+              <ArrowLeft class="pagination-icon flip" />
+            </a>
+          ) : <div></div>}
+        </nav>
+      )}
     </div>
   </main>
 
@@ -566,8 +623,153 @@ const description = project.description;
     margin: 0;
   }
 
+  /* ===== RELATED PROJECTS ===== */
+  .related-section {
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 48px;
+  }
+
+  .related-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 24px;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .related-card {
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .related-card:hover {
+    border-color: rgba(132, 225, 12, 0.5);
+    transform: translateY(-4px);
+  }
+
+  .related-img-wrap {
+    overflow: hidden;
+  }
+
+  .related-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .related-card:hover .related-img {
+    transform: scale(1.05);
+  }
+
+  .related-body {
+    padding: 16px 18px;
+  }
+
+  .related-status {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background-color: rgba(132, 225, 12, 0.1);
+    border: 1px solid rgba(132, 225, 12, 0.25);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+
+  .related-name {
+    margin: 10px 0 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .related-role {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== PAGINATION ===== */
+  .pagination-nav {
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 32px;
+  }
+
+  .pagination-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #111111;
+    transition: border-color 0.3s ease;
+    max-width: 48%;
+  }
+
+  .pagination-link:hover {
+    border-color: rgba(132, 225, 12, 0.5);
+  }
+
+  .pagination-link.next {
+    text-align: right;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  .pagination-icon {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+  }
+
+  .pagination-icon.flip {
+    transform: rotate(180deg);
+  }
+
+  .pagination-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .pagination-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 2px;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 1024px) {
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+
     .content-grid {
       grid-template-columns: 1fr;
       gap: 32px;
@@ -607,6 +809,16 @@ const description = project.description;
 
     .side-card {
       min-width: 0;
+    }
+
+    .pagination-nav {
+      flex-direction: column;
+    }
+
+    .pagination-link,
+    .pagination-link.next {
+      max-width: 100%;
+      margin-left: 0;
     }
   }
 </style>
