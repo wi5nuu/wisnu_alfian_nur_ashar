@@ -106,6 +106,19 @@ const socialLinks = [
               placeholder="wisnu@example.com"
               class="field-input"
             />
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="contact-phone" class="field-label">{isId ? 'Nomor Telepon (Opsional)' : 'Phone Number (Optional)'}</label>
+            <input
+              id="contact-phone"
+              type="tel"
+              name="phone"
+              placeholder="+62 812 3456 7890"
+              class="field-input"
+            />
+            <span class="field-error" id="phone-error"></span>
           </div>
 
           <div class="field">
@@ -118,6 +131,7 @@ const socialLinks = [
               placeholder={isId ? 'Bagaimana saya bisa membantu Anda?' : 'How can I help you?'}
               class="field-input field-textarea"
             ></textarea>
+            <span class="field-error" id="message-error"></span>
           </div>
 
           <button type="submit" id="submit-btn" class="submit-btn">
@@ -132,47 +146,153 @@ const socialLinks = [
   </div>
 </section>
 
-<script is:inline>
-  const form = document.getElementById("contact-form");
-  const btn = document.getElementById("submit-btn");
-  const btnText = document.getElementById("btn-text");
-  const responseMsg = document.getElementById("response-msg");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const btn = document.getElementById("submit-btn") as HTMLButtonElement;
+    const btnText = document.getElementById("btn-text") as HTMLSpanElement;
+    const emailInput = document.getElementById("contact-email") as HTMLInputElement;
+    const phoneInput = document.getElementById("contact-phone") as HTMLInputElement;
+    const messageInput = document.getElementById("contact-message") as HTMLTextAreaElement;
+    const emailError = document.getElementById("email-error") as HTMLSpanElement;
+    const phoneError = document.getElementById("phone-error") as HTMLSpanElement;
+    const messageError = document.getElementById("message-error") as HTMLSpanElement;
+    
     const isId = window.location.pathname.startsWith('/id');
-    const sendingText = isId ? "Mengirim..." : "Sending...";
-    const defaultText = isId ? "Kirim Pesan" : "Send Message";
-    responseMsg.classList.add("hidden");
-    btn.disabled = true;
-    btnText.innerText = sendingText;
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: json,
-    })
-      .then(async (response) => {
-        if (response.status == 200) {
-          responseMsg.style.color = "var(--accent)";
-          responseMsg.innerText = isId ? "Pesan berhasil terkirim! Saya akan segera menghubungi Anda." : "Message sent successfully! I will get back to you soon.";
-          form.reset();
-        } else {
-          responseMsg.style.color = "#ef4444";
-          responseMsg.innerText = isId ? "Terjadi kesalahan, silakan coba lagi." : "Something went wrong, please try again.";
-        }
+
+    // Validation helpers
+    const validateEmail = (email: string): boolean => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    };
+
+    const validatePhone = (phone: string): boolean => {
+      if (!phone) return true; // Optional field
+      const re = /^[\d\s+()-]+$/;
+      return re.test(phone) && phone.replace(/\D/g, '').length >= 10;
+    };
+
+    const validateMessage = (message: string): boolean => {
+      return message.trim().length >= 10;
+    };
+
+    const clearError = (errorEl: HTMLElement) => {
+      errorEl.textContent = '';
+      errorEl.parentElement?.classList.remove('field-error-active');
+    };
+
+    const showError = (errorEl: HTMLElement, message: string) => {
+      errorEl.textContent = message;
+      errorEl.parentElement?.classList.add('field-error-active');
+    };
+
+    // Real-time validation
+    emailInput.addEventListener('blur', () => {
+      if (emailInput.value && !validateEmail(emailInput.value)) {
+        showError(emailError, isId ? 'Email tidak valid' : 'Invalid email address');
+      } else {
+        clearError(emailError);
+      }
+    });
+
+    phoneInput.addEventListener('blur', () => {
+      if (phoneInput.value && !validatePhone(phoneInput.value)) {
+        showError(phoneError, isId ? 'Nomor telepon tidak valid' : 'Invalid phone number');
+      } else {
+        clearError(phoneError);
+      }
+    });
+
+    messageInput.addEventListener('blur', () => {
+      if (messageInput.value && !validateMessage(messageInput.value)) {
+        showError(messageError, isId ? 'Pesan minimal 10 karakter' : 'Message must be at least 10 characters');
+      } else {
+        clearError(messageError);
+      }
+    });
+
+    emailInput.addEventListener('input', () => clearError(emailError));
+    phoneInput.addEventListener('input', () => clearError(phoneError));
+    messageInput.addEventListener('input', () => clearError(messageError));
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      
+      // Clear all errors
+      clearError(emailError);
+      clearError(phoneError);
+      clearError(messageError);
+
+      // Validate all fields
+      let hasError = false;
+
+      if (!validateEmail(emailInput.value)) {
+        showError(emailError, isId ? 'Email tidak valid' : 'Invalid email address');
+        hasError = true;
+      }
+
+      if (phoneInput.value && !validatePhone(phoneInput.value)) {
+        showError(phoneError, isId ? 'Nomor telepon tidak valid' : 'Invalid phone number');
+        hasError = true;
+      }
+
+      if (!validateMessage(messageInput.value)) {
+        showError(messageError, isId ? 'Pesan minimal 10 karakter' : 'Message must be at least 10 characters');
+        hasError = true;
+      }
+
+      if (hasError) {
+        (window as any).showToast?.({
+          message: isId ? 'Mohon perbaiki kesalahan pada form' : 'Please fix the errors in the form',
+          type: 'error',
+          duration: 3000
+        });
+        return;
+      }
+
+      const sendingText = isId ? "Mengirim..." : "Sending...";
+      const defaultText = isId ? "Kirim Pesan" : "Send Message";
+      
+      btn.disabled = true;
+      btnText.innerText = sendingText;
+      
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+      
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: json,
       })
-      .catch(() => {
-        responseMsg.style.color = "#ef4444";
-        responseMsg.innerText = isId ? "Gagal terhubung ke server." : "Failed to connect to the server.";
-      })
-      .finally(() => {
-        responseMsg.classList.remove("hidden");
-        btn.disabled = false;
-        btnText.innerText = defaultText;
-      });
+        .then(async (response) => {
+          if (response.status == 200) {
+            (window as any).showToast?.({
+              message: isId ? 'Pesan berhasil terkirim! Saya akan segera menghubungi Anda.' : 'Message sent successfully! I will get back to you soon.',
+              type: 'success',
+              duration: 5000
+            });
+            form.reset();
+          } else {
+            (window as any).showToast?.({
+              message: isId ? 'Terjadi kesalahan, silakan coba lagi.' : 'Something went wrong, please try again.',
+              type: 'error',
+              duration: 4000
+            });
+          }
+        })
+        .catch(() => {
+          (window as any).showToast?.({
+            message: isId ? 'Gagal terhubung ke server.' : 'Failed to connect to the server.',
+            type: 'error',
+            duration: 4000
+          });
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btnText.innerText = defaultText;
+        });
+    });
   });
 </script>
 
@@ -468,6 +588,24 @@ const socialLinks = [
 
   .response-msg.hidden {
     display: none;
+  }
+
+  .field-error {
+    font-size: 12px;
+    color: #ef4444;
+    margin-top: 4px;
+    min-height: 18px;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .field-error-active .field-error {
+    opacity: 1;
+  }
+
+  .field-error-active .field-input {
+    border-color: #ef4444;
   }
 
   /* RESPONSIVE */

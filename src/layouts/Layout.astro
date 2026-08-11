@@ -3,6 +3,8 @@ import "../styles/global.css";
 import AIChatBot from "../components/AIChatBot.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
 import SearchModal from "../components/SearchModal.astro";
+import Toast from "../components/Toast.astro";
+import ScrollProgress from "../components/ScrollProgress.astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
 import { ClientRouter } from "astro:transitions";
@@ -272,8 +274,10 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
       <slot />
     </div>
 
+    <ScrollProgress />
     <ScrollToTop />
     <AIChatBot />
     <SearchModal />
+    <Toast />
   </body>
 </html>

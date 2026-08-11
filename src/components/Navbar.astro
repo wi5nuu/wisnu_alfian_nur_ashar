@@ -1,4 +1,6 @@
 ---
+import DarkModeToggle from "./DarkModeToggle.astro";
+
 const pathname = new URL(Astro.request.url).pathname;
 const isId = pathname.startsWith('/id');
 
@@ -46,6 +48,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
         <path d="m21 21-4.35-4.35"></path>
       </svg>
     </button>
+    <DarkModeToggle />
     <button id="lang-toggle-desktop" class="lang-btn" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'}>
       {isId ? 'ID' : 'EN'}
     </button>
@@ -63,6 +66,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
       <path d="m21 21-4.35-4.35"></path>
     </svg>
   </button>
+  <DarkModeToggle />
   <button id="lang-toggle-mobile" class="lang-btn-mobile" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'}>
     {isId ? 'ID' : 'EN'}
   </button>
