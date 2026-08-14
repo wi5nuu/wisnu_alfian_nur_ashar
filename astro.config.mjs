@@ -8,23 +8,56 @@ export default defineConfig({
   output: 'static',
   build: {
     format: 'file',
-    assets: 'assets'
+    assets: 'assets',
+    inlineStylesheets: 'auto',
   },
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'viewport'
   },
-  integrations: [sitemap(), compress({
-    Image: false,
-    JavaScript: true,
-    CSS: false,
-    HTML: true,
-    SVG: false,
-  })],
+  security: {
+    checkOrigin: true
+  },
+  vite: {
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes('@google/generative-ai')) {
+              return 'ai';
+            }
+          }
+        }
+      }
+    }
+  },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en',
+          id: 'id'
+        }
+      }
+    }), 
+    compress({
+      Image: false,
+      JavaScript: true,
+      CSS: false,
+      HTML: true,
+      SVG: false,
+    })
+  ],
   adapter: vercel({
     webAnalytics: {
       enabled: true,
     },
+    speedInsights: {
+      enabled: true,
+    },
     imageService: true,
+    isr: false,
   }),
 });

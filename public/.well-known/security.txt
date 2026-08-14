@@ -1,0 +1,38 @@
+Contact: mailto:wisnualfiannurashar@gmail.com
+Expires: 2027-12-31T23:59:59.000Z
+Encryption: https://www.wisnualfiannurashar.my.id/pgp-key.txt
+Preferred-Languages: en, id
+Canonical: https://www.wisnualfiannurashar.my.id/.well-known/security.txt
+Policy: https://www.wisnualfiannurashar.my.id/security-policy
+Acknowledgments: https://www.wisnualfiannurashar.my.id/security-acknowledgments
+
+# Security Policy
+
+Thank you for helping to keep Wisnu Alfian Nur Ashar's portfolio secure.
+
+## Reporting a Vulnerability
+
+If you discover a security vulnerability, please report it to:
+- Email: wisnualfiannurashar@gmail.com
+- Subject: [SECURITY] Brief description of the issue
+
+Please include:
+- Description of the vulnerability
+- Steps to reproduce
+- Potential impact
+- Suggested fix (if any)
+
+## Response Time
+
+- Acknowledgment: Within 48 hours
+- Status update: Within 7 days
+- Resolution target: Based on severity
+
+## Out of Scope
+
+- Denial of Service (DoS) attacks
+- Social engineering attacks
+- Physical security issues
+- Issues in third-party services
+
+We appreciate responsible disclosure and will acknowledge security researchers who help us improve our security.
