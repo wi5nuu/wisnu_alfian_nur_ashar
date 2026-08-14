@@ -2241,50 +2241,113 @@ Wisnu has obtained **6 professional certifications** from leading platforms:
         },
 
         "what projects have you built": {
-            id: ` **Projects Portfolio (14 Total):**
+            id: ` **Projects Portfolio (15 Total):**
 
-** Production (12):**
+** Production (13):**
 1. **Ashar Grosir Parfum** - Enterprise ERP/POS + E-Commerce (Laravel, Next.js, PostgreSQL, Cloudflare). 600+ products, 50+ resellers, 1.34s avg load time, 60% faster reconciliation.
-2. **Shooply** - Microservices e-commerce (Next.js 14, GoFiber, PostgreSQL, Redis, RabbitMQ). SSR-optimized, telemetry-driven with OpenTelemetry.
-3. **LexCorpus CMS Platform** - Legal CMS with RBAC (Next.js 14, Supabase, PostgreSQL). 4 user roles, document version control, 60% productivity increase.
-4. **Nuxar Perfumery** - Cinematic perfume website (Golang, React 19, GSAP, 3D transforms, Railway). Dark luxury UI with particle effects.
-5. **PC FKMA Jakarta Website** - Organization digital platform (Next.js, Tailwind CSS, Vercel). Profile, news portal, alumni data.
-6. **Grawizah** - AI Global Trade Intelligence (Next.js 14, Go, Groq Llama 3.3, Supabase). Won Web Developer at TechSprint Innovation Cup 2026. Team "Successful Failures" (3 members, Wisnu as Team Leader).
-7. **TruthLayer** - Chrome Extension + Dashboard (Next.js 15, Node.js, Claude AI, Docker). Trust Score 0-100, detects 10+ dark patterns.
-8. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, Next.js 14, PostgreSQL). 94.1% mAP, ISO 17025 compliant, BPOM & SNI reports. Official entry for AI Open Innovation Challenge 2026 (team of 4).
-9. **Fanguard Strategic Hub** - Enterprise execution platform (Next.js 14, Fastify, PostgreSQL, Redis, Docker). RBAC, real-time analytics.
-10. **Risk Shield System** - AI-assisted GRC platform (Next.js 14, Google Gemini Pro, Supabase). OCTAVE Allegro, automated compliance reporting.
-11. **Human Firewall** - Cybersecurity awareness platform (React, TypeScript, Supabase). Phishing simulations, progress tracking.
-12. **HargaKita.id** - Real-time price monitoring (React, TypeScript, Vite, Appwrite, Chart.js). 34 provinces, crowdsourced reports.
-13. **Wiskost Residence** - Luxury residence website template (React 18, TypeScript, Docker, HuggingFace, Vercel).
+2. **CogniMail** - ML-Powered Anti-Phishing & Spam Filtering (Python 3.11, FastAPI, React 19, PostgreSQL 16, Redis 7, XGBoost, SpamAssassin). Weighted decision fusion, multi-layer evasion detection, automated ML retraining, zero-trust RBAC mailbox isolation.
+3. **Shooply** - Microservices e-commerce (Next.js 14, GoFiber, PostgreSQL, Redis, RabbitMQ). SSR-optimized, telemetry-driven with OpenTelemetry.
+4. **LexCorpus CMS Platform** - Legal CMS with RBAC (Next.js 14, Supabase, PostgreSQL). 4 user roles, document version control, 60% productivity increase.
+5. **Nuxar Perfumery** - Cinematic perfume website (Golang, React 19, GSAP, 3D transforms, Railway). Dark luxury UI with particle effects.
+6. **PC FKMA Jakarta Website** - Organization digital platform (Next.js, Tailwind CSS, Vercel). Profile, news portal, alumni data.
+7. **Grawizah** - AI Global Trade Intelligence (Next.js 14, Go, Groq Llama 3.3, Supabase). Won Web Developer at TechSprint Innovation Cup 2026. Team "Successful Failures" (3 members, Wisnu as Team Leader).
+8. **TruthLayer** - Chrome Extension + Dashboard (Next.js 15, Node.js, Claude AI, Docker). Trust Score 0-100, detects 10+ dark patterns.
+9. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, Next.js 14, PostgreSQL). 94.1% mAP, ISO 17025 compliant, BPOM & SNI reports. Official entry for AI Open Innovation Challenge 2026 (team of 4).
+10. **Fanguard Strategic Hub** - Enterprise execution platform (Next.js 14, Fastify, PostgreSQL, Redis, Docker). RBAC, real-time analytics.
+11. **Risk Shield System** - AI-assisted GRC platform (Next.js 14, Google Gemini Pro, Supabase). OCTAVE Allegro, automated compliance reporting.
+12. **Human Firewall** - Cybersecurity awareness platform (React, TypeScript, Supabase). Phishing simulations, progress tracking.
+13. **HargaKita.id** - Real-time price monitoring (React, TypeScript, Vite, Appwrite, Chart.js). 34 provinces, crowdsourced reports.
 
 ** Proof of Concept (2):**
 14. **SENTINEL-X** - Multi-Domain Threat Fusion (FastAPI, React, PyTorch, Kafka, TimescaleDB, Blockchain, Docker). Cyber, Aviation, Maritime, Space, Seismic domains.
+15. **Wiskost Residence** - Luxury residence website template (React 18, TypeScript, Docker, HuggingFace, Vercel).
 
-**Summary:** 14 projects (12 production, 2 PoC), 15,000+ users impacted across e-commerce, security, AI, legal, and civic tech. Measurable business impact in every project. `,
-            en: ` **Projects Portfolio (14 Total):**
+**Summary:** 15 projects (13 production, 2 PoC), 15,000+ users impacted across e-commerce, security, AI, legal, and civic tech. Measurable business impact in every project. `,
+            en: ` **Projects Portfolio (15 Total):**
 
-** Production (12):**
+** Production (13):**
 1. **Ashar Grosir Parfum** - Enterprise ERP/POS + E-Commerce (Laravel, Next.js, PostgreSQL, Cloudflare). 600+ products, 50+ resellers, 1.34s avg load time, 60% faster reconciliation.
-2. **Shooply** - Microservices e-commerce (Next.js 14, GoFiber, PostgreSQL, Redis, RabbitMQ). SSR-optimized, telemetry-driven with OpenTelemetry.
-3. **LexCorpus CMS Platform** - Legal CMS with RBAC (Next.js 14, Supabase, PostgreSQL). 4 user roles, document version control, 60% productivity increase.
-4. **Nuxar Perfumery** - Cinematic perfume website (Golang, React 19, GSAP, 3D transforms, Railway). Dark luxury UI with particle effects.
-5. **PC FKMA Jakarta Website** - Organization digital platform (Next.js, Tailwind CSS, Vercel). Profile, news portal, alumni data.
-6. **Grawizah** - AI Global Trade Intelligence (Next.js 14, Go, Groq Llama 3.3, Supabase). Won Web Developer at TechSprint Innovation Cup 2026. Team "Successful Failures" (3 members, Wisnu as Team Leader).
-7. **TruthLayer** - Chrome Extension + Dashboard (Next.js 15, Node.js, Claude AI, Docker). Trust Score 0-100, detects 10+ dark patterns.
-8. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, Next.js 14, PostgreSQL). 94.1% mAP, ISO 17025 compliant, BPOM & SNI reports. Official entry for AI Open Innovation Challenge 2026 (team of 4).
-9. **Fanguard Strategic Hub** - Enterprise execution platform (Next.js 14, Fastify, PostgreSQL, Redis, Docker). RBAC, real-time analytics.
-10. **Risk Shield System** - AI-assisted GRC platform (Next.js 14, Google Gemini Pro, Supabase). OCTAVE Allegro, automated compliance reporting.
-11. **Human Firewall** - Cybersecurity awareness platform (React, TypeScript, Supabase). Phishing simulations, progress tracking.
-12. **HargaKita.id** - Real-time price monitoring (React, TypeScript, Vite, Appwrite, Chart.js). 34 provinces, crowdsourced reports.
-13. **Wiskost Residence** - Luxury residence website template (React 18, TypeScript, Docker, HuggingFace, Vercel).
+2. **CogniMail** - ML-Powered Anti-Phishing & Spam Filtering (Python 3.11, FastAPI, React 19, PostgreSQL 16, Redis 7, XGBoost, SpamAssassin). Weighted decision fusion, multi-layer evasion detection, automated ML retraining, zero-trust RBAC mailbox isolation.
+3. **Shooply** - Microservices e-commerce (Next.js 14, GoFiber, PostgreSQL, Redis, RabbitMQ). SSR-optimized, telemetry-driven with OpenTelemetry.
+4. **LexCorpus CMS Platform** - Legal CMS with RBAC (Next.js 14, Supabase, PostgreSQL). 4 user roles, document version control, 60% productivity increase.
+5. **Nuxar Perfumery** - Cinematic perfume website (Golang, React 19, GSAP, 3D transforms, Railway). Dark luxury UI with particle effects.
+6. **PC FKMA Jakarta Website** - Organization digital platform (Next.js, Tailwind CSS, Vercel). Profile, news portal, alumni data.
+7. **Grawizah** - AI Global Trade Intelligence (Next.js 14, Go, Groq Llama 3.3, Supabase). Won Web Developer at TechSprint Innovation Cup 2026. Team "Successful Failures" (3 members, Wisnu as Team Leader).
+8. **TruthLayer** - Chrome Extension + Dashboard (Next.js 15, Node.js, Claude AI, Docker). Trust Score 0-100, detects 10+ dark patterns.
+9. **ColonyAI** - AI Automated Plate Count Reader (YOLOv8, FastAPI, Next.js 14, PostgreSQL). 94.1% mAP, ISO 17025 compliant, BPOM & SNI reports. Official entry for AI Open Innovation Challenge 2026 (team of 4).
+10. **Fanguard Strategic Hub** - Enterprise execution platform (Next.js 14, Fastify, PostgreSQL, Redis, Docker). RBAC, real-time analytics.
+11. **Risk Shield System** - AI-assisted GRC platform (Next.js 14, Google Gemini Pro, Supabase). OCTAVE Allegro, automated compliance reporting.
+12. **Human Firewall** - Cybersecurity awareness platform (React, TypeScript, Supabase). Phishing simulations, progress tracking.
+13. **HargaKita.id** - Real-time price monitoring (React, TypeScript, Vite, Appwrite, Chart.js). 34 provinces, crowdsourced reports.
 
 ** Proof of Concept (2):**
 14. **SENTINEL-X** - Multi-Domain Threat Fusion (FastAPI, React, PyTorch, Kafka, TimescaleDB, Blockchain, Docker). Cyber, Aviation, Maritime, Space, Seismic domains.
+15. **Wiskost Residence** - Luxury residence website template (React 18, TypeScript, Docker, HuggingFace, Vercel).
 
-**Summary:** 14 projects (12 production, 2 PoC), 15,000+ users impacted across e-commerce, security, AI, legal, and civic tech. Measurable business impact in every project. `,
+**Summary:** 15 projects (13 production, 2 PoC), 15,000+ users impacted across e-commerce, security, AI, legal, and civic tech. Measurable business impact in every project. `,
             aliases: ["what projects have you built", "proyek apa saja yang dibuat", "portfolio projects", "what have you built"],
             category: 'projects',
+            emotion: 'professional'
+        },
+
+        "cognimail": {
+            id: ` **CogniMail – ML-Powered Anti-Phishing & Spam Filtering Platform**
+
+** Peran Wisnu:** Full-Stack Developer, System Architect, API & Feature Engineer
+** Production URL:** https://cognimail.zenime.my.id/
+** Tim Project:** Muhammad Ilham Maulana (Leader & Frontend), Wisnu Alfian Nur Ashar (Full-Stack & Architect), Muhammad Ahda Briliantama (ML & QA), Christofer S. R. Sitompul (Docs), Risly Maria Theresia Worung (Admin Manual).
+
+** Deskripsi:**
+CogniMail adalah platform keamanan email self-hosted yang menggabungkan analisis berbasis aturan (SpamAssassin), supervised machine learning (XGBoost + TF-IDF), deteksi anomali (Isolation Forest & One-Class SVM), dan deteksi evasion berlapis ke dalam mesin *weighted decision fusion* dengan opsi routing CLEAN, WARN, dan QUARANTINE.
+
+** Fitur Utama:**
+- **Weighted Decision Fusion:** Menggabungkan sinyal dari 5 lapisan deteksi untuk mengarahkan pesan secara akurat.
+- **Advanced Evasion Detection:** Deteksi homograph spoofing, karakter zero-width, JS/HTML obfuscation, RTL override, dan brand impersonation.
+- **Continuous ML Retraining:** Worker latar belakang otomatis untuk retraining model dengan validasi akurasi >85% sebelum dipasang ke produksi.
+- **Zero-Trust RBAC & Mailbox Isolation:** 3 peran (superadmin, admin, end user) dengan validasi kepemilikan mailbox di level API backend.
+- **Webmail & Security Dashboard:** Webmail lengkap untuk pengguna serta dashboard analitik & karantina untuk admin.
+
+** Tech Stack:** Python 3.11, FastAPI, React 19, Vite, Tailwind CSS, PostgreSQL 16, Redis 7, XGBoost, SpamAssassin, Docker Compose.`,
+            en: ` **CogniMail – ML-Powered Anti-Phishing & Spam Filtering Platform**
+
+** Wisnu's Role:** Full-Stack Developer, System Architect, API & Feature Engineer
+** Team:** Muhammad Ilham Maulana (Leader & Frontend), Wisnu Alfian Nur Ashar (Full-Stack & Architect), Muhammad Ahda Briliantama (ML & QA), Christofer S. R. Sitompul (Docs), Risly Maria Theresia Worung (Admin Manual).
+
+** Overview:**
+CogniMail is a self-hosted email security platform combining rule-based analysis (SpamAssassin), supervised ML (XGBoost + TF-IDF), anomaly detection (Isolation Forest & One-Class SVM), and multi-layer evasion detection into a weighted decision fusion engine routing messages to CLEAN, WARN, or QUARANTINE.
+
+** Key Features:**
+- **Weighted Decision Fusion:** Fuses signals across 5 detection layers to minimize false positives and bypasses.
+- **Advanced Evasion Detection:** Catches homograph domain spoofing, zero-width characters, JS/HTML obfuscation, RTL override, and brand imposter attacks.
+- **Continuous ML Retraining:** Automated background worker for model retraining with >85% accuracy validation threshold before deployment.
+- **Zero-Trust RBAC & Mailbox Isolation:** 3-tier access control (superadmin, admin, end user) with strict backend data isolation.
+- **Full Webmail & Security Dashboard:** Complete end-user webmail alongside administrative quarantine and security analytics dashboards.
+
+** Tech Stack:** Python 3.11, FastAPI, React 19, Vite, Tailwind CSS, PostgreSQL 16, Redis 7, XGBoost, SpamAssassin, Docker Compose.`,
+            aliases: ["cognimail", "anti-phishing", "spam filtering", "proyek cognimail", "email security project"],
+            category: 'projects',
+            emotion: 'professional'
+        },
+
+        "ai open innovation challenge": {
+            id: ` **AI Open Innovation Challenge 2026**
+
+** Penyelenggara:** President University & Kemenko Perekonomian Republik Indonesia
+** Periode:** Februari – Agustus 2026 (Jakarta & Kampus President University, Cikarang)
+** Peserta:** 1.041+ peserta se-Indonesia dari sektor universitas, publik, dan SMA/SMK.
+
+** Kategori & Solusi Wisnu:**
+Wisnu dan tim bertanding di kategori **Healthcare** dengan mengembangkan **ColonyAI** (AI-Powered Automated Plate Count Reader untuk laboratorium mikrobiologi). Solusi ini menggabungkan visi komputer YOLOv8, preprocessing CLAHE, deteksi Hough Circle, dan jejak audit SHA-256 untuk kepatuhan ISO 17025, BPOM, dan SNI.`,
+            en: ` **AI Open Innovation Challenge 2026**
+
+** Organizers:** President University & Coordinating Ministry of Economic Affairs Republic of Indonesia
+** Timeline:** February – August 2026 (Jakarta & President University Campus, Cikarang)
+** Scope:** 1,041+ participants across Indonesia representing universities, public sector, and high schools.
+
+** Category & Wisnu's Solution:**
+Wisnu's team competed in the **Healthcare** domain by developing **ColonyAI** (an automated microbiology plate count reader). The solution utilizes YOLOv8 computer vision, CLAHE preprocessing, Hough Circle detection, and SHA-256 audit trails compliant with ISO 17025, BPOM, and SNI standards.`,
+            aliases: ["ai open innovation challenge 2026", "kompetisi ai open", "ai challenge kemenko", "colonyai competition"],
+            category: 'professional',
             emotion: 'professional'
         },
 
