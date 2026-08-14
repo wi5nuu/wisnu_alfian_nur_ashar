@@ -8,7 +8,7 @@ const isId = Astro.url.pathname.startsWith('/id');
   <div class="container">
     <div class="badge">
       <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'APA YANG SAYA TAWARKAN' : 'WHAT I OFFER'}</span>
+      <span class="badge-text">{isId ? 'Apa yang Saya Tawarkan' : 'What I Offer'}</span>
     </div>
 
     <h2 class="heading">
@@ -80,7 +80,7 @@ const isId = Astro.url.pathname.startsWith('/id');
     background-color: var(--bg);
     color: #ffffff;
     padding-block: 120px;
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
   }
 
   .container {
@@ -111,9 +111,9 @@ const isId = Astro.url.pathname.startsWith('/id');
   }
 
   .badge-text {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     font-weight: 500;
     color: #ffffff;
   }

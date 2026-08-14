@@ -9,7 +9,7 @@ const isId = Astro.url.pathname.startsWith('/id');
   <div class="header-block">
     <div class="badge">
       <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'MENGAPA MEMILIH SAYA' : 'WHY CHOOSE ME'}</span>
+      <span class="badge-text">{isId ? 'Mengapa Memilih Saya' : 'Why Choose Me'}</span>
     </div>
 
     <h2 class="heading">
@@ -52,7 +52,7 @@ const isId = Astro.url.pathname.startsWith('/id');
     height: auto;
     padding-block: 120px;
     padding-inline: clamp(24px, 2.5vw, 40px);
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     overflow: hidden;
   }
 
@@ -84,9 +84,9 @@ const isId = Astro.url.pathname.startsWith('/id');
   }
 
   .badge-text {
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 0.05em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     font-weight: 500;
     color: #0A0A0A;
   }

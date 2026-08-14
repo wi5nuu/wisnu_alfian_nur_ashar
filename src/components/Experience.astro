@@ -16,7 +16,7 @@ const combinedExperience = [
   <div class="exp-header">
     <div class="badge">
       <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'PENGALAMAN' : 'EXPERIENCE'}</span>
+      <span class="badge-text">{isId ? 'Pengalaman Kerja & Organisasi' : 'Experience & Leadership'}</span>
     </div>
     <h2 class="heading">
       {isId ? 'Pengalaman' : 'Work'}<br />
@@ -67,7 +67,7 @@ const combinedExperience = [
     background: #0A0A0A;
     color: #fff;
     padding: 120px clamp(24px, 2.5vw, 40px);
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
   }
 
   /* HEADER */
@@ -91,9 +91,9 @@ const combinedExperience = [
     background: #84E10C;
   }
   .badge-text {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     font-weight: 500;
     color: #fff;
   }

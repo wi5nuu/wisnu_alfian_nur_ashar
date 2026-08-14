@@ -12,7 +12,7 @@ const profile = isId ? profileId : profileEn;
   <!-- A) TOP BADGE -->
   <div class="top-badge">
     <div class="badge-dot"></div>
-    <span class="badge-text">{isId ? 'TERSEDIA UNTUK MAGANG & KERJA' : 'AVAILABLE FOR INTERN & WORK'}</span>
+    <span class="badge-text">{isId ? 'Tersedia untuk Magang & Kerja' : 'Available for Intern & Work'}</span>
   </div>
 
   <!-- B) GIANT HEADLINE -->
@@ -49,7 +49,7 @@ const profile = isId ? profileId : profileEn;
     flex-direction: column;
     align-items: center;
     background-color: #0A0A0A;
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
   }
 
   /* TOP BADGE */
@@ -85,10 +85,11 @@ const profile = isId ? profileId : profileEn;
   }
 
   .badge-text {
-    font-style: italic;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 0.05em;
+    font-style: normal;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    font-weight: 500;
     color: #ffffff;
   }
 

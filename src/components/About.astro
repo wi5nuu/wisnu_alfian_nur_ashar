@@ -14,7 +14,7 @@ const profile = isId ? profileId : profileEn;
     <div class="heading-col">
       <div class="badge">
         <div class="badge-dot"></div>
-        <span class="badge-text">{isId ? 'TENTANG SAYA' : 'ABOUT ME'}</span>
+        <span class="badge-text">{isId ? 'Siapa Saya?' : 'Who Am I?'}</span>
       </div>
 
       <h2 class="heading">
@@ -57,7 +57,7 @@ const profile = isId ? profileId : profileEn;
     background-color: #ffffff;
     color: #0A0A0A;
     padding-block: 88px;
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     overflow: hidden;
   }
 
@@ -97,9 +97,9 @@ const profile = isId ? profileId : profileEn;
   }
 
   .badge-text {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     font-weight: 500;
     color: #0A0A0A;
   }

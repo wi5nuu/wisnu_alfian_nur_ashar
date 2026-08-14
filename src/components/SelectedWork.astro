@@ -2,10 +2,11 @@
 import { CornerDownRight } from "lucide-astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
-import ProjectDetailModal from "./ProjectDetailModal.astro";
+import { getProjectSlug } from "../utils/slug";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
+const basePath = isId ? '/id/projects' : '/projects';
 
 // Get first 5 projects
 const selectedProjects = profile.projects.slice(0, 5);
@@ -15,7 +16,7 @@ const selectedProjects = profile.projects.slice(0, 5);
   <div class="header-block">
     <div class="badge">
       <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'KARYA PILIHAN 2024–2026' : 'SELECTED WORK 2024–2026'}</span>
+      <span class="badge-text">{isId ? 'Karya Pilihan 2024–2026' : 'Selected Work 2024–2026'}</span>
     </div>
 
     <h2 class="heading">
@@ -25,34 +26,29 @@ const selectedProjects = profile.projects.slice(0, 5);
   </div>
 
   <div class="project-grid">
-    {selectedProjects.map((project, index) => (
-      <button
-        class="project-card group"
-        style={`transition-delay: ${index * 100}ms`}
-        onclick={`openProjectModal('project-detail-modal', ${JSON.stringify({
-          title: project.title,
-          role: project.role,
-          description: project.description,
-          techStack: project.techStack,
-          image: project.image || '/projects/placeholder.webp',
-          link: project.link,
-          github: project.github || '',
-        })})`}
-      >
-        <div class="project-image-wrap">
-          <img src={project.image || "/projects/placeholder.webp"} alt={project.title} class="project-image" width="640" height="360" loading="lazy" decoding="async" />
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">{project.title}</h3>
-          <p class="project-role">{project.role}</p>
-          <p class="project-desc">{project.description}</p>
-          <div class="project-footer">
-            <span class="project-status">{project.status}</span>
-            <span class="project-badge">{isId ? 'Lihat Detail' : 'Details'}</span>
+    {selectedProjects.map((project, index) => {
+      const slug = getProjectSlug(project.title);
+      return (
+        <a
+          href={`${basePath}/${slug}`}
+          class="project-card group"
+          style={`transition-delay: ${index * 100}ms`}
+        >
+          <div class="project-image-wrap">
+            <img src={project.image || "/projects/placeholder.webp"} alt={project.title} class="project-image" width="640" height="360" loading="lazy" decoding="async" />
           </div>
-        </div>
-      </button>
-    ))}
+          <div class="project-content">
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-role">{project.role}</p>
+            <p class="project-desc">{project.description}</p>
+            <div class="project-footer">
+              <span class="project-status">{project.status}</span>
+              <span class="project-badge">{isId ? 'Lihat Detail' : 'Details'}</span>
+            </div>
+          </div>
+        </a>
+      );
+    })}
   </div>
 
   <div class="bottom-cta">
@@ -63,8 +59,6 @@ const selectedProjects = profile.projects.slice(0, 5);
   </div>
 </section>
 
-<ProjectDetailModal id="project-detail-modal" />
-
 <style>
   .selected-work {
     background-color: var(--bg);
@@ -72,7 +66,7 @@ const selectedProjects = profile.projects.slice(0, 5);
     height: auto;
     padding-inline: clamp(20px, 3vw, 40px);
     padding-block: 80px 100px;
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
   }
 
   .badge {
@@ -93,11 +87,11 @@ const selectedProjects = profile.projects.slice(0, 5);
   }
 
   .badge-text {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     color: #ffffff;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .header-block {
