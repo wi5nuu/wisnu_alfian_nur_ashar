@@ -3,6 +3,7 @@
   font-display: swap mencegah render-blocking 
 */
 @import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
 @import "@fontsource/outfit/600.css";
 @import "@fontsource/outfit/700.css";
 @import "@fontsource/cormorant-garamond/700.css";
@@ -12,7 +13,7 @@
   --text: #FFFFFF;
   --accent: #84E10C;
   --border: rgba(255, 255, 255, 0.25);
-  --font-sans: Outfit, Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
 }
 
@@ -25,6 +26,22 @@ html, body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Global Heading & Badge Typography Standard */
+.heading, h1.heading, h2.heading, h3.heading {
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.badge-text {
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 12.5px !important;
+  letter-spacing: 0.03em !important;
+  text-transform: none !important;
 }
 
 /* Prevent layout shift from images without explicit dimensions */
