@@ -2,24 +2,24 @@
 import { profile as profileEn } from '../../data/profile';
 import { profile as profileId } from '../../data/profile_id';
 import { getProjectSlug } from '../../utils/slug';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-astro';
+import { ExternalLink, Github, ArrowUpRight, Search } from 'lucide-astro';
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 const basePath = isId ? '/id/projects' : '/projects';
+const totalProjectsCount = profile.projects.length;
 ---
 
 <section class="projects-section">
   <div class="container">
     <div class="badge">
       <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'SEMUA PROYEK' : 'ALL PROJECTS'}</span>
+      <span class="badge-text">{isId ? `Semua Proyek (${totalProjectsCount})` : `All Projects (${totalProjectsCount})`}</span>
     </div>
 
-    <h2 class="heading">
-      {isId ? 'Proyek &' : 'Featured'}<br />
-      {isId ? 'Portofolio' : 'Projects'}
-    </h2>
+    <h1 class="heading">
+      {isId ? 'Proyek & Portofolio' : 'Featured Projects'}
+    </h1>
 
     <p class="subheading">
       {isId
@@ -28,21 +28,40 @@ const basePath = isId ? '/id/projects' : '/projects';
     </p>
 
     <div class="filter-bar">
-      <div class="filter-chips" role="group" aria-label={isId ? 'Filter proyek' : 'Filter projects'}>
-        <button class="filter-chip is-active" data-filter="all">{isId ? 'Semua' : 'All'}</button>
-        <button class="filter-chip" data-filter="web">{isId ? 'Web' : 'Web'}</button>
-        <button class="filter-chip" data-filter="mobile">{isId ? 'Mobile' : 'Mobile'}</button>
-        <button class="filter-chip" data-filter="ai">{isId ? 'AI/ML' : 'AI/ML'}</button>
-        <button class="filter-chip" data-filter="security">{isId ? 'Keamanan' : 'Security'}</button>
+      <div class="search-wrap">
+        <Search class="search-icon" />
+        <input
+          type="text"
+          id="project-search"
+          class="search-input"
+          placeholder={isId ? "Cari proyek, deskripsi, teknologi..." : "Search projects, tech..."}
+          aria-label={isId ? "Cari proyek" : "Search projects"}
+        />
       </div>
-      <div class="sort-wrap">
-        <label class="sort-label" for="sort-select">{isId ? 'Urutkan' : 'Sort'}</label>
-        <select id="sort-select" class="sort-select">
-          <option value="default">{isId ? 'Default' : 'Default'}</option>
-          <option value="az">A-Z</option>
-          <option value="za">Z-A</option>
-        </select>
+
+      <div class="filter-controls">
+        <div class="filter-chips" role="group" aria-label={isId ? 'Filter proyek' : 'Filter projects'}>
+          <button class="filter-chip is-active" data-filter="all">{isId ? 'Semua' : 'All'}</button>
+          <button class="filter-chip" data-filter="web">{isId ? 'Web' : 'Web'}</button>
+          <button class="filter-chip" data-filter="mobile">{isId ? 'Mobile' : 'Mobile'}</button>
+          <button class="filter-chip" data-filter="ai">{isId ? 'AI/ML' : 'AI/ML'}</button>
+          <button class="filter-chip" data-filter="security">{isId ? 'Keamanan' : 'Security'}</button>
+        </div>
+        <div class="sort-wrap">
+          <label class="sort-label" for="sort-select">{isId ? 'Urutkan' : 'Sort'}</label>
+          <select id="sort-select" class="sort-select">
+            <option value="default">{isId ? 'Default' : 'Default'}</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+          </select>
+        </div>
       </div>
+    </div>
+
+    <div class="results-count-bar">
+      <span class="count-text" id="project-count-text">
+        {isId ? `Menampilkan ${totalProjectsCount} dari ${totalProjectsCount} proyek` : `Showing ${totalProjectsCount} of ${totalProjectsCount} projects`}
+      </span>
     </div>
 
     <div class="projects-grid">
@@ -55,12 +74,14 @@ const basePath = isId ? '/id/projects' : '/projects';
         if (/ai|ml|pytorch|tensorflow|gemini|llm|langchain|numpy|pandas/i.test(techJoined)) cats.push('ai');
         if (/security|blockchain|owasp|encrypt|cyber|threat|firewall|hashing/i.test(techJoined)) cats.push('security');
         if (cats.length === 0) cats.push('web');
+        const searchText = `${project.title} ${project.role} ${project.description} ${project.techStack.join(' ')}`.toLowerCase();
         return (
           <a
             href={`${basePath}/${slug}`}
             class="project-card"
             data-title={project.title.toLowerCase()}
             data-cats={cats.join(' ')}
+            data-search={searchText}
             style={`animation-delay: ${index * 60}ms`}
           >
             {project.image && (
@@ -104,7 +125,7 @@ const basePath = isId ? '/id/projects' : '/projects';
     </div>
 
     <p class="no-results hidden" id="no-results">
-      {isId ? 'Tidak ada proyek yang cocok.' : 'No projects match your filters.'}
+      {isId ? 'Tidak ada proyek yang cocok.' : 'No projects match your search or filter.'}
     </p>
 
     <div class="bottom-cta">
@@ -129,17 +150,22 @@ const basePath = isId ? '/id/projects' : '/projects';
 
     const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-chip'));
     const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const searchInput = document.getElementById('project-search') as HTMLInputElement;
+    const countText = document.getElementById('project-count-text');
     const noResults = document.getElementById('no-results');
     const cards = Array.from(grid.querySelectorAll<HTMLElement>('.project-card'));
+    const totalCount = cards.length;
+    const isIdPage = window.location.pathname.startsWith('/id');
 
     const applyFilters = () => {
       const activeChip = chips.find((c) => c.classList.contains('is-active'));
       const filter = activeChip?.dataset.filter || 'all';
+      const searchQuery = (searchInput?.value || '').trim().toLowerCase();
 
       let visible = cards.filter((card) => {
-        if (filter === 'all') return true;
-        const cats = (card.dataset.cats || '').split(' ');
-        return cats.includes(filter);
+        const matchesCategory = filter === 'all' || (card.dataset.cats || '').split(' ').includes(filter);
+        const matchesSearch = !searchQuery || (card.dataset.search || '').includes(searchQuery);
+        return matchesCategory && matchesSearch;
       });
 
       const sortMode = sortSelect?.value || 'default';
@@ -157,6 +183,14 @@ const basePath = isId ? '/id/projects' : '/projects';
         card.style.animation = '';
       });
 
+      if (countText) {
+        if (isIdPage) {
+          countText.textContent = `Menampilkan ${visible.length} dari ${totalCount} proyek`;
+        } else {
+          countText.textContent = `Showing ${visible.length} of ${totalCount} projects`;
+        }
+      }
+
       if (noResults) {
         noResults.classList.toggle('hidden', visible.length > 0);
       }
@@ -170,6 +204,7 @@ const basePath = isId ? '/id/projects' : '/projects';
       });
     });
 
+    searchInput?.addEventListener('input', applyFilters);
     sortSelect?.addEventListener('change', applyFilters);
   });
 </script>
@@ -179,15 +214,15 @@ const basePath = isId ? '/id/projects' : '/projects';
     background-color: var(--bg);
     color: #ffffff;
     padding-block: 120px;
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     min-height: 100vh;
   }
 
   .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1560px;
     margin-inline: auto;
-    padding-inline: clamp(24px, 2.5vw, 40px);
+    padding-inline: clamp(20px, 2vw, 40px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -212,9 +247,9 @@ const basePath = isId ? '/id/projects' : '/projects';
   }
 
   .badge-text {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     font-weight: 500;
     color: #ffffff;
   }
@@ -229,10 +264,11 @@ const basePath = isId ? '/id/projects' : '/projects';
     margin-bottom: 0;
     text-align: center;
     width: 100%;
+    white-space: nowrap;
   }
 
   .subheading {
-    margin-top: 20px;
+    margin-top: 16px;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.55);
     max-width: 540px;
@@ -240,193 +276,60 @@ const basePath = isId ? '/id/projects' : '/projects';
     line-height: 1.6;
   }
 
-  .projects-grid {
-    margin-top: 64px;
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 24px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-bottom: 8px;
-  }
-
-  .projects-grid::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-  }
-
-  .project-card {
-    background-color: #111111;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    transition: border-color 0.3s ease, transform 0.3s ease;
-    flex: 0 0 calc(25% - 18px);
-    min-width: 0;
-    scroll-snap-align: start;
-  }
-
-  .project-card:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-    transform: translateY(-4px);
-  }
-
-  /* Browser chrome bar */
-  .card-img-wrap {
-    position: relative;
-    width: 100%;
-    background-color: #0a0a0a;
-  }
-
-  .browser-bar {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 8px 12px;
-    background-color: #1a1a1a;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .dot.red    { background-color: #ff5f57; }
-  .dot.yellow { background-color: #febc2e; }
-  .dot.green  { background-color: #28c840; }
-
-  .card-img {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .project-card:hover .card-img {
-    transform: scale(1.04);
-  }
-
-  .card-overlay {
-    position: absolute;
-    inset: 0;
-    top: 28px; /* below browser bar */
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .project-card:hover .card-overlay {
-    opacity: 1;
-  }
-
-  .overlay-icon {
-    width: 32px;
-    height: 32px;
-    color: #ffffff;
-  }
-
-  /* Card body */
-  .card-body {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .status-badge {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    background-color: rgba(132, 225, 12, 0.1);
-    border: 1px solid rgba(132, 225, 12, 0.25);
-    border-radius: 999px;
-    padding: 3px 10px;
-  }
-
-  .arrow-icon {
-    width: 18px;
-    height: 18px;
-    color: rgba(255, 255, 255, 0.3);
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-
-  .project-card:hover .arrow-icon {
-    color: #ffffff;
-    transform: translate(2px, -2px);
-  }
-
-  .card-title {
-    margin-top: 16px;
-    font-size: 17px;
-    font-weight: 600;
-    color: #ffffff;
-    line-height: 1.3;
-  }
-
-  .card-role {
-    margin-top: 4px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.4);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .card-desc {
-    margin-top: 12px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.55);
-    line-height: 1.6;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .tag-row {
-    margin-top: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tag {
-    font-size: 11px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 999px;
-    padding: 3px 10px;
-  }
-
-  /* ===== FILTER BAR ===== */
+  /* ===== FILTER BAR & SEARCH ===== */
   .filter-bar {
     margin-top: 40px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .search-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 16px;
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 12px 20px 12px 46px;
+    outline: none;
+    transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .search-input:focus {
+    border-color: var(--accent);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(132, 225, 12, 0.15);
+  }
+
+  .filter-controls {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -501,6 +404,185 @@ const basePath = isId ? '/id/projects' : '/projects';
     color: #ffffff;
   }
 
+  .results-count-bar {
+    margin-top: 14px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+  }
+
+  .projects-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    height: 100%;
+  }
+
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Browser chrome bar */
+  .card-img-wrap {
+    position: relative;
+    width: 100%;
+    background-color: #0a0a0a;
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot.red    { background-color: #ff5f57; }
+  .dot.yellow { background-color: #febc2e; }
+  .dot.green  { background-color: #28c840; }
+
+  .card-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .card-img {
+    transform: scale(1.04);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    top: 28px; /* below browser bar */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .overlay-icon {
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
+  }
+
+  /* Card body */
+  .card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background-color: rgba(132, 225, 12, 0.1);
+    border: 1px solid rgba(132, 225, 12, 0.25);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+
+  .arrow-icon {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .project-card:hover .arrow-icon {
+    color: #ffffff;
+    transform: translate(2px, -2px);
+  }
+
+  .card-title {
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .card-role {
+    margin-top: 4px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-desc {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .tag-row {
+    margin-top: auto;
+    padding-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+
   .project-card.is-hidden {
     display: none;
   }
@@ -553,20 +635,73 @@ const basePath = isId ? '/id/projects' : '/projects';
     opacity: 0.6;
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .project-card {
-      flex: 0 0 calc(33.333% - 16px);
+  /* RESPONSIVE BREAKPOINTS */
+  @media (max-width: 1440px) {
+    .projects-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
   }
 
   @media (max-width: 768px) {
-    .project-card {
-      flex: 0 0 calc(50% - 12px);
+    .heading {
+      white-space: normal;
+    }
+    .projects-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
   }
 
   @media (max-width: 640px) {
+    .filter-bar {
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .filter-controls {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .filter-chips {
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .filter-chip {
+      padding: 5px 12px;
+      font-size: 11.5px;
+      letter-spacing: -0.01em;
+    }
+
+    .sort-wrap {
+      gap: 6px;
+    }
+
+    .sort-select {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .results-count-bar {
+      margin-top: 10px;
+      margin-bottom: 24px;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 520px) {
     .projects-section {
       padding-block: 80px;
     }
@@ -574,11 +709,8 @@ const basePath = isId ? '/id/projects' : '/projects';
       font-size: 28px;
     }
     .projects-grid {
-      gap: 14px;
-    }
-    .project-card {
-      flex: 0 0 85%;
-      max-width: 320px;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 </style>

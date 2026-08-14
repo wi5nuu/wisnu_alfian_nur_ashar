@@ -19,12 +19,11 @@ const socialLinks = [
   <div class="container">
     <div class="badge">
       <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'KONTAK' : 'CONTACT'}</span>
+      <span class="badge-text">{isId ? 'Mari Terhubung' : "Let's Connect"}</span>
     </div>
 
     <h2 class="heading">
-      {isId ? 'Mari' : "Let's"}<br />
-      {isId ? 'Terhubung' : 'Connect'}
+      {isId ? 'Mari Terhubung' : "Let's Connect"}
     </h2>
 
     <p class="subheading">
@@ -301,7 +300,7 @@ const socialLinks = [
     background-color: var(--bg);
     color: #ffffff;
     padding-block: 120px;
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     min-height: 100vh;
   }
 
@@ -333,9 +332,9 @@ const socialLinks = [
   }
 
   .badge-text {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     font-weight: 500;
     color: #ffffff;
   }

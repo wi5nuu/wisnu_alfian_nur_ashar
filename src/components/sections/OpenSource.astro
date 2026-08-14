@@ -12,7 +12,7 @@ const items = profile.openSource;
   <div class="container">
     <div class="badge">
       <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'OPEN SOURCE' : 'OPEN SOURCE'}</span>
+      <span class="badge-text">{isId ? 'Kontribusi Open Source' : 'Open Source Contributions'}</span>
     </div>
 
     <h2 class="heading">
@@ -136,7 +136,7 @@ const items = profile.openSource;
     background-color: var(--bg);
     color: #ffffff;
     padding-block: 120px;
-    font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     min-height: 100vh;
   }
 
@@ -168,9 +168,9 @@ const items = profile.openSource;
   }
 
   .badge-text {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    text-transform: none;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     font-weight: 500;
     color: #ffffff;
   }
