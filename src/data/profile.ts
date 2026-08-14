@@ -259,7 +259,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/ashar-grosir",
             link: "https://www.ashargrosirparfum.com",
             description: "Official E-Commerce platform for a 20-year-old perfume wholesaler serving 15,000+ partners. Optimized for scale with edge delivery and streamlined wholesale distribution.",
-            techStack: ["React", "TypeScript", "Tailwind CSS", "Cloudflare", "CDN"],
+            techStack: ["React", "TypeScript", "Cloudflare", "Tailwind CSS", "CDN"],
             image: "/projects/AsharGrosirParfum.webp"
         },
         {
@@ -270,8 +270,19 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/SENTINEL-X-X-Domain-Threat-Fusion-Platform",
             link: "https://github.com/wi5nuu/SENTINEL-X-X-Domain-Threat-Fusion-Platform",
             description: "Multi-Domain Threat Intelligence & Fusion Platform (23+ GitHub stars, 10 forks). An integrated educational proof-of-concept simulating situational awareness, AI-based correlation with Multi-Modal architecture, and real-time incident response across 6 domain sources (Aviation/ADS-B, Maritime/AIS, Cyber, Space, Seismic, RF/SIGINT). Features blockchain audit trail via Ethereum smart contracts, 3D globe visualization, and explainable AI threat classification.",
-            techStack: ["FastAPI", "React", "PyTorch", "Kafka", "TimescaleDB", "Blockchain", "Docker"],
+            techStack: ["PyTorch", "FastAPI", "React", "Kafka", "TimescaleDB", "Docker", "Blockchain"],
             image: "/projects/sentinelx.webp"
+        },
+        {
+            title: "CogniMail",
+            role: "Full-Stack Developer & System Architect",
+            status: "Production",
+            featured: true,
+            github: "https://github.com/wi5nuu/ML-Powered-Anti-Phishing-and-Spam-Filtering",
+            link: "https://cognimail.zenime.my.id/",
+            description: "Self-hosted email security platform combining rule-based analysis, supervised ML (XGBoost, TF-IDF), anomaly detection (Isolation Forest, One-Class SVM), and SpamAssassin with weighted decision fusion. Features multi-layer evasion detection (homograph, zero-width chars, JS obfuscation, RTL override, brand spoofing), continuous automated ML retraining, async queue pipeline, role-based mail oversight (superadmin, admin, end user), and zero-trust mailbox isolation.",
+            techStack: ["Python 3.11", "FastAPI", "React 19", "PostgreSQL 16", "Redis 7", "XGBoost", "SpamAssassin", "Docker", "Tailwind CSS"],
+            image: "/projects/cognimail.webp"
         },
         {
             title: "Zentic Enterprise",
@@ -281,7 +292,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/zentic",
             link: "https://github.com/wi5nuu/zentic",
             description: "Enterprise-grade expense requisition system built with Clean Architecture on ASP.NET MVC 10, Entity Framework Core, and SQL Server. Features multi-tier approval workflows, fraud detection with real-time flagging, 3-way matching (PO/Invoice/Goods Receipt), vendor management, immutable audit logs, and comprehensive finance dashboard with KPI tracking. Implements BCrypt password hashing, AES-256-GCM encryption, and rate limiting for security.",
-            techStack: ["ASP.NET MVC 10", ".NET 10", "C#", "Entity Framework Core", "SQL Server", "Bootstrap 5", "BCrypt.Net", "FluentValidation", "xUnit"],
+            techStack: ["ASP.NET MVC 10", ".NET 10", "C#", "SQL Server", "Entity Framework Core", "xUnit", "Bootstrap 5", "BCrypt.Net", "FluentValidation"],
             image: "/projects/zentic.webp"
         },
         {
@@ -292,7 +303,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/Finance-Requester",
             link: "https://github.com/wi5nuu/Finance-Requester",
             description: "Enterprise-grade Payment Requisition System (PRS) for managing payment requisitions with multi-tier approvals, budgets, vendors, purchase orders, and cash advance settlements. Built with decoupled architecture using Laravel 12 backend API and Next.js 16 frontend, fully orchestrated via Docker. Features real-time SSE updates, 3-way matching, batch payments, RBAC, audit logging, and S3-compatible MinIO storage.",
-            techStack: ["Laravel 12", "PHP 8.2", "Next.js 16", "React 19", "TypeScript", "PostgreSQL 16", "Redis", "MinIO", "Docker", "Tailwind CSS"],
+            techStack: ["Next.js 16", "Laravel 12", "React 19", "PostgreSQL 16", "PHP 8.2", "TypeScript", "Redis", "Docker", "MinIO", "Tailwind CSS"],
             image: "/projects/FinanceRequester.webp"
         },
         {
@@ -303,7 +314,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/pulse",
             link: "https://github.com/wi5nuu/pulse",
             description: "Real-time collaborative workspace with rich-text editor, Kanban board, live presence, and version history. Built with CRDT conflict-free replication using Yjs + ProseMirror so multiple users can edit simultaneously with automatic conflict resolution. Features per-user multiplayer undo/redo, drag-and-drop Kanban with fractional indexing, snapshot-based version history, invite system with editor/viewer roles, JWT in-memory auth with rotating refresh tokens and reuse detection.",
-            techStack: ["Go", "Next.js 14", "PostgreSQL", "Redis", "TypeScript", "Tailwind CSS", "Yjs", "ProseMirror", "WebSocket", "Docker", "JWT"],
+            techStack: ["Go (Golang)", "Next.js 14", "PostgreSQL", "Redis", "TypeScript", "Docker", "WebSocket", "Yjs", "ProseMirror", "Tailwind CSS", "JWT"],
             image: "/projects/Pulse.webp"
         },
         {
@@ -314,7 +325,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/puconnect",
             link: "https://puconnect-9e8fb.web.app",
             description: "Elite cross-platform professional networking platform exclusively for President University. Features AI Career Mentor Suite powered by Gemini (career roadmap, CV analysis, cover letter builder, smart post suggestions, MentorBot), real-time Firestore synchronization, glassmorphism UI with wave design and micro-animations, instant search with 300ms debounce, real-time networking engine, career analytics dashboard, and Zero-Storage Architecture for cost efficiency. Deployed as both Flutter mobile app and Progressive Web App.",
-            techStack: ["Flutter", "Firebase Auth", "Cloud Firestore", "Firebase Messaging", "Riverpod", "go_router", "Gemini AI", "Hive", "flutter_animate", "Google Fonts"],
+            techStack: ["Gemini AI", "Flutter", "Cloud Firestore", "Riverpod", "Firebase Auth", "Firebase Messaging", "Hive", "go_router", "flutter_animate", "Google Fonts"],
             image: "/projects/PresUnivGo.webp"
         },
         {
@@ -325,7 +336,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/grawizah.com",
             link: "https://grawizah-com.vercel.app/",
             description: "AI-native Global Trade Intelligence Platform empowering Indonesian MSMEs to scale globally. Built by team 'Successful Failures' (Wisnu as Team Leader, with Reza Fahlevi and Praisilia Pandoh from President University). Features neural AI matchmaking powered by Groq Llama 3.3, automated HS Code classification, real-time supply chain network mapping, competitor price benchmarking, and a multilingual trade translator supporting 14 languages. Won Web Developer category at TechSprint Innovation Cup 2026 organized by Codelab Indonesia.",
-            techStack: ["Next.js 14", "TypeScript", "Go (Golang)", "Tailwind CSS", "Supabase", "Groq Llama 3.3", "AI/ML", "JWT"],
+            techStack: ["Groq Llama 3.3", "Next.js 14", "Go (Golang)", "TypeScript", "Supabase", "AI/ML", "Tailwind CSS", "JWT"],
             image: "/projects/grawizah.webp"
         },
         {
@@ -336,7 +347,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/stokiq",
             link: "https://github.com/wi5nuu/stokiq",
             description: "Comprehensive inventory and stock management system with AI-powered demand forecasting. Modules include stock management, order processing, supplier management, buyer management, marketplace integration, sales analytics, procurement inquiry, and detailed reporting. Built with React + Supabase for real-time data sync, featuring predictive analytics (Prediksi) for stock level recommendations.",
-            techStack: ["React", "TypeScript", "Supabase", "Tailwind CSS", "shadcn/ui", "Recharts", "React Hook Form", "Zod", "Framer Motion", "React Router"],
+            techStack: ["React", "TypeScript", "Supabase", "Tailwind CSS", "shadcn/ui", "Recharts", "Zod", "Framer Motion", "React Router", "React Hook Form"],
             image: "/projects/StokIQ.webp"
         },
         {
@@ -347,7 +358,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/colonyai",
             link: "https://colonyai-eta.vercel.app",
             description: "AI-powered Automated Plate Count Reader for microbiology laboratories — official entry for AI Open Innovation Challenge 2026 (team of 4 from President University, Wisnu as Product Owner & Software Engineer). Fine-tuned YOLOv8 model achieving 94.1% mAP@0.5, 94.7% precision, 92.5% recall across 56,124 annotations. Converts agar plate images into CFU/ml reports in under 2 minutes — reducing inter-analyst variability by 92.5%. Features CLAHE preprocessing, Hough Circle detection, SA-001 merged colony estimation, GUM uncertainty, SHA-256 audit trail for ISO 17025, BPOM & SNI compliance. Enterprise-grade security: Argon2 hashing, JWT blacklisting, ClamAV scanning, Zero-Trust architecture.",
-            techStack: ["YOLOv8", "FastAPI", "Next.js 14", "TypeScript", "PostgreSQL", "OpenCV", "AWS S3", "Railway", "Vercel"],
+            techStack: ["YOLOv8", "FastAPI", "Next.js 14", "PostgreSQL", "TypeScript", "OpenCV", "AWS S3", "Railway", "Vercel"],
             image: "/projects/ColonyAI.webp"
         },
         {
@@ -357,7 +368,7 @@ export const profile: Profile = {
             featured: true,
             link: "#",
             description: "High-performance e-commerce platform with a microservices architecture. Features an SSR-optimized Next.js 14 frontend and a super-fast GoFiber backend. Implements advanced caching (Redis), messaging (RabbitMQ), and comprehensive telemetry (OpenTelemetry, Prometheus).",
-            techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Go (Golang)", "GoFiber", "PostgreSQL", "Redis", "RabbitMQ", "OpenTelemetry", "Zerolog"],
+            techStack: ["Go (Golang)", "Next.js 14", "PostgreSQL", "Redis", "GoFiber", "RabbitMQ", "TypeScript", "OpenTelemetry", "React Query", "Zustand", "Tailwind CSS", "Framer Motion", "Zerolog"],
             image: "/projects/shooply.webp"
         },
         {
@@ -368,7 +379,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/Truthlayer",
             link: "https://truthlayer.io",
             description: "Chrome Extension (Manifest V3) + Node.js Express Backend + Next.js 15 Dashboard that reveals hidden intentions of every website you visit. Powered by Claude AI (Anthropic) for intent classification and dark pattern detection. Provides Trust Score (0-100), detects 10+ dark pattern manipulation tactics (fake urgency, confirmshaming, disguised ads, forced action), audits data collection & third-party trackers, estimates AI-generated content percentage, and enables public report sharing via truthlayer.io/report/domain. Features activeTab permission (privacy-first), local 24h caching, and automated CI/CD pipeline.",
-            techStack: ["Next.js 15", "TypeScript", "Chrome Extension", "Node.js", "Express.js", "Claude AI", "Docker", "Netlify"],
+            techStack: ["Claude AI", "Next.js 15", "TypeScript", "Node.js", "Express.js", "Chrome Extension", "Docker", "Netlify"],
             image: "/projects/thrutlayer.webp"
         },
         {
@@ -379,7 +390,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/wanar-ai",
             link: "https://github.com/wi5nuu/wanar-ai",
             description: "Enterprise-grade multi-provider AI Agent platform with OpenAgentic, NVIDIA, and Vector orchestration. Features intelligent provider router, unlimited context history, semantic caching via SQLite, distributed Redis architecture, JWT auth, RAG for document-grounded answers, and security scanner. Supports both CLI and Web Server modes with full chatbot UI.",
-            techStack: ["Node.js", "Express", "OpenAgentic", "NVIDIA API", "Vector API", "Redis", "SQLite", "JWT", "RAG"],
+            techStack: ["NVIDIA API", "OpenAgentic", "Node.js", "Express", "Vector API", "Redis", "RAG", "SQLite", "JWT"],
             image: "/projects/wanarai.webp"
         },
         {
@@ -390,7 +401,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/NusantaraLearn",
             link: "https://github.com/wi5nuu/NusantaraLearn",
             description: "Cross-platform mobile learning application built with React Native (Expo) featuring on-device AI inference via WebLLM (@mlc-ai/web-llm), offline-first architecture with encrypted local storage, push notifications, text-to-speech, Lottie animations, and haptic feedback. Targets Indonesian learners with a nusantara-inspired design. Crash reporting via Sentry, state management with Zustand, and secure storage with expo-secure-store.",
-            techStack: ["React Native", "Expo", "TypeScript", "WebLLM", "Zustand", "Crypto-JS", "Sentry", "Lottie", "Expo Router", "Firebase"],
+            techStack: ["WebLLM", "React Native", "Expo", "TypeScript", "Zustand", "Sentry", "Expo Router", "Firebase", "Crypto-JS", "Lottie"],
             image: "/projects/nusantaralearn.webp"
         },
         {
@@ -412,7 +423,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/risk-assessment-platform",
             link: "https://riskshield.vercel.app/",
             description: "Advanced AI-assisted GRC platform automating OCTAVE Allegro methodology. Features Google Gemini Pro integration, real-time risk analytics, and automated compliance reporting.",
-            techStack: ["Next.js 14", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion", "Supabase", "Google Gemini Pro", "jsPDF", "Recharts"],
+            techStack: ["Google Gemini Pro", "Next.js 14", "React", "Supabase", "TypeScript", "Tailwind CSS", "shadcn/ui", "Recharts", "Framer Motion", "jsPDF"],
             image: "/projects/riskshieldsystem.webp"
         },
         {
@@ -423,7 +434,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu",
             link: "https://www.lexcorpuslaw.com",
             description: "Production-ready CMS and legal research platform. Features secure role-based editorial systems, legal document management, and rich text analysis.",
-            techStack: ["Next.js 14", "React 18", "TypeScript", "Tailwind CSS", "Supabase", "Quill.js", "date-fns", "Lucide"],
+            techStack: ["Next.js 14", "React 18", "TypeScript", "Supabase", "Tailwind CSS", "Quill.js", "date-fns", "Lucide"],
             image: "/projects/Lexcorpus.webp"
         },
         {
@@ -434,7 +445,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/Nexus-EMS",
             link: "https://nexus-ems-flame.vercel.app/",
             description: "Enterprise-grade all-in-one strategic execution platform (Command Center) unifying technical execution with organizational vision. Features OKR management, SLA/incident severity matrix, real-time RBAC with role & permission matrix, high-performance Fastify backend, and a sophisticated Next.js 14 dashboard. Addresses data silos, context switching, and burnout through a unified command interface.",
-            techStack: ["Next.js 14", "Fastify", "PostgreSQL", "Prisma", "Redis", "Docker", "Socket.io", "Radix UI", "shadcn/ui", "Zustand", "Vitest"],
+            techStack: ["Next.js 14", "Fastify", "PostgreSQL", "Redis", "Prisma", "Docker", "Socket.io", "Zustand", "shadcn/ui", "Radix UI", "Vitest"],
             image: "/projects/vanguard.webp"
         },
         {
@@ -466,7 +477,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/wiskost",
             link: "https://wiskost.vercel.app/",
             description: "Luxury winery-inspired residence website template with gold-accent dark theme, professional management system, and automated deployment pipeline.",
-            techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Docker", "Hugging Face", "Formspree", "Vercel"],
+            techStack: ["React 18", "TypeScript", "Docker", "Vite", "Tailwind CSS", "Hugging Face", "Formspree", "Vercel"],
             image: "/projects/WiskostResidence.webp"
         },
         {
@@ -477,7 +488,7 @@ export const profile: Profile = {
             github: "https://github.com/wi5nuu/hargakita.id",
             link: "https://hargakita.netlify.app/",
             description: "Real-time staple goods price monitoring platform for all regions of Indonesia. Visual, user-friendly SaaS that tracks prices of essential commodities (rice, chili, onion, eggs, cooking oil) across hundreds of markets in 34 provinces. Features crowdsourced price reports with intelligent validation filters, automated daily data scraping from government portals, interactive trend charts, and zero login requirement — free and accessible to all Indonesian citizens.",
-            techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Appwrite", "Netlify", "Chart.js", "Crowdsourcing"],
+            techStack: ["React", "TypeScript", "Appwrite", "Vite", "Tailwind CSS", "Netlify", "Chart.js", "Crowdsourcing"],
             image: "/projects/hargakita.webp"
         },
         {
@@ -634,12 +645,12 @@ export const profile: Profile = {
             image: "/certifications/Data_Automation_Participants.webp"
         },
         {
-            name: "Alternative Finalist — AI Open Innovation Challenge 2026",
-            issuer: "President University",
-            date: "2026",
-            category: "finalist",
-            description: "Selected as an alternative finalist in the AI Open Innovation Challenge 2026, a national platform organized by President University for collaboration between academia, industry, and professionals to address business challenges using AI-driven solutions.",
-            image: "/certifications/aiopen.png"
+            name: "AI Open Innovation Challenge 2026",
+            issuer: "President University & Coordinating Ministry of Economic Affairs RI",
+            date: "February – August 2026",
+            category: "winner",
+            description: "National AI competition organized by President University & Kemenko Perekonomian RI with 1,041+ participants across Indonesia. Developed an AI-driven Healthcare solution (ColonyAI) for automated microbiology plate counting, laboratory precision, and ISO 17025 regulatory compliance.",
+            image: "/certifications/aiopeninnovationchallenge.webp"
         }
     ],
     openSource: [
