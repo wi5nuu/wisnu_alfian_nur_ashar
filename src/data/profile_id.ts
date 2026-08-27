@@ -206,7 +206,7 @@ export const profile: Profile = {
             role: "Web Development Intern",
             company: "GAOTEK INC",
             type: "Magang",
-            duration: "April 2026 - Sekarang",
+            duration: "April 2026 - Juli 2026",
             location: "New York, USA (Remote)",
             description: "Membangun dan menyesuaikan website WordPress responsif menggunakan PHP, HTML, CSS, JavaScript, Elementor, dan Gutenberg. Menerapkan praktik SEO terbaik untuk meningkatkan kegunaan dan visibilitas pencarian. Berkolaborasi dalam lingkungan Agile remote via Microsoft Teams.",
             skills: ["WordPress", "PHP", "JavaScript", "SEO", "Elementor", "Agile"]

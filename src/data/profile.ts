@@ -206,7 +206,7 @@ export const profile: Profile = {
             role: "Web Development Intern",
             company: "GAOTEK INC",
             type: "Internship",
-            duration: "April 2026 - Present",
+            duration: "April 2026 - July 2026",
             location: "New York, USA (Remote)",
             description: "Built and maintained responsive WordPress websites using PHP, HTML, CSS, JavaScript, Elementor, and Gutenberg. Applied SEO best practices to improve usability and search visibility. Collaborated in an Agile remote environment via Microsoft Teams.",
             skills: ["WordPress", "PHP", "JavaScript", "SEO", "Elementor", "Agile"]
