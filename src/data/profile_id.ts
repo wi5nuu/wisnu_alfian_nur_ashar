@@ -185,6 +185,15 @@ export const profile: Profile = {
     },
     experience: [
         {
+            role: "Software Developer Intern",
+            company: "PT GRAHABUANA CIKARANG",
+            type: "Magang",
+            duration: "Agustus 2026 - Desember 2026",
+            location: "Cikarang, Bekasi (On-site)",
+            description: "Magang full-stack development di Departemen Operasi Digital pada pengembang properti terkemuka Jababeka. Melakukan perbaikan bug minor, menangani tiket dukungan teknis, dan memelihara database. Mengembangkan peningkatan sistem menggunakan framework PHP, Node.js, Vue.js. Melakukan pengujian deployment, QA/UAT intensif, dan berkolaborasi lintas tim fungsional. Menerapkan pemahaman SDLC yang kuat dengan database relasional, NoSQL, cloud database, dan integrasi sistem.",
+            skills: ["PHP", "Node.js", "Vue.js", "SDLC", "MySQL", "NoSQL", "Cloud Databases", "Integrasi Sistem", "QA/UAT"]
+        },
+        {
             role: "Full Stack Engineer",
             company: "ASHAR GROSIR PARFUM BEKASI",
             type: "Pekerja Lepas (Wiraswasta)",

@@ -185,6 +185,15 @@ export const profile: Profile = {
     },
     experience: [
         {
+            role: "Software Developer Intern",
+            company: "PT GRAHABUANA CIKARANG",
+            type: "Internship",
+            duration: "August 2026 - December 2026",
+            location: "Cikarang, Bekasi (On-site)",
+            description: "Full-stack development intern in Digital Operation Department at Jababeka's leading property developer. Perform minor bug fixing, handle technical support tickets, and maintain databases. Develop system enhancements using PHP, Node.js, Vue.js frameworks. Conduct deployment testing, intensive QA/UAT, and collaborate across functional teams. Apply strong SDLC understanding with relational databases, NoSQL, cloud databases, and system integration.",
+            skills: ["PHP", "Node.js", "Vue.js", "SDLC", "MySQL", "NoSQL", "Cloud Databases", "System Integration", "QA/UAT"]
+        },
+        {
             role: "Full Stack Engineer",
             company: "ASHAR GROSIR PARFUM BEKASI",
             type: "Self-employed",
