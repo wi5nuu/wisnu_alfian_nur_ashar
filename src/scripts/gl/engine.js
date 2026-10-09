@@ -342,6 +342,7 @@ export function createEngine(canvas, opts = {}) {
     eng.time = t;
     eng.resize();
     if (eng.scene && eng.scene.update) eng.scene.update(t, 0.016);
+    if (opts.onFrame) opts.onFrame(t, 0.016);
     draw(t);
   };
   eng.destroy = () => {

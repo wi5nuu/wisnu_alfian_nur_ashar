@@ -3,5 +3,7 @@ Allow: /
 Disallow: /api/
 Disallow: /terminal.json
 Disallow: /id/terminal.json
+Disallow: /universe.json
+Disallow: /id/universe.json
 
 Sitemap: https://www.wisnualfiannurashar.my.id/sitemap-index.xml

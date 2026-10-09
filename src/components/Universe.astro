@@ -3,16 +3,21 @@ import { universe } from "../data/universe";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
 import { getProjectSlug } from "../utils/slug";
+import { universeData } from "../utils/universeData";
+import { explorer as explorerCopy } from "../data/universeExplorer";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const t = isId ? universe.id : universe.en;
 const profile = isId ? profileId : profileEn;
 const basePath = isId ? '/id/projects' : '/projects';
 const known = new Set(profile.projects.map((p) => p.title));
+const lang = isId ? 'id' : 'en';
+const ex = explorerCopy[lang].ui;
+const textData = universeData(lang); // same facts the 3D explorer shows — rendered as crawlable text below
 
 // minimal copy for the client controller
 const clientCopy = JSON.stringify({
-  play: t.play, stop: t.stop, score: t.score, best: t.best,
+  lang, play: t.play, stop: t.stop, score: t.score, best: t.best,
   realms: t.realms.map((r) => ({ id: r.id, title: r.title, mission: r.mission, game: r.game })),
 });
 ---
@@ -53,6 +58,18 @@ const clientCopy = JSON.stringify({
           <em data-uv-status></em>
         </div>
 
+        <div class="uv-legend" data-uv-legend role="group" aria-label={isId ? 'Filter penanda' : 'Marker filter'}></div>
+        <div class="uv-pois" data-uv-pois></div>
+        <aside class="uv-panel" data-uv-panel hidden aria-live="polite"></aside>
+
+        <div class="uv-zoom" role="group" aria-label="Zoom">
+          <button type="button" class="uv-btn uv-btn--icon" data-uv-zin aria-label={ex.zoomIn} title={ex.zoomIn}>+</button>
+          <button type="button" class="uv-btn uv-btn--icon" data-uv-zout aria-label={ex.zoomOut} title={ex.zoomOut}>−</button>
+          <button type="button" class="uv-btn uv-btn--icon" data-uv-zreset aria-label={ex.reset} title={ex.reset}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+        </div>
+
         <div class="uv-labels" data-uv-labels aria-hidden="true"></div>
         <div class="uv-tip" data-uv-tip hidden></div>
         <div class="uv-toast" data-uv-toast role="status" aria-live="polite"></div>
@@ -70,7 +87,7 @@ const clientCopy = JSON.stringify({
           </div>
         </div>
 
-        <p class="uv-hint" data-uv-hint>{t.hint}</p>
+        <p class="uv-hint" data-uv-hint>{ex.realmHelp}</p>
 
         <div class="uv-bottom">
           <div class="uv-tabs" role="tablist" aria-label={isId ? 'Pilih dunia' : 'Choose a realm'}>
@@ -96,30 +113,37 @@ const clientCopy = JSON.stringify({
       </div>
     </div>
 
-    <div class="uv-grid">
-      {t.realms.map((r, i) => (
-        <article class="uv-realm reveal-up" data-uv-card data-tilt style={`transition-delay:${i * 80}ms`}>
-          <header>
-            <span class="uv-num">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{r.title}</h3>
-          </header>
-          <p>{r.blurb}</p>
-          <h4 class="uv-sub">{t.skills}</h4>
-          <ul class="uv-chips">
-            {r.skills.map((s) => <li>{s}</li>)}
-          </ul>
-          <h4 class="uv-sub">{t.proof}</h4>
-          <ul class="uv-proofs">
-            {r.proofs.filter((p) => known.has(p)).map((p) => (
-              <li><a href={`${basePath}/${getProjectSlug(p)}`}>{p}</a></li>
-            ))}
-          </ul>
-          <button type="button" class="uv-btn uv-btn--accent uv-enter" data-uv-enter={r.id}>
-            {t.enter} <span aria-hidden="true">→</span>
-          </button>
-        </article>
-      ))}
-    </div>
+    <details class="uv-text">
+      <summary>{ex.readAsText}</summary>
+      <div class="uv-text-grid">
+        {t.realms.map((r, i) => {
+          const groups = textData.realms[r.id].groups;
+          return (
+            <article class="uv-realm">
+              <header>
+                <span class="uv-num">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{r.title}</h3>
+              </header>
+              <p>{r.blurb}</p>
+              {groups.map((g) => (
+                <>
+                  <h4 class="uv-sub">{g.label}</h4>
+                  {g.id === 'method' ? (
+                    <ol class="uv-steps">{g.items.map((it) => <li><b>{it.t}.</b> {it.d}</li>)}</ol>
+                  ) : g.id === 'skills' ? (
+                    <ul class="uv-chips">{g.items.map((it) => <li>{it.t}</li>)}</ul>
+                  ) : g.id === 'projects' ? (
+                    <ul class="uv-proofs">{g.items.map((it) => <li><a href={it.l?.[0]?.[1]}>{it.t}</a></li>)}</ul>
+                  ) : (
+                    <ul class="uv-list">{g.items.map((it) => <li><b>{it.t}</b>{it.s ? ' — ' + it.s : ''}</li>)}</ul>
+                  )}
+                </>
+              ))}
+            </article>
+          );
+        })}
+      </div>
+    </details>
   </div>
 </section>
 
@@ -173,7 +197,7 @@ const clientCopy = JSON.stringify({
   /* ---------- STAGE ---------- */
   .uv-stage {
     position: relative;
-    height: clamp(460px, 78svh, 720px);
+    height: clamp(500px, 82svh, 780px);
     border-radius: 24px;
     border: 1px solid rgba(255,255,255,0.12);
     background: #070707;
@@ -228,6 +252,7 @@ const clientCopy = JSON.stringify({
   .uv-meterbar em { font-style: normal; color: var(--accent); font-weight: 600; }
 
   .uv-labels { position: absolute; inset: 0; overflow: hidden; }
+  .uv-stage:not(.is-playing) .uv-labels { display: none; } /* pipeline chips only matter during the mission; the explorer markers cover them */
   :global(.uv-chip) {
     position: absolute; left: 0; top: 0; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; white-space: nowrap;
     border-color: rgba(132,225,12,0.45); will-change: transform; pointer-events: none;
@@ -297,32 +322,111 @@ const clientCopy = JSON.stringify({
   .uv-stage.is-full .uv-hud { padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)); }
   :global(html.uv-lock), :global(html.uv-lock body) { overflow: hidden !important; overscroll-behavior: none; }
 
-  /* ---------- REALM CARDS ---------- */
-  .uv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 18px; }
-  .uv-realm {
-    position: relative; display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, box-shadow 0.3s, transform 0.5s cubic-bezier(0.16,1,0.3,1);
-    transform-style: preserve-3d;
+  /* ---------- EXPLORER (markers, legend, panel, zoom) ---------- */
+  .uv-legend { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; pointer-events: auto; max-width: 100%; }
+  .uv-legend::-webkit-scrollbar { display: none; }
+  .uv-legend[hidden] { display: none; }
+  .uv-stage.is-playing .uv-legend, .uv-stage.is-playing .uv-pois, .uv-stage.is-playing .uv-panel { display: none; }
+  :global(.uv-leg) {
+    display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0; padding: 6px 12px; border-radius: 999px; font: inherit; font-size: 12px; font-weight: 500; color: #fff; cursor: pointer;
+    background: rgba(10,10,10,0.6); border: 1px solid rgba(255,255,255,0.16); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
-  .uv-realm.is-active, .uv-realm:hover { border-color: rgba(132,225,12,0.55); box-shadow: 0 0 40px rgba(132,225,12,0.08); }
+  :global(.uv-leg b) { font-size: 10px; font-weight: 600; color: var(--accent); }
+  :global(.uv-leg:hover) { border-color: rgba(132,225,12,0.6); }
+  :global(.uv-leg[aria-pressed="true"]) { background: var(--accent); border-color: var(--accent); color: #0A0A0A; }
+  :global(.uv-leg[aria-pressed="true"] b) { color: #0A0A0A; }
+
+  .uv-pois { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 3; isolation: isolate; }
+  .uv-pois[hidden] { display: none; }
+  :global(.uv-poi) {
+    position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 7px; padding: 8px; margin: 0; border: 0; background: transparent; color: #fff; cursor: pointer; pointer-events: auto;
+    font: inherit; font-size: 12px; font-weight: 500; white-space: nowrap; will-change: transform, opacity; -webkit-tap-highlight-color: transparent;
+  }
+  :global(.uv-poi[hidden]) { display: none; }
+  :global(.uv-poi i) { width: 12px; height: 12px; flex-shrink: 0; background: var(--accent); box-shadow: 0 0 0 3px rgba(132,225,12,0.25), 0 0 14px rgba(132,225,12,0.8); transition: transform 0.2s; }
+  :global(.uv-poi[data-g="method"] i) { transform: rotate(45deg); border-radius: 2px; }
+  :global(.uv-poi[data-g="skills"] i) { border-radius: 50%; }
+  :global(.uv-poi[data-g="projects"] i) { border-radius: 4px; background: transparent; border: 2px solid var(--accent); }
+  :global(.uv-poi[data-g="reports"] i), :global(.uv-poi[data-g="achievements"] i), :global(.uv-poi[data-g="experience"] i), :global(.uv-poi[data-g="certs"] i) { clip-path: polygon(50% 0, 100% 100%, 0 100%); border-radius: 0; background: #fff; box-shadow: none; filter: drop-shadow(0 0 6px rgba(255,255,255,0.8)); }
+  :global(.uv-poi span) {
+    padding: 4px 10px; border-radius: 999px; background: rgba(10,10,10,0.78); border: 1px solid rgba(132,225,12,0.45); max-width: 190px; overflow: hidden; text-overflow: ellipsis;
+    opacity: 0; transform: translateX(-4px); transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+  }
+  :global(.uv-poi.is-label span) { opacity: 1; transform: none; }
+  :global(.uv-poi:hover i), :global(.uv-poi:focus-visible i) { transform: scale(1.35); }
+  :global(.uv-poi[data-g="method"]:hover i) { transform: rotate(45deg) scale(1.35); }
+  :global(.uv-poi:focus-visible) { outline: none; }
+  :global(.uv-poi.is-sel i) { background: #fff; box-shadow: 0 0 0 4px rgba(132,225,12,0.7), 0 0 22px rgba(132,225,12,1); }
+  :global(.uv-poi.is-sel span) { background: var(--accent); color: #0A0A0A; border-color: var(--accent); }
+
+  .uv-zoom { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 4; }
+  .uv-zoom .uv-btn { width: 40px; height: 40px; padding: 0; font-size: 20px; line-height: 1; }
+  .uv-stage.is-playing .uv-zoom { display: none; }
+
+  .uv-panel {
+    position: absolute; z-index: 6; right: 16px; top: 112px; bottom: 84px; width: min(360px, 42%); display: flex; flex-direction: column;
+    background: rgba(10,10,10,0.88); border: 1px solid rgba(132,225,12,0.4); border-radius: 20px; overflow: hidden; pointer-events: auto;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 40px rgba(132,225,12,0.08);
+    opacity: 0; transform: translateX(16px); transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .uv-panel[hidden] { display: none; }
+  .uv-panel.is-open { opacity: 1; transform: none; }
+  :global(.uv-panel-top) { display: flex; align-items: center; gap: 10px; padding: 12px 12px 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
+  :global(.uv-pill) { padding: 4px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(132,225,12,0.45); }
+  :global(.uv-panel-count) { font-size: 11px; color: rgba(255,255,255,0.5); font-variant-numeric: tabular-nums; }
+  :global(.uv-panel-x) { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; border: 0; background: transparent; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 14px; }
+  :global(.uv-panel-x:hover) { background: rgba(255,255,255,0.1); color: #fff; }
+  :global(.uv-panel-body) { scrollbar-width: thin; scrollbar-color: rgba(132,225,12,0.5) transparent; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 14px 16px 8px; }
+  :global(.uv-panel-body h3) { margin: 0; font-family: var(--font-sans); font-size: 19px; font-weight: 600; line-height: 1.25; color: #fff; }
+  :global(.uv-panel-sub) { margin: 4px 0 0; font-size: 12px; color: var(--accent); font-weight: 500; }
+  :global(.uv-panel-body img) { display: block; width: 100%; height: auto; margin-top: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+  :global(.uv-panel-desc) { margin: 12px 0 0; font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.8); }
+  :global(.uv-panel-facts) { margin: 12px 0 0; display: grid; gap: 10px; }
+  :global(.uv-panel-facts dt) { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; }
+  :global(.uv-panel-facts dd) { margin: 3px 0 0; font-size: 12.5px; line-height: 1.6; color: rgba(255,255,255,0.78); word-break: break-word; }
+  :global(.uv-panel-chips) { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+  :global(.uv-panel-chips li) { padding: 3px 9px; border-radius: 999px; font-size: 11px; border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); }
+  :global(.uv-panel-links) { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }
+  :global(.uv-panel-links a) { padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 500; text-decoration: none; color: #0A0A0A; background: var(--accent); }
+  :global(.uv-panel-links a:nth-child(n+2)) { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  :global(.uv-panel-links a:hover) { filter: brightness(1.12); }
+  :global(.uv-panel-nav) { display: flex; justify-content: space-between; padding: 8px 12px; border-top: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
+  :global(.uv-panel-nav button) { width: 38px; height: 34px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #fff; font-size: 20px; line-height: 1; cursor: pointer; }
+  :global(.uv-panel-nav button:hover) { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- TEXT VERSION (crawlable, collapsed) ---------- */
+  .uv-text { margin-top: 18px; border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; background: rgba(255,255,255,0.03); }
+  .uv-text > summary { cursor: pointer; padding: 16px 20px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); list-style: none; }
+  .uv-text > summary::-webkit-details-marker { display: none; }
+  .uv-text > summary::after { content: ' +'; color: var(--accent); }
+  .uv-text[open] > summary::after { content: ' −'; }
+  .uv-text-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 4px 16px 20px; }
+  .uv-realm { display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
   .uv-realm header { display: flex; align-items: baseline; gap: 12px; }
   .uv-num { color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; }
-  .uv-realm h3 { margin: 0; font-family: var(--font-sans); font-size: 22px; font-weight: 600; color: #fff; }
-  .uv-realm p { margin: 0; color: rgba(255,255,255,0.74); font-size: 14.5px; line-height: 1.6; }
+  .uv-realm h3 { margin: 0; font-family: var(--font-sans); font-size: 19px; font-weight: 600; color: #fff; }
+  .uv-realm p { margin: 0; color: rgba(255,255,255,0.74); font-size: 14px; line-height: 1.6; }
   .uv-sub { margin: 6px 0 0; font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
   .uv-chips, .uv-proofs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
   .uv-chips li { padding: 4px 10px; border-radius: 999px; font-size: 12px; border: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.85); }
-  .uv-proofs a { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; color: var(--accent); border: 1px solid rgba(132,225,12,0.4); text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .uv-proofs a { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; color: var(--accent); border: 1px solid rgba(132,225,12,0.4); text-decoration: none; }
   .uv-proofs a:hover, .uv-proofs a:focus-visible { background: var(--accent); color: #0A0A0A; outline: none; }
-  .uv-enter { align-self: flex-start; margin-top: 8px; }
+  .uv-steps, .uv-list { margin: 0; padding-left: 18px; color: rgba(255,255,255,0.74); font-size: 13px; line-height: 1.6; display: grid; gap: 4px; }
+  .uv-steps b, .uv-list b { color: #fff; font-weight: 500; }
 
   @media (max-width: 900px) {
-    .uv-grid { grid-template-columns: 1fr; }
+    .uv-text-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 767px) {
+    .uv-panel { left: 10px; right: 10px; top: auto; bottom: 118px; width: auto; max-height: 46%; transform: translateY(16px); }
+    .uv-panel.is-open { transform: none; }
+    .uv-zoom { top: auto; bottom: 126px; transform: none; right: 10px; flex-direction: row; }
+    .uv-zoom .uv-btn { width: 36px; height: 36px; }
+    .uv-stage.has-panel .uv-zoom, .uv-stage.has-panel .uv-hint { display: none; }
+    :global(.uv-poi span) { max-width: 140px; font-size: 11px; }
   }
   @media (max-width: 640px) {
-    .uv-stage { height: min(74svh, 640px); border-radius: 20px; }
+    .uv-stage { height: min(78svh, 680px); border-radius: 20px; }
     .uv-hud { padding: 10px; }
     .uv-card { max-width: 66%; padding: 8px 12px; }
     .uv-title { font-size: 15px; }

@@ -5,6 +5,7 @@ import { softwareScene } from './scene-software.js';
 import { devopsScene } from './scene-devops.js';
 import { canRunGL, prefersReducedMotion, isCoarse, quality, onIdle } from './env.js';
 import { clamp } from './geo.js';
+import { createExplorer, exploreDistance } from './explorer.js';
 
 const MAKERS = { cyber: cyberScene, ai: aiScene, software: softwareScene, devops: devopsScene };
 const IDS = ['cyber', 'ai', 'software', 'devops'];
@@ -28,6 +29,7 @@ export function mountUniverse(root) {
     overlay: $('[data-uv-overlay]'), oTitle: $('[data-uv-o-title]'), oSub: $('[data-uv-o-sub]'), oScore: $('[data-uv-o-score]'),
     play: $('[data-uv-play]'), imm: $('[data-uv-imm]'), tilt: $('[data-uv-tilt]'), retry: $('[data-uv-retry]'), exit: $('[data-uv-exit]'),
     hint: $('[data-uv-hint]'),
+    zin: $('[data-uv-zin]'), zout: $('[data-uv-zout]'), zreset: $('[data-uv-zreset]'),
   };
   if (import.meta.env.DEV) window.__uv = { get cur() { return cur; }, get eng() { return eng; } };
   const tabs = [...root.querySelectorAll('[data-uv-tab]')];
@@ -36,6 +38,9 @@ export function mountUniverse(root) {
   const reduced = prefersReducedMotion();
   const coarse = isCoarse();
 
+  let explorer = null;
+  // camera "fly-to" goals (set by the explorer when a marker is selected; cleared by the user dragging)
+  const goal = { on: false, x: 0, y: 0, z: 0, yaw: null, pitch: null, dist: null };
   let eng = null, cur = null, curId = 'cyber', pending = null, visible = false, immersive = false, booted = false, disposed = false;
   let lastInput = 0, idleLog = 0, rafIdle = 0;
   const scenes = {};
@@ -100,6 +105,7 @@ export function mountUniverse(root) {
     }
     stage.classList.toggle('is-playing', playing);
     if (ui.hint) ui.hint.hidden = playing;
+    if (explorer) explorer.setEnabled(!playing);
   }
 
   // ---------- scenes ----------
@@ -154,6 +160,11 @@ export function mountUniverse(root) {
     view.yaw = c.yaw; view.pitch = c.pitch; view.dist = c.dist; view.vyaw = view.vpitch = 0;
     buildLabels(cur);
     applyRealmUi(id);
+    if (explorer) {
+      view.dist = exploreDistance(id);
+      goal.on = false; goal.yaw = goal.pitch = goal.dist = null;
+      explorer.setRealm(id, cur).then(() => { if (reduced && eng) eng.once(); });
+    }
     H.set({ score: 0, best: loadBest(id), combo: 0, meter: 1, meterLabel: '', status: '' });
     syncPlayBtn();
   }
@@ -188,7 +199,30 @@ export function mountUniverse(root) {
     const idle = t - lastInput > 2.2;
     if (!reduced) {
       if (cur.playing) view.yaw += dt * 0.025;
-      else if (idle && !drag.active) view.yaw += dt * 0.16;
+      else if (idle && !drag.active && !(explorer && explorer.hasSelection) && goal.yaw === null) view.yaw += dt * 0.16;
+    }
+    // fly-to easing (marker selected / reset)
+    const ek = reduced ? 1 : Math.min(1, dt * 4.5);
+    const base = cur.camera;
+    const tx = goal.on ? goal.x : base.tx, ty = goal.on ? goal.y : base.ty, tz = goal.on ? goal.z : base.tz;
+    eng.cam.tx += (tx - eng.cam.tx) * ek;
+    eng.cam.ty += (ty - eng.cam.ty) * ek;
+    eng.cam.tz += (tz - eng.cam.tz) * ek;
+    if (goal.yaw !== null) {
+      let d = goal.yaw - view.yaw;
+      d = Math.atan2(Math.sin(d), Math.cos(d));
+      view.yaw += d * ek;
+      if (Math.abs(d) < 0.01) goal.yaw = null;
+    }
+    if (goal.pitch !== null) {
+      const d = goal.pitch - view.pitch;
+      view.pitch += d * ek;
+      if (Math.abs(d) < 0.01) goal.pitch = null;
+    }
+    if (goal.dist !== null) {
+      const d = goal.dist - view.dist;
+      view.dist += d * ek;
+      if (Math.abs(d) < 0.05) goal.dist = null;
     }
     view.pitch = clamp(view.pitch, -1.38, 1.38);
     gyro.yaw += (gyro.ty - gyro.yaw) * Math.min(1, dt * 6);
@@ -196,6 +230,8 @@ export function mountUniverse(root) {
     eng.cam.yaw = view.yaw + gyro.yaw;
     eng.cam.pitch = clamp(view.pitch + gyro.pitch, -1.45, 1.45);
     eng.cam.dist = view.dist;
+
+    if (explorer) explorer.update(t, dt);
 
     // floating labels
     if (cur.stages && cur.labelEls) {
@@ -251,6 +287,7 @@ export function mountUniverse(root) {
       drag.x = drag.lx = e.clientX; drag.y = drag.ly = e.clientY; drag.moved = 0; drag.t = performance.now(); drag.lt = drag.t;
     }
     view.vyaw = view.vpitch = 0;
+    goal.yaw = goal.pitch = null;
     poke();
   });
   on(canvas, 'pointermove', (e) => {
@@ -259,7 +296,7 @@ export function mountUniverse(root) {
     if (pointers.size === 2) {
       const [a, b] = [...pointers.values()];
       const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
-      if (pinch0 > 0) view.dist = clamp(pinchDist0 * (pinch0 / d), 9, 28);
+      if (pinch0 > 0) { view.dist = clamp(pinchDist0 * (pinch0 / d), 7, 40); goal.dist = null; }
       poke();
       return;
     }
@@ -298,13 +335,35 @@ export function mountUniverse(root) {
     else if (k === 'ArrowRight') view.yaw -= 0.12;
     else if (k === 'ArrowUp') view.pitch -= 0.1;
     else if (k === 'ArrowDown') view.pitch += 0.1;
-    else if (k === '+' || k === '=') view.dist = clamp(view.dist - 1, 9, 28);
-    else if (k === '-') view.dist = clamp(view.dist + 1, 9, 28);
-    else if (k === 'Escape' && immersive) setImmersive(false);
+    else if (k === '+' || k === '=') zoomBy(0.85);
+    else if (k === '-') zoomBy(1.18);
+    else if (k === 'Escape') { if (explorer && explorer.hasSelection) explorer.close(); else if (immersive) setImmersive(false); else return; }
     else return;
     e.preventDefault();
     poke();
   });
+
+  // ---------- zoom (wheel in immersive / Ctrl+wheel, buttons, keys) ----------
+  function zoomBy(f) {
+    view.dist = clamp(view.dist * f, 7, 40);
+    goal.dist = null;
+    poke();
+  }
+  on(canvas, 'wheel', (e) => {
+    if (!immersive && !e.ctrlKey && !e.metaKey) return; // plain wheel keeps scrolling the page
+    e.preventDefault();
+    zoomBy(1 + clamp(e.deltaY, -120, 120) * 0.0016);
+  }, { passive: false });
+  if (ui.zin) on(ui.zin, 'click', () => zoomBy(0.8));
+  if (ui.zout) on(ui.zout, 'click', () => zoomBy(1.25));
+  if (ui.zreset) on(ui.zreset, 'click', () => { if (explorer) explorer.close(); resetView(); });
+  function resetView() {
+    goal.on = false;
+    goal.dist = explorer ? exploreDistance(curId) : cur.camera.dist;
+    goal.yaw = cur.camera.yaw;
+    goal.pitch = cur.camera.pitch;
+    poke();
+  }
 
   // ---------- gyroscope ("tilt to look around") ----------
   function onOri(e) {
@@ -343,12 +402,15 @@ export function mountUniverse(root) {
     if (!cur) return;
     if (ui.overlay) ui.overlay.hidden = true;
     if (coarse || window.innerWidth < 768) setImmersive(true);
+    if (explorer) explorer.close();
+    goal.on = false; goal.dist = cur.camera.dist; goal.pitch = cur.camera.pitch;
     cur.start();
     if (reduced) eng.start();
     syncPlayBtn();
   }
   function stopGame() {
     if (cur) cur.stop();
+    if (cur && explorer) goal.dist = exploreDistance(curId);
     syncPlayBtn();
   }
 
@@ -391,6 +453,16 @@ export function mountUniverse(root) {
       onLost: () => { stage.classList.add('no-gl'); setTimeout(() => { if (!disposed) { teardownEngine(); booted = false; stage.classList.remove('no-gl'); boot(); } }, 400); },
     });
     if (!eng) { stage.classList.add('no-gl'); return; }
+    explorer = createExplorer({
+      stage, eng, lang: copy.lang || 'en',
+      focusTo: (p) => {
+        const narrow = window.innerWidth < 768;
+        goal.on = true; goal.x = p.x; goal.y = p.y - (narrow ? p.dist * 0.34 : 0); goal.z = p.z;
+        goal.dist = p.dist; goal.yaw = Math.atan2(p.x, p.z); goal.pitch = 0.3;
+        poke();
+      },
+      resetFocus: () => { goal.on = false; goal.dist = exploreDistance(curId); goal.yaw = goal.pitch = null; poke(); },
+    });
     mount(curId);
     eng.resize();
     if (reduced) eng.once();
@@ -398,6 +470,7 @@ export function mountUniverse(root) {
     requestAnimationFrame(() => stage.classList.add('is-live'));
   }
   function teardownEngine() {
+    if (explorer) { explorer.dispose(); explorer = null; }
     if (eng) { eng.destroy(); eng = null; }
     for (const k of Object.keys(scenes)) delete scenes[k];
     cur = null;

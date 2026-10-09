@@ -35,6 +35,7 @@ Personal portfolio website built with Astro. Features bilingual (EN/ID) pages, A
 src/scripts/gl/
 ├── engine.js        # WebGL2: additive points+lines, orbit camera, adaptive DPR (~10 KB)
 ├── scene-*.js       # nexus (hero), cyber, ai, software, devops — animation lives in vertex shaders
+├── explorer.js      # clickable knowledge map: skills, projects, bug-bounty reports orbit each realm (data: /universe.json)
 ├── hero3d.js        # hero backdrop, boots after load + idle
 └── universe.js      # section controller: realms, HUD, games, gyro, immersive mode
 src/scripts/fx.js    # tilt/glare, magnetic buttons, counters
