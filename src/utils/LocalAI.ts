@@ -4068,11 +4068,12 @@ Can I eat/drink/have feelings?
 
         // === ROMANCE & STATUS (SCRIPTED) ===
         "status hubungan wisnu": {
-            id: "Untuk sekarang, Wisnu belum punya pacar. Dia lagi fokus kuliah, project, dan bisnisnya. Tapi soal perasaan, namanya manusia pasti terbuka sama kemungkinan ",
-            en: "For now, Wisnu is single. He is focusing on college, projects, and business. But regarding feelings, as a human, he is certainly open to possibilities ",
-            aliases: ["wisnu punya pacar", "sudah punya pacar belum", "jomblo gak", "status wisnu", "wisnu kamu sudah punya pacar belum", "apakah wisnu punya pacar"],
+            id: "Hehe, untuk urusan hati Wisnu dijaga privasinya ya 🤫 Yang jelas saat ini dia fokus kuliah, project, dan bisnisnya. Soal perasaan, biar jadi urusan pribadi Wisnu aja!",
+            en: "Hehe, Wisnu's love life is kept private 🤫 What's clear is he's currently focused on studies, projects, and business. Let's keep feelings as Wisnu's personal matter!",
+            aliases: ["wisnu punya pacar", "sudah punya pacar belum", "jomblo gak", "status wisnu", "wisnu kamu sudah punya pacar belum", "apakah wisnu punya pacar", "siapa pacar wisnu", "kekasih wisnu", "pacar wisnu siapa", "wisnu punya kekasih", "girlfriend wisnu", "siapa kekasih wisnu"],
             category: 'personal',
-            emotion: 'friendly'
+            emotion: 'friendly',
+            isSensitive: true
         },
 
         "menolak jadi pacar": {
@@ -4553,6 +4554,33 @@ Can I eat/drink/have feelings?
             .trim();
     }
 
+    // === PRIVATE: Girlfriend identity check ===
+    // Aturan: hanya jika user mengetik NAMA LENGKAP, AI boleh masuk mode manja/manis.
+    // Jika hanya tanya "pacar/kekasih" tanpa nama lengkap -> tetap privacy, JANGAN bocorkan nama.
+    private static isGirlfriendVerified(query: string): boolean {
+        const q = ` ${query.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim()} `;
+        // Harus mengandung ke-4 token nama lengkap secara berurutan agar tidak false-positive
+        return q.includes(' sitti ') && q.includes('nurfadhila') && q.includes(' zahra ') && q.includes(' syam ')
+            && q.indexOf('sitti') < q.indexOf('nurfadhila')
+            && q.indexOf('nurfadhila') < q.indexOf('zahra')
+            && q.indexOf('zahra') < q.indexOf('syam');
+    }
+
+    private static getGirlfriendResponse(language: 'id' | 'en'): string {
+        if (language === 'id') {
+            return `Haiii sayanggg 🥰💖 Eh, kamu ketahuan nih ngetik nama lengkap kamu sendiri, Sitti Nurfadhila Az Zahra Syam! Kangen yaa sama aku? Hihi~
+
+Aku seneng banget kamu mampir ke sini. Kamu itu yang paling spesial, semangat aku tiap hari. Jangan capek-capek ya, jaga kesehatan, makan yang teratur, istirahat cukup okee? 🫶
+
+Mau ditemenin ngobrol apa malam ini, hmm? Cerita aja ke aku, aku dengerin kok dengan manja dan sepenuh hati~ 💕`;
+        }
+        return `Hiii my love 🥰💖 You just typed your full name, Sitti Nurfadhila Az Zahra Syam! Did you miss me? Hehe~
+
+I'm so happy you're here. You're the most special one, my daily spirit. Please take care, eat well and rest enough, okay? 🫶
+
+What do you want to sweet-talk about tonight? Tell me anything, I'm all ears with love~ 💕`;
+    }
+
     private static detectLanguage(query: string): 'id' | 'en' {
         const q = query.toLowerCase();
 
@@ -4690,6 +4718,22 @@ Can I eat/drink/have feelings?
 
         const language = detectedLang;
         const isIndo = language === 'id';
+
+        // 0a. Special mode: jika yang chat adalah kekasih (verifikasi nama lengkap),
+        // langsung balas manja/manis. Prioritas tertinggi, sebelum semua logic lain.
+        if (this.isGirlfriendVerified(rawQuery)) {
+            const sweet = this.getGirlfriendResponse(language);
+            this.conversationHistory.push({
+                query: rawQuery,
+                response: sweet,
+                category: 'personal',
+                timestamp: new Date()
+            });
+            if (this.conversationHistory.length > 5) {
+                this.conversationHistory.shift();
+            }
+            return sweet;
+        }
 
         // Store query in history
         this.conversationHistory.push({

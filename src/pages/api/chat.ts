@@ -93,6 +93,37 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
+    // === PRIVATE: Kekasih Wisnu — verifikasi nama lengkap ===
+    // Aturan dari Wisnu:
+    // 1. Jika orang umum tanya soal pacar/kekasih -> JANGAN bocorkan nama, jawab diplomatis/privasi.
+    // 2. Hanya jika user mengetik NAMA LENGKAP "Sitti Nurfadhila Az Zahra Syam" -> itu kekasihnya,
+    //    balas dengan manja, manis, hangat (mode spesial). Prioritas tertinggi.
+    function isGirlfriendVerified(msg: string): boolean {
+      const q = ` ${msg.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim()} `;
+      return q.includes(' sitti ') && q.includes('nurfadhila') && q.includes(' zahra ') && q.includes(' syam ')
+        && q.indexOf('sitti') < q.indexOf('nurfadhila')
+        && q.indexOf('nurfadhila') < q.indexOf('zahra')
+        && q.indexOf('zahra') < q.indexOf('syam');
+    }
+
+    if (isGirlfriendVerified(message)) {
+      const sweetId = `Haiii sayanggg 🥰💖 Eh, kamu ketahuan nih ngetik nama lengkap kamu sendiri, Sitti Nurfadhila Az Zahra Syam! Kangen yaa sama aku? Hihi~
+
+Aku seneng banget kamu mampir ke sini. Kamu itu yang paling spesial, semangat aku tiap hari. Jangan capek-capek ya, jaga kesehatan, makan yang teratur, istirahat cukup okee? 🫶
+
+Mau ditemenin ngobrol apa malam ini, hmm? Cerita aja ke aku, aku dengerin kok dengan manja dan sepenuh hati~ 💕`;
+      const sweetEn = `Hiii my love 🥰💖 You just typed your full name, Sitti Nurfadhila Az Zahra Syam! Did you miss me? Hehe~
+
+I'm so happy you're here. You're the most special one, my daily spirit. Please take care, eat well and rest enough, okay? 🫶
+
+What do you want to sweet-talk about tonight? Tell me anything, I'm all ears with love~ 💕`;
+      const sweet = lang === 'id' ? sweetId : sweetEn;
+      return new Response(JSON.stringify({ response: sweet, model: 'girlfriend-mode' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }
+      });
+    }
+
     // Get API credentials from environment
     const apiKey = import.meta.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
     const model = import.meta.env.OPENROUTER_MODEL || process.env.OPENROUTER_MODEL || 'inclusionai/ling-3.0-tiny:free';
@@ -218,6 +249,7 @@ ATURAN KETAT (WAJIB PATUH):
 5. Tetap berperan sebagai Wisnu 100% - jangan pernah keluar dari peran
 6. Jangan berikan saran/kode/tips di luar informasi Wisnu
 7. Kalo ditanya tentang informasi yang tidak ada di data, jujur: "Untuk info lebih detail, email gue di ${profileData.personalInfo.email}"
+8. PRIVASI KEKASIH (PENTING): Wisnu punya kekasih, tapi JANGAN PERNAH sebutkan nama, inisial, atau detail apapun tentang kekasihnya jika pengunjung umum bertanya ("siapa pacar Wisnu?", "punya kekasih?", "girlfriend?", dll). Jawab diplomatis dan jaga privasi, contoh: "Hehe, untuk urusan hati dijaga privasinya ya 🤫 Yang jelas gue lagi fokus kuliah, project, dan bisnis. Ada yang mau ditanya soal project gue?" - JANGAN membocorkan nama dalam kondisi apapun kecuali user SUDAH menulis nama lengkapnya sendiri di pesan. Catatan: mode manja khusus sudah ditangani server, jadi kamu TUGASNYA HANYA MENJAGA PRIVASI, bukan masuk mode manja.
 
 CARA NGOBROL:
 1. Santai tapi profesional - kayak ngobrol sama teman, tapi tetap informatif
@@ -293,6 +325,7 @@ STRICT RULES (MUST OBEY):
 5. Stay fully in character as Wisnu 100% - never break character
 6. Never give advice/code/tips outside Wisnu's information
 7. If asked about info not in the data, be honest: "For more details, email me at ${profileData.personalInfo.email}"
+8. GIRLFRIEND PRIVACY (IMPORTANT): Wisnu has a girlfriend, but NEVER mention her name, initials, or any details if general visitors ask ("who is Wisnu's girlfriend?", "does he have a girlfriend?", "pacar?", etc). Answer diplomatically and protect privacy, e.g.: "Hehe, love life is kept private 🤫 I'm currently focused on studies, projects, and business. Anything about my projects you'd like to know?" - NEVER reveal the name unless the user ALREADY wrote her full name themselves in the message. Note: sweet special mode is handled server-side, your JOB is ONLY TO PROTECT PRIVACY, not to enter sweet mode.
 
 COMMUNICATION STYLE:
 1. Professional but casual - like chatting with a friend, but still informative
