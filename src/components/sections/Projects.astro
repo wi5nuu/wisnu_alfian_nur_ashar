@@ -1,7 +1,7 @@
 ---
 import { profile as profileEn } from '../../data/profile';
 import { profile as profileId } from '../../data/profile_id';
-import { getProjectSlug } from '../../utils/slug';
+import { getProjectSlug, thumbOf } from '../../utils/slug';
 import { ExternalLink, Github, ArrowUpRight, Search } from 'lucide-astro';
 
 const isId = Astro.url.pathname.startsWith('/id');
@@ -92,10 +92,13 @@ const totalProjectsCount = profile.projects.length;
                   <span class="dot green"></span>
                 </div>
                 <img
-                  src={project.image}
+                  src={thumbOf(project.image)}
                   alt={project.title}
                   class="card-img"
+                  width="640"
+                  height="360"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div class="card-overlay">
                   <ArrowUpRight class="overlay-icon" />

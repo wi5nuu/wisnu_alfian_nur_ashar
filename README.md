@@ -23,7 +23,26 @@ Personal portfolio website built with Astro. Features bilingual (EN/ID) pages, A
 | **Dark Mode** | System-aware with localStorage persistence |
 | **View Transitions** | SPA-like navigation via Astro's ClientRouter |
 | **SEO** | Open Graph, Twitter Cards, JSON-LD, sitemap |
-| **Scroll Animations** | Intersection Observer reveal effects |
+| **Scroll Animations** | Intersection Observer reveal effects + CSS scroll-driven 3D entrances |
+| **Skill Universe (3D)** | Custom WebGL2 engine (no Three.js): Cyber / AI / Software / DevOps realms, each with a playable mission, touch + gyro orbit, adaptive resolution |
+| **Terminal** | Press the backtick key (or tap `$_`) for a lazy-loaded hacker terminal with real portfolio data |
+
+---
+
+## 3D / interaction layer
+
+```
+src/scripts/gl/
+├── engine.js        # WebGL2: additive points+lines, orbit camera, adaptive DPR (~10 KB)
+├── scene-*.js       # nexus (hero), cyber, ai, software, devops — animation lives in vertex shaders
+├── hero3d.js        # hero backdrop, boots after load + idle
+└── universe.js      # section controller: realms, HUD, games, gyro, immersive mode
+src/scripts/fx.js    # tilt/glare, magnetic buttons, counters
+src/scripts/terminal.js
+```
+
+The 3D code is lazy-loaded (after `load` + idle for the hero, on approach for the Universe), pauses when off-screen, and falls back to a CSS grid when WebGL is missing or `Save-Data` is on, and renders static frames for reduced-motion users.
+Helper scripts: `npm run thumbs` (card thumbnails) and `npm run og` (regenerates `public/og-image.jpg`).
 
 ---
 

@@ -9,7 +9,9 @@
     "icons": "node scripts/download-icons.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "optimize-images": "node optimize-images.mjs"
+    "optimize-images": "node optimize-images.mjs",
+    "thumbs": "node scripts/make-thumbs.mjs",
+    "og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@astrojs/check": "0.9.9",

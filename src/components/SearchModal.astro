@@ -51,8 +51,7 @@ const isId = Astro.url.pathname.startsWith('/id');
 </div>
 
 <script>
-  import { profile as profileEn } from '../data/profile';
-  import { profile as profileId } from '../data/profile_id';
+  // The profile data (~95 KB) is only fetched when search is first used, keeping every page light.
 
   const setupSearch = () => {
     const modal = document.getElementById('search-modal');
@@ -66,7 +65,7 @@ const isId = Astro.url.pathname.startsWith('/id');
     if (!modal || !searchInput || !resultsContainer) return;
 
     const isId = window.location.pathname.startsWith('/id');
-    const profile = isId ? profileId : profileEn;
+    let profile: any = null;
     let selectedIndex = -1;
 
     // Build searchable index
@@ -163,13 +162,20 @@ const isId = Astro.url.pathname.startsWith('/id');
       return index;
     };
 
-    const searchIndex = buildSearchIndex();
+    let searchIndex: ReturnType<typeof buildSearchIndex> = [];
+    const ensureIndex = async () => {
+      if (searchIndex.length) return;
+      const mod = isId ? await import('../data/profile_id') : await import('../data/profile');
+      profile = mod.profile;
+      searchIndex = buildSearchIndex();
+    };
 
     const openModal = () => {
       modal?.classList.add('search-modal--open');
       modal?.setAttribute('aria-hidden', 'false');
       searchInput?.focus();
       document.body.style.overflow = 'hidden';
+      void ensureIndex();
     };
 
     const closeModal = () => {
@@ -191,7 +197,7 @@ const isId = Astro.url.pathname.startsWith('/id');
       selectedIndex = -1;
     };
 
-    const performSearch = (query: string) => {
+    const performSearch = async (query: string) => {
       if (!query.trim()) {
         resultsContainer!.innerHTML = `
           <div class="search-empty">
@@ -205,6 +211,7 @@ const isId = Astro.url.pathname.startsWith('/id');
         return;
       }
 
+      await ensureIndex();
       const searchTerms = query.toLowerCase().split(' ').filter(t => t.length > 0);
       const results = searchIndex.filter(item => {
         return searchTerms.some(term => 

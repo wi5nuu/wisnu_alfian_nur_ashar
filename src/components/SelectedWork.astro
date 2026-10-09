@@ -2,7 +2,7 @@
 import { CornerDownRight } from "lucide-astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
-import { getProjectSlug } from "../utils/slug";
+import { getProjectSlug, thumbOf } from "../utils/slug";
 
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
@@ -35,7 +35,7 @@ const selectedProjects = profile.projects.slice(0, 5);
           style={`transition-delay: ${index * 100}ms`}
         >
           <div class="project-image-wrap">
-            <img src={project.image || "/projects/placeholder.webp"} alt={project.title} class="project-image" width="640" height="360" loading="lazy" decoding="async" />
+            <img src={thumbOf(project.image || "/projects/placeholder.webp")} alt={project.title} class="project-image" width="640" height="360" loading="lazy" decoding="async" />
           </div>
           <div class="project-content">
             <h3 class="project-title">{project.title}</h3>
