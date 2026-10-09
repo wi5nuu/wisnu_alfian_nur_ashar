@@ -5,9 +5,15 @@ import ScrollToTop from "../components/ScrollToTop.astro";
 import SearchModal from "../components/SearchModal.astro";
 import Toast from "../components/Toast.astro";
 import ScrollProgress from "../components/ScrollProgress.astro";
+import Fx from "../components/Fx.astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
 import { ClientRouter } from "astro:transitions";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+// Hashed URLs for the two above-the-fold font files → can be preloaded safely.
+import outfit500 from "@fontsource/outfit/files/outfit-latin-500-normal.woff2?url";
+import outfit700 from "@fontsource/outfit/files/outfit-latin-700-normal.woff2?url";
 
 interface Props {
   title: string;
@@ -15,262 +21,226 @@ interface Props {
   url?: string;
   ogType?: "website" | "article";
   noIndex?: boolean;
+  /** extra schema.org nodes appended to the @graph (e.g. a project's CreativeWork) */
+  jsonLd?: Record<string, unknown>[];
+  /** render a visually-hidden <h1> (for pages whose visible heading is an <h2>) */
+  autoH1?: boolean;
+  /** override the breadcrumb trail (defaults to a trail built from the URL) */
+  breadcrumbs?: { name: string; path: string }[];
 }
 
-const isId = Astro.url.pathname.startsWith("/id");
+const siteUrl = "https://www.wisnualfiannurashar.my.id";
+const pathname = Astro.url.pathname;
+const isId = pathname.startsWith("/id");
 const profile = isId ? profileId : profileEn;
+const lang = isId ? "id" : "en";
+const name = profile.personalInfo.name;
 
 const {
   title,
   description = profile.personalInfo.summary,
-  url = Astro.url.href,
   ogType = "website",
   noIndex = false,
+  jsonLd = [],
+  autoH1 = false,
+  breadcrumbs,
 } = Astro.props;
 
-const siteName = "Wisnu Alfian Nur Ashar | Full-Stack Developer, Intern & Cyber Security";
-const siteUrl = "https://www.wisnualfiannurashar.my.id";
-const ogImage = `${siteUrl}/og-image.webp`;
-const lang = isId ? "id" : "en";
+// ---------- URLs (trailing slash everywhere, matching the sitemap) ----------
+const withSlash = (p: string) => (p.endsWith("/") ? p : p + "/");
+const cleanPath = withSlash(pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, ""));
+const canonical = Astro.props.url ?? `${siteUrl}${cleanPath}`;
+const barePath = cleanPath.startsWith("/id/") || cleanPath === "/id/" ? cleanPath.slice(3) || "/" : cleanPath;
+const enUrl = `${siteUrl}${barePath}`;
+const idUrl = `${siteUrl}/id${barePath === "/" ? "/" : barePath}`;
 
-// Build alternate language URLs
-const currentPath = Astro.url.pathname;
-const enUrl = currentPath.startsWith("/id") ? currentPath.replace("/id", "") || "/" : currentPath;
-const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath === "/" ? "" : currentPath}`;
+// ---------- title & description (unique, within SERP limits) ----------
+const fullTitle = title.includes(name) ? title : `${title} | ${name}`;
+const clip = (s: string, n = 158) => {
+  const t = s.replace(/\s+/g, " ").trim();
+  if (t.length <= n) return t;
+  return t.slice(0, t.lastIndexOf(" ", n - 1)).replace(/[\s,;:.\-–—]+$/, "") + "…";
+};
+const metaDescription = clip(description);
+
+const siteName = `${name} — Portfolio`;
+const ogImage = `${siteUrl}/og-image.jpg`;
+const ogAlt = `${name} — Cyber Security, AI, Software Engineering and DevOps portfolio`;
+
+// cache-bust the (un-hashed) tailwind build so a new deploy is never served stale
+let cssV = "1";
+try {
+  cssV = createHash("md5").update(readFileSync("public/styles/tailwind.css")).digest("hex").slice(0, 8);
+} catch {}
+
+// ---------- structured data (one valid JSON-LD @graph) ----------
+const personId = `${siteUrl}/#person`;
+const websiteId = `${siteUrl}/#website`;
+const isHome = barePath === "/";
+const crumbLabels: Record<string, string> = isId
+  ? { about: "Tentang", projects: "Proyek", skills: "Keahlian", experience: "Pengalaman", contact: "Kontak", opensource: "Open Source", cv: "CV" }
+  : { about: "About", projects: "Projects", skills: "Skills", experience: "Experience", contact: "Contact", opensource: "Open Source", cv: "CV" };
+const segs = barePath.split("/").filter(Boolean);
+const trail =
+  breadcrumbs ??
+  segs.map((seg, i) => ({
+    name: i === segs.length - 1 && segs.length > 1 ? title.split("|")[0].trim() : crumbLabels[seg] ?? seg,
+    path: (isId ? "/id" : "") + "/" + segs.slice(0, i + 1).join("/") + "/",
+  }));
+
+const graph: Record<string, unknown>[] = [
+  {
+    "@type": "Person",
+    "@id": personId,
+    name,
+    givenName: "Wisnu",
+    familyName: "Alfian Nur Ashar",
+    alternateName: "Wisnu Alfian",
+    url: siteUrl + "/",
+    image: `${siteUrl}/wisnu-alfian.webp`,
+    jobTitle: profile.personalInfo.role,
+    description: clip(profile.personalInfo.summary, 300),
+    address: { "@type": "PostalAddress", addressLocality: "Kota Bekasi", addressRegion: "Jawa Barat", addressCountry: "ID" },
+    alumniOf: { "@type": "CollegeOrUniversity", name: profile.education.institution, url: "https://www.president.ac.id" },
+    knowsAbout: [
+      "Full-Stack Web Development", "Cyber Security", "Penetration Testing", "OWASP", "Zero-Trust Architecture",
+      "Artificial Intelligence", "Computer Vision", "YOLOv8", "Machine Learning", "Retrieval-Augmented Generation",
+      "Software Engineering", "Laravel", "Next.js", "React", "TypeScript", "Golang", "Python", "PostgreSQL",
+      "DevOps", "Docker", "Cloud Computing", "Cloudflare", "CI/CD", "Technical SEO",
+    ],
+    knowsLanguage: ["id", "en"],
+    sameAs: [
+      "https://linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310",
+      "https://github.com/wi5nuu",
+      "https://www.instagram.com/wshnn_",
+      "https://line.me/ti/p/PlhxJgbURY",
+    ],
+  },
+  {
+    "@type": "WebSite",
+    "@id": websiteId,
+    url: siteUrl + "/",
+    name: siteName,
+    inLanguage: ["en", "id"],
+    publisher: { "@id": personId },
+  },
+  {
+    "@type": isHome ? "ProfilePage" : "WebPage",
+    "@id": `${canonical}#webpage`,
+    url: canonical,
+    name: fullTitle,
+    description: metaDescription,
+    inLanguage: lang,
+    isPartOf: { "@id": websiteId },
+    about: { "@id": personId },
+    primaryImageOfPage: { "@type": "ImageObject", url: ogImage, width: 1200, height: 630 },
+    ...(isHome ? { mainEntity: { "@id": personId } } : {}),
+  },
+];
+if (trail.length) {
+  graph.push({
+    "@type": "BreadcrumbList",
+    "@id": `${canonical}#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: isId ? "Beranda" : "Home", item: `${siteUrl}${isId ? "/id/" : "/"}` },
+      ...trail.map((c, i) => ({ "@type": "ListItem", position: i + 2, name: c.name, item: `${siteUrl}${c.path}` })),
+    ],
+  });
+}
+graph.push(...jsonLd);
+const structuredData = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
 ---
 
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
   <head>
-    <!-- ================= BASIC ================= -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
-    <title>{title} | {profile.personalInfo.name}</title>
-    <meta name="description" content={description} />
-    <meta name="author" content={profile.personalInfo.name} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="author" content={name} />
     <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
     <meta name="googlebot" content={noIndex ? "noindex" : "index, follow"} />
     <meta
       name="keywords"
-      content="Wisnu Alfian Nur Ashar, Full-Stack Developer, Software Engineer Intern, President University, IT Software Engineer, Web Developer Bekasi, React Developer, Next.js Expert, Laravel Developer, TypeScript, Cybersecurity, Open Source Contributor, NASA Contributor, Microsoft Contributor, Google Contributor, Portfolio"
+      content="Wisnu Alfian Nur Ashar, Full-Stack Engineer, Cyber Security, Penetration Testing, AI Engineer, Computer Vision, Software Engineer, DevOps, Laravel, Next.js, TypeScript, Golang, President University, Bekasi, Portfolio"
     />
-    <meta name="theme-color" content="#2a3b3e" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f1f5f9" media="(prefers-color-scheme: light)" />
-
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-    
-    <link rel="stylesheet" href="/styles/tailwind.css" />
-    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0A0A0A" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="generator" content={Astro.generator} />
     <meta name="format-detection" content="telephone=no" />
+    <meta name="application-name" content={name} />
 
-    <!-- ================= RESOURCE HINTS (Performance) ================= -->
+    <!-- Fonts: preload the two weights used above the fold (no swap flash, better LCP/CLS) -->
+    <link rel="preload" href={outfit500} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={outfit700} as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href={`/styles/tailwind.css?v=${cssV}`} />
     <link rel="dns-prefetch" href="https://api.web3forms.com" />
 
-    <!-- ================= VIEW TRANSITIONS ================= -->
     <ClientRouter />
 
-    <!-- ================= CANONICAL & HREFLANG ================= -->
-    <link rel="canonical" href={url} />
-    <link rel="alternate" hreflang="en" href={`${siteUrl}${enUrl}`} />
-    <link rel="alternate" hreflang="id" href={`${siteUrl}${idUrl}`} />
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    <!-- Canonical & languages -->
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="id" href={idUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
 
-    <!-- ================= GOOGLE VERIFICATION ================= -->
-    <meta
-      name="google-site-verification"
-      content="EJ_C4tjJumyHkl6RwAdqafUs-zgyK2KjvQ6zTy1_LDQ"
-    />
+    <meta name="google-site-verification" content="EJ_C4tjJumyHkl6RwAdqafUs-zgyK2KjvQ6zTy1_LDQ" />
 
-    <!-- ================= OPEN GRAPH ================= -->
+    <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={siteName} />
-    <meta property="og:title" content={`${title} | ${profile.personalInfo.name}`} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={url} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${profile.personalInfo.name} — ${profile.personalInfo.role}`} />
+    <meta property="og:image:alt" content={ogAlt} />
     <meta property="og:locale" content={isId ? "id_ID" : "en_US"} />
     <meta property="og:locale:alternate" content={isId ? "en_US" : "id_ID"} />
 
-    <!-- ================= TWITTER ================= -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@wisnualfian" />
     <meta name="twitter:creator" content="@wisnualfian" />
-    <meta name="twitter:title" content={`${title} | ${profile.personalInfo.name}`} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={`${profile.personalInfo.name} — ${profile.personalInfo.role}`} />
+    <meta name="twitter:image:alt" content={ogAlt} />
 
-    <!-- ================= FAVICON & PWA ================= -->
+    <!-- Icons & PWA -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
     <link rel="icon" type="image/webp" sizes="32x32" href="/favicon-32x32.webp" />
     <link rel="icon" type="image/webp" sizes="16x16" href="/favicon-16x16.webp" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/android-chrome-192x192.webp" color="#2a3b3e" />
 
-    <!-- ================= SCHEMA.ORG: PERSON ================= -->
-    <script type="application/ld+json" is:inline define:vars={{ profile, siteUrl, ogImage }}>
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": profile.personalInfo.name,
-        "givenName": "Wisnu",
-        "familyName": "Alfian Nur Ashar",
-        "alternateName": "Wisnu Alfian",
-        "url": siteUrl,
-        "image": ogImage,
-        "jobTitle": profile.personalInfo.role,
-        "description": profile.personalInfo.summary,
-        "birthPlace": {
-          "@type": "Place",
-          "name": "Tarakan, Indonesia"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Kota Bekasi",
-          "addressRegion": "Jawa Barat",
-          "addressCountry": "ID"
-        },
-        "affiliation": {
-          "@type": "CollegeOrUniversity",
-          "name": profile.education.institution,
-          "url": "https://www.president.ac.id"
-        },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": profile.education.institution
-        },
-        "knowsAbout": [
-          "Full-Stack Web Development",
-          "Cybersecurity",
-          "React", "Next.js", "TypeScript", "Python", "Golang",
-          "Cloud Security", "Penetration Testing",
-          "AI/ML", "Computer Vision",
-          "Database Architecture", "API Development"
-        ],
-        "knowsLanguage": [
-          { "@type": "Language", "name": "Indonesian", "alternateName": "id" },
-          { "@type": "Language", "name": "English", "alternateName": "en" }
-        ],
-        "sameAs": [
-          "https://linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310",
-          "https://github.com/wi5nuu",
-          "https://www.instagram.com/wshnn_",
-          "https://line.me/ti/p/PlhxJgbURY"
-        ]
-      }
-    </script>
+    <!-- Structured data: Person + WebSite + (Profile)WebPage + BreadcrumbList in one graph -->
+    <script type="application/ld+json" is:inline set:html={structuredData} />
 
-    <!-- ================= SCHEMA.ORG: WEBSITE + SEARCH ACTION ================= -->
-    <script type="application/ld+json" is:inline define:vars={{ siteName, siteUrl }}>
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": siteName,
-        "url": siteUrl,
-        "inLanguage": ["en", "id"],
-        "publisher": {
-          "@type": "Person",
-          "name": "Wisnu Alfian Nur Ashar"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": siteUrl + "/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
-
-    <!-- ================= SCHEMA.ORG: ITEMLIST (NAVIGATION) ================= -->
-    <script type="application/ld+json" is:inline define:vars={{ siteUrl }}>
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Portfolio Navigation",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "url": siteUrl + "/" },
-          { "@type": "ListItem", "position": 2, "name": "About", "url": siteUrl + "/about" },
-          { "@type": "ListItem", "position": 3, "name": "Projects", "url": siteUrl + "/projects" },
-          { "@type": "ListItem", "position": 4, "name": "Open Source", "url": siteUrl + "/opensource" },
-          { "@type": "ListItem", "position": 5, "name": "Skills", "url": siteUrl + "/skills" },
-          { "@type": "ListItem", "position": 6, "name": "Experience", "url": siteUrl + "/experience" },
-          { "@type": "ListItem", "position": 7, "name": "Contact", "url": siteUrl + "/contact" }
-        ]
-      }
-    </script>
-
-    <!-- ================= DARK MODE INITIALIZATION (FOUC prevention) ================= -->
-    <script is:inline>
-      (function() {
-        var t;
-        try { t = localStorage.getItem("theme"); } catch(e) {}
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        var c = document.documentElement.classList;
-        t === "dark" ? c.add("dark") : c.remove("dark");
-        document.documentElement.style.colorScheme = t;
-      })();
-      document.addEventListener("astro:after-swap", function initTheme() {
-        var t;
-        try { t = localStorage.getItem("theme"); } catch(e) {}
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        var c = document.documentElement.classList;
-        t === "dark" ? c.add("dark") : c.remove("dark");
-        document.documentElement.style.colorScheme = t;
-      });
-    </script>
-
-    <!-- ================= VIDEO BACKGROUND LAZY LOADING ================= -->
+    <!-- Theme (FOUC prevention) -->
     <script is:inline>
       (function () {
-        function initVideos() {
-          var videos = document.querySelectorAll("video.video-bg");
-          if (!videos.length) return;
-          if (!("IntersectionObserver" in window)) {
-            videos.forEach(function (v) { v.src = v.dataset.src; v.load(); });
-            return;
-          }
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (!entry.isIntersecting) return;
-              var v = entry.target;
-              io.unobserve(v);
-              var delay = parseInt(v.dataset.loadDelay || "0", 10) || 0;
-              if (delay <= 0) { startVideo(v); }
-              else { setTimeout(function () { startVideo(v); }, delay); }
-            });
-          }, { rootMargin: "300px 0px" });
-          videos.forEach(function (v) { io.observe(v); });
+        function apply() {
+          var t;
+          try { t = localStorage.getItem("theme"); } catch (e) {}
+          if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          var c = document.documentElement.classList;
+          t === "dark" ? c.add("dark") : c.remove("dark");
+          document.documentElement.style.colorScheme = t;
         }
-        function startVideo(v) {
-          if (v.dataset.started) return;
-          v.dataset.started = "1";
-          var src = v.dataset.src;
-          if (src) {
-            var source = v.querySelector("source");
-            if (source) { source.src = src; }
-            else { v.src = src; }
-            v.load();
-          }
-          var p = v.play();
-          if (p) p.catch(function () {});
-        }
-        document.addEventListener("astro:page-load", initVideos);
+        apply();
+        document.addEventListener("astro:after-swap", apply);
       })();
     </script>
   </head>
 
   <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
-    <div
-      id="app"
-      class="min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300"
-    >
+    <a href="#main" class="skip-link">{isId ? "Lewati ke konten utama" : "Skip to main content"}</a>
+    <div id="app" class="min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300">
+      {autoH1 && <h1 class="sr-only">{title.split("|")[0].trim()} — {name}</h1>}
       <slot />
     </div>
 
@@ -279,5 +249,26 @@ const idUrl = currentPath.startsWith("/id") ? currentPath : `/id${currentPath ==
     <AIChatBot />
     <SearchModal />
     <Toast />
+    <Fx />
   </body>
 </html>
+
+<style is:global>
+  .skip-link {
+    position: fixed;
+    left: 12px;
+    top: -60px;
+    z-index: 200000;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: #84e10c;
+    color: #0a0a0a;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus { top: 12px; outline: 2px solid #fff; }
+  main:focus { outline: none; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+</style>

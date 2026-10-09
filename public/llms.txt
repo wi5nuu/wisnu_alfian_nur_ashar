@@ -1,60 +1,45 @@
-# Wisnu Alfian Nur Ashar - Full-Stack Developer & Cybersecurity Specialist
+# Wisnu Alfian Nur Ashar — Full-Stack, Cyber Security & AI Engineer
+
+> Portfolio of Wisnu Alfian Nur Ashar, an Information Technology undergraduate at President University (Bekasi, Indonesia). Full-Stack Engineer working across cyber security, AI, software engineering and DevOps. Bilingual site (English / Indonesian) with an interactive 3D "Skill Universe".
 
 ## About
 
-Full-Stack Developer & Cybersecurity Specialist based in Bekasi, Indonesia. 8+ years of professional experience building production applications with expertise in React, Next.js, TypeScript, Python, Golang, and cloud infrastructure.
+- Role: Full-Stack Engineer (Laravel, Next.js, Go, PostgreSQL), penetration-testing practitioner, AI/computer-vision builder
+- Location: Bekasi, West Java, Indonesia (open to internships, remote work and freelance)
+- Production work: ERP/POS platform for Ashar Grosir Parfum Bekasi serving thousands of customers through the store website (1.34 s load time, 91% good LCP via Cloudflare CDN)
+- Open source: 3,300+ GitHub contributions across 100+ repositories; verified bug reports and fixes to NASA, Microsoft, Google, NVIDIA, OWASP and Hugging Face projects
+- Security: external and internal penetration testing with structured vulnerability reporting; OWASP Foundation member
 
-## Experience Summary
+## Pages
 
-- **14+ Real-World Projects** in production environments
-- **15,000+ Users Served** across multiple applications
-- **30+ GitHub Repositories** showcasing open-source contributions
-- **Enterprise-Grade Applications** including ERP/POS platforms, AI-powered systems, e-commerce platforms, and cybersecurity tools
+- [Home — interactive 3D Skill Universe](https://www.wisnualfiannurashar.my.id/)
+- [About](https://www.wisnualfiannurashar.my.id/about/)
+- [Projects](https://www.wisnualfiannurashar.my.id/projects/)
+- [Open Source](https://www.wisnualfiannurashar.my.id/opensource/)
+- [Skills](https://www.wisnualfiannurashar.my.id/skills/)
+- [Experience](https://www.wisnualfiannurashar.my.id/experience/)
+- [Contact](https://www.wisnualfiannurashar.my.id/contact/)
+- [Bahasa Indonesia](https://www.wisnualfiannurashar.my.id/id/)
 
-## Featured Services
+## Skill realms
 
-- Full-Stack Web Development (Frontend & Backend)
-- Application Security & Penetration Testing
-- Web Performance Optimization & Core Web Vitals
-- Cloud Infrastructure & DevOps (AWS, Google Cloud, Azure)
-- AI/ML Integration & Computer Vision
-- Career Coaching for Tech Professionals
+- Cyber Security: penetration testing, Kali Linux, Burp Suite, OWASP, zero-trust architecture, cloud security
+- AI Engineering: YOLOv8, OpenCV, FastAPI, Hugging Face, Google Gemini, RAG, PyTorch
+- Software Engineering: Laravel, Next.js, TypeScript, Golang, ASP.NET, PostgreSQL, Astro
+- DevOps & Cloud: Docker, Cloudflare, Vercel, Railway, Google Cloud Run, AWS (Cloud Practitioner Essentials and Technical Essentials training), Redis, RabbitMQ
 
-## Contact & Social
+## Selected projects
 
-- Website: https://www.wisnualfiannurashar.my.id
+- [Ashar Grosir Parfum](https://www.wisnualfiannurashar.my.id/projects/ashar-grosir-parfum/) — ERP/POS and e-commerce platform
+- [SENTINEL-X](https://www.wisnualfiannurashar.my.id/projects/sentinel-x/) — multi-domain threat-intelligence platform
+- [CogniMail](https://www.wisnualfiannurashar.my.id/projects/cognimail/) — self-hosted email security (FastAPI, XGBoost)
+- [ColonyAI](https://www.wisnualfiannurashar.my.id/projects/colonyai/) — YOLOv8 colony counting
+- [Shooply](https://www.wisnualfiannurashar.my.id/projects/shooply/) — Go + Next.js microservices e-commerce
+
+## Contact & profiles
+
+- Contact form: https://www.wisnualfiannurashar.my.id/contact/
+- Email: wisnualfiannurashar@gmail.com
 - GitHub: https://github.com/wi5nuu
 - LinkedIn: https://linkedin.com/in/wisnu-alfian-nur-ashar-ba60a1310
-- Instagram: https://www.instagram.com/wshnn_
-- Contact Form: https://www.wisnualfiannurashar.my.id/contact
-
-## Main Navigation
-
-- [Home](/)
-- [About](/about)
-- [Projects](/projects)
-- [Open Source](/opensource)
-- [Skills](/skills)
-- [Experience](/experience)
-- [Contact](/contact)
-- [Indonesian](/id/)
-
-## Core Technologies & Skills
-
-**Frontend:** React, Next.js, TypeScript, JavaScript, Astro, Tailwind CSS, HTML5, CSS3
-
-**Backend:** Node.js, Express, Python, Golang, REST APIs, GraphQL
-
-**Databases:** PostgreSQL, MongoDB, Redis, Firebase
-
-**Cloud & DevOps:** AWS, Google Cloud, Azure, Docker, Kubernetes, CI/CD, Linux
-
-**Security:** OWASP, Penetration Testing, Secure Coding, Application Security
-
-**Tools:** Git, GitHub, VS Code, AWS CloudFormation, Terraform
-
-## Resume
-
-- Download CV: [CV_Wisnu_Alfian_Nur_Ashar.pdf](/CV_Wisnu_Alfian_Nur_Ashar.pdf)
-- Education: President University
-- Specializations: Full-Stack Development, Cybersecurity, Web Performance
+- CV (PDF): https://www.wisnualfiannurashar.my.id/CV_Wisnu_Alfian_Nur_Ashar.pdf

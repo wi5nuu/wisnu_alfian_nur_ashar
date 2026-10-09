@@ -22,6 +22,22 @@ export async function getStaticPaths() {
 const { project, detail } = Astro.props;
 const title = `${project.title} | Wisnu Alfian Nur Ashar`;
 const description = project.description;
+const pageUrl = `https://www.wisnualfiannurashar.my.id/projects/${getProjectSlug(project.title)}/`;
+const projectLd = {
+  '@type': 'CreativeWork',
+  '@id': pageUrl + '#project',
+  name: project.title,
+  headline: project.title,
+  description: project.description,
+  url: pageUrl,
+  author: { '@id': 'https://www.wisnualfiannurashar.my.id/#person' },
+  creator: { '@id': 'https://www.wisnualfiannurashar.my.id/#person' },
+  keywords: project.techStack.join(', '),
+  genre: project.role,
+  inLanguage: 'en',
+  ...(project.image ? { image: 'https://www.wisnualfiannurashar.my.id' + project.image } : {}),
+  sameAs: [project.link, project.github].filter((u) => u && u !== '#'),
+};
 
 const projectIndex = profile.projects.findIndex((p) => getProjectSlug(p.title) === getProjectSlug(project.title));
 const prevProject = projectIndex > 0 ? profile.projects[projectIndex - 1] : null;
@@ -33,10 +49,10 @@ const relatedProjects = profile.projects
   .slice(0, 3);
 ---
 
-<Layout title={project.title} description={description} ogType="article">
+<Layout title={project.title} description={description} ogType="article" jsonLd={[projectLd]}>
   <Navbar />
 
-  <main class="project-detail">
+  <main id="main" tabindex="-1" class="project-detail">
     <div class="container">
       <a href="/projects" class="back-link">
         <ArrowLeft class="back-icon" />
