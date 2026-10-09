@@ -310,17 +310,28 @@ const testimonials = isId
   }
 
   .dot-btn {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
+    position: relative;
+    width: 24px;
+    height: 24px;
+    background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
+  }
+  .dot-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.28);
     transition: all 0.25s ease;
   }
 
-  .dot-btn.is-active {
+  .dot-btn.is-active::before {
     background-color: var(--accent);
     transform: scale(1.3);
   }

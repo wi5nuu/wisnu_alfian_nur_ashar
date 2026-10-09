@@ -46,7 +46,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
         <path d="m21 21-4.35-4.35"></path>
       </svg>
     </button>
-    <button id="lang-toggle-desktop" class="lang-btn" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'}>
+    <button id="lang-toggle-desktop" class="lang-btn" aria-label={isId ? 'ID – Ganti Bahasa' : 'EN – Switch Language'}>
       {isId ? 'ID' : 'EN'}
     </button>
     <a href={getLocalizedUrl("/contact", isId)} class="nav-cta">
@@ -63,7 +63,7 @@ const getLocalizedUrl = (path: string, toId: boolean) => {
       <path d="m21 21-4.35-4.35"></path>
     </svg>
   </button>
-  <button id="lang-toggle-mobile" class="lang-btn-mobile" aria-label={isId ? 'Ganti Bahasa' : 'Switch Language'}>
+  <button id="lang-toggle-mobile" class="lang-btn-mobile" aria-label={isId ? 'ID – Ganti Bahasa' : 'EN – Switch Language'}>
     {isId ? 'ID' : 'EN'}
   </button>
 </div>
