@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     format: 'file',
     assets: 'assets',
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   prefetch: {
     prefetchAll: false,
@@ -34,6 +34,16 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      lastmod: new Date(),
+      filter: (page) => !page.includes('/404'),
+      serialize(item) {
+        const path = new URL(item.url).pathname.replace(/^\/id/, '') || '/';
+        if (path === '/') { item.priority = 1.0; item.changefreq = 'weekly'; }
+        else if (/^\/projects\/.+/.test(path)) { item.priority = 0.7; item.changefreq = 'monthly'; }
+        else if (['/projects/', '/about/', '/skills/', '/experience/', '/opensource/', '/contact/'].includes(path)) { item.priority = 0.8; item.changefreq = 'monthly'; }
+        else { item.priority = 0.5; item.changefreq = 'yearly'; }
+        return item;
+      },
       i18n: {
         defaultLocale: 'en',
         locales: {

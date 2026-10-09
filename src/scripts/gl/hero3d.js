@@ -1,6 +1,6 @@
 import { createEngine } from './engine.js';
 import { nexusScene, REALM_IDS } from './scene-nexus.js';
-import { canRunGL, prefersReducedMotion, saveData, quality, onIdle, afterLoad } from './env.js';
+import { canRunGL, prefersReducedMotion, saveData, lowEnd, quality, onIdle, afterLoad } from './env.js';
 
 /**
  * Hero background: the "Nexus" – a lightweight 3D scene with the four realm gems orbiting a core.
@@ -9,7 +9,7 @@ import { canRunGL, prefersReducedMotion, saveData, quality, onIdle, afterLoad } 
 export function mountHero(section) {
   const canvas = section.querySelector('canvas[data-hero-gl]');
   if (!canvas || canvas.dataset.booted) return () => {};
-  if (saveData() || !canRunGL()) return () => {};
+  if (saveData() || lowEnd() || !canRunGL()) return () => {};
   canvas.dataset.booted = '1';
 
   let eng = null, disposed = false, visible = true;

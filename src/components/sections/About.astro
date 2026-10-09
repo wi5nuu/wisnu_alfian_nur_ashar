@@ -1,7 +1,6 @@
 ---
 import { profile as profileEn } from "../../data/profile";
 import { profile as profileId } from "../../data/profile_id";
-import Picture from "../Picture.astro";
 import { MapPin, Github, Linkedin, ExternalLink } from "lucide-astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
@@ -22,13 +21,17 @@ const profile = isId ? profileId : profileEn;
     <div class="about-grid">
       <!-- Photo -->
       <div class="photo-col">
-        <div class="photo-wrap">
-          <Picture
-            src="/Wisnu Alfian Nur Ashar.png"
+        <div class="photo-wrap" data-tilt data-tilt-max="5">
+          <img
+            src="/wisnu-alfian-640.webp"
+            srcset="/wisnu-alfian-480.webp 480w, /wisnu-alfian-640.webp 640w, /wisnu-alfian-960.webp 960w"
+            sizes="(max-width: 768px) 320px, 380px"
             alt={profile.personalInfo.name}
-            width="400"
-            height="500"
+            width="380"
+            height="475"
             class="photo"
+            fetchpriority="high"
+            decoding="async"
           />
           <div class="photo-badge">
             <span class="available-dot"></span>
@@ -166,7 +169,11 @@ const profile = isId ? profileId : profileEn;
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
+    object-position: 50% 12%;
     display: block;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #111;
   }
 
   .photo-badge {
@@ -289,7 +296,7 @@ const profile = isId ? profileId : profileEn;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.62);
     font-weight: 500;
   }
 
@@ -378,9 +385,9 @@ const profile = isId ? profileId : profileEn;
   }
 
   @media (max-width: 480px) {
-    .stats-row {
-      grid-template-columns: 1fr;
-    }
+    .stat { padding: 18px 8px; }
+    .stat-num { font-size: 22px; }
+    .stat-label { font-size: 9.5px; letter-spacing: 0.04em; }
     .cta-row {
       flex-direction: column;
       align-items: stretch;

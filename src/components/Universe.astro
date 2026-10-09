@@ -137,7 +137,7 @@ const clientCopy = JSON.stringify({
       import('../scripts/gl/universe.js').then((m) => {
         if (document.contains(el)) { dispose?.(); dispose = m.mountUniverse(el); }
       });
-    }, { rootMargin: '700px 0px' });
+    }, { rootMargin: '300px 0px' });
     io.observe(el);
   });
   document.addEventListener('astro:before-swap', () => {

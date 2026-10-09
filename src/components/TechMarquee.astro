@@ -27,7 +27,7 @@ const rows = [items.slice(0, half), items.slice(half)];
       <ul class="mq-track">
         {[0, 1].map((dup) => row.map((s) => (
           <li class="mq-item" aria-hidden={dup ? 'true' : undefined}>
-            <img src={`/icons/${s.icon}.svg`} alt="" width="22" height="22" loading="lazy" decoding="async" />
+            <img data-src={`/icons/${s.icon}.svg`} alt="" width="22" height="22" decoding="async" />
             <span>{s.name}</span>
           </li>
         )))}

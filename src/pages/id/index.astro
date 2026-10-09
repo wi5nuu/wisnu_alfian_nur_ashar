@@ -17,12 +17,14 @@ import EducationCerts from "../../components/EducationCerts.astro";
 import Achievements from "../../components/Achievements.astro";
 import Testimonials from "../../components/Testimonials.astro";
 import Contact from "../../components/Contact.astro";
+import Faq from "../../components/Faq.astro";
+import { faqJsonLd } from "../../data/faq";
 
 const title = "Wisnu Alfian Nur Ashar | Full-Stack, Security & AI Engineer";
 const description = "Portofolio Wisnu Alfian Nur Ashar, Full-Stack Engineer dari Indonesia: sistem aman dan cepat di cyber security, AI, software & DevOps. Jelajahi dalam 3D.";
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={[faqJsonLd("id")]}>
 	<Navbar />
 
 	<main id="main" tabindex="-1">
@@ -40,6 +42,7 @@ const description = "Portofolio Wisnu Alfian Nur Ashar, Full-Stack Engineer dari
 		<EducationCerts />
 		<Achievements />
 		<Testimonials />
+		<Faq />
 		<Contact />
 	</main>
 	<Footer />

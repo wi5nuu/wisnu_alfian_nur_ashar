@@ -112,10 +112,21 @@ function setupScrollFx() {
   return () => document.documentElement.classList.remove('fx-scroll');
 }
 
+/** Marquee icons are fetched only when the marquee is about to scroll into view (saves ~30 requests on first load). */
+function setupLazyIcons() {
+  const box = document.querySelector('.mq');
+  if (!box) return () => {};
+  const load = () => box.querySelectorAll('img[data-src]').forEach((img) => { img.src = img.dataset.src; img.removeAttribute('data-src'); });
+  if (!('IntersectionObserver' in window)) { load(); return () => {}; }
+  const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); load(); } }, { rootMargin: '300px 0px' });
+  io.observe(box);
+  return () => io.disconnect();
+}
+
 let cleanups = [];
 export function initFx() {
   cleanups.forEach((f) => f());
-  cleanups = [setupScrollFx(), setupTilt(), setupMagnet(), setupCounters()];
+  cleanups = [setupScrollFx(), setupTilt(), setupMagnet(), setupCounters(), setupLazyIcons()];
 }
 export function disposeFx() {
   cleanups.forEach((f) => f());

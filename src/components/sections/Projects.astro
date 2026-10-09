@@ -110,7 +110,7 @@ const totalProjectsCount = profile.projects.length;
                 <span class="status-badge">{project.status || (isId ? 'Produksi' : 'Production')}</span>
                 <ArrowUpRight class="arrow-icon" />
               </div>
-              <h3 class="card-title">{project.title}</h3>
+              <h2 class="card-title">{project.title}</h2>
               <p class="card-role">{project.role}</p>
               <p class="card-desc">{project.description}</p>
               <div class="tag-row">
@@ -381,7 +381,7 @@ const totalProjectsCount = profile.projects.length;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.62);
   }
 
   .sort-select {
@@ -541,7 +541,8 @@ const totalProjectsCount = profile.projects.length;
   }
 
   .card-title {
-    margin-top: 14px;
+    margin: 14px 0 0;
+    font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 600;
     color: #ffffff;
@@ -551,7 +552,7 @@ const totalProjectsCount = profile.projects.length;
   .card-role {
     margin-top: 4px;
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.62);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;

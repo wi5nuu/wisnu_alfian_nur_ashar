@@ -15,7 +15,7 @@ for (const f of readdirSync(join(pub, 'projects'))) {
   const { width } = await img.metadata();
   await img.resize({ width: Math.min(width, 640) }).webp({ quality: 78, effort: 5 }).toFile(join(out, f));
 }
-for (const w of [480, 960]) {
+for (const w of [480, 640, 960]) {
   await sharp(join(pub, 'wisnu-alfian.webp')).resize({ width: w }).webp({ quality: 80, effort: 5 }).toFile(join(pub, `wisnu-alfian-${w}.webp`));
 }
 console.log('thumbs ready', existsSync(out));

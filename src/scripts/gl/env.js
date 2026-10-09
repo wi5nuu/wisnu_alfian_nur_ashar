@@ -17,6 +17,15 @@ export const saveData = () => {
   return !!(c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')));
 };
 
+/** Weak phones / slow networks: keep the lightweight CSS hero, skip the WebGL backdrop. */
+export const lowEnd = () => {
+  const c = navigator.connection;
+  const slowNet = !!(c && /(^|-)(2g|3g)$/.test(c.effectiveType || ''));
+  const mem = navigator.deviceMemory;
+  const cores = navigator.hardwareConcurrency;
+  return slowNet || (mem !== undefined && mem <= 2) || (cores !== undefined && cores <= 2);
+};
+
 export const isCoarse = () => window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
 /** 0.5 (weak phone) … 1 (desktop) – scales particle counts. */

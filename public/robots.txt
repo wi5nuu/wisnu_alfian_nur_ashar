@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-
-Host: https://www.wisnualfiannurashar.my.id
+Disallow: /terminal.json
+Disallow: /id/terminal.json
 
 Sitemap: https://www.wisnualfiannurashar.my.id/sitemap-index.xml

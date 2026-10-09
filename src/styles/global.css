@@ -54,3 +54,19 @@ img {
 * {
   will-change: auto;
 }
+
+/* ---------- polish ---------- */
+::selection { background: var(--accent); color: #0A0A0A; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+input:focus-visible, textarea:focus-visible { outline-offset: 0; }
+
+/* ---------- mobile-first rendering budget ----------
+   Below-the-fold blocks are skipped by the browser until they approach the viewport:
+   far less style/layout/paint work on first open (big win on mid-range phones). */
+.selected-work, .process-section, .services-section, .why-work-with-me, .stats-section,
+.exp-section, .education-section, .achievements-section, .testimonials-section,
+.contact-section, .faq {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+.project-card { content-visibility: auto; contain-intrinsic-size: auto 520px; }

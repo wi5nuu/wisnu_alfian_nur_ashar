@@ -77,7 +77,9 @@ const profile = isId ? profileId : profileEn;
         if (document.contains(s)) { dispose?.(); dispose = m.mountHero(s); }
       });
     };
-    const idle = () => ('requestIdleCallback' in window ? (window as any).requestIdleCallback(run, { timeout: 1500 }) : setTimeout(run, 300));
+    // phones get an extra beat after load so the first scroll/tap is never competing with shader compilation
+    const grace = window.matchMedia('(pointer: coarse)').matches ? 900 : 0;
+    const idle = () => setTimeout(() => ('requestIdleCallback' in window ? (window as any).requestIdleCallback(run, { timeout: 1500 }) : run()), grace);
     if (document.readyState === 'complete') idle();
     else window.addEventListener('load', idle, { once: true });
   });

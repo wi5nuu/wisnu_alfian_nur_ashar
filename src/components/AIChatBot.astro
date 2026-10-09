@@ -2,119 +2,52 @@
 import { X, Send, Maximize2, Minimize2 } from "lucide-astro";
 
 const isId = Astro.url.pathname.startsWith('/id');
+const t = isId
+  ? {
+      open: 'Buka Asisten AI', name: 'AI Wisnu', sub: 'Ngobrol dengan saya', close: 'Tutup chat', full: 'Layar penuh',
+      send: 'Kirim pesan', ph: 'Tanya soal proyek, keahlian, atau pengalaman…', status: 'Online · asisten AI', ava: 'Avatar Asisten AI',
+      starters: ['Proyek terbaik kamu?', 'Keahlian cyber security', 'Tersedia untuk magang?', 'Cara menghubungi'],
+    }
+  : {
+      open: 'Toggle AI Assistant', name: "Wisnu's AI", sub: 'Chat with me', close: 'Close chat', full: 'Toggle fullscreen',
+      send: 'Send message', ph: 'Ask about projects, skills or experience…', status: 'Online · AI assistant', ava: 'AI avatar',
+      starters: ['Best projects?', 'Cyber security skills', 'Open to internships?', 'How to contact you'],
+    };
 ---
 
-<div id="ai-chat-widget" class="z-[110] font-sans">
-    <!-- Desktop Toggle Button -->
-    <button
-        id="chat-toggle-desktop"
-        class="hidden md:flex fixed bottom-6 right-6 group bg-slate-900 hover:bg-slate-800 text-white p-2 pr-4 pl-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 z-50 items-center gap-3 border border-slate-700/50"
-        aria-label={isId ? 'Buka Asisten AI' : 'Toggle AI Assistant'}
-    >
-        <div class="relative">
-            <img
-                src="/wisnu-alfian.webp"
-                alt="AI"
-                width="40"
-                height="40"
-                class="w-10 h-10 rounded-full object-cover border-2 border-white/20 aspect-square"
-                loading="lazy"
-                decoding="async"
-            />
-            <div
-                class="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full ai-status-dot border-2 border-slate-900"
-            >
-            </div>
-        </div>
-
-        <div class="flex flex-col items-start">
-            <span class="text-sm font-bold text-white leading-tight"
-                >{isId ? 'AI Wisnu' : "Wisnu's AI"}</span
-            >
-            <span class="text-[10px] text-slate-400 font-medium"
-                >{isId ? 'Ngobrol dengan saya' : 'Chat with me'}</span
-            >
-        </div>
+<div id="ai-chat-widget" class="aic">
+    <!-- Desktop launcher (mobile uses the AI icon in the bottom nav) -->
+    <button id="chat-toggle-desktop" class="aic-fab" aria-label={t.open} aria-expanded="false" aria-controls="chat-window" type="button">
+        <span class="aic-ava">
+            <img src="/wisnu-avatar-96.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
+            <i class="aic-dot" aria-hidden="true"></i>
+        </span>
+        <span class="aic-fab-txt"><b>{t.name}</b><small>{t.sub}</small></span>
     </button>
 
-    <!-- Mobile toggle dihapus — AI diakses lewat ikon di bottom-nav (Navbar) -->
-
-    <div
-        id="chat-window"
-        class="fixed bottom-24 md:bottom-24 right-4 left-4 md:left-auto md:right-6 w-auto md:w-[380px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/20 transform scale-95 opacity-0 pointer-events-none transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) origin-bottom-right overflow-hidden flex flex-col max-h-[60vh] md:max-h-[500px] z-[120]"
-    >
-        <div
-            class="bg-slate-900/90 backdrop-blur-md p-4 flex items-center justify-between text-white shrink-0 relative overflow-hidden"
-        >
-            <div
-                class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"
-            >
+    <section id="chat-window" class="aic-win" role="dialog" aria-label={t.name} aria-hidden="true">
+        <header class="aic-head">
+            <span class="aic-ava">
+                <img src="/wisnu-avatar-96.webp" alt={t.ava} width="40" height="40" loading="lazy" decoding="async" />
+                <i class="aic-dot" aria-hidden="true"></i>
+            </span>
+            <div class="aic-head-txt">
+                <h3>Wisnu Alfian</h3>
+                <p>{t.status}</p>
             </div>
+            <button id="chat-fullscreen-toggle" class="aic-icon" aria-label={t.full} title={t.full} type="button">
+                <Maximize2 class="fullscreen-icon-expand" size={18} />
+                <Minimize2 class="fullscreen-icon-collapse" size={18} style="display:none" />
+            </button>
+            <button id="chat-close" class="aic-icon" aria-label={t.close} type="button">
+                <X size={18} />
+            </button>
+        </header>
 
-            <div class="flex items-center gap-3 relative z-10">
-                    <div class="relative">
-                    <img
-                        src="/wisnu-alfian.webp"
-                        alt={isId ? 'Avatar Asisten AI' : 'AI Avatar'}
-                        width="40"
-                        height="40"
-                        class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm aspect-square"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <div
-                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-slate-900 ai-status-dot"
-                    >
-                    </div>
-                </div>
-                <div>
-                    <h3 class="font-bold text-sm text-white">
-                        Wisnu Alfian
-                    </h3>
-                    <p
-                        class="text-[10px] text-blue-300 uppercase tracking-wider font-semibold"
-                    >
-                        Online
-                    </p>
-                </div>
-            </div>
-            <div class="flex items-center gap-2 relative z-10">
-                <button
-                    id="chat-fullscreen-toggle"
-                    class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-white/80 hover:text-white"
-                    aria-label={isId ? 'Layar penuh' : 'Toggle fullscreen'}
-                    title={isId ? 'Layar penuh' : 'Toggle fullscreen'}
-                >
-                    <Maximize2 class="w-5 h-5 fullscreen-icon-expand" />
-                    <Minimize2 class="w-5 h-5 fullscreen-icon-collapse hidden" />
-                </button>
-                <button
-                    id="chat-close"
-                    class="p-2 hover:bg-white/10 rounded-full transition-all duration-300 text-white/80 hover:text-white hover:rotate-90"
-                    aria-label={isId ? 'Tutup chat' : 'Close chat'}
-                >
-                    <X class="w-5 h-5" />
-                </button>
-            </div>
-        </div>
-
-        <div
-            id="chat-messages"
-            class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/30 h-[350px] scroll-smooth text-slate-900"
-        >
-            <div class="flex gap-3 items-start animate-fade-in">
-                <img
-                    src="/wisnu-alfian.webp"
-                    alt="AI"
-                    width="32"
-                    height="32"
-                    loading="lazy"
-                    decoding="async"
-                    class="w-8 h-8 min-w-[2rem] min-h-[2rem] max-w-[2rem] max-h-[2rem] rounded-full object-cover border border-slate-200 shrink-0 shadow-sm aspect-square self-start"
-                />
-                <div
-                    class="bg-white p-3 rounded-2xl rounded-tl-sm shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-slate-100 text-sm text-slate-800 leading-relaxed"
-                >
+        <div id="chat-messages" class="aic-msgs" role="log" aria-live="polite">
+            <div class="aic-msg aic-msg--ai">
+                <img src="/wisnu-avatar-96.webp" alt="" width="32" height="32" loading="lazy" decoding="async" class="aic-msg-av" />
+                <div class="aic-bubble">
                     {isId ? (
                         <>
                             Halo! 👋 Saya <strong>Wisnu Alfian Nur Ashar</strong>, seorang <strong>mahasiswa IT di President University</strong> dengan spesialisasi <strong>Full-Stack Engineering</strong> dan <strong>3.300+ kontribusi GitHub</strong> di 100+ repositori.<br><br>
@@ -124,7 +57,8 @@ const isId = Astro.url.pathname.startsWith('/id');
                             💻 <strong>Tech Stack:</strong> Laravel, Next.js, React, TypeScript, PostgreSQL, Go, Python, AWS<br>
                             🏆 <strong>Prestasi Terbaru:</strong> Juara 1 Web Developer - TechSprint Innovation Cup 2026<br><br>
 
-                            Tanyakan apa saja tentang proyek, pengalaman, atau keahlian teknis saya!
+                            Tanyakan apa saja tentang proyek, pengalaman, atau keahlian teknis saya!<br><br>
+                            Btw, aku bicara dengan siapa nih? Boleh sebut nama / nama lengkap? Siapa tahu kita teman 😊
                         </>
                     ) : (
                         <>
@@ -135,44 +69,41 @@ const isId = Astro.url.pathname.startsWith('/id');
                             💻 <strong>Tech Stack:</strong> Laravel, Next.js, React, TypeScript, PostgreSQL, Go, Python, AWS<br>
                             🏆 <strong>Recent Win:</strong> 1st Place Web Developer - TechSprint Innovation Cup 2026<br><br>
 
-                            Ask me anything about my projects, experience, or technical skills!
+                            Ask me anything about my projects, experience, or technical skills!<br><br>
+                            Btw, who am I talking to? Feel free to tell me your name / full name — maybe we're friends 😊
                         </>
                     )}
                 </div>
             </div>
         </div>
 
-        <form
-            id="chat-form"
-            class="p-3 border-t border-slate-100 bg-white/80 backdrop-blur-md flex gap-2 shrink-0"
-        >
-            <input
-                type="text"
-                id="chat-input"
-                placeholder={isId ? 'Tanyakan apa saja tentang pengalaman, keahlian, atau proyek saya...' : 'Ask me anything about my experience, skills, or projects...'}
-                class="flex-1 bg-slate-100 border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:ring-2 focus:ring-slate-900/5 focus:outline-none placeholder:text-slate-500 transition-all"
-                autocomplete="off"
-            />
-            <button
-                type="submit"
-                id="send-button"
-                class="p-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-90 shadow-lg shadow-slate-900/10 relative"
-                aria-label={isId ? 'Kirim pesan' : 'Send message'}
-            >
-                <Send class="w-4 h-4 send-icon" />
-                <svg class="w-4 h-4 send-loading hidden animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <div class="aic-starters aic-starters--dock" id="chat-starters">
+                {t.starters.map((s) => <button type="button" class="aic-chip" data-q={s}>{s}</button>)}
+            </div>
+
+        <form id="chat-form" class="aic-form" autocomplete="off">
+            <input type="text" id="chat-input" placeholder={t.ph} aria-label={t.ph} autocomplete="off" enterkeyhint="send" />
+            <button type="submit" id="send-button" class="aic-send" aria-label={t.send}>
+                <Send size={17} class="send-icon" />
+                <svg class="send-loading" width="17" height="17" viewBox="0 0 24 24" fill="none" style="display:none" aria-hidden="true">
+                    <circle opacity=".25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path opacity=".85" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                 </svg>
             </button>
         </form>
-    </div>
+    </section>
 </div>
 
 <script>
     const isId = window.location.pathname.startsWith('/id');
+    let ctl: AbortController | null = null;
 
     const initChatBot = () => {
+        // one set of listeners per page: abort the previous page's before binding new ones
+        ctl?.abort();
+        ctl = new AbortController();
+        const { signal } = ctl;
+
         const desktopToggle = document.getElementById("chat-toggle-desktop");
         const closeBtn = document.getElementById("chat-close");
         const fullscreenToggle = document.getElementById("chat-fullscreen-toggle");
@@ -180,22 +111,15 @@ const isId = Astro.url.pathname.startsWith('/id');
         const form = document.getElementById("chat-form") as HTMLFormElement;
         const input = document.getElementById("chat-input") as HTMLInputElement;
         const messagesContainer = document.getElementById("chat-messages");
+        const starters = document.getElementById("chat-starters");
 
-        // Mobile trigger via event delegation (no global leak, BFCache-safe)
-        const handleMobileTrigger = (e: MouseEvent) => {
+        // Mobile trigger via event delegation (BFCache-safe)
+        document.body.addEventListener("click", (e) => {
             if ((e.target as Element).closest("#mobile-ai-trigger")) {
                 e.preventDefault();
                 toggleChat();
             }
-        };
-        document.body.addEventListener("click", handleMobileTrigger, { once: false });
-        
-        // Cleanup on page navigation to allow BFCache
-        const cleanup = () => {
-            document.body.removeEventListener("click", handleMobileTrigger);
-        };
-        document.addEventListener("astro:before-swap", cleanup, { once: true });
-        window.addEventListener("pagehide", cleanup, { once: true });
+        }, { signal });
 
         let isOpen = false;
         let isFullscreen = false;
@@ -203,67 +127,32 @@ const isId = Astro.url.pathname.startsWith('/id');
         function toggleChat() {
             isOpen = !isOpen;
             const aiTrigger = document.getElementById("mobile-ai-trigger");
+            windowEl?.classList.toggle("is-open", isOpen);
+            windowEl?.setAttribute("aria-hidden", String(!isOpen));
+            desktopToggle?.setAttribute("aria-expanded", String(isOpen));
+            aiTrigger?.classList.toggle("bottom-nav-item--active", isOpen);
             if (isOpen) {
-                windowEl?.classList.remove(
-                    "scale-95",
-                    "opacity-0",
-                    "pointer-events-none",
-                );
-                windowEl?.classList.add(
-                    "scale-100",
-                    "opacity-100",
-                    "pointer-events-auto",
-                );
-                aiTrigger?.classList.add("bottom-nav-item--active");
-                
-                // Fullscreen langsung di mobile (tanpa timeout)
-                if (window.innerWidth <= 768 && !isFullscreen) {
-                    setFullscreen(true);
-                }
-                
-                setTimeout(() => input?.focus(), 300);
-            } else {
-                windowEl?.classList.add(
-                    "scale-95",
-                    "opacity-0",
-                    "pointer-events-none",
-                );
-                windowEl?.classList.remove(
-                    "scale-100",
-                    "opacity-100",
-                    "pointer-events-auto",
-                );
-                aiTrigger?.classList.remove("bottom-nav-item--active");
-                // Exit fullscreen when closing chat
-                if (isFullscreen) {
-                    setFullscreen(false);
-                }
+                // Fullscreen langsung di mobile
+                if (window.innerWidth <= 768 && !isFullscreen) setFullscreen(true);
+                setTimeout(() => input?.focus({ preventScroll: true }), 250);
+            } else if (isFullscreen) {
+                setFullscreen(false);
             }
         }
 
         function setFullscreen(on: boolean) {
             isFullscreen = on;
-            const expandIcon = document.querySelector('.fullscreen-icon-expand');
-            const collapseIcon = document.querySelector('.fullscreen-icon-collapse');
-            
-            if (on) {
-                windowEl?.classList.add('chat-fullscreen');
-                expandIcon?.classList.add('hidden');
-                collapseIcon?.classList.remove('hidden');
-            } else {
-                windowEl?.classList.remove('chat-fullscreen');
-                expandIcon?.classList.remove('hidden');
-                collapseIcon?.classList.add('hidden');
-                if (windowEl) {
-                    windowEl.style.height = "";
-                    windowEl.style.top = "";
-                }
+            const expandIcon = document.querySelector<HTMLElement>('.fullscreen-icon-expand');
+            const collapseIcon = document.querySelector<HTMLElement>('.fullscreen-icon-collapse');
+            windowEl?.classList.toggle('chat-fullscreen', on);
+            document.documentElement.classList.toggle('aic-lock', on);
+            if (expandIcon) expandIcon.style.display = on ? 'none' : '';
+            if (collapseIcon) collapseIcon.style.display = on ? '' : 'none';
+            if (!on && windowEl) {
+                windowEl.style.height = "";
+                windowEl.style.top = "";
             }
             onViewportResize();
-        }
-
-        function toggleFullscreen() {
-            setFullscreen(!isFullscreen);
         }
 
         // Jaga chat tetap di atas keyboard saat mobile
@@ -275,57 +164,79 @@ const isId = Astro.url.pathname.startsWith('/id');
                 windowEl.style.top = viewport.offsetTop + "px";
             }
         };
-        viewport?.addEventListener("resize", onViewportResize);
-        viewport?.addEventListener("scroll", onViewportResize);
+        viewport?.addEventListener("resize", onViewportResize, { signal });
+        viewport?.addEventListener("scroll", onViewportResize, { signal });
 
-        if (desktopToggle) {
-            desktopToggle.onclick = toggleChat;
-        }
-
-        if (closeBtn) {
-            closeBtn.onclick = toggleChat;
-        }
-
-        if (fullscreenToggle) {
-            fullscreenToggle.onclick = toggleFullscreen;
-        }
+        desktopToggle?.addEventListener("click", toggleChat, { signal });
+        closeBtn?.addEventListener("click", toggleChat, { signal });
+        fullscreenToggle?.addEventListener("click", () => setFullscreen(!isFullscreen), { signal });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isOpen) toggleChat();
+        }, { signal });
+        // never leave scroll locked if the page is swapped while the chat is fullscreen
+        signal.addEventListener("abort", () => document.documentElement.classList.remove('aic-lock'));
 
         // Conversation history (keep last 10 messages for context)
+        // Khusus kekasih: history + status verifikasi disimpan di HP dia (localStorage)
+        // agar AI selalu ingat di kunjungan berikutnya. Pengunjung umum TETAP stateless.
         let conversationHistory: Array<{ role: string; content: string }> = [];
+        const GF_KEY = 'wisnu_ai_girlfriend';
+        const GF_HIST = 'wisnu_ai_girlfriend_history';
+
+        const containsGirlfriendNameLocal = (q: string) => {
+            const s = ` ${(q || '').toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim()} `;
+            return s.includes(' sitti ') && s.includes('nurfadhila') && s.includes(' zahra ') && s.includes(' syam ')
+                && s.indexOf('sitti') < s.indexOf('nurfadhila')
+                && s.indexOf('nurfadhila') < s.indexOf('zahra')
+                && s.indexOf('zahra') < s.indexOf('syam');
+        };
+
+        // Restore sesi kekasih dari HP dia (jika pernah terverifikasi)
+        try {
+            if (localStorage.getItem(GF_KEY) === '1') {
+                const saved = JSON.parse(localStorage.getItem(GF_HIST) || '[]');
+                if (Array.isArray(saved) && saved.length > 0) {
+                    conversationHistory = saved.slice(-20);
+                }
+                setTimeout(() => {
+                    addMessage(isId
+                        ? 'Hai sayang 🥰 Aku masih ingat kamu dari HP ini. Kangen? Cerita aja, aku dengerin dengan manja~ 💕'
+                        : 'Hi my love 🥰 I still remember you on this phone. Miss me? Tell me anything~ 💕', 'ai');
+                }, 800);
+            }
+        } catch { /* abaikan jika localStorage tidak tersedia */ }
+
+        const setBusy = (busy: boolean) => {
+            const sendButton = document.getElementById("send-button") as HTMLButtonElement | null;
+            const sendIcon = sendButton?.querySelector<HTMLElement>(".send-icon");
+            const sendLoading = sendButton?.querySelector<HTMLElement>(".send-loading");
+            if (sendButton) sendButton.disabled = busy;
+            if (sendIcon) sendIcon.style.display = busy ? "none" : "";
+            if (sendLoading) sendLoading.style.display = busy ? "" : "none";
+            if (input) {
+                input.disabled = busy;
+                if (!busy) input.focus({ preventScroll: true });
+            }
+        };
 
         const handleQuerySubmit = async (query: string) => {
             if (!query || !input || !messagesContainer) return;
 
-            const sendButton = document.getElementById("send-button");
-            const sendIcon = sendButton?.querySelector(".send-icon");
-            const sendLoading = sendButton?.querySelector(".send-loading");
-
-            // Show loading state
-            if (sendButton) sendButton.disabled = true;
-            if (sendIcon) sendIcon.classList.add("hidden");
-            if (sendLoading) sendLoading.classList.remove("hidden");
-
+            starters?.remove();
+            setBusy(true);
             addMessage(query, "user");
             input.value = "";
             const typingId = showTypingIndicator();
-            input.disabled = true;
 
             try {
                 // Detect language (simple check: if contains Indonesian words, use 'id')
                 const hasIndonesian = /\b(apa|siapa|dimana|kenapa|bagaimana|saya|kamu|anda|gue|lo)\b/i.test(query);
                 const lang = hasIndonesian ? 'id' : 'en';
 
-                // Call new OpenRouter-based API endpoint
                 const response = await fetch('/api/chat', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: query,
-                        history: conversationHistory,
-                        lang: lang
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: query, history: conversationHistory, lang: lang })
                 });
 
                 if (!response.ok) {
@@ -336,125 +247,94 @@ const isId = Astro.url.pathname.startsWith('/id');
                 const data = await response.json();
                 const aiResponse = data.response || (isId ? 'Maaf, ada error. Coba lagi ya!' : 'Sorry, an error occurred. Please try again!');
 
-                // Add to conversation history
                 conversationHistory.push(
                     { role: 'user', content: query },
                     { role: 'assistant', content: aiResponse }
                 );
 
-                // Keep only last 10 messages (5 exchanges)
+                // Keep only last 10 messages (5 exchanges) for server context
                 if (conversationHistory.length > 10) {
                     conversationHistory = conversationHistory.slice(-10);
                 }
 
-                // Calculate typing delay based on response length (2-4 seconds)
-                const typingDelay = Math.min(Math.max(2000, aiResponse.length * 15), 4000);
-                
+                // Jika terkonfirmasi kekasih (server girlfriend-mode ATAU nama lengkap di pesan),
+                // simpan status + history di HP dia agar AI selalu ingat.
+                try {
+                    const isGf = (data.model && String(data.model).includes('girlfriend')) || data.girlfriend === true || containsGirlfriendNameLocal(query);
+                    if (isGf) {
+                        localStorage.setItem(GF_KEY, '1');
+                        localStorage.setItem(GF_HIST, JSON.stringify(conversationHistory.slice(-20)));
+                    } else if (localStorage.getItem(GF_KEY) === '1') {
+                        // Sesi kekasih lanjutan: tetap simpan agar ingatan tidak putus
+                        localStorage.setItem(GF_HIST, JSON.stringify(conversationHistory.slice(-20)));
+                    }
+                } catch { /* abaikan */ }
+
+                // Short "human" pause only (the answer is already here) — keeps the chat feeling instant
+                const typingDelay = Math.min(Math.max(500, aiResponse.length * 5), 1500);
+
                 setTimeout(() => {
                     if (typingId) removeTypingIndicator(typingId);
                     addMessage(aiResponse, "ai");
-                    if (input) {
-                        input.disabled = false;
-                        input.focus();
-                    }
-                    // Hide loading state
-                    if (sendButton) sendButton.disabled = false;
-                    if (sendIcon) sendIcon.classList.remove("hidden");
-                    if (sendLoading) sendLoading.classList.add("hidden");
+                    setBusy(false);
                 }, typingDelay);
             } catch (error: any) {
                 console.error("AI Error:", error);
                 if (typingId) removeTypingIndicator(typingId);
                 addMessage(error.message || (isId ? "Maaf, terjadi kesalahan. Coba lagi nanti." : "Sorry, something went wrong. Please try again later."), "ai");
-                if (input) input.disabled = false;
-                // Hide loading state on error
-                if (sendButton) sendButton.disabled = false;
-                if (sendIcon) sendIcon.classList.remove("hidden");
-                if (sendLoading) sendLoading.classList.add("hidden");
+                setBusy(false);
             }
         };
 
-        if (form) {
-            form.onsubmit = (e) => {
-                e.preventDefault();
-                if (input) {
-                    handleQuerySubmit(input.value.trim());
-                }
-            };
-        }
+        form?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (input) handleQuerySubmit(input.value.trim());
+        }, { signal });
+
+        starters?.addEventListener("click", (e) => {
+            const b = (e.target as Element).closest<HTMLElement>("[data-q]");
+            if (b) handleQuerySubmit(b.dataset.q || "");
+        }, { signal });
+
+        // Security: escape first, then allow only **bold** and line breaks
+        const escapeHtml = (unsafe: string) =>
+            unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        const renderMessage = (content: string) =>
+            escapeHtml(content).replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
 
         function addMessage(text: string, sender: "user" | "ai") {
             if (!messagesContainer) return;
 
             // Extract suggestions [[Suggestion]]
             const suggestions: string[] = [];
-            const cleanText = text.replace(/\[\[(.*?)\]\]/g, (match, p1) => {
+            const cleanText = text.replace(/\[\[(.*?)\]\]/g, (_m, p1) => {
                 suggestions.push(p1);
                 return "";
             });
 
-            const div = document.createElement("div");
             const isAi = sender === "ai";
-            div.className = `flex gap-3 items-start ${isAi ? "animate-reveal-up" : "flex-row-reverse"}`;
-
-            // Menggunakan IMG tag untuk AI, dan teks "You" untuk user
-            const iconHtml = isAi
-                ? `<img src="/wisnu-alfian.webp" alt="AI" class="w-8 h-8 rounded-full object-cover border border-slate-200 shrink-0 shadow-sm" />`
-                : `<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0 text-white text-xs font-bold shadow-md">${isId ? 'Anda' : 'You'}</div>`;
-
-            const bubbleClass = isAi
-                ? "bg-white border border-slate-100 text-slate-800 rounded-tl-sm"
-                : "bg-slate-900 text-white rounded-tr-sm shadow-indigo-500/10";
-
-            // Security Patch: Simple escaping + Markdown-lite rendering
-            const escapeHtml = (unsafe: string) => {
-                return unsafe
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#039;");
-            };
-
-            const renderMessage = (content: string) => {
-                let escaped = escapeHtml(content);
-                // Support Bold (**text**)
-                escaped = escaped.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-                // Support Line Breaks
-                return escaped.replace(/\n/g, "<br>");
-            };
-
-            div.innerHTML = `
-                 ${iconHtml}
-                 <div class="p-3 rounded-2xl shadow-sm max-w-[85%] text-[13px] leading-relaxed ${bubbleClass}">
-                   ${renderMessage(cleanText.trim())}
-                 </div>
-               `;
+            const div = document.createElement("div");
+            div.className = `aic-msg ${isAi ? "aic-msg--ai" : "aic-msg--user"}`;
+            div.innerHTML = `${isAi ? `<img src="/wisnu-avatar-96.webp" alt="" width="32" height="32" class="aic-msg-av" />` : ""}<div class="aic-bubble">${renderMessage(cleanText.trim())}</div>`;
             messagesContainer.appendChild(div);
 
             // Render Suggestions as clickable chips
             if (isAi && suggestions.length > 0) {
                 const suggestionDiv = document.createElement("div");
-                suggestionDiv.className =
-                    "flex flex-wrap gap-2 mt-2 ml-11 mb-2 animate-reveal-up delay-300";
-
+                suggestionDiv.className = "aic-starters";
                 suggestions.forEach((s) => {
                     const btn = document.createElement("button");
                     btn.type = "button";
+                    btn.className = "aic-chip";
                     btn.setAttribute("aria-label", s);
-                    btn.className =
-                        "px-3 py-1.5 bg-white border border-slate-200 rounded-full text-[11px] text-slate-500 hover:text-slate-900 hover:border-slate-900 transition-all active:scale-95 shadow-sm";
-                    btn.innerHTML = s;
-                    btn.onclick = () => {
-                        handleQuerySubmit(s);
-                    };
+                    btn.textContent = s;
+                    btn.onclick = () => { suggestionDiv.remove(); handleQuerySubmit(s); };
                     suggestionDiv.appendChild(btn);
                 });
                 messagesContainer.appendChild(suggestionDiv);
             }
 
-            if (messagesContainer)
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
         function showTypingIndicator() {
@@ -462,53 +342,11 @@ const isId = Astro.url.pathname.startsWith('/id');
             const id = "typing-" + Date.now();
             const div = document.createElement("div");
             div.id = id;
-            div.className = "flex gap-3 items-start";
-            
-            // Create typing text with wave animation using DOM
-            const text = isId ? "sedang mengetik" : "typing";
-            const typingWrapper = document.createElement('span');
-            typingWrapper.className = 'text-xs text-slate-500 italic typing-text-wrapper';
-            
-            // Add each character as a span with animation
-            text.split('').forEach((char, index) => {
-                const charSpan = document.createElement('span');
-                if (char === ' ') {
-                    charSpan.innerHTML = '&nbsp;';
-                    charSpan.style.display = 'inline-block';
-                } else {
-                    charSpan.textContent = char;
-                    charSpan.className = 'typing-char';
-                    charSpan.style.animationDelay = `${index * 0.15}s`;
-                }
-                typingWrapper.appendChild(charSpan);
-            });
-            
-            // Add ellipsis
-            const ellipsis = document.createElement('span');
-            ellipsis.className = 'typing-ellipsis';
-            typingWrapper.appendChild(ellipsis);
-            
-            // Build the complete structure
-            div.innerHTML = `
-                 <img src="/wisnu-alfian.webp" alt="AI" class="w-8 h-8 min-w-[2rem] min-h-[2rem] max-w-[2rem] max-h-[2rem] rounded-full object-cover border border-slate-200 shrink-0 shadow-sm aspect-square self-start" />
-                 <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-sm border border-slate-100 shadow-sm flex flex-col gap-2">
-                   <div class="typing-text-container"></div>
-                   <div class="flex gap-1 items-center">
-                     <span class="typing-dot"></span>
-                     <span class="typing-dot"></span>
-                     <span class="typing-dot"></span>
-                   </div>
-                 </div>`;
-            
-            // Append typing wrapper to container
-            const container = div.querySelector('.typing-text-container');
-            if (container) {
-                container.appendChild(typingWrapper);
-            }
-            
+            div.className = "aic-msg aic-msg--ai";
+            div.innerHTML = `<img src="/wisnu-avatar-96.webp" alt="" width="32" height="32" class="aic-msg-av" />
+                <div class="aic-bubble aic-typing" role="status" aria-label="${isId ? "sedang mengetik" : "typing"}"><i></i><i></i><i></i></div>`;
             messagesContainer.appendChild(div);
-            if (messagesContainer)
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
             return id;
         }
         function removeTypingIndicator(id: string) {
@@ -516,128 +354,112 @@ const isId = Astro.url.pathname.startsWith('/id');
         }
     };
 
-    // Initialize on first load and subsequent view transition page loads
-    initChatBot();
+    // fires on first load and after every client-side navigation
     document.addEventListener("astro:page-load", initChatBot);
+    document.addEventListener("astro:before-swap", () => ctl?.abort());
 </script>
 
-<style>
-  /* Composited animation — hanya pakai opacity & transform agar tidak trigger reflow */
-  .ai-status-dot {
-    animation: ai-pulse 2s ease-in-out infinite;
-  }
+<style is:global>
+  .aic { font-family: var(--font-sans); }
 
-  @keyframes ai-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
+  /* ---------- launcher ---------- */
+  .aic-fab {
+    position: fixed; right: 24px; bottom: 24px; z-index: 50;
+    display: none; align-items: center; gap: 12px;
+    padding: 6px 18px 6px 6px; border-radius: 999px;
+    background: #0A0A0A; color: #fff; cursor: pointer;
+    border: 1px solid rgba(132, 225, 12, 0.45);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 0 0 rgba(132, 225, 12, 0.35);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    animation: aic-ring 3.2s ease-out 2s 2;
   }
+  @media (min-width: 768px) { .aic-fab { display: inline-flex; } }
+  .aic-fab:hover { transform: translateY(-2px); border-color: #84E10C; box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 28px rgba(132, 225, 12, 0.25); }
+  .aic-fab:active { transform: scale(0.97); }
+  .aic-fab:focus-visible, .aic-icon:focus-visible, .aic-chip:focus-visible, .aic-send:focus-visible { outline: 2px solid #84E10C; outline-offset: 2px; }
+  .aic-fab-txt { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; text-align: left; }
+  .aic-fab-txt b { font-size: 14px; font-weight: 600; }
+  .aic-fab-txt small { font-size: 10.5px; color: rgba(255, 255, 255, 0.55); }
+  @keyframes aic-ring { 0% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 0 rgba(132,225,12,.45); } 70%,100% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 16px rgba(132,225,12,0); } }
 
-  /* Typing text animation container */
-  .typing-text-wrapper {
-    display: inline-flex;
-    align-items: baseline;
-    flex-wrap: nowrap;
-    white-space: nowrap;
+  .aic-ava { position: relative; display: inline-flex; flex-shrink: 0; }
+  .aic-ava img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.18); }
+  .aic-dot { position: absolute; right: 0; bottom: 0; width: 11px; height: 11px; border-radius: 50%; background: #84E10C; border: 2px solid #0A0A0A; }
+
+  /* ---------- window ---------- */
+  .aic-win {
+    position: fixed; z-index: 120; left: 12px; right: 12px; bottom: 76px;
+    display: flex; flex-direction: column; max-height: min(70dvh, 560px);
+    background: rgba(12, 12, 12, 0.97); color: #f1f1f1;
+    border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 22px; overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(132, 225, 12, 0.07);
+    visibility: hidden; opacity: 0; transform: translateY(14px) scale(0.97); transform-origin: bottom right; pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.28s;
   }
+  .aic-win.is-open { visibility: visible; opacity: 1; transform: none; pointer-events: auto; transition-delay: 0s; }
+  @media (min-width: 768px) { .aic-win { left: auto; right: 24px; bottom: 92px; width: 392px; max-height: 540px; } }
 
-  /* Wave animation for each character - MORE VISIBLE */
-  .typing-char {
-    display: inline-block !important;
-    animation: typing-wave 0.8s ease-in-out infinite !important;
-    transform-origin: center bottom;
-    will-change: transform;
-    font-style: italic;
+  .aic-head { display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 16px; flex-shrink: 0;
+    background: radial-gradient(120% 140% at 100% 0%, rgba(132, 225, 12, 0.16), transparent 60%), #0f0f0f;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+  .aic-head-txt { flex: 1; min-width: 0; }
+  .aic-head-txt h3 { margin: 0; font-family: var(--font-sans); font-size: 14.5px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .aic-head-txt p { margin: 2px 0 0; font-size: 11px; color: #84E10C; font-weight: 500; letter-spacing: 0.02em; }
+  .aic-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 0; background: transparent; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .aic-icon:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+  .aic-msgs { flex: 1; min-height: 240px; overflow-y: auto; overscroll-behavior: contain; padding: 16px 14px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .aic-msg { display: flex; gap: 10px; align-items: flex-start; max-width: 100%; animation: aic-in 0.3s ease both; }
+  .aic-msg--user { flex-direction: row-reverse; }
+  .aic-msg-av { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.16); }
+  .aic-bubble { padding: 10px 13px; border-radius: 16px; font-size: 13.5px; line-height: 1.55; max-width: 86%; word-break: break-word; }
+  .aic-msg--ai .aic-bubble { background: #181818; border: 1px solid rgba(255, 255, 255, 0.09); color: #e9e9e9; border-top-left-radius: 5px; }
+  .aic-msg--user .aic-bubble { background: #84E10C; color: #0A0A0A; font-weight: 500; border-top-right-radius: 5px; }
+  .aic-bubble strong { font-weight: 600; color: inherit; }
+  .aic-msg--ai .aic-bubble strong { color: #b4f461; }
+  @keyframes aic-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .aic-typing { display: inline-flex; gap: 5px; align-items: center; padding: 14px 15px; }
+  .aic-typing i { width: 7px; height: 7px; border-radius: 50%; background: #84E10C; opacity: 0.4; animation: aic-bounce 1.2s infinite ease-in-out; }
+  .aic-typing i:nth-child(2) { animation-delay: 0.15s; }
+  .aic-typing i:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes aic-bounce { 0%, 70%, 100% { transform: translateY(0); opacity: 0.4; } 35% { transform: translateY(-5px); opacity: 1; } }
+
+  .aic-starters { display: flex; flex-wrap: wrap; gap: 7px; margin-left: 42px; animation: aic-in 0.4s ease 0.15s both; }
+  .aic-starters--dock { margin: 0; padding: 8px 12px 0; flex-wrap: nowrap; overflow-x: auto; flex-shrink: 0; background: #0f0f0f; scrollbar-width: none; }
+  .aic-starters--dock::-webkit-scrollbar { display: none; }
+  .aic-starters--dock .aic-chip { white-space: nowrap; flex-shrink: 0; }
+  .aic-chip { padding: 7px 12px; border-radius: 999px; background: transparent; color: #cfe9a8; font: inherit; font-size: 12px; cursor: pointer;
+    border: 1px solid rgba(132, 225, 12, 0.4); transition: background 0.2s, color 0.2s, transform 0.15s; }
+  .aic-chip:hover { background: #84E10C; color: #0A0A0A; }
+  .aic-chip:active { transform: scale(0.96); }
+
+  .aic-form { display: flex; gap: 8px; padding: 10px 12px; flex-shrink: 0; background: #0f0f0f; }
+  .aic-form input { flex: 1; min-width: 0; padding: 11px 15px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.14); background: #171717; color: #fff;
+    font: inherit; font-size: 16px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+  @media (min-width: 768px) { .aic-form input { font-size: 13.5px; } }
+  .aic-form input::placeholder { color: rgba(255, 255, 255, 0.4); }
+  .aic-form input:focus { border-color: #84E10C; box-shadow: 0 0 0 3px rgba(132, 225, 12, 0.15); }
+  .aic-send { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; border: 0; background: #84E10C; color: #0A0A0A; cursor: pointer; transition: filter 0.2s, transform 0.15s; }
+  .aic-send:hover { filter: brightness(1.1); }
+  .aic-send:active { transform: scale(0.92); }
+  .aic-send:disabled { opacity: 0.5; cursor: not-allowed; }
+  .aic-send .send-loading { animation: aic-spin 0.8s linear infinite; }
+  @keyframes aic-spin { to { transform: rotate(360deg); } }
+
+  /* ---------- fullscreen (always on phones) ---------- */
+  .aic-win.chat-fullscreen {
+    position: fixed; inset: 0; width: 100vw; max-width: 100vw; height: 100vh; height: 100dvh; max-height: none;
+    border-radius: 0; border: 0; transform: none; z-index: 9999;
   }
+  .chat-fullscreen .aic-msgs { max-height: none; }
+  .chat-fullscreen .aic-form { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .chat-fullscreen .aic-head { padding-top: max(14px, env(safe-area-inset-top)); }
+  .chat-fullscreen ~ #scroll-to-top { display: none; }
+  html.aic-lock, html.aic-lock body { overflow: hidden !important; overscroll-behavior: none; }
 
-  @keyframes typing-wave {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
-  }
-
-  /* Animated ellipsis for "typing..." effect */
-  .typing-ellipsis::after {
-    content: '';
-    animation: typing-ellipsis-animation 1.5s infinite;
-  }
-
-  @keyframes typing-ellipsis-animation {
-    0% { content: ''; }
-    25% { content: '.'; }
-    50% { content: '..'; }
-    75% { content: '...'; }
-    100% { content: ''; }
-  }
-
-  /* WhatsApp-style typing indicator animation */
-  .typing-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #94a3b8;
-    border-radius: 50%;
-    display: inline-block;
-    animation: typing-bounce 1.4s infinite ease-in-out;
-  }
-
-  .typing-dot:nth-child(1) {
-    animation-delay: 0s;
-  }
-
-  .typing-dot:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  .typing-dot:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-
-  @keyframes typing-bounce {
-    0%, 60%, 100% {
-      transform: translateY(0);
-      opacity: 0.7;
-    }
-    30% {
-      transform: translateY(-10px);
-      opacity: 1;
-    }
-  }
-
-  /* Fullscreen mode styling */
-  .chat-fullscreen {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100vw !important;
-    max-width: 100vw !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    max-height: 100vh !important;
-    max-height: 100dvh !important;
-    border-radius: 0 !important;
-    transform: scale(1) !important;
-    z-index: 9999 !important;
-  }
-
-  .chat-fullscreen #chat-messages {
-    height: auto !important;
-    max-height: none !important;
-    flex: 1 1 auto;
-  }
-
-  .chat-fullscreen #chat-form {
-    padding-bottom: max(12px, env(safe-area-inset-bottom));
-  }
-
-  /* Hide scroll to top button when chat is fullscreen */
-  .chat-fullscreen ~ #scroll-to-top {
-    display: none;
+  @media (prefers-reduced-motion: reduce) {
+    .aic-fab, .aic-msg, .aic-starters, .aic-win { animation: none; transition-duration: 0.01s; }
+    .aic-typing i { animation: none; opacity: 0.8; }
   }
 </style>
