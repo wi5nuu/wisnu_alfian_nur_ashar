@@ -64,7 +64,7 @@ input:focus-visible, textarea:focus-visible { outline-offset: 0; }
    Below-the-fold blocks are skipped by the browser until they approach the viewport:
    far less style/layout/paint work on first open (big win on mid-range phones). */
 .selected-work, .process-section, .services-section, .why-work-with-me, .stats-section,
-.exp-section, .education-section, .achievements-section, .testimonials-section,
+.exp-section, .cx, .education-section, .achievements-section, .testimonials-section,
 .contact-section, .faq {
   content-visibility: auto;
   contain-intrinsic-size: auto 720px;

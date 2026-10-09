@@ -1,0 +1,423 @@
+---
+// Experience & leadership as an interactive 3D "cover-flow" timeline.
+// Pure CSS 3D transforms + ~3 KB of JS: GPU-composited, no WebGL, readable without JS.
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+
+interface Props { variant?: "home" | "page" }
+const { variant = "home" } = Astro.props;
+
+const isId = Astro.url.pathname.startsWith("/id");
+const profile = isId ? profileId : profileEn;
+
+const MONTHS: Record<string, number> = {
+  january: 0, february: 1, march: 2, april: 3, may: 4, june: 5, july: 6, august: 7, september: 8, october: 9, november: 10, december: 11,
+  januari: 0, februari: 1, maret: 2, mei: 4, juni: 5, juli: 6, agustus: 7, oktober: 9, desember: 11,
+};
+const parseDate = (s: string, end = false): Date | null => {
+  const t = s.trim().toLowerCase();
+  if (/present|sekarang|saat ini|kini/.test(t)) return new Date(8640000000000000);
+  const y = t.match(/\d{4}/);
+  if (!y) return null;
+  const m = Object.keys(MONTHS).find((k) => t.includes(k));
+  return new Date(Number(y[0]), m !== undefined ? MONTHS[m] : end ? 11 : 0, end ? 28 : 1);
+};
+const now = new Date();
+
+const items = [
+  ...profile.experience.map((e) => ({ ...e, cat: "work" as const })),
+  ...(profile.organizationalExperience || []).map((e) => ({ ...e, cat: "org" as const })),
+]
+  .map((e, i) => {
+    const [a, b = a] = e.duration.split(/\s+[–-]\s+/);
+    const start = parseDate(a) ?? new Date(2000, 0, 1);
+    const end = parseDate(b, true) ?? start;
+    const current = start <= now && end >= now;
+    // highlight metrics (600+, 60%, 1.34s …) inside the description
+    const parts = e.description.split(/(\d[\d.,]*(?:\+|%|s\b)|\d+\s?(?:x|×)\b)/g);
+    return { ...e, i, start, current, year: start.getFullYear(), parts };
+  })
+  .sort((x, y) => x.start.getTime() - y.start.getTime());
+
+// open on the most recent ongoing job (falls back to the newest entry)
+const workNow = items.filter((x) => x.cat === "work" && x.current);
+const startIndex = items.indexOf(workNow.length ? workNow[workNow.length - 1] : items[items.length - 1]);
+
+const nWork = items.filter((x) => x.cat === "work").length;
+const nOrg = items.length - nWork;
+const nNow = items.filter((x) => x.current).length;
+const since = Math.min(...items.map((x) => x.year));
+
+const t = isId
+  ? {
+      badge: "Pengalaman Kerja & Organisasi",
+      h: variant === "home" ? ["Pengalaman", "Kerja"] : ["Perjalanan", "Karir"],
+      intro: "Geser, seret, atau pakai tombol panah untuk menjelajahi linimasa. Ketuk kartu untuk membukanya.",
+      all: "Semua", work: "Kerja", org: "Organisasi", roles: "Peran kerja", orgs: "Organisasi", active: "Sedang berjalan", since: "Aktif sejak",
+      prev: "Sebelumnya", next: "Berikutnya", now: "Sekarang", timeline: "Linimasa pengalaman",
+    }
+  : {
+      badge: "Experience & Leadership",
+      h: variant === "home" ? ["Work", "Experience"] : ["Career", "Journey"],
+      intro: "Swipe, drag or use the arrows to travel through the timeline. Tap a card to bring it forward.",
+      all: "All", work: "Work", org: "Organization", roles: "Work roles", orgs: "Organizations", active: "Ongoing", since: "Active since",
+      prev: "Previous", next: "Next", now: "Now", timeline: "Experience timeline",
+    };
+---
+
+<section class="cx" id="experience" aria-labelledby="cx-h" data-cx data-start={startIndex}>
+  <div class="cx-wrap">
+    <header class="cx-head">
+      <div class="cx-badge reveal-up"><span></span>{t.badge}</div>
+      <h2 id="cx-h" class="cx-h reveal-up">{t.h[0]}<br />{t.h[1]}</h2>
+      <p class="cx-intro reveal-up">{t.intro}</p>
+      <dl class="cx-stats reveal-up">
+        <div><dt>{t.roles}</dt><dd class="stat-number">{nWork}</dd></div>
+        <div><dt>{t.orgs}</dt><dd class="stat-number">{nOrg}</dd></div>
+        <div><dt>{t.active}</dt><dd class="stat-number">{nNow}</dd></div>
+        <div><dt>{t.since}</dt><dd>{since}</dd></div>
+      </dl>
+    </header>
+
+    <div class="cx-filters" role="group" aria-label={t.timeline}>
+      <button type="button" class="cx-chip" data-f="all" aria-pressed="true">{t.all}<b>{items.length}</b></button>
+      <button type="button" class="cx-chip" data-f="work" aria-pressed="false">{t.work}<b>{nWork}</b></button>
+      <button type="button" class="cx-chip" data-f="org" aria-pressed="false">{t.org}<b>{nOrg}</b></button>
+    </div>
+
+    <div class="cx-stage" data-cx-stage tabindex="0" role="region" aria-roledescription="carousel" aria-label={t.timeline}>
+      <div class="cx-bg" aria-hidden="true"><i class="cx-floor"></i><i class="cx-ring"></i><i class="cx-ring cx-ring--2"></i></div>
+
+      <ol class="cx-track">
+        {items.map((it, k) => (
+          <li class={`cx-card ${it.cat === "org" ? "is-org" : ""}`} data-cat={it.cat} data-k={k} aria-roledescription="slide">
+            <article class="cx-inner">
+              <div class="cx-top">
+                <span class="cx-kind">{it.cat === "work" ? t.work : t.org}</span>
+                {it.current && <span class="cx-live"><i></i>{t.now}</span>}
+                <span class="cx-year">{it.year}</span>
+              </div>
+              <h3 class="cx-role">{it.role}</h3>
+              <p class="cx-co">{it.company}</p>
+              <p class="cx-meta">{it.duration} · {it.location}{it.type ? ` · ${it.type}` : ""}</p>
+              <p class="cx-desc">
+                {it.parts.map((p, j) => (j % 2 ? <mark>{p}</mark> : p))}
+              </p>
+              {it.skills?.length > 0 && (
+                <ul class="cx-skills">{it.skills.map((s) => <li>{s}</li>)}</ul>
+              )}
+            </article>
+          </li>
+        ))}
+      </ol>
+
+      <button type="button" class="cx-nav cx-nav--prev" data-cx-prev aria-label={t.prev}>‹</button>
+      <button type="button" class="cx-nav cx-nav--next" data-cx-next aria-label={t.next}>›</button>
+    </div>
+    <script is:inline>document.currentScript.previousElementSibling.classList.add("is-3d");</script>
+
+    <div class="cx-rail" aria-label={t.timeline}>
+      <i class="cx-rail-line"><u data-cx-fill></u></i>
+      {items.map((it, k) => (
+        <button type="button" class={`cx-stop ${it.cat === "org" ? "is-org" : ""}`} data-k={k} data-cat={it.cat} aria-label={`${it.role} — ${it.company}, ${it.year}`}>
+          <i></i><span>{it.year}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Cover-flow controller. Transforms only → stays on the compositor (smooth on phones).
+  type Card = HTMLElement;
+  let off: AbortController | null = null;
+
+  function init() {
+    off?.abort();
+    const root = document.querySelector<HTMLElement>("[data-cx]");
+    if (!root) return;
+    off = new AbortController();
+    const sig = { signal: off.signal };
+    const stage = root.querySelector<HTMLElement>("[data-cx-stage]")!;
+    const cards = [...root.querySelectorAll<Card>(".cx-card")];
+    const stops = [...root.querySelectorAll<HTMLElement>(".cx-stop")];
+    const chips = [...root.querySelectorAll<HTMLElement>(".cx-chip")];
+    const fill = root.querySelector<HTMLElement>("[data-cx-fill]");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    let list = cards.slice();            // cards matching the filter, in timeline order
+    let pos = list.indexOf(cards[Number(root.dataset.start) || 0]);
+    if (pos < 0) pos = list.length - 1;
+    let drag = 0;                        // live drag offset in "cards"
+    let auto = 0, touched = false, inView = false;
+
+    const spacing = () => Math.min(stage.clientWidth * 0.34, 330);
+
+    function layout(instant = false) {
+      const sp = spacing();
+      const narrow = stage.clientWidth < 640;
+      cards.forEach((c) => {
+        const i = list.indexOf(c);
+        if (i < 0) { c.classList.add("is-out"); c.style.transform = "translate(-50%,var(--cx-ay,-50%)) scale(.6)"; return; }
+        c.classList.remove("is-out");
+        const d = i - pos + drag;
+        const a = Math.abs(d);
+        const x = d * sp * (narrow ? 0.82 : 1);
+        const z = -Math.min(a, 4) * (narrow ? 150 : 190);
+        const ry = Math.max(-62, Math.min(62, -d * (narrow ? 34 : 40)));
+        c.style.transition = instant || drag ? "none" : "";
+        c.style.transform = `translate(-50%,var(--cx-ay,-50%)) translate3d(${x.toFixed(1)}px,0,${z.toFixed(1)}px) rotateY(${ry.toFixed(1)}deg)`;
+        c.style.opacity = a > 3.2 ? "0" : String(1 - Math.min(a, 3) * 0.2);
+        c.style.zIndex = String(100 - Math.round(a * 10));
+        const front = Math.round(a * 100) === 0 || (drag === 0 && i === pos);
+        c.classList.toggle("is-front", front);
+        c.setAttribute("aria-current", front ? "true" : "false");
+      });
+      const k = cards.indexOf(list[pos]);
+      stops.forEach((s) => s.classList.toggle("is-on", Number(s.dataset.k) === k));
+      if (fill) fill.style.transform = `scaleX(${cards.length > 1 ? k / (cards.length - 1) : 1})`;
+    }
+
+    function go(n: number, user = true) {
+      if (!list.length) return;
+      pos = (n + list.length) % list.length;
+      if (user) { touched = true; stopAuto(); }
+      layout();
+    }
+
+    // drag / swipe
+    let sx = 0, sy = 0, st = 0, dragging = false, decided = false, horiz = false;
+    stage.addEventListener("pointerdown", (e) => {
+      if ((e.target as HTMLElement).closest("button,a")) return;
+      sx = e.clientX; sy = e.clientY; st = performance.now(); dragging = true; decided = false; horiz = false;
+    }, sig);
+    stage.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - sx, dy = e.clientY - sy;
+      if (!decided && Math.hypot(dx, dy) > 6) {
+        decided = true;
+        horiz = Math.abs(dx) > Math.abs(dy);
+        if (horiz) stage.setPointerCapture(e.pointerId);
+      }
+      if (!horiz) return;
+      drag = -dx / spacing();
+      layout(true);
+    }, sig);
+    const end = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      if (!horiz) {
+        // a tap on a side card brings it forward
+        const card = (e.target as HTMLElement).closest<Card>(".cx-card");
+        if (card && e.type === "pointerup" && !card.classList.contains("is-front")) go(list.indexOf(card));
+        return;
+      }
+      const v = (e.clientX - sx) / Math.max(1, performance.now() - st); // px per ms
+      let target = pos + Math.round(drag + (Math.abs(v) > 0.45 ? -Math.sign(v) * 0.6 : 0));
+      drag = 0;
+      go(Math.max(0, Math.min(list.length - 1, target)));
+    };
+    stage.addEventListener("pointerup", end, sig);
+    stage.addEventListener("pointercancel", end, sig);
+
+    // pointer tilt on the front card (desktop only)
+    if (fine && !reduced) {
+      stage.addEventListener("pointermove", (e) => {
+        if (dragging) return;
+        const f = list[pos]?.querySelector<HTMLElement>(".cx-inner");
+        if (!f) return;
+        const r = f.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+        if (Math.abs(px) > 0.8 || Math.abs(py) > 0.8) { f.style.transform = ""; return; }
+        f.style.transform = `rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 10).toFixed(2)}deg)`;
+        f.style.setProperty("--gx", `${((px + 0.5) * 100).toFixed(0)}%`);
+        f.style.setProperty("--gy", `${((py + 0.5) * 100).toFixed(0)}%`);
+      }, sig);
+      stage.addEventListener("pointerleave", () => cards.forEach((c) => ((c.querySelector<HTMLElement>(".cx-inner")!).style.transform = "")), sig);
+    }
+
+    root.querySelector("[data-cx-prev]")?.addEventListener("click", () => go(pos - 1), sig);
+    root.querySelector("[data-cx-next]")?.addEventListener("click", () => go(pos + 1), sig);
+    stage.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { go(pos - 1); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { go(pos + 1); e.preventDefault(); }
+      else if (e.key === "Home") { go(0); e.preventDefault(); }
+      else if (e.key === "End") { go(list.length - 1); e.preventDefault(); }
+    }, sig);
+
+    stops.forEach((s) => s.addEventListener("click", () => {
+      const c = cards[Number(s.dataset.k)];
+      if (!list.includes(c)) setFilter("all");
+      go(list.indexOf(c));
+    }, sig));
+
+    function setFilter(f: string) {
+      const cur = list[pos];
+      list = cards.filter((c) => f === "all" || c.dataset.cat === f);
+      chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.f === f)));
+      stops.forEach((s) => s.classList.toggle("is-dim", f !== "all" && s.dataset.cat !== f));
+      pos = Math.max(0, list.indexOf(cur));
+      if (!list.includes(cur)) pos = list.length - 1;
+      layout();
+    }
+    chips.forEach((c) => c.addEventListener("click", () => { touched = true; stopAuto(); setFilter(c.dataset.f || "all"); }, sig));
+
+    // gentle auto-play while visible, until the visitor takes over
+    function startAuto() {
+      if (reduced || touched || auto) return;
+      auto = window.setInterval(() => go(pos + 1, false), 4800);
+    }
+    function stopAuto() { clearInterval(auto); auto = 0; }
+    const io = new IntersectionObserver(([en]) => {
+      inView = en.isIntersecting;
+      root.classList.toggle("is-in", inView);
+      inView ? startAuto() : stopAuto();
+    }, { threshold: 0.35 });
+    io.observe(stage);
+    off.signal.addEventListener("abort", () => { io.disconnect(); stopAuto(); });
+
+    window.addEventListener("resize", () => layout(true), { passive: true, signal: off.signal });
+    stage.classList.add("is-3d");
+    layout(true);
+    stage.classList.add("is-placed");
+    requestAnimationFrame(() => stage.classList.add("is-ready"));
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-swap", () => off?.abort());
+</script>
+
+<style>
+  .cx { background: #0A0A0A; color: #fff; padding: clamp(64px, 9vw, 120px) clamp(16px, 3vw, 40px); font-family: var(--font-sans); overflow: hidden; }
+  .cx-wrap { max-width: 1240px; margin-inline: auto; }
+  .cx-head { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .cx-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 6px 16px; font-size: 12.5px; font-weight: 500; letter-spacing: 0.03em; }
+  .cx-badge span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .cx-h { margin: 14px 0 0; color: #fff; font-family: var(--font-sans); font-size: clamp(30px, 4vw, 56px); font-weight: 500; letter-spacing: -0.01em; line-height: 1.05; }
+  .cx-intro { margin: 14px 0 0; max-width: 520px; color: rgba(255,255,255,0.65); font-size: 14.5px; line-height: 1.6; }
+  .cx-stats { display: grid; grid-template-columns: repeat(4, auto); gap: 0; margin: 28px 0 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; overflow: hidden; }
+  .cx-stats div { padding: 14px 22px; background: #101010; border-left: 1px solid rgba(255,255,255,0.08); }
+  .cx-stats div:first-child { border-left: 0; }
+  .cx-stats dt { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .cx-stats dd { margin: 4px 0 0; font-size: 24px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  .cx-filters { display: flex; justify-content: center; gap: 8px; margin-top: 28px; flex-wrap: wrap; }
+  .cx-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+  .cx-chip b { font-size: 10.5px; color: var(--accent); }
+  .cx-chip:hover { border-color: rgba(132,225,12,0.6); }
+  .cx-chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #0A0A0A; }
+  .cx-chip[aria-pressed="true"] b { color: #0A0A0A; }
+
+  /* ---------- 3D stage ---------- */
+  .cx-stage { position: relative; margin-top: 24px; outline: none; }
+  .cx-stage:focus-visible { box-shadow: 0 0 0 2px var(--accent); border-radius: 24px; }
+  .cx-bg { display: none; }
+  .cx-track { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .cx-card { flex: 0 0 min(86%, 420px); scroll-snap-align: center; }
+  .cx-nav { display: none; }
+
+  /* enhanced (JS) layout: absolute cover-flow in perspective */
+  .cx-stage.is-3d { height: clamp(500px, 64vh, 580px); perspective: 1400px; perspective-origin: 50% 40%; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+  .cx-stage.is-3d .cx-track { position: absolute; inset: 0; display: block; overflow: visible; transform-style: preserve-3d; padding: 0; }
+  .cx-stage.is-3d .cx-card {
+    position: absolute; left: 50%; top: 46%; width: min(420px, 82vw); transform-style: preserve-3d;
+    will-change: transform, opacity; cursor: grab;
+  }
+  .cx-stage.is-3d.is-ready .cx-card { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; }
+  .cx-stage.is-3d:not(.is-placed) .cx-card { opacity: 0; }
+  .cx-stage.is-3d .cx-card.is-out { opacity: 0 !important; pointer-events: none; }
+  .cx-stage.is-3d .cx-bg { display: block; position: absolute; inset: -10% -20%; pointer-events: none; transform-style: preserve-3d; }
+
+  .cx-floor {
+    position: absolute; left: 0; right: 0; bottom: -4%; height: 46%;
+    background-image: linear-gradient(rgba(132,225,12,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(132,225,12,0.22) 1px, transparent 1px);
+    background-size: 56px 56px; transform: rotateX(72deg); transform-origin: 50% 100%;
+    mask-image: radial-gradient(ellipse 60% 80% at 50% 100%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 80% at 50% 100%, #000 20%, transparent 75%);
+    animation: cx-floor 3s linear infinite;
+  }
+  .cx-ring { position: absolute; left: 50%; top: 46%; width: 620px; height: 620px; margin: -310px 0 0 -310px; border-radius: 50%; border: 1px solid rgba(132,225,12,0.22); transform: rotateX(74deg); animation: cx-spin 18s linear infinite; }
+  .cx-ring::before { content: ""; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 16px var(--accent); }
+  .cx-ring--2 { width: 900px; height: 900px; margin: -450px 0 0 -450px; border-color: rgba(255,255,255,0.08); animation-duration: 30s; animation-direction: reverse; }
+  @keyframes cx-floor { to { background-position: 0 56px, 0 0; } }
+  @keyframes cx-spin { to { transform: rotateX(74deg) rotateZ(360deg); } }
+  .cx:not(.is-in) .cx-floor, .cx:not(.is-in) .cx-ring { animation-play-state: paused; }
+
+  /* ---------- card ---------- */
+  .cx-inner {
+    position: relative; display: flex; flex-direction: column; gap: 6px; padding: 22px; border-radius: 22px;
+    background: linear-gradient(160deg, #161616 0%, #0e0e0e 100%); border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.55); transition: transform 0.25s ease-out, border-color 0.3s, box-shadow 0.3s;
+    min-height: 330px; overflow: hidden;
+  }
+  .cx-inner::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    background: radial-gradient(380px circle at var(--gx, 50%) var(--gy, 0%), rgba(132,225,12,0.12), transparent 60%); }
+  .cx-card.is-front .cx-inner { border-color: rgba(132,225,12,0.6); box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 50px rgba(132,225,12,0.16); cursor: default; }
+  .cx-card.is-front .cx-inner::after { opacity: 1; }
+  .cx-card.is-org .cx-inner { background: linear-gradient(160deg, #141414 0%, #0b0d09 100%); }
+
+  .cx-top { display: flex; align-items: center; gap: 8px; }
+  .cx-kind { padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0A0A0A; background: var(--accent); }
+  .cx-card.is-org .cx-kind { background: transparent; color: var(--accent); border: 1px solid rgba(132,225,12,0.5); }
+  .cx-live { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #fff; }
+  .cx-live i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(132,225,12,0.6); animation: cx-pulse 1.8s infinite; }
+  @keyframes cx-pulse { 70% { box-shadow: 0 0 0 8px rgba(132,225,12,0); } 100% { box-shadow: 0 0 0 0 rgba(132,225,12,0); } }
+  .cx-year { margin-left: auto; font-size: 30px; font-weight: 700; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.35); letter-spacing: -0.02em; }
+  .cx-card.is-front .cx-year { -webkit-text-stroke-color: var(--accent); }
+  .cx-role { margin: 10px 0 0; font-family: var(--font-sans); font-size: 19px; font-weight: 600; line-height: 1.25; color: #fff; }
+  .cx-co { margin: 0; font-size: 13.5px; font-weight: 600; color: var(--accent); }
+  .cx-meta { margin: 0; font-size: 12px; color: rgba(255,255,255,0.6); }
+  .cx-desc { margin: 8px 0 0; font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.78);
+    display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+  .cx-card.is-front .cx-desc { -webkit-line-clamp: 9; }
+  .cx-desc mark { background: rgba(132,225,12,0.16); color: #c9f78f; padding: 0 3px; border-radius: 4px; font-weight: 600; }
+  .cx-skills { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 0 0; padding: 10px 0 0; list-style: none; }
+  .cx-skills li { padding: 3px 9px; border-radius: 999px; font-size: 11px; color: rgba(255,255,255,0.82); border: 1px solid rgba(255,255,255,0.16); }
+
+  /* ---------- nav + rail ---------- */
+  .cx-stage.is-3d .cx-nav {
+    display: grid; place-items: center; position: absolute; top: 46%; z-index: 200; width: 48px; height: 48px; margin-top: -24px;
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); background: rgba(10,10,10,0.7); color: #fff; font-size: 26px; line-height: 1; cursor: pointer;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .cx-nav:hover { background: var(--accent); border-color: var(--accent); color: #0A0A0A; }
+  .cx-nav--prev { left: 2%; }
+  .cx-nav--next { right: 2%; }
+
+  .cx-rail { position: relative; display: flex; justify-content: space-between; align-items: flex-start; margin: 10px auto 0; max-width: 820px; padding: 0 6px; }
+  .cx-rail-line { position: absolute; left: 18px; right: 18px; top: 11px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .cx-rail-line u { display: block; height: 100%; background: linear-gradient(90deg, rgba(132,225,12,0.3), var(--accent)); transform-origin: left; transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .cx-stop { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 4px; min-width: 32px; border: 0; background: transparent; color: rgba(255,255,255,0.6); font: inherit; font-size: 11px; cursor: pointer; transition: color 0.2s, opacity 0.2s; }
+  .cx-stop i { width: 16px; height: 16px; border-radius: 50%; background: #0A0A0A; border: 2px solid rgba(255,255,255,0.35); transition: transform 0.25s, background 0.25s, border-color 0.25s; }
+  .cx-stop.is-org i { border-radius: 4px; transform: rotate(45deg) scale(0.85); }
+  .cx-stop:hover { color: #fff; }
+  .cx-stop:hover i { border-color: var(--accent); }
+  .cx-stop.is-on { color: var(--accent); font-weight: 600; }
+  .cx-stop.is-on i { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 14px rgba(132,225,12,0.8); transform: scale(1.15); }
+  .cx-stop.is-org.is-on i { transform: rotate(45deg) scale(1); }
+  .cx-stop.is-dim { opacity: 0.3; }
+
+  @media (max-width: 640px) {
+    .cx-stats { grid-template-columns: repeat(2, 1fr); width: 100%; }
+    .cx-stats div:nth-child(3) { border-left: 0; }
+    .cx-stats div:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,0.08); }
+    .cx-stage.is-3d { height: 600px; --cx-ay: 0%; }
+    .cx-stage.is-3d .cx-card { width: min(330px, 80vw); top: 6px; }
+    .cx-inner { padding: 18px; min-height: 360px; }
+    .cx-desc { -webkit-line-clamp: 6; }
+    .cx-card.is-front .cx-desc { -webkit-line-clamp: 8; }
+    .cx-skills li:nth-child(n+7) { display: none; }
+    .cx-stage.is-3d .cx-nav { top: auto; bottom: 0; margin: 0; width: 44px; height: 44px; }
+    .cx-nav--prev { left: calc(50% - 56px); }
+    .cx-nav--next { right: calc(50% - 56px); }
+    .cx-ring { width: 420px; height: 420px; margin: -210px 0 0 -210px; }
+    .cx-ring--2 { width: 620px; height: 620px; margin: -310px 0 0 -310px; }
+    .cx-stop span { font-size: 9.5px; }
+    .cx-stop { min-width: 28px; padding: 4px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cx-floor, .cx-ring, .cx-live i { animation: none; }
+    .cx-stage.is-3d.is-ready .cx-card { transition-duration: 0.01s; }
+  }
+</style>
