@@ -1,0 +1,347 @@
+---
+import { universe } from "../data/universe";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+import { getProjectSlug } from "../utils/slug";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const t = isId ? universe.id : universe.en;
+const profile = isId ? profileId : profileEn;
+const basePath = isId ? '/id/projects' : '/projects';
+const known = new Set(profile.projects.map((p) => p.title));
+
+// minimal copy for the client controller
+const clientCopy = JSON.stringify({
+  play: t.play, stop: t.stop, score: t.score, best: t.best,
+  realms: t.realms.map((r) => ({ id: r.id, title: r.title, mission: r.mission, game: r.game })),
+});
+---
+
+<section id="universe" class="uv" aria-labelledby="uv-heading" data-uv-root data-copy={clientCopy}>
+  <div class="uv-wrap">
+    <header class="uv-head">
+      <div class="uv-badge reveal-up">
+        <span class="uv-dot"></span>
+        <span>{t.badge}</span>
+      </div>
+      <h2 id="uv-heading" class="uv-h2 reveal-up">{t.heading[0]}<br />{t.heading[1]}</h2>
+      <p class="uv-intro reveal-up">{t.intro}</p>
+    </header>
+
+    <div class="uv-stage" data-uv-stage data-realm="cyber" tabindex="0" role="group" aria-label={isId ? 'Dunia 3D interaktif: Cyber, AI, Software, dan DevOps' : 'Interactive 3D worlds: Cyber, AI, Software and DevOps'}>
+      <div class="uv-bg" aria-hidden="true"></div>
+      <canvas class="uv-canvas" aria-hidden="true"></canvas>
+      <p class="uv-nogl">{t.noGl}</p>
+
+      <div class="uv-hud">
+        <div class="uv-top">
+          <div class="uv-card">
+            <span class="uv-kicker" data-uv-game>{t.realms[0].game}</span>
+            <strong class="uv-title" data-uv-title>{t.realms[0].title}</strong>
+            <span class="uv-mission" data-uv-mission>{t.realms[0].mission}</span>
+          </div>
+          <dl class="uv-stats">
+            <div><dt>{t.score}</dt><dd data-uv-score>0</dd></div>
+            <div><dt>{t.best}</dt><dd data-uv-best>0</dd></div>
+            <div><dt>{t.combo}</dt><dd data-uv-combo>–</dd></div>
+          </dl>
+        </div>
+
+        <div class="uv-meterbar" aria-hidden="true">
+          <span data-uv-meter></span>
+          <i><u data-uv-fill></u></i>
+          <em data-uv-status></em>
+        </div>
+
+        <div class="uv-labels" data-uv-labels aria-hidden="true"></div>
+        <div class="uv-tip" data-uv-tip hidden></div>
+        <div class="uv-toast" data-uv-toast role="status" aria-live="polite"></div>
+        <div class="uv-log" data-uv-log aria-hidden="true"></div>
+
+        <div class="uv-overlay" data-uv-overlay hidden>
+          <div class="uv-overlay-box">
+            <strong data-uv-o-title></strong>
+            <span data-uv-o-sub></span>
+            <b data-uv-o-score></b>
+            <div class="uv-overlay-actions">
+              <button type="button" class="uv-btn uv-btn--accent" data-uv-retry>{t.retry}</button>
+              <button type="button" class="uv-btn" data-uv-exit>{t.exit}</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="uv-hint" data-uv-hint>{t.hint}</p>
+
+        <div class="uv-bottom">
+          <div class="uv-tabs" role="tablist" aria-label={isId ? 'Pilih dunia' : 'Choose a realm'}>
+            {t.realms.map((r, i) => (
+              <button type="button" role="tab" class="uv-tab" data-uv-tab={r.id} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+                <b>{String(i + 1).padStart(2, '0')}</b>{r.label}
+              </button>
+            ))}
+          </div>
+          <div class="uv-actions">
+            <button type="button" class="uv-btn uv-btn--accent" data-uv-play aria-pressed="false">{t.play}</button>
+            <button type="button" class="uv-btn uv-btn--icon" data-uv-tilt aria-pressed="false" aria-label={t.tilt} title={t.tilt}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+            <button type="button" class="uv-btn uv-btn--icon" data-term-open aria-label="Terminal" title="Terminal (press `)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 6-6-6-6M12 19h8"/></svg>
+            </button>
+            <button type="button" class="uv-btn uv-btn--icon" data-uv-imm aria-pressed="false" aria-label={t.explore} title={t.explore}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="uv-grid">
+      {t.realms.map((r, i) => (
+        <article class="uv-realm reveal-up" data-uv-card data-tilt style={`transition-delay:${i * 80}ms`}>
+          <header>
+            <span class="uv-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{r.title}</h3>
+          </header>
+          <p>{r.blurb}</p>
+          <h4 class="uv-sub">{t.skills}</h4>
+          <ul class="uv-chips">
+            {r.skills.map((s) => <li>{s}</li>)}
+          </ul>
+          <h4 class="uv-sub">{t.proof}</h4>
+          <ul class="uv-proofs">
+            {r.proofs.filter((p) => known.has(p)).map((p) => (
+              <li><a href={`${basePath}/${getProjectSlug(p)}`}>{p}</a></li>
+            ))}
+          </ul>
+          <button type="button" class="uv-btn uv-btn--accent uv-enter" data-uv-enter={r.id}>
+            {t.enter} <span aria-hidden="true">→</span>
+          </button>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Loaded lazily: the Skill Universe code is fetched only when the section is about to scroll into view.
+  let dispose: (() => void) | null = null;
+  let io: IntersectionObserver | null = null;
+  document.addEventListener('astro:page-load', () => {
+    const el = document.querySelector<HTMLElement>('[data-uv-root]');
+    if (!el) return;
+    io?.disconnect();
+    io = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      io?.disconnect();
+      import('../scripts/gl/universe.js').then((m) => {
+        if (document.contains(el)) { dispose?.(); dispose = m.mountUniverse(el); }
+      });
+    }, { rootMargin: '700px 0px' });
+    io.observe(el);
+  });
+  document.addEventListener('astro:before-swap', () => {
+    io?.disconnect();
+    dispose?.();
+    dispose = null;
+  });
+</script>
+
+<style>
+  .uv {
+    position: relative;
+    background: #0A0A0A;
+    color: #fff;
+    padding: clamp(56px, 8vw, 104px) clamp(16px, 3vw, 40px);
+    font-family: var(--font-sans);
+    scroll-margin-top: 0;
+  }
+  .uv-wrap { max-width: 1400px; margin-inline: auto; }
+  .uv-head { margin-bottom: 28px; }
+  .uv-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 6px 16px;
+    font-size: 12.5px; font-weight: 500; letter-spacing: 0.03em;
+  }
+  .uv-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .uv-h2 {
+    margin: 14px 0 0; color: #fff; font-family: var(--font-sans);
+    font-size: clamp(28px, 3.2vw, 52px); font-weight: 500; letter-spacing: -0.01em; line-height: 1.1;
+  }
+  .uv-intro { margin: 14px 0 0; max-width: 620px; color: rgba(255,255,255,0.72); font-size: 15px; line-height: 1.6; }
+
+  /* ---------- STAGE ---------- */
+  .uv-stage {
+    position: relative;
+    height: clamp(460px, 78svh, 720px);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: #070707;
+    overflow: hidden;
+    outline: none;
+    isolation: isolate;
+    contain: layout paint;
+    touch-action: pan-y;
+  }
+  .uv-stage:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+  .uv-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 55%, rgba(132,225,12,0.12), transparent 70%),
+      linear-gradient(rgba(132,225,12,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(132,225,12,0.07) 1px, transparent 1px);
+    background-size: auto, 44px 44px, 44px 44px;
+  }
+  .uv-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    z-index: 1; opacity: 0; transition: opacity 0.8s ease; touch-action: pan-y; cursor: grab;
+  }
+  .uv-canvas:active { cursor: grabbing; }
+  .uv-stage.is-live .uv-canvas { opacity: 1; }
+  .uv-nogl { display: none; position: absolute; inset: auto 20px 90px; z-index: 2; margin: 0; color: rgba(255,255,255,0.7); font-size: 14px; text-align: center; }
+  .uv-stage.no-gl .uv-nogl { display: block; }
+  .uv-stage.no-gl .uv-canvas { display: none; }
+
+  .uv-hud { position: absolute; inset: 0; z-index: 3; pointer-events: none; padding: 16px; display: flex; flex-direction: column; }
+  .uv-hud button, .uv-hud a { pointer-events: auto; }
+
+  .uv-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+  .uv-card, .uv-stats, .uv-tabs, .uv-log, .uv-overlay-box, .uv-tip, :global(.uv-chip) {
+    background: rgba(10,10,10,0.6);
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .uv-card { display: flex; flex-direction: column; gap: 3px; padding: 10px 14px; border-radius: 16px; max-width: min(420px, 62%); }
+  .uv-kicker { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .uv-title { font-size: 18px; font-weight: 600; line-height: 1.15; }
+  .uv-mission { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+  .uv-stats { display: flex; gap: 14px; margin: 0; padding: 10px 14px; border-radius: 16px; }
+  .uv-stats div { display: flex; flex-direction: column; align-items: flex-end; min-width: 34px; }
+  .uv-stats dt { font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .uv-stats dd { margin: 0; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .uv-meterbar { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); opacity: 0; transition: opacity 0.3s; }
+  .uv-stage.is-playing .uv-meterbar { opacity: 1; }
+  .uv-meterbar i { flex: 1; max-width: 260px; height: 5px; border-radius: 99px; background: rgba(255,255,255,0.14); overflow: hidden; }
+  .uv-meterbar u { display: block; height: 100%; background: var(--accent); transform-origin: left; transition: transform 0.15s linear; box-shadow: 0 0 12px rgba(132,225,12,0.7); }
+  .uv-meterbar em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+  .uv-labels { position: absolute; inset: 0; overflow: hidden; }
+  :global(.uv-chip) {
+    position: absolute; left: 0; top: 0; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; white-space: nowrap;
+    border-color: rgba(132,225,12,0.45); will-change: transform; pointer-events: none;
+  }
+  :global(.uv-chip b) { color: var(--accent); font-size: 9.5px; margin-right: 4px; letter-spacing: 0.08em; }
+  .uv-tip { position: absolute; left: 0; top: 0; padding: 5px 12px; border-radius: 10px; font-size: 12px; font-weight: 600; color: var(--accent); white-space: nowrap; border-color: rgba(132,225,12,0.5); will-change: transform; }
+
+  .uv-toast {
+    position: absolute; left: 50%; top: 28%; transform: translate(-50%, 6px) scale(0.96);
+    padding: 8px 18px; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em;
+    background: rgba(10,10,10,0.7); border: 1px solid rgba(255,255,255,0.2); opacity: 0; white-space: nowrap; pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+  .uv-toast.is-on { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  .uv-toast--good { color: var(--accent); border-color: rgba(132,225,12,0.6); box-shadow: 0 0 24px rgba(132,225,12,0.3); }
+  .uv-toast--bad { color: #fff; border-color: rgba(255,255,255,0.6); background: rgba(60,10,10,0.7); }
+  .uv-toast--info { color: #fff; }
+
+  .uv-log {
+    position: absolute; left: 16px; bottom: 74px; max-width: min(360px, 60%); padding: 8px 12px; border-radius: 12px; margin: 0;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 10.5px; line-height: 1.55; color: rgba(132,225,12,0.85); overflow: hidden; pointer-events: none;
+  }
+  .uv-log:empty { display: none; }
+  .uv-log :global(div) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; animation: logIn 0.4s ease both; }
+  .uv-log :global(div)::before { content: '$ '; opacity: 0.6; }
+  @keyframes logIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  .uv-hint { position: absolute; left: 0; right: 0; bottom: 74px; margin: 0; text-align: center; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); pointer-events: none; }
+  .uv-hint[hidden] { display: none; }
+
+  .uv-bottom { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; flex-wrap: wrap; }
+  .uv-tabs { display: inline-flex; gap: 4px; padding: 5px; border-radius: 999px; }
+  .uv-tab {
+    display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px; border: 0; background: transparent; color: #fff;
+    font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .uv-tab b { font-size: 9.5px; color: var(--accent); letter-spacing: 0.08em; font-weight: 600; }
+  .uv-tab:hover { background: rgba(255,255,255,0.1); }
+  .uv-tab[aria-selected="true"] { background: var(--accent); color: #0A0A0A; }
+  .uv-tab[aria-selected="true"] b { color: #0A0A0A; }
+  .uv-stage.is-playing .uv-tabs { opacity: 0.35; pointer-events: none; }
+
+  .uv-actions { display: flex; gap: 8px; align-items: center; }
+  .uv-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 20px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.3); background: rgba(10,10,10,0.6); color: #fff; font: inherit; font-size: 14px; font-weight: 500;
+    cursor: pointer; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: filter 0.2s, background 0.2s, border-color 0.2s;
+  }
+  .uv-btn:hover { background: rgba(255,255,255,0.12); }
+  .uv-btn--accent { background: var(--accent); border-color: var(--accent); color: #0A0A0A; }
+  .uv-btn--accent:hover { background: var(--accent); filter: brightness(1.1); }
+  .uv-btn--icon { padding: 11px; width: 44px; height: 44px; }
+  .uv-btn--icon[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+  .uv-btn[hidden] { display: none; }
+
+  .uv-overlay { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,0.5); z-index: 5; }
+  .uv-overlay[hidden] { display: none; }
+  .uv-overlay-box { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 26px 30px; border-radius: 22px; text-align: center; max-width: 86%; }
+  .uv-overlay-box strong { font-size: 22px; letter-spacing: 0.06em; color: var(--accent); }
+  .uv-overlay-box span { color: rgba(255,255,255,0.7); font-size: 13px; }
+  .uv-overlay-box b { font-size: 15px; font-weight: 600; }
+  .uv-overlay-actions { display: flex; gap: 10px; margin-top: 12px; }
+
+  /* immersive */
+  .uv-stage.is-full { position: fixed; inset: 0; z-index: 100000; height: 100vh; height: 100dvh; border-radius: 0; border: 0; contain: none; touch-action: none; }
+  .uv-stage.is-full .uv-canvas { touch-action: none; }
+  .uv-stage.is-full .uv-hud { padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)); }
+  :global(html.uv-lock), :global(html.uv-lock body) { overflow: hidden !important; overscroll-behavior: none; }
+
+  /* ---------- REALM CARDS ---------- */
+  .uv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 18px; }
+  .uv-realm {
+    position: relative; display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, box-shadow 0.3s, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    transform-style: preserve-3d;
+  }
+  .uv-realm.is-active, .uv-realm:hover { border-color: rgba(132,225,12,0.55); box-shadow: 0 0 40px rgba(132,225,12,0.08); }
+  .uv-realm header { display: flex; align-items: baseline; gap: 12px; }
+  .uv-num { color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; }
+  .uv-realm h3 { margin: 0; font-family: var(--font-sans); font-size: 22px; font-weight: 600; color: #fff; }
+  .uv-realm p { margin: 0; color: rgba(255,255,255,0.74); font-size: 14.5px; line-height: 1.6; }
+  .uv-sub { margin: 6px 0 0; font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .uv-chips, .uv-proofs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .uv-chips li { padding: 4px 10px; border-radius: 999px; font-size: 12px; border: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.85); }
+  .uv-proofs a { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; color: var(--accent); border: 1px solid rgba(132,225,12,0.4); text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .uv-proofs a:hover, .uv-proofs a:focus-visible { background: var(--accent); color: #0A0A0A; outline: none; }
+  .uv-enter { align-self: flex-start; margin-top: 8px; }
+
+  @media (max-width: 900px) {
+    .uv-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .uv-stage { height: min(74svh, 640px); border-radius: 20px; }
+    .uv-hud { padding: 10px; }
+    .uv-card { max-width: 66%; padding: 8px 12px; }
+    .uv-title { font-size: 15px; }
+    .uv-mission { font-size: 11px; }
+    .uv-stats { gap: 9px; padding: 8px 10px; }
+    .uv-stats dd { font-size: 14px; }
+    .uv-stats div:nth-child(2) { display: none; }
+    .uv-log { display: none; }
+    .uv-bottom { flex-direction: column-reverse; align-items: stretch; }
+    .uv-actions { justify-content: space-between; }
+    .uv-actions .uv-btn--accent { flex: 1; }
+    .uv-tabs { justify-content: space-between; }
+    .uv-tab { padding: 8px 10px; flex: 1; justify-content: center; }
+    .uv-tab b { display: none; }
+    .uv-hint { bottom: 112px; font-size: 10px; }
+    .uv-stage.is-full .uv-log { display: block; bottom: 130px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .uv-toast, .uv-canvas { transition: none; }
+    .uv-log :global(div) { animation: none; }
+  }
+</style>

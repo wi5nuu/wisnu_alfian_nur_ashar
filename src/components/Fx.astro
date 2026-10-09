@@ -1,0 +1,110 @@
+---
+// Site-wide interaction layer: 3D tilt + glare, magnetic buttons, animated counters,
+// scroll-driven card entrances and the hacker terminal. Zero markup, loaded once per page.
+---
+
+<script>
+  import { initFx, disposeFx } from '../scripts/fx.js';
+
+  // The terminal (~5 KB) is only fetched the first time someone presses ` or taps a $_ button.
+  let term: Promise<typeof import('../scripts/terminal.js')> | null = null;
+  const loadTerm = () => (term ||= import('../scripts/terminal.js'));
+  let bound = false;
+
+  document.addEventListener('astro:page-load', () => {
+    initFx();
+    term?.then((m) => m.reset());
+    if (bound) return;
+    bound = true;
+    document.addEventListener('keydown', (e) => {
+      if ((e.key !== '`' && e.key !== '~') || e.ctrlKey || e.metaKey || e.altKey) return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      e.preventDefault();
+      loadTerm().then((m) => m.toggle());
+    });
+    document.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest?.('[data-term-open]');
+      if (b) { e.preventDefault(); loadTerm().then((m) => m.open()); }
+    });
+  });
+  document.addEventListener('astro:before-swap', disposeFx);
+</script>
+
+<style is:global>
+  /* ---- 3D tilt glare ---- */
+  .fx-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.14), transparent 55%);
+    z-index: 3;
+  }
+  .fx-tilting > .fx-glare { opacity: 1; }
+  .fx-tilting { will-change: transform; }
+
+  /* ---- scroll-driven 3D entrances (Chrome/Edge/Safari 26+; ignored elsewhere) ---- */
+  @supports (animation-timeline: view()) {
+    html.fx-scroll .project-grid { perspective: 1400px; }
+    html.fx-scroll .project-card,
+    html.fx-scroll .service-card,
+    html.fx-scroll .cert-card,
+    html.fx-scroll .achievement-item {
+      animation: fx-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+    @keyframes fx-rise {
+      from { opacity: 0.001; translate: 0 56px; rotate: x 14deg; scale: 0.94; }
+      to { opacity: 1; translate: 0 0; rotate: x 0deg; scale: 1; }
+    }
+    html.fx-scroll .uv-stage { animation: fx-stage linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    @keyframes fx-stage { from { scale: 0.94; opacity: 0.4; } to { scale: 1; opacity: 1; } }
+  }
+
+  /* ---- terminal ---- */
+  .fx-term {
+    position: fixed;
+    inset: 0;
+    z-index: 200001;
+    display: none;
+    place-items: end center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .fx-term.is-open { display: grid; }
+  .fx-term-box {
+    width: min(760px, 100%);
+    height: min(460px, 70dvh);
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    border: 1px solid rgba(132, 225, 12, 0.45);
+    background: rgba(8, 10, 6, 0.96);
+    box-shadow: 0 0 60px rgba(132, 225, 12, 0.14);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color: #cfe9a8;
+    overflow: hidden;
+  }
+  .fx-term-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 12px; color: rgba(255, 255, 255, 0.55); }
+  .fx-term-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); }
+  .fx-term-bar i:first-child { background: #84e10c; }
+  .fx-term-bar button { margin-left: auto; background: none; border: 0; color: inherit; cursor: pointer; font: inherit; padding: 4px 8px; }
+  .fx-term-out { flex: 1; overflow-y: auto; padding: 12px 14px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; overscroll-behavior: contain; }
+  .fx-term-out a { color: #84e10c; }
+  .fx-term-out .t-dim { color: rgba(255, 255, 255, 0.45); }
+  .fx-term-out .t-ok { color: #84e10c; }
+  .fx-term-in { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .fx-term-in b { color: #84e10c; font-weight: 600; }
+  .fx-term-in input { flex: 1; min-width: 0; background: none; border: 0; outline: none; color: #fff; font: inherit; font-size: 16px; caret-color: #84e10c; }
+  @media (min-width: 640px) { .fx-term-in input { font-size: 13px; } }
+  html.fx-lock, html.fx-lock body { overflow: hidden !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .fx-glare { transition: none; }
+  }
+</style>

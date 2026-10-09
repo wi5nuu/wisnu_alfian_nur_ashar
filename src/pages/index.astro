@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
+import Universe from "../components/Universe.astro";
+import TechMarquee from "../components/TechMarquee.astro";
 import WhyWorkWithMe from "../components/WhyWorkWithMe.astro";
 import SelectedWork from "../components/SelectedWork.astro";
 import Process from "../components/Process.astro";
@@ -15,17 +17,18 @@ import EducationCerts from "../components/EducationCerts.astro";
 import Achievements from "../components/Achievements.astro";
 import Testimonials from "../components/Testimonials.astro";
 import Contact from "../components/Contact.astro";
-import { profile } from "../data/profile";
 
-const title = `${profile.personalInfo.name} | ${profile.personalInfo.role}`;
-const description = profile.personalInfo.summary;
+const title = "Wisnu Alfian Nur Ashar | Full-Stack, Security & AI Engineer";
+const description = "Portfolio of Wisnu Alfian Nur Ashar, a Full-Stack Engineer from Indonesia: secure, fast systems in cyber security, AI, software & DevOps. Explore it in 3D.";
 ---
 
 <Layout title={title} description={description}>
 	<Navbar />
 
-	<main>
+	<main id="main" tabindex="-1">
 		<Hero />
+		<Universe />
+		<TechMarquee />
 		<AboutMe />
 		<SelectedWork />
 		<Process />

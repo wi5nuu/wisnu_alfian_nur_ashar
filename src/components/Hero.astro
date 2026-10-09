@@ -7,7 +7,14 @@ const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 ---
 
-<section class="hero-container">
+<section class="hero-container" id="top" aria-label={isId ? 'Perkenalan' : 'Introduction'}>
+
+  <!-- 3D BACKDROP: CSS grid shows instantly, WebGL "Nexus" fades in once the page is idle -->
+  <div class="hero-fx" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <canvas class="hero-gl" data-hero-gl></canvas>
+    <div class="hero-vignette"></div>
+  </div>
 
   <!-- A) TOP BADGE -->
   <div class="top-badge">
@@ -36,13 +43,55 @@ const profile = isId ? profileId : profileEn;
         <span>{isId ? 'Unduh CV' : 'Download CV'}</span>
       </a>
     </div>
+    <p class="skills-line" aria-label={isId ? 'Spesialisasi: Cyber Security, AI, Software Engineering, DevOps' : 'Focus: Cyber Security, AI, Software Engineering, DevOps'}>
+      <span>Cyber&nbsp;Security</span><i></i><span>AI</span><i></i><span>Software&nbsp;Engineering</span><i></i><span>DevOps</span>
+    </p>
   </div>
+
+  <!-- E) REALM PORTALS: float on the 3D gems once WebGL is ready, plain links before that -->
+  <nav class="realm-row" aria-label={isId ? 'Masuk ke dunia keahlian' : 'Enter a skill realm'}>
+    <a href="#universe" data-hero-realm data-realm="cyber" class="realm-chip"><b>01</b> Cyber</a>
+    <a href="#universe" data-hero-realm data-realm="ai" class="realm-chip"><b>02</b> AI</a>
+    <a href="#universe" data-hero-realm data-realm="software" class="realm-chip"><b>03</b> Software</a>
+    <a href="#universe" data-hero-realm data-realm="devops" class="realm-chip"><b>04</b> DevOps</a>
+  </nav>
+
+  <a href="#universe" class="scroll-cue" aria-label={isId ? 'Jelajahi semesta keahlian' : 'Explore the skill universe'}>
+    <span>{isId ? 'Jelajahi' : 'Explore'}</span><i></i>
+  </a>
 </section>
+
+<script>
+  import { initRealmLinks } from '../scripts/gl/links.js';
+
+  // The 3D engine is fetched only after the page has loaded and the browser is idle,
+  // so it never competes with the text/LCP.
+  let dispose: (() => void) | null = null;
+  document.addEventListener('astro:page-load', () => {
+    const s = document.querySelector<HTMLElement>('.hero-container');
+    if (!s) return;
+    initRealmLinks(s);
+    const run = () => {
+      if (!document.contains(s)) return;
+      import('../scripts/gl/hero3d.js').then((m) => {
+        if (document.contains(s)) { dispose?.(); dispose = m.mountHero(s); }
+      });
+    };
+    const idle = () => ('requestIdleCallback' in window ? (window as any).requestIdleCallback(run, { timeout: 1500 }) : setTimeout(run, 300));
+    if (document.readyState === 'complete') idle();
+    else window.addEventListener('load', idle, { once: true });
+  });
+  document.addEventListener('astro:before-swap', () => {
+    dispose?.();
+    dispose = null;
+  });
+</script>
 
 <style>
   .hero-container {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -50,6 +99,153 @@ const profile = isId ? profileId : profileEn;
     align-items: center;
     background-color: #0A0A0A;
     font-family: var(--font-sans);
+  }
+
+  /* ---------- 3D BACKDROP ---------- */
+  .hero-fx {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    contain: strict;
+  }
+  .hero-gl {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+  }
+  .hero-gl.is-on { opacity: 1; }
+  .hero-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 48% 30% at 50% 44%, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.14) 60%, transparent 100%),
+      linear-gradient(to bottom, rgba(10,10,10,0) 70%, #0A0A0A 100%);
+  }
+  /* zero-JS perspective grid: instant motion while WebGL loads (and for reduced-data users) */
+  .hero-grid {
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    bottom: -8%;
+    height: 62%;
+    background-image:
+      linear-gradient(rgba(132,225,12,0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(132,225,12,0.28) 1px, transparent 1px);
+    background-size: 64px 64px;
+    transform: perspective(520px) rotateX(64deg);
+    transform-origin: 50% 100%;
+    animation: gridFlow 2.4s linear infinite;
+    mask-image: linear-gradient(to top, #000 8%, transparent 78%);
+    -webkit-mask-image: linear-gradient(to top, #000 8%, transparent 78%);
+    will-change: background-position;
+  }
+  @keyframes gridFlow { to { background-position: 0 64px, 0 0; } }
+  .hero-container:global(.gl-ready) .hero-grid { opacity: 0.35; }
+
+  .hero-container > :global(*:not(.hero-fx)) { position: relative; z-index: 2; }
+
+  .skills-line {
+    margin: 22px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px 12px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .skills-line i { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .skills-line span { animation: skillGlow 12s infinite; }
+  .skills-line span:nth-of-type(2) { animation-delay: 3s; }
+  .skills-line span:nth-of-type(3) { animation-delay: 6s; }
+  .skills-line span:nth-of-type(4) { animation-delay: 9s; }
+  @keyframes skillGlow {
+    0%, 22%, 100% { color: rgba(255,255,255,0.5); }
+    4%, 18% { color: var(--accent); text-shadow: 0 0 14px rgba(132,225,12,0.55); }
+  }
+
+  /* realm portals */
+  .hero-container > .realm-row {
+    position: static !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    min-height: 40px;
+  }
+  .realm-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(132,225,12,0.45);
+    background: rgba(10,10,10,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .realm-chip b { font-size: 10px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; }
+  .realm-chip:hover, .realm-chip:focus-visible {
+    background: var(--accent);
+    color: #0A0A0A;
+    border-color: var(--accent);
+    box-shadow: 0 0 24px rgba(132,225,12,0.45);
+    outline: none;
+  }
+  .realm-chip:hover b, .realm-chip:focus-visible b { color: #0A0A0A; }
+  .hero-container:global(.gl-ready) .realm-chip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+  }
+  .hero-container:global(.gl-ready) .realm-row { pointer-events: none; }
+  .hero-container:global(.gl-ready) .realm-chip { pointer-events: auto; }
+
+  .scroll-cue {
+    position: absolute !important;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.6);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .scroll-cue i {
+    width: 1px;
+    height: 34px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: cue 1.8s ease-in-out infinite;
+    transform-origin: top;
+  }
+  @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-grid, .scroll-cue i, .skills-line span, .badge-dot { animation: none !important; }
+  }
+  @media (max-width: 768px) {
+    .scroll-cue { display: none; }
+    .skills-line { font-size: 10.5px; letter-spacing: 0.1em; }
   }
 
   /* TOP BADGE */

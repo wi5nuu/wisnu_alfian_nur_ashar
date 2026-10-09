@@ -1,0 +1,87 @@
+---
+import { existsSync } from "node:fs";
+import { profile as profileEn } from "../data/profile";
+import { profile as profileId } from "../data/profile_id";
+
+const isId = Astro.url.pathname.startsWith('/id');
+const profile = isId ? profileId : profileEn;
+
+// unique skills that have a real icon file (skip the ones that would 404)
+const all = [
+  ...profile.skills.securityCloud, ...profile.skills.aiMl, ...profile.skills.webTech,
+  ...profile.skills.programming, ...profile.skills.tools,
+];
+const seen = new Set<string>();
+const items = all.filter((s) => {
+  if (!s.icon || seen.has(s.icon) || !existsSync(`public/icons/${s.icon}.svg`)) return false;
+  seen.add(s.icon);
+  return true;
+});
+const half = Math.ceil(items.length / 2);
+const rows = [items.slice(0, half), items.slice(half)];
+---
+
+<section class="mq" aria-label={isId ? 'Teknologi yang saya gunakan' : 'Technologies I work with'}>
+  {rows.map((row, r) => (
+    <div class={`mq-row ${r ? 'mq-row--rev' : ''}`} aria-hidden={r ? 'true' : undefined}>
+      <ul class="mq-track">
+        {[0, 1].map((dup) => row.map((s) => (
+          <li class="mq-item" aria-hidden={dup ? 'true' : undefined}>
+            <img src={`/icons/${s.icon}.svg`} alt="" width="22" height="22" loading="lazy" decoding="async" />
+            <span>{s.name}</span>
+          </li>
+        )))}
+      </ul>
+    </div>
+  ))}
+</section>
+
+<style>
+  .mq {
+    background: #0A0A0A;
+    border-block: 1px solid rgba(255,255,255,0.08);
+    padding-block: 18px;
+    overflow: hidden;
+    display: grid;
+    gap: 12px;
+    font-family: var(--font-sans);
+  }
+  .mq-row {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .mq-track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: mq 55s linear infinite;
+    will-change: transform;
+  }
+  .mq-row--rev .mq-track { animation-direction: reverse; animation-duration: 65s; }
+  .mq-row:hover .mq-track { animation-play-state: paused; }
+  @keyframes mq { to { transform: translate3d(-50%, 0, 0); } }
+  .mq-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.78);
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: border-color 0.25s, color 0.25s, background 0.25s;
+  }
+  .mq-item img { width: 22px; height: 22px; filter: brightness(0) invert(1); opacity: 0.75; transition: filter 0.25s, opacity 0.25s; }
+  .mq-item:hover { border-color: var(--accent); color: #fff; background: rgba(132,225,12,0.08); }
+  .mq-item:hover img { filter: none; opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .mq-row { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+    .mq-track { animation: none; }
+  }
+</style>
