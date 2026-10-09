@@ -1,5 +1,5 @@
 ---
-import { CornerDownRight } from "lucide-astro";
+import { ArrowUpRight, CornerDownRight } from "lucide-astro";
 import { profile as profileEn } from "../data/profile";
 import { profile as profileId } from "../data/profile_id";
 import { getProjectSlug, thumbOf } from "../utils/slug";
@@ -7,290 +7,686 @@ import { getProjectSlug, thumbOf } from "../utils/slug";
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 const basePath = isId ? '/id/projects' : '/projects';
-
-// Get first 5 projects
-const selectedProjects = profile.projects.slice(0, 5);
+const projects = profile.projects.slice(0, 5);
+const pad = (n: number) => String(n).padStart(2, '0');
+const t = isId
+  ? { badge: 'Karya Pilihan 2024–2026', h1: 'Membangun Solusi', h2: 'dengan Rekayasa Terbaik', lead: 'Lima proyek unggulan — dari keamanan siber hingga AI — dibangun end-to-end dan berjalan di produksi.', detail: 'Lihat detail', live: 'Live', code: 'Kode', all: 'Lihat semua karya', list: 'Daftar proyek', of: 'dari' }
+  : { badge: 'Selected Work 2024–2026', h1: 'Building Solutions', h2: 'with Engineering Excellence', lead: 'Five flagship projects — from cybersecurity to AI — built end-to-end and running in production.', detail: 'View details', live: 'Live', code: 'Code', all: 'Browse all work', list: 'Project list', of: 'of' };
 ---
 
-<section class="selected-work">
-  <div class="header-block">
-    <div class="badge">
-      <div class="badge-dot"></div>
-      <span class="badge-text">{isId ? 'Karya Pilihan 2024–2026' : 'Selected Work 2024–2026'}</span>
+<section class="sw" data-sw aria-labelledby="sw-title">
+  <div class="sw-grid-bg" aria-hidden="true"></div>
+
+  <header class="sw-head">
+    <div>
+      <div class="sw-badge"><span class="sw-badge-dot"></span>{t.badge}</div>
+      <h2 class="sw-title" id="sw-title">{t.h1}<br /><span>{t.h2}</span></h2>
+    </div>
+    <p class="sw-lead">{t.lead}</p>
+  </header>
+
+  <div class="sw-body">
+    <div class="sw-stage" data-sw-stage>
+      {projects.map((p, i) => {
+        const slug = getProjectSlug(p.title);
+        const href = `${basePath}/${slug}`;
+        const img = p.image || '/projects/placeholder.webp';
+        return (
+          <article class:list={['sw-slide', { 'is-active': i === 0 }]} data-sw-slide aria-label={`${pad(i + 1)} ${t.of} ${pad(projects.length)}: ${p.title}`}>
+            <a href={href} class="sw-media" data-sw-media tabindex="-1" aria-hidden="true">
+              <span class="sw-media-clip">
+                <picture>
+                  <source media="(min-width: 960px)" srcset={img} />
+                  <img src={thumbOf(img)} alt="" width="640" height="360" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+                </picture>
+                <span class="sw-media-shade"></span>
+              </span>
+              <span class="sw-num">{pad(i + 1)}</span>
+              <span class="sw-status"><i></i>{p.status}</span>
+            </a>
+            <div class="sw-info">
+              <p class="sw-role">{p.role}</p>
+              <h3 class="sw-name"><a href={href}>{p.title}</a></h3>
+              <p class="sw-desc">{p.description}</p>
+              <ul class="sw-chips">
+                {p.techStack.slice(0, 5).map((s) => <li>{s}</li>)}
+              </ul>
+              <div class="sw-links">
+                <a href={href} class="sw-btn sw-btn-primary">{t.detail}<ArrowUpRight class="sw-ico" /></a>
+                {p.link && p.link !== '#' && <a href={p.link} class="sw-btn" target="_blank" rel="noopener noreferrer">{t.live}<ArrowUpRight class="sw-ico" /></a>}
+                {p.github && <a href={p.github} class="sw-btn" target="_blank" rel="noopener noreferrer">{t.code}<ArrowUpRight class="sw-ico" /></a>}
+              </div>
+            </div>
+          </article>
+        );
+      })}
     </div>
 
-    <h2 class="heading">
-      {isId ? 'Membangun Solusi' : 'Building Solutions'}<br />
-      {isId ? 'dengan Rekayasa Terbaik' : 'with Engineering Excellence'}
-    </h2>
+    <ol class="sw-list" aria-label={t.list}>
+      {projects.map((p, i) => (
+        <li>
+          <button type="button" class:list={['sw-tab', { 'is-active': i === 0 }]} data-sw-tab={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+            <span class="sw-tab-num">{pad(i + 1)}</span>
+            <span class="sw-tab-text">
+              <span class="sw-tab-title">{p.title}</span>
+              <span class="sw-tab-role">{p.role}</span>
+            </span>
+            <span class="sw-tab-bar" aria-hidden="true"><i></i></span>
+          </button>
+        </li>
+      ))}
+    </ol>
+
+    <div class="sw-pager" aria-hidden="true">
+      <span class="sw-count"><b data-sw-count>01</b> / {pad(projects.length)}</span>
+      <div class="sw-dots">
+        {projects.map((_, i) => <button type="button" tabindex="-1" class:list={['sw-dot', { 'is-active': i === 0 }]} data-sw-dot={i}></button>)}
+      </div>
+    </div>
   </div>
 
-  <div class="project-grid">
-    {selectedProjects.map((project, index) => {
-      const slug = getProjectSlug(project.title);
-      return (
-        <a
-          href={`${basePath}/${slug}`}
-          class="project-card group"
-          style={`transition-delay: ${index * 100}ms`}
-        >
-          <div class="project-image-wrap">
-            <img src={thumbOf(project.image || "/projects/placeholder.webp")} alt={project.title} class="project-image" width="640" height="360" loading="lazy" decoding="async" />
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">{project.title}</h3>
-            <p class="project-role">{project.role}</p>
-            <p class="project-desc">{project.description}</p>
-            <div class="project-footer">
-              <span class="project-status">{project.status}</span>
-              <span class="project-badge">{isId ? 'Lihat Detail' : 'Details'}</span>
-            </div>
-          </div>
-        </a>
-      );
-    })}
-  </div>
-
-  <div class="bottom-cta">
-    <a href={isId ? '/id/projects' : '/projects'} class="cta-button group">
-      <CornerDownRight class="icon-cta" />
-      <span>{isId ? 'Lihat semua karya' : 'Browse all work'}</span>
+  <div class="sw-cta">
+    <a href={basePath} class="sw-cta-btn">
+      <CornerDownRight class="sw-ico" />
+      <span>{t.all}</span>
     </a>
   </div>
 </section>
 
-<style>
-  .selected-work {
-    background-color: var(--bg);
-    color: #ffffff;
-    height: auto;
-    padding-inline: clamp(20px, 3vw, 40px);
-    padding-block: 80px 100px;
-    font-family: var(--font-sans);
+<script>
+  let ac: AbortController | null = null;
+
+  function init() {
+    ac?.abort();
+    const root = document.querySelector<HTMLElement>('[data-sw]');
+    if (!root) return;
+    ac = new AbortController();
+    const sig = { signal: ac.signal };
+
+    const stage = root.querySelector<HTMLElement>('[data-sw-stage]')!;
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-sw-slide]')];
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-sw-tab]')];
+    const dots = [...root.querySelectorAll<HTMLButtonElement>('[data-sw-dot]')];
+    const count = root.querySelector<HTMLElement>('[data-sw-count]');
+    const desktop = matchMedia('(min-width: 960px)');
+    const fine = matchMedia('(hover: hover) and (pointer: fine)');
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const DUR = 6500;
+    let cur = 0, timer = 0, visible = false, held = false, userTook = false;
+
+    const mark = (i: number) => {
+      cur = i;
+      slides.forEach((s, k) => {
+        s.classList.toggle('is-active', k === i);
+        s.classList.toggle('is-prev', k < i);
+      });
+      tabs.forEach((b, k) => { b.classList.toggle('is-active', k === i); b.setAttribute('aria-pressed', String(k === i)); });
+      dots.forEach((d, k) => d.classList.toggle('is-active', k === i));
+      if (count) count.textContent = String(i + 1).padStart(2, '0');
+    };
+
+    const show = (i: number) => {
+      i = (i + slides.length) % slides.length;
+      if (desktop.matches) mark(i);
+      else stage.scrollTo({ left: slides[i].offsetLeft - stage.offsetLeft, behavior: still ? 'auto' : 'smooth' });
+    };
+
+    const schedule = () => {
+      clearTimeout(timer);
+      root.classList.remove('is-playing');
+      if (still || userTook || held || !visible || !desktop.matches) return;
+      void root.offsetWidth;
+      root.classList.add('is-playing');
+      timer = window.setTimeout(() => { show(cur + 1); schedule(); }, DUR);
+    };
+
+    tabs.forEach((b, i) => {
+      b.addEventListener('click', () => { userTook = true; show(i); schedule(); }, sig);
+      b.addEventListener('pointerenter', () => { if (fine.matches) { show(i); schedule(); } }, sig);
+    });
+    dots.forEach((d, i) => d.addEventListener('click', () => show(i), sig));
+
+    root.addEventListener('keydown', (e) => {
+      if (!desktop.matches || !(e.target as Element).closest('[data-sw-tab]')) return;
+      const d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      userTook = true;
+      show(cur + d);
+      tabs[cur].focus();
+      schedule();
+    }, sig);
+
+    root.addEventListener('pointerenter', () => { held = true; schedule(); }, sig);
+    root.addEventListener('pointerleave', () => { held = false; schedule(); }, sig);
+    root.addEventListener('focusin', () => { held = true; schedule(); }, sig);
+    root.addEventListener('focusout', () => { held = false; schedule(); }, sig);
+
+    // Mobile: native scroll-snap drives the active index
+    let raf = 0;
+    stage.addEventListener('scroll', () => {
+      if (desktop.matches || raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const mid = stage.scrollLeft + stage.clientWidth / 2;
+        let best = 0, dist = Infinity;
+        slides.forEach((s, k) => {
+          const c = s.offsetLeft - stage.offsetLeft + s.offsetWidth / 2;
+          if (Math.abs(c - mid) < dist) { dist = Math.abs(c - mid); best = k; }
+        });
+        if (best !== cur) mark(best);
+      });
+    }, { passive: true, signal: ac.signal });
+
+    // Desktop: 3D tilt on the active media
+    if (fine.matches && !still) {
+      let tr = 0;
+      stage.addEventListener('pointermove', (e) => {
+        if (!desktop.matches || tr) return;
+        tr = requestAnimationFrame(() => {
+          tr = 0;
+          const r = stage.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          stage.style.setProperty('--rx', `${(-y * 7).toFixed(2)}deg`);
+          stage.style.setProperty('--ry', `${(x * 9).toFixed(2)}deg`);
+          stage.style.setProperty('--gx', `${((x + 0.5) * 100).toFixed(1)}%`);
+          stage.style.setProperty('--gy', `${((y + 0.5) * 100).toFixed(1)}%`);
+        });
+      }, sig);
+      stage.addEventListener('pointerleave', () => {
+        stage.style.setProperty('--rx', '0deg');
+        stage.style.setProperty('--ry', '0deg');
+      }, sig);
+    }
+
+    const io = new IntersectionObserver(([en]) => {
+      visible = en.isIntersecting;
+      root.classList.toggle('is-visible', visible);
+      schedule();
+    }, { threshold: 0.35 });
+    io.observe(root);
+    ac.signal.addEventListener('abort', () => { io.disconnect(); clearTimeout(timer); });
+
+    desktop.addEventListener('change', () => { mark(cur); schedule(); }, sig);
+    root.classList.add('is-ready');
   }
 
-  .badge {
+  init();
+  document.addEventListener('astro:page-load', init);
+</script>
+
+<style>
+  .sw {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--bg);
+    color: #fff;
+    padding: clamp(64px, 9vw, 112px) clamp(16px, 3vw, 40px);
+    font-family: var(--font-sans);
+  }
+  .sw-grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 55%, rgba(132,225,12, 0.07), transparent 70%),
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 56px 56px,
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%);
+    pointer-events: none;
+  }
+
+  /* Header */
+  .sw-head {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px 48px;
+    flex-wrap: wrap;
+  }
+  .sw-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255,255,255,.25);
     border-radius: 999px;
-    padding: 6px 16px;
-  }
-
-  .badge-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--accent);
-  }
-
-  .badge-text {
-    text-transform: none;
+    padding: 6px 14px;
     font-size: 12.5px;
-    letter-spacing: 0.03em;
-    color: #ffffff;
     font-weight: 500;
+    letter-spacing: .03em;
+  }
+  .sw-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .sw-title {
+    margin: 14px 0 0;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: clamp(30px, 4.2vw, 56px);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -.02em;
+  }
+  .sw-title span { color: rgba(255,255,255,.55); }
+  .sw-lead {
+    max-width: 380px;
+    margin: 0;
+    color: rgba(255,255,255,.66);
+    font-size: 15px;
+    line-height: 1.6;
   }
 
-  .header-block {
+  /* Body */
+  .sw-body {
+    max-width: 1280px;
+    margin: clamp(36px, 5vw, 64px) auto 0;
+  }
+
+  /* Slide (shared) */
+  .sw-slide {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .heading {
-    color: #ffffff;
-    font-size: clamp(28px, 3.2vw, 52px);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.08;
-    margin-top: 12px;
-    margin-bottom: 0;
-  }
-
-  .project-grid {
-    margin-top: 72px;
-    display: grid;
-    /* Ubah ke 5 kolom di desktop */
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    /* Lebarkan sedikit grid agar 5 card muat dengan nyaman */
-    max-width: 1440px;
-    margin-inline: auto;
-  }
-
-  .project-card {
-    background-color: #111111;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    padding: 0;
-    text-align: left;
-    font-family: inherit;
-    color: inherit;
-    cursor: pointer;
-    transition: border-color 0.3s ease, transform 0.3s ease;
     min-width: 0;
-  }
-
-  .project-card:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-  }
-
-  .project-image-wrap {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    background: #0f0f0f;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 18px;
     overflow: hidden;
-    background-color: #1a1a1a;
   }
-
-  .project-image {
+  .sw-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    color: inherit;
+    text-decoration: none;
+  }
+  .sw-media-clip {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #161616;
+  }
+  .sw-media-clip img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s ease;
   }
-
-  .project-card:hover .project-image {
-    transform: scale(1.05);
+  .sw-media-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.65));
   }
-
-  .project-content {
-    padding: 14px;
+  .sw-num {
+    position: absolute;
+    left: 14px;
+    bottom: 8px;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.2px rgba(255,255,255,.75);
+    letter-spacing: -.02em;
+  }
+  .sw-status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.14);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .sw-status i {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .sw-info {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
+    padding: 18px;
+    flex: 1;
   }
-
-  .project-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #ffffff;
+  .sw-role {
     margin: 0;
-    line-height: 1.4;
-  }
-
-  .project-role {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 0;
-  }
-
-  .project-desc {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .sw-name {
     margin: 0;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -.01em;
+  }
+  .sw-name a { color: #fff; text-decoration: none; }
+  .sw-name a:hover { color: var(--accent); }
+  .sw-desc {
+    margin: 0;
+    color: rgba(255,255,255,.7);
+    font-size: 14px;
+    line-height: 1.6;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .sw-chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .sw-chips li {
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.04);
+    color: rgba(255,255,255,.82);
+  }
+  .sw-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+  .sw-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color .2s, background .2s, color .2s;
+  }
+  .sw-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .sw-btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0a0a;
+    font-weight: 600;
+  }
+  .sw-btn-primary:hover { color: #0a0a0a; filter: brightness(1.08); }
+  .sw-ico { width: 15px; height: 15px; }
 
-  .project-footer {
+  /* Mobile pager */
+  .sw-pager {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    margin-top: 2px;
+    margin-top: 18px;
+  }
+  .sw-count {
+    font-size: 13px;
+    color: rgba(255,255,255,.55);
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-count b { color: #fff; font-weight: 600; }
+  .sw-dots { display: flex; gap: 2px; }
+  .sw-dot {
+    width: 24px; height: 24px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+  .sw-dot::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.28);
+    transition: width .3s, background .3s;
+  }
+  .sw-dot.is-active::before { width: 18px; background: var(--accent); }
+
+  .sw-list { display: none; }
+
+  /* ---------- Mobile / tablet: clean swipe carousel ---------- */
+  @media (max-width: 959.98px) {
+    .sw-stage {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 16px;
+      margin-inline: -16px;
+      padding-inline: 16px;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+    }
+    .sw-stage::-webkit-scrollbar { display: none; }
+    .sw-slide {
+      flex: 0 0 min(86%, 420px);
+      scroll-snap-align: start;
+    }
+    .sw-lead { font-size: 14px; }
+  }
+  @media (max-width: 480px) {
+    .sw-num { font-size: 36px; }
+    .sw-name { font-size: 18px; }
+    .sw-info { padding: 16px; gap: 9px; }
+    .sw-chips li:nth-child(n+4) { display: none; }
+    .sw-links { gap: 6px; flex-wrap: nowrap; }
+    .sw-btn { padding: 0 12px; font-size: 12.5px; white-space: nowrap; }
+    .sw-btn .sw-ico { width: 13px; height: 13px; }
   }
 
-  .project-status {
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.62);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+  /* ---------- Desktop: 3D spotlight + list ---------- */
+  @media (min-width: 960px) {
+    .sw-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: clamp(28px, 3.5vw, 56px);
+      align-items: start;
+    }
+    .sw-pager { display: none; }
+
+    .sw-stage {
+      --rx: 0deg; --ry: 0deg; --gx: 50%; --gy: 30%;
+      display: grid;
+      perspective: 1400px;
+    }
+    .sw-slide {
+      grid-area: 1 / 1;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: transparent;
+      border: 0;
+      overflow: visible;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate3d(0, 0, -160px) rotateY(-10deg);
+      transition: opacity .55s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility 0s .7s;
+    }
+    .sw-slide.is-prev { transform: translate3d(0, 0, -160px) rotateY(10deg); }
+    .sw-slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+      transition: opacity .55s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility 0s;
+    }
+
+    .sw-media {
+      border-radius: 18px;
+      transform-style: preserve-3d;
+      transform: rotateX(var(--rx)) rotateY(var(--ry));
+      transition: transform .5s cubic-bezier(.2,.8,.2,1);
+      box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.1);
+    }
+    .sw-media-clip { border-radius: 18px; }
+    .sw-media-clip img { transition: transform 1.2s cubic-bezier(.2,.8,.2,1); transform: scale(1.06); }
+    .sw-slide.is-active .sw-media-clip img { transform: scale(1); }
+    .sw-media-clip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--gx) var(--gy), rgba(255,255,255,.14), transparent 45%);
+      pointer-events: none;
+    }
+    .sw-slide.is-active .sw-media { box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(132,225,12, .35), 0 0 60px -20px rgba(132,225,12, .35); }
+    .sw-num {
+      font-size: 88px;
+      left: 22px;
+      bottom: 10px;
+      transform: translateZ(60px);
+    }
+    .sw-status { transform: translateZ(40px); top: 18px; right: 18px; }
+
+    .sw-info { padding: 26px 4px 0; gap: 12px; }
+    .sw-name { font-size: clamp(24px, 2.2vw, 30px); }
+    .sw-desc { font-size: 15px; max-width: 62ch; }
+
+    .sw-info > * {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .sw-slide.is-active .sw-info > * { opacity: 1; transform: none; }
+    .sw-slide.is-active .sw-info > :nth-child(2) { transition-delay: .06s; }
+    .sw-slide.is-active .sw-info > :nth-child(3) { transition-delay: .12s; }
+    .sw-slide.is-active .sw-info > :nth-child(4) { transition-delay: .18s; }
+    .sw-slide.is-active .sw-info > :nth-child(5) { transition-delay: .24s; }
+
+    /* List */
+    .sw-list {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .sw-tab {
+      position: relative;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 8px 20px 0;
+      background: none;
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: padding .35s cubic-bezier(.2,.8,.2,1);
+    }
+    .sw-tab-num {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,.45);
+      font-variant-numeric: tabular-nums;
+      transition: color .3s;
+    }
+    .sw-tab-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .sw-tab-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: rgba(255,255,255,.6);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color .3s;
+    }
+    .sw-tab-role {
+      font-size: 12px;
+      color: rgba(255,255,255,.45);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sw-tab:hover .sw-tab-title { color: #fff; }
+    .sw-tab.is-active { padding-left: 14px; }
+    .sw-tab.is-active .sw-tab-num { color: var(--accent); }
+    .sw-tab.is-active .sw-tab-title { color: #fff; }
+    .sw-tab::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 18px; bottom: 18px;
+      width: 2px;
+      border-radius: 2px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transition: transform .35s cubic-bezier(.2,.8,.2,1);
+    }
+    .sw-tab.is-active::before { transform: scaleY(1); }
+    .sw-tab-bar {
+      position: absolute;
+      left: 0; right: 0; bottom: -1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .sw-tab-bar i {
+      display: block;
+      height: 100%;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .sw.is-playing .sw-tab.is-active .sw-tab-bar i { animation: sw-fill 6.5s linear forwards; }
   }
 
-  .project-badge {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
+  @keyframes sw-fill { to { transform: scaleX(1); } }
 
-  .bottom-cta {
-    margin-top: 48px;
+  /* CTA */
+  .sw-cta {
+    margin-top: clamp(36px, 5vw, 56px);
     display: flex;
     justify-content: center;
   }
-
-  .cta-button {
-    background-color: var(--accent);
-    color: #0A0A0A;
-    border-radius: 999px;
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
+  .sw-cta-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: filter 0.3s ease;
+    min-height: 46px;
+    padding: 0 24px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: filter .2s, transform .2s;
   }
+  .sw-cta-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
-  .cta-button:hover {
-    filter: brightness(1.1);
-  }
+  .sw :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-  .icon-cta {
-    width: 16px;
-    height: 16px;
-    color: #0A0A0A;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 1100px) {
-    .project-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .heading {
-      font-size: 36px;
-    }
-    .project-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .project-grid {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 14px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      padding-bottom: 4px;
-    }
-
-    .project-grid::-webkit-scrollbar {
-      display: none;
-      width: 0;
-      height: 0;
-    }
-
-    .project-card {
-      flex: 0 0 78%;
-      max-width: 320px;
-      scroll-snap-align: start;
-    }
+  @media (prefers-reduced-motion: reduce) {
+    .sw *, .sw *::before { transition: none !important; animation: none !important; }
   }
 </style>
