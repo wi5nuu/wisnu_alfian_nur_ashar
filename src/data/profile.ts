@@ -98,7 +98,7 @@ export const profile: Profile = {
         role: "Full-Stack Engineer",
         location: "Bekasi, West Java, Indonesia",
         tagline: "Building Secure, High-Performance Production Systems",
-        summary: "Information Technology student at President University specializing in Full-Stack Engineering with 1,500+ GitHub contributions across 90+ repositories. Experienced building production-ready enterprise systems — including an ERP/POS platform serving 15,000+ users — using Laravel, Next.js, PostgreSQL, Go, and modern cloud technologies. Active contributor to open-source projects (NASA, Microsoft), OWASP Foundation member, and IBM SkillsBuild AI Builders Challenge participant.",
+        summary: "Information Technology undergraduate at President University specializing in Full-Stack Engineering, with 3,300+ GitHub contributions across 100+ repositories. Experienced in building production-ready enterprise systems — including an ERP/POS platform serving thousands of customers through my store website — using Laravel, Next.js, PostgreSQL, Go, and modern cloud technologies. Skilled in external and internal penetration testing with structured vulnerability reporting. Active open-source contributor (NASA, Microsoft), OWASP Foundation member, and IBM SkillsBuild AI Builders Challenge participant.",
         email: "wisnualfiannurashar@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",

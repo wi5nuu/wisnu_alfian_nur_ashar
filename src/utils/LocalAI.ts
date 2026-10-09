@@ -35,8 +35,9 @@ export class LocalAI {
 Saya memiliki pengalaman dan pencapaian di:
 
 **💼 Pengalaman Profesional** - Full Stack Engineer di Ashar Grosir, Web Development Intern di GAOTEK INC (New York/USA Remote).
-**🚀 14 Proyek** - Dari enterprise ERP/POS yang melayani 15,000+ users, AI threat fusion, hingga platform e-commerce microservices.
+**🚀 14 Proyek** - Dari enterprise ERP/POS yang melayani ribuan pelanggan melalui website toko, AI threat fusion, hingga platform e-commerce microservices.
 **💻 Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, dan 50+ teknologi lainnya.
+**🔐 Security** - Penetration testing eksternal & internal dengan pelaporan kerentanan terstruktur.
 **🎓 Pendidikan** - Information Technology di President University.
 **🏢 Organisasi** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
 **📜 Sertifikasi** - 11 sertifikasi dari HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
@@ -49,8 +50,9 @@ Saya sedang mencari peluang magang dan pekerjaan full-time. Silakan tanya apa sa
 Here's what I bring to the table:
 
 **💼 Professional Experience** - Full Stack Engineer at Ashar Grosir, Web Development Intern at GAOTEK INC (New York/USA Remote).
-**🚀 14 Projects** - From enterprise ERP/POS serving 15,000+ users, AI threat fusion, to microservices e-commerce platforms.
+**🚀 14 Projects** - From enterprise ERP/POS serving thousands of customers through my store website, AI threat fusion, to microservices e-commerce platforms.
 **💻 Tech Stack** - React, Next.js, Laravel, Golang, Python, PostgreSQL, AI/ML, Cloud, Cybersecurity, and 50+ technologies.
+**🔐 Security** - External & internal penetration testing with structured vulnerability reporting.
 **🎓 Education** - Information Technology at President University.
 **🏢 Organizations** - PC FKMA, PUFA, PUMA, IBM SkillsBuild, OWASP Foundation.
 **📜 Certifications** - 11 certs from HackerRank, AWS, Google, HubSpot, Simplilearn, Dicoding.
