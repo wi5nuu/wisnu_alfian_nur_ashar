@@ -1,6 +1,8 @@
 // Site-wide micro-interactions. Everything here is progressive enhancement:
 // no layout is changed, nothing runs for reduced-motion users, and touch devices skip pointer-only effects.
 
+import { initReveal, disposeReveal } from './reveal.js';
+
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
@@ -126,7 +128,11 @@ function setupLazyIcons() {
 let cleanups = [];
 export function initFx() {
   cleanups.forEach((f) => f());
-  cleanups = [setupScrollFx(), setupTilt(), setupMagnet(), setupCounters(), setupLazyIcons()];
+  cleanups = [setupScrollFx(), setupTilt(), setupMagnet(), setupCounters(), setupLazyIcons(), () => disposeReveal()];
+  // Wait for layout to settle (images, content-visibility) so "below the fold" is measured correctly.
+  const run = () => setTimeout(initReveal, 60);
+  if (document.readyState === 'complete') run();
+  else window.addEventListener('load', run, { once: true });
 }
 export function disposeFx() {
   cleanups.forEach((f) => f());

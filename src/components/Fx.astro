@@ -65,6 +65,31 @@
     @keyframes fx-stage { from { scale: 0.94; opacity: 0.4; } to { scale: 1; opacity: 1; } }
   }
 
+  /* ---- scroll text reveal (see scripts/reveal.js) ---- */
+  .rv-fade {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--rv-d, 0ms), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--rv-d, 0ms);
+  }
+  .rv-fade.rv-in { opacity: 1; transform: none; }
+  .rv-words .rv-w {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+  .rv-words .rv-w > span {
+    display: inline-block;
+    transform: translate3d(0, 110%, 0);
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--rv-d, 0ms) + var(--i, 0) * 45ms);
+  }
+  .rv-words.rv-in .rv-w > span { transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .rv-fade, .rv-words .rv-w > span { transition: none; opacity: 1; transform: none; }
+  }
+
   /* ---- terminal ---- */
   .fx-term {
     position: fixed;
