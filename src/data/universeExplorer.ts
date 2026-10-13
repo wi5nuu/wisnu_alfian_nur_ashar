@@ -59,6 +59,14 @@ export const explorer: Record<'en' | 'id', ExplorerCopy> = {
       ai: {
         projects: ['ColonyAI', 'CogniMail', 'Wanar AI v2.0', 'Grawizah', 'TruthLayer', 'NusantaraLearn', 'PresUnivGo', 'Risk Shield System'],
         extra: { id: 'achievements', label: 'Competitions' },
+        notes: {
+          'Claude Code': 'Daily AI pair-programmer in the terminal: I use it to design, build, refactor and review real projects faster — with every change still read and verified by me.',
+          'AI Agents': 'Designing agents that call tools, follow guardrails and hand off to humans — built for real workflows, not demos.',
+          'MCP': 'Model Context Protocol servers and tools that let AI assistants safely reach files, APIs and internal systems.',
+          'RAG': 'Retrieval-augmented generation: grounding LLM answers in my own documents and data to cut hallucinations.',
+          'Google Gemini': 'LLM backbone for chat, summarisation and extraction features inside the products I ship.',
+          'Hugging Face': 'Model hub and fine-tuning ecosystem for training and serving custom models.',
+        },
         method: {
           label: 'From data to deployed model',
           steps: [
@@ -73,6 +81,11 @@ export const explorer: Record<'en' | 'id', ExplorerCopy> = {
       software: {
         projects: ['Ashar Grosir Parfum', 'Finance-Requester', 'Zentic Enterprise', 'Pulse', 'Shooply', 'Stokiq', 'Vanguard Strategic Hub', 'Nuxar Perfumery'],
         extra: { id: 'experience', label: 'Experience' },
+        notes: {
+          'WhatsApp Gateway': 'Automating WhatsApp messages — order updates, notifications and support replies — through a gateway wired to the backend.',
+          'Email Gateway': 'Transactional email (SMTP / API) for verification, receipts and alerts, with deliverability and templates handled properly.',
+          'Webhooks': 'Connecting payment, messaging and automation services through signed, retry-safe webhooks.',
+        },
         method: {
           label: 'From idea to production',
           steps: [
@@ -87,6 +100,11 @@ export const explorer: Record<'en' | 'id', ExplorerCopy> = {
       devops: {
         projects: ['Shooply', 'Ashar Grosir Parfum', 'SENTINEL-X', 'Vanguard Strategic Hub', 'Wiskost Residence'],
         extra: { id: 'certs', label: 'Cloud training' },
+        notes: {
+          'Cloudflare': 'DNS, SSL, caching and edge protection in front of production sites.',
+          'Firewall & WAF': 'Active Cloudflare WAF rules, rate limiting and bot protection, plus server firewalls that expose only what is needed.',
+          'Linux Server': 'Setting up and hardening Linux servers: SSH keys, least-privilege users, updates, firewall and monitoring.',
+        },
         method: {
           label: 'The release pipeline',
           steps: [
@@ -134,6 +152,14 @@ export const explorer: Record<'en' | 'id', ExplorerCopy> = {
       ai: {
         projects: ['ColonyAI', 'CogniMail', 'Wanar AI v2.0', 'Grawizah', 'TruthLayer', 'NusantaraLearn', 'PresUnivGo', 'Risk Shield System'],
         extra: { id: 'achievements', label: 'Kompetisi' },
+        notes: {
+          'Claude Code': 'Pair-programmer AI harian di terminal: dipakai untuk merancang, membangun, refactor, dan me-review proyek nyata lebih cepat — setiap perubahan tetap saya baca dan verifikasi.',
+          'AI Agents': 'Merancang agent yang memanggil tool, mengikuti guardrail, dan menyerahkan ke manusia — untuk alur kerja nyata, bukan demo.',
+          'MCP': 'Server dan tool Model Context Protocol agar asisten AI aman mengakses file, API, dan sistem internal.',
+          'RAG': 'Retrieval-augmented generation: menambatkan jawaban LLM pada dokumen dan data sendiri untuk menekan halusinasi.',
+          'Google Gemini': 'Tulang punggung LLM untuk fitur chat, ringkasan, dan ekstraksi di produk yang saya kirim.',
+          'Hugging Face': 'Ekosistem model hub dan fine-tuning untuk melatih dan menyajikan model kustom.',
+        },
         method: {
           label: 'Dari data ke model produksi',
           steps: [
@@ -148,6 +174,11 @@ export const explorer: Record<'en' | 'id', ExplorerCopy> = {
       software: {
         projects: ['Ashar Grosir Parfum', 'Finance-Requester', 'Zentic Enterprise', 'Pulse', 'Shooply', 'Stokiq', 'Vanguard Strategic Hub', 'Nuxar Perfumery'],
         extra: { id: 'experience', label: 'Pengalaman' },
+        notes: {
+          'WhatsApp Gateway': 'Mengotomatiskan pesan WhatsApp — update pesanan, notifikasi, dan balasan dukungan — lewat gateway yang terhubung ke backend.',
+          'Email Gateway': 'Email transaksional (SMTP / API) untuk verifikasi, kwitansi, dan peringatan, dengan deliverability dan template yang rapi.',
+          'Webhooks': 'Menghubungkan layanan pembayaran, pesan, dan otomasi lewat webhook bertanda tangan dan aman dari pengulangan.',
+        },
         method: {
           label: 'Dari ide ke produksi',
           steps: [
@@ -162,6 +193,11 @@ export const explorer: Record<'en' | 'id', ExplorerCopy> = {
       devops: {
         projects: ['Shooply', 'Ashar Grosir Parfum', 'SENTINEL-X', 'Vanguard Strategic Hub', 'Wiskost Residence'],
         extra: { id: 'certs', label: 'Pelatihan cloud' },
+        notes: {
+          'Cloudflare': 'DNS, SSL, caching, dan proteksi edge di depan situs produksi.',
+          'Firewall & WAF': 'Aturan WAF Cloudflare aktif, rate limiting, dan proteksi bot, plus firewall server yang hanya membuka yang perlu.',
+          'Linux Server': 'Menyiapkan dan meng-hardening server Linux: SSH key, user least-privilege, update, firewall, dan monitoring.',
+        },
         method: {
           label: 'Pipeline rilis',
           steps: [

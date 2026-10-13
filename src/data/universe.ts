@@ -78,7 +78,7 @@ export const universe: Record<'en' | 'id', UniverseCopy> = {
           'Computer vision with YOLOv8 and OpenCV, LLM products on Gemini, Groq and NVIDIA APIs, retrieval-augmented generation and ML classifiers — served through FastAPI and shipped to production.',
         game: 'Neuron Chain',
         mission: 'Fire one neuron per layer, input → output, before time runs out.',
-        skills: ['YOLOv8', 'OpenCV', 'FastAPI', 'Hugging Face', 'Google Gemini', 'RAG', 'PyTorch'],
+        skills: ['Claude Code', 'AI Agents', 'MCP', 'RAG', 'Google Gemini', 'FastAPI', 'YOLOv8', 'OpenCV', 'Hugging Face'],
         proofs: ['ColonyAI', 'CogniMail', 'Wanar AI v2.0', 'Grawizah'],
       },
       {
@@ -89,7 +89,7 @@ export const universe: Record<'en' | 'id', UniverseCopy> = {
           'Full-stack systems end to end: Laravel, Next.js, Go and ASP.NET on PostgreSQL. An ERP/POS platform serving thousands of customers, 1.34 s load time and 91% good LCP, plus 3,300+ GitHub contributions.',
         game: 'Bug Hunt',
         mission: 'Patch the flashing services before they crash.',
-        skills: ['Laravel', 'Next.js', 'TypeScript', 'Golang', 'ASP.NET', 'PostgreSQL', 'Astro'],
+        skills: ['Laravel', 'Next.js', 'TypeScript', 'Golang', 'PostgreSQL', 'Astro', 'WhatsApp Gateway', 'Email Gateway', 'Webhooks'],
         proofs: ['Ashar Grosir Parfum', 'Finance-Requester', 'Zentic Enterprise', 'Pulse'],
       },
       {
@@ -100,7 +100,7 @@ export const universe: Record<'en' | 'id', UniverseCopy> = {
           'Containerised, observable and fast: Docker, Redis, RabbitMQ and OpenTelemetry behind Cloudflare CDN, deployed on Vercel, Railway and Google Cloud Run. Completed AWS Cloud Practitioner Essentials and AWS Technical Essentials training.',
         game: 'Release Train',
         mission: 'Tap when a container sits inside the glowing gate.',
-        skills: ['Docker', 'Cloudflare', 'Vercel', 'Railway', 'Google Cloud Run', 'AWS', 'Redis'],
+        skills: ['Docker', 'Cloudflare', 'Firewall & WAF', 'Linux Server', 'Vercel', 'Railway', 'Google Cloud Run', 'AWS'],
         proofs: ['Shooply', 'Ashar Grosir Parfum', 'SENTINEL-X', 'Vanguard Strategic Hub'],
       },
     ],
@@ -145,7 +145,7 @@ export const universe: Record<'en' | 'id', UniverseCopy> = {
           'Computer vision dengan YOLOv8 dan OpenCV, produk LLM di atas API Gemini, Groq, dan NVIDIA, retrieval-augmented generation, serta klasifikator ML — disajikan lewat FastAPI dan dirilis ke produksi.',
         game: 'Neuron Chain',
         mission: 'Aktifkan satu neuron per lapisan, input → output, sebelum waktu habis.',
-        skills: ['YOLOv8', 'OpenCV', 'FastAPI', 'Hugging Face', 'Google Gemini', 'RAG', 'PyTorch'],
+        skills: ['Claude Code', 'AI Agents', 'MCP', 'RAG', 'Google Gemini', 'FastAPI', 'YOLOv8', 'OpenCV', 'Hugging Face'],
         proofs: ['ColonyAI', 'CogniMail', 'Wanar AI v2.0', 'Grawizah'],
       },
       {
@@ -156,7 +156,7 @@ export const universe: Record<'en' | 'id', UniverseCopy> = {
           'Sistem full-stack dari hulu ke hilir: Laravel, Next.js, Go, dan ASP.NET di atas PostgreSQL. Platform ERP/POS yang melayani ribuan pelanggan, waktu muat 1,34 detik dan 91% LCP baik, plus 3.300+ kontribusi GitHub.',
         game: 'Bug Hunt',
         mission: 'Perbaiki layanan yang berkedip sebelum crash.',
-        skills: ['Laravel', 'Next.js', 'TypeScript', 'Golang', 'ASP.NET', 'PostgreSQL', 'Astro'],
+        skills: ['Laravel', 'Next.js', 'TypeScript', 'Golang', 'PostgreSQL', 'Astro', 'WhatsApp Gateway', 'Email Gateway', 'Webhooks'],
         proofs: ['Ashar Grosir Parfum', 'Finance-Requester', 'Zentic Enterprise', 'Pulse'],
       },
       {
@@ -167,7 +167,7 @@ export const universe: Record<'en' | 'id', UniverseCopy> = {
           'Terkontainerisasi, terpantau, dan cepat: Docker, Redis, RabbitMQ, dan OpenTelemetry di balik Cloudflare CDN, dideploy di Vercel, Railway, dan Google Cloud Run. Telah menyelesaikan pelatihan AWS Cloud Practitioner Essentials dan AWS Technical Essentials.',
         game: 'Release Train',
         mission: 'Ketuk saat kontainer berada di dalam gerbang yang menyala.',
-        skills: ['Docker', 'Cloudflare', 'Vercel', 'Railway', 'Google Cloud Run', 'AWS', 'Redis'],
+        skills: ['Docker', 'Cloudflare', 'Firewall & WAF', 'Linux Server', 'Vercel', 'Railway', 'Google Cloud Run', 'AWS'],
         proofs: ['Shooply', 'Ashar Grosir Parfum', 'SENTINEL-X', 'Vanguard Strategic Hub'],
       },
     ],
