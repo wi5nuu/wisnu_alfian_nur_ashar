@@ -252,6 +252,30 @@ const t = isId
       go(list.indexOf(c));
     }, sig));
 
+    // desktop: hovering the year rail scrubs to the nearest year
+    const rail = root.querySelector<HTMLElement>(".cx-rail");
+    if (rail && fine) {
+      let last = -1;
+      const scrub = (e: PointerEvent) => {
+        let best: HTMLElement | null = null, dist = Infinity;
+        stops.forEach((s) => {
+          if (s.classList.contains("is-dim")) return;
+          const r = s.getBoundingClientRect();
+          const d = Math.abs(e.clientX - (r.left + r.width / 2));
+          if (d < dist) { dist = d; best = s; }
+        });
+        if (!best) return;
+        const k = Number((best as HTMLElement).dataset.k);
+        if (k === last) return;
+        last = k;
+        const c = cards[k];
+        const i = list.indexOf(c);
+        if (i >= 0 && i !== pos) go(i);
+      };
+      rail.addEventListener("pointermove", scrub, sig);
+      rail.addEventListener("pointerleave", () => { last = -1; }, sig);
+    }
+
     function setFilter(f: string) {
       const cur = list[pos];
       list = cards.filter((c) => f === "all" || c.dataset.cat === f);
