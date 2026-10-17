@@ -266,6 +266,14 @@ const socialLinks = [
       })
         .then(async (response) => {
           if (response.status == 200) {
+            // Salinan ke meja penjualan Wanar AI (lead). Gagal di sini tidak boleh mengganggu pengunjung.
+            const { name, email, phone, message, botcheck } = object as Record<string, any>;
+            fetch("/api/inquiry", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, email, phone, message, botcheck }),
+              keepalive: true,
+            }).catch(() => {});
             (window as any).showToast?.({
               message: isId ? 'Pesan berhasil terkirim! Saya akan segera menghubungi Anda.' : 'Message sent successfully! I will get back to you soon.',
               type: 'success',
