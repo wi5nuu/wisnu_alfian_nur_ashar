@@ -81,6 +81,7 @@ interface Profile {
     openSource: {
         organization: string;
         repo: string;
+        url?: string;
         project: string;
         language: string;
         bugDescription: string;
@@ -98,7 +99,7 @@ export const profile: Profile = {
         role: "Full-Stack Engineer",
         location: "Bekasi, West Java, Indonesia",
         tagline: "Building Secure, High-Performance Production Systems",
-        summary: "Information Technology undergraduate at President University specializing in Full-Stack Engineering, with 3,300+ GitHub contributions across 100+ repositories. Experienced in building production-ready enterprise systems — including an ERP/POS platform serving thousands of customers through my store website — using Laravel, Next.js, PostgreSQL, Go, and modern cloud technologies. Skilled in external and internal penetration testing with structured vulnerability reporting. Active open-source contributor (NASA, Microsoft), OWASP Foundation member, and IBM SkillsBuild AI Builders Challenge participant.",
+        summary: "Information Technology undergraduate at President University specializing in Full-Stack Engineering, with 3,300+ GitHub contributions across 100+ repositories. Experienced in building production-ready enterprise systems — including an ERP/POS platform serving thousands of customers through my store website — using Laravel, Next.js, PostgreSQL, Go, and modern cloud technologies. Skilled in external and internal penetration testing with structured vulnerability reporting. Active open-source contributor (NASA, Microsoft, NVIDIA, Hugging Face), OWASP Foundation member, and IBM SkillsBuild AI Builders Challenge participant.",
         email: "wisnualfiannurashar@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
@@ -695,22 +696,34 @@ export const profile: Profile = {
             repo: "NVIDIA/infra-controller",
             project: "Infrastructure Controller",
             language: "Rust",
-            category: "Vulnerability",
+            category: "DHCP Lease Logic",
             bugDescription: "Vulnerability in the internal network management component. The packet handler for the DHCP server rigidly hardcoded the desired_address parameter to None status.",
             impact: "This bug blocked and corrupted the IP address DHCP lease renewal mechanism on NVIDIA's infrastructure controller clusters.",
             fileLocation: "crates/dhcp-server/src/packet_handler.rs:179",
             maintainerResponse: "Entered NVIDIA's infrastructure security team triage queue after receiving the official bug report."
         },
         {
+            organization: "NVIDIA",
+            repo: "NVIDIA/infra-controller",
+            project: "Infrastructure Controller — BMC/IPMI",
+            language: "Rust / IPMI",
+            category: "Credential Exposure",
+            bugDescription: "The -P flag on ipmitool passed the BMC administrator password as a command-line argument, exposing it to local process inspection.",
+            impact: "Local users or processes able to inspect process arguments could recover the BMC password and potentially control the baseboard management interface. Reported privately and fixed.",
+            fileLocation: "N/A (coordinated disclosure)",
+            maintainerResponse: "Validated and fixed by NVIDIA's infrastructure security team."
+        },
+        {
             organization: "OWASP Foundation",
             repo: "OWASP/CheatSheetSeries",
-            project: "Security Cheat Sheet Series",
-            language: "Documentation / Security",
-            category: "Vulnerability Research",
-            bugDescription: "Critical security gap related to sensitive information exposure on hardware-based server infrastructure management. The -P flag on ipmitool caused BMC (Baseboard Management Controller) passwords to leak openly.",
-            impact: "BMC passwords became visible and could be snooped by all local processes running within the system, creating a severe information disclosure risk.",
-            fileLocation: "N/A (Security Advisory)",
-            maintainerResponse: "Report accepted and validated as a contribution to improving global infrastructure security standards."
+            url: "https://github.com/OWASP/CheatSheetSeries/blob/master/HALL_OF_FAME.md",
+            project: "Security Cheat Sheet Series — Site Build",
+            language: "Shell / GitHub Actions / MkDocs",
+            category: "CI/CD Security",
+            bugDescription: "Symlink handling issue in the MkDocs site generation. A merged change could cause files from the GitHub Actions runner to be included in the published site and release bundle.",
+            impact: "Build-runner files could be exposed on the public site and in the release bundle. The build token was read-only; the deploy token was not exposed. Rated High.",
+            fileLocation: "scripts/Generate_Site_mkDocs.sh; .github/workflows/build-and-deploy-website.yml",
+            maintainerResponse: "Confirmed by OWASP maintainers. Fixed in PR #2862 and follow-up PR #2867; Hall of Fame credit added for the report and verification, with a link to @wi5nuu."
         },
         {
             organization: "Hugging Face",

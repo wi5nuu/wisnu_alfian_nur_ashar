@@ -6,6 +6,8 @@ import { Bug, Shield, GitBranch, FileCode, ExternalLink, Github } from "lucide-a
 const isId = Astro.url.pathname.startsWith('/id');
 const profile = isId ? profileId : profileEn;
 const items = profile.openSource;
+const nvidiaFindings = items.filter((entry) => entry.organization === 'NVIDIA').length;
+const owaspFindings = items.filter((entry) => entry.organization === 'OWASP Foundation').length;
 ---
 
 <section class="opensource-section">
@@ -22,8 +24,14 @@ const items = profile.openSource;
 
     <p class="subheading">
       {isId
-        ? 'Laporan resmi penelitian bug pada proyek open-source kelas dunia. Setiap temuan telah dikonfirmasi oleh maintainer resmi.'
-        : 'Official bug research reports and security contributions to world-class open-source projects. Every finding confirmed by official maintainers.'}
+        ? 'Pengungkapan yang bertanggung jawab dan riset keamanan pada proyek open-source kelas dunia. Setiap entri mencantumkan status maintainer dan perbaikan bila tersedia.'
+        : 'Responsible disclosures and security research across world-class open-source projects. Each entry records the maintainer status and, where available, the fix.'}
+    </p>
+
+    <p class="os-summary">
+      {isId
+        ? `${items.length} temuan terdokumentasi — terbaru: ${nvidiaFindings} NVIDIA dan ${owaspFindings} OWASP.`
+        : `${items.length} documented findings — latest: ${nvidiaFindings} NVIDIA and ${owaspFindings} OWASP.`}
     </p>
 
     <div class="os-layout">
@@ -36,7 +44,10 @@ const items = profile.openSource;
             class="os-btn"
           >
             <GitBranch class="os-btn-icon" />
-            <span class="os-btn-label">{entry.organization}</span>
+            <span class="os-btn-text">
+              <span class="os-btn-label">{entry.organization}</span>
+              <span class="os-btn-sub">{entry.category}</span>
+            </span>
           </button>
         ))}
       </div>
@@ -91,6 +102,23 @@ const items = profile.openSource;
                 </div>
                 <p class="detail-text">{entry.maintainerResponse}</p>
               </div>
+
+              {entry.url && (
+                <div class="detail-block">
+                  <div class="detail-label">
+                    <ExternalLink class="detail-label-icon" />
+                    {isId ? 'Referensi' : 'Reference'}
+                  </div>
+                  <a
+                    class="detail-link"
+                    href={entry.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {isId ? 'Buka entry Hall of Fame' : 'Open Hall of Fame entry'}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -195,6 +223,14 @@ const items = profile.openSource;
     line-height: 1.6;
   }
 
+  .os-summary {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--accent);
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+
   /* Layout */
   .os-layout {
     margin-top: 56px;
@@ -250,9 +286,30 @@ const items = profile.openSource;
     color: inherit;
   }
 
+  .os-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    text-align: left;
+  }
+
   .os-btn-label {
     font-size: 12px;
     line-height: 1.3;
+  }
+
+  .os-btn-sub {
+    font-size: 10px;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .os-btn.active .os-btn-sub {
+    color: rgba(255, 255, 255, 0.55);
   }
 
   /* Detail panel */
@@ -359,6 +416,23 @@ const items = profile.openSource;
     border-radius: 6px;
     padding: 4px 10px;
     display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .detail-link {
+    display: inline-block;
+    max-width: 100%;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+  }
+
+  .detail-link:hover {
+    color: #ffffff;
   }
 
   /* RESPONSIVE */

@@ -81,6 +81,7 @@ interface Profile {
     openSource: {
         organization: string;
         repo: string;
+        url?: string;
         project: string;
         language: string;
         bugDescription: string;
@@ -98,7 +99,7 @@ export const profile: Profile = {
         role: "Full-Stack Engineer",
         location: "Bekasi, West Java, Indonesia",
         tagline: "Membangun Sistem Produksi yang Aman dan Berkinerja Tinggi",
-        summary: "Mahasiswa Teknologi Informasi President University dengan spesialisasi Full-Stack Engineering, dengan 3.300+ kontribusi GitHub pada 100+ repositori. Berpengalaman membangun sistem enterprise siap produksi — termasuk platform ERP/POS yang melayani ribuan pelanggan melalui website toko saya — menggunakan Laravel, Next.js, PostgreSQL, Go, dan teknologi cloud modern. Terampil dalam penetration testing eksternal dan internal disertai pelaporan kerentanan yang terstruktur. Kontributor open-source aktif (NASA, Microsoft), anggota OWASP Foundation, dan peserta IBM SkillsBuild AI Builders Challenge.",
+        summary: "Mahasiswa Teknologi Informasi President University dengan spesialisasi Full-Stack Engineering, dengan 3.300+ kontribusi GitHub pada 100+ repositori. Berpengalaman membangun sistem enterprise siap produksi — termasuk platform ERP/POS yang melayani ribuan pelanggan melalui website toko saya — menggunakan Laravel, Next.js, PostgreSQL, Go, dan teknologi cloud modern. Terampil dalam penetration testing eksternal dan internal disertai pelaporan kerentanan yang terstruktur. Kontributor open-source aktif (NASA, Microsoft, NVIDIA, Hugging Face), anggota OWASP Foundation, dan peserta IBM SkillsBuild AI Builders Challenge.",
         email: "wisnualfiannurashar@gmail.com",
         phone: "+62 813-9488-2490",
         linkedin: "https://linkedin.com/in/wisnu-alfian-nur-ashar",
@@ -695,22 +696,34 @@ export const profile: Profile = {
             repo: "NVIDIA/infra-controller",
             project: "Infrastructure Controller",
             language: "Rust",
-            category: "Vulnerability",
+            category: "Logika DHCP",
             bugDescription: "Kerentanan pada komponen manajemen jaringan internal. Fungsi packet handler untuk server DHCP secara kaku meng-hardcode nilai parameter desired_address ke status None.",
             impact: "Bug ini memblokir dan merusak mekanisme pembaruan sewa alamat IP (DHCP lease renewal) pada klaster infrastruktur controller milik NVIDIA.",
             fileLocation: "crates/dhcp-server/src/packet_handler.rs:179",
             maintainerResponse: "Masuk ke dalam antrean triase tim security infrastructure NVIDIA setelah menerima laporan bug report resmi."
         },
         {
+            organization: "NVIDIA",
+            repo: "NVIDIA/infra-controller",
+            project: "Infrastructure Controller — BMC/IPMI",
+            language: "Rust / IPMI",
+            category: "Eksposur Kredensial",
+            bugDescription: "Flag -P pada ipmitool mengirim kata sandi administrator BMC sebagai argumen command line, sehingga terlihat oleh proses lokal yang dapat membaca daftar proses.",
+            impact: "Pengguna atau proses lokal yang dapat memeriksa argumen proses berpotensi mengambil kata sandi BMC dan mengakses antarmuka manajemen baseboard. Dilaporkan secara privat dan telah diperbaiki.",
+            fileLocation: "N/A (koordinasi privat)",
+            maintainerResponse: "Divalidasi dan diperbaiki oleh tim keamanan infrastruktur NVIDIA."
+        },
+        {
             organization: "OWASP Foundation",
             repo: "OWASP/CheatSheetSeries",
-            project: "Security Cheat Sheet Series",
-            language: "Dokumentasi / Keamanan",
-            category: "Vulnerability Research",
-            bugDescription: "Menemukan celah keamanan kritis terkait paparan informasi sensitif (Information Disclosure) pada manajemen infrastruktur server berbasis perangkat keras. Penggunaan flag -P pada utilitas ipmitool mengakibatkan kata sandi BMC (Baseboard Management Controller) bocor secara terbuka.",
-            impact: "Kata sandi BMC dapat diintip oleh seluruh proses lokal yang sedang berjalan di dalam sistem, menciptakan risiko kebocoran informasi yang parah.",
-            fileLocation: "N/A (Security Advisory)",
-            maintainerResponse: "Laporan diterima dan divalidasi sebagai bentuk kontribusi peningkatan standar keamanan infrastruktur global."
+            url: "https://github.com/OWASP/CheatSheetSeries/blob/master/HALL_OF_FAME.md",
+            project: "Security Cheat Sheet Series — Build Situs",
+            language: "Shell / GitHub Actions / MkDocs",
+            category: "Keamanan CI/CD",
+            bugDescription: "Isu penanganan symlink pada pipeline build situs MkDocs. Perubahan yang di-merge berpotensi menyebabkan file dari runner GitHub Actions ikut masuk ke situs publik dan bundle rilis.",
+            impact: "File internal runner berpotensi terekspos di situs publik dan bundle rilis. Token build bersifat read-only; token deploy tidak terekspos. Dinilai High.",
+            fileLocation: "scripts/Generate_Site_mkDocs.sh; .github/workflows/build-and-deploy-website.yml",
+            maintainerResponse: "Dikonfirmasi oleh maintainer OWASP. Diperbaiki di PR #2862 dan PR #2867; kredit Hall of Fame diberikan atas laporan dan verifikasi, dengan tautan ke @wi5nuu."
         },
         {
             organization: "Hugging Face",
