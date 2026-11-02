@@ -714,6 +714,28 @@ export const profile: Profile = {
             maintainerResponse: "Validated and fixed by NVIDIA's infrastructure security team."
         },
         {
+            organization: "NVIDIA",
+            repo: "NVIDIA-NeMo/Speech",
+            project: "NeMo Speech — Training Checkpoint Loader",
+            language: "Python / PyTorch",
+            category: "Unsafe Deserialization",
+            bugDescription: "A regression in the EMA checkpoint loader reintroduced unsafe deserialization behavior that an earlier patch had removed, affecting how sidecar checkpoint files are loaded when resuming training.",
+            impact: "Reported privately to NVIDIA PSIRT under coordinated disclosure, including a proof of concept and a proposed one-line fix with regression tests. Full technical detail withheld until a fix ships.",
+            fileLocation: "N/A (coordinated disclosure, not yet patched)",
+            maintainerResponse: "Submitted to NVIDIA PSIRT; triage in progress."
+        },
+        {
+            organization: "NVIDIA",
+            repo: "NVIDIA Nsight Systems",
+            project: "Nsight Systems — Windows Profiling Agent",
+            language: "C++ / Windows RPC",
+            category: "Privilege Escalation",
+            bugDescription: "A local authorization gap in the Windows profiling agent's launch RPC, affecting how elevated profiling sessions start child processes.",
+            impact: "Reported privately to NVIDIA under coordinated disclosure, with a reproducible local proof of concept and suggested remediation. Full technical detail withheld until a fix ships.",
+            fileLocation: "N/A (coordinated disclosure, not yet patched)",
+            maintainerResponse: "Submitted to NVIDIA under coordinated disclosure; response pending."
+        },
+        {
             organization: "OWASP Foundation",
             repo: "OWASP/CheatSheetSeries",
             url: "https://github.com/OWASP/CheatSheetSeries/blob/master/HALL_OF_FAME.md",

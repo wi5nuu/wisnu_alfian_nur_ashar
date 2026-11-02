@@ -714,6 +714,28 @@ export const profile: Profile = {
             maintainerResponse: "Divalidasi dan diperbaiki oleh tim keamanan infrastruktur NVIDIA."
         },
         {
+            organization: "NVIDIA",
+            repo: "NVIDIA-NeMo/Speech",
+            project: "NeMo Speech — Pemuat Checkpoint Training",
+            language: "Python / PyTorch",
+            category: "Deserialisasi Tidak Aman",
+            bugDescription: "Regresi pada pemuat checkpoint EMA memunculkan kembali perilaku deserialisasi tidak aman yang sebelumnya sudah diperbaiki, memengaruhi cara file checkpoint sidecar dimuat saat melanjutkan training.",
+            impact: "Dilaporkan secara privat ke NVIDIA PSIRT lewat jalur coordinated disclosure, dilengkapi proof of concept dan usulan perbaikan satu baris beserta regression test. Detail teknis lengkap ditahan hingga perbaikan dirilis.",
+            fileLocation: "N/A (koordinasi privat, belum diperbaiki)",
+            maintainerResponse: "Dikirim ke NVIDIA PSIRT; proses triase berjalan."
+        },
+        {
+            organization: "NVIDIA",
+            repo: "NVIDIA Nsight Systems",
+            project: "Nsight Systems — Agen Profiling Windows",
+            language: "C++ / Windows RPC",
+            category: "Eskalasi Privilese",
+            bugDescription: "Celah otorisasi lokal pada RPC peluncuran agen profiling Windows, memengaruhi cara sesi profiling dengan hak elevasi meluncurkan proses anak.",
+            impact: "Dilaporkan secara privat ke NVIDIA lewat jalur coordinated disclosure, dengan proof of concept lokal yang dapat direproduksi dan usulan remediasi. Detail teknis lengkap ditahan hingga perbaikan dirilis.",
+            fileLocation: "N/A (koordinasi privat, belum diperbaiki)",
+            maintainerResponse: "Dikirim ke NVIDIA lewat jalur coordinated disclosure; menunggu respons."
+        },
+        {
             organization: "OWASP Foundation",
             repo: "OWASP/CheatSheetSeries",
             url: "https://github.com/OWASP/CheatSheetSeries/blob/master/HALL_OF_FAME.md",

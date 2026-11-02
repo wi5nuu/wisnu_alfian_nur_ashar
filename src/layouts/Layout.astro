@@ -102,9 +102,14 @@ const graph: Record<string, unknown>[] = [
     description: clip(profile.personalInfo.summary, 300),
     address: { "@type": "PostalAddress", addressLocality: "Kota Bekasi", addressRegion: "Jawa Barat", addressCountry: "ID" },
     alumniOf: { "@type": "CollegeOrUniversity", name: profile.education.institution, url: "https://www.president.ac.id" },
+    worksFor: [
+      { "@type": "Organization", name: "Ashar Grosir Parfum", url: `${siteUrl}/projects/ashar-grosir-parfum/` },
+      { "@type": "Organization", name: "PT Grahabuana Cikarang" },
+    ],
     knowsAbout: [
       "Full-Stack Web Development", "Cyber Security", "Penetration Testing", "OWASP", "Zero-Trust Architecture",
-      "Artificial Intelligence", "Computer Vision", "YOLOv8", "Machine Learning", "Retrieval-Augmented Generation",
+      "Artificial Intelligence", "AI Agents", "Large Language Models", "Prompt Engineering", "Computer Vision",
+      "YOLOv8", "Machine Learning", "Retrieval-Augmented Generation", "Model Context Protocol",
       "Software Engineering", "Laravel", "Next.js", "React", "TypeScript", "Golang", "Python", "PostgreSQL",
       "DevOps", "Docker", "Cloud Computing", "Cloudflare", "CI/CD", "Technical SEO",
     ],
